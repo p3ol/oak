@@ -16,7 +16,8 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@percy/storybook": "^3.3.0",
-    "@poool/eslint-config": "1.2.3",
+    "@poool/eslint-config": "^1.2.2",
+    "@poool/eslint-config-react": "1.2.3",
     "@poool/eslint-plugin": "1.2.3",
     "babel-eslint": "10.1.0",
     "eslint": "7.6.0",
@@ -25,9 +26,10 @@
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-standard": "4.0.1",
     "lerna": "^3.22.1",
-    "rollup": "^2.23.1",
+    "rollup": "^2.25.0",
     "webpack": "^4.44.1"
   }
 }
