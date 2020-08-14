@@ -1,0 +1,37 @@
+{
+  "name": "@poool/oak",
+  "version": "0.0.1-alpha.0",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "main": "dist/oak.cjs.js",
+  "jsnext:main": "dist/oak/index.js",
+  "module": "dist/oak/index.js",
+  "esnext": "src/index.js",
+  "unpkg": "dist/oak.min.js",
+  "cdn": "dist/oak.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/oak"
+  },
+  "author": "Ugo Stephant <ugo@poool.fr>",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">= 10",
+    "yarn": ">= 1"
+  },
+  "peerDependencies": {},
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.10.2",
+    "core-js": "3.6.5",
+    "preact": "^10.4.7"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && rollup -c",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

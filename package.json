@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "lerna": "./node_modules/.bin/lerna",
+    "prepack": "yarn lint && yarn build && yarn test",
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "BABEL_ENV=tests ./node_modules/.bin/jest",
+    "build": "./node_modules/.bin/lerna exec -- yarn build",
+    "serve": "./node_modules/.bin/start-storybook"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "@percy/storybook": "^3.3.0",
+    "@poool/eslint-config": "1.2.3",
+    "@poool/eslint-plugin": "1.2.3",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.6.0",
+    "eslint-config-standard": "14.1.1",
+    "eslint-plugin-babel": "5.3.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "lerna": "^3.22.1",
+    "rollup": "^2.23.1",
+    "webpack": "^4.44.1"
+  }
+}
