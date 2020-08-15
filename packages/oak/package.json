@@ -3,8 +3,8 @@
   "version": "0.0.1-alpha.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak.cjs.js",
-  "jsnext:main": "dist/oak/index.js",
-  "module": "dist/oak/index.js",
+  "jsnext:main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
   "esnext": "src/index.js",
   "unpkg": "dist/oak.min.js",
   "cdn": "dist/oak.min.js",
@@ -24,7 +24,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.10.2",
     "core-js": "3.6.5",
-    "preact": "^10.4.7"
+    "preact": "10.4.7"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

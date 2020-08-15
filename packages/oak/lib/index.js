@@ -1,5 +1,10 @@
-import React from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import App from './core/App';
 
 export const render = (elmt, options = {}) => {
-  React.render(<App {...options} />, elmt);
+  ReactDOM.render(<App {...options} />, elmt);
 };
+
+export default { render };
