@@ -1,0 +1,23 @@
+export const COMPONENT_ROW = {
+  id: 'row',
+  name: 'Row',
+  type: 'component',
+  hasContent: true,
+  construct: () => ({ type: 'row', size: '12', content: [] }),
+};
+
+export const GROUP_CORE = {
+  id: 'core',
+  name: 'Core components',
+  type: 'group',
+  components: [
+    COMPONENT_ROW,
+  ],
+};
+
+export const GROUP_OTHER = {
+  id: 'other',
+  name: 'Other',
+  type: 'group',
+  components: [],
+};
