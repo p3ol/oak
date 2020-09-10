@@ -5,6 +5,8 @@ import { AppContext } from '../../contexts';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
 import Builder from '../Builder';
 
+import styles from './index.styl';
+
 export default forwardRef(({ options }, ref) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
@@ -64,8 +66,10 @@ export default forwardRef(({ options }, ref) => {
   };
 
   return (
-    <AppContext.Provider value={getContext()}>
-      <Builder />
-    </AppContext.Provider>
+    <div className={styles.oak}>
+      <AppContext.Provider value={getContext()}>
+        <Builder />
+      </AppContext.Provider>
+    </div>
   );
 });

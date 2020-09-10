@@ -1,9 +1,13 @@
+import React from 'react';
+
+import Row from './core/Row';
+
 export const COMPONENT_ROW = {
   id: 'row',
   name: 'Row',
   type: 'component',
   hasContent: true,
-  construct: () => ({ type: 'row', size: '12', content: [] }),
+  construct: () => ({ type: 'row', size: '12', content: [], render: Row }),
 };
 
 export const GROUP_CORE = {
