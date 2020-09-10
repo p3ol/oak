@@ -74,6 +74,7 @@ export default [
         inject: false,
         extract: true,
         sourceMap: true,
+        modules: true,
         plugins: [
           autoprefixer({ env: process.env.BROWSERSLIST_ENV }),
         ],

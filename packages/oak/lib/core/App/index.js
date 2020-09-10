@@ -2,12 +2,12 @@ import React, { forwardRef, useReducer, useImperativeHandle } from 'react';
 import { mockState } from '@poool/junipero-utils';
 
 import { AppContext } from '../../contexts';
-import { GROUP_BASIC, GROUP_OTHER } from '../../components';
+import { GROUP_CORE, GROUP_OTHER } from '../../components';
 import Builder from '../Builder';
 
 export default forwardRef(({ options }, ref) => {
   const [state, dispatch] = useReducer(mockState, {
-    components: [GROUP_BASIC, GROUP_OTHER],
+    components: [GROUP_CORE, GROUP_OTHER],
     content: [],
   });
 
@@ -22,6 +22,8 @@ export default forwardRef(({ options }, ref) => {
     content: state.content,
     components: state.components,
     options,
+    addElement,
+    removeElement,
   });
 
   const getGroup_ = id => {
@@ -49,6 +51,16 @@ export default forwardRef(({ options }, ref) => {
     const group = getGroup_(groupId);
     group.components = group.components.filter(c => c.id !== id);
     dispatch({ components: state.components });
+  };
+
+  const addElement = elmt => {
+    state.content.push(elmt);
+    dispatch({ content: state.content });
+  };
+
+  const removeElement = elmt => {
+    state.content.splice(state.content.indexOf(elmt), 1);
+    dispatch({ content: state.content });
   };
 
   return (
