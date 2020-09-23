@@ -22,7 +22,7 @@
     "@poool/eslint-plugin": "1.2.3",
     "@rollup/plugin-alias": "3.1.1",
     "@rollup/plugin-babel": "5.2.1",
-    "@rollup/plugin-commonjs": "15.0.0",
+    "@rollup/plugin-commonjs": "15.1.0",
     "@rollup/plugin-node-resolve": "9.0.0",
     "@storybook/addon-storysource": "5.3.21",
     "@storybook/react": "5.3.21",
