@@ -48,7 +48,7 @@
     "style-loader": "1.2.1",
     "stylus": "0.54.8",
     "stylus-loader": "3.0.2",
-    "webpack": "4.44.1"
+    "webpack": "4.44.2"
   },
   "name": "oak"
 }
