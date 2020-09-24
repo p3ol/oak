@@ -15,13 +15,17 @@ module.exports = ({ config }) => {
       {
         loader: 'css-loader',
         options: {
-          modules: true,
+          modules: {
+            localIdentName: '[path][name]__[local]',
+          },
         },
       }, {
         loader: 'postcss-loader',
         options: {
-          sourceMap: true,
-          plugins: loader => ([autoprefixer]),
+          postcssOptions: {
+            sourceMap: true,
+            plugins: [autoprefixer],
+          },
         },
       },
       'stylus-loader',
