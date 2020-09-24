@@ -3,32 +3,3 @@
 .builder
   .addElement
     text-align: center
-
-    .handle
-      display: inline-block
-      width: 40px
-      height: 40px
-      background: $color-charade
-      border-radius: 50%
-      position: relative
-      cursor: pointer
-      transition: transform .1s ease-in-out
-
-      &:before, &:after
-        content: ''
-        width: 2px
-        height: 25px
-        position: absolute
-        left: 50%
-        transform: translate3d(-50%, -50%, 0)
-        background: $color-white
-        top: 50%
-
-      &:after
-        transform: translate3d(-50%, -50%, 0) rotate(90deg)
-
-      &.opened
-        transform: rotate(45deg)
-
-    .catalogue
-      margin-left: 10px

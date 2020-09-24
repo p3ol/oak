@@ -53,9 +53,8 @@ export default forwardRef(({
     opened: state.opened,
   }));
 
-  const open = reference_ => {
+  const open = () => {
     dispatch({ opened: true });
-    setReference(reference_);
     onToggle({ opened: true });
   };
 
@@ -109,37 +108,57 @@ export default forwardRef(({
     onAppend(component);
   };
 
-  return state.opened && (
+  return (
     <div
-      ref={setPopper}
-      style={popperStyles.popper}
-      className={styles.catalogue}
-      {...attributes.popper}
-      data-placement={placement}
+      className={classNames(
+        styles.catalogue,
+        { [styles.opened]: state.opened },
+      )}
     >
-      <div className={styles.groups}>
-        <ul className={styles.tabs}>
-          { getGroups().map((g, i) => (
-            <li
-              key={g.id}
-              className={classNames(
-                styles.tab,
-                {
-                  [styles.active]: (!state.currentTab && i === 0) ||
-                    state.currentTab === g,
-                }
-              )}
-            >
-              <a href="#" onClick={onGroupSelect.bind(null, g)}>{ g.name }</a>
-            </li>
-          )) }
-        </ul>
+      <a
+        ref={setReference}
+        className={styles.handle}
+        onClick={open}
+      />
+      { state.opened && (
+        <div
+          ref={setPopper}
+          style={popperStyles.popper}
+          className={styles.popover}
+          {...attributes.popper}
+          data-placement={placement}
+        >
+          <div className={styles.groups}>
+            <ul className={styles.tabs}>
+              { getGroups().map((g, i) => (
+                <li
+                  key={g.id}
+                  className={classNames(
+                    styles.tab,
+                    {
+                      [styles.active]: (!state.currentTab && i === 0) ||
+                        state.currentTab === g,
+                    }
+                  )}
+                >
+                  <a href="#" onClick={onGroupSelect.bind(null, g)}>
+                    { g.name }
+                  </a>
+                </li>
+              )) }
+            </ul>
 
-        <div className={styles.group}>
-          { renderComponents() }
+            <div className={styles.group}>
+              { renderComponents() }
+            </div>
+          </div>
+          <div
+            ref={setArrow}
+            style={popperStyles.arrow}
+            className={styles.arrow}
+          />
         </div>
-      </div>
-      <div ref={setArrow} style={popperStyles.arrow} className={styles.arrow} />
+      ) }
     </div>
   );
 });

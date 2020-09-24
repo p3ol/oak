@@ -55,13 +55,13 @@ export default forwardRef(({ options }, ref) => {
     dispatch({ components: state.components });
   };
 
-  const addElement = elmt => {
-    state.content.push(elmt);
+  const addElement = (elmt, parent = state.content) => {
+    parent.push(elmt);
     dispatch({ content: state.content });
   };
 
-  const removeElement = elmt => {
-    state.content.splice(state.content.indexOf(elmt), 1);
+  const removeElement = (elmt, parent = state.content) => {
+    parent.splice(parent.indexOf(elmt), 1);
     dispatch({ content: state.content });
   };
 
