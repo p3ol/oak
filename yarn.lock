@@ -10182,10 +10182,10 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.2
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-preact@10.5.0:
-  version "10.5.0"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.0.tgz#03387837e7174fdca4e7083baaff5bf417117639"
-  integrity sha512-CuhSq2uq1lUy9442j9Jlucapt8+9SFyNl1+evzbMb8dTF4GCPrc1XMvf9Hai7XbeXG/wIxR0TVhhEFKJ3DkY6Q==
+preact@10.5.2:
+  version "10.5.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.2.tgz#4c07c27f4239666840e0d637ec7c110cfcae181d"
+  integrity sha512-4y2Q6kMiJtMONMJR7z+o8P5tGkMzVItyy77AXGrUdusv+dk4jwoS3KrpCBkFloY2xsScRJYwZQZrx89tTjDkOw==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
