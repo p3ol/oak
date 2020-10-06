@@ -48,7 +48,7 @@
     "rollup-plugin-terser": "7.0.2",
     "style-loader": "1.2.1",
     "stylus": "0.54.8",
-    "stylus-loader": "3.0.2",
+    "stylus-loader": "4.1.0",
     "webpack": "4.44.2"
   },
   "name": "oak"
