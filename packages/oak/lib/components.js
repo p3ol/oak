@@ -6,8 +6,8 @@ export const COMPONENT_DEFAULT = {
   id: 'unknown',
   name: 'Unknown',
   type: 'component',
-  render: (elmt, props) => (
-    <pre {...props}>{ JSON.stringify(elmt) }</pre>
+  render: ({ element, ...props }) => (
+    <pre {...props}>{ JSON.stringify(element) }</pre>
   ),
 };
 
@@ -15,9 +15,8 @@ export const COMPONENT_ROW = {
   id: 'row',
   name: 'Row',
   type: 'component',
-  render: (elmt, props) => (
-    <Row element={elmt} {...props} />
-  ),
+  render: Row,
+  options: Row.options,
   construct: () => ({
     type: 'row',
     cols: [{ size: 12, content: [] }],

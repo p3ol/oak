@@ -20,6 +20,21 @@ class oak {
     this.ref.current?.setContent(...args);
     return this;
   }
+
+  addElement (...args) {
+    this.ref.current?.addElement(...args);
+    return this;
+  }
+
+  removeElement (...args) {
+    this.ref.current?.removeElement(...args);
+    return this;
+  }
+
+  setElement (...args) {
+    this.ref.current?.setElement(...args);
+    return this;
+  }
 }
 
 export const render = (elmt, options = {}) => {

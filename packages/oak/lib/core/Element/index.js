@@ -3,6 +3,7 @@ import { classNames } from '@poool/junipero-utils';
 
 import { COMPONENT_DEFAULT } from '../../components';
 import { useBuilder, useOptions } from '../../hooks';
+import Option from '../Option';
 
 import styles from './index.styl';
 
@@ -19,6 +20,10 @@ const Element = ({
     onDelete();
   };
 
+  const onEdit_ = e => {
+    e.preventDefault();
+  };
+
   const component = renderers.find(r => r.id === element.type) ||
     COMPONENT_DEFAULT;
 
@@ -30,20 +35,34 @@ const Element = ({
         className,
       )}
     >
-      { component?.render?.(element, {
+      { component?.render?.({
+        element,
         className: classNames(styles.inner, element.className),
       }) || null }
 
       <div className={styles.options}>
-        <a
-          href="#"
+        <Option
+          option={{ icon: 'close' }}
           className={classNames(styles.option, styles.remove)}
           onClick={onDelete_}
-        >
-          <i className="material-icons">close</i>
-        </a>
-        { component?.options?.map((o, i) =>
-          o?.render?.(o, i, element)
+        />
+        { component.options?.map((o, i) => (
+          <React.Fragment key={i}>
+            { o?.render?.({
+              option: o,
+              className: styles.option,
+              element,
+              component,
+              index: i,
+            }) }
+          </React.Fragment>
+        )) }
+        { component.editable && (
+          <Option
+            icon={{ icon: 'edit' }}
+            className={classNames(styles.option, styles.edit)}
+            onClick={onEdit_}
+          />
         ) }
       </div>
 

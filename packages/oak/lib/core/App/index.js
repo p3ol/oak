@@ -19,6 +19,10 @@ export default forwardRef(({ content, ...options }, ref) => {
     removeGroup,
     addComponent,
     removeComponent,
+    addElement,
+    setElement,
+    removeElement,
+    setContent,
   }));
 
   const getContext = () => ({

@@ -6,7 +6,7 @@
 
   &:hover
     .options
-      display: block
+      display: flex
 
   &:not(.row)
     .inner
@@ -20,7 +20,7 @@
       top: -25px
       left: 0
       transform: none
-      display: block
+      display: flex
 
       a.option
         &:first-child
@@ -37,21 +37,12 @@
     top: 50%
     left: 50%
     transform: translate3d(-50%, -50%, 0)
-    display: flex
+    display: none
     align-items: center
     width: auto
-    display: none
+    white-space: nowrap
 
     a.option
-      color: $color-white
-      flex: 0 1 auto
-      background: #8985E6
-      display: block
-      height: 25px
-      line-height: 25px
-      min-width: 25px
-      text-align: center
-
       &:first-child
         border-radius: 3px 0 0 3px
 

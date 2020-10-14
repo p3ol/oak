@@ -4,10 +4,11 @@ import { classNames } from '@poool/junipero-utils';
 import { AppContext } from '../../contexts';
 import Catalogue from '../Catalogue';
 import Element from '../Element';
+import Option from '../Option';
 
 import styles from './index.styl';
 
-export default ({ className, element }) => {
+const Row = ({ className, element }) => {
   const catalogueRef = useRef();
   const { addElement, removeElement, setElement } = useContext(AppContext);
 
@@ -49,3 +50,18 @@ export default ({ className, element }) => {
     </div>
   );
 };
+
+Row.options = [{
+  name: 'cols',
+  render: ({ option, element, className }) => {
+
+    return (
+      <Option
+        option={{ icon: 'view_column' }}
+        className={classNames(className, styles.column)}
+      />
+    );
+  },
+}];
+
+export default Row;
