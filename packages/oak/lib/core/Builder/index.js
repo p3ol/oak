@@ -1,7 +1,6 @@
-import React, { useContext, useRef, useReducer } from 'react';
-import { classNames, mockState } from '@poool/junipero-utils';
+import React, { useContext, useRef } from 'react';
 
-import { AppContext } from '../../contexts';
+import { useOptions, useBuilder } from '../../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
 
@@ -9,7 +8,8 @@ import styles from './index.styl';
 
 export default () => {
   const catalogueRef = useRef();
-  const { content = [], addElement, removeElement } = useContext(AppContext);
+  const { renderers, content, addElement, removeElement } = useBuilder();
+  const { debug } = useOptions();
 
   const onAppend = component => {
     addElement(component.construct());
@@ -21,7 +21,7 @@ export default () => {
       { content.map((item, i) => (
         <Element
           key={i}
-          { ...item }
+          element={item}
           onDelete={removeElement.bind(null, item)}
         />
       )) }
@@ -33,6 +33,16 @@ export default () => {
           onAppend={onAppend}
         />
       </div>
+
+      { debug && (
+        <pre>
+          <p>Content:</p>
+          { JSON.stringify(content, null, 2) }
+
+          <p>Renderers:</p>
+          { JSON.stringify(renderers, null, 2) }
+        </pre>
+      )}
     </div>
   );
 };

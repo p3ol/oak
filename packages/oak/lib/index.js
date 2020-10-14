@@ -8,10 +8,17 @@ class oak {
 
   addGroup (...args) {
     this.ref.current?.addGroup(...args);
+    return this;
   }
 
   removeGroup (...args) {
     this.ref.current?.removeGroup(...args);
+    return this;
+  }
+
+  setContent (...args) {
+    this.ref.current?.setContent(...args);
+    return this;
   }
 }
 

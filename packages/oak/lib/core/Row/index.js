@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { AppContext } from '../../contexts';
@@ -7,9 +7,15 @@ import Element from '../Element';
 
 import styles from './index.styl';
 
-export default ({ className, cols = [] }) => {
+export default ({ className, element }) => {
   const catalogueRef = useRef();
-  const { addElement, removeElement } = useContext(AppContext);
+  const { addElement, removeElement, setElement } = useContext(AppContext);
+
+  useEffect(() => {
+    if (!element.cols?.length) {
+      setElement(element, { cols: [{ size: 12, content: [] }] });
+    }
+  }, []);
 
   const onAppend = (col, component) => {
     addElement(component.construct(), col.content);
@@ -18,13 +24,13 @@ export default ({ className, cols = [] }) => {
 
   return (
     <div className={classNames(className, styles.row)}>
-      { cols.map((col, i) => (
+      { element?.cols?.map((col, i) => (
         <div className={styles.col} key={i}>
           <div className={styles.content}>
             { col.content?.map((item, i) => (
               <Element
                 key={i}
-                { ...item }
+                element={item}
                 className={styles.element}
                 onDelete={removeElement.bind(null, item, col.content)}
               />

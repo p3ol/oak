@@ -1,33 +1,37 @@
 import React from 'react';
 import { classNames } from '@poool/junipero-utils';
 
+import { COMPONENT_DEFAULT } from '../../components';
+import { useBuilder, useOptions } from '../../hooks';
+
 import styles from './index.styl';
 
 const Element = ({
-  id,
-  name,
-  type,
+  element,
   className,
-  render = () => {},
   onDelete = () => {},
-  ...props
 }) => {
+  const { renderers } = useBuilder();
+  const { debug } = useOptions();
+
   const onDelete_ = e => {
     e.preventDefault();
     onDelete();
   };
 
+  const component = renderers.find(r => r.id === element.type) ||
+    COMPONENT_DEFAULT;
+
   return (
     <div
       className={classNames(
         styles.element,
-        styles[type],
+        styles[element?.type],
         className,
       )}
     >
-      { render({
-        ...props,
-        className: classNames(styles.inner, props.className),
+      { component?.render?.(element, {
+        className: classNames(styles.inner, element.className),
       }) || null }
 
       <div className={styles.options}>
@@ -38,7 +42,17 @@ const Element = ({
         >
           <i className="material-icons">close</i>
         </a>
+        { component?.options?.map((o, i) =>
+          o?.render?.(o, i, element)
+        ) }
       </div>
+
+      { debug && (
+        <pre>
+          <p>Element:</p>
+          { JSON.stringify(element, null, 2) }
+        </pre>
+      )}
     </div>
   );
 };
