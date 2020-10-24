@@ -39,7 +39,7 @@
     "eslint-plugin-react": "7.21.4",
     "eslint-plugin-standard": "4.0.1",
     "lerna": "3.22.1",
-    "postcss": "8.1.1",
+    "postcss": "8.1.4",
     "postcss-loader": "4.0.4",
     "react": "16.14.0",
     "react-dom": "16.14.0",
