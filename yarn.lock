@@ -2727,10 +2727,10 @@
   resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-1.2.3.tgz#289b38bc2828d9bff6bd11d031d5b6b32ed8123f"
   integrity sha512-K6MiL7mjlQ2+diDiMYYd281veag/N62BAKNvEPRaHoz0XNgfqmlIGGKU/Zv3jq8kPTxSr8eC+a7gEKqqJInmnw==
 
-"@poool/eslint-config@1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-1.2.3.tgz#721d1df18d128555e0d6d0b62415feb9a036e181"
-  integrity sha512-VRzL1LKGZiju1oN41oVAOLzUaI71sBUIBT1Ieu2iNXXNfiDg3mV0cLlqMKNzzQHQjwZAozdt/orkBKDx7Ds+2Q==
+"@poool/eslint-config@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-1.3.1.tgz#cffccdf9f0b7cee7c29115a876df83f4be83327f"
+  integrity sha512-U8Rns2XG0eIfM6WTp40l0NfbsTpbt5t5RnQ2xR3cT8JFgmk1PDXswNTwNUs85UrYfSKdspR6tTNoBkA/G5VDAw==
 
 "@poool/eslint-plugin@1.2.3":
   version "1.2.3"
