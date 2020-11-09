@@ -2727,15 +2727,15 @@
   resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-1.3.6.tgz#5c0e3b4f5d96b0cb9cbd01d245c2b6fff99efe52"
   integrity sha512-xsQE+TvsZthYWkF56UIZ2S8HaYOcvGHnC9CnZZ7oAq1p3vVEf34M+jvXaTz9+mM6oL8Vd2UmTqFC9pZAIP6FAw==
 
-"@poool/eslint-config@1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-1.3.1.tgz#cffccdf9f0b7cee7c29115a876df83f4be83327f"
-  integrity sha512-U8Rns2XG0eIfM6WTp40l0NfbsTpbt5t5RnQ2xR3cT8JFgmk1PDXswNTwNUs85UrYfSKdspR6tTNoBkA/G5VDAw==
+"@poool/eslint-config@1.3.6":
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-1.3.6.tgz#507ae1357967833a96afae4e4b7e8e3c42884797"
+  integrity sha512-x+WiWmW8G8R8XQZ4dqiG2pMhpxgyQGmmd2vhxkx9K8brovlhVEsTGtAOXg63WVwPfHvRQdPtBJit6a44SW86yw==
 
-"@poool/eslint-plugin@1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-1.3.1.tgz#3349200173a83b73acaacee89308ee528ec68719"
-  integrity sha512-4tcsbUkY5GkvYYSNBcw4czAkgFpzeIpqHXr25EY8HEChB3JAqHROhnl4ejFU7iXfrN9o1tWAHuKS8OE3ubYQ0w==
+"@poool/eslint-plugin@1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-1.3.3.tgz#7a351ddc37738c620a236e70d63b41a6fb3dd7bf"
+  integrity sha512-tx5NjefJeB95r8HbQKiRfycDiQel1RqXAWPcs5XPdnxElqdUz+tAW0rEAviwtR0uhm5Iex8a4X0O+/5taZD/RQ==
   dependencies:
     eslint-rule-composer "0.3.0"
 
@@ -2755,10 +2755,10 @@
     "@babel/runtime-corejs3" "7.10.2"
     core-js "3.6.5"
 
-"@popperjs/core@2.5.3":
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.5.3.tgz#4982b0b66b7a4cf949b86f5d25a8cf757d3cfd9d"
-  integrity sha512-RFwCobxsvZ6j7twS7dHIZQZituMIDJJNHS/qY6iuthVebxS3zhRY+jaC2roEKiAYaVuTcGmX6Luc6YBcf6zJVg==
+"@popperjs/core@2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.5.4.tgz#de25b5da9f727985a3757fd59b5d028aba75841a"
+  integrity sha512-ZpKr+WTb8zsajqgDkvCEWgp6d5eJT6Q63Ng2neTbzBO76Lbe91vX/iVIW9dikq+Fs3yEo+ls4cxeXABD2LtcbQ==
 
 "@reach/router@^1.2.1":
   version "1.3.4"
@@ -6473,10 +6473,10 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-config-standard@16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-16.0.0.tgz#5f21e9b8be8be28c096e592e1137769d33c5cd92"
-  integrity sha512-kMCehB9yXIG+LNsu9uXfm06o6Pt63TFAOzn9tUOzw4r/hFIxHhNR1Xomxy+B5zMrXhqyfHVEcmanzttEjGei9w==
+eslint-config-standard@16.0.1:
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-16.0.1.tgz#9a385eea27f96b7918cb53f07e01e9d10cc56401"
+  integrity sha512-WBBiQQZdaPyL+4sPkGWhWrHCDtvJoU195B9j8yXE9uFQnX34gMXI5CeBRm95gx3PMEZPM5OpwET10hH4F4SxCA==
 
 eslint-import-resolver-node@^0.3.4:
   version "0.3.4"
@@ -12047,10 +12047,10 @@ rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@2.32.1:
-  version "2.32.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.32.1.tgz#625a92c54f5b4d28ada12d618641491d4dbb548c"
-  integrity sha512-Op2vWTpvK7t6/Qnm1TTh7VjEZZkN8RWgf0DHbkKzQBwNf748YhXbozHVefqpPp/Fuyk/PQPAnYsBxAEtlMvpUw==
+rollup@2.33.1:
+  version "2.33.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.33.1.tgz#802795164164ee63cd47769d8879c33ec8ae0c40"
+  integrity sha512-uY4O/IoL9oNW8MMcbA5hcOaz6tZTMIh7qJHx/tzIJm+n1wLoY38BLn6fuy7DhR57oNFLMbDQtDeJoFURt5933w==
   optionalDependencies:
     fsevents "~2.1.2"
 
