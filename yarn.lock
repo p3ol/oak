@@ -2722,10 +2722,10 @@
     walk "^2.3.9"
     yargs "^7.0.2"
 
-"@poool/eslint-config-react@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-1.3.2.tgz#813336e679efbea3538aaba277b93c8d9b163aac"
-  integrity sha512-GcaYkmPGoZzUQrBsKrxHNlMHAtY4im0SxDOzvZFzBPad55hHliu4Td2/WHBr9MawWITi9cykS1VbB2ezl2mPLg==
+"@poool/eslint-config-react@1.3.6":
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-1.3.6.tgz#5c0e3b4f5d96b0cb9cbd01d245c2b6fff99efe52"
+  integrity sha512-xsQE+TvsZthYWkF56UIZ2S8HaYOcvGHnC9CnZZ7oAq1p3vVEf34M+jvXaTz9+mM6oL8Vd2UmTqFC9pZAIP6FAw==
 
 "@poool/eslint-config@1.3.6":
   version "1.3.6"
