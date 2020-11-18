@@ -1,15 +1,10 @@
+// Only used by eslint
 module.exports = {
   presets: [
-    ['@babel/env', {
-      corejs: 3,
-      useBuiltIns: 'usage',
-    }],
+    '@babel/env',
     '@babel/react',
   ],
   plugins: [
-    ['@babel/transform-runtime', {
-      corejs: 3,
-    }],
     '@babel/proposal-private-methods',
     '@babel/proposal-class-properties',
   ],
