@@ -2531,10 +2531,10 @@
   resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-1.4.2.tgz#b43fc40ced332e3082571c343b35f90b8ca79792"
   integrity sha512-kyMuTU+FllyqgVfZbXbfA0sO7RRrVeBl18xAxTaVBwFA0ENGr0tqDZsDLIBt5e+9z7OQ4b2svMwuwJA1mwxkJg==
 
-"@poool/eslint-plugin@1.3.3":
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-1.3.3.tgz#7a351ddc37738c620a236e70d63b41a6fb3dd7bf"
-  integrity sha512-tx5NjefJeB95r8HbQKiRfycDiQel1RqXAWPcs5XPdnxElqdUz+tAW0rEAviwtR0uhm5Iex8a4X0O+/5taZD/RQ==
+"@poool/eslint-plugin@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-1.4.2.tgz#6428be4c8331e2f0b36d6d2efd93d28b4525ce07"
+  integrity sha512-NvTglKmbNrakfI60NJisS//vFlRcgC1yB3N9rdeDQoYR7tM1n6S51UsHwcBSe6wXdp5jinEnqAJ1hDBnM4loFA==
   dependencies:
     eslint-rule-composer "0.3.0"
 
