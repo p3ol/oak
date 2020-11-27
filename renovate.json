@@ -1,5 +1,13 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "packageRules": [{
+    "updateTypes": ["patch", "pin"],
+    "depTypeList": ["devDependencies", "dependencies"],
+    "automerge": true
+  }, {
+    "packagePatterns": ["^@poool/eslint"],
+    "groupName": "poool eslint monorepo"
+  }]
 }
