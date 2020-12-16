@@ -46,13 +46,13 @@
     "postcss-loader": "4.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "rollup": "2.34.1",
+    "rollup": "2.35.1",
     "rollup-plugin-postcss": "4.0.0",
     "rollup-plugin-terser": "7.0.2",
     "style-loader": "2.0.0",
     "stylus": "0.54.8",
     "stylus-loader": "4.3.1",
-    "webpack": "5.9.0"
+    "webpack": "5.10.3"
   },
   "name": "oak"
 }
