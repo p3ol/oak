@@ -27,7 +27,7 @@
     "@poool/junipero-utils": "2.0.0-alpha.8",
     "@popperjs/core": "2.6.0",
     "core-js": "3.8.2",
-    "preact": "10.5.9",
+    "preact": "10.5.10",
     "react-popper": "2.2.4"
   },
   "scripts": {
