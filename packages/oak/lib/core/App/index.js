@@ -39,6 +39,7 @@ export default forwardRef(({ content, ...options }, ref) => {
   const getGroup_ = id => {
     let group = id ? state.components.find(g => g.id === id) : null;
     group = group || state.components.find(g => g.id === 'other');
+
     return group;
   };
 
@@ -67,8 +68,13 @@ export default forwardRef(({ content, ...options }, ref) => {
     dispatch({ components: state.components, renderers: state.renderers });
   };
 
-  const addElement = (elmt, parent = state.content) => {
-    parent.push(elmt);
+  const addElement = (elmt, parent = state.content, isFirst) => {
+    if (isFirst) {
+      parent.unshift(elmt);
+    } else {
+      parent.push(elmt);
+    }
+
     dispatch({ content: state.content });
   };
 
