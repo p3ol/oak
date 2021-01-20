@@ -9,7 +9,7 @@
     "lint": "./node_modules/.bin/eslint .",
     "test": "BABEL_ENV=tests ./node_modules/.bin/jest",
     "build": "./node_modules/.bin/lerna exec -- yarn build",
-    "serve": "./node_modules/.bin/start-storybook"
+    "serve": "./node_modules/.bin/start-storybook --port 5000"
   },
   "devDependencies": {
     "@babel/core": "7.14.3",
