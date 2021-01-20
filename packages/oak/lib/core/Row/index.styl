@@ -6,12 +6,16 @@
   display: flex;
   flex-direction: row;
   .col
-
+    .flex 
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     flex: 2;
     border-radius: 5px
     background: $color-link-water
     min-height: 40px
     padding: 10px
+    border: 1px solid;
     &:first-child
       border-radius: 0 5px 5px 5px
 
@@ -31,3 +35,4 @@
 
   .addElement
     text-align: center
+    flex: 2 1 auto;
