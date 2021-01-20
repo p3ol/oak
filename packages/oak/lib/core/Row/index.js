@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react';
+import React, { useRef, useContext, useLayoutEffect } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { AppContext } from '../../contexts';
@@ -12,7 +12,7 @@ const Row = ({ className, element }) => {
   const catalogueRef = useRef();
   const { addElement, removeElement, setElement } = useContext(AppContext);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!element.cols?.length) {
       setElement(element, { cols: [{ size: 12, content: [] }] });
     }
