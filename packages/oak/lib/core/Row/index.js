@@ -45,12 +45,15 @@ const Row = ({ className, element }) => {
     <div className={classNames(className, styles.row)}>
       { element?.cols?.map((col, i) => (
         <div className={styles.col} key={i}>
-          <a href="#" onClick={remove.bind(null, element, col)}>
-            <span className="material-icons">
-             delete
-            </span>
-          </a>
-          { col.content.length > 0 &&
+
+          <div className={styles.flex}>
+            <a className={styles.divide}
+              href="#" onClick={divide.bind(null, col, true)}>
+              <span className="material-icons">
+                chevron_left
+              </span></a>
+            <div className={styles.mainContent}>
+              { col.content.length > 0 &&
               <div className={styles.addElement}>
                 <Catalogue
                   className={styles.catalogue}
@@ -58,36 +61,34 @@ const Row = ({ className, element }) => {
                   onAppend={onAppend.bind(null, col, true)}
                 />
               </div>
-          }
+              }
 
-          <div className={styles.content}>
-            { col.content?.map((item, i) => (
-              <Element
-                key={i}
-                element={item}
-                className={styles.element}
-                onDelete={removeElement.bind(null, item, col.content)}
-              />
-            )) }
-          </div>
-          <div className={styles.flex}>
-            <a href="#" onClick={divide.bind(null, col, true)}>
-              <span className="material-icons">
-                chevron_left
-              </span></a>
-            <div className={styles.addElement}>
-              <Catalogue
-                className={styles.catalogue}
-                ref={catalogueRef}
-                onAppend={onAppend.bind(null, col, false)}
-              />
+              <div className={styles.content}>
+                { col.content?.map((item, i) => (
+                  <Element
+                    key={i}
+                    element={item}
+                    className={styles.element}
+                    onDelete={removeElement.bind(null, item, col.content)}
+                  />
+                )) }
+              </div>
+
+              <div className={styles.addElement}>
+                <Catalogue
+                  className={styles.catalogue}
+                  ref={catalogueRef}
+                  onAppend={onAppend.bind(null, col, false)}
+                />
+              </div>
             </div>
-
-            <a href="#" onClick={divide.bind(null, col, false)}>
+            <a className={styles.divideRight}
+              href="#" onClick={divide.bind(null, col, false)}>
               <span className="material-icons">
                 chevron_right
               </span></a>
           </div>
+
         </div>
       ))}
     </div>
