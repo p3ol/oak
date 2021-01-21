@@ -47,7 +47,7 @@ const Row = ({ className, element }) => {
         <div className={styles.col} key={i}>
 
           <div className={styles.flex}>
-            <a className={styles.divide}
+            <a
               href="#" onClick={divide.bind(null, col, true)}>
               <span className="material-icons">
                 chevron_left
@@ -62,7 +62,6 @@ const Row = ({ className, element }) => {
                 />
               </div>
               }
-
               <div className={styles.content}>
                 { col.content?.map((item, i) => (
                   <Element
@@ -82,7 +81,7 @@ const Row = ({ className, element }) => {
                 />
               </div>
             </div>
-            <a className={styles.divideRight}
+            <a
               href="#" onClick={divide.bind(null, col, false)}>
               <span className="material-icons">
                 chevron_right
