@@ -45,7 +45,12 @@ const Row = ({ className, element }) => {
     <div className={classNames(className, styles.row)}>
       { element?.cols?.map((col, i) => (
         <div className={styles.col} key={i}>
-
+          <a
+            href="#" onClick={remove.bind(null, element, col)}
+            className={styles.delete}>
+            <span className="material-icons" >
+                delete
+            </span></a>
           <div className={styles.flex}>
             <a
               href="#" onClick={divide.bind(null, col, true)}>
