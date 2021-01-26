@@ -43,7 +43,7 @@
     "eslint-plugin-standard": "4.1.0",
     "lerna": "3.22.1",
     "postcss": "8.2.4",
-    "postcss-loader": "4.1.0",
+    "postcss-loader": "4.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "rollup": "2.38.0",
