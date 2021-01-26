@@ -1,10 +1,12 @@
-import React, { useRef, useContext, useLayoutEffect } from 'react';
-import { classNames } from '@poool/junipero-utils';
+import React, { useRef, useContext, useLayoutEffect, useReducer, useState } from 'react';
+import { classNames, mockState } from '@poool/junipero-utils';
+import { usePopper } from 'react-popper';
 
 import { AppContext } from '../../contexts';
 import Catalogue from '../Catalogue';
 import Element from '../Element';
 import Option from '../Option';
+import Edit from '../Edit';
 
 import styles from './index.styl';
 
@@ -14,9 +16,10 @@ const Row = ({ className, element }) => {
 
   useLayoutEffect(() => {
     if (!element.cols?.length) {
-      setElement(element, { cols: [{ size: 6, content: [], id: 0 },
-        { size: 6, content: [], id: 1 }] });
-
+      setElement(element,
+        { cols: [{ size: 6, content: [], id: 0, alignment: 'flex-start' },
+          { size: 6, content: [], id: 1, alignment: 'flex-start' }],
+        });
     }
   }, []);
 
@@ -31,53 +34,47 @@ const Row = ({ className, element }) => {
       return Math.max(a, b);
     }) + 1;
     element.cols.splice(isBefore ? index : index + 1, 0,
-      { size: 6, content: [], id: idMax }
+      { size: 6, content: [], id: idMax, alignment: 'flex-start' }
     );
     setElement(element, { cols: element.cols });
-  };
-
-  const remove = (element, col) => {
-    setElement(element, { cols: element.cols.filter(c => c.id !== col.id) },
-    );
   };
 
   return (
     <div className={classNames(className, styles.row)}>
       { element?.cols?.map((col, i) => (
         <div className={styles.col} key={i}>
-          <a
-            href="#" onClick={remove.bind(null, element, col)}
-            className={styles.delete}>
-            <span className="material-icons" >
-                delete
-            </span></a>
-          <div className={styles.flex}>
-            <a
-              href="#" onClick={divide.bind(null, col, true)}>
-              <span className="material-icons">
-                chevron_left
-              </span></a>
-            <div className={styles.mainContent}>
-              { col.content.length > 0 &&
-              <div className={styles.addElement}>
+          { col.content.length > 0 &&
+              <div className={classNames(styles.addElement, styles.before)}>
                 <Catalogue
                   className={styles.catalogue}
                   ref={catalogueRef}
                   onAppend={onAppend.bind(null, col, true)}
                 />
               </div>
-              }
-              <div className={styles.content}>
-                { col.content?.map((item, i) => (
-                  <Element
-                    key={i}
-                    element={item}
-                    className={styles.element}
-                    onDelete={removeElement.bind(null, item, col.content)}
-                  />
-                )) }
-              </div>
+          }
+          <Edit element={element} col={col} className={styles.catalogue}></Edit>
+          <a
+            href="#" onClick={divide.bind(null, col, true)} className={classNames(styles.divide, styles.before)}>
+            <span className="material-icons">
+                chevron_left
+            </span></a>
+          <a className={classNames(styles.divide, styles.after)}
+            href="#" onClick={divide.bind(null, col, false)}>
+            <span className="material-icons">
+                chevron_right
+            </span></a>
+          <div className={styles.flex} style={{ alignItems: col.alignment }}>
 
+            <div className={styles.mainContent}>
+              { col.content?.map((item, i) => (
+                <Element
+                  key={i}
+                  element={item}
+                  className={styles.element}
+                  onDelete={removeElement.bind(null, item, col.content)}
+                />
+              )) }
+              {col.content.length === 0 &&
               <div className={styles.addElement}>
                 <Catalogue
                   className={styles.catalogue}
@@ -85,16 +82,23 @@ const Row = ({ className, element }) => {
                   onAppend={onAppend.bind(null, col, false)}
                 />
               </div>
+              }
             </div>
-            <a
-              href="#" onClick={divide.bind(null, col, false)}>
-              <span className="material-icons">
-                chevron_right
-              </span></a>
           </div>
+
+          { col.content.length > 0 &&
+              <div className={classNames(styles.addElement, styles.after)}>
+                <Catalogue
+                  className={styles.catalogue}
+                  ref={catalogueRef}
+                  onAppend={onAppend.bind(null, col, false)}
+                />
+              </div>
+          }
 
         </div>
       ))}
+
     </div>
   );
 };

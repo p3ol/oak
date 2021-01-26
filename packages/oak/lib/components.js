@@ -21,7 +21,7 @@ export const COMPONENT_ROW = {
   options: Row.options,
   construct: () => ({
     type: 'row',
-    cols: [{ size: 12, content: [], id: 0 }],
+    cols: [{ size: 12, content: [], id: 0, alignment: 'flex-start' }],
   }),
 };
 
@@ -40,6 +40,7 @@ export const COMPONENT_TITLE = {
   id: 'title',
   name: 'Title',
   type: 'component',
+
   render: Title,
   options: Text.options,
   construct: () => ({

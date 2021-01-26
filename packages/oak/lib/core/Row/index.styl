@@ -1,15 +1,17 @@
 @require "../../theme/colors"
 
 .row
+  min-height: 80px
   margin-top: 30px
   margin-bottom: 40px
   display: flex;
+  flex-wrap: wrap
   flex-direction: row;
+  position: relative
   .col
     .flex 
       display: flex;
       flex-direction: row;
-      align-items center
       height:100%
     position: relative
     flex: 2;
@@ -35,12 +37,27 @@
             border: 1px solid $color-hawkes-blue
 
   .addElement
-    text-align: center
-    flex: 2 1 auto;
+    position: absolute;
+    height = 24px
+    right: "calc(50% - 20px)" % height
+    bottom "calc(50% - %s)" % height
+    &.before
+      top: 0
+    &.after
+      bottom: 0
+
   .mainContent
     padding: 10px
     flex: 2
 
-  .delete 
-    position: absolute
-    right:0
+
+  .divide
+    position: relative
+    height= 12px
+    top: 'calc(50% - %s)' % height
+    & > .span
+     align-content: center
+    &.after
+      float: right
+    &.before
+      float: left
