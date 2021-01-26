@@ -3115,6 +3115,15 @@
     "@babel/runtime-corejs3" "7.13.17"
     core-js "3.10.2"
 
+"@poool/junipero@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-1.6.0.tgz#bedcae7d30b2d4493bcc9eeefa4adccc7d930a85"
+  integrity sha512-YqBHLTsGTc49SFaEcPI5V0TCLWW42SQqEYDDxxZrrYiF9D5lVGBhuTLd70i2srVUYHiktbASHkZDXb9SMfxVzw==
+  dependencies:
+    "@babel/runtime-corejs3" "7.11.2"
+    core-js "3.6.5"
+    prop-types "15.7.2"
+
 "@popperjs/core@2.9.2":
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
@@ -11883,7 +11892,7 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
