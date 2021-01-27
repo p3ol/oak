@@ -1,7 +1,7 @@
 import { mockState } from '@poool/junipero-utils';
 import React, { useContext, useReducer, useState } from 'react';
 import { usePopper } from 'react-popper';
-import { SelectField } from '@poool/junipero';
+import { SelectField, TextField } from '@poool/junipero';
 
 import { AppContext } from '../../contexts';
 
@@ -91,7 +91,6 @@ export default ({ col, element }) => {
                   col.style.vertical = item.value;
                   setElement(element, {});
                 }}
-                placeholder="Select one..."
                 options={vertical}
               />
               <SelectField
@@ -105,8 +104,16 @@ export default ({ col, element }) => {
                   col.style.horizontal = item.value;
                   setElement(element, {});
                 }}
-                placeholder="Select one..."
                 options={horizontal}
+              />
+              <TextField
+                boxed={false}
+                placeholder="Proportion de la colonne"
+                value={col.style.flex}
+                onChange={item => {
+                  col.style.flex = item.value;
+                  setElement(element, {});
+                }}
               />
               <a href="#" className={styles.item} onClick={remove.bind(null, element, col)}>remove
               </a>

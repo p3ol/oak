@@ -44,7 +44,10 @@ const Row = ({ className, element }) => {
   return (
     <div className={classNames(className, styles.row)}>
       { element?.cols?.map((col, i) => (
-        <div className={styles.col} key={i}>
+        <div className={styles.col} style={{
+          flex: col.style.flex || '1',
+        }}
+        key={i}>
           { col.content.length > 0 &&
               <div className={classNames(styles.addElement, styles.before)}>
                 <Catalogue
