@@ -52,7 +52,7 @@ const Row = ({ className, element }) => {
                 />
               </div>
           }
-          <Edit element={element} col={col} className={styles.catalogue}></Edit>
+          <Edit element={element} col={col}></Edit>
           <a
             href="#" onClick={divide.bind(null, col, true)} className={classNames(styles.divide, styles.before)}>
             <span className="material-icons">
