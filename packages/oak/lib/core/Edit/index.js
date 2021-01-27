@@ -17,10 +17,17 @@ export default ({ col, element }) => {
 
   const { setElement } = useContext(AppContext);
 
-  const positionnement = [
+  const vertical = [
     { title: 'Aligné en haut', value: 'flex-start' },
     { title: 'Centré', value: 'center' },
     { title: 'Aligné en bas', value: 'flex-end' },
+  ];
+
+  const horizontal = [
+    { title: 'Aligné à gauche', value: 'start' },
+    { title: 'Centré', value: 'center' },
+    { title: 'Aligné à droite', value: 'end' },
+    { title: 'Justifié', value: 'justify' },
   ];
 
   const remove = (element, col) => {
@@ -35,7 +42,7 @@ export default ({ col, element }) => {
       {
         name: 'offset',
         options: {
-          offset: [0, -20],
+          offset: [0, -24],
         },
       },
     ],
@@ -60,21 +67,51 @@ export default ({ col, element }) => {
             data-placement={'bottom'}
             className={styles.popper}
           >
-            <SelectField
-              label="Positionnement du texte"
-              boxed={false}
-              value={col.style.alignment}
-              parseValue={item => item.value}
-              parseTitle={item => item.title}
-              onChange={item => {
-                col.style.alignment = item.value;
-                setElement(element, {});
-              }}
-              placeholder="Select one..."
-              options={positionnement}
-            />
-            <a href="#" onClick={remove.bind(null, element, col)}>remove
-            </a>
+            <div className={styles.top}>
+              <a
+                href="#"
+                onClick={() => dispatch({ opened: !state.opened })}
+              >
+                <span className="material-icons" >
+                  edit
+                </span>
+              </a>
+              <span>col options</span>
+
+            </div>
+            <div className={styles.flex}>
+              <SelectField
+                label="Alignement vertical"
+                boxed={false}
+                value={col.style.vertical}
+                parseValue={item => item.value}
+                parseTitle={item => item.title}
+                className={styles.item}
+                onChange={item => {
+                  col.style.vertical = item.value;
+                  setElement(element, {});
+                }}
+                placeholder="Select one..."
+                options={vertical}
+              />
+              <SelectField
+                label="Alignement horizontal"
+                boxed={false}
+                value={col.style.horizontal || 'start'}
+                parseValue={item => item.value}
+                parseTitle={item => item.title}
+                className={styles.item}
+                onChange={item => {
+                  col.style.horizontal = item.value;
+                  setElement(element, {});
+                }}
+                placeholder="Select one..."
+                options={horizontal}
+              />
+              <a href="#" className={styles.item} onClick={remove.bind(null, element, col)}>remove
+              </a>
+            </div>
+
           </div>
       }
     </>

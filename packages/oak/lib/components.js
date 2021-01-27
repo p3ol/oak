@@ -25,7 +25,7 @@ export const COMPONENT_ROW = {
       size: 12,
       content: [],
       id: 0,
-      style: { alignment: 'flex-start' },
+      style: { vertical: 'flex-start' },
     }],
   }),
 };

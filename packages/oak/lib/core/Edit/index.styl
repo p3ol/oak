@@ -2,11 +2,31 @@
     position: absolute
     right:0
     top: 0
-    z-index 4
 
   .popper
-    width:300px  
+    width:480px  
     height: 200px
     z-index: 3
     background: white
     border-radius: 3px
+    border-radius: 0px 3px 3px 3px;
+  .top
+    width: 100%
+    text-align: end
+    display: flex
+    flex-direction: row-reverse
+    background-color: #083737
+    align-items: center
+    & > span
+      color: white
+    & > a
+      color: white
+
+  .flex
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-around;
+    & > .item
+      width: 40%
+      padding: 10px

@@ -17,8 +17,8 @@ const Row = ({ className, element }) => {
     if (!element.cols?.length) {
       setElement(element,
         { cols: [
-          { size: 6, content: [], id: 0, style: { alignment: 'flex-start' } },
-          { size: 6, content: [], id: 1, style: { alignment: 'flex-start' },
+          { size: 6, content: [], id: 0, style: { vertical: 'flex-start' } },
+          { size: 6, content: [], id: 1, style: { vertical: 'flex-start' },
           }],
         });
     }
@@ -35,7 +35,7 @@ const Row = ({ className, element }) => {
       return Math.max(a, b);
     }) + 1;
     element.cols.splice(isBefore ? index : index + 1, 0,
-      { size: 6, content: [], id: idMax, style: { alignment: 'flex-start' },
+      { size: 6, content: [], id: idMax, style: { vertical: 'flex-start' },
       }
     );
     setElement(element, { cols: element.cols });
@@ -66,7 +66,9 @@ const Row = ({ className, element }) => {
                 chevron_right
             </span></a>
           <div className={styles.flex}
-            style={{ alignItems: col.style.alignment }}
+            style={{ alignItems: col.style.vertical,
+              textAlign: col.style.horizontal || 'start',
+            }}
           >
             <div className={styles.mainContent}>
               { col.content?.map((item, i) => (
