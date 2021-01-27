@@ -5,14 +5,17 @@ import Option from '../Option';
 
 import styles from './index.styl';
 
-const Text = ({ className, element }) => {
-  const catalogueRef = useRef();
-  const { addElement, removeElement, setElement } = useContext(AppContext);
+const Text = ({ element }) => {
+  const { setElement } = useContext(AppContext);
 
   return (
     element.editing
       ? <textarea id="story" name="story" className={styles.textarea}
-        rows="5" onChange={value => setElement(element, { content: value.target.value })}>
+        rows="5"
+        onChange={
+          value => setElement(element, { content: value.target.value })
+        }
+      >
         {element.content}
       </textarea>
       : <p>
@@ -23,8 +26,8 @@ const Text = ({ className, element }) => {
 
 Text.options = [{
   name: 'cols',
-  render: ({ option, element, className }) => {
-    const { addElement, removeElement, setElement } = useContext(AppContext);
+  render: ({ element }) => {
+    const { setElement } = useContext(AppContext);
 
     return (
       <Option

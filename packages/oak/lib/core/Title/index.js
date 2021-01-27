@@ -1,17 +1,19 @@
-import React, { useRef, useContext, useLayoutEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { AppContext } from '../../contexts';
 
 import styles from '../Text/index.styl';
 
-const Title = ({ className, element }) => {
-  const catalogueRef = useRef();
+const Title = ({ element }) => {
   const { setElement } = useContext(AppContext);
 
   return (
     element.editing
       ? <textarea id="story" name="story" className={styles.textarea}
-        rows="5" onChange={value => setElement(element, { content: value.target.value })}>
+        rows="5" onChange={
+          value => setElement(element, { content: value.target.value })
+        }
+      >
         {element.content}
       </textarea>
       : (element.headingLevel === 1 ? <h1>{element.content}</h1>

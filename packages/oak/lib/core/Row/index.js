@@ -1,6 +1,5 @@
-import React, { useRef, useContext, useLayoutEffect, useReducer, useState } from 'react';
-import { classNames, mockState } from '@poool/junipero-utils';
-import { usePopper } from 'react-popper';
+import React, { useRef, useContext, useLayoutEffect } from 'react';
+import { classNames } from '@poool/junipero-utils';
 
 import { AppContext } from '../../contexts';
 import Catalogue from '../Catalogue';
@@ -17,8 +16,10 @@ const Row = ({ className, element }) => {
   useLayoutEffect(() => {
     if (!element.cols?.length) {
       setElement(element,
-        { cols: [{ size: 6, content: [], id: 0, alignment: 'flex-start' },
-          { size: 6, content: [], id: 1, alignment: 'flex-start' }],
+        { cols: [
+          { size: 6, content: [], id: 0, style: { alignment: 'flex-start' } },
+          { size: 6, content: [], id: 1, style: { alignment: 'flex-start' },
+          }],
         });
     }
   }, []);
@@ -34,7 +35,8 @@ const Row = ({ className, element }) => {
       return Math.max(a, b);
     }) + 1;
     element.cols.splice(isBefore ? index : index + 1, 0,
-      { size: 6, content: [], id: idMax, alignment: 'flex-start' }
+      { size: 6, content: [], id: idMax, style: { alignment: 'flex-start' },
+      }
     );
     setElement(element, { cols: element.cols });
   };
@@ -53,8 +55,8 @@ const Row = ({ className, element }) => {
               </div>
           }
           <Edit element={element} col={col}></Edit>
-          <a
-            href="#" onClick={divide.bind(null, col, true)} className={classNames(styles.divide, styles.before)}>
+          <a href="#" onClick={divide.bind(null, col, true)}
+            className={classNames(styles.divide, styles.before)}>
             <span className="material-icons">
                 chevron_left
             </span></a>
@@ -63,8 +65,9 @@ const Row = ({ className, element }) => {
             <span className="material-icons">
                 chevron_right
             </span></a>
-          <div className={styles.flex} style={{ alignItems: col.alignment }}>
-
+          <div className={styles.flex}
+            style={{ alignItems: col.style.alignment }}
+          >
             <div className={styles.mainContent}>
               { col.content?.map((item, i) => (
                 <Element
@@ -105,7 +108,7 @@ const Row = ({ className, element }) => {
 
 Row.options = [{
   name: 'cols',
-  render: ({ option, element, className }) => {
+  render: ({ className }) => {
 
     return (
       <Option

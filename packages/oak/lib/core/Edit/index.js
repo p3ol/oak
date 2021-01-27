@@ -1,5 +1,5 @@
 import { mockState } from '@poool/junipero-utils';
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { SelectField } from '@poool/junipero';
 
@@ -15,7 +15,6 @@ export default ({ col, element }) => {
     opened: false,
   });
 
-  const [arrow, setArrow] = useState();
   const { setElement } = useContext(AppContext);
 
   const positionnement = [
@@ -29,16 +28,10 @@ export default ({ col, element }) => {
     );
   };
 
-  const editColumn = (element, col) => {
-    col.editing = !col.editing;
-    setElement(element, {});
-  };
-
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
     placement: 'left-start',
     modifiers: [
       ...[],
-      { name: 'arrow', options: { element: arrow } },
       {
         name: 'offset',
         options: {
@@ -70,11 +63,11 @@ export default ({ col, element }) => {
             <SelectField
               label="Positionnement du texte"
               boxed={false}
-              value={col.alignment}
+              value={col.style.alignment}
               parseValue={item => item.value}
               parseTitle={item => item.title}
               onChange={item => {
-                col.alignment = item.value;
+                col.style.alignment = item.value;
                 setElement(element, {});
               }}
               placeholder="Select one..."

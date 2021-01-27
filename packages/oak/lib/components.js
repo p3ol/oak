@@ -21,7 +21,12 @@ export const COMPONENT_ROW = {
   options: Row.options,
   construct: () => ({
     type: 'row',
-    cols: [{ size: 12, content: [], id: 0, alignment: 'flex-start' }],
+    cols: [{
+      size: 12,
+      content: [],
+      id: 0,
+      style: { alignment: 'flex-start' },
+    }],
   }),
 };
 
