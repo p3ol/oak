@@ -17,9 +17,16 @@ const Row = ({ className, element }) => {
     if (!element.cols?.length) {
       setElement(element,
         { cols: [
-          { size: 6, content: [], id: 0, style: { vertical: 'flex-start' } },
-          { size: 6, content: [], id: 1, style: { vertical: 'flex-start' },
-          }],
+          { size: 6, content: [], id: 0, style: {
+            col: { flex: '1' },
+            content: { } },
+          },
+          { size: 6, content: [], id: 1, style: {
+            col: { flex: '1' },
+            content: { },
+          },
+          },
+        ],
         });
     }
   }, []);
@@ -35,7 +42,7 @@ const Row = ({ className, element }) => {
       return Math.max(a, b);
     }) + 1;
     element.cols.splice(isBefore ? index : index + 1, 0,
-      { size: 6, content: [], id: idMax, style: { vertical: 'flex-start' },
+      { size: 6, content: [], id: idMax, style: { col: {}, content: {} },
       }
     );
     setElement(element, { cols: element.cols });
@@ -45,7 +52,8 @@ const Row = ({ className, element }) => {
     <div className={classNames(className, styles.row)}>
       { element?.cols?.map((col, i) => (
         <div className={styles.col} style={{
-          flex: col.style.flex || '1',
+          flex: col.style.col.flex,
+          width: col.style.col.width,
         }}
         key={i}>
           { col.content.length > 0 &&
@@ -69,8 +77,8 @@ const Row = ({ className, element }) => {
                 chevron_right
             </span></a>
           <div className={styles.flex}
-            style={{ alignItems: col.style.vertical,
-              textAlign: col.style.horizontal || 'start',
+            style={{ alignItems: col.style.content.alignItem || 'flex-start',
+              textAlign: col.style.content.textAlign || 'start',
             }}
           >
             <div className={styles.mainContent}>

@@ -83,12 +83,12 @@ export default ({ col, element }) => {
               <SelectField
                 label="Alignement vertical"
                 boxed={false}
-                value={col.style.vertical}
+                value={col.style.content.alignItem || 'flex-start'}
                 parseValue={item => item.value}
                 parseTitle={item => item.title}
                 className={styles.item}
                 onChange={item => {
-                  col.style.vertical = item.value;
+                  col.style.content.alignItem = item.value;
                   setElement(element, {});
                 }}
                 options={vertical}
@@ -96,12 +96,12 @@ export default ({ col, element }) => {
               <SelectField
                 label="Alignement horizontal"
                 boxed={false}
-                value={col.style.horizontal || 'start'}
+                value={col.style.content.textAlign || 'start'}
                 parseValue={item => item.value}
                 parseTitle={item => item.title}
                 className={styles.item}
                 onChange={item => {
-                  col.style.horizontal = item.value;
+                  col.style.content.textAlign = item.value;
                   setElement(element, {});
                 }}
                 options={horizontal}
@@ -109,16 +109,28 @@ export default ({ col, element }) => {
               <TextField
                 boxed={false}
                 placeholder="Proportion de la colonne"
-                value={col.style.flex}
+                value={col.style.col.flex}
                 onChange={item => {
-                  col.style.flex = item.value;
+                  col.style.col.width = '';
+                  col.style.col.flex = item.value;
                   setElement(element, {});
                 }}
               />
-              <a href="#" className={styles.item} onClick={remove.bind(null, element, col)}>remove
+              <TextField
+                boxed={false}
+                placeholder="Largeur fixe"
+                value={col.style.col.width}
+                onChange={item => {
+                  col.style.col.flex = '';
+                  col.style.col.width = item.value;
+                  setElement(element, {});
+                }}
+              />
+              <a href="#" className={styles.item}
+                onClick={remove.bind(null, element, col)}>
+                remove
               </a>
             </div>
-
           </div>
       }
     </>
