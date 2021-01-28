@@ -66,21 +66,17 @@ const Row = ({ className, element }) => {
               </div>
           }
           <Edit element={element} col={col}></Edit>
-          <a href="#" onClick={divide.bind(null, col, true)}
-            className={classNames(styles.divide, styles.before)}>
-            <span className="material-icons">
-                chevron_left
-            </span></a>
-          <a className={classNames(styles.divide, styles.after)}
-            href="#" onClick={divide.bind(null, col, false)}>
-            <span className="material-icons">
-                chevron_right
-            </span></a>
           <div className={styles.flex}
             style={{ alignItems: col.style.content.alignItem || 'flex-start',
               textAlign: col.style.content.textAlign || 'start',
             }}
           >
+            <div className={styles.gutters}>
+              <a href="#" onClick={divide.bind(null, col, true)}>
+                <span className="material-icons">
+                chevron_left
+                </span></a>
+            </div>
             <div className={styles.mainContent}>
               { col.content?.map((item, i) => (
                 <Element
@@ -99,6 +95,12 @@ const Row = ({ className, element }) => {
                 />
               </div>
               }
+            </div>
+            <div className={styles.gutters}>
+              <a href="#" onClick={divide.bind(null, col, false)}>
+                <span className="material-icons">
+                chevron_right
+                </span></a>
             </div>
           </div>
 
