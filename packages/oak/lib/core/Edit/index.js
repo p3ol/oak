@@ -54,7 +54,7 @@ export default ({ col, element }) => {
         href="#"
         ref={setReference}
         onClick={() => dispatch({ opened: !state.opened })}
-        className={styles.delete}>
+        className={styles.edit}>
         <span className="material-icons" >
           edit
         </span>
