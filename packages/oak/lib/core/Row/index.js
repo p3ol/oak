@@ -42,7 +42,9 @@ const Row = ({ className, element }) => {
       return Math.max(a, b);
     }) + 1;
     element.cols.splice(isBefore ? index : index + 1, 0,
-      { size: 6, content: [], id: idMax, style: { col: {}, content: {} },
+      { size: 6, content: [], id: idMax, style: {
+        col: { flex: '1' }, content: {},
+      },
       }
     );
     setElement(element, { cols: element.cols });
