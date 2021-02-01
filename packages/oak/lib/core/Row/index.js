@@ -56,20 +56,17 @@ const Row = ({ className, element }) => {
           width: col.style.col.width,
         }}
         key={i}>
-          { col.content.length > 0 &&
-              <div className={classNames(styles.addElement, styles.before)}>
+          <div className={styles.border}>
+            { col.content.length > 0 &&
                 <Catalogue
                   className={styles.catalogue}
                   ref={catalogueRef}
                   onAppend={onAppend.bind(null, col, true)}
                 />
-              </div>
-          }
-          <Edit element={element} col={col}></Edit>
+            }
+            <Edit element={element} col={col}></Edit>
+          </div>
           <div className={styles.flex}
-            style={{ alignItems: col.style.content.alignItem || 'flex-start',
-              textAlign: col.style.content.textAlign || 'start',
-            }}
           >
             <div className={styles.gutters}>
               <a href="#" onClick={divide.bind(null, col, true)}>
@@ -77,16 +74,22 @@ const Row = ({ className, element }) => {
                 chevron_left
                 </span></a>
             </div>
-            <div className={styles.mainContent}>
-              { col.content?.map((item, i) => (
-                <Element
-                  key={i}
-                  element={item}
-                  className={styles.element}
-                  onDelete={removeElement.bind(null, item, col.content)}
-                />
-              )) }
-              {col.content.length === 0 &&
+            <div className={styles.mainContent}
+              style={{ alignItems: col.style.content.alignItem || 'flex-start',
+
+              }}>
+              <div style={{
+                textAlign: col.style.content.textAlign || 'start',
+              }}>
+                { col.content?.map((item, i) => (
+                  <Element
+                    key={i}
+                    element={item}
+                    className={styles.element}
+                    onDelete={removeElement.bind(null, item, col.content)}
+                  />
+                )) }
+                {col.content.length === 0 &&
               <div className={styles.addElement}>
                 <Catalogue
                   className={styles.catalogue}
@@ -94,7 +97,8 @@ const Row = ({ className, element }) => {
                   onAppend={onAppend.bind(null, col, false)}
                 />
               </div>
-              }
+                }
+              </div>
             </div>
             <div className={styles.gutters}>
               <a href="#" onClick={divide.bind(null, col, false)}>
@@ -105,7 +109,7 @@ const Row = ({ className, element }) => {
           </div>
 
           { col.content.length > 0 &&
-              <div className={classNames(styles.addElement, styles.after)}>
+              <div className={styles.border}>
                 <Catalogue
                   className={styles.catalogue}
                   ref={catalogueRef}

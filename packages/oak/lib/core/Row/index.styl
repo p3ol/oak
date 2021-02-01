@@ -12,7 +12,10 @@
     .flex 
       display: flex;
       flex-direction: row;
-      height:100%
+      flex: 1
+      align-items: center
+    display: flex
+    flex-direction: column
     position: relative
     border-radius: 5px
     background: $color-link-water
@@ -47,14 +50,17 @@
       bottom: 0
 
   .mainContent
-    margin-top 40px
-    margin-bottom: 40px 
     background-color:white
     flex: 1
+    display: flex
+    height:100%
+    & > div
+      width 100%
+      text-align: left 
 
   .gutters
     display: flex
     flex: 0 0 auto
     align-items: center
-    height: 100%
- 
+  .border
+    text-align: center
