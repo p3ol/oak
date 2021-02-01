@@ -50,6 +50,11 @@ const Row = ({ className, element }) => {
     setElement(element, { cols: element.cols });
   };
 
+  const remove = (element, col) => {
+    setElement(element, { cols: element.cols.filter(c => c.id !== col.id) },
+    );
+  };
+
   return (
     <div className={classNames(className, styles.row)}>
       { element?.cols?.map((col, i) => (
@@ -123,7 +128,8 @@ const Row = ({ className, element }) => {
                 chevron_right
                 </span></a>
             </div>
-            <a href="#" onClick={divide.bind(null, col, false)}>
+            <a href="#" onClick={remove.bind(null, element, col)}>
+
               <span className="material-icons">
                 delete
               </span></a>

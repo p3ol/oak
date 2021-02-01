@@ -2,12 +2,13 @@ import { mockState } from '@poool/junipero-utils';
 import React, { useContext, useReducer, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { SelectField, TextField } from '@poool/junipero';
+import { useEventListener } from '@poool/junipero-hooks';
 
 import { AppContext } from '../../contexts';
 
 import styles from './index.styl';
 
-export default ({ col, element }) => {
+export default ({ col, element, globalEventsTarget = global }) => {
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
   const [state, dispatch] = useReducer(mockState, {
@@ -29,10 +30,22 @@ export default ({ col, element }) => {
     { title: 'Aligné à droite', value: 'end' },
     { title: 'Justifié', value: 'justify' },
   ];
+  useEventListener('click', e => {
+    onClickOutside_(e);
+  }, globalEventsTarget);
 
-  const remove = (element, col) => {
-    setElement(element, { cols: element.cols.filter(c => c.id !== col.id) },
-    );
+  const onClickOutside_ = e => {
+    if (!popper || !reference) {
+      return;
+    }
+
+    if (
+      reference !== e.target &&
+      !popper.contains(e.target) &&
+      popper !== e.target
+    ) {
+      dispatch({ opened: false });
+    }
   };
 
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
@@ -52,10 +65,9 @@ export default ({ col, element }) => {
     <>
       <a
         href="#"
-        ref={setReference}
         onClick={() => dispatch({ opened: !state.opened })}
         className={styles.edit}>
-        <span className="material-icons" >
+        <span ref={setReference} className="material-icons" >
           edit
         </span>
       </a>
@@ -126,10 +138,6 @@ export default ({ col, element }) => {
                   setElement(element, {});
                 }}
               />
-              <a href="#" className={styles.item}
-                onClick={remove.bind(null, element, col)}>
-                remove
-              </a>
             </div>
           </div>
       }
