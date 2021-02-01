@@ -81,6 +81,7 @@ const Row = ({ className, element }) => {
                 />
               }
             </div>
+            {col.content.length > 0 &&
 
             <div className={styles.mainContent}
               style={{ alignItems: col.style.content.alignItem || 'flex-start',
@@ -97,18 +98,17 @@ const Row = ({ className, element }) => {
                     onDelete={removeElement.bind(null, item, col.content)}
                   />
                 )) }
-                {col.content.length === 0 &&
-              <div className={styles.addElement}>
+
+              </div>
+            </div>
+            }
+            {col.content.length === 0 &&
                 <Catalogue
                   className={styles.catalogue}
                   ref={catalogueRef}
                   onAppend={onAppend.bind(null, col, false)}
                 />
-              </div>
-                }
-              </div>
-            </div>
-
+            }
             { col.content.length > 0 &&
               <div className={styles.border}>
                 <Catalogue
