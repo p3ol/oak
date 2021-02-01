@@ -58,24 +58,25 @@ const Row = ({ className, element }) => {
           width: col.style.col.width,
         }}
         key={i}>
-          <div className={styles.border}>
-            { col.content.length > 0 &&
-                <Catalogue
-                  className={styles.catalogue}
-                  ref={catalogueRef}
-                  onAppend={onAppend.bind(null, col, true)}
-                />
-            }
-            <Edit element={element} col={col}></Edit>
-          </div>
-          <div className={styles.flex}
-          >
-            <div className={styles.gutters}>
+          <div className={styles.gutters}>
+            <div className={styles.divide}>
               <a href="#" onClick={divide.bind(null, col, true)}>
                 <span className="material-icons">
                 chevron_left
                 </span></a>
             </div>
+          </div>
+          <div className={styles.flex}>
+            <div className={styles.border}>
+              { col.content.length > 0 &&
+                <Catalogue
+                  className={styles.catalogue}
+                  ref={catalogueRef}
+                  onAppend={onAppend.bind(null, col, true)}
+                />
+              }
+            </div>
+
             <div className={styles.mainContent}
               style={{ alignItems: col.style.content.alignItem || 'flex-start',
 
@@ -102,15 +103,8 @@ const Row = ({ className, element }) => {
                 }
               </div>
             </div>
-            <div className={styles.gutters}>
-              <a href="#" onClick={divide.bind(null, col, false)}>
-                <span className="material-icons">
-                chevron_right
-                </span></a>
-            </div>
-          </div>
 
-          { col.content.length > 0 &&
+            { col.content.length > 0 &&
               <div className={styles.border}>
                 <Catalogue
                   className={styles.catalogue}
@@ -118,7 +112,22 @@ const Row = ({ className, element }) => {
                   onAppend={onAppend.bind(null, col, false)}
                 />
               </div>
-          }
+            }
+          </div>
+          <div className={styles.gutters}>
+            <Edit element={element} col={col}></Edit>
+
+            <div className={styles.divide}>
+              <a href="#" onClick={divide.bind(null, col, false)}>
+                <span className="material-icons">
+                chevron_right
+                </span></a>
+            </div>
+            <a href="#" onClick={divide.bind(null, col, false)}>
+              <span className="material-icons">
+                delete
+              </span></a>
+          </div>
 
         </div>
       ))}

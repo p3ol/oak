@@ -11,11 +11,12 @@
   .col
     .flex 
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       flex: 1
       align-items: center
+      width:100%
     display: flex
-    flex-direction: column
+    flex-direction: row
     position: relative
     border-radius: 5px
     background: $color-link-water
@@ -44,22 +45,27 @@
     height = 24px
     right: "calc(50% - 20px)" % height
     bottom "calc(50% - %s)" % height
-    &.before
-      top: 0
-    &.after
-      bottom: 0
 
   .mainContent
     background-color:white
     flex: 1
     display: flex
     height:100%
+    width:100%
     & > div
       width 100%
 
   .gutters
     display: flex
     flex: 0 0 auto
+    flex-direction: column
+    & > .divide
+      display: flex
+      flex: 1
+      align-items: center
     align-items: center
   .border
     text-align: center
+    width:100%
+    display: flex
+    justify-content: center
