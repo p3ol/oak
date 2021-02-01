@@ -24,7 +24,7 @@
     "@poool/eslint-config": "1.4.2",
     "@poool/eslint-config-react": "1.4.2",
     "@poool/eslint-plugin": "1.4.2",
-    "@rollup/plugin-alias": "3.1.1",
+    "@rollup/plugin-alias": "3.1.2",
     "@rollup/plugin-babel": "5.2.2",
     "@rollup/plugin-commonjs": "17.0.0",
     "@rollup/plugin-node-resolve": "10.0.0",
