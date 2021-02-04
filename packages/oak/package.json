@@ -22,7 +22,7 @@
   },
   "peerDependencies": {},
   "dependencies": {
-    "@babel/runtime-corejs3": "7.12.5",
+    "@babel/runtime-corejs3": "7.12.13",
     "@poool/junipero-hooks": "2.0.0-alpha.8",
     "@poool/junipero-utils": "2.0.0-alpha.8",
     "@popperjs/core": "2.6.0",
