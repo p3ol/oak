@@ -65,11 +65,11 @@ const Row = ({ className, element }) => {
           width: col.style.col.width,
         }}
         key={i}>
-          <div className={styles.gutters}>
+          <div className={classNames(styles.gutters, styles.left)}>
             <div className={styles.divide}>
               <a href="#" onClick={divide.bind(null, col, true)}>
                 <span className="material-icons">
-                chevron_left
+                add
                 </span></a>
             </div>
           </div>
@@ -121,13 +121,13 @@ const Row = ({ className, element }) => {
               </div>
             }
           </div>
-          <div className={styles.gutters}>
+          <div className={classNames(styles.gutters, styles.right)}>
             <Edit element={element} col={col}></Edit>
 
             <div className={styles.divide}>
               <a href="#" onClick={divide.bind(null, col, false)}>
                 <span className="material-icons">
-                chevron_right
+                add
                 </span></a>
             </div>
             <a href="#" onClick={remove.bind(null, element, col)}>
