@@ -56,7 +56,9 @@ const Row = ({ className, element }) => {
   };
 
   return (
-    <div className={classNames(className, styles.row)}>
+    <div className={classNames(className, styles.row)}
+      style={{ justifyContent: element.style?.horizontalAlignement }}
+    >
       { element?.cols?.map((col, i) => (
         <div className={styles.col} style={{
           flex: col.style.col.flex,

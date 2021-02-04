@@ -21,6 +21,9 @@ export const COMPONENT_ROW = {
   options: Row.options,
   construct: () => ({
     type: 'row',
+    style: {
+      horizontalAlignement: 'flex-start',
+    },
     cols: [{
       size: 12,
       content: [],

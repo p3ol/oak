@@ -114,6 +114,23 @@ export default ({ col, element, globalEventsTarget = global }) => {
                 className={styles.item}
                 onChange={item => {
                   col.style.content.textAlign = item.value;
+                  let horizontalAlignement = '';
+
+                  if (item.value === 'start' || item.value === 'justify') {
+                    horizontalAlignement = 'flex-start';
+                  } else if (item.value === 'center') {
+                    horizontalAlignement = 'center';
+                  } else if (item.value === 'end') {
+                    horizontalAlignement = 'flex-end';
+                  }
+
+                  col.content?.map(content => {
+                    content.style = {
+                      horizontalAlignement,
+                    };
+
+                    return null;
+                  });
                   setElement(element, {});
                 }}
                 options={horizontal}
