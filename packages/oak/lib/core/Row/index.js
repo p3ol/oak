@@ -31,6 +31,12 @@ const Row = ({ className, element }) => {
     }
   }, []);
 
+  const doesRowFitContent = () => {
+    return element.cols?.filter(
+      col => col.style?.col?.flex !== '' &&
+      col.style?.col?.flex !== null).length === 0;
+  };
+
   const onAppend = (col, isFirst, component) => {
     addElement(component.construct(), col.content, isFirst);
     catalogueRef.current?.close();
@@ -57,7 +63,7 @@ const Row = ({ className, element }) => {
 
   return (
     <div className={classNames(className, styles.row)}
-      style={{ justifyContent: element.style?.horizontalAlignement }}
+      style={{ width: doesRowFitContent() ? 'fit-content' : '100%' }}
     >
       { element?.cols?.map((col, i) => (
         <div className={styles.col} style={{

@@ -34,6 +34,7 @@ const Element = ({
         styles[element?.type],
         className,
       )}
+      style={{ alignItems: element.style?.horizontalAlignement }}
     >
       { component?.render?.({
         element,
