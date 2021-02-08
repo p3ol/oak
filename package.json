@@ -52,7 +52,7 @@
     "style-loader": "2.0.0",
     "stylus": "0.54.8",
     "stylus-loader": "5.0.0",
-    "webpack": "5.19.0"
+    "webpack": "5.21.2"
   },
   "name": "oak"
 }
