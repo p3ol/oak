@@ -12,19 +12,17 @@
   & > div
     margin-top:30px
     margin-bottom:40px
-  &:hover
-    .options
-      display: flex
-
   &:not(.row)
+    &:hover
+      .options
+        display: flex
     .inner
       border-radius: 5px
       background: $color-link-water
       min-height: 40px
       padding: 10px
 
-  &.row
-    .options
+  &.row > .options
       top: -25px
       left: 0
       transform: none
