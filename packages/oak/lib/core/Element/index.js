@@ -39,6 +39,7 @@ const Element = ({
       { component?.render?.({
         element,
         className: classNames(styles.inner, element.className),
+        onDelete,
       }) || null }
 
       <div className={styles.options}>

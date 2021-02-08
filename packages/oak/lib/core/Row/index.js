@@ -9,7 +9,7 @@ import Edit from '../Edit';
 
 import styles from './index.styl';
 
-const Row = ({ className, element }) => {
+const Row = ({ className, element, onDelete = () => {} }) => {
   const catalogueRef = useRef();
   const { addElement, removeElement, setElement } = useContext(AppContext);
 
@@ -59,6 +59,10 @@ const Row = ({ className, element }) => {
   const remove = (element, col) => {
     setElement(element, { cols: element.cols.filter(c => c.id !== col.id) },
     );
+
+    if (element.cols.length < 1) {
+      onDelete();
+    }
   };
 
   return (
