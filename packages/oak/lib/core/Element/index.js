@@ -68,12 +68,12 @@ const Element = ({
         ) }
       </div>
 
-      { debug && (
+      {/* { debug && (
         <pre>
           <p>Element:</p>
           { JSON.stringify(element, null, 2) }
         </pre>
-      )}
+      )} */}
     </div>
   );
 };
