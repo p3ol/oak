@@ -41,8 +41,31 @@ export const basicConfig = () => {
                 },
                 {
                   type: 'title',
-                  content: 'title',
+                  content: 'title heading 1',
                   headingLevel: 1,
+                  style: {
+                    horizontalAlignement: 'center',
+                  },
+                },
+                {
+                  type: 'title',
+                  content: 'title heading 2',
+                  headingLevel: 2,
+                  style: {
+                    horizontalAlignement: 'center',
+                  },
+                }, {
+                  type: 'title',
+                  content: 'title heading 3',
+                  headingLevel: 3,
+                  style: {
+                    horizontalAlignement: 'center',
+                  },
+                },
+                {
+                  type: 'title',
+                  content: 'title heading 4',
+                  headingLevel: 4,
                   style: {
                     horizontalAlignement: 'center',
                   },
