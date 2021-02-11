@@ -70,11 +70,12 @@ const Row = ({ className, element, onDelete = () => {} }) => {
       style={{ width: doesRowFitContent() ? 'fit-content' : '100%' }}
     >
       { element?.cols?.map((col, i) => (
-        <div className={styles.col} style={{
-          flex: col.style.col.flex,
-          width: col.style.col.width,
-        }}
-        key={i}>
+        <div className={styles.col}
+          style={{
+            flex: col.style.col.flex,
+            width: col.style.col.width,
+          }}
+          key={i}>
           <div className={classNames(styles.gutters, styles.left)}>
             <div className={styles.divide}>
               <a href="#" onClick={divide.bind(null, col, true)}>
@@ -99,16 +100,29 @@ const Row = ({ className, element, onDelete = () => {} }) => {
               style={{ alignItems: col.style.content.alignItem || 'flex-start',
 
               }}>
-              <div style={{
-                textAlign: col.style.content.textAlign || 'start',
-              }}>
+              <div
+                style={{
+                  textAlign: col.style.content.textAlign || 'start',
+                }}>
                 { col.content?.map((item, i) => (
-                  <Element
-                    key={i}
-                    element={item}
-                    className={styles.element}
-                    onDelete={removeElement.bind(null, item, col.content)}
-                  />
+                  <span key={i} onDrop={e => {
+                    const component =
+                      JSON.parse(e.dataTransfer.getData('text'));
+                    col.content = col.content.filter(e =>
+                      e.content !== component.content
+                    );
+                    col.content.splice(i, 0, component);
+                    setElement(element, {});
+                  }
+                  }
+                  onDragOver={e => e.preventDefault()}
+                  >
+                    <Element
+                      element={item}
+                      className={styles.element}
+                      onDelete={removeElement.bind(null, item, col.content)}
+                    />
+                  </span>
                 )) }
 
               </div>

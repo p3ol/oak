@@ -48,6 +48,14 @@ const Element = ({
           className={classNames(styles.option, styles.remove)}
           onClick={onDelete_}
         />
+        <Option
+          draggable="true"
+          option={{ icon: 'reorder' }}
+          className={classNames(styles.option, styles.remove)}
+          onDragStart={e => {
+            e.dataTransfer.setData('text', JSON.stringify(element));
+          }}
+        />
         { component.options?.map((o, i) => (
           <React.Fragment key={i}>
             { o?.render?.({
