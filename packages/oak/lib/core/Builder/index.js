@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import { useOptions, useBuilder } from '../../hooks';
 import Element from '../Element';
