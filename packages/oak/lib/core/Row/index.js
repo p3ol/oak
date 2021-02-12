@@ -109,7 +109,7 @@ const Row = ({ className, element, onDelete = () => {} }) => {
                     const component =
                       JSON.parse(e.dataTransfer.getData('text'));
                     col.content = col.content.filter(e =>
-                      e.content !== component.content
+                      e.id !== component.id
                     );
                     col.content.splice(i, 0, component);
                     setElement(element, {});
