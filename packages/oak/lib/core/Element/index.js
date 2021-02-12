@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { COMPONENT_DEFAULT } from '../../components';
-import { useBuilder, useOptions } from '../../hooks';
+import { useOptions, useBuilder } from '../../hooks';
 import Option from '../Option';
 
 import styles from './index.styl';
@@ -12,8 +12,11 @@ const Element = ({
   className,
   onDelete = () => {},
 }) => {
-  const { renderers } = useBuilder();
+  const { renderers, addId } = useBuilder();
   const { debug } = useOptions();
+  useLayoutEffect(() => {
+    addId(element);
+  }, []);
 
   const onDelete_ = e => {
     e.preventDefault();

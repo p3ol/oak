@@ -12,6 +12,7 @@ export default forwardRef(({ content, ...options }, ref) => {
     components: [GROUP_CORE, GROUP_OTHER],
     renderers: [...GROUP_CORE.components, ...GROUP_OTHER.components],
     content: content || [],
+    idMax: 0,
   });
 
   useImperativeHandle(ref, () => ({
@@ -34,6 +35,7 @@ export default forwardRef(({ content, ...options }, ref) => {
     removeElement,
     setElement,
     setContent,
+    addId,
   });
 
   const getGroup_ = id => {
@@ -69,6 +71,8 @@ export default forwardRef(({ content, ...options }, ref) => {
   };
 
   const addElement = (elmt, parent = state.content, isFirst) => {
+    addId(elmt);
+
     if (isFirst) {
       parent.unshift(elmt);
     } else {
@@ -76,6 +80,12 @@ export default forwardRef(({ content, ...options }, ref) => {
     }
 
     dispatch({ content: state.content });
+  };
+
+  const addId = elmnt => {
+    elmnt.id = state.idMax;
+    state.idMax++;
+    dispatch({ content: state.content, idMax: state.idMax });
   };
 
   const removeElement = (elmt, parent = state.content) => {

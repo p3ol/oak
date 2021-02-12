@@ -14,7 +14,9 @@ export const useBuilder = () => {
     addElement,
     removeElement,
     setElement,
+    addId,
   } = useContext(AppContext);
+
   return {
     components,
     renderers,
@@ -22,5 +24,6 @@ export const useBuilder = () => {
     addElement,
     removeElement,
     setElement,
+    addId,
   };
 };
