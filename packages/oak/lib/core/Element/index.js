@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { COMPONENT_DEFAULT } from '../../components';
@@ -14,6 +14,8 @@ const Element = ({
 }) => {
   const { renderers, addId } = useBuilder();
   const { debug } = useOptions();
+  const [componentRef, setComponentRef] = useState();
+
   useLayoutEffect(() => {
     addId(element);
   }, []);
@@ -38,6 +40,7 @@ const Element = ({
         className,
       )}
       style={{ alignItems: element.style?.horizontalAlignement }}
+      ref={setComponentRef}
     >
       { component?.render?.({
         element,
@@ -56,7 +59,11 @@ const Element = ({
           option={{ icon: 'reorder' }}
           className={classNames(styles.option, styles.remove)}
           onDragStart={e => {
+
             e.dataTransfer.setData('text', JSON.stringify(element));
+            e.dataTransfer.setDragImage(componentRef,
+              componentRef.getBoundingClientRect().width / 2,
+              componentRef.getBoundingClientRect().height / 2);
           }}
         />
         { component.options?.map((o, i) => (
