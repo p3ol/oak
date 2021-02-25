@@ -30,6 +30,35 @@ const Row = ({ className, element, onDelete = () => {} }) => {
         });
     }
   }, []);
+  const dragOver = e => e.preventDefault();
+
+  const drop = (e, i, col) => {
+    const targetRect = e.currentTarget.getBoundingClientRect();
+    const targetMiddleY = targetRect?.top + targetRect?.height / 2;
+    let isAfter = false;
+
+    if (e.clientY >= targetMiddleY) {
+      isAfter = true;
+    }
+
+    const component =
+    JSON.parse(e.dataTransfer.getData('text'));
+    let offset = 0;
+    col.content = col.content.filter((e, id) => {
+      if (e.id === component.id) { offset = i < id ? 1 : 0; }
+
+      return e.id !== component.id;
+    }
+    );
+
+    if (isAfter) {
+      col.content.splice(i + offset, 0, component);
+    } else {
+      col.content.splice(i - 1 + offset, 0, component);
+    }
+
+    setElement(element, {});
+  };
 
   const doesRowFitContent = () => {
     return element.cols?.filter(
@@ -105,17 +134,9 @@ const Row = ({ className, element, onDelete = () => {} }) => {
                   textAlign: col.style.content.textAlign || 'start',
                 }}>
                 { col.content?.map((item, i) => (
-                  <span key={i} onDrop={e => {
-                    const component =
-                      JSON.parse(e.dataTransfer.getData('text'));
-                    col.content = col.content.filter(e =>
-                      e.id !== component.id
-                    );
-                    col.content.splice(i, 0, component);
-                    setElement(element, {});
-                  }
-                  }
-                  onDragOver={e => e.preventDefault()}
+                  <span key={i}
+                    onDragOver={dragOver}
+                    onDrop={e => drop(e, i, col)}
                   >
                     <Element
                       element={item}
@@ -124,7 +145,6 @@ const Row = ({ className, element, onDelete = () => {} }) => {
                     />
                   </span>
                 )) }
-
               </div>
             </div>
             }
