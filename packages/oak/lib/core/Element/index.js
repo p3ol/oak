@@ -15,6 +15,7 @@ const Element = ({
   const { renderers, addId } = useBuilder();
   const { debug } = useOptions();
   const [componentRef, setComponentRef] = useState();
+  const [isDragOver, setIsDragOver] = useState();
 
   useLayoutEffect(() => {
     addId(element);
@@ -37,8 +38,22 @@ const Element = ({
       className={classNames(
         styles.element,
         styles[element?.type],
+        `${isDragOver ? styles[isDragOver] : ''}`,
         className,
       )}
+      onDragOver={e => {
+        const targetRect = e.currentTarget.getBoundingClientRect();
+        const targetMiddleY = targetRect?.top + targetRect?.height / 2;
+        const isAfter = false;
+
+        if (e.clientY >= targetMiddleY) {
+          setIsDragOver('after');
+        } else {
+          setIsDragOver('before');
+        }
+      }}
+      onDrop= {e => setIsDragOver(null)}
+      onDragLeave={e => setIsDragOver(null)}
       style={{ alignItems: element.style?.horizontalAlignement }}
       ref={setComponentRef}
     >

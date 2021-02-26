@@ -1,8 +1,33 @@
 @require "../../theme/colors"
 
 .element
+
+  &.before:before
+    width: 100%
+    top: 0
+    left: 0
+    height: 1px
+    position: absolute
+    content: ""
+    display:block
+    background: rgba($color-shuttle-gray,0.2)
+    box-shadow: 0 -2px 4px 2px rgba($color-shuttle-gray,0.4)
+
+  &.after
+    &:after
+      width: 100%
+      top: 100%
+      left: 0
+      height: 1px
+      position: absolute
+      content: ""
+      display:block
+      background: rgba($color-shuttle-gray,0.2)
+      box-shadow: 0 2px 4px 2px rgba($color-shuttle-gray,0.4)
+
   position: relative
-  margin-bottom: 20px
+  margin-top: 10px
+  margin-bottom: 10px
   margin-left 10px
   margin-right: 10px
   display: flex;
@@ -32,10 +57,8 @@
       a.option
         &:first-child
           border-radius: 3px 0 0 0
-
           &:last-child
             border-radius: 3px 3px 0 0
-
         &:last-child
           border-radius: 0 3px 0 0
 
