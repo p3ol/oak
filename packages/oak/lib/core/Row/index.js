@@ -84,6 +84,19 @@ const Row = ({ className, element, onDelete = () => {} }) => {
             flex: col.style.col.flex,
             width: col.style.col.width,
           }}
+          onDrop={e => {
+            const targetRect = e.currentTarget.getBoundingClientRect();
+            const targetMiddleY = targetRect?.top + targetRect?.height / 2;
+            let isAfter = false;
+
+            if (e.clientY >= targetMiddleY) {
+              isAfter = true;
+            }
+
+            const droppedElement = JSON.parse(e.dataTransfer.getData('text'));
+            addElement(droppedElement, col.content, !isAfter);
+            e.stopPropagation();
+          }}
           key={i}>
           <div className={classNames(styles.gutters, styles.left)}>
             <div className={styles.divide}>
