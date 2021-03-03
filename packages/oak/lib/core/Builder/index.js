@@ -8,12 +8,23 @@ import styles from './index.styl';
 
 export default () => {
   const catalogueRef = useRef();
-  const { renderers, content, addElement, removeElement } = useBuilder();
+  const {
+    renderers,
+    content,
+    addElement,
+    removeElement,
+    insertElement,
+  } = useBuilder();
+
   const { debug } = useOptions();
 
   const onAppend = component => {
     addElement(component.construct());
     catalogueRef.current?.close();
+  };
+
+  const onInsert = (eltToInsert, eltWhereInsert, isAfter) => {
+    insertElement(eltToInsert, eltWhereInsert, isAfter, content);
   };
 
   return (
@@ -23,6 +34,7 @@ export default () => {
           key={i}
           element={item}
           onDelete={removeElement.bind(null, item)}
+          insertElement={onInsert}
         />
       )) }
 

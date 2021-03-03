@@ -11,6 +11,7 @@ const Element = ({
   element,
   className,
   onDelete = () => {},
+  insertElement = () => {},
 }) => {
   const { renderers, addId } = useBuilder();
   const { debug } = useOptions();
@@ -42,9 +43,9 @@ const Element = ({
         className,
       )}
       onDragOver={e => {
+        e.preventDefault();
         const targetRect = e.currentTarget.getBoundingClientRect();
         const targetMiddleY = targetRect?.top + targetRect?.height / 2;
-        const isAfter = false;
 
         if (e.clientY >= targetMiddleY) {
           setIsDragOver('after');
@@ -52,7 +53,12 @@ const Element = ({
           setIsDragOver('before');
         }
       }}
-      onDrop= {e => setIsDragOver(null)}
+      onDrop= {e => {
+        e.stopPropagation();
+        setIsDragOver(null);
+        const droppedElement = JSON.parse(e.dataTransfer.getData('text'));
+        insertElement(droppedElement, element, isDragOver === 'after');
+      }}
       onDragLeave={e => setIsDragOver(null)}
       style={{ alignItems: element.style?.horizontalAlignement }}
       ref={setComponentRef}
@@ -74,11 +80,11 @@ const Element = ({
           option={{ icon: 'reorder' }}
           className={classNames(styles.option, styles.remove)}
           onDragStart={e => {
-
             e.dataTransfer.setData('text', JSON.stringify(element));
             e.dataTransfer.setDragImage(componentRef,
               componentRef.getBoundingClientRect().width / 2,
               componentRef.getBoundingClientRect().height / 2);
+            setTimeout(onDelete, 0);
           }}
         />
         { component.options?.map((o, i) => (

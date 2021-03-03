@@ -11,7 +11,12 @@ import styles from './index.styl';
 
 const Row = ({ className, element, onDelete = () => {} }) => {
   const catalogueRef = useRef();
-  const { addElement, removeElement, setElement } = useContext(AppContext);
+  const {
+    addElement,
+    removeElement,
+    setElement,
+    insertElement,
+  } = useContext(AppContext);
 
   useLayoutEffect(() => {
     if (!element.cols?.length) {
@@ -30,35 +35,6 @@ const Row = ({ className, element, onDelete = () => {} }) => {
         });
     }
   }, []);
-  const dragOver = e => e.preventDefault();
-
-  const drop = (e, i, col) => {
-    const targetRect = e.currentTarget.getBoundingClientRect();
-    const targetMiddleY = targetRect?.top + targetRect?.height / 2;
-    let isAfter = false;
-
-    if (e.clientY >= targetMiddleY) {
-      isAfter = true;
-    }
-
-    const component =
-    JSON.parse(e.dataTransfer.getData('text'));
-    let offset = 0;
-    col.content = col.content.filter((e, id) => {
-      if (e.id === component.id) { offset = i < id ? 1 : 0; }
-
-      return e.id !== component.id;
-    }
-    );
-
-    if (isAfter) {
-      col.content.splice(i + offset, 0, component);
-    } else {
-      col.content.splice(i - 1 + offset, 0, component);
-    }
-
-    setElement(element, {});
-  };
 
   const doesRowFitContent = () => {
     return element.cols?.filter(
@@ -92,6 +68,10 @@ const Row = ({ className, element, onDelete = () => {} }) => {
     if (element.cols.length < 1) {
       onDelete();
     }
+  };
+
+  const onInsert = (col, eltToInsert, eltWhereInsert, isAfter) => {
+    insertElement(eltToInsert, eltWhereInsert, isAfter, col?.content);
   };
 
   return (
@@ -134,16 +114,13 @@ const Row = ({ className, element, onDelete = () => {} }) => {
                   textAlign: col.style.content.textAlign || 'start',
                 }}>
                 { col.content?.map((item, i) => (
-                  <span key={i}
-                    onDragOver={dragOver}
-                    onDrop={e => drop(e, i, col)}
-                  >
-                    <Element
-                      element={item}
-                      className={styles.element}
-                      onDelete={removeElement.bind(null, item, col.content)}
-                    />
-                  </span>
+                  <Element
+                    key={i}
+                    element={item}
+                    className={styles.element}
+                    onDelete={removeElement.bind(null, item, col.content)}
+                    insertElement={onInsert.bind(null, col)}
+                  />
                 )) }
               </div>
             </div>
@@ -167,7 +144,6 @@ const Row = ({ className, element, onDelete = () => {} }) => {
           </div>
           <div className={classNames(styles.gutters, styles.right)}>
             <Edit element={element} col={col}></Edit>
-
             <div className={styles.divide}>
               <a href="#" onClick={divide.bind(null, col, false)}>
                 <span className="material-icons">
@@ -175,12 +151,10 @@ const Row = ({ className, element, onDelete = () => {} }) => {
                 </span></a>
             </div>
             <a href="#" onClick={remove.bind(null, element, col)}>
-
               <span className="material-icons">
                 delete
               </span></a>
           </div>
-
         </div>
       ))}
 

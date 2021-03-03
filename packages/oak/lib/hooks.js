@@ -15,6 +15,7 @@ export const useBuilder = () => {
     removeElement,
     setElement,
     addId,
+    insertElement,
   } = useContext(AppContext);
 
   return {
@@ -25,5 +26,6 @@ export const useBuilder = () => {
     removeElement,
     setElement,
     addId,
+    insertElement,
   };
 };
