@@ -1,14 +1,13 @@
-import { mockState } from '@poool/junipero-utils';
-import React, { useContext, useReducer, useState } from 'react';
+import { mockState, classNames } from '@poool/junipero-utils';
+import React, { useReducer, useState } from 'react';
 import { usePopper } from 'react-popper';
-import { SelectField, TextField } from '@poool/junipero';
 import { useEventListener } from '@poool/junipero-hooks';
 
-import { AppContext } from '../../contexts';
+import Option from '../Option';
 
 import styles from './index.styl';
 
-export default ({ col, element, globalEventsTarget = global }) => {
+export default ({ globalEventsTarget = global, children }) => {
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
   const [state, dispatch] = useReducer(mockState, {
@@ -16,20 +15,6 @@ export default ({ col, element, globalEventsTarget = global }) => {
     opened: false,
   });
 
-  const { setElement } = useContext(AppContext);
-
-  const vertical = [
-    { title: 'Aligné en haut', value: 'flex-start' },
-    { title: 'Centré', value: 'center' },
-    { title: 'Aligné en bas', value: 'flex-end' },
-  ];
-
-  const horizontal = [
-    { title: 'Aligné à gauche', value: 'start' },
-    { title: 'Centré', value: 'center' },
-    { title: 'Aligné à droite', value: 'end' },
-    { title: 'Justifié', value: 'justify' },
-  ];
   useEventListener('click', e => {
     onClickOutside_(e);
   }, globalEventsTarget);
@@ -39,8 +24,9 @@ export default ({ col, element, globalEventsTarget = global }) => {
       return;
     }
 
+    //TODO: improve ref handling
     if (
-      reference !== e.target &&
+      reference !== e.target.parentElement.parentElement &&
       !popper.contains(e.target) &&
       popper !== e.target
     ) {
@@ -50,6 +36,10 @@ export default ({ col, element, globalEventsTarget = global }) => {
 
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
     placement: 'left-start',
+    strategy: 'fixed',
+
+    positionFixed: true,
+
     modifiers: [
       ...[],
       {
@@ -63,18 +53,17 @@ export default ({ col, element, globalEventsTarget = global }) => {
 
   return (
     <>
-      <a
-        href="#"
-        onClick={() => dispatch({ opened: !state.opened })}
-        className={styles.edit}>
-        <span ref={setReference} className="material-icons" >
-          edit
-        </span>
-      </a>
+      <div ref={setReference} className={styles.edit}>
+        <Option
+          option={{ icon: 'edit' }}
+          className={classNames(styles.option, styles.edit)}
+          onClick={() => dispatch({ opened: !state.opened })}
+        />
+      </div>
       { state.opened &&
           <div
             ref={setPopper}
-            style={popperStyles.popper}
+            style={{ ...popperStyles.popper, zIndex: 999, position: 'fixed' }}
             {...attributes.popper}
             data-placement={'bottom'}
             className={styles.popper}
@@ -92,69 +81,7 @@ export default ({ col, element, globalEventsTarget = global }) => {
 
             </div>
             <div className={styles.flex}>
-              <SelectField
-                label="Alignement vertical"
-                boxed={false}
-                value={col.style.content.alignItem || 'flex-start'}
-                parseValue={item => item.value}
-                parseTitle={item => item.title}
-                className={styles.item}
-                onChange={item => {
-                  col.style.content.alignItem = item.value;
-                  setElement(element, {});
-                }}
-                options={vertical}
-              />
-              <SelectField
-                label="Alignement horizontal"
-                boxed={false}
-                value={col.style.content.textAlign || 'start'}
-                parseValue={item => item.value}
-                parseTitle={item => item.title}
-                className={styles.item}
-                onChange={item => {
-                  col.style.content.textAlign = item.value;
-                  let horizontalAlignement = '';
-
-                  if (item.value === 'start' || item.value === 'justify') {
-                    horizontalAlignement = 'flex-start';
-                  } else if (item.value === 'center') {
-                    horizontalAlignement = 'center';
-                  } else if (item.value === 'end') {
-                    horizontalAlignement = 'flex-end';
-                  }
-
-                  col.content?.map(content => {
-                    content.style = {
-                      horizontalAlignement,
-                    };
-
-                    return null;
-                  });
-                  setElement(element, {});
-                }}
-                options={horizontal}
-              />
-              <TextField
-                boxed={false}
-                placeholder="Proportion de la colonne"
-                value={col.style.col.flex}
-                onChange={item => {
-                  col.style.col.width = '';
-                  col.style.col.flex = item.value;
-                  setElement(element, {});
-                }}
-              />
-              <TextField
-                boxed={false}
-                placeholder="Largeur fixe"
-                value={col.style.col.width}
-                onChange={item => {
-                  col.style.col.flex = '';
-                  col.style.col.width = item.value;
-                  setElement(element, {});
-                }}
-              />
+              {children}
             </div>
           </div>
       }

@@ -6,6 +6,7 @@ import Catalogue from '../Catalogue';
 import Element from '../Element';
 import Option from '../Option';
 import Edit from '../Edit';
+import RowEdit from './Edition';
 
 import styles from './index.styl';
 
@@ -156,7 +157,12 @@ const Row = ({ className, element, onDelete = () => {} }) => {
             }
           </div>
           <div className={classNames(styles.gutters, styles.right)}>
-            <Edit element={element} col={col}></Edit>
+            <Edit>
+              <RowEdit
+                col={col}
+                element={element}
+              />
+            </Edit>
             <div className={styles.divide}>
               <a href="#" onClick={divide.bind(null, col, false)}>
                 <span className="material-icons">
