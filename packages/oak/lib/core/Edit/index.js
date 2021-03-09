@@ -1,5 +1,6 @@
 import { mockState, classNames } from '@poool/junipero-utils';
 import React, { useReducer, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 import { useEventListener } from '@poool/junipero-hooks';
 
@@ -37,11 +38,8 @@ export default ({ globalEventsTarget = global, children }) => {
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
     placement: 'left-start',
     strategy: 'fixed',
-
     positionFixed: true,
-
     modifiers: [
-      ...[],
       {
         name: 'offset',
         options: {
@@ -61,9 +59,9 @@ export default ({ globalEventsTarget = global, children }) => {
         />
       </div>
       { state.opened &&
-          <div
+          ReactDOM.createPortal(<div
             ref={setPopper}
-            style={{ ...popperStyles.popper, zIndex: 999, position: 'fixed' }}
+            style={ popperStyles.popper }
             {...attributes.popper}
             data-placement={'bottom'}
             className={styles.popper}
@@ -83,8 +81,7 @@ export default ({ globalEventsTarget = global, children }) => {
             <div className={styles.flex}>
               {children}
             </div>
-          </div>
+          </div>, document.querySelector('#root'))
       }
-    </>
-  );
+    </>);
 };
