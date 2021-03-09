@@ -6,11 +6,15 @@
   .popper
     width:480px  
     height: 200px
-    background: white
-    border: 1px solid grey;
+    background: white;
+    border: 1px solid #eee;
     border-radius: 3px
     border-radius: 0px 3px 3px 3px;
     z-index: 1
+    &[data-popper-reference-hidden] {
+      visibility: hidden;
+      pointer-events: none;
+    }
   .top
     width: 100%
     text-align: end

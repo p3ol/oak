@@ -55,7 +55,10 @@ export default ({ globalEventsTarget = global, children }) => {
         <Option
           option={{ icon: 'edit' }}
           className={classNames(styles.option, styles.edit)}
-          onClick={() => dispatch({ opened: !state.opened })}
+          onClick={e => {
+            dispatch({ opened: !state.opened });
+            e.preventDefault();
+          }}
         />
       </div>
       { state.opened &&
@@ -69,7 +72,10 @@ export default ({ globalEventsTarget = global, children }) => {
             <div className={styles.top}>
               <a
                 href="#"
-                onClick={() => dispatch({ opened: !state.opened })}
+                onClick={e => {
+                  dispatch({ opened: !state.opened });
+                  e.preventDefault();
+                }}
               >
                 <span className="material-icons" >
                   edit
