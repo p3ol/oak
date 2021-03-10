@@ -8,7 +8,11 @@ import Option from '../Option';
 
 import styles from './index.styl';
 
-export default ({ globalEventsTarget = global, children }) => {
+export default ({
+  globalEventsTarget = global,
+  children,
+  title = 'Element options',
+  light = false }) => {
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
   const [state, dispatch] = useReducer(mockState, {
@@ -54,7 +58,10 @@ export default ({ globalEventsTarget = global, children }) => {
       <div ref={setReference} className={styles.edit}>
         <Option
           option={{ icon: 'edit' }}
-          className={classNames(styles.option, styles.edit)}
+          className={classNames(styles.light, styles.option,
+            styles.edit,
+            light ? 'light' : '')
+          }
           onClick={e => {
             dispatch({ opened: !state.opened });
             e.preventDefault();
@@ -81,7 +88,7 @@ export default ({ globalEventsTarget = global, children }) => {
                   edit
                 </span>
               </a>
-              <span>col options</span>
+              <span>{title}</span>
 
             </div>
             <div className={styles.flex}>

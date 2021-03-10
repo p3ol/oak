@@ -26,12 +26,11 @@ const Text = ({ element }) => {
 };
 
 Text.options = [{
-  name: 'cols',
   render: ({ element }) => {
     const { setElement } = useContext(AppContext);
 
     return (
-      <Edit></Edit>
+      <Edit title='Text options'></Edit>
     );
   },
 }];

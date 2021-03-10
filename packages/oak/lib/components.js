@@ -50,7 +50,7 @@ export const COMPONENT_TITLE = {
   type: 'component',
 
   render: Title,
-  options: Text.options,
+  options: Title.options,
   construct: () => ({
     type: 'title',
     content: 'title',

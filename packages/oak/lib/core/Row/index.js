@@ -157,7 +157,7 @@ const Row = ({ className, element, onDelete = () => {} }) => {
             }
           </div>
           <div className={classNames(styles.gutters, styles.right)}>
-            <Edit>
+            <Edit title={'Col options'} light={true}>
               <RowEdit
                 col={col}
                 element={element}

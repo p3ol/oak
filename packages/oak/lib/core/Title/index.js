@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { AppContext } from '../../contexts';
+import Edit from '../Edit';
 
 import styles from '../Text/index.styl';
 
@@ -23,4 +24,13 @@ const Title = ({ element }) => {
   );
 };
 
+Title.options = [{
+  render: ({ element }) => {
+    const { setElement } = useContext(AppContext);
+
+    return (
+      <Edit title='Title options'></Edit>
+    );
+  },
+}];
 export default Title;

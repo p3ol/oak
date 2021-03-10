@@ -13,7 +13,7 @@ export default ({
     <a
       { ...props }
       href="#"
-      className={classNames(styles.option, className)}
+      className={classNames(styles.option, styles[className])}
     >
       { renderIcon ? renderIcon?.() : (
         <i className="material-icons">{ option?.icon }</i>
