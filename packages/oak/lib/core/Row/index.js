@@ -169,7 +169,7 @@ const Row = ({ className, element, onDelete = () => {} }) => {
                 add
                 </span></a>
             </div>
-            <a href="#" onClick={remove.bind(null, element, col)}>
+            <a href="#" className={styles.delete} onClick={remove.bind(null, element, col)}>
               <span className="material-icons">
                 delete
               </span></a>
