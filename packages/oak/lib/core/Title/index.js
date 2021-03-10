@@ -7,7 +7,6 @@ import Edit from '../Edit';
 import styles from '../Text/index.styl';
 
 const Title = ({ element }) => {
-  const { setElement } = useContext(AppContext);
 
   return (
     <span style={{
