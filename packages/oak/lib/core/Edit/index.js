@@ -58,10 +58,7 @@ export default ({
       <div ref={setReference} className={styles.edit}>
         <Option
           option={{ icon: 'edit' }}
-          className={classNames(styles.light, styles.option,
-            styles.edit,
-            light ? 'light' : '')
-          }
+          className={classNames(light ? 'light' : '')}
           onClick={e => {
             dispatch({ opened: !state.opened });
             e.preventDefault();

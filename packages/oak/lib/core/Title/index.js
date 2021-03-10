@@ -10,13 +10,19 @@ const Title = ({ element }) => {
   const { setElement } = useContext(AppContext);
 
   return (
-    element.headingLevel === 1
-      ? <h1 style={{ color: element.style.color }}>{element.content}</h1>
-      : element.headingLevel === 2
-        ? <h2 style={{ color: element.style.color }}>{element.content}</h2>
-        : element.headingLevel === 3
-          ? <h3 style={{ color: element.style.color }}>{element.content}</h3>
-          : <h4 style={{ color: element.style.color }}>{element.content}</h4>
+    <span style={{
+      color: element.style?.color,
+      textAlign: element.style?.textAlign,
+      width: element.style?.width,
+    }}>
+      {element.headingLevel === 1
+        ? <h1>{element.content}</h1>
+        : element.headingLevel === 2
+          ? <h2 >{element.content}</h2>
+          : element.headingLevel === 3
+            ? <h3>{element.content}</h3>
+            : <h4>{element.content}</h4>}
+    </span>
   );
 };
 
@@ -28,6 +34,18 @@ Title.options = [{
       { title: 'Heading 2', value: 2 },
       { title: 'Heading 3', value: 3 },
       { title: 'Heading 4', value: 4 },
+    ];
+    const horizontal = [
+      { title: 'Aligné à gauche', value: 'flex-start' },
+      { title: 'Centré', value: 'center' },
+      { title: 'Aligné à droite', value: 'flex-end' },
+    ];
+
+    const textAlign = [
+      { title: 'Aligné à gauche', value: 'start' },
+      { title: 'Centré', value: 'center' },
+      { title: 'Aligné à droite', value: 'end' },
+      { title: 'Justifié', value: 'justify' },
     ];
 
     return (
@@ -41,8 +59,6 @@ Title.options = [{
           className={styles.item}
           onChange={item => {
             setElement(element, { headingLevel: item.value });
-
-            return null;
           }}
           options={headings}
         />
@@ -59,7 +75,39 @@ Title.options = [{
         <ColorPicker
           value={element.style?.color || '#000000'}
           onChange={item => {
-            setElement(element, { style: { color: item.value } });
+            setElement(element.style, { color: item.value });
+          }}
+        />
+        <SelectField
+          label="Alignement horizontal"
+          boxed={false}
+          value={element.style?.horizontalAlignement || 'flex-start'}
+          parseValue={item => item.value}
+          parseTitle={item => item.title}
+          className={styles.item}
+          onChange={item => {
+            setElement(element.style, { horizontalAlignement: item.value });
+          }}
+          options={horizontal}
+        />
+        <SelectField
+          label="Alignement texte"
+          boxed={false}
+          value={element.style?.textAlign || 'start'}
+          parseValue={item => item.value}
+          parseTitle={item => item.title}
+          className={styles.item}
+          onChange={item => {
+            setElement(element.style, { textAlign: item.value });
+          }}
+          options={textAlign}
+        />
+        <TextField
+          boxed={false}
+          placeholder="Largeur fixe"
+          value={element.style?.width}
+          onChange={item => {
+            setElement(element.style, { width: item.value });
           }}
         />
       </Edit>
