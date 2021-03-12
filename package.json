@@ -46,7 +46,7 @@
     "postcss-loader": "5.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "rollup": "2.39.1",
+    "rollup": "2.41.2",
     "rollup-plugin-postcss": "4.0.0",
     "rollup-plugin-terser": "7.0.2",
     "style-loader": "2.0.0",
