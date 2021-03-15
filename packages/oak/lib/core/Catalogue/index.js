@@ -63,6 +63,14 @@ export default forwardRef(({
     onToggle({ opened: false });
   };
 
+  const toggle = () => {
+    if (state.opened) {
+      close();
+    } else {
+      open();
+    }
+  };
+
   const onClickOutside_ = e => {
     if (!popper || !reference) {
       return;
@@ -118,7 +126,7 @@ export default forwardRef(({
       <a
         ref={setReference}
         className={styles.handle}
-        onClick={open}
+        onClick={toggle}
       />
       { state.opened && (
         <div
