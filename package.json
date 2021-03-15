@@ -30,7 +30,7 @@
     "@rollup/plugin-node-resolve": "10.0.0",
     "@storybook/addon-storysource": "6.1.21",
     "@storybook/react": "6.1.21",
-    "autoprefixer": "10.2.4",
+    "autoprefixer": "10.2.5",
     "babel-loader": "8.2.2",
     "css-loader": "5.1.2",
     "eslint": "7.22.0",
