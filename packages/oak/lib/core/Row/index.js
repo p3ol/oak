@@ -1,5 +1,6 @@
 import React, { useRef, useContext, useLayoutEffect } from 'react';
 import { classNames } from '@poool/junipero-utils';
+import { SelectField } from '@poool/junipero';
 
 import { AppContext } from '../../contexts';
 import Catalogue from '../Catalogue';
@@ -77,7 +78,10 @@ const Row = ({ className, element, onDelete = () => {} }) => {
 
   return (
     <div className={classNames(className, styles.row)}
-      style={{ width: doesRowFitContent() ? 'fit-content' : '100%' }}
+      style={{
+        width: doesRowFitContent() ? 'fit-content' : '100%',
+        alignItems: element.style?.alignItem || 'stretch',
+      }}
     >
       { element?.cols?.map((col, i) => (
         <div className={styles.col}
@@ -183,13 +187,32 @@ const Row = ({ className, element, onDelete = () => {} }) => {
 
 Row.options = [{
   name: 'cols',
-  render: ({ className }) => {
+  render: ({ className, element }) => {
+    const { setElement } = useContext(AppContext);
+
+    const vertical = [
+      { title: 'Aligné en haut', value: 'flex-start' },
+      { title: 'Centré', value: 'center' },
+      { title: 'Aligné en bas', value: 'flex-end' },
+      { title: 'Étiré', value: 'stretch' },
+    ];
 
     return (
-      <Option
-        option={{ icon: 'view_column' }}
-        className={classNames(className, styles.column)}
-      />
+      <Edit title={'Row options'}>
+        <SelectField
+          label="Alignement vertical"
+          boxed={false}
+          value={element.style?.alignItem || 'stretch'}
+          parseValue={item => item.value}
+          parseTitle={item => item.title}
+          className={styles.item}
+          onChange={item => {
+            element.style.alignItem = item.value;
+            setElement(element, {});
+          }}
+          options={vertical}
+        />
+      </Edit>
     );
   },
 }];
