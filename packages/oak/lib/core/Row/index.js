@@ -122,8 +122,7 @@ const Row = ({ className, element, onDelete = () => {} }) => {
               }
             </div>
             {col.content.length > 0 &&
-
-            <div className={styles.mainContent}
+            (<div className={styles.mainContent}
               style={{ alignItems: col.style.content.alignItem || 'flex-start',
 
               }}>
@@ -142,41 +141,47 @@ const Row = ({ className, element, onDelete = () => {} }) => {
                 )) }
               </div>
             </div>
-            }
+            )}
             {col.content.length === 0 &&
-                <Catalogue
+                (<Catalogue
                   className={styles.catalogue}
                   ref={catalogueRef}
                   onAppend={onAppend.bind(null, col, false)}
-                />
+                />)
             }
             { col.content.length > 0 &&
-              <div className={styles.border}>
+              (<div className={styles.border}>
                 <Catalogue
                   className={styles.catalogue}
                   ref={catalogueRef}
                   onAppend={onAppend.bind(null, col, false)}
                 />
               </div>
-            }
+              )}
           </div>
           <div className={classNames(styles.gutters, styles.right)}>
-            <Edit title={'Col options'} light={true}>
-              <RowEdit
-                col={col}
-                element={element}
-              />
-            </Edit>
+            <div className={styles.top}>
+              <Edit title={'Col options'} light={true}>
+                <RowEdit
+                  col={col}
+                  element={element}
+                />
+              </Edit>
+              <a
+                href="#" className={styles.delete}
+                onClick={remove.bind(null, element, col)}
+              >
+                <span className="material-icons">
+                clear
+                </span>
+              </a>
+            </div>
             <div className={styles.divide}>
               <a href="#" onClick={divide.bind(null, col, false)}>
                 <span className="material-icons">
                 add
                 </span></a>
             </div>
-            <a href="#" className={styles.delete} onClick={remove.bind(null, element, col)}>
-              <span className="material-icons">
-                delete
-              </span></a>
           </div>
         </div>
       ))}
