@@ -18,6 +18,7 @@ export const COMPONENT_ROW = {
   name: 'Row',
   type: 'component',
   render: Row,
+  icon: 'view_column',
   options: Row.options,
   construct: () => ({
     type: 'row',
@@ -38,6 +39,7 @@ export const COMPONENT_TEXT = {
   name: 'Text',
   type: 'component',
   render: Text,
+  icon: 'format_align_left',
   options: Text.options,
   construct: () => ({
     type: 'text',
@@ -49,7 +51,7 @@ export const COMPONENT_TITLE = {
   id: 'title',
   name: 'Title',
   type: 'component',
-
+  icon: 'title',
   render: Title,
   options: Title.options,
   construct: () => ({

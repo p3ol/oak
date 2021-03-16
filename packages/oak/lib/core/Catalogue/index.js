@@ -8,6 +8,8 @@ import React, {
 import { usePopper } from 'react-popper';
 import { classNames, mockState } from '@poool/junipero-utils';
 import { useEventListener } from '@poool/junipero-hooks';
+import { Button } from '@poool/junipero'
+;
 
 import { AppContext } from '../../contexts';
 
@@ -96,13 +98,23 @@ export default forwardRef(({
     }
 
     return (
-      <ul className={styles.components}>
+
+      <div className={styles.components} >
         { group.components.map(c => (
-          <li key={c.id}>
-            <a href="#" onClick={onAppend_.bind(null, c)}>{ c.name }</a>
-          </li>
+          <Button
+            key={c.id}
+            type="primary"
+            size="big"
+            reversed={true}
+            className={styles.item}
+            onClick={onAppend_.bind(null, c)}
+          >
+            <span className="material-icons">{c.icon}</span>
+            { c.name }
+          </Button>
+
         )) }
-      </ul>
+      </div>
     );
   };
 
