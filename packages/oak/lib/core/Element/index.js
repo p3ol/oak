@@ -39,7 +39,6 @@ const Element = ({
       className={classNames(
         styles.element,
         styles[element?.type],
-        `${isDragOver ? styles[isDragOver] : ''}`,
         className,
       )}
       onDragOver={e => {
