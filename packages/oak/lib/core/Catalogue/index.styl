@@ -31,7 +31,7 @@
   .popover
     background: $color-white
     border-radius: 5px
-    min-width: 400px
+    width: 400px
     min-height: 200px
     text-align: left
     box-shadow: 0 7px 30px 0 rgba($color-hawkes-blue, 0.5)
@@ -66,10 +66,18 @@
     padding: 20px
 
   .item 
-    padding-top: 0px;
-    padding-bottom:0px;
-    width: 40%
-    height: 40px
+    width: 45%
+    min-height: 40px
     margin-bottom: 20px
-    & span
-      float: left
+    text-align: left
+    padding: 5px
+    background: $color-black-squeeze;
+    border-radius: 3px;
+    border: none
+    color: $color-deep-sea-green
+    &:hover
+      border: 1px solid $color-deep-sea-green;
+      cursor: pointer
+
+    & i, & span 
+      vertical-align: middle
