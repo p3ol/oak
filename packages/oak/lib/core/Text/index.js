@@ -9,13 +9,11 @@ import styles from './index.styl';
 const Text = ({ element }) => {
 
   return (
-    <p style={{
+    React.createElement('p', { style: {
       color: element.style?.color,
       textAlign: element.style?.textAlign,
       width: element.style?.width,
-    }}>
-      {element.content}
-    </p>
+    }, dangerouslySetInnerHTML: { __html: element.content } })
   );
 };
 
