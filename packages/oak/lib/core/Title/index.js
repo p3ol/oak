@@ -14,13 +14,9 @@ const Title = ({ element }) => {
       textAlign: element.style?.textAlign,
       width: element.style?.width,
     }}>
-      {element.headingLevel === 1
-        ? <h1>{element.content}</h1>
-        : element.headingLevel === 2
-          ? <h2 >{element.content}</h2>
-          : element.headingLevel === 3
-            ? <h3>{element.content}</h3>
-            : <h4>{element.content}</h4>}
+      {React.createElement(element.headingLevel || 'h1', {},
+        element.content
+      )}
     </span>
   );
 };
@@ -29,10 +25,12 @@ Title.options = [{
   render: ({ element }) => {
     const { setElement } = useContext(AppContext);
     const headings = [
-      { title: 'Heading 1', value: 1 },
-      { title: 'Heading 2', value: 2 },
-      { title: 'Heading 3', value: 3 },
-      { title: 'Heading 4', value: 4 },
+      { title: 'Heading 1', value: 'h1' },
+      { title: 'Heading 2', value: 'h2' },
+      { title: 'Heading 3', value: 'h3' },
+      { title: 'Heading 4', value: 'h4' },
+      { title: 'Heading 5', value: 'h5' },
+      { title: 'Heading 6', value: 'h6' },
     ];
     const horizontal = [
       { title: 'Aligné à gauche', value: 'flex-start' },
@@ -52,7 +50,7 @@ Title.options = [{
         <SelectField
           label="Alignement horizontal"
           boxed={false}
-          value={element.headingLevel || 1}
+          value={element.headingLevel || 'h1'}
           parseValue={item => item.value}
           parseTitle={item => item.title}
           className={styles.item}

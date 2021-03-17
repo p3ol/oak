@@ -42,7 +42,7 @@ export const basicConfig = () => {
                 {
                   type: 'title',
                   content: 'title heading 1',
-                  headingLevel: 1,
+                  headingLevel: 'h1',
                   style: {
                     horizontalAlignement: 'center',
                   },
@@ -50,14 +50,14 @@ export const basicConfig = () => {
                 {
                   type: 'title',
                   content: 'title heading 2',
-                  headingLevel: 2,
+                  headingLevel: 'h2',
                   style: {
                     horizontalAlignement: 'center',
                   },
                 }, {
                   type: 'title',
                   content: 'title heading 3',
-                  headingLevel: 3,
+                  headingLevel: 'h3',
                   style: {
                     horizontalAlignement: 'center',
                   },
@@ -65,7 +65,7 @@ export const basicConfig = () => {
                 {
                   type: 'title',
                   content: 'title heading 4',
-                  headingLevel: 4,
+                  headingLevel: 'h4',
                   style: {
                     horizontalAlignement: 'center',
                   },
