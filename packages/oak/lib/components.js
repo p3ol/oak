@@ -57,7 +57,7 @@ export const COMPONENT_TITLE = {
   construct: () => ({
     type: 'title',
     content: 'title',
-    headingLevel: 1,
+    headingLevel: 'h1',
     style: {},
   }),
 };
