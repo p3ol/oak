@@ -3,4 +3,7 @@ module.exports = {
   addons: [
     '@storybook/addon-storysource',
   ],
+  core: {
+    builder: 'webpack5',
+  }
 };
