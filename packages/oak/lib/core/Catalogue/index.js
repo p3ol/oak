@@ -63,7 +63,9 @@ export default forwardRef(({
     onToggle({ opened: false });
   };
 
-  const toggle = () => {
+  const toggle = e => {
+    e.preventDefault();
+
     if (state.opened) {
       close();
     } else {
@@ -154,7 +156,10 @@ export default forwardRef(({
                     }
                   )}
                 >
-                  <a href="#" onClick={onGroupSelect.bind(null, g)}>
+                  <a href="#" onClick={e => {
+                    e.preventDefault();
+                    onGroupSelect(g);
+                  }}>
                     { g.name }
                   </a>
                 </li>

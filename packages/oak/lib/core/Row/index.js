@@ -105,7 +105,10 @@ const Row = ({ className, element, onDelete = () => {} }) => {
           key={i}>
           <div className={classNames(styles.gutters, styles.left)}>
             <div className={styles.divide}>
-              <a href="#" onClick={divide.bind(null, col, true)}>
+              <a href="#" onClick={e => {
+                e.preventDefault();
+                divide(col, true);
+              }}>
                 <span className="material-icons">
                 add
                 </span></a>
@@ -169,7 +172,7 @@ const Row = ({ className, element, onDelete = () => {} }) => {
               </Edit>
               <a
                 href="#" className={styles.delete}
-                onClick={remove.bind(null, element, col)}
+                onClick={e => { e.preventDefault(); remove(element, col); }}
               >
                 <span className="material-icons">
                 clear
@@ -177,7 +180,10 @@ const Row = ({ className, element, onDelete = () => {} }) => {
               </a>
             </div>
             <div className={styles.divide}>
-              <a href="#" onClick={divide.bind(null, col, false)}>
+              <a href="#" onClick={e => {
+                e.preventDefault();
+                divide(col, false);
+              }}>
                 <span className="material-icons">
                 add
                 </span></a>

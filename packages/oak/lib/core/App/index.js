@@ -14,7 +14,6 @@ export default forwardRef(({ content, ...options }, ref) => {
     content: content || [],
     idMax: 0,
   });
-
   useImperativeHandle(ref, () => ({
     addGroup,
     removeGroup,
