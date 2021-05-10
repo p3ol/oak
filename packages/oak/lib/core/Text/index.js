@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 
 import { AppContext } from '../../contexts';
 import Edit from '../Edit';
+import TextEditor from '../TextEditor';
 
 import styles from './index.styl';
 
@@ -35,24 +36,17 @@ Text.options = [{
 
     return (
       <Edit title='Text options'>
-        <TextField
-          rows={1}
-          required={true}
-          boxed={false}
-          placeholder="Content"
-          value={element.content}
-          onChange={item => {
-            setElement(element, { content: item.value });
-          }}
-        />
         <ColorPicker
           value={element.style?.color || '#000000'}
+          placeholder='Couleur du texte'
+          label='Couleur du texte'
           onChange={item => {
             setElement(element.style, { color: item.value });
           }}
         />
         <SelectField
           label="Alignement horizontal"
+          placeholder="Alignement horizontal"
           boxed={false}
           value={element.style?.horizontalAlignement || 'flex-start'}
           parseValue={item => item.value}
@@ -65,6 +59,7 @@ Text.options = [{
         />
         <SelectField
           label="Alignement texte"
+          placeholder="Alignement texte"
           boxed={false}
           value={element.style?.textAlign || 'start'}
           parseValue={item => item.value}
@@ -78,11 +73,19 @@ Text.options = [{
         <TextField
           boxed={false}
           placeholder="Largeur fixe"
+          label="Largeur fixe"
           value={element.style?.width}
           onChange={item => {
             setElement(element.style, { width: item.value });
           }}
         />
+        <div id="wysiwyg">
+          <TextEditor
+            onChange={item => {
+              setElement(element, { content: item.value });
+            }}
+            value={element.content} />
+        </div>
       </Edit>
     );
   },
