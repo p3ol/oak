@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { execCommand } from '@poool/aspen';
 
 import styles from './index.styl';

@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 
 import { AppContext } from '../../contexts';
 import Edit from '../Edit';
+import TextEditor from '../TextEditor';
 
 import styles from '../Text/index.styl';
 
@@ -14,8 +15,9 @@ const Title = ({ element }) => {
       textAlign: element.style?.textAlign,
       width: element.style?.width,
     }}>
-      {React.createElement(element.headingLevel || 'h1', {},
-        element.content
+      {React.createElement(element.headingLevel || 'h1', {
+        dangerouslySetInnerHTML: { __html: element.content },
+      },
       )}
     </span>
   );
@@ -59,16 +61,6 @@ Title.options = [{
           }}
           options={headings}
         />
-        <TextField
-          rows={1}
-          required={true}
-          boxed={false}
-          placeholder="Content"
-          value={element.content}
-          onChange={item => {
-            setElement(element, { content: item.value });
-          }}
-        />
         <ColorPicker
           value={element.style?.color || '#000000'}
           onChange={item => {
@@ -107,6 +99,13 @@ Title.options = [{
             setElement(element.style, { width: item.value });
           }}
         />
+        <div id="wysiwyg">
+          <TextEditor
+            onChange={item => {
+              setElement(element, { content: item.value });
+            }}
+            value={element.content} />
+        </div>
       </Edit>
     );
   },
