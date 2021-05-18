@@ -2817,20 +2817,20 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@poool/eslint-config-react@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-1.4.2.tgz#b179db80688fdb89e5068ff39b1b971a435fd862"
-  integrity sha512-ooUmdCVUBVcjkppmdOlNLr+HCscaeULoHNc3oVuobe9T+7TMw7AIyphhLqXRxS2JhqmrJgKAeSOzzn0cl+wZzA==
+"@poool/eslint-config-react@1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-1.5.1.tgz#081ca5402bd08e0beb755531d40901b5506029f0"
+  integrity sha512-BUleqUx/9LbnWlnlN2pXutf9Is/7kydjuuLZweY+fGFUsl5wrsGz7XjiGHosAR4WajPgRtFk2edMbv4y5mbyaw==
 
-"@poool/eslint-config@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-1.4.2.tgz#b43fc40ced332e3082571c343b35f90b8ca79792"
-  integrity sha512-kyMuTU+FllyqgVfZbXbfA0sO7RRrVeBl18xAxTaVBwFA0ENGr0tqDZsDLIBt5e+9z7OQ4b2svMwuwJA1mwxkJg==
+"@poool/eslint-config@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-1.5.0.tgz#0498fb0a1925a027abb2e398db9ff9420b57d6b2"
+  integrity sha512-oWGb+k6Nk2/mY0993ui4pFCzW52y/rjMd0Gm4MXzVui7kUF+PRqjIpsvIPmW1QBoQVuQXVnsx/7MgZ+yiHk8Hg==
 
-"@poool/eslint-plugin@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-1.4.2.tgz#6428be4c8331e2f0b36d6d2efd93d28b4525ce07"
-  integrity sha512-NvTglKmbNrakfI60NJisS//vFlRcgC1yB3N9rdeDQoYR7tM1n6S51UsHwcBSe6wXdp5jinEnqAJ1hDBnM4loFA==
+"@poool/eslint-plugin@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-1.5.0.tgz#3632e138c24cb495af73dc3494d899622618be03"
+  integrity sha512-RZo6PzIWHF7KWL+aT4qmp2OOM0LSb/eMeZKPVBwgjNpOs42ZQIg2fLeRM7wx1hrBpFkLO+LgF6XLsE9EgoiAEg==
   dependencies:
     eslint-rule-composer "0.3.0"
 
