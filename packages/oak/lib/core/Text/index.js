@@ -2,7 +2,7 @@ import { ColorPicker, SelectField, TextField } from '@poool/junipero';
 import React, { useContext } from 'react';
 
 import { AppContext } from '../../contexts';
-import Edit from '../Edit';
+import EditBox from '../EditBox';
 import TextEditor from '../TextEditor';
 
 import styles from './index.styl';
@@ -35,7 +35,7 @@ Text.options = [{
     ];
 
     return (
-      <Edit title='Text options'>
+      <EditBox title='Text options'>
         <ColorPicker
           value={element.style?.color || '#000000'}
           placeholder='Couleur du texte'
@@ -86,7 +86,7 @@ Text.options = [{
             }}
             value={element.content} />
         </div>
-      </Edit>
+      </EditBox>
     );
   },
 }];

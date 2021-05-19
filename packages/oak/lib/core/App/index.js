@@ -100,9 +100,13 @@ export default forwardRef(({ content, ...options }, ref) => {
 
   const setContent = content => dispatch({ content });
 
-  const insertElement = (eltToInsert, eltWhereInsert, isAfter, parent = state.content) => {
+  const insertElement = (
+    eltToInsert,
+    eltWhereInsert,
+    isAfter,
+    parent = state.content
+  ) => {
     const id = parent.indexOf(eltWhereInsert);
-
     parent.splice(isAfter ? id + 1 : id, 0, eltToInsert);
     dispatch({ content: state.content });
   };

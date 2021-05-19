@@ -2,7 +2,7 @@ import { SelectField, TextField, ColorPicker } from '@poool/junipero';
 import React, { useContext } from 'react';
 
 import { AppContext } from '../../contexts';
-import Edit from '../Edit';
+import EditBox from '../EditBox';
 import TextEditor from '../TextEditor';
 
 import styles from '../Text/index.styl';
@@ -49,7 +49,7 @@ Title.options = [{
     ];
 
     return (
-      <Edit title='Title options'>
+      <EditBox title='Title options'>
         <SelectField
           label="Alignement horizontal"
           boxed={false}
@@ -107,7 +107,7 @@ Title.options = [{
             }}
             value={element.content} />
         </div>
-      </Edit>
+      </EditBox>
     );
   },
 }];

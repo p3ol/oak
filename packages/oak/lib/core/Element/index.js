@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { COMPONENT_DEFAULT } from '../../components';
-import { useOptions, useBuilder } from '../../hooks';
+import { useBuilder } from '../../hooks';
 import Option from '../Option';
 
 import styles from './index.styl';
@@ -14,7 +14,6 @@ const Element = ({
   insertElement = () => {},
 }) => {
   const { renderers, addId } = useBuilder();
-  const { debug } = useOptions();
   const [componentRef, setComponentRef] = useState();
   const [isDragOver, setIsDragOver] = useState();
 
@@ -25,6 +24,33 @@ const Element = ({
   const onDelete_ = e => {
     e.preventDefault();
     onDelete();
+  };
+
+  const onDragStart_ = e => {
+    e.dataTransfer.setData('text', JSON.stringify(element));
+    e.dataTransfer.setDragImage(componentRef,
+      componentRef.getBoundingClientRect().width / 2,
+      componentRef.getBoundingClientRect().height / 2);
+    setTimeout(onDelete, 0);
+  };
+
+  const onDragOver_ = e => {
+    e.preventDefault();
+    const targetRect = e.currentTarget.getBoundingClientRect();
+    const targetMiddleY = targetRect?.top + targetRect?.height / 2;
+
+    if (e.clientY >= targetMiddleY) {
+      setIsDragOver('after');
+    } else {
+      setIsDragOver('before');
+    }
+  };
+
+  const onDrop_ = e => {
+    e.stopPropagation();
+    setIsDragOver(null);
+    const droppedElement = JSON.parse(e.dataTransfer.getData('text'));
+    insertElement(droppedElement, element, isDragOver === 'after');
   };
 
   const onEdit_ = e => {
@@ -41,24 +67,9 @@ const Element = ({
         styles[element?.type],
         className,
       )}
-      onDragOver={e => {
-        e.preventDefault();
-        const targetRect = e.currentTarget.getBoundingClientRect();
-        const targetMiddleY = targetRect?.top + targetRect?.height / 2;
-
-        if (e.clientY >= targetMiddleY) {
-          setIsDragOver('after');
-        } else {
-          setIsDragOver('before');
-        }
-      }}
-      onDrop= {e => {
-        e.stopPropagation();
-        setIsDragOver(null);
-        const droppedElement = JSON.parse(e.dataTransfer.getData('text'));
-        insertElement(droppedElement, element, isDragOver === 'after');
-      }}
-      onDragLeave={e => setIsDragOver(null)}
+      onDragOver={e => onDragOver_(e)}
+      onDrop= {e => onDrop_(e)}
+      onDragLeave={() => setIsDragOver(null)}
       style={{ alignItems: element.style?.horizontalAlignement }}
       ref={setComponentRef}
     >
@@ -78,13 +89,7 @@ const Element = ({
           draggable="true"
           option={{ icon: 'reorder' }}
           className={classNames(styles.option, styles.remove)}
-          onDragStart={e => {
-            e.dataTransfer.setData('text', JSON.stringify(element));
-            e.dataTransfer.setDragImage(componentRef,
-              componentRef.getBoundingClientRect().width / 2,
-              componentRef.getBoundingClientRect().height / 2);
-            setTimeout(onDelete, 0);
-          }}
+          onDragStart={e => onDragStart_(e)}
         />
         { component.options?.map((o, i) => (
           <React.Fragment key={i}>

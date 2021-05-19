@@ -1,12 +1,10 @@
 import React, { useRef, useContext, useLayoutEffect } from 'react';
 import { classNames } from '@poool/junipero-utils';
-import { SelectField } from '@poool/junipero';
 
 import { AppContext } from '../../contexts';
 import Catalogue from '../Catalogue';
 import Element from '../Element';
-import Option from '../Option';
-import Edit from '../Edit';
+import EditBox from '../EditBox';
 import RowEdit from './Edition';
 
 import styles from './index.styl';
@@ -164,12 +162,12 @@ const Row = ({ className, element, onDelete = () => {} }) => {
           </div>
           <div className={classNames(styles.gutters, styles.right)}>
             <div className={styles.top}>
-              <Edit title={'Col options'} light={true}>
+              <EditBox title={'Col options'} light={true}>
                 <RowEdit
                   col={col}
                   element={element}
                 />
-              </Edit>
+              </EditBox>
               <a
                 href="#" className={styles.delete}
                 onClick={e => { e.preventDefault(); remove(element, col); }}
@@ -195,37 +193,5 @@ const Row = ({ className, element, onDelete = () => {} }) => {
     </div>
   );
 };
-
-Row.options = [{
-  name: 'cols',
-  render: ({ className, element }) => {
-    const { setElement } = useContext(AppContext);
-
-    const vertical = [
-      { title: 'Aligné en haut', value: 'flex-start' },
-      { title: 'Centré', value: 'center' },
-      { title: 'Aligné en bas', value: 'flex-end' },
-      { title: 'Étiré', value: 'stretch' },
-    ];
-
-    return (
-      <Edit title={'Row options'}>
-        <SelectField
-          label="Alignement vertical"
-          boxed={false}
-          value={element.style?.alignItem || 'stretch'}
-          parseValue={item => item.value}
-          parseTitle={item => item.title}
-          className={styles.item}
-          onChange={item => {
-            element.style.alignItem = item.value;
-            setElement(element, {});
-          }}
-          options={vertical}
-        />
-      </Edit>
-    );
-  },
-}];
 
 export default Row;
