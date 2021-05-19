@@ -2,27 +2,32 @@
 
 .row
   min-height: 80px
-  display: flex;
+  display: flex
   flex-wrap: wrap
-  flex-direction: row;
+  flex-direction: row
   position: relative
+
   .col
     .flex 
-      display: flex;
-      flex-direction: column;
+      display: flex
+      flex-direction: column
       flex: 1
       align-items: center
       justify-content: center
       width:100%
+
     display: flex
     flex-direction: row
     position: relative
     border-radius: 5px
+
     &:not(:first-child)
       margin-left:10px
+
     background: $color-link-water
     min-height: 40px
     min-width: 150px
+
     &:first-child
       border-radius: 0 5px 5px 5px
 
@@ -53,13 +58,20 @@
     display: flex
     flex: 0 0 auto
     flex-direction: column
+    width 25px
+
     &.right
       align-items: flex-end
       padding-bottom: 24px 
+
     &.left
       align-items: flex-start
-    width 25px
+
     & > .divide
+      display: flex
+      flex: 1
+      align-items: center
+
       & > a
         display:flex
         text-decoration: none
@@ -67,14 +79,13 @@
         width: 15px
         height 50px
         background: $color-catskill-white
+
         & span 
           font-size: 15px
+    
+    & .top
       display: flex
-      flex: 1
-      align-items: center
-    & .top {
-      display: flex
-      }
+
   .border
     text-align: center
     width:100%
