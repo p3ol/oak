@@ -26,7 +26,7 @@
     "@poool/junipero-hooks": "2.0.0-alpha.8",
     "@poool/junipero-utils": "2.0.0-alpha.8",
     "@popperjs/core": "2.9.2",
-    "core-js": "3.10.1",
+    "core-js": "3.12.1",
     "preact": "10.5.13",
     "react-popper": "2.2.5"
   },
