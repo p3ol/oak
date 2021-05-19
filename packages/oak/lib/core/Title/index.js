@@ -16,6 +16,7 @@ const Title = ({ element }) => {
       width: element.style?.width,
     }}>
       {React.createElement(element.headingLevel || 'h1', {
+        className: styles.title,
         dangerouslySetInnerHTML: { __html: element.content },
       },
       )}
