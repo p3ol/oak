@@ -66,32 +66,34 @@ export default ({
         />
       </div>
       { state.opened &&
-          ReactDOM.createPortal(<div
-            ref={setPopper}
-            style={ popperStyles.popper }
-            {...attributes.popper}
-            data-placement={'bottom'}
-            className={styles.popper}
-          >
-            <div className={styles.top}>
-              <a
-                href="#"
-                onClick={e => {
-                  dispatch({ opened: !state.opened });
-                  e.preventDefault();
-                }}
-              >
-                <span className="material-icons" >
+          ReactDOM.createPortal(
+            <div
+              ref={setPopper}
+              style={ popperStyles.popper }
+              {...attributes.popper}
+              data-placement="bottom"
+              className={styles.popper}
+            >
+              <div className={styles.top}>
+                <a
+                  href="#"
+                  onClick={e => {
+                    dispatch({ opened: !state.opened });
+                    e.preventDefault();
+                  }}
+                >
+                  <span className="material-icons">
                   edit
-                </span>
-              </a>
-              <span>{title}</span>
+                  </span>
+                </a>
+                <span>{title}</span>
 
-            </div>
-            <div className={styles.flex}>
-              {children}
-            </div>
-          </div>, document.querySelector('#root'))
+              </div>
+              <div>
+                {children}
+              </div>
+            </div>, document.querySelector('#root'))
       }
-    </>);
+    </>
+  );
 };
