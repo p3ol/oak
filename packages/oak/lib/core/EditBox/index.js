@@ -1,6 +1,6 @@
+import { useReducer, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { mockState, classNames } from '@poool/junipero-utils';
-import React, { useReducer, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 import { useEventListener } from '@poool/junipero-hooks';
 
@@ -66,7 +66,7 @@ export default ({
         />
       </div>
       { state.opened &&
-          ReactDOM.createPortal(
+          createPortal((
             <div
               ref={setPopper}
               style={ popperStyles.popper }
@@ -92,7 +92,8 @@ export default ({
               <div>
                 {children}
               </div>
-            </div>, document.querySelector('#root'))
+            </div>
+          ), document.querySelector('#root'))
       }
     </>
   );

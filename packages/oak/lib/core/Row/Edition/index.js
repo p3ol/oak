@@ -1,14 +1,12 @@
 import { SelectField, TextField } from '@poool/junipero';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { AppContext } from '../../../contexts';
 
 import styles from '../index.styl';
 
 const RowEdit = ({ element, col }) => {
-  const {
-    setElement,
-  } = useContext(AppContext);
+  const { setElement } = useContext(AppContext);
 
   const vertical = [
     { title: 'Aligné en haut', value: 'flex-start' },
@@ -88,7 +86,8 @@ const RowEdit = ({ element, col }) => {
           setElement(element, {});
         }}
       />
-    </>);
+    </>
+  );
 };
 
 export default RowEdit;

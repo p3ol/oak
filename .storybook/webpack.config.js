@@ -5,7 +5,6 @@ module.exports = ({ config }) => {
   config.resolve.alias = {
     'react': 'preact/compat',
     'react-dom': 'preact/compat',
-    '@poool/aspen': path.resolve('../aspen/src')
   };
   config.module.rules.push({
     test: /\.styl$/,

@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { execCommand } from '@poool/aspen';
+import { useRef } from 'react';
 
 import styles from './index.styl';
 
@@ -17,7 +16,7 @@ const TextEditor = ({
   const changeStyle = (e, modifier) => {
     e.preventDefault();
     e.stopPropagation();
-    execCommand(modifier, contentEditable.current);
+    // execCommand(modifier, contentEditable.current);
     onChange_();
   };
 

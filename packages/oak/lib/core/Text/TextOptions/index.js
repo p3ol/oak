@@ -1,5 +1,11 @@
-import { ColorPicker, SelectField, Tab, Tabs, TextField } from '@poool/junipero';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import {
+  ColorPicker,
+  SelectField,
+  Tab,
+  Tabs,
+  TextField,
+} from '@poool/junipero';
 
 import { AppContext } from '../../../contexts';
 import TextEditor from '../../TextEditor';
