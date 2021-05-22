@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { COMPONENT_DEFAULT } from '../../components';
@@ -47,7 +47,7 @@ const Element = ({
           onClick={onDelete_}
         />
         { component.options?.map((o, i) => (
-          <React.Fragment key={i}>
+          <Fragment key={i}>
             { o?.render?.({
               option: o,
               className: styles.option,
@@ -55,7 +55,7 @@ const Element = ({
               component,
               index: i,
             }) }
-          </React.Fragment>
+          </Fragment>
         )) }
         { component.editable && (
           <Option

@@ -1,4 +1,4 @@
-import React, { forwardRef, useReducer, useImperativeHandle } from 'react';
+import { forwardRef, useReducer, useImperativeHandle } from 'react';
 import { mockState } from '@poool/junipero-utils';
 
 import { AppContext } from '../../contexts';
@@ -39,6 +39,7 @@ export default forwardRef(({ content, ...options }, ref) => {
   const getGroup_ = id => {
     let group = id ? state.components.find(g => g.id === id) : null;
     group = group || state.components.find(g => g.id === 'other');
+
     return group;
   };
 

@@ -15,6 +15,7 @@ export const useBuilder = () => {
     removeElement,
     setElement,
   } = useContext(AppContext);
+
   return {
     components,
     renderers,

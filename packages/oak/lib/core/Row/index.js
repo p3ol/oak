@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react';
+import { useRef, useContext, useEffect } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { AppContext } from '../../contexts';

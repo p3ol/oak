@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Row from './core/Row';
 
 export const COMPONENT_DEFAULT = {
