@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Row from './core/Row';
 import Text from './core/Text';
 import Title from './core/Title';

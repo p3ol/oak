@@ -1,4 +1,4 @@
-import React, { forwardRef, useReducer, useImperativeHandle } from 'react';
+import { forwardRef, useReducer, useImperativeHandle } from 'react';
 import { mockState } from '@poool/junipero-utils';
 
 import { AppContext } from '../../contexts';

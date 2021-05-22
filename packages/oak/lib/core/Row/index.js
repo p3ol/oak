@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useLayoutEffect } from 'react';
+import { useRef, useContext, useLayoutEffect } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { AppContext } from '../../contexts';
@@ -100,69 +100,77 @@ const Row = ({ className, element, onDelete = () => {} }) => {
             addElement(droppedElement, col.content, !isAfter);
             e.stopPropagation();
           }}
-          key={i}>
+          key={i}
+        >
           <div className={classNames(styles.gutters, styles.left)}>
             <div className={styles.divide}>
-              <a href="#" onClick={e => {
-                e.preventDefault();
-                divide(col, true);
-              }}>
+              <a
+                href="#"
+                onClick={e => {
+                  e.preventDefault();
+                  divide(col, true);
+                }}
+              >
                 <span className="material-icons">
-                add
-                </span></a>
+                  add
+                </span>
+              </a>
             </div>
           </div>
           <div className={styles.flex}>
             <div className={styles.border}>
-              { col.content.length > 0 &&
+              { col.content.length > 0 && (
                 <Catalogue
                   className={styles.catalogue}
                   ref={catalogueRef}
                   onAppend={onAppend.bind(null, col, true)}
                 />
-              }
+              ) }
             </div>
-            {col.content.length > 0 &&
-            (<div className={styles.mainContent}
-              style={{ alignItems: col.style.content.alignItem || 'flex-start',
-
-              }}>
+            {col.content.length > 0 && (
               <div
+                className={styles.mainContent}
                 style={{
-                  textAlign: col.style.content.textAlign || 'start',
-                }}>
-                { col.content?.map((item, i) => (
-                  <Element
-                    key={i}
-                    element={item}
-                    className={styles.element}
-                    onDelete={removeElement.bind(null, item, col.content)}
-                    insertElement={onInsert.bind(null, col)}
-                  />
-                )) }
+                  alignItems: col.style.content.alignItem || 'flex-start',
+                }}
+              >
+                <div
+                  style={{
+                    textAlign: col.style.content.textAlign || 'start',
+                  }}
+                >
+                  { col.content?.map((item, i) => (
+                    <Element
+                      key={i}
+                      element={item}
+                      className={styles.element}
+                      onDelete={removeElement.bind(null, item, col.content)}
+                      insertElement={onInsert.bind(null, col)}
+                    />
+                  )) }
+                </div>
               </div>
-            </div>
-            )}
-            {col.content.length === 0 &&
-                (<Catalogue
-                  className={styles.catalogue}
-                  ref={catalogueRef}
-                  onAppend={onAppend.bind(null, col, false)}
-                />)
-            }
-            { col.content.length > 0 &&
-              (<div className={styles.border}>
+            ) }
+            { col.content.length === 0 && (
+              <Catalogue
+                className={styles.catalogue}
+                ref={catalogueRef}
+                onAppend={onAppend.bind(null, col, false)}
+              />
+            ) }
+            { col.content.length > 0 && (
+              <div className={styles.border}>
                 <Catalogue
                   className={styles.catalogue}
                   ref={catalogueRef}
                   onAppend={onAppend.bind(null, col, false)}
                 />
               </div>
-              )}
+            ) }
           </div>
           <div className={classNames(styles.gutters, styles.right)}>
             <div className={styles.top}>
-              <EditBox title={'Col options'} light={true}>
+              <EditBox title="Col options" light={true}>
                 <RowEdit
                   col={col}
                   element={element}
@@ -178,18 +186,21 @@ const Row = ({ className, element, onDelete = () => {} }) => {
               </a>
             </div>
             <div className={styles.divide}>
-              <a href="#" onClick={e => {
-                e.preventDefault();
-                divide(col, false);
-              }}>
+              <a
+                href="#"
+                onClick={e => {
+                  e.preventDefault();
+                  divide(col, false);
+                }}
+              >
                 <span className="material-icons">
-                add
-                </span></a>
+                  add
+                </span>
+              </a>
             </div>
           </div>
         </div>
-      ))}
-
+      )) }
     </div>
   );
 };

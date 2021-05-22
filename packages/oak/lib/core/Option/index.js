@@ -1,4 +1,3 @@
-import React from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import styles from './index.styl';

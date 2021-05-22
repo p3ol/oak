@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import { Fragment, useLayoutEffect, useState } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
 import { COMPONENT_DEFAULT } from '../../components';
@@ -68,7 +68,7 @@ const Element = ({
         className,
       )}
       onDragOver={e => onDragOver_(e)}
-      onDrop= {e => onDrop_(e)}
+      onDrop={e => onDrop_(e)}
       onDragLeave={() => setIsDragOver(null)}
       style={{ alignItems: element.style?.horizontalAlignement }}
       ref={setComponentRef}
@@ -92,7 +92,7 @@ const Element = ({
           onDragStart={e => onDragStart_(e)}
         />
         { component.options?.map((o, i) => (
-          <React.Fragment key={i}>
+          <Fragment key={i}>
             { o?.render?.({
               option: o,
               className: styles.option,
@@ -100,7 +100,7 @@ const Element = ({
               component,
               index: i,
             }) }
-          </React.Fragment>
+          </Fragment>
         )) }
         { component.editable && (
           <Option
