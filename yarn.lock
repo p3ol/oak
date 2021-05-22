@@ -1029,14 +1029,6 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
-"@babel/runtime-corejs3@7.11.2":
-  version "7.11.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.11.2.tgz#02c3029743150188edeb66541195f54600278419"
-  integrity sha512-qh5IR+8VgFz83VBa6OkaET6uN/mJOhHONuy3m1sgF0CV6mXdPSEBdA7e1eUbVvyNtANjMbg22JUv71BaDXLY6A==
-  dependencies:
-    core-js-pure "^3.0.0"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime-corejs3@7.13.17":
   version "7.13.17"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.13.17.tgz#9baf45f03d4d013f021760b992d6349a9d27deaf"
@@ -2142,7 +2134,7 @@
   dependencies:
     eslint-rule-composer "0.3.0"
 
-"@poool/junipero-hooks@2.0.0-beta.7":
+"@poool/junipero-hooks@2.0.0-beta.7", "@poool/junipero-hooks@^2.0.0-beta.7":
   version "2.0.0-beta.7"
   resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-beta.7.tgz#97d9463c2aac5edeccee69aab0bf8d32fc7ab76a"
   integrity sha512-BiYfM7rcV7eRWQ3vuUt2NTxjHJcMc1O18ZzflIDzOLzHKKjeg1lbN4DTrmxeh626jeEdHy1vH+SeXKgIB4efpA==
@@ -2150,7 +2142,7 @@
     "@babel/runtime-corejs3" "7.13.17"
     core-js "3.10.2"
 
-"@poool/junipero-utils@2.0.0-beta.7":
+"@poool/junipero-utils@2.0.0-beta.7", "@poool/junipero-utils@^2.0.0-beta.7":
   version "2.0.0-beta.7"
   resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-beta.7.tgz#a0ee75c41db82dd92b231def6ffc91722c7436fc"
   integrity sha512-fLwRd4OC6xzJdqmt4W5Nu/QtpfJFpqx+2ANshOhRU7LicK3wi5ISI4U9dOwTwKgECCcOeH73F6QgSN6vXcqd/Q==
@@ -2158,13 +2150,15 @@
     "@babel/runtime-corejs3" "7.13.17"
     core-js "3.10.2"
 
-"@poool/junipero@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-1.6.0.tgz#bedcae7d30b2d4493bcc9eeefa4adccc7d930a85"
-  integrity sha512-YqBHLTsGTc49SFaEcPI5V0TCLWW42SQqEYDDxxZrrYiF9D5lVGBhuTLd70i2srVUYHiktbASHkZDXb9SMfxVzw==
+"@poool/junipero@2.0.0-beta.22":
+  version "2.0.0-beta.22"
+  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-beta.22.tgz#3d9c5e3d2a72122594285c326c6e5121131787a2"
+  integrity sha512-4Jbubyj8bWQR0ULOcNmSz9mCVQS0XwYGsrvA6IFvCpw2IjfWc8BNNK9w2Vnh9VnG5/Sw/liuYLrhM5/LM2TLhQ==
   dependencies:
-    "@babel/runtime-corejs3" "7.11.2"
-    core-js "3.6.5"
+    "@babel/runtime-corejs3" "7.13.17"
+    "@poool/junipero-hooks" "^2.0.0-beta.7"
+    "@poool/junipero-utils" "^2.0.0-beta.7"
+    core-js "3.10.2"
     prop-types "15.7.2"
 
 "@popperjs/core@2.9.2", "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
@@ -4383,6 +4377,11 @@ camelcase@^5.3.1:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
+camelcase@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.2.0.tgz#924af881c9d525ac9d87f40d964e5cea982a1809"
+  integrity sha512-c7wVvbw3f37nuobQNtgsgG9POC9qMbNuMQmTCqZv23b6MIz0fcYpBiOlv9gEN/hdLdnZTDQhg6e9Dq5M1vKvfg==
+
 caniuse-api@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/caniuse-api/-/caniuse-api-3.0.0.tgz#5e4d90e2274961d46291997df599e3ed008ee4c0"
@@ -4963,15 +4962,15 @@ core-js@3.12.1, core-js@^3.6.5, core-js@^3.8.2:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.12.1.tgz#6b5af4ff55616c08a44d386f1f510917ff204112"
   integrity sha512-Ne9DKPHTObRuB09Dru5AjwKjY4cJHVGu+y5f7coGn1E9Grkc3p2iBwE9AI/nJzsE29mQF7oq+mhYYRqOMFN1Bw==
 
-core-js@3.6.5, core-js@^3.0.4:
-  version "3.6.5"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
-  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
-
 core-js@^2.4.0:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
+
+core-js@^3.0.4:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
+  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -10439,7 +10438,7 @@ postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz#443f6a20ced6481a2bda4fa8532a6e55d789a2cb"
   integrity sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
 
-postcss@8.3.0, postcss@^8.2.15:
+postcss@8.3.0, postcss@^8.2.10, postcss@^8.2.15:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.0.tgz#b1a713f6172ca427e3f05ef1303de8b65683325f"
   integrity sha512-+ogXpdAjWGa+fdYY5BQ96V/6tAo+TdSSIMP5huJBIygdWwKtVoB5JWZ7yUd4xZ8r+8Kvvx4nyg/PQ071H4UtcQ==
@@ -12486,7 +12485,7 @@ terser@^4.1.2, terser@^4.6.3, terser@^4.8.0:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
-terser@^5.0.0, terser@^5.7.0:
+terser@^5.0.0, terser@^5.5.1, terser@^5.7.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.7.0.tgz#a761eeec206bc87b605ab13029876ead938ae693"
   integrity sha512-HP5/9hp2UaZt5fYkuhNBR8YyRcT8juw8+uFbAme53iN9hblvKnLUTKkmwJG6ocWpIKf8UK4DoeWG4ty0J6S6/g==
