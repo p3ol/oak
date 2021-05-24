@@ -5,13 +5,14 @@ export default forwardRef(({
   className,
   option,
   renderIcon,
+  draggable,
   ...props
 }, ref) => (
   <a
     { ...props }
     ref={ref}
     href="#"
-    draggable={false}
+    draggable={draggable ?? false}
     className={classNames('oak-option', className)}
   >
     { renderIcon ? renderIcon?.() : (

@@ -19,7 +19,7 @@ export const COMPONENT_ROW = {
   type: 'component',
   render: Row,
   icon: 'view_column',
-  options: [],
+  options: Row.options,
   construct: () => ({
     type: 'row',
     style: {

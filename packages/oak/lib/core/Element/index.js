@@ -69,6 +69,8 @@ const Element = ({
                   option: o,
                   className: 'oak-option',
                   element,
+                  elementInnerRef,
+                  parent,
                   component,
                   index: i,
                 }) }

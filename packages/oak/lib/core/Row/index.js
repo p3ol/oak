@@ -3,13 +3,15 @@ import { classNames } from '@poool/junipero-utils';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
+import Droppable from '../Droppable';
+import options from './index.options';
 
 const Row = ({
   element,
   parent,
   ...rest
 }) => {
-  const { setElement, removeElement } = useBuilder();
+  const { setElement, removeElement, moveElement } = useBuilder();
 
   const onDivide = (index, isBefore) => {
     element.cols.splice(isBefore ? index : index + 1, 0, {
@@ -30,11 +32,18 @@ const Row = ({
     }
   };
 
+  const onDropElement = (position, data) => {
+    moveElement(data, element, { parent, position });
+  };
+
   return (
     <div
       { ...rest }
       style={element.style}
     >
+      <Droppable onDrop={onDropElement.bind(null, 'before')}>
+        <div className="oak-drop-zone oak-before" />
+      </Droppable>
       <div
         className={classNames(
           'oak-row-content',
@@ -52,125 +61,15 @@ const Row = ({
             onAppend={onDivide.bind(null, i, false)}
             onRemove={onRemoveCol.bind(null, i)}
           />
-          // <div
-          //   className="oak-col"
-          //   style={{
-          //     flex: col.style.col.flex,
-          //     width: col.style.col.width,
-          //   }}
-          //   onDrop={e => {
-          //     const targetRect = e.currentTarget.getBoundingClientRect();
-          //     const targetMiddleY = targetRect?.top + targetRect?.height / 2;
-          //     let position = 'before';
-          //
-          //     if (e.clientY >= targetMiddleY) {
-          //       position = 'after';
-          //     }
-          //
-          //     const droppedElement = JSON.parse(e.dataTransfer.getData('text'));
-          //     addElement(droppedElement, col.content, { position });
-          //     e.stopPropagation();
-          //   }}
-          //   key={i}
-          // >
-          //   <div className="oak-divider oak-left">
-          //     <a
-          //       href="#"
-          //       onClick={e => {
-          //         e.preventDefault();
-          //         divide(col, true);
-          //       }}
-          //     >
-          //       <span className="material-icons">
-          //         add
-          //       </span>
-          //     </a>
-          //   </div>
-          //   <div className="oak-col-content">
-          //     { col.content.length > 0 && (
-          //       <Catalogue
-          //         ref={catalogueRef}
-          //         onAppend={onPrepend.bind(null, col)}
-          //       />
-          //     ) }
-          //     {col.content.length > 0 && (
-          //       <div
-          //         className="oak-col-content-inner"
-          //         style={{
-          //           alignItems: col.style.content.alignItem || 'flex-start',
-          //         }}
-          //       >
-          //         <div
-          //           style={{
-          //             textAlign: col.style.content.textAlign || 'start',
-          //           }}
-          //         >
-          //           { col.content?.map((item, i) => (
-          //             <Element
-          //               key={i}
-          //               parent={element.content}
-          //               element={item}
-          //               onDelete={removeElement.bind(null, item, col.content)}
-          //               onMove={onMove.bind(null, col)}
-          //             />
-          //           )) }
-          //         </div>
-          //       </div>
-          //     ) }
-          //     { col.content.length === 0 && (
-          //       <Catalogue
-          //         ref={catalogueRef}
-          //         onAppend={onAppend.bind(null, col)}
-          //       />
-          //     ) }
-          //     { col.content.length > 0 && (
-          //       <div className="oak-border">
-          //         <Catalogue
-          //           ref={catalogueRef}
-          //           onAppend={onAppend.bind(null, col)}
-          //         />
-          //       </div>
-          //     ) }
-          //   </div>
-          //   <div className={classNames('oak-gutters', 'oak-right')}>
-          //     <div className="oak-top">
-          //       <EditBox title="Col options" light={true}>
-          //         <RowEdit
-          //           col={col}
-          //           element={element}
-          //         />
-          //       </EditBox>
-          //       <a
-          //         href="#"
-          //         className="oak-delete"
-          //         onClick={e => { e.preventDefault(); remove(element, col); }}
-          //       >
-          //         <span className="material-icons">
-          //         clear
-          //         </span>
-          //       </a>
-          //     </div>
-          //     <div className="oak-divider oak-right">
-          //       <a
-          //         href="#"
-          //         onClick={e => {
-          //           e.preventDefault();
-          //           divide(col, false);
-          //         }}
-          //       >
-          //         <span className="material-icons">
-          //           add
-          //         </span>
-          //       </a>
-          //     </div>
-          //   </div>
-          // </div>
         )) }
       </div>
+      <Droppable onDrop={onDropElement.bind(null, 'after')}>
+        <div className="oak-drop-zone oak-after" />
+      </Droppable>
     </div>
   );
 };
 
-Row.options = [];
+Row.options = options;
 
 export default Row;

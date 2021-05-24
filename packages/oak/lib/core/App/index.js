@@ -116,9 +116,11 @@ export default forwardRef(({ content, ...options }, ref) => {
       if (e.id === elmt.id) {
         return parent;
       } else if (Array.isArray(e.cols)) {
-        return findNearestParent(elmt, e.cols);
+        const nearest = findNearestParent(elmt, e.cols);
+        if (nearest) return nearest;
       } else if (Array.isArray(e.content)) {
-        return findNearestParent(elmt, e.content);
+        const nearest = findNearestParent(elmt, e.content);
+        if (nearest) return nearest;
       }
     }
 

@@ -9,6 +9,37 @@
   margin-bottom: 20px
   width: 100%
 
+  .oak-drop-zone
+    position: absolute
+    left: 0
+    width: 100%
+    z-index: 1
+
+    &:after
+      content: ''
+      width: 100%
+      left: 0
+      height: 5px
+      border-radius: 2px
+      background: $color-catskill-white
+      opacity: 0
+      position: absolute
+
+    &.oak-before
+      top: -35px
+      height: 35px
+
+    &.oak-after
+      top: 100%
+      height: 20px
+
+      &:after
+        top: 8px
+
+    &.drag-enter
+      &:after
+        opacity: 1
+
   &:first-child
     border-radius: 0 5px 5px 5px
 
@@ -22,6 +53,7 @@
     transform: none
     display: flex
     visibility: visible
+    z-index: 2
 
     a.oak-option
       &:first-child
@@ -32,6 +64,13 @@
 
       &:last-child
         border-radius: 0 3px 0 0
+
+      &.oak-drag-handle
+        cursor: move
+        cursor: grab
+
+        &:active
+          cursor: gragging
 
   .oak-row-content
     display: flex

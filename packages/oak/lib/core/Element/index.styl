@@ -3,43 +3,47 @@
 .oak-element
   position: relative
 
-  &:before, &:after
-    content: ''
-    display: none
-    position: absolute
-    left: 0
-    width: 100%
-    height: 1px
-    background: $color-tiber
-    top: -5px
+  &:not(.oak-row)
+    &:before, &:after
+      content: ''
+      display: none
+      position: absolute
+      left: 0
+      width: 100%
+      height: 5px
+      border-radius: 2px
+      background: $color-catskill-white
 
-  &:after
-    top: auto
-    bottom: -5px
-
-  &.drag-top
     &:before
-      display: block
+      top: -12px
 
-  &.drag-bottom
     &:after
-      display: block
+      top: auto
+      bottom: -13px
 
-  &.dragging
-    background: transparent
+    &.drag-top
+      &:before
+        display: block
 
-    .oak-options
-      display: none
+    &.drag-bottom
+      &:after
+        display: block
 
-  &.dragged
-    background: $color-catskill-white
-    border-radius: 5px
+    &.dragging
+      background: transparent
 
-    .oak-inner
-      opacity: 0
+      .oak-options
+        display: none
 
-    .oak-options
-      display: none
+    &.dragged
+      background: $color-catskill-white
+      border-radius: 5px
+
+      .oak-inner
+        opacity: 0
+
+      .oak-options
+        display: none
 
   &:hover
     > .oak-options
