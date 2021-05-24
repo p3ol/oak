@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import {
   ColorPicker,
   SelectField,
@@ -7,11 +6,12 @@ import {
   TextField,
 } from '@poool/junipero';
 
-import { AppContext } from '../../../contexts';
+import { useBuilder } from '../../../hooks';
 import TextEditor from '../../TextEditor';
 
 const TextOptions = ({ element }) => {
-  const { setElement } = useContext(AppContext);
+  const { setElement } = useBuilder();
+
   const horizontal = [
     { title: 'Aligné à gauche', value: 'flex-start' },
     { title: 'Centré', value: 'center' },

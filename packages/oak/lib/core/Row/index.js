@@ -5,10 +5,12 @@ import { useBuilder } from '../../hooks';
 import Col from '../Col';
 import Droppable from '../Droppable';
 import options from './index.options';
+import settings from './index.settings';
 
 const Row = ({
   element,
   parent,
+  onEdit,
   ...rest
 }) => {
   const { setElement, removeElement, moveElement } = useBuilder();
@@ -47,10 +49,12 @@ const Row = ({
       <div
         className={classNames(
           'oak-row-content',
+          element.settings?.flexDirection &&
+            'oak-direction-' + element.settings.flexDirection,
           element.settings?.alignItems &&
             'oak-align-' + element.settings.alignItems,
           element.settings?.justifyContent &&
-            'oak-justify-' + element.settings.justifyContent
+            'oak-justify-' + element.settings.justifyContent,
         )}
       >
         { element?.cols?.map((col, i) => (
@@ -60,6 +64,7 @@ const Row = ({
             onPrepend={onDivide.bind(null, i, true)}
             onAppend={onDivide.bind(null, i, false)}
             onRemove={onRemoveCol.bind(null, i)}
+            onEdit={onEdit}
           />
         )) }
       </div>
@@ -71,5 +76,6 @@ const Row = ({
 };
 
 Row.options = options;
+Row.settings = settings;
 
 export default Row;

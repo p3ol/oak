@@ -1,7 +1,7 @@
-import { Children, cloneElement, useState, useEffect } from 'react';
+import { Children, cloneElement, forwardRef, useState, useEffect } from 'react';
 import { classNames } from '@poool/junipero';
 
-export default ({
+export default forwardRef(({
   className,
   children,
   disabled = false,
@@ -9,7 +9,7 @@ export default ({
   onDragOver,
   onDragLeave,
   ...rest
-}) => {
+}, ref) => {
   const [dragging, setDragging] = useState(false);
   const [stack, setStack] = useState(0);
   const [draggingPos, setDraggingPos] = useState(null);
@@ -75,6 +75,7 @@ export default ({
 
   return cloneElement(child, {
     ...rest,
+    ref,
     className: classNames(
       className,
       child.props.className,
@@ -89,4 +90,4 @@ export default ({
     onDrop: onDrop_,
     onDragOver: onDragOver_,
   });
-};
+});

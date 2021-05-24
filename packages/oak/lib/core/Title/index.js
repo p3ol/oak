@@ -2,9 +2,7 @@ import { SelectField, TextField, ColorPicker } from '@poool/junipero';
 import React, { useContext } from 'react';
 
 import { AppContext } from '../../contexts';
-import EditBox from '../EditBox';
 import TextEditor from '../TextEditor';
-import TitleOptions from './TitleOptions';
 
 const Title = ({ element, className }) => {
   const Tag = element.headingLevel || 'h1';
@@ -26,14 +24,6 @@ const Title = ({ element, className }) => {
   );
 };
 
-Title.options = [{
-  render: ({ element }) => {
-    return (
-      <EditBox title="Title options">
-        <TitleOptions element={element} />
+Title.options = [];
 
-      </EditBox>
-    );
-  },
-}];
 export default Title;

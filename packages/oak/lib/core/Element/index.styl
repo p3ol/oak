@@ -73,6 +73,9 @@
     display: flex
 
     a.oak-option
+      position: relative
+      z-index: 10
+
       &:first-child
         border-radius: 3px 0 0 3px
 
@@ -80,4 +83,5 @@
           border-radius: 3px
 
       &:last-child
+        z-index: 1
         border-radius: 0 3px 3px 0

@@ -7,12 +7,14 @@ import { useBuilder } from '../../hooks';
 import Option from '../Option';
 import Draggable from '../Draggable';
 import Droppable from '../Droppable';
+import Editable from '../Editable';
 
 const Element = ({
   element,
   parent,
   className,
 }) => {
+  const editableRef = useRef();
   const elementInnerRef = useRef();
   const { renderers, removeElement, moveElement } = useBuilder();
 
@@ -26,7 +28,8 @@ const Element = ({
   };
 
   const onEdit_ = e => {
-    e.preventDefault();
+    e?.preventDefault();
+    editableRef.current?.toggle();
   };
 
   const component = renderers.find(r => r.id === element.type) ||
@@ -34,12 +37,9 @@ const Element = ({
 
   return (
     <Droppable disabled={element.type === 'row'} onDrop={onDrop_}>
-      <Draggable
-        data={element}
-        disabled={element.type === 'row'}
-      >
+      <Draggable data={element} disabled={element.type === 'row'}>
         <div
-          ref={elementInnerRef}
+          ref={elementInnerRef.current}
           id={element.id || nanoid()}
           className={classNames(
             'oak-element',
@@ -50,6 +50,7 @@ const Element = ({
           { component?.render?.({
             element,
             parent,
+            onEdit: onEdit_,
             className: classNames('oak-inner', element.className),
           }) || null }
 
@@ -73,20 +74,19 @@ const Element = ({
               </Fragment>
             )) }
             { component.editable && (
-              <Option
-                option={{ icon: 'edit' }}
-                className="oak-edit"
-                onClick={onEdit_}
-              />
+              <Editable
+                element={element}
+                component={component}
+                ref={editableRef}
+              >
+                <Option
+                  option={{ icon: 'edit' }}
+                  className="oak-edit"
+                  onClick={onEdit_}
+                />
+              </Editable>
             ) }
           </div>
-
-          {/* { debug && (
-            <pre>
-              <p>Element:</p>
-              { JSON.stringify(element, null, 2) }
-            </pre>
-          )} */}
         </div>
       </Draggable>
     </Droppable>

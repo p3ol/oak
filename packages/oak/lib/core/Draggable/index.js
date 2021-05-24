@@ -1,7 +1,7 @@
-import { Children, cloneElement, useState } from 'react';
+import { Children, cloneElement, forwardRef, useState } from 'react';
 import { useTimeout, classNames } from '@poool/junipero';
 
-export default ({
+export default forwardRef(({
   className,
   children,
   disabled = false,
@@ -12,7 +12,7 @@ export default ({
   onDragStart,
   onDragEnd,
   ...rest
-}) => {
+}, ref) => {
   const [dragged, setDragged] = useState(false);
   const [dragAnimation, setDragAnimation] = useState(false);
 
@@ -67,6 +67,7 @@ export default ({
 
   return cloneElement(child, {
     ...rest,
+    ref,
     className: classNames(
       className,
       child.props.className,
@@ -81,4 +82,4 @@ export default ({
     onDrag: onDrag_,
     onDragEnd: onDragEnd_,
   });
-};
+});

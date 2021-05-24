@@ -78,10 +78,7 @@
     height: 100%
     flex-direction: row
     flex-wrap: wrap
-    margin-left: -($half-gutter)
-    margin-right: -($half-gutter)
-    margin-bottom: -($half-gutter)
-    margin-top: -($half-gutter)
+    margin: -($half-gutter)
     width: unquote("calc(100% + ") $gutters unquote(")")
 
     for i in (flex-start center flex-end)
@@ -95,8 +92,10 @@
         &-{$direction}
           justify-content: i
 
+    for i in (row row-reverse column column-reverse)
+      &.oak-direction
+        &-{i}
+          flex-direction: i
+
     > .oak-col
-      padding-left: $half-gutter
-      padding-right: $half-gutter
-      padding-bottom: $half-gutter
-      padding-top: $half-gutter
+      padding: $half-gutter

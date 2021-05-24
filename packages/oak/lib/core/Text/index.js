@@ -1,6 +1,4 @@
-
-import EditBox from '../EditBox';
-import TextOptions from './TextOptions';
+import options from './index.options';
 
 const Text = ({ element, className }) => (
   <div
@@ -14,14 +12,6 @@ const Text = ({ element, className }) => (
   />
 );
 
-Text.options = [{
-  render: ({ element }) => {
-    return (
-      <EditBox title="Text options">
-        <TextOptions element={element} />
-      </EditBox>
-    );
-  },
-}];
+Text.options = options;
 
 export default Text;

@@ -115,6 +115,28 @@ export default forwardRef(({ content, ...options }, ref) => {
     dispatch({ content: state.content });
   };
 
+  const moveElement = (
+    elmt,
+    target,
+    { parent = state.content, position = 'after' } = {}
+  ) => {
+    if (
+      !elmt.id ||
+      !target.id ||
+      elmt.id === target.id ||
+      contains(target, { parent: elmt })
+    ) {
+      return;
+    }
+
+    const nearestParent = findNearestParent(elmt);
+    nearestParent?.splice(nearestParent?.findIndex(e => e.id === elmt.id), 1);
+
+    const newIndex = parent.indexOf(target);
+    parent.splice(position === 'after' ? newIndex + 1 : newIndex, 0, elmt);
+    dispatch({ content: state.content });
+  };
+
   const findNearestParent = (elmt, { parent = state.content } = {}) => {
     for (const e of parent) {
       if (e.id === elmt.id) {
@@ -145,28 +167,6 @@ export default forwardRef(({ content, ...options }, ref) => {
       Array.isArray(parent.content) &&
       contains(elmt, { parent: parent.content })
     );
-
-  const moveElement = (
-    elmt,
-    target,
-    { parent = state.content, position = 'after' } = {}
-  ) => {
-    if (
-      !elmt.id ||
-      !target.id ||
-      elmt.id === target.id ||
-      contains(target, { parent: elmt })
-    ) {
-      return;
-    }
-
-    const nearestParent = findNearestParent(elmt);
-    nearestParent?.splice(nearestParent?.findIndex(e => e.id === elmt.id), 1);
-
-    const newIndex = parent.indexOf(target);
-    parent.splice(position === 'after' ? newIndex + 1 : newIndex, 0, elmt);
-    dispatch({ content: state.content });
-  };
 
   const ensureElementId = elmt => {
     if (Array.isArray(elmt.cols)) {

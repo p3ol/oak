@@ -6,6 +6,8 @@ import Catalogue from '../Catalogue';
 import Option from '../Option';
 import Element from '../Element';
 import Droppable from '../Droppable';
+import Editable from '../Editable';
+import settings from './index.settings';
 
 const Col = ({
   element,
@@ -15,6 +17,7 @@ const Col = ({
   onRemove,
   ...rest
 }) => {
+  const editableRef = useRef();
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
   const { addElement, moveElement } = useBuilder();
@@ -32,6 +35,11 @@ const Col = ({
   const onRemove_ = e => {
     e.preventDefault();
     onRemove?.();
+  };
+
+  const onEdit_ = e => {
+    e.preventDefault();
+    editableRef.current?.open();
   };
 
   const onPrepend_ = component => {
@@ -56,7 +64,9 @@ const Col = ({
       { ...rest }
       className={classNames(
         'oak-col',
-        element.size && 'oak-col-' + element.size,
+        {
+          ['oak-col-' + element.size]: element.size && element.size !== 'fluid',
+        },
         className
       )}
     >
@@ -109,9 +119,16 @@ const Col = ({
             option={{ icon: 'clear' }}
             onClick={onRemove_}
           />
-          <Option
-            option={{ icon: 'edit' }}
-          />
+          <Editable
+            ref={editableRef}
+            element={element}
+            component={{ settings }}
+          >
+            <Option
+              option={{ icon: 'edit' }}
+              onClick={onEdit_}
+            />
+          </Editable>
         </div>
       </div>
     </div>
