@@ -1,4 +1,5 @@
 @require "../../theme/colors"
+@require "../../theme/vars"
 
 .oak-row
   display: flex
@@ -77,10 +78,11 @@
     height: 100%
     flex-direction: row
     flex-wrap: wrap
-    margin-left: -5px
-    margin-right: -5px
-    margin-bottom: -5px
-    margin-top: -5px
+    margin-left: -($half-gutter)
+    margin-right: -($half-gutter)
+    margin-bottom: -($half-gutter)
+    margin-top: -($half-gutter)
+    width: unquote("calc(100% + ") $gutters unquote(")")
 
     for i in (flex-start center flex-end)
       $direction = replace(flex-, '', i)
@@ -93,8 +95,8 @@
         &-{$direction}
           justify-content: i
 
-    & > .oak-col
-      padding-left: 5px
-      padding-right: 5px
-      padding-bottom: 5px
-      padding-top: 5px
+    > .oak-col
+      padding-left: $half-gutter
+      padding-right: $half-gutter
+      padding-bottom: $half-gutter
+      padding-top: $half-gutter
