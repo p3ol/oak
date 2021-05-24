@@ -4,16 +4,12 @@ import { useOptions, useBuilder } from '../../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
 
-import styles from './index.styl';
-
 export default () => {
   const catalogueRef = useRef();
   const {
     renderers,
     content,
     addElement,
-    removeElement,
-    insertElement,
   } = useBuilder();
 
   const { debug } = useOptions();
@@ -23,27 +19,18 @@ export default () => {
     catalogueRef.current?.close();
   };
 
-  const onInsert = (eltToInsert, eltWhereInsert, isAfter) => {
-    insertElement(eltToInsert, eltWhereInsert, isAfter, content);
-  };
-
   return (
-    <div className={styles.builder}>
+    <div className="oak-builder">
       { content.map((item, i) => (
         <Element
-          key={i}
+          key={item.id || i}
+          index={i}
           element={item}
-          onDelete={removeElement.bind(null, item)}
-          insertElement={onInsert}
         />
       )) }
 
-      <div className={styles.addElement}>
-        <Catalogue
-          className={styles.catalogue}
-          ref={catalogueRef}
-          onAppend={onAppend}
-        />
+      <div className="oak-add-element">
+        <Catalogue ref={catalogueRef} onAppend={onAppend} />
       </div>
 
       { debug && (

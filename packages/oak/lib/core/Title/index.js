@@ -6,23 +6,23 @@ import EditBox from '../EditBox';
 import TextEditor from '../TextEditor';
 import TitleOptions from './TitleOptions';
 
-import styles from '../Text/index.styl';
-
-const Title = ({ element }) => {
+const Title = ({ element, className }) => {
+  const Tag = element.headingLevel || 'h1';
 
   return (
-    <span style={{
-      color: element.style?.color,
-      textAlign: element.style?.textAlign,
-      width: element.style?.width,
-    }}
+    <div
+      className={className}
+      style={{
+        color: element.style?.color,
+        textAlign: element.style?.textAlign,
+        width: element.style?.width,
+      }}
     >
-      {React.createElement(element.headingLevel || 'h1', {
-        className: styles.title,
-        dangerouslySetInnerHTML: { __html: element.content },
-      },
-      )}
-    </span>
+      <Tag
+        className="oak-title"
+        dangerouslySetInnerHTML={{ __html: element.content }}
+      />
+    </div>
   );
 };
 

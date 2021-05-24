@@ -10,9 +10,6 @@ import {
 import { AppContext } from '../../../contexts';
 import TextEditor from '../../TextEditor';
 
-import styles from '../index.styl'
-;
-
 const TextOptions = ({ element }) => {
   const { setElement } = useContext(AppContext);
   const horizontal = [
@@ -41,7 +38,7 @@ const TextOptions = ({ element }) => {
         </div>
       </Tab>
       <Tab title="Style">
-        <div className={styles.flex}>
+        <div className="oak-flex">
           <ColorPicker
             value={element.style?.color || '#000000'}
             placeholder="Couleur du texte"
@@ -57,7 +54,7 @@ const TextOptions = ({ element }) => {
             value={element.style?.horizontalAlignement || 'flex-start'}
             parseValue={item => item.value}
             parseTitle={item => item.title}
-            className={styles.item}
+            className="oak-field"
             onChange={item => {
               setElement(element.style, { horizontalAlignement: item.value });
             }}
@@ -70,7 +67,7 @@ const TextOptions = ({ element }) => {
             value={element.style?.textAlign || 'start'}
             parseValue={item => item.value}
             parseTitle={item => item.title}
-            className={styles.item}
+            className="oak-field"
             onChange={item => {
               setElement(element.style, { textAlign: item.value });
             }}

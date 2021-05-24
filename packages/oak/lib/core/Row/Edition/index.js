@@ -3,8 +3,6 @@ import { useContext } from 'react';
 
 import { AppContext } from '../../../contexts';
 
-import styles from '../index.styl';
-
 const RowEdit = ({ element, col }) => {
   const { setElement } = useContext(AppContext);
 
@@ -29,7 +27,7 @@ const RowEdit = ({ element, col }) => {
         value={col.style.content.alignItem || 'flex-start'}
         parseValue={item => item.value}
         parseTitle={item => item.title}
-        className={styles.item}
+        className="oak-field"
         onChange={item => {
           col.style.content.alignItem = item.value;
           setElement(element, {});
@@ -42,7 +40,7 @@ const RowEdit = ({ element, col }) => {
         value={col.style.content.textAlign || 'start'}
         parseValue={item => item.value}
         parseTitle={item => item.title}
-        className={styles.item}
+        className="oak-field"
         onChange={item => {
           col.style.content.textAlign = item.value;
           let horizontalAlignement = '';

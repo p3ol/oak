@@ -12,7 +12,5 @@ module.exports = {
     ['@babel/transform-runtime', {
       corejs: 3,
     }],
-    '@babel/proposal-private-methods',
-    '@babel/proposal-class-properties',
   ],
 };

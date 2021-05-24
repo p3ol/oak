@@ -1,0 +1,120 @@
+import { useRef } from 'react';
+import { classNames } from '@poool/junipero-utils';
+
+import { useBuilder } from '../../hooks';
+import Catalogue from '../Catalogue';
+import Option from '../Option';
+import Element from '../Element';
+import Droppable from '../Droppable';
+
+const Col = ({
+  element,
+  className,
+  onPrepend,
+  onAppend,
+  onRemove,
+  ...rest
+}) => {
+  const prependCatalogueRef = useRef();
+  const appendCatalogueRef = useRef();
+  const { addElement, moveElement } = useBuilder();
+
+  const onPrependCol_ = e => {
+    e.preventDefault();
+    onPrepend?.();
+  };
+
+  const onAppendCol_ = e => {
+    e.preventDefault();
+    onAppend?.();
+  };
+
+  const onRemove_ = e => {
+    e.preventDefault();
+    onRemove?.();
+  };
+
+  const onPrepend_ = component => {
+    addElement?.(component.construct(),
+      { parent: element.content, position: 'before' });
+    prependCatalogueRef.current?.close();
+  };
+
+  const onAppend_ = component => {
+    addElement?.(component.construct(),
+      { parent: element.content, position: 'after' });
+    appendCatalogueRef.current?.close();
+  };
+
+  const onDrop_ = data => {
+    moveElement?.(data, null, { parent: element.content, position: 'after' });
+  };
+
+  return (
+    <div
+      { ...rest }
+      className={classNames(
+        'oak-col',
+        element.size && 'oak-col-' + element.size,
+        className
+      )}
+    >
+      <div className="oak-col-wrapper">
+        <div className="oak-divider oak-prepend">
+          <a href="#" draggable={false} onClick={onPrependCol_}>
+            <span className="material-icons">
+              add
+            </span>
+          </a>
+        </div>
+        <Droppable disabled={element.content.length > 0} onDrop={onDrop_}>
+          <div className="oak-col-inner">
+            { element.content.length > 0 && (
+              <Catalogue
+                ref={prependCatalogueRef}
+                onAppend={onPrepend_}
+              />
+            ) }
+
+            { element.content?.length > 0 && (
+              <div className="oak-col-content">
+                { element.content?.map((item, i) => (
+                  <Element
+                    key={item.id || i}
+                    index={i}
+                    parent={element.content}
+                    element={item}
+                  />
+                )) }
+              </div>
+            ) }
+
+            <Catalogue
+              ref={appendCatalogueRef}
+              onAppend={onAppend_}
+            />
+          </div>
+        </Droppable>
+        <div className="oak-divider oak-append">
+          <a href="#" draggable={false} onClick={onAppendCol_}>
+            <span className="material-icons">
+              add
+            </span>
+          </a>
+        </div>
+
+        <div className="oak-options">
+          <Option
+            option={{ icon: 'clear' }}
+            onClick={onRemove_}
+          />
+          <Option
+            option={{ icon: 'edit' }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Col;

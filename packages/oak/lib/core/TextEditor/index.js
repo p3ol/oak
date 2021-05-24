@@ -1,7 +1,5 @@
 import { useRef } from 'react';
 
-import styles from './index.styl';
-
 const TextEditor = ({
   value,
   onChange = () => {},
@@ -26,11 +24,11 @@ const TextEditor = ({
 ;
 
   return (
-    <div className={styles.aspen}>
-      <div className={styles.header}>
+    <div className="oak-text-editor">
+      <div className="oak-header">
         { modifiers.map((modifier, key) => (
           <button
-            className={styles.button}
+            className="oak-button"
             key={key}
             onClick={e => changeStyle(e, modifier.property)}
           >
@@ -40,7 +38,7 @@ const TextEditor = ({
       </div>
       <div
         id="contentEditable"
-        className={styles.editor}
+        className="oak-text-content"
         ref={contentEditable}
         onKeyUp={() => onChange_()}
         dangerouslySetInnerHTML={{ __html: value }}

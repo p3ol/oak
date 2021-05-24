@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 import Row from './core/Row';
 import Text from './core/Text';
 import Title from './core/Title';
@@ -21,13 +23,12 @@ export const COMPONENT_ROW = {
   construct: () => ({
     type: 'row',
     style: {
-      horizontalAlignement: 'flex-start',
+      alignItems: 'flex-start',
     },
     cols: [{
-      size: 12,
       content: [],
-      id: 0,
-      style: { col: { flex: '1' }, content: {} },
+      id: nanoid(),
+      style: {},
     }],
   }),
 };

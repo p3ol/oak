@@ -1,7 +1,8 @@
 @require "../../theme/colors"
-  
-  .popper
-    width:480px  
+
+.oak-edit
+  .oak-popper
+    width:480px
     min-height: 200px
     background: white
     border: 1px solid #eee
@@ -9,11 +10,11 @@
     border-radius: 0px 3px 3px 3px
     z-index: 1
 
-    &[data-popper-reference-hidden] 
+    &[data-popper-reference-hidden]
       visibility: hidden
       pointer-events: none
 
-  .top
+  .oak-top
     width: 100%
     text-align: end
     display: flex
@@ -27,12 +28,12 @@
     & > a
       color: white
 
-  .flex
+  .oak-flex
     display: flex
     flex-direction: row
     flex-wrap: wrap
     justify-content: space-around
-    
+
     & > div
       width: 40%
       padding: 10px

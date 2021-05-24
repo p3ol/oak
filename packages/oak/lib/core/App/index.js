@@ -1,19 +1,29 @@
-import { forwardRef, useReducer, useImperativeHandle } from 'react';
-import { mockState } from '@poool/junipero-utils';
+import {
+  forwardRef,
+  useLayoutEffect,
+  useReducer,
+  useImperativeHandle,
+} from 'react';
+import { mockState, cloneDeep } from '@poool/junipero-utils';
+import { nanoid } from 'nanoid';
 
 import { AppContext } from '../../contexts';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
 import Builder from '../Builder';
 
-import styles from './index.styl';
-
 export default forwardRef(({ content, ...options }, ref) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
     renderers: [...GROUP_CORE.components, ...GROUP_OTHER.components],
-    content: content || [],
-    idMax: 0,
+    content: [],
   });
+
+  useLayoutEffect(() => {
+    if (content) {
+      setContent(content);
+    }
+  }, []);
+
   useImperativeHandle(ref, () => ({
     addGroup,
     removeGroup,
@@ -22,6 +32,7 @@ export default forwardRef(({ content, ...options }, ref) => {
     addElement,
     setElement,
     removeElement,
+    moveElement,
     setContent,
   }));
 
@@ -33,9 +44,8 @@ export default forwardRef(({ content, ...options }, ref) => {
     addElement,
     removeElement,
     setElement,
+    moveElement,
     setContent,
-    addId,
-    insertElement,
   });
 
   const getGroup_ = id => {
@@ -70,26 +80,29 @@ export default forwardRef(({ content, ...options }, ref) => {
     dispatch({ components: state.components, renderers: state.renderers });
   };
 
-  const addElement = (elmt, parent = state.content, isFirst) => {
-    addId(elmt);
+  const addElement = (
+    elmt,
+    { parent = state.content, position = 'after' } = {}
+  ) => {
+    elmt.id = nanoid();
 
-    if (isFirst) {
-      parent.unshift(elmt);
-    } else {
-      parent.push(elmt);
+    switch (position) {
+      case 'before':
+        parent.unshift(elmt);
+        break;
+      default:
+        parent.push(elmt);
     }
 
     dispatch({ content: state.content });
   };
 
-  const addId = elmnt => {
-    elmnt.id = state.idMax;
-    state.idMax++;
-    dispatch({ content: state.content, idMax: state.idMax });
-  };
+  const removeElement = (elmt, { parent = state.content } = {}) => {
+    if (!elmt.id) {
+      return;
+    }
 
-  const removeElement = (elmt, parent = state.content) => {
-    parent.splice(parent.indexOf(elmt), 1);
+    parent.splice(parent.findIndex(e => e.id === elmt.id), 1);
     dispatch({ content: state.content });
   };
 
@@ -98,21 +111,55 @@ export default forwardRef(({ content, ...options }, ref) => {
     dispatch({ content: state.content });
   };
 
-  const setContent = content => dispatch({ content });
+  const findParent = (elmt, parent) => {
+    for (const e of parent) {
+      if (e.id === elmt.id) {
+        return parent;
+      } else if (Array.isArray(e.content)) {
+        return findParent(elmt, e.content);
+      }
+    }
 
-  const insertElement = (
-    eltToInsert,
-    eltWhereInsert,
-    isAfter,
-    parent = state.content
+    return null;
+  };
+
+  const moveElement = (
+    elmt,
+    target,
+    { parent = state.content, position = 'after' } = {}
   ) => {
-    const id = parent.indexOf(eltWhereInsert);
-    parent.splice(isAfter ? id + 1 : id, 0, eltToInsert);
+    if (!elmt.id) {
+      return;
+    }
+
+    const nearestParent = findParent(elmt, parent);
+    nearestParent?.splice(nearestParent?.findIndex(e => e.id === elmt.id), 1);
+
+    const newIndex = parent.indexOf(target);
+    parent.splice(position === 'after' ? newIndex + 1 : newIndex, 0, elmt);
     dispatch({ content: state.content });
   };
 
+  const ensureElementId = elmt => {
+    if (Array.isArray(elmt.cols)) {
+      elmt.cols.forEach(c => ensureElementId(c));
+    } else if (Array.isArray(elmt.content)) {
+      elmt.content.forEach(e => ensureElementId(e));
+    }
+
+    if (!elmt.id) {
+      elmt.id = nanoid();
+    }
+  };
+
+  const setContent = content_ => {
+    content_ = cloneDeep(content_);
+    content_.forEach(e => ensureElementId(e));
+    dispatch({ content: content_ });
+  };
+
   return (
-    <div className={styles.oak}>
+    <div className="oak">
       <AppContext.Provider value={getContext()}>
         <Builder />
       </AppContext.Provider>

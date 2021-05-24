@@ -1,11 +1,11 @@
 @require "../../theme/colors"
 
-.catalogue
+.oak-catalogue
   &.opened
-    .handle
+    .oak-handle
       transform: rotate(45deg)
 
-  .handle
+  .oak-handle
     display: inline-block
     width: 40px
     height: 40px
@@ -14,6 +14,7 @@
     position: relative
     cursor: pointer
     transition: transform .1s ease-in-out
+
     &:hover
       background: $color-catskill-white
 
@@ -30,7 +31,7 @@
     &:after
       transform: translate3d(-50%, -50%, 0) rotate(90deg)
 
-  .popover
+  .oak-popover
     background: $color-white
     border-radius: 5px
     width: 400px
@@ -42,8 +43,8 @@
       color: $color-charade
       text-decoration: none
 
-    .groups
-      ul.tabs
+    .oak-groups
+      ul.oak-tabs
         list-style: none
         padding: 0
         margin: 0
@@ -51,7 +52,7 @@
         overflow: hidden
         background: $color-link-water
 
-        li.tab
+        li.oak-tab
           background: transparent
           display: inline-block
 
@@ -61,13 +62,14 @@
 
           &.active
             background: $color-white
-  .components
+
+  .oak-components
     display flex
     flex-wrap: wrap
     justify-content: space-between
     padding: 20px
 
-  .item 
+  .oak-item
     width: 45%
     min-height: 40px
     margin-bottom: 20px
@@ -77,9 +79,10 @@
     border-radius: 3px
     border: none
     color: $color-deep-sea-green
+
     &:hover
       border: 1px solid $color-deep-sea-green
       cursor: pointer
 
-    & i, & span 
+    & i, & span
       vertical-align: middle

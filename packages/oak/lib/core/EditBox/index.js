@@ -6,8 +6,6 @@ import { useEventListener } from '@poool/junipero-hooks';
 
 import Option from '../Option';
 
-import styles from './index.styl';
-
 export default ({
   globalEventsTarget = global,
   children,
@@ -55,26 +53,25 @@ export default ({
 
   return (
     <>
-      <div ref={setReference} className={styles.edit}>
-        <Option
-          option={{ icon: 'edit' }}
-          className={classNames(light ? 'light' : '')}
-          onClick={e => {
-            dispatch({ opened: !state.opened });
-            e.preventDefault();
-          }}
-        />
-      </div>
+      <Option
+        ref={setReference}
+        option={{ icon: 'edit' }}
+        className={classNames('oak-edit', light ? 'light' : '')}
+        onClick={e => {
+          dispatch({ opened: !state.opened });
+          e.preventDefault();
+        }}
+      />
       { state.opened &&
           createPortal((
             <div
               ref={setPopper}
-              style={ popperStyles.popper }
+              style={popperStyles.popper}
               {...attributes.popper}
               data-placement="bottom"
-              className={styles.popper}
+              className="oak-popper"
             >
-              <div className={styles.top}>
+              <div className="oak-top">
                 <a
                   href="#"
                   onClick={e => {

@@ -11,8 +11,6 @@ import { useEventListener } from '@poool/junipero-hooks';
 
 import { AppContext } from '../../contexts';
 
-import styles from './index.styl';
-
 export default forwardRef(({
   globalEventsTarget = global,
   placement = 'bottom',
@@ -98,15 +96,17 @@ export default forwardRef(({
     }
 
     return (
-
-      <div className={styles.components} >
+      <div className="oak-components">
         { group.components.map(c => (
-          <button
-            className={styles.item}
+          <a
+            href="#"
+            className="oak-item"
             key={c.id}
-            onClick={onAppend_.bind(null, c)}>
+            draggable={false}
+            onClick={onAppend_.bind(null, c)}
+          >
             <i className="material-icons">{c.icon}</i> <span>{c.name}</span>
-          </button>
+          </a>
 
         )) }
       </div>
@@ -126,54 +126,58 @@ export default forwardRef(({
   return (
     <div
       className={classNames(
-        styles.catalogue,
-        { [styles.opened]: state.opened },
+        'oak-catalogue',
+        { opened: state.opened },
       )}
     >
       <a
         ref={setReference}
-        className={styles.handle}
+        className="oak-handle"
         onClick={toggle}
+        draggable={false}
       />
       { state.opened && (
         <div
           ref={setPopper}
           style={popperStyles.popper}
-          className={styles.popover}
+          className="oak-popover"
           {...attributes.popper}
           data-placement={placement}
         >
-          <div className={styles.groups}>
-            <ul className={styles.tabs}>
+          <div className="oak-groups">
+            <ul className="oak-tabs">
               { getGroups().map((g, i) => (
                 <li
                   key={g.id}
                   className={classNames(
-                    styles.tab,
+                    'oak-tab',
                     {
-                      [styles.active]: (!state.currentTab && i === 0) ||
+                      active: (!state.currentTab && i === 0) ||
                         state.currentTab === g,
                     }
                   )}
                 >
-                  <a href="#" onClick={e => {
-                    e.preventDefault();
-                    onGroupSelect(g);
-                  }}>
+                  <a
+                    href="#"
+                    onClick={e => {
+                      e.preventDefault();
+                      onGroupSelect(g);
+                    }}
+                  >
                     { g.name }
                   </a>
                 </li>
               )) }
             </ul>
 
-            <div className={styles.group}>
+            <div className="oak-group">
               { renderComponents() }
             </div>
           </div>
           <div
             ref={setArrow}
             style={popperStyles.arrow}
-            className={styles.arrow}
+            className="oak-arrow"
           />
         </div>
       ) }

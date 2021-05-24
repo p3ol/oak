@@ -2,8 +2,9 @@
 import EditBox from '../EditBox';
 import TextOptions from './TextOptions';
 
-const Text = ({ element }) => (
-  <p
+const Text = ({ element, className }) => (
+  <div
+    className={className}
     style={{
       color: element.style?.color,
       textAlign: element.style?.textAlign,
