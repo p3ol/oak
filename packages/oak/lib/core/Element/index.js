@@ -22,10 +22,6 @@ const Element = ({
   };
 
   const onDrop_ = (data, position) => {
-    if (data.id === element.id) {
-      return;
-    }
-
     moveElement?.(data, element, { parent, position });
   };
 

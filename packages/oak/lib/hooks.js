@@ -15,6 +15,8 @@ export const useBuilder = () => {
     removeElement,
     setElement,
     moveElement,
+    contains,
+    findNearestParent,
   } = useContext(AppContext);
 
   return {
@@ -25,5 +27,7 @@ export const useBuilder = () => {
     removeElement,
     setElement,
     moveElement,
+    contains,
+    findNearestParent,
   };
 };

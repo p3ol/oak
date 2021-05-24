@@ -46,7 +46,7 @@ export default ({
 
     setStack(0);
     setDragging(false);
-    onDrop?.(JSON.parse(e.dataTransfer.getData('text')), draggingPos);
+    onDrop?.(JSON.parse(e.dataTransfer.getData('text')), draggingPos, e);
     e.preventDefault();
     setDraggingPos(null);
   };

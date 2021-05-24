@@ -34,6 +34,8 @@ export default forwardRef(({ content, ...options }, ref) => {
     removeElement,
     moveElement,
     setContent,
+    findNearestParent,
+    contains,
   }));
 
   const getContext = () => ({
@@ -46,6 +48,8 @@ export default forwardRef(({ content, ...options }, ref) => {
     setElement,
     moveElement,
     setContent,
+    findNearestParent,
+    contains,
   });
 
   const getGroup_ = id => {
@@ -111,15 +115,15 @@ export default forwardRef(({ content, ...options }, ref) => {
     dispatch({ content: state.content });
   };
 
-  const findNearestParent = (elmt, parent) => {
+  const findNearestParent = (elmt, { parent = state.content } = {}) => {
     for (const e of parent) {
       if (e.id === elmt.id) {
         return parent;
       } else if (Array.isArray(e.cols)) {
-        const nearest = findNearestParent(elmt, e.cols);
+        const nearest = findNearestParent(elmt, { parent: e.cols });
         if (nearest) return nearest;
       } else if (Array.isArray(e.content)) {
-        const nearest = findNearestParent(elmt, e.content);
+        const nearest = findNearestParent(elmt, { parent: e.content });
         if (nearest) return nearest;
       }
     }
@@ -127,16 +131,36 @@ export default forwardRef(({ content, ...options }, ref) => {
     return null;
   };
 
+  const contains = (elmt, { parent = state.content } = {}) =>
+    elmt.id === parent.id ||
+    (
+      Array.isArray(parent) &&
+      parent.some(e => contains(elmt, { parent: e }))
+    ) ||
+    (
+      Array.isArray(parent.cols) &&
+      contains(elmt, { parent: parent.cols })
+    ) ||
+    (
+      Array.isArray(parent.content) &&
+      contains(elmt, { parent: parent.content })
+    );
+
   const moveElement = (
     elmt,
     target,
     { parent = state.content, position = 'after' } = {}
   ) => {
-    if (!elmt.id) {
+    if (
+      !elmt.id ||
+      !target.id ||
+      elmt.id === target.id ||
+      contains(target, { parent: elmt })
+    ) {
       return;
     }
 
-    const nearestParent = findNearestParent(elmt, state.content);
+    const nearestParent = findNearestParent(elmt);
     nearestParent?.splice(nearestParent?.findIndex(e => e.id === elmt.id), 1);
 
     const newIndex = parent.indexOf(target);

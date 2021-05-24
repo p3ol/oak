@@ -47,7 +47,8 @@ const Col = ({
   };
 
   const onDrop_ = data => {
-    moveElement?.(data, null, { parent: element.content, position: 'after' });
+    moveElement?.(data, element, {
+      parent: element.content, position: 'after' });
   };
 
   return (
