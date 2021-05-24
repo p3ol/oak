@@ -111,12 +111,14 @@ export default forwardRef(({ content, ...options }, ref) => {
     dispatch({ content: state.content });
   };
 
-  const findParent = (elmt, parent) => {
+  const findNearestParent = (elmt, parent) => {
     for (const e of parent) {
       if (e.id === elmt.id) {
         return parent;
+      } else if (Array.isArray(e.cols)) {
+        return findNearestParent(elmt, e.cols);
       } else if (Array.isArray(e.content)) {
-        return findParent(elmt, e.content);
+        return findNearestParent(elmt, e.content);
       }
     }
 
@@ -132,7 +134,7 @@ export default forwardRef(({ content, ...options }, ref) => {
       return;
     }
 
-    const nearestParent = findParent(elmt, parent);
+    const nearestParent = findNearestParent(elmt, state.content);
     nearestParent?.splice(nearestParent?.findIndex(e => e.id === elmt.id), 1);
 
     const newIndex = parent.indexOf(target);

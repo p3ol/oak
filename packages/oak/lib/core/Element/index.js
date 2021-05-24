@@ -22,19 +22,15 @@ const Element = ({
   };
 
   const onDrop_ = (data, position) => {
+    if (data.id === element.id) {
+      return;
+    }
+
     moveElement?.(data, element, { parent, position });
   };
 
   const onEdit_ = e => {
     e.preventDefault();
-  };
-
-  const onDragEnd_ = e => {
-    // if (e.srcElement === elementInnerRef.current) {
-    //   removeElement(element, { parent });
-    // }
-
-    return false;
   };
 
   const component = renderers.find(r => r.id === element.type) ||
@@ -45,7 +41,6 @@ const Element = ({
       <Draggable
         data={element}
         disabled={element.type === 'row'}
-        onDragEnd={onDragEnd_}
       >
         <div
           ref={elementInnerRef}
