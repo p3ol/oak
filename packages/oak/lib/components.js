@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { classNames } from '@poool/junipero-utils';
 
 import Row from './core/Row';
 import Text from './core/Text';
@@ -8,8 +9,10 @@ export const COMPONENT_DEFAULT = {
   id: 'unknown',
   name: 'Unknown',
   type: 'component',
-  render: ({ element, ...props }) => (
-    <pre {...props}>{ JSON.stringify(element) }</pre>
+  render: ({ element, className }) => (
+    <pre className={classNames('oak-unknown', className)}>
+      { JSON.stringify(element) }
+    </pre>
   ),
 };
 
