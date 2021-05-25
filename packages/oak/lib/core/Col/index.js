@@ -20,6 +20,7 @@ const Col = ({
   const editableRef = useRef();
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
+  const settingsElementRef = useRef();
   const { addElement, moveElement } = useBuilder();
 
   const onPrependCol_ = e => {
@@ -123,6 +124,7 @@ const Col = ({
             ref={editableRef}
             element={element}
             component={{ settings }}
+            container={settingsElementRef}
           >
             <Option
               option={{ icon: 'edit' }}
@@ -131,6 +133,8 @@ const Col = ({
           </Editable>
         </div>
       </div>
+
+      <div ref={settingsElementRef} />
     </div>
   );
 };

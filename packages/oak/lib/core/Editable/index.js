@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import {
   Children,
   cloneElement,
@@ -23,6 +24,7 @@ export default forwardRef(({
   children,
   element,
   component,
+  container,
 }, ref) => {
   const { setElement, getField } = useBuilder();
   const [popper, setPopper] = useState();
@@ -30,6 +32,20 @@ export default forwardRef(({
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
     element: cloneDeep(element),
+  });
+  const { styles: popperStyles, attributes } = usePopper(reference, popper, {
+    ...((typeof component?.settings?.popperSettings === 'function'
+      ? component?.settings?.popperSettings({ optionButtonElement: reference })
+      : component?.settings?.popperSettings
+    ) || {
+      strategy: 'fixed',
+      modifiers: [{
+        name: 'offset',
+        options: {
+          offset: [0, 5],
+        },
+      }],
+    }),
   });
 
   useImperativeHandle(ref, () => ({
@@ -72,12 +88,6 @@ export default forwardRef(({
     setElement(element, elmt);
   };
 
-  const { styles: popperStyles, attributes } = usePopper(reference, popper, {
-    ...((typeof component?.settings?.popperSettings === 'function'
-      ? component?.settings?.popperSettings({ optionButtonElement: reference })
-      : component?.settings?.popperSettings) || {}),
-  });
-
   const onSettingChange_ = (name, field) => {
     set(state.element, name, field.checked ?? field.value);
     dispatch({ element: state.element });
@@ -97,42 +107,47 @@ export default forwardRef(({
     return renderer.render?.(commonProps, field);
   };
 
+  const settingsForm = (
+    <div
+      ref={setPopper}
+      style={popperStyles.popper}
+      {...attributes.popper}
+      className="oak-editable"
+    >
+      <div className="oak-title">
+        { component.settings?.title || 'Element options' }
+      </div>
+      <div className="oak-form">
+        { component.settings?.fields?.map((field, i) => (
+          <div className="oak-field" key={i}>
+            { field.label && (
+              <label>{ field.label }</label>
+            ) }
+            { renderField(field) }
+          </div>
+        )) }
+        { component.settings?.renderForm?.({
+          element: cloneDeep(element),
+          component,
+          update: onUpdate_,
+        }) }
+      </div>
+    </div>
+  );
+
   return (
     <>
-      { cloneElement(Children.only(children), {
+      { children && cloneElement(Children.only(children), {
         ref: setReference,
         className: classNames(
           Children.only(children).props.className,
           { 'oak-opened': state.opened }
         ),
       }) }
-      { state.opened && (
-        <div
-          ref={setPopper}
-          style={popperStyles.popper}
-          {...attributes.popper}
-          className="oak-editable"
-        >
-          <div className="oak-title">
-            { component.settings?.title || 'Element options' }
-          </div>
-          <div className="oak-form">
-            { component.settings?.fields?.map((field, i) => (
-              <div className="oak-field" key={i}>
-                { field.label && (
-                  <label>{ field.label }</label>
-                ) }
-                { renderField(field) }
-              </div>
-            )) }
-            { component.settings?.renderForm?.({
-              element: cloneDeep(element),
-              component,
-              update: onUpdate_,
-            }) }
-          </div>
-        </div>
-      ) }
+      { state.opened
+        ? container?.current
+          ? createPortal(settingsForm, container.current) : settingsForm
+        : null }
     </>
   );
 });
