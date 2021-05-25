@@ -97,17 +97,13 @@ export default forwardRef(({
 
     return (
       <div className="oak-components">
-        { group.components.map(c => (
-          <a
-            href="#"
-            className="oak-item"
-            key={c.id}
-            draggable={false}
-            onClick={onAppend_.bind(null, c)}
-          >
-            <i className="material-icons">{c.icon}</i> <span>{c.name}</span>
-          </a>
-
+        { group.components.map((c, i) => (
+          <div key={c.id || i} className="oak-component">
+            <a href="#" draggable={false} onClick={onAppend_.bind(null, c)}>
+              <i className="material-icons">{ c.icon }</i>
+              <span>{ c.name }</span>
+            </a>
+          </div>
         )) }
       </div>
     );
