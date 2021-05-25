@@ -1,19 +1,15 @@
 import settings from './index.settings';
+import Node from './Node';
 
-const Text = ({ element, className }) => {
-  const renderContent = () => '';
-
-  return (
-    <div
-      className={className}
-      dangerouslySetInnerHTML={{
-        __html: typeof element.content === 'string'
-          ? element.content
-          : renderContent(),
-      }}
-    />
-  );
-};
+const Text = ({ element, className }) => (
+  <div className={className}>
+    { typeof element.content === 'string' ? (
+      <Node type="paragraph" children={[{ text: element.content }]} />
+    ) : element.content.map((c, i) => (
+      <Node { ...c } key={i} />
+    )) }
+  </div>
+);
 
 Text.settings = settings;
 

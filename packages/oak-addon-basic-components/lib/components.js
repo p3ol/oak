@@ -1,5 +1,6 @@
 import Text from './core/Text';
 import Title from './core/Title';
+import { serialize, deserialize } from './core/Editor/html';
 
 export const COMPONENT_TITLE = {
   id: 'title',
@@ -27,10 +28,12 @@ export const COMPONENT_TEXT = {
   options: Text.options,
   settings: Text.settings,
   editable: true,
+  serialize,
+  deserialize,
   construct: () => ({
     type: 'text',
-    content: 'This is some fancy text content, you can even ' +
-      'use <strong>html</strong> here',
+    content: 'This is some fancy text content, you can even use ' +
+      '<strong>html</strong> here',
     settings: {},
   }),
 };

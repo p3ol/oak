@@ -1,28 +1,26 @@
-import { useMemo, useReducer, useEffect } from 'react';
+import { useMemo, useCallback, useReducer, useEffect } from 'react';
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 import { mockState } from '@poool/junipero-utils';
+
+import Element from './Element';
+import Leaf from './Leaf';
+import { withHtml } from './html';
 
 export default ({
   value,
   onChange,
 }) => {
-  const editor = useMemo(() => withReact(createEditor()), []);
+  const editor = useMemo(() => withHtml(withReact(createEditor())), []);
+  const renderElement = useCallback(props => <Element {...props} />, []);
+  const renderLeaf = useCallback(props => <Leaf {...props} />, []);
   const [state, dispatch] = useReducer(mockState, {
-    value: typeof value === 'string' ? [{
-      type: 'paragraph',
-      children: [{ text: value }],
-    }] : value || [],
+    value,
   });
 
   useEffect(() => {
     if (value) {
-      dispatch({
-        value: typeof value === 'string' ? [{
-          type: 'paragraph',
-          children: [{ text: value }],
-        }] : value || [],
-      });
+      dispatch({ value });
     }
   }, [value]);
 
@@ -37,7 +35,11 @@ export default ({
       value={state.value}
       onChange={onChange_}
     >
-      <Editable />
+      <Editable
+        renderElement={renderElement}
+        renderLeaf={renderLeaf}
+        className="oak-text-editor"
+      />
     </Slate>
   );
 };

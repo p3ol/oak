@@ -30,6 +30,7 @@
     "core-js": "3.12.1",
     "preact": "10.5.13",
     "slate": "0.63.0",
+    "slate-hyperscript": "0.62.0",
     "slate-react": "0.63.0"
   },
   "scripts": {

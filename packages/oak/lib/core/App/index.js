@@ -55,12 +55,6 @@ export default forwardRef((options, ref) => {
   });
 
   const init = () => {
-    if (options.content) {
-      const content_ = cloneDeep(options.content);
-      content_.forEach(e => ensureElementId(e));
-      state.content = content_;
-    }
-
     options.addons.forEach(addon => {
       if (addon.fieldTypes) {
         state.fieldTypes = (state.fieldTypes || [])
@@ -80,6 +74,12 @@ export default forwardRef((options, ref) => {
         });
       }
     });
+
+    if (options.content) {
+      const content_ = cloneDeep(options.content);
+      content_.forEach(e => normalizeElement(e));
+      state.content = content_;
+    }
 
     dispatch(state);
   };
@@ -118,7 +118,7 @@ export default forwardRef((options, ref) => {
     elmt,
     { parent = state.content, position = 'after' } = {}
   ) => {
-    elmt.id = nanoid();
+    normalizeElement(elmt);
 
     switch (position) {
       case 'before':
@@ -198,21 +198,27 @@ export default forwardRef((options, ref) => {
       contains(elmt, { parent: parent.content })
     );
 
-  const ensureElementId = elmt => {
+  const normalizeElement = elmt => {
     if (Array.isArray(elmt.cols)) {
-      elmt.cols.forEach(c => ensureElementId(c));
+      elmt.cols.forEach(c => normalizeElement(c));
     } else if (Array.isArray(elmt.content)) {
-      elmt.content.forEach(e => ensureElementId(e));
+      elmt.content.forEach(e => normalizeElement(e));
     }
 
     if (!elmt.id) {
       elmt.id = nanoid();
     }
+
+    const component = getComponent(elmt.type);
+
+    if (component?.deserialize) {
+      elmt.content = component.deserialize(elmt.content);
+    }
   };
 
   const setContent = content_ => {
     content_ = cloneDeep(content_);
-    content_.forEach(e => ensureElementId(e));
+    content_.forEach(e => normalizeElement(e));
     dispatch({ content: content_ });
   };
 
