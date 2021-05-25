@@ -9,7 +9,6 @@ export const useOptions = () => {
 export const useBuilder = () => {
   const {
     components = [],
-    renderers = [],
     content = [],
     addElement,
     removeElement,
@@ -17,11 +16,12 @@ export const useBuilder = () => {
     moveElement,
     contains,
     findNearestParent,
+    getComponent,
+    getField,
   } = useContext(AppContext);
 
   return {
     components,
-    renderers,
     content,
     addElement,
     removeElement,
@@ -29,5 +29,7 @@ export const useBuilder = () => {
     moveElement,
     contains,
     findNearestParent,
+    getComponent,
+    getField,
   };
 };

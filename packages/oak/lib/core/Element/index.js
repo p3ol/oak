@@ -16,7 +16,8 @@ const Element = ({
 }) => {
   const editableRef = useRef();
   const elementInnerRef = useRef();
-  const { renderers, removeElement, moveElement } = useBuilder();
+  const builder = useBuilder();
+  const { getComponent, removeElement, moveElement } = builder;
 
   const onDelete_ = e => {
     e?.preventDefault();
@@ -32,7 +33,7 @@ const Element = ({
     editableRef.current?.toggle();
   };
 
-  const component = renderers.find(r => r.id === element.type) ||
+  const component = getComponent(element.type) ||
     COMPONENT_DEFAULT;
 
   return (
@@ -50,6 +51,7 @@ const Element = ({
           { component?.render?.({
             element,
             parent,
+            builder,
             onEdit: onEdit_,
             className: classNames('oak-inner', element.className),
           }) || null }
@@ -69,6 +71,7 @@ const Element = ({
                   elementInnerRef,
                   parent,
                   component,
+                  builder,
                   index: i,
                 }) }
               </Fragment>

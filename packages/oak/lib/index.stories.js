@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import oak from './';
+import basicComponents from '../../oak-addon-basic-components/lib';
 
 export default { title: 'oak' };
 
@@ -10,6 +11,7 @@ export const basicConfig = () => {
   useEffect(() => {
     oak.render(containerRef.current, {
       debug: true,
+      addons: [basicComponents],
       content: [
         {
           type: 'row',

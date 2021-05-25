@@ -7,7 +7,7 @@ import Catalogue from '../Catalogue';
 export default () => {
   const catalogueRef = useRef();
   const {
-    renderers,
+    components,
     content,
     addElement,
   } = useBuilder();
@@ -38,8 +38,8 @@ export default () => {
           <p>Content:</p>
           { JSON.stringify(content, null, 2) }
 
-          <p>Renderers:</p>
-          { JSON.stringify(renderers, null, 2) }
+          <p>Components:</p>
+          { JSON.stringify(components, null, 2) }
         </pre>
       )}
     </div>

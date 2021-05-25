@@ -9,19 +9,18 @@ import { nanoid } from 'nanoid';
 
 import { AppContext } from '../../contexts';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
+import { FIELD_TEXT, FIELD_SELECT } from '../../fields';
 import Builder from '../Builder';
 
-export default forwardRef(({ content, ...options }, ref) => {
+export default forwardRef((options, ref) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
-    renderers: [...GROUP_CORE.components, ...GROUP_OTHER.components],
     content: [],
+    fieldTypes: [FIELD_TEXT, FIELD_SELECT],
   });
 
   useLayoutEffect(() => {
-    if (content) {
-      setContent(content);
-    }
+    init();
   }, []);
 
   useImperativeHandle(ref, () => ({
@@ -36,12 +35,13 @@ export default forwardRef(({ content, ...options }, ref) => {
     setContent,
     findNearestParent,
     contains,
+    getComponent,
+    getField,
   }));
 
   const getContext = () => ({
     content: state.content,
     components: state.components,
-    renderers: state.renderers,
     options,
     addElement,
     removeElement,
@@ -50,7 +50,39 @@ export default forwardRef(({ content, ...options }, ref) => {
     setContent,
     findNearestParent,
     contains,
+    getComponent,
+    getField,
   });
+
+  const init = () => {
+    if (options.content) {
+      const content_ = cloneDeep(options.content);
+      content_.forEach(e => ensureElementId(e));
+      state.content = content_;
+    }
+
+    options.addons.forEach(addon => {
+      if (addon.fieldTypes) {
+        state.fieldTypes = (state.fieldTypes || [])
+          .concat(addon.fieldTypes);
+      }
+
+      if (addon.components) {
+        addon.components.forEach(c => {
+          if (c.group) {
+            const group = getGroup_(c.group);
+            group.components.push(c.component);
+          } else if (c.type === 'group') {
+            state.components.push(c);
+          } else {
+            getGroup_('other').push(c);
+          }
+        });
+      }
+    });
+
+    dispatch(state);
+  };
 
   const getGroup_ = id => {
     let group = id ? state.components.find(g => g.id === id) : null;
@@ -73,15 +105,13 @@ export default forwardRef(({ content, ...options }, ref) => {
   const addComponent = (props, { groupId } = {}) => {
     const group = getGroup_(groupId);
     group.components.push(props);
-    state.renderers.push(props);
-    dispatch({ components: state.components, renderers: state.renderers });
+    dispatch({ components: state.components });
   };
 
   const removeComponent = (id, { groupId } = {}) => {
     const group = getGroup_(groupId);
     group.components = group.components.filter(c => c.id !== id);
-    state.renderers = state.renderers.filter(r => r.id !== id);
-    dispatch({ components: state.components, renderers: state.renderers });
+    dispatch({ components: state.components });
   };
 
   const addElement = (
@@ -185,6 +215,17 @@ export default forwardRef(({ content, ...options }, ref) => {
     content_.forEach(e => ensureElementId(e));
     dispatch({ content: content_ });
   };
+
+  const getComponent = (type, { parent = state.components } = {}) =>
+    parent.reduce((val, c) => val || (
+      c.type === 'group'
+        ? getComponent(type, { parent: c.components })
+        : c.id === type ? c : val
+    ), null);
+
+  const getField = type =>
+    console.log(type, state.fieldTypes) ||
+    state.fieldTypes.find(f => f.type === type);
 
   return (
     <div className="oak">

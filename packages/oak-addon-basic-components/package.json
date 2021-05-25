@@ -1,5 +1,5 @@
 {
-  "name": "@poool/oak",
+  "name": "@poool/oak-addon-basic-components",
   "version": "1.0.0-alpha.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak.cjs.js",
@@ -29,8 +29,8 @@
     "@popperjs/core": "2.9.2",
     "core-js": "3.12.1",
     "preact": "10.5.13",
-    "react-popper": "2.2.5",
-    "nanoid": "3.1.23"
+    "slate": "0.63.0",
+    "slate-react": "0.63.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

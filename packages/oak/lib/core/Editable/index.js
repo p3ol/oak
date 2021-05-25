@@ -13,7 +13,6 @@ import {
   set,
   get,
 } from '@poool/junipero-utils';
-import { SelectField } from '@poool/junipero';
 import { useEventListener } from '@poool/junipero-hooks';
 import { usePopper } from 'react-popper';
 
@@ -25,7 +24,7 @@ export default forwardRef(({
   element,
   component,
 }, ref) => {
-  const { setElement } = useBuilder();
+  const { setElement, getField } = useBuilder();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
   const [state, dispatch] = useReducer(mockState, {
@@ -93,17 +92,9 @@ export default forwardRef(({
       value: get(state.element, field.key) ?? field.default,
     };
 
-    switch (field.type) {
-      case 'select':
-        return (
-          <SelectField
-            { ...commonProps }
-            options={field.options}
-            parseTitle={field.parseTitle || (o => o?.title || o)}
-            parseValue={field.parseValue || (o => o?.value || o)}
-          />
-        );
-    }
+    const renderer = getField(field.type) || field;
+
+    return renderer.render?.(commonProps, field);
   };
 
   return (

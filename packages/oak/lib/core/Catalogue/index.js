@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  useContext,
   useImperativeHandle,
   useReducer,
   useState,
@@ -9,7 +8,7 @@ import { usePopper } from 'react-popper';
 import { classNames, mockState } from '@poool/junipero-utils';
 import { useEventListener } from '@poool/junipero-hooks';
 
-import { AppContext } from '../../contexts';
+import { useBuilder } from '../../hooks';
 
 export default forwardRef(({
   globalEventsTarget = global,
@@ -18,7 +17,7 @@ export default forwardRef(({
   onToggle = () => {},
   onAppend = () => {},
 }, ref) => {
-  const { components = [] } = useContext(AppContext);
+  const { components = [] } = useBuilder();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
   const [arrow, setArrow] = useState();
