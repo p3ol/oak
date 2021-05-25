@@ -224,7 +224,6 @@ export default forwardRef((options, ref) => {
     ), null);
 
   const getField = type =>
-    console.log(type, state.fieldTypes) ||
     state.fieldTypes.find(f => f.type === type);
 
   return (
