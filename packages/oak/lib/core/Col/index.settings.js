@@ -2,8 +2,12 @@ export default {
   title: 'Col options',
   popperSettings: {
     placement: 'bottom-end',
-    strategy: 'fixed',
-    positionFixed: true,
+    modifiers: [{
+      name: 'offset',
+      options: {
+        offset: [0, 5],
+      },
+    }],
   },
   fields: [{
     type: 'select',

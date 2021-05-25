@@ -2,8 +2,12 @@ export default {
   title: 'Row options',
   popperSettings: {
     placement: 'right-start',
-    strategy: 'fixed',
-    positionFixed: true,
+    modifiers: [{
+      name: 'offset',
+      options: {
+        offset: [0, 5],
+      },
+    }],
   },
   fields: [{
     type: 'select',
