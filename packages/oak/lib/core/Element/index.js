@@ -39,7 +39,7 @@ const Element = ({
     <Droppable disabled={element.type === 'row'} onDrop={onDrop_}>
       <Draggable data={element} disabled={element.type === 'row'}>
         <div
-          ref={elementInnerRef.current}
+          ref={elementInnerRef}
           id={element.id || nanoid()}
           className={classNames(
             'oak-element',
