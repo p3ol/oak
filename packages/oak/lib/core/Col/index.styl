@@ -35,8 +35,18 @@
         color: $color-shuttle-gray
         margin-left: 5px
 
+        &:hover
+          color: $color-tiber
+
+        &.oak-opened
+          &, &:hover
+            background: $color-tiber
+            color: $color-white
+
         i
           font-size: 20px
+          position: relative
+          top: 2px
 
     .oak-catalogue
       display: flex
@@ -143,3 +153,7 @@
 
       & span
         font-size: 15px
+
+  .oak-editable
+    .oak-title
+      border-radius: 3px 0 0 0

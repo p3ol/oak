@@ -1,10 +1,10 @@
 export default {
   title: 'Col options',
-  // popperSettings: {
-  //   placement: 'right-start',
-  //   strategy: 'fixed',
-  //   positionFixed: true,
-  // },
+  popperSettings: {
+    placement: 'bottom-end',
+    strategy: 'fixed',
+    positionFixed: true,
+  },
   fields: [{
     type: 'select',
     key: 'size',
