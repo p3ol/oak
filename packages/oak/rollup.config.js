@@ -3,6 +3,7 @@ import path from 'path';
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import url from '@rollup/plugin-url';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import { terser } from 'rollup-plugin-terser';
@@ -24,6 +25,9 @@ const defaultPlugins = [
     rootDir: path.resolve('../../'),
   }),
   commonjs(),
+  url({
+    include: ['**/*.eot', '**/*.svg', '**/*.ttf', '**/*.woff'],
+  }),
   terser(),
 ];
 
