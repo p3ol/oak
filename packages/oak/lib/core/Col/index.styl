@@ -96,9 +96,15 @@
           display: none
 
     .oak-col-content
+      .oak-element
+        margin-bottom: 0
+
       .oak-element.oak-row
         margin-top: 40px
         margin-bottom: 0
+
+        &:first-child
+          margin-top: 20px
 
         &, &:first-child
           & > .oak-inner
@@ -108,7 +114,7 @@
         .oak-col-wrapper
           background: $color-white
 
-          .oak-element .oak-inner
+          .oak-element:not(.oak-row) .oak-inner
             background: $color-link-water
 
           .oak-col-wrapper
@@ -118,8 +124,8 @@
               background: transparent
               border: 1px solid $color-hawkes-blue
 
-              .oak-element:not(.oak-row) .oak-inner
-                background: $color-white
+            .oak-element:not(.oak-row) .oak-inner
+              background: $color-white
 
       .oak-element
         .oak-inner

@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { classNames } from '@poool/junipero-utils';
+import { classNames, omit } from '@poool/junipero-utils';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
@@ -39,7 +39,7 @@ const Row = ({
 
   return (
     <div
-      { ...rest }
+      { ...omit(rest, ['builder']) }
       style={element.style}
     >
       <Droppable onDrop={onDropElement.bind(null, 'before')}>
