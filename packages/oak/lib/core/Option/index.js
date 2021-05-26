@@ -1,6 +1,8 @@
 import { forwardRef } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
+import Icon from '../Icon';
+
 export default forwardRef(({
   className,
   option,
@@ -16,7 +18,7 @@ export default forwardRef(({
     className={classNames('oak-option', className)}
   >
     { renderIcon ? renderIcon?.() : (
-      <i className="material-icons">{ option?.icon }</i>
+      <Icon name={option?.icon} />
     ) }
   </a>
 ));

@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 
+import Icon from '../Icon';
+
 const TextEditor = ({
   value,
   onChange = () => {},
@@ -32,7 +34,7 @@ const TextEditor = ({
             key={key}
             onClick={e => changeStyle(e, modifier.property)}
           >
-            <i className="material-icons">{modifier.icon}</i>
+            <Icon name={modifier.icon} />
           </button>
         ))}
       </div>
