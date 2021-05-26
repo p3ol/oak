@@ -101,7 +101,9 @@ export default forwardRef(({
         { group.components.map((c, i) => (
           <div key={c.id || i} className="oak-component">
             <a href="#" draggable={false} onClick={onAppend_.bind(null, c)}>
-              <Icon className="oak-component-icon">{ c.icon }</Icon>
+              { typeof c.icon === 'function' ? c.icon() : (
+                <Icon className="oak-component-icon">{ c.icon }</Icon>
+              ) }
               <span>{ c.name }</span>
             </a>
           </div>
