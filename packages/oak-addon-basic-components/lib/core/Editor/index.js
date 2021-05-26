@@ -4,9 +4,10 @@ import { Slate, Editable, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
 import { mockState } from '@poool/junipero-utils';
 
+import { withHtml } from './html';
 import Element from './Element';
 import Leaf from './Leaf';
-import { withHtml } from './html';
+import MarkButton from './MarkButton';
 
 export default ({
   value,
@@ -38,11 +39,18 @@ export default ({
       value={state.value}
       onChange={onChange_}
     >
-      <Editable
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        className="oak-text-editor"
-      />
+      <div className="oak-text-editor">
+        <div className="oak-toolbar">
+          <MarkButton format="bold" icon="format_bold" />
+          <MarkButton format="italic" icon="format_italic" />
+          <MarkButton format="underline" icon="format_underlined" />
+        </div>
+        <Editable
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          className="oak-text-editable"
+        />
+      </div>
     </Slate>
   );
 };
