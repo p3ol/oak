@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Builder } from './';
 
-export default { title: 'oak' };
+export default { title: 'oak-react' };
 
 export const basicConfig = () => {
   const [value, setValue] = useState();
