@@ -17,8 +17,11 @@ export default forwardRef(({
     draggable={draggable ?? false}
     className={classNames('oak-option', className)}
   >
-    { renderIcon ? renderIcon?.() : (
-      <Icon name={option?.icon} />
-    ) }
+    { renderIcon
+      ? renderIcon?.()
+      : typeof option?.icon === 'function'
+        ? option?.icon?.()
+        : <Icon>{ option?.icon }</Icon>
+    }
   </a>
 ));

@@ -75,7 +75,7 @@ const Col = ({
       <div className="oak-col-wrapper">
         <div className="oak-divider oak-prepend">
           <a href="#" draggable={false} onClick={onPrependCol_}>
-            <Icon name="add" className="oak-append-icon" />
+            <Icon className="oak-append-icon">add</Icon>
           </a>
         </div>
         <Droppable disabled={element.content.length > 0} onDrop={onDrop_}>
@@ -108,7 +108,7 @@ const Col = ({
         </Droppable>
         <div className="oak-divider oak-append">
           <a href="#" draggable={false} onClick={onAppendCol_}>
-            <Icon name="add" className="oak-append-icon" />
+            <Icon className="oak-append-icon">add</Icon>
           </a>
         </div>
 
