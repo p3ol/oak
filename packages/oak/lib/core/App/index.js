@@ -1,6 +1,6 @@
 import {
   forwardRef,
-  useLayoutEffect,
+  useEffect,
   useReducer,
   useImperativeHandle,
 } from 'react';
@@ -19,7 +19,7 @@ export default forwardRef((options, ref) => {
     fieldTypes: [FIELD_TEXT, FIELD_SELECT],
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     init();
   }, []);
 
@@ -55,25 +55,27 @@ export default forwardRef((options, ref) => {
   });
 
   const init = () => {
-    options.addons.forEach(addon => {
-      if (addon.fieldTypes) {
-        state.fieldTypes = (state.fieldTypes || [])
-          .concat(addon.fieldTypes);
-      }
+    if (options.addons) {
+      options.addons.forEach(addon => {
+        if (addon.fieldTypes) {
+          state.fieldTypes = (state.fieldTypes || [])
+            .concat(addon.fieldTypes);
+        }
 
-      if (addon.components) {
-        addon.components.forEach(c => {
-          if (c.group) {
-            const group = getGroup_(c.group);
-            group.components.push(c.component);
-          } else if (c.type === 'group') {
-            state.components.push(c);
-          } else {
-            getGroup_('other').push(c);
-          }
-        });
-      }
-    });
+        if (addon.components) {
+          addon.components.forEach(c => {
+            if (c.group) {
+              const group = getGroup_(c.group);
+              group.components.push(c.component);
+            } else if (c.type === 'group') {
+              state.components.push(c);
+            } else {
+              getGroup_('other').push(c);
+            }
+          });
+        }
+      });
+    }
 
     if (options.content) {
       const content_ = cloneDeep(options.content);
@@ -82,6 +84,11 @@ export default forwardRef((options, ref) => {
     }
 
     dispatch(state);
+  };
+
+  const onChange = content => {
+    dispatch({ content: content || state.content });
+    options?.events?.onChange?.({ value: content || state.content });
   };
 
   const getGroup_ = id => {
@@ -95,6 +102,7 @@ export default forwardRef((options, ref) => {
     state.components.splice(
       state.components.length - 2, 0, { id, name, components, type: 'group' }
     );
+
     dispatch({ components: state.components });
   };
 
@@ -128,7 +136,7 @@ export default forwardRef((options, ref) => {
         parent.push(elmt);
     }
 
-    dispatch({ content: state.content });
+    onChange();
   };
 
   const removeElement = (elmt, { parent = state.content } = {}) => {
@@ -137,12 +145,12 @@ export default forwardRef((options, ref) => {
     }
 
     parent.splice(parent.findIndex(e => e.id === elmt.id), 1);
-    dispatch({ content: state.content });
+    onChange();
   };
 
   const setElement = (elmt, props) => {
     Object.assign(elmt, props);
-    dispatch({ content: state.content });
+    onChange();
   };
 
   const moveElement = (
@@ -164,7 +172,7 @@ export default forwardRef((options, ref) => {
 
     const newIndex = parent.indexOf(target);
     parent.splice(position === 'after' ? newIndex + 1 : newIndex, 0, elmt);
-    dispatch({ content: state.content });
+    onChange();
   };
 
   const findNearestParent = (elmt, { parent = state.content } = {}) => {
@@ -219,7 +227,7 @@ export default forwardRef((options, ref) => {
   const setContent = content_ => {
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
-    dispatch({ content: content_ });
+    onChange(content_);
   };
 
   const getComponent = (type, { parent = state.components } = {}) =>
