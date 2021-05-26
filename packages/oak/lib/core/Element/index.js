@@ -58,7 +58,7 @@ const Element = ({
 
           <div className="oak-options">
             <Option
-              option={{ icon: 'close' }}
+              option={{ icon: 'clear' }}
               className="oak-remove"
               onClick={onDelete_}
             />
