@@ -95,26 +95,30 @@ export default forwardRef(({
     setElement(element, state.element);
   };
 
-  const onSettingCustomChange_ = (name, field) => {
-    const changes = field
-      .onChange(name, field.checked ?? field.value, state.element);
+  const onSettingCustomChange_ = (name, renderer, field) => {
+    const changes = renderer
+      .onChange(name, field, state.element);
     dispatch({ element: Object.assign(state.element, changes) });
     setElement(element, state.element);
   };
 
   const renderField = field => {
+    const renderer = getField(field.type) || field;
+
     const commonProps = {
       id: field.id,
       name: field.name,
-      onChange: field.onChange
-        ? onSettingCustomChange_.bind(null, field.key)
+      onChange: renderer.onChange
+        ? onSettingCustomChange_.bind(null, field.key, renderer)
         : onSettingChange_.bind(null, field.key),
       value: get(state.element, field.key) ?? field.default,
     };
 
-    const renderer = getField(field.type) || field;
-
-    return renderer.render?.(commonProps, field, options);
+    return renderer.render?.(commonProps, {
+      field,
+      element: state.element,
+      options,
+    });
   };
 
   const settingsForm = (

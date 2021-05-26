@@ -15,17 +15,28 @@ export const basicConfig = () => {
     dispatch({ value });
   };
 
+  // Simulate file upload
+  const onImageUpload = e => {
+    return new Promise(resolve => {
+      const file = e.target.files[0];
+
+      if (file) {
+        const fr = new FileReader();
+        fr.readAsDataURL(file);
+
+        fr.onload = () => {
+          setTimeout(() => resolve(fr.result), 2000);
+        };
+      }
+    });
+  };
+
   return (
-    <>
-      <Builder
-        options={{ addons: [basicComponents] }}
-        value={state.value}
-        onChange={onChange}
-      />
-      <div>
-        Raw value:
-        <pre>{ JSON.stringify(state.value, null, 2) }</pre>
-      </div>
-    </>
+    <Builder
+      addons={[basicComponents]}
+      value={state.value}
+      onChange={onChange}
+      onImageUpload={onImageUpload}
+    />
   );
 };

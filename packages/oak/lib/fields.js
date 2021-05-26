@@ -9,7 +9,7 @@ export const FIELD_TEXT = {
 
 export const FIELD_SELECT = {
   type: 'select',
-  render: (props, field) => (
+  render: (props, { field } = {}) => (
     <SelectField
       { ...props }
       options={field.options}

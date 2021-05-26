@@ -5,12 +5,14 @@ import { useOptions } from '@poool/oak';
 export default ({
   className,
   value,
+  fileName,
   onChange,
   accept = ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'],
 }) => {
   const { events } = useOptions();
   const [state, dispatch] = useReducer(mockState, {
     value,
+    name: fileName || '',
     loading: false,
   });
 
@@ -33,8 +35,8 @@ export default ({
     dispatch({ loading: true });
 
     if (events?.onImageUpload) {
-      const url = await events.onImageUpload(event);
-      onUrlReady(url);
+      const result = await events.onImageUpload(event);
+      onUrlReady(result);
     } else {
       const file = e.target.files[0];
 
@@ -43,7 +45,7 @@ export default ({
         fr.readAsDataURL(file);
 
         fr.onload = () => {
-          onUrlReady(fr.result);
+          onUrlReady({ url: fr.result, name: file.name });
         };
       } else {
         dispatch({ loading: false });
@@ -51,9 +53,9 @@ export default ({
     }
   };
 
-  const onUrlReady = url => {
-    dispatch({ value: url });
-    onChange({ value: url });
+  const onUrlReady = ({ url, name } = {}) => {
+    dispatch({ value: url, name });
+    onChange({ value: url, name });
     dispatch({ loading: false });
   };
 

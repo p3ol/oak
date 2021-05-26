@@ -14,11 +14,11 @@ export default {
     ),
   }, {
     type: 'image',
-    onChange: (key, value) => {
-      return { name: value.split('/').pop(), url: value };
+    onChange: (key, { value, name }) => {
+      return { name, url: value };
     },
-    render: props => (
-      <ImageField { ...props } />
+    render: (props, { element } = {}) => (
+      <ImageField name={element.name} { ...props } />
     ),
   }],
   components: [{

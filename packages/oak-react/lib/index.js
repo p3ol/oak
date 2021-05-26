@@ -6,7 +6,9 @@ export { useOptions, useBuilder };
 export const Builder = forwardRef(({
   options = {},
   value,
+  containerProps,
   onChange,
+  onImageUpload,
   ...rest
 }, ref) => {
   const innerRef = useRef();
@@ -23,15 +25,18 @@ export const Builder = forwardRef(({
   useEffect(() => {
     render(innerRef.current, {
       ...options,
+      ...rest,
       content: value,
       events: {
         ...options.events,
+        ...rest.events,
         onChange,
+        onImageUpload,
       },
     });
   }, [innerRef.current]);
 
   return (
-    <div { ...rest } ref={innerRef} />
+    <div { ...containerProps } ref={innerRef} />
   );
 });
