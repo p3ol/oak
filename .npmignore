@@ -1,0 +1,8 @@
+.npmrc
+coverage
+.ci
+.github
+.storybook
+*.stories.js
+oak-icons.json
+.DS_Store
