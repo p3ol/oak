@@ -1,6 +1,7 @@
 import { useMemo, useCallback, useReducer, useEffect } from 'react';
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
+import { withHistory } from 'slate-history';
 import { mockState } from '@poool/junipero-utils';
 
 import Element from './Element';
@@ -11,9 +12,11 @@ export default ({
   value,
   onChange,
 }) => {
-  const editor = useMemo(() => withReact(withHtml(createEditor())), []);
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
+  const editor = useMemo(() => (
+    withHtml(withHistory(withReact(createEditor())))
+  ), []);
   const [state, dispatch] = useReducer(mockState, {
     value: value || [{ children: [{ text: '' }] }],
   });
