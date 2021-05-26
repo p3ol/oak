@@ -8,6 +8,7 @@ import Element from '../Element';
 import Droppable from '../Droppable';
 import Editable from '../Editable';
 import settings from './index.settings';
+import Icon from '../Icon';
 
 const Col = ({
   element,
@@ -73,9 +74,7 @@ const Col = ({
       <div className="oak-col-wrapper">
         <div className="oak-divider oak-prepend">
           <a href="#" draggable={false} onClick={onPrependCol_}>
-            <span className="material-icons">
-              add
-            </span>
+            <Icon name="add" className="oak-append-icon" />
           </a>
         </div>
         <Droppable disabled={element.content.length > 0} onDrop={onDrop_}>
@@ -108,9 +107,7 @@ const Col = ({
         </Droppable>
         <div className="oak-divider oak-append">
           <a href="#" draggable={false} onClick={onAppendCol_}>
-            <span className="material-icons">
-              add
-            </span>
+            <Icon name="add" className="oak-append-icon" />
           </a>
         </div>
 
