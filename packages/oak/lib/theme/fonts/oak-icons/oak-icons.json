@@ -807,7 +807,11 @@
         {
           "ligatures": "create, mode_edit, edit",
           "id": 157,
-          "order": 0
+          "order": 23,
+          "prevSize": 24,
+          "code": 59667,
+          "name": "create",
+          "tempChar": ""
         },
         {
           "ligatures": "drafts",
@@ -1346,7 +1350,7 @@
           "prevSize": 24,
           "code": 59651,
           "name": "format_align_center",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_align_justify",
@@ -1355,7 +1359,7 @@
           "prevSize": 24,
           "code": 59652,
           "name": "format_align_justify",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_align_left",
@@ -1364,7 +1368,7 @@
           "prevSize": 24,
           "code": 59653,
           "name": "format_align_left",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_align_right",
@@ -1373,7 +1377,7 @@
           "prevSize": 24,
           "code": 59654,
           "name": "format_align_right",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_bold",
@@ -1382,7 +1386,7 @@
           "prevSize": 24,
           "code": 59655,
           "name": "format_bold",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_clear",
@@ -1406,7 +1410,7 @@
           "prevSize": 24,
           "code": 59656,
           "name": "format_color_text",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_indent_decrease",
@@ -1425,7 +1429,7 @@
           "prevSize": 24,
           "code": 59657,
           "name": "format_italic",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_line_spacing",
@@ -1439,7 +1443,7 @@
           "prevSize": 24,
           "code": 59658,
           "name": "format_list_bulleted",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_list_numbered",
@@ -1448,7 +1452,7 @@
           "prevSize": 24,
           "code": 59659,
           "name": "format_list_numbered",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_paint",
@@ -1462,7 +1466,7 @@
           "prevSize": 24,
           "code": 59660,
           "name": "format_quote",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_size",
@@ -1491,7 +1495,7 @@
           "prevSize": 24,
           "code": 59661,
           "name": "format_underlined",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "functions",
@@ -1530,7 +1534,7 @@
           "prevSize": 24,
           "code": 59662,
           "name": "insert_photo",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "mode_comment",
@@ -1584,7 +1588,7 @@
           "prevSize": 24,
           "code": 59663,
           "name": "drag_handle",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_shapes",
@@ -1613,7 +1617,7 @@
           "prevSize": 24,
           "code": 59664,
           "name": "text_fields",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "monetization_on",
@@ -1627,7 +1631,7 @@
           "prevSize": 24,
           "code": 59665,
           "name": "title",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "table_chart",
@@ -4261,7 +4265,7 @@
           "prevSize": 24,
           "code": 59666,
           "name": "view_column",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "view_day",
