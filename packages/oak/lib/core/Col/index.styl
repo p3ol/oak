@@ -1,0 +1,156 @@
+@require "../../theme/colors"
+
+.oak-col
+  flex: 1 0 0
+  position: relative
+
+  for $i in (1..12)
+    &-{$i}
+      flex: 0 0 (($i / 12) * 100)%
+      width: (($i / 12) * 100)%
+      max-width: (($i / 12) * 100)%
+
+  &:first-child > .oak-col-wrapper
+    border-radius: 0 5px 5px 5px
+
+  .oak-col-wrapper
+    background: $color-link-water
+    display: flex
+    flex-direction: row
+    position: relative
+    border-radius: 5px
+    width: 100%
+    min-height: 150px
+
+    & > .oak-options
+      visibility: visible
+      position: absolute
+      top: 10px
+      right: 10px
+      left: auto
+      transform: none
+
+      & > .oak-option
+        background: transparent
+        color: $color-shuttle-gray
+        margin-left: 5px
+        border-radius: 3px
+
+        &:hover
+          color: $color-tiber
+
+        &.oak-opened
+          &, &:hover
+            background: $color-tiber
+            color: $color-white
+
+        i
+          font-size: 20px
+          position: relative
+          top: 2px
+
+    .oak-catalogue
+      display: flex
+      flex-direction: row
+      justify-content: center
+
+      .oak-handle
+        width: 26px
+        height: 26px
+
+        &:before, &:after
+          height: 12px
+
+      &:last-child
+        margin-top: 10px
+
+      &:first-child:last-child
+        height: calc(100% - 60px)
+        align-items: center
+        margin-top: 0
+        margin: 30px 0
+
+        .oak-handle
+          width: 40px
+          height: 40px
+
+          &:before, &:after
+            height: 16px
+
+  .oak-col-inner
+    padding: 10px 0
+    flex: 1 0 0
+
+    &.drag-enter
+      .oak-catalogue
+        background: $color-catskill-white
+        border-radius: 5px
+
+        .oak-handle
+          display: none
+
+    .oak-col-content
+      .oak-element.oak-row
+        margin-top: 40px
+        margin-bottom: 0
+
+        &, &:first-child
+          & > .oak-inner
+            margin-top: 0
+            background: transparent
+
+        .oak-col-wrapper
+          background: $color-white
+
+          .oak-element .oak-inner
+            background: $color-link-water
+
+          .oak-col-wrapper
+            background: $color-link-water
+
+            .oak-col-wrapper
+              background: transparent
+              border: 1px solid $color-hawkes-blue
+
+              .oak-element:not(.oak-row) .oak-inner
+                background: $color-white
+
+      .oak-element
+        .oak-inner
+          background: $color-white
+          margin-top: 20px
+
+        &:first-child
+          .oak-inner
+            margin-top: 10px
+
+  .oak-divider
+    display: flex
+    flex: 0 0 auto
+    flex-direction: row
+    align-items: center
+
+    &.oak-prepend
+      justify-content: flex-start
+
+      a
+        margin-right: 20px
+
+    &.oak-append
+      justify-content: flex-end
+
+      a
+        margin-left: 20px
+
+    a
+      display: flex
+      text-decoration: none
+      align-items: center
+      justify-content: center
+      width: 15px
+      height 50px
+      background: $color-catskill-white
+      color: $color-shuttle-gray
+
+      & span
+        font-size: 15px

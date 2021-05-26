@@ -1,67 +1,81 @@
-import { useRef, useContext, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 import { classNames } from '@poool/junipero-utils';
 
-import { AppContext } from '../../contexts';
-import Catalogue from '../Catalogue';
-import Element from '../Element';
-import Option from '../Option';
+import { useBuilder } from '../../hooks';
+import Col from '../Col';
+import Droppable from '../Droppable';
+import options from './index.options';
+import settings from './index.settings';
 
-import styles from './index.styl';
+const Row = ({
+  element,
+  parent,
+  onEdit,
+  ...rest
+}) => {
+  const { setElement, removeElement, moveElement } = useBuilder();
 
-const Row = ({ className, element }) => {
-  const catalogueRef = useRef();
-  const { addElement, removeElement, setElement } = useContext(AppContext);
+  const onDivide = (index, isBefore) => {
+    element.cols.splice(isBefore ? index : index + 1, 0, {
+      content: [],
+      id: nanoid(),
+      style: {},
+    });
 
-  useEffect(() => {
-    if (!element.cols?.length) {
-      setElement(element, { cols: [{ size: 12, content: [] }] });
+    setElement(element, { cols: element.cols });
+  };
+
+  const onRemoveCol = index => {
+    element.cols.splice(index, 1);
+    setElement(element, { cols: element.cols });
+
+    if (element.cols.length <= 0) {
+      removeElement(element, { parent });
     }
-  }, []);
+  };
 
-  const onAppend = (col, component) => {
-    addElement(component.construct(), col.content);
-    catalogueRef.current?.close();
+  const onDropElement = (position, data) => {
+    moveElement(data, element, { parent, position });
   };
 
   return (
-    <div className={classNames(className, styles.row)}>
-      { element?.cols?.map((col, i) => (
-        <div className={styles.col} key={i}>
-          <div className={styles.content}>
-            { col.content?.map((item, i) => (
-              <Element
-                key={i}
-                element={item}
-                className={styles.element}
-                onDelete={removeElement.bind(null, item, col.content)}
-              />
-            )) }
-          </div>
-
-          <div className={styles.addElement}>
-            <Catalogue
-              className={styles.catalogue}
-              ref={catalogueRef}
-              onAppend={onAppend.bind(null, col)}
-            />
-          </div>
-        </div>
-      ))}
+    <div
+      { ...rest }
+      style={element.style}
+    >
+      <Droppable onDrop={onDropElement.bind(null, 'before')}>
+        <div className="oak-drop-zone oak-before" />
+      </Droppable>
+      <div
+        className={classNames(
+          'oak-row-content',
+          element.settings?.flexDirection &&
+            'oak-direction-' + element.settings.flexDirection,
+          element.settings?.alignItems &&
+            'oak-align-' + element.settings.alignItems,
+          element.settings?.justifyContent &&
+            'oak-justify-' + element.settings.justifyContent,
+        )}
+      >
+        { element?.cols?.map((col, i) => (
+          <Col
+            key={i}
+            element={col}
+            onPrepend={onDivide.bind(null, i, true)}
+            onAppend={onDivide.bind(null, i, false)}
+            onRemove={onRemoveCol.bind(null, i)}
+            onEdit={onEdit}
+          />
+        )) }
+      </div>
+      <Droppable onDrop={onDropElement.bind(null, 'after')}>
+        <div className="oak-drop-zone oak-after" />
+      </Droppable>
     </div>
   );
 };
 
-Row.options = [{
-  name: 'cols',
-  render: ({ option, element, className }) => {
-
-    return (
-      <Option
-        option={{ icon: 'view_column' }}
-        className={classNames(className, styles.column)}
-      />
-    );
-  },
-}];
+Row.options = options;
+Row.settings = settings;
 
 export default Row;

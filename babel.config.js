@@ -6,8 +6,5 @@ module.exports = {
       runtime: 'automatic',
     }],
   ],
-  plugins: [
-    '@babel/proposal-private-methods',
-    '@babel/proposal-class-properties',
-  ],
+  plugins: [],
 };

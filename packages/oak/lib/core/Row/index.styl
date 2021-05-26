@@ -1,31 +1,101 @@
 @require "../../theme/colors"
+@require "../../theme/vars"
 
-.row
+.oak-row
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row
+  position: relative
   margin-top: 30px
-  margin-bottom: 40px
+  margin-bottom: 20px
+  width: 100%
 
-  .col
-    border-radius: 5px
-    background: $color-link-water
-    min-height: 40px
-    padding: 10px
+  .oak-drop-zone
+    position: absolute
+    left: 0
+    width: 100%
+    z-index: 1
 
-    &:first-child
-      border-radius: 0 5px 5px 5px
+    &:after
+      content: ''
+      width: 100%
+      left: 0
+      height: 5px
+      border-radius: 2px
+      background: $color-catskill-white
+      opacity: 0
+      position: absolute
 
-    & > .content > .element
-      &:last-child
-        & > .row
-          margin-bottom: 10px
+    &.oak-before
+      top: -35px
+      height: 35px
 
-      &> .row
+    &.oak-after
+      top: 100%
+      height: 20px
 
-        & > .col
-          background: $color-white
+      &:after
+        top: 8px
 
-          & > .content > .element > .row > .col
-            background: transparent
-            border: 1px solid $color-hawkes-blue
+    &.drag-enter
+      &:after
+        opacity: 1
 
-  .addElement
-    text-align: center
+  &:first-child
+    border-radius: 0 5px 5px 5px
+
+  & > .oak-inner
+    padding: 0
+    background: none
+
+  > .oak-options
+    top: -25px
+    left: 0
+    transform: none
+    display: flex
+    visibility: visible
+    z-index: 2
+
+    a.oak-option
+      &:first-child
+        border-radius: 3px 0 0 0
+
+        &:last-child
+          border-radius: 3px 3px 0 0
+
+      &:last-child, &.oak-edit
+        border-radius: 0 3px 0 0
+
+      &.oak-drag-handle
+        cursor: move
+        cursor: grab
+
+        &:active
+          cursor: gragging
+
+  .oak-row-content
+    display: flex
+    height: 100%
+    flex-direction: row
+    flex-wrap: wrap
+    margin: -($half-gutter)
+    width: unquote("calc(100% + ") $gutters unquote(")")
+
+    for i in (flex-start center flex-end)
+      $direction = replace(flex-, '', i)
+
+      &.oak-align
+        &-{$direction}
+          align-items: i
+
+      &.oak-justify
+        &-{$direction}
+          justify-content: i
+
+    for i in (row row-reverse column column-reverse)
+      &.oak-direction
+        &-{i}
+          flex-direction: i
+
+    > .oak-col
+      padding: $half-gutter

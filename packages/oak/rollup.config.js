@@ -1,15 +1,14 @@
 import path from 'path';
+
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import { terser } from 'rollup-plugin-terser';
-import alias from '@rollup/plugin-alias';
 
-const isForIE = process.env.BROWSERSLIST_ENV === 'ie';
 const input = './lib/index.js';
-const output = `./dist${isForIE ? '/ie' : ''}`;
+const defaultOutput = './dist';
 const name = 'oak';
 const formats = ['umd', 'cjs', 'esm'];
 
@@ -17,12 +16,6 @@ const defaultExternals = [];
 const defaultGlobals = {};
 
 const defaultPlugins = [
-  alias({
-    entries: {
-      react: require.resolve('preact/compat'),
-      'react-dom': require.resolve('preact/compat'),
-    },
-  }),
   babel({
     exclude: /node_modules/,
     babelHelpers: 'runtime',
@@ -34,36 +27,51 @@ const defaultPlugins = [
   terser(),
 ];
 
-export default [
-  ...formats.map(f => ({
-    input,
-    plugins: [
-      ...defaultPlugins,
-    ],
-    external: defaultExternals,
-    output: {
-      ...(f === 'esm' ? {
-        dir: `${output}/esm`,
-        chunkFileNames: '[name].js',
-      } : {
-        file: `${output}/${name}.${f}.js`,
-      }),
-      format: f,
-      name,
-      sourcemap: true,
-      globals: defaultGlobals,
+const getConfig = (format, {
+  output = defaultOutput,
+  globals = defaultGlobals,
+  external = defaultExternals,
+} = {}) => ({
+  input,
+  plugins: [
+    ...defaultPlugins,
+  ],
+  external,
+  output: {
+    ...(format === 'esm' ? {
+      dir: `${output}/esm`,
+      chunkFileNames: '[name].js',
+    } : {
+      file: `${output}/${name}.${format}.js`,
+    }),
+    format,
+    name,
+    sourcemap: true,
+    globals,
+  },
+  ...(format === 'esm' ? {
+    manualChunks: id => {
+      if (/packages\/oak\/lib\/(\w+)\/index.js/.test(id)) {
+        return path.parse(id).dir.split('/').pop();
+      } else if (id.includes('node_modules')) {
+        return 'vendor';
+      } else {
+        return path.parse(id).name;
+      }
     },
-    ...(f === 'esm' ? {
-      manualChunks: id => {
-        if (/packages\/oak\/lib\/(\w+)\/index.js/.test(id)) {
-          return path.parse(id).dir.split('/').pop();
-        } else if (id.includes('node_modules')) {
-          return 'vendor';
-        } else {
-          return path.parse(id).name;
-        }
-      },
-    } : {}),
+  } : {}),
+});
+
+export default [
+  ...formats.map(f => getConfig(f)),
+  ...formats.map(f => getConfig(f, {
+    output: `${defaultOutput}/react`,
+    external: ['react', 'react-dom', 'react-popper'],
+    globals: {
+      React: 'react',
+      ReactDOM: 'react-dom',
+      ReactPopper: 'react-popper',
+    },
   })),
   {
     input: './lib/index.styl',
@@ -75,13 +83,22 @@ export default [
         extract: true,
         sourceMap: true,
         modules: true,
+        use: {
+          stylus: {
+            paths: [
+              path.resolve('node_modules'),
+              path.resolve('../../node_modules'),
+            ],
+            includeCSS: true,
+          },
+        },
         plugins: [
           autoprefixer({ env: process.env.BROWSERSLIST_ENV }),
         ],
       }),
     ],
     output: {
-      file: `${output}/${name}.min.css`,
+      file: `${defaultOutput}/${name}.min.css`,
     },
     onwarn: (warning, warn) => {
       if (warning.code === 'FILE_NAME_CONFLICT') {

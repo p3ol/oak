@@ -1,22 +1,24 @@
+import { forwardRef } from 'react';
 import { classNames } from '@poool/junipero-utils';
 
-import styles from './index.styl';
+import Icon from '../Icon';
 
-export default ({
+export default forwardRef(({
   className,
   option,
   renderIcon,
+  draggable,
   ...props
-}) => {
-  return (
-    <a
-      { ...props }
-      href="#"
-      className={classNames(styles.option, className)}
-    >
-      { renderIcon ? renderIcon?.() : (
-        <i className="material-icons">{ option?.icon }</i>
-      ) }
-    </a>
-  );
-};
+}, ref) => (
+  <a
+    { ...props }
+    ref={ref}
+    href="#"
+    draggable={draggable ?? false}
+    className={classNames('oak-option', className)}
+  >
+    { renderIcon ? renderIcon?.() : (
+      <Icon name={option?.icon} />
+    ) }
+  </a>
+));

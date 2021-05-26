@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak",
-  "version": "0.0.1-alpha.0",
+  "version": "1.0.0-alpha.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -23,12 +23,15 @@
   "peerDependencies": {},
   "dependencies": {
     "@babel/runtime-corejs3": "7.14.0",
+    "@poool/junipero": "2.0.0-beta.23",
     "@poool/junipero-hooks": "2.0.0-beta.7",
     "@poool/junipero-utils": "2.0.0-beta.7",
     "@popperjs/core": "2.9.2",
     "core-js": "3.13.0",
-    "preact": "10.5.13",
-    "react-popper": "2.2.5"
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-popper": "2.2.5",
+    "nanoid": "3.1.23"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

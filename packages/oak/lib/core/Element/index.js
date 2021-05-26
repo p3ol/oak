@@ -1,78 +1,102 @@
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 import { classNames } from '@poool/junipero-utils';
+import { nanoid } from 'nanoid';
 
 import { COMPONENT_DEFAULT } from '../../components';
-import { useBuilder, useOptions } from '../../hooks';
+import { useBuilder } from '../../hooks';
 import Option from '../Option';
-
-import styles from './index.styl';
+import Draggable from '../Draggable';
+import Droppable from '../Droppable';
+import Editable from '../Editable';
 
 const Element = ({
   element,
+  parent,
   className,
-  onDelete = () => {},
 }) => {
-  const { renderers } = useBuilder();
-  const { debug } = useOptions();
+  const editableRef = useRef();
+  const elementInnerRef = useRef();
+  const settingsElementRef = useRef();
+  const builder = useBuilder();
+  const { getComponent, removeElement, moveElement } = builder;
 
   const onDelete_ = e => {
-    e.preventDefault();
-    onDelete();
+    e?.preventDefault();
+    removeElement(element, { parent });
+  };
+
+  const onDrop_ = (data, position) => {
+    moveElement?.(data, element, { parent, position });
   };
 
   const onEdit_ = e => {
-    e.preventDefault();
+    e?.preventDefault();
+    editableRef.current?.toggle();
   };
 
-  const component = renderers.find(r => r.id === element.type) ||
+  const component = getComponent(element.type) ||
     COMPONENT_DEFAULT;
 
   return (
-    <div
-      className={classNames(
-        styles.element,
-        styles[element?.type],
-        className,
-      )}
-    >
-      { component?.render?.({
-        element,
-        className: classNames(styles.inner, element.className),
-      }) || null }
+    <Droppable disabled={element.type === 'row'} onDrop={onDrop_}>
+      <Draggable data={element} disabled={element.type === 'row'}>
+        <div
+          ref={elementInnerRef}
+          id={element.id || nanoid()}
+          className={classNames(
+            'oak-element',
+            'oak-' + element.type,
+            className
+          )}
+        >
+          { component?.render?.({
+            element,
+            parent,
+            builder,
+            onEdit: onEdit_,
+            className: classNames('oak-inner', element.className),
+          }) || null }
 
-      <div className={styles.options}>
-        <Option
-          option={{ icon: 'close' }}
-          className={classNames(styles.option, styles.remove)}
-          onClick={onDelete_}
-        />
-        { component.options?.map((o, i) => (
-          <Fragment key={i}>
-            { o?.render?.({
-              option: o,
-              className: styles.option,
-              element,
-              component,
-              index: i,
-            }) }
-          </Fragment>
-        )) }
-        { component.editable && (
-          <Option
-            icon={{ icon: 'edit' }}
-            className={classNames(styles.option, styles.edit)}
-            onClick={onEdit_}
-          />
-        ) }
-      </div>
+          <div className="oak-options">
+            <Option
+              option={{ icon: 'clear' }}
+              className="oak-remove"
+              onClick={onDelete_}
+            />
+            { component.options?.map((o, i) => (
+              <Fragment key={i}>
+                { o?.render?.({
+                  option: o,
+                  className: 'oak-option',
+                  element,
+                  elementInnerRef,
+                  parent,
+                  component,
+                  builder,
+                  index: i,
+                }) }
+              </Fragment>
+            )) }
+            { component.editable && (
+              <Editable
+                element={element}
+                component={component}
+                ref={editableRef}
+                container={settingsElementRef}
+              >
+                <Option
+                  option={{ icon: 'edit' }}
+                  className="oak-edit"
+                  onClick={onEdit_}
+                />
+              </Editable>
+            ) }
+          </div>
 
-      { debug && (
-        <pre>
-          <p>Element:</p>
-          { JSON.stringify(element, null, 2) }
-        </pre>
-      )}
-    </div>
+          <div ref={settingsElementRef} />
+        </div>
+      </Draggable>
+    </Droppable>
   );
 };
 

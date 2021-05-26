@@ -1,11 +1,19 @@
 @require '../../theme/colors'
 
-a.option
+a.oak-option
   color: $color-white
   flex: 0 1 auto
-  background: $color-portage
+  background: $color-deep-sea-green
   display: block
   height: 25px
   line-height: 25px
   min-width: 25px
   text-align: center
+  text-decoration: none
+  font-size:24px
+  &.oak-opened
+    background: $color-tiber
+
+  &.oak-light
+    background-color:rgba(255,255,255, 0)
+    color: $color-deep-sea-green

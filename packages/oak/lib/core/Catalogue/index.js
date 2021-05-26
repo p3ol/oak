@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  useContext,
   useImperativeHandle,
   useReducer,
   useState,
@@ -9,9 +8,8 @@ import { usePopper } from 'react-popper';
 import { classNames, mockState } from '@poool/junipero-utils';
 import { useEventListener } from '@poool/junipero-hooks';
 
-import { AppContext } from '../../contexts';
-
-import styles from './index.styl';
+import { useBuilder } from '../../hooks';
+import Icon from '../Icon';
 
 export default forwardRef(({
   globalEventsTarget = global,
@@ -20,7 +18,7 @@ export default forwardRef(({
   onToggle = () => {},
   onAppend = () => {},
 }, ref) => {
-  const { components = [] } = useContext(AppContext);
+  const { components = [] } = useBuilder();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
   const [arrow, setArrow] = useState();
@@ -63,6 +61,16 @@ export default forwardRef(({
     onToggle({ opened: false });
   };
 
+  const toggle = e => {
+    e.preventDefault();
+
+    if (state.opened) {
+      close();
+    } else {
+      open();
+    }
+  };
+
   const onClickOutside_ = e => {
     if (!popper || !reference) {
       return;
@@ -88,13 +96,16 @@ export default forwardRef(({
     }
 
     return (
-      <ul className={styles.components}>
-        { group.components.map(c => (
-          <li key={c.id}>
-            <a href="#" onClick={onAppend_.bind(null, c)}>{ c.name }</a>
-          </li>
+      <div className="oak-components">
+        { group.components.map((c, i) => (
+          <div key={c.id || i} className="oak-component">
+            <a href="#" draggable={false} onClick={onAppend_.bind(null, c)}>
+              <Icon name={c.icon} className="oak-component-icon" />
+              <span>{ c.name }</span>
+            </a>
+          </div>
         )) }
-      </ul>
+      </div>
     );
   };
 
@@ -111,51 +122,58 @@ export default forwardRef(({
   return (
     <div
       className={classNames(
-        styles.catalogue,
-        { [styles.opened]: state.opened },
+        'oak-catalogue',
+        { opened: state.opened },
       )}
     >
       <a
         ref={setReference}
-        className={styles.handle}
-        onClick={open}
+        className="oak-handle"
+        onClick={toggle}
+        draggable={false}
       />
       { state.opened && (
         <div
           ref={setPopper}
           style={popperStyles.popper}
-          className={styles.popover}
+          className="oak-popover"
           {...attributes.popper}
           data-placement={placement}
         >
-          <div className={styles.groups}>
-            <ul className={styles.tabs}>
+          <div className="oak-groups">
+            <ul className="oak-tabs">
               { getGroups().map((g, i) => (
                 <li
                   key={g.id}
                   className={classNames(
-                    styles.tab,
+                    'oak-tab',
                     {
-                      [styles.active]: (!state.currentTab && i === 0) ||
+                      active: (!state.currentTab && i === 0) ||
                         state.currentTab === g,
                     }
                   )}
                 >
-                  <a href="#" onClick={onGroupSelect.bind(null, g)}>
+                  <a
+                    href="#"
+                    onClick={e => {
+                      e.preventDefault();
+                      onGroupSelect(g);
+                    }}
+                  >
                     { g.name }
                   </a>
                 </li>
               )) }
             </ul>
 
-            <div className={styles.group}>
+            <div className="oak-group">
               { renderComponents() }
             </div>
           </div>
           <div
             ref={setArrow}
             style={popperStyles.arrow}
-            className={styles.arrow}
+            className="oak-arrow"
           />
         </div>
       ) }

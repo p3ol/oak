@@ -4,11 +4,14 @@ import { useOptions, useBuilder } from '../../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
 
-import styles from './index.styl';
-
 export default () => {
   const catalogueRef = useRef();
-  const { renderers, content, addElement, removeElement } = useBuilder();
+  const {
+    components,
+    content,
+    addElement,
+  } = useBuilder();
+
   const { debug } = useOptions();
 
   const onAppend = component => {
@@ -17,21 +20,17 @@ export default () => {
   };
 
   return (
-    <div className={styles.builder}>
+    <div className="oak-builder">
       { content.map((item, i) => (
         <Element
-          key={i}
+          key={item.id || i}
+          index={i}
           element={item}
-          onDelete={removeElement.bind(null, item)}
         />
       )) }
 
-      <div className={styles.addElement}>
-        <Catalogue
-          className={styles.catalogue}
-          ref={catalogueRef}
-          onAppend={onAppend}
-        />
+      <div className="oak-add-element">
+        <Catalogue ref={catalogueRef} onAppend={onAppend} />
       </div>
 
       { debug && (
@@ -39,8 +38,8 @@ export default () => {
           <p>Content:</p>
           { JSON.stringify(content, null, 2) }
 
-          <p>Renderers:</p>
-          { JSON.stringify(renderers, null, 2) }
+          <p>Components:</p>
+          { JSON.stringify(components, null, 2) }
         </pre>
       )}
     </div>
