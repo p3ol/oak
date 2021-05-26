@@ -1,5 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import { render } from '@poool/oak';
+import { render, useOptions, useBuilder } from '@poool/oak';
+
+export { useOptions, useBuilder };
 
 export const Builder = forwardRef(({
   options = {},
