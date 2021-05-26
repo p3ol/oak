@@ -11,11 +11,11 @@ export default ({
   value,
   onChange,
 }) => {
-  const editor = useMemo(() => withHtml(withReact(createEditor()), []));
+  const editor = useMemo(() => withReact(withHtml(createEditor())), []);
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
   const [state, dispatch] = useReducer(mockState, {
-    value: value || [{ type: 'paragraph', children: [{ text: '' }] }],
+    value: value || [{ children: [{ text: '' }] }],
   });
 
   useEffect(() => {

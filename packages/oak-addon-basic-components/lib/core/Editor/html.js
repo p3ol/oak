@@ -77,14 +77,16 @@ export const withHtml = editor => {
   };
 
   editor.isVoid = element => {
-    return element.type === 'image' ? true : isVoid(element);
+    return ['style', 'script', 'image'].includes(element.type) ||
+      isVoid(element);
   };
 
   editor.insertData = data => {
     const html = data.getData('text/html');
 
     if (html) {
-      const fragment = deserialize(html);
+      const parsed = new DOMParser().parseFromString(html, 'text/html');
+      const fragment = deserializeNode(parsed.body);
       Transforms.insertFragment(editor, fragment);
 
       return;
