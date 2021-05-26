@@ -1,12 +1,5 @@
+import { classNames } from '@poool/junipero-utils';
 
-export default ({ name, className }) => {
-
-  return (
-    <span
-      style={{ fontFamily: 'oak-ico' }}
-      className={className}
-    >
-      { name }
-    </span>
-  );
-};
+export default ({ className, ...rest }) => (
+  <i className={classNames('oak-icons', className)} { ...rest } />
+);
