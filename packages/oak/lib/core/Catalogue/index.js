@@ -9,6 +9,7 @@ import { classNames, mockState } from '@poool/junipero-utils';
 import { useEventListener } from '@poool/junipero-hooks';
 
 import { useBuilder } from '../../hooks';
+import Icon from '../Icon';
 
 export default forwardRef(({
   globalEventsTarget = global,
@@ -99,7 +100,7 @@ export default forwardRef(({
         { group.components.map((c, i) => (
           <div key={c.id || i} className="oak-component">
             <a href="#" draggable={false} onClick={onAppend_.bind(null, c)}>
-              <i className="material-icons">{ c.icon }</i>
+              <Icon name={c.icon} className="oak-component-icon" />
               <span>{ c.name }</span>
             </a>
           </div>
