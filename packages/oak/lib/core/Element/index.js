@@ -53,7 +53,6 @@ const Element = ({
             element,
             parent,
             builder,
-            onEdit: onEdit_,
             className: classNames('oak-inner', element.className),
           }) || null }
 

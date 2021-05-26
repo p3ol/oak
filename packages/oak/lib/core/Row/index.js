@@ -10,7 +10,6 @@ import settings from './index.settings';
 const Row = ({
   element,
   parent,
-  onEdit,
   ...rest
 }) => {
   const { setElement, removeElement, moveElement } = useBuilder();
@@ -64,7 +63,6 @@ const Row = ({
             onPrepend={onDivide.bind(null, i, true)}
             onAppend={onDivide.bind(null, i, false)}
             onRemove={onRemoveCol.bind(null, i)}
-            onEdit={onEdit}
           />
         )) }
       </div>
