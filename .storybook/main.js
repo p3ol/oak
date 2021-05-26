@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../packages/**/*.stories.js'],
+  stories: ['../packages/*/lib/**/*.stories.js'],
   core: {
     builder: 'webpack5',
   }
