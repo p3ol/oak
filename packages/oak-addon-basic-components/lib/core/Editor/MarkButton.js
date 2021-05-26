@@ -1,22 +1,15 @@
-import { Editor } from 'slate';
 import { useSlate } from 'slate-react';
 import { classNames } from '@poool/junipero-utils';
 
-export default ({ format, icon }) => {
+import { isMarkActive, toggleMark } from './editor';
+
+export default ({ format, icon, className }) => {
   const editor = useSlate();
 
   const onClick = e => {
     e.preventDefault();
-
-    if (isActive()) {
-      Editor.removeMark(editor, format);
-    } else {
-      Editor.addMark(editor, format, true);
-    }
+    toggleMark(editor, format);
   };
-
-  const isActive = () =>
-    Editor.marks(editor)?.[format] === true;
 
   return (
     <a
@@ -24,9 +17,11 @@ export default ({ format, icon }) => {
       onClick={onClick}
       className={classNames(
         'oak-toolbar-button',
+        'oak-' + format,
         {
-          'oak-active': isActive(),
+          'oak-active': isMarkActive(editor, format),
         },
+        className,
       )}
     >
       <i className="oak-icons">{ icon }</i>

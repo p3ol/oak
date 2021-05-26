@@ -27,6 +27,7 @@
     "@poool/junipero-utils": "2.0.0-beta.7",
     "@poool/oak": "1.0.0-alpha.0",
     "core-js": "3.12.1",
+    "is-hotkey": "0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "slate": "0.63.0",

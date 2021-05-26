@@ -1,4 +1,4 @@
-import { Transforms, Node } from 'slate';
+import { Node } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const ELEMENT_TAGS = {
@@ -67,33 +67,4 @@ export const deserialize = content => {
   const result = deserializeNode(parsed.body);
 
   return [{ children: result }];
-};
-
-export const withHtml = editor => {
-  const { insertData, isInline, isVoid } = editor;
-
-  editor.isInline = element => {
-    return element.type === 'link' ? true : isInline(element);
-  };
-
-  editor.isVoid = element => {
-    return ['style', 'script', 'image'].includes(element.type) ||
-      isVoid(element);
-  };
-
-  editor.insertData = data => {
-    const html = data.getData('text/html');
-
-    if (html) {
-      const parsed = new DOMParser().parseFromString(html, 'text/html');
-      const fragment = deserializeNode(parsed.body);
-      Transforms.insertFragment(editor, fragment);
-
-      return;
-    }
-
-    insertData(data);
-  };
-
-  return editor;
 };

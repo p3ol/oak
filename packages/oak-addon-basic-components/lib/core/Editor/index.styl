@@ -8,9 +8,28 @@
     background: $color-catskill-white
     border-radius: 4px 4px 0 0
     padding: 4px 5px
+    display: flex
+    align-items: center
+
+    a.oak-toolbar-button
+      border-radius: 2px
+      display: flex
+      margin-right: 5px
+      align-items: center
+      justify-content: center
+      text-decoration: none
+      padding: 2px
+
+      &.oak-active
+        color: $color-woodsmoke
+
+      &.oak-underline
+        .oak-icons
+          font-size: 18px
 
     .oak-icons
       color: $color-shuttle-gray
+      font-size: 20px
 
   .oak-text-editable
     padding: 10px

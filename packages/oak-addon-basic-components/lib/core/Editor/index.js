@@ -2,12 +2,19 @@ import { useMemo, useCallback, useReducer, useEffect } from 'react';
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
+import isHotkey from 'is-hotkey';
 import { mockState } from '@poool/junipero-utils';
 
-import { withHtml } from './html';
+import { withHtml, toggleMark } from './editor';
 import Element from './Element';
 import Leaf from './Leaf';
 import MarkButton from './MarkButton';
+
+const HOTKEYS = {
+  'mod+b': 'bold',
+  'mod+i': 'italic',
+  'mod+u': 'underline',
+};
 
 export default ({
   value,
@@ -33,6 +40,15 @@ export default ({
     onChange?.({ value: val });
   };
 
+  const onKeyDown = e => {
+    Object.entries(HOTKEYS).forEach(([key, mark]) => {
+      if (isHotkey(key, e)) {
+        e.preventDefault();
+        toggleMark(editor, mark);
+      }
+    });
+  };
+
   return (
     <Slate
       editor={editor}
@@ -48,6 +64,8 @@ export default ({
         <Editable
           renderElement={renderElement}
           renderLeaf={renderLeaf}
+          spellCheck={false}
+          onKeyDown={onKeyDown}
           className="oak-text-editable"
         />
       </div>
