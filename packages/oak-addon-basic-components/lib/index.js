@@ -1,14 +1,24 @@
 import {
   COMPONENT_TITLE,
   COMPONENT_TEXT,
+  COMPONENT_IMAGE,
 } from './components';
 import Editor from './core/Editor';
+import ImageField from './core/ImageField';
 
 export default {
   fieldTypes: [{
     type: 'richtext',
     render: props => (
       <Editor { ...props } />
+    ),
+  }, {
+    type: 'image',
+    onChange: (key, value) => {
+      return { name: value.split('/').pop(), url: value };
+    },
+    render: props => (
+      <ImageField { ...props } />
     ),
   }],
   components: [{
@@ -17,5 +27,8 @@ export default {
   }, {
     group: 'core',
     component: COMPONENT_TEXT,
+  }, {
+    group: 'core',
+    component: COMPONENT_IMAGE,
   }],
 };

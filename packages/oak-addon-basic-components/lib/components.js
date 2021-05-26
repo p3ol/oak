@@ -1,5 +1,6 @@
 import Text from './core/Text';
 import Title from './core/Title';
+import Image from './core/Image';
 import { serialize, deserialize } from './core/Editor/html';
 
 export const COMPONENT_TITLE = {
@@ -34,6 +35,23 @@ export const COMPONENT_TEXT = {
     type: 'text',
     content: 'This is some fancy text content, you can even use ' +
       '<strong>html</strong> here',
+    settings: {},
+  }),
+};
+
+export const COMPONENT_IMAGE = {
+  id: 'image',
+  name: 'Image',
+  type: 'component',
+  render: Image,
+  icon: 'image',
+  options: Image.options,
+  settings: Image.settings,
+  editable: true,
+  construct: () => ({
+    type: 'image',
+    url: '',
+    name: '',
     settings: {},
   }),
 };

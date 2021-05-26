@@ -66,11 +66,21 @@ export default forwardRef((options, ref) => {
           addon.components.forEach(c => {
             if (c.group) {
               const group = getGroup_(c.group);
-              group.components.push(c.component);
-            } else if (c.type === 'group') {
+
+              if (!group.components.find(cp => cp.id === c.id)) {
+                group.components.push(c.component);
+              }
+            } else if (
+              c.type === 'group' &&
+              !state.components.find(cp => cp.id === c.id)
+            ) {
               state.components.push(c);
             } else {
-              getGroup_('other').push(c);
+              const group = getGroup_('other');
+
+              if (!group.components.find(cp => cp.id === c.id)) {
+                group.components.push(c);
+              }
             }
           });
         }

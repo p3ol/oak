@@ -6,7 +6,7 @@ const Title = ({ element, className }) => {
   return (
     <div className={className}>
       <Tag
-        className="oak-title"
+        className="oak-title-block"
         dangerouslySetInnerHTML={{ __html: element.content }}
       />
     </div>

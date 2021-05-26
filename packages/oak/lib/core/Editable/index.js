@@ -17,7 +17,7 @@ import {
 import { useEventListener } from '@poool/junipero-hooks';
 import { usePopper } from 'react-popper';
 
-import { useBuilder } from '../../hooks';
+import { useBuilder, useOptions } from '../../hooks';
 
 export default forwardRef(({
   globalEventsTarget = global,
@@ -27,6 +27,7 @@ export default forwardRef(({
   container,
 }, ref) => {
   const { setElement, getField } = useBuilder();
+  const options = useOptions();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
   const [state, dispatch] = useReducer(mockState, {
@@ -94,17 +95,26 @@ export default forwardRef(({
     setElement(element, state.element);
   };
 
+  const onSettingCustomChange_ = (name, field) => {
+    const changes = field
+      .onChange(name, field.checked ?? field.value, state.element);
+    dispatch({ element: Object.assign(state.element, changes) });
+    setElement(element, state.element);
+  };
+
   const renderField = field => {
     const commonProps = {
       id: field.id,
       name: field.name,
-      onChange: onSettingChange_.bind(null, field.key),
+      onChange: field.onChange
+        ? onSettingCustomChange_.bind(null, field.key)
+        : onSettingChange_.bind(null, field.key),
       value: get(state.element, field.key) ?? field.default,
     };
 
     const renderer = getField(field.type) || field;
 
-    return renderer.render?.(commonProps, field);
+    return renderer.render?.(commonProps, field, options);
   };
 
   const settingsForm = (

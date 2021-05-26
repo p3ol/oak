@@ -1,0 +1,24 @@
+@require "@poool/oak/lib/theme/colors"
+
+.oak-element.oak-image
+  .oak-inner
+    display: flex
+    align-items: center
+
+  .oak-image-preview
+    width: 50px
+    height: 50px
+    flex: 0 0 50px
+    border-radius: 4px
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    background-color: $color-slate-gray
+    overflow: hidden
+
+  .oak-image-info
+    flex: 1 0 0
+    padding-left: 20px
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
