@@ -63,14 +63,15 @@ const getConfig = (format, {
 });
 
 export default [
-  ...formats.map(f => getConfig(f)),
   ...formats.map(f => getConfig(f, {
-    output: `${defaultOutput}/react`,
+    output: `${defaultOutput}/standalone`,
+  })),
+  ...formats.map(f => getConfig(f, {
     external: ['react', 'react-dom', 'react-popper'],
     globals: {
-      React: 'react',
-      ReactDOM: 'react-dom',
-      ReactPopper: 'react-popper',
+      react: 'React',
+      'react-dom': 'ReactDOM',
+      'react-popper': 'ReactPopper',
     },
   })),
   {

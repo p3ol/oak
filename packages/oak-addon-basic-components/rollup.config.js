@@ -52,7 +52,10 @@ const getConfig = (format, {
   },
   ...(format === 'esm' ? {
     manualChunks: id => {
-      if (/packages\/oak\/lib\/(\w+)\/index.js/.test(id)) {
+      if (
+        /packages\/oak-addon-basic-components\/lib\/(\w+)\/index.js/
+          .test(id)
+      ) {
         return path.parse(id).dir.split('/').pop();
       } else if (id.includes('node_modules')) {
         return 'vendor';
@@ -64,9 +67,10 @@ const getConfig = (format, {
 });
 
 export default [
-  ...formats.map(f => getConfig(f)),
   ...formats.map(f => getConfig(f, {
-    output: `${defaultOutput}/react`,
+    output: `${defaultOutput}/standalone`,
+  })),
+  ...formats.map(f => getConfig(f, {
     external: ['react', 'react-dom'],
     globals: { react: 'React', 'react-dom': 'ReactDOM' },
   })),

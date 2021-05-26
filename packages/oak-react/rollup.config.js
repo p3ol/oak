@@ -10,8 +10,12 @@ const output = './dist';
 const name = 'oak-react';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = [];
-const defaultGlobals = {};
+const defaultExternals = ['react', 'react-dom', 'react-popper'];
+const defaultGlobals = {
+  react: 'React',
+  'react-dom': 'ReactDOM',
+  'react-popper': 'ReactPopper',
+};
 
 const defaultPlugins = [
   babel({
