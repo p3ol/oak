@@ -1,8 +1,6 @@
 import { createRef } from 'react';
 import ReactDOM from 'react-dom';
 
-import '@poool/junipero/dist/junipero.min.css';
-
 import App from './core/App';
 
 class oak {

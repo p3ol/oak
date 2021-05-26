@@ -59,9 +59,14 @@ export const deserializeNode = el => {
 };
 
 export const deserialize = content => {
-  const parsed = new DOMParser().parseFromString(content, 'text/html');
+  if (!content) {
+    return [{ children: [{ text: '' }] }];
+  }
 
-  return deserializeNode(parsed.body);
+  const parsed = new DOMParser().parseFromString(content, 'text/html');
+  const result = deserializeNode(parsed.body);
+
+  return [{ children: result }];
 };
 
 export const withHtml = editor => {

@@ -109,5 +109,7 @@ export const basicConfig = () => {
     });
   }, []);
 
-  return (<div ref={containerRef} id="container" />);
+  return (
+    <div ref={containerRef} id="container" />
+  );
 };

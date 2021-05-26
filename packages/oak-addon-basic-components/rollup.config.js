@@ -9,7 +9,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
-const name = 'oak';
+const name = 'oak-addon-basic-components';
 const formats = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = [];
@@ -48,6 +48,7 @@ const getConfig = (format, {
     name,
     sourcemap: true,
     globals,
+    exports: 'auto',
   },
   ...(format === 'esm' ? {
     manualChunks: id => {
@@ -66,12 +67,8 @@ export default [
   ...formats.map(f => getConfig(f)),
   ...formats.map(f => getConfig(f, {
     output: `${defaultOutput}/react`,
-    external: ['react', 'react-dom', 'react-popper'],
-    globals: {
-      React: 'react',
-      ReactDOM: 'react-dom',
-      ReactPopper: 'react-popper',
-    },
+    external: ['react', 'react-dom'],
+    globals: { react: 'React', 'react-dom': 'ReactDOM' },
   })),
   {
     input: './lib/index.styl',

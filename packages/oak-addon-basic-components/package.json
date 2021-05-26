@@ -2,16 +2,16 @@
   "name": "@poool/oak-addon-basic-components",
   "version": "1.0.0-alpha.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/oak.cjs.js",
+  "main": "dist/oak-addon-basic-components.cjs.js",
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "esnext": "src/index.js",
-  "unpkg": "dist/oak.min.js",
-  "cdn": "dist/oak.min.js",
+  "unpkg": "dist/oak-addon-basic-components.min.js",
+  "cdn": "dist/oak-addon-basic-components.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",
-    "directory": "packages/oak"
+    "directory": "packages/oak-addon-basic-components"
   },
   "author": "Ugo Stephant <ugo@poool.fr>",
   "license": "MIT",
@@ -23,15 +23,16 @@
   "peerDependencies": {},
   "dependencies": {
     "@babel/runtime-corejs3": "7.14.0",
-    "@poool/junipero": "2.0.0-beta.22",
-    "@poool/junipero-hooks": "2.0.0-beta.7",
+    "@poool/junipero": "2.0.0-beta.23",
     "@poool/junipero-utils": "2.0.0-beta.7",
-    "@popperjs/core": "2.9.2",
+    "@poool/oak": "1.0.0-alpha.0",
     "core-js": "3.12.1",
-    "preact": "10.5.13",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "slate": "0.63.0",
     "slate-hyperscript": "0.62.0",
-    "slate-react": "0.63.0"
+    "slate-react": "0.63.0",
+    "slate-history": "0.62.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

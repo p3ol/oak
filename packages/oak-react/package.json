@@ -1,17 +1,17 @@
 {
-  "name": "@poool/oak",
+  "name": "@poool/oak-react",
   "version": "1.0.0-alpha.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/oak.cjs.js",
+  "main": "dist/oak-react.cjs.js",
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "esnext": "src/index.js",
-  "unpkg": "dist/oak.min.js",
-  "cdn": "dist/oak.min.js",
+  "unpkg": "dist/oak-react.min.js",
+  "cdn": "dist/oak-react.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",
-    "directory": "packages/oak"
+    "directory": "packages/oak-react"
   },
   "author": "Ugo Stephant <ugo@poool.fr>",
   "license": "MIT",
@@ -20,18 +20,19 @@
     "node": ">= 12",
     "yarn": ">= 1"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@popperjs/core": "^2.9.0",
+    "@poool/oak": "1.0.0-alpha.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-popper": "^2.2.0"
+  },
   "dependencies": {
     "@babel/runtime-corejs3": "7.14.0",
-    "@poool/junipero": "2.0.0-beta.23",
+    "@poool/junipero": "2.0.0-beta.22",
     "@poool/junipero-hooks": "2.0.0-beta.7",
     "@poool/junipero-utils": "2.0.0-beta.7",
-    "@popperjs/core": "2.9.2",
-    "core-js": "3.12.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-popper": "2.2.5",
-    "nanoid": "3.1.23"
+    "core-js": "3.12.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
