@@ -25,15 +25,15 @@
     & > .oak-options
       visibility: visible
       position: absolute
-      top: 10px
-      right: 10px
+      top: 5px
+      right: 5px
       left: auto
       transform: none
 
       & > .oak-option
         background: transparent
         color: $color-shuttle-gray
-        margin-left: 5px
+        margin-left: 2px
         border-radius: 3px
 
         &:hover
@@ -43,11 +43,17 @@
           &, &:hover
             background: $color-tiber
             color: $color-white
+            border-radius: 3px
 
         i
           font-size: 20px
           position: relative
-          top: 2px
+          top: -2px
+
+        &.oak-edit
+          i
+            font-size: 18px
+            top: -3px
 
     .oak-catalogue
       display: flex
@@ -58,8 +64,8 @@
         width: 26px
         height: 26px
 
-        &:before, &:after
-          height: 12px
+        .oak-handle-inner i
+          font-size: 22px
 
       &:last-child
         margin-top: 10px
@@ -73,9 +79,6 @@
         .oak-handle
           width: 40px
           height: 40px
-
-          &:before, &:after
-            height: 16px
 
   .oak-col-inner
     padding: 10px 0
@@ -152,5 +155,5 @@
       background: $color-catskill-white
       color: $color-shuttle-gray
 
-      & span
+      & i
         font-size: 15px

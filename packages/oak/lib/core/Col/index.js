@@ -113,10 +113,6 @@ const Col = ({
         </div>
 
         <div className="oak-options">
-          <Option
-            option={{ icon: 'clear' }}
-            onClick={onRemove_}
-          />
           <Editable
             ref={editableRef}
             element={element}
@@ -124,10 +120,15 @@ const Col = ({
             container={settingsElementRef}
           >
             <Option
+              className="oak-edit"
               option={{ icon: 'edit' }}
               onClick={onEdit_}
             />
           </Editable>
+          <Option
+            option={{ icon: 'clear' }}
+            onClick={onRemove_}
+          />
         </div>
       </div>
 

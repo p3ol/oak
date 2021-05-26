@@ -77,6 +77,7 @@ export default forwardRef(({
     }
 
     if (
+      !reference.contains(e.target) &&
       reference !== e.target &&
       !popper.contains(e.target) &&
       popper !== e.target
@@ -131,7 +132,11 @@ export default forwardRef(({
         className="oak-handle"
         onClick={toggle}
         draggable={false}
-      />
+        href="#"
+      >
+        <span className="oak-handle-inner"><Icon>add</Icon></span>
+      </a>
+
       { state.opened && (
         <div
           ref={setPopper}
