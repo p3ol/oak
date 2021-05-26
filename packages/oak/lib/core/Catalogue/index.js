@@ -124,7 +124,7 @@ export default forwardRef(({
     <div
       className={classNames(
         'oak-catalogue',
-        { opened: state.opened },
+        { 'oak-opened': state.opened },
       )}
     >
       <a
