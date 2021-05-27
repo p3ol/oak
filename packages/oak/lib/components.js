@@ -1,18 +1,6 @@
-import { nanoid } from 'nanoid';
-import { classNames } from '@poool/junipero-utils';
+import { v4 as uuid } from 'uuid';
 
 import Row from './core/Row';
-
-export const COMPONENT_DEFAULT = {
-  id: 'unknown',
-  name: 'Unknown',
-  type: 'component',
-  render: ({ element, className }) => (
-    <pre className={classNames('oak-unknown', className)}>
-      { JSON.stringify(element) }
-    </pre>
-  ),
-};
 
 export const COMPONENT_ROW = {
   id: 'row',
@@ -31,7 +19,7 @@ export const COMPONENT_ROW = {
     cols: [{
       type: 'col',
       content: [],
-      id: nanoid(),
+      id: uuid(),
       style: {},
     }],
   }),

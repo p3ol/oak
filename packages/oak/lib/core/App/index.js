@@ -6,7 +6,7 @@ import {
   useImperativeHandle,
 } from 'react';
 import { mockState, cloneDeep } from '@poool/junipero-utils';
-import { nanoid } from 'nanoid';
+import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
@@ -230,7 +230,7 @@ export default forwardRef((options, ref) => {
     }
 
     if (!elmt.id) {
-      elmt.id = nanoid();
+      elmt.id = uuid();
     }
 
     const component = getComponent(elmt.type);

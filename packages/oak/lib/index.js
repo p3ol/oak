@@ -51,5 +51,4 @@ export const render = (elmt, options = {}) => {
   return app;
 };
 
-export default { render };
 export { useOptions, useBuilder, useElement };
