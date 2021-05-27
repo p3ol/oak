@@ -12,12 +12,12 @@ import {
   cloneDeep,
   classNames,
   set,
-  get,
 } from '@poool/junipero-utils';
 import { useEventListener } from '@poool/junipero-hooks';
 import { usePopper } from 'react-popper';
 
 import { useBuilder, useOptions } from '../../hooks';
+import Field from './Field';
 
 export default forwardRef(({
   globalEventsTarget = global,
@@ -25,7 +25,7 @@ export default forwardRef(({
   element,
   component,
 }, ref) => {
-  const { setElement, getField, _settingsHolderRef } = useBuilder();
+  const { setElement, _settingsHolderRef } = useBuilder();
   const options = useOptions();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
@@ -101,25 +101,6 @@ export default forwardRef(({
     setElement(element, state.element);
   };
 
-  const renderField = field => {
-    const renderer = getField(field.type) || field;
-
-    const commonProps = {
-      id: field.id,
-      name: field.name,
-      onChange: renderer.onChange
-        ? onSettingCustomChange_.bind(null, field.key, renderer)
-        : onSettingChange_.bind(null, field.key),
-      value: get(state.element, field.key) ?? field.default,
-    };
-
-    return renderer.render?.(commonProps, {
-      field,
-      element: state.element,
-      options,
-    });
-  };
-
   const settingsForm = (
     <div
       ref={setPopper}
@@ -131,14 +112,21 @@ export default forwardRef(({
         { component.settings?.title || 'Element options' }
       </div>
       <div className="oak-form">
-        { component.settings?.fields?.map((field, i) => (
-          <div className="oak-field" key={i}>
-            { field.label && (
-              <label>{ field.label }</label>
-            ) }
-            { renderField(field) }
-          </div>
-        )) }
+        { component.settings?.fields?.map((field, i) =>
+          (!field.condition || field.condition(state.element)) && (
+            <div className="oak-field" key={i}>
+              { field.label && (
+                <label>{ field.label }</label>
+              ) }
+              <Field
+                field={field}
+                element={state.element}
+                onChange={onSettingChange_}
+                onCustomChange={onSettingCustomChange_}
+              />
+            </div>
+          )
+        ) }
         { component.settings?.renderForm?.({
           element: cloneDeep(element),
           component,
