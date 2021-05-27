@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -20,7 +20,6 @@
     "node": ">= 12",
     "yarn": ">= 1"
   },
-  "peerDependencies": {},
   "dependencies": {
     "@babel/runtime-corejs3": "7.14.0",
     "@poool/junipero": "2.0.0-beta.23",

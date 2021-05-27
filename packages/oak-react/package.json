@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak-react",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-react.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -21,8 +21,8 @@
     "yarn": ">= 1"
   },
   "peerDependencies": {
-    "@popperjs/core": "^2.9.0",
     "@poool/oak": "1.0.0-alpha.0",
+    "@popperjs/core": "^2.9.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-popper": "^2.2.0"
