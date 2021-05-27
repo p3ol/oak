@@ -87,7 +87,7 @@ export default [
         inject: false,
         extract: true,
         sourceMap: true,
-        modules: true,
+        modules: false,
         use: {
           stylus: {
             paths: [

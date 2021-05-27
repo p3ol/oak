@@ -14,6 +14,9 @@
     "directory": "packages/oak"
   },
   "author": "Ugo Stephant <ugo@poool.fr>",
+  "contributors": [
+    "Maxime Da Silva <maximed@poool.fr>"
+  ],
   "license": "MIT",
   "sideEffects": false,
   "engines": {
