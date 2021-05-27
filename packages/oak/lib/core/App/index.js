@@ -236,7 +236,7 @@ export default forwardRef((options, ref) => {
     const component = getComponent(elmt.type);
 
     if (component?.deserialize) {
-      elmt.content = component.deserialize(elmt.content);
+      Object.assign(elmt, component.deserialize(elmt));
     }
   };
 
