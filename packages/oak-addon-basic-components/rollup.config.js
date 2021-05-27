@@ -12,8 +12,8 @@ const defaultOutput = './dist';
 const name = 'oak-addon-basic-components';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = [];
-const defaultGlobals = {};
+const defaultExternals = ['@poool/oak'];
+const defaultGlobals = { '@poool/oak': 'oak' };
 
 const defaultPlugins = [
   babel({
@@ -52,15 +52,8 @@ const getConfig = (format, {
   },
   ...(format === 'esm' ? {
     manualChunks: id => {
-      if (
-        /packages\/oak-addon-basic-components\/lib\/(\w+)\/index.js/
-          .test(id)
-      ) {
-        return path.parse(id).dir.split('/').pop();
-      } else if (id.includes('node_modules')) {
+      if (id.includes('node_modules')) {
         return 'vendor';
-      } else {
-        return path.parse(id).name;
       }
     },
   } : {}),
@@ -71,8 +64,8 @@ export default [
     output: `${defaultOutput}/standalone`,
   })),
   ...formats.map(f => getConfig(f, {
-    external: ['react', 'react-dom'],
-    globals: { react: 'React', 'react-dom': 'ReactDOM' },
+    external: ['@poool/oak', 'react', 'react-dom'],
+    globals: { '@poool/oak': 'oak', react: 'React', 'react-dom': 'ReactDOM' },
   })),
   {
     input: './lib/index.styl',

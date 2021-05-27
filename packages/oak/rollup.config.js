@@ -55,12 +55,8 @@ const getConfig = (format, {
   },
   ...(format === 'esm' ? {
     manualChunks: id => {
-      if (/packages\/oak\/lib\/(\w+)\/index.js/.test(id)) {
-        return path.parse(id).dir.split('/').pop();
-      } else if (id.includes('node_modules')) {
+      if (id.includes('node_modules')) {
         return 'vendor';
-      } else {
-        return path.parse(id).name;
       }
     },
   } : {}),

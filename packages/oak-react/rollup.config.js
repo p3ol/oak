@@ -10,8 +10,9 @@ const output = './dist';
 const name = 'oak-react';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['react', 'react-dom', 'react-popper'];
+const defaultExternals = ['@poool/oak', 'react', 'react-dom', 'react-popper'];
 const defaultGlobals = {
+  '@poool/oak': 'oak',
   react: 'React',
   'react-dom': 'ReactDOM',
   'react-popper': 'ReactPopper',
@@ -50,12 +51,8 @@ export default [
     },
     ...(f === 'esm' ? {
       manualChunks: id => {
-        if (/packages\/oak-react\/lib\/(\w+)\/index.js/.test(id)) {
-          return path.parse(id).dir.split('/').pop();
-        } else if (id.includes('node_modules')) {
+        if (id.includes('node_modules')) {
           return 'vendor';
-        } else {
-          return path.parse(id).name;
         }
       },
     } : {}),
