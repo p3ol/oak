@@ -25,7 +25,7 @@ export const basicConfig = () => {
         fr.readAsDataURL(file);
 
         fr.onload = () => {
-          setTimeout(() => resolve(fr.result), 2000);
+          setTimeout(() => resolve({ url: fr.result, name: file.name }), 2000);
         };
       }
     });
