@@ -67,7 +67,9 @@ export default forwardRef((options, ref) => {
             if (c.group) {
               const group = getGroup_(c.group);
 
-              if (!group.components.find(cp => cp.id === c.id)) {
+              if (!group.components.find(
+                cp => cp.id === (c.component?.id || c.id)
+              )) {
                 group.components.push(c.component);
               }
             } else if (
