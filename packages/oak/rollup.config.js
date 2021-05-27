@@ -3,10 +3,10 @@ import path from 'path';
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import url from '@rollup/plugin-url';
 import postcss from 'rollup-plugin-postcss';
-import autoprefixer from 'autoprefixer';
 import { terser } from 'rollup-plugin-terser';
+import autoprefixer from 'autoprefixer';
+import url from 'postcss-url';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
@@ -25,9 +25,6 @@ const defaultPlugins = [
     rootDir: path.resolve('../../'),
   }),
   commonjs(),
-  url({
-    include: ['**/*.eot', '**/*.svg', '**/*.ttf', '**/*.woff'],
-  }),
   terser(),
 ];
 
@@ -94,6 +91,12 @@ export default [
           },
         },
         plugins: [
+          url({
+            url: 'copy',
+            useHash: true,
+            basePath: path.resolve('./lib/theme/fonts'),
+            assetsPath: path.resolve('./dist/assets'),
+          }),
           autoprefixer({ env: process.env.BROWSERSLIST_ENV }),
         ],
       }),
