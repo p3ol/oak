@@ -2,7 +2,7 @@
   "metadata": {
     "name": "Oak icons",
     "lastOpened": 0,
-    "created": 1622048611243
+    "created": 1622109508694
   },
   "iconSets": [
     {
@@ -2581,7 +2581,11 @@
         {
           "ligatures": "view_comfy",
           "id": 499,
-          "order": 0
+          "order": 24,
+          "prevSize": 24,
+          "code": 59668,
+          "name": "view_comfy",
+          "tempChar": ""
         },
         {
           "ligatures": "view_compact",
@@ -4265,7 +4269,7 @@
           "prevSize": 24,
           "code": 59666,
           "name": "view_column",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "view_day",
@@ -25830,7 +25834,6 @@
       "colorThemeIdx": 0
     }
   ],
-  "uid": -1,
   "preferences": {
     "showGlyphs": true,
     "showCodes": true,
@@ -25866,5 +25869,6 @@
     },
     "historySize": 50,
     "showLiga": true
-  }
+  },
+  "uid": -1
 }
