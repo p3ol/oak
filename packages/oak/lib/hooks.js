@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { AppContext } from './contexts';
+import { AppContext, ElementContext } from './contexts';
 
 export const useOptions = () => {
   return useContext(AppContext).options || {};
@@ -10,6 +10,7 @@ export const useBuilder = () => {
   const {
     components = [],
     content = [],
+    _settingsHolderRef,
     addElement,
     removeElement,
     setElement,
@@ -18,11 +19,13 @@ export const useBuilder = () => {
     findNearestParent,
     getComponent,
     getField,
+    _setSettingsHolderRef,
   } = useContext(AppContext);
 
   return {
     components,
     content,
+    _settingsHolderRef,
     addElement,
     removeElement,
     setElement,
@@ -31,5 +34,10 @@ export const useBuilder = () => {
     findNearestParent,
     getComponent,
     getField,
+    _setSettingsHolderRef,
   };
+};
+
+export const useElement = () => {
+  return useContext(ElementContext);
 };

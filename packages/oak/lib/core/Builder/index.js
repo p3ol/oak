@@ -10,8 +10,8 @@ export default () => {
     components,
     content,
     addElement,
+    _setSettingsHolderRef,
   } = useBuilder();
-
   const { debug } = useOptions();
 
   const onAppend = component => {
@@ -32,6 +32,8 @@ export default () => {
       <div className="oak-add-element">
         <Catalogue ref={catalogueRef} onAppend={onAppend} />
       </div>
+
+      <div ref={_setSettingsHolderRef} />
 
       { debug && (
         <pre>

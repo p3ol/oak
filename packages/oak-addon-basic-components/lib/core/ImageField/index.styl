@@ -1,0 +1,31 @@
+.oak-image-field
+  display: flex
+  align-items: center
+
+  &.oak-loading
+    pointer-events: none
+    user-select: none
+
+  .junipero.touchable-zone
+    height: 80px
+
+  .oak-image-field-preview
+    width: 50px
+    height: 50px
+    border-radius: 4px
+    flex: 0 0 50px
+    display: block
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    background-color: $color-slate-gray
+    overflow: hidden
+
+  .oak-image-field-info
+    flex: 1 0 0
+    padding-left: 20px
+
+    .oak-image-field-actions
+      .oak-delete
+        color: $color-shiraz
+        font-size: 12px

@@ -1,20 +1,32 @@
-import { useReducer } from 'react';
-import { TouchableZone, classNames, mockState } from '@poool/junipero';
-import { useOptions } from '@poool/oak';
+import { useReducer, useEffect } from 'react';
+import { TouchableZone, Loader, classNames, mockState } from '@poool/junipero';
+import { useOptions, useElement } from '@poool/oak';
 
 export default ({
   className,
   value,
-  fileName,
   onChange,
   accept = ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'],
 }) => {
   const { events } = useOptions();
+  const { element } = useElement();
   const [state, dispatch] = useReducer(mockState, {
-    value,
-    name: fileName || '',
+    value: element?.url || '',
+    name: element?.name || '',
     loading: false,
   });
+
+  useEffect(() => {
+    if (value) {
+      dispatch({ value });
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (element.name) {
+      dispatch({ name: element.name });
+    }
+  }, [element?.name]);
 
   const onOpenFileDialog = e => {
     e.preventDefault();
@@ -32,6 +44,10 @@ export default ({
   };
 
   const onFile = async e => {
+    if (state.loading) {
+      return;
+    }
+
     dispatch({ loading: true });
 
     if (events?.onImageUpload) {
@@ -55,16 +71,56 @@ export default ({
 
   const onUrlReady = ({ url, name } = {}) => {
     dispatch({ value: url, name });
-    onChange({ value: url, name });
+    onChange?.({ value: url, name });
     dispatch({ loading: false });
   };
 
+  const onReset = e => {
+    e.preventDefault();
+    dispatch({ value: null, name: null });
+    onChange?.({ value: null, name: null });
+  };
+
+  const getName = () =>
+    state.name ||
+    (/data:/.test(state.value) ? 'Local image' : state.value) ||
+    'Empty image';
+
   return (
-    <div className={classNames('oak-image-field', className)}>
-      <TouchableZone onClick={onOpenFileDialog}>
-        <i className="oak-icons">add</i>
-        <span>Add an image</span>
-      </TouchableZone>
+    <div
+      className={classNames(
+        'oak-image-field',
+        { 'oak-loading': state.loading },
+        className
+      )}
+    >
+      { state.value ? (
+        <>
+          <div
+            className="oak-image-field-preview"
+            style={{
+              backgroundImage: `url(${state.value})`,
+            }}
+          />
+          <div className="oak-image-field-info">
+            <div className="oak-image-name">{ getName() }</div>
+            <div className="oak-image-field-actions">
+              <a href="#" className="oak-delete" onClick={onReset}>Delete</a>
+            </div>
+          </div>
+        </>
+      ) : (
+        <TouchableZone disabled={state.loading} onClick={onOpenFileDialog}>
+          { state.loading ? (
+            <Loader />
+          ) : (
+            <>
+              <i className="oak-icons">add</i>
+              <span>Add an image</span>
+            </>
+          )}
+        </TouchableZone>
+      ) }
     </div>
   );
 };

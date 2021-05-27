@@ -1,7 +1,7 @@
 import { createRef } from 'react';
 import ReactDOM from 'react-dom';
 
-import { useOptions, useBuilder } from './hooks';
+import { useOptions, useBuilder, useElement } from './hooks';
 import App from './core/App';
 
 class oak {
@@ -52,4 +52,4 @@ export const render = (elmt, options = {}) => {
 };
 
 export default { render };
-export { useOptions, useBuilder };
+export { useOptions, useBuilder, useElement };

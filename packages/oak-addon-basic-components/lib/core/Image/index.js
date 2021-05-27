@@ -14,7 +14,7 @@ const Image = ({
       <div
         className="oak-image-preview"
         style={{
-          backgroundImage: `url(${element.url})`,
+          backgroundImage: element.url ? `url(${element.url})` : null,
         }}
       />
       <div className="oak-image-info">

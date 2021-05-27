@@ -15,10 +15,10 @@ export default {
   }, {
     type: 'image',
     onChange: (key, { value, name }) => {
-      return { name, url: value };
+      return { name: name || '', url: value || '' };
     },
-    render: (props, { element } = {}) => (
-      <ImageField name={element.name} { ...props } />
+    render: props => (
+      <ImageField { ...props } />
     ),
   }],
   components: [{
