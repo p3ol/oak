@@ -1,3 +1,5 @@
+import { useElement } from '@poool/oak';
+
 import {
   COMPONENT_TITLE,
   COMPONENT_TEXT,
@@ -17,9 +19,13 @@ export default {
     onChange: (key, { value, name }) => {
       return { name, url: value };
     },
-    render: (props, { element } = {}) => (
-      <ImageField name={element.name} { ...props } />
-    ),
+    render: props => {
+      const { element } = useElement();
+
+      return (
+        <ImageField name={element.name} { ...props } />
+      );
+    },
   }],
   components: [{
     group: 'core',

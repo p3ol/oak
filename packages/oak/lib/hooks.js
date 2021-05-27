@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { AppContext } from './contexts';
+import { AppContext, ElementContext } from './contexts';
 
 export const useOptions = () => {
   return useContext(AppContext).options || {};
@@ -36,4 +36,8 @@ export const useBuilder = () => {
     getField,
     _setSettingsHolderRef,
   };
+};
+
+export const useElement = () => {
+  return useContext(ElementContext);
 };
