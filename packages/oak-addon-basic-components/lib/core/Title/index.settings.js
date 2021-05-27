@@ -9,7 +9,7 @@ export default {
       title: `Title ${i + 1} (h${i + 1})`, value: `h${i + 1}`,
     })),
   }, {
-    type: 'text',
+    type: 'richtext',
     key: 'content',
     default: '',
     label: 'Content',

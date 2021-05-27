@@ -12,6 +12,8 @@ export const COMPONENT_TITLE = {
   options: Title.options,
   settings: Title.settings,
   editable: true,
+  serialize,
+  deserialize,
   construct: () => ({
     type: 'title',
     content: 'This is a title',

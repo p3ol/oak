@@ -1,5 +1,5 @@
 import settings from './index.settings';
-import Node from './Node';
+import Node from '../Editor/Node';
 
 const Text = ({ element, className }) => (
   <div className={className}>

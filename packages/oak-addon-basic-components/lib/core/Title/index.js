@@ -1,3 +1,4 @@
+import Node from '../Editor/Node';
 import settings from './index.settings';
 
 const Title = ({ element, className }) => {
@@ -5,10 +6,13 @@ const Title = ({ element, className }) => {
 
   return (
     <div className={className}>
-      <Tag
-        className="oak-title-block"
-        dangerouslySetInnerHTML={{ __html: element.content }}
-      />
+      <Tag>
+        { typeof element.content === 'string' ? (
+          <Node text={element.content} />
+        ) : element.content.map((c, i) => (
+          <Node { ...c } key={i} />
+        )) }
+      </Tag>
     </div>
   );
 };
