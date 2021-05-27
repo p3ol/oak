@@ -1,6 +1,6 @@
 import { Fragment, useRef, useCallback } from 'react';
 import { classNames } from '@poool/junipero-utils';
-import { nanoid } from 'nanoid';
+import { v4 as uuid } from 'uuid';
 
 import { COMPONENT_DEFAULT } from '../../defaults';
 import { ElementContext } from '../../contexts';
@@ -48,7 +48,7 @@ const Element = ({
         <Draggable data={element} disabled={element.type === 'row'}>
           <div
             ref={elementInnerRef}
-            id={element.id || nanoid()}
+            id={element.id || uuid()}
             className={classNames(
               'oak-element',
               'oak-' + element.type,

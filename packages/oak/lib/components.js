@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+import { v4 as uuid } from 'uuid';
 
 import Row from './core/Row';
 
@@ -19,7 +19,7 @@ export const COMPONENT_ROW = {
     cols: [{
       type: 'col',
       content: [],
-      id: nanoid(),
+      id: uuid(),
       style: {},
     }],
   }),

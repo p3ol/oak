@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+import { v4 as uuid } from 'uuid';
 import { classNames, omit } from '@poool/junipero-utils';
 
 import { useBuilder } from '../../hooks';
@@ -17,7 +17,7 @@ const Row = ({
   const onDivide = (index, isBefore) => {
     element.cols.splice(isBefore ? index : index + 1, 0, {
       content: [],
-      id: nanoid(),
+      id: uuid(),
       style: {},
     });
 
