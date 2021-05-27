@@ -2,7 +2,7 @@ import { Fragment, useRef, useCallback } from 'react';
 import { classNames } from '@poool/junipero-utils';
 import { nanoid } from 'nanoid';
 
-import { COMPONENT_DEFAULT } from '../../components';
+import { COMPONENT_DEFAULT } from '../../defaults';
 import { ElementContext } from '../../contexts';
 import { useBuilder } from '../../hooks';
 import Option from '../Option';
