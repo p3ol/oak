@@ -1,7 +1,8 @@
+import { serialize, deserialize } from './core/Editor/html';
 import Text from './core/Text';
 import Title from './core/Title';
 import Image from './core/Image';
-import { serialize, deserialize } from './core/Editor/html';
+import Button from './core/Button';
 
 export const COMPONENT_TITLE = {
   id: 'title',
@@ -12,8 +13,12 @@ export const COMPONENT_TITLE = {
   options: Title.options,
   settings: Title.settings,
   editable: true,
-  serialize,
-  deserialize,
+  serialize: element => ({
+    content: serialize(element.content),
+  }),
+  deserialize: element => ({
+    content: deserialize(element.content),
+  }),
   construct: () => ({
     type: 'title',
     content: 'This is a title',
@@ -31,8 +36,12 @@ export const COMPONENT_TEXT = {
   options: Text.options,
   settings: Text.settings,
   editable: true,
-  serialize,
-  deserialize,
+  serialize: element => ({
+    content: serialize(element.content),
+  }),
+  deserialize: element => ({
+    content: deserialize(element.content),
+  }),
   construct: () => ({
     type: 'text',
     content: 'This is some fancy text content, you can even use ' +
@@ -55,5 +64,31 @@ export const COMPONENT_IMAGE = {
     url: '',
     name: '',
     settings: {},
+  }),
+};
+
+export const COMPONENT_BUTTON = {
+  id: 'button',
+  name: 'Button',
+  type: 'component',
+  render: Button,
+  icon: 'view_comfy',
+  options: Button.options,
+  settings: Button.settings,
+  editable: true,
+  serialize: element => ({
+    content: serialize(element.content),
+  }),
+  deserialize: element => ({
+    content: deserialize(element.content),
+  }),
+  construct: () => ({
+    type: 'button',
+    content: 'Click me!',
+    action: 'link',
+    url: '',
+    settings: {
+      buttonType: 'button',
+    },
   }),
 };
