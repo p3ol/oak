@@ -62,6 +62,7 @@ export default ({
           <MarkButton format="underline" icon="format_underlined" />
         </div>
         <Editable
+          onDrop={e => e.preventDefault()}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           spellCheck={false}
