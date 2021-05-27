@@ -24,9 +24,8 @@ export default forwardRef(({
   children,
   element,
   component,
-  container,
 }, ref) => {
-  const { setElement, getField } = useBuilder();
+  const { setElement, getField, _settingsHolderRef } = useBuilder();
   const options = useOptions();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
@@ -159,8 +158,12 @@ export default forwardRef(({
         ),
       }) }
       { state.opened
-        ? container?.current
-          ? createPortal(settingsForm, container.current) : settingsForm
+        ? options.settingsContainer || _settingsHolderRef
+          ? createPortal(
+            settingsForm,
+            options.settingsContainer || _settingsHolderRef
+          )
+          : settingsForm
         : null }
     </>
   );

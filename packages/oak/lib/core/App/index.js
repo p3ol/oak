@@ -2,6 +2,7 @@ import {
   forwardRef,
   useEffect,
   useReducer,
+  useCallback,
   useImperativeHandle,
 } from 'react';
 import { mockState, cloneDeep } from '@poool/junipero-utils';
@@ -17,6 +18,7 @@ export default forwardRef((options, ref) => {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
     fieldTypes: [FIELD_TEXT, FIELD_SELECT],
+    _settingsHolderRef: null,
   });
 
   useEffect(() => {
@@ -39,9 +41,10 @@ export default forwardRef((options, ref) => {
     getField,
   }));
 
-  const getContext = () => ({
+  const getContext = useCallback(() => ({
     content: state.content,
     components: state.components,
+    _settingsHolderRef: state._settingsHolderRef,
     options,
     addElement,
     removeElement,
@@ -52,7 +55,8 @@ export default forwardRef((options, ref) => {
     contains,
     getComponent,
     getField,
-  });
+    _setSettingsHolderRef,
+  }), Object.values(state));
 
   const init = () => {
     if (options.addons) {
@@ -249,6 +253,14 @@ export default forwardRef((options, ref) => {
 
   const getField = type =>
     state.fieldTypes.find(f => f.type === type);
+
+  const _setSettingsHolderRef = ref => {
+    if (ref === state._settingsHolderRef) {
+      return;
+    }
+
+    dispatch({ _settingsHolderRef: ref });
+  };
 
   return (
     <div className="oak">

@@ -10,6 +10,7 @@ export const useBuilder = () => {
   const {
     components = [],
     content = [],
+    _settingsHolderRef,
     addElement,
     removeElement,
     setElement,
@@ -18,11 +19,13 @@ export const useBuilder = () => {
     findNearestParent,
     getComponent,
     getField,
+    _setSettingsHolderRef,
   } = useContext(AppContext);
 
   return {
     components,
     content,
+    _settingsHolderRef,
     addElement,
     removeElement,
     setElement,
@@ -31,5 +34,6 @@ export const useBuilder = () => {
     findNearestParent,
     getComponent,
     getField,
+    _setSettingsHolderRef,
   };
 };

@@ -16,7 +16,6 @@ const Element = ({
 }) => {
   const editableRef = useRef();
   const elementInnerRef = useRef();
-  const settingsElementRef = useRef();
   const builder = useBuilder();
   const { getComponent, removeElement, moveElement } = builder;
 
@@ -81,7 +80,6 @@ const Element = ({
                 element={element}
                 component={component}
                 ref={editableRef}
-                container={settingsElementRef}
               >
                 <Option
                   option={{ icon: 'edit' }}
@@ -91,8 +89,6 @@ const Element = ({
               </Editable>
             ) }
           </div>
-
-          <div ref={settingsElementRef} />
         </div>
       </Draggable>
     </Droppable>
