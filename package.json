@@ -9,7 +9,7 @@
     "lint": "./node_modules/.bin/eslint .",
     "unlink-all": "./node_modules/.bin/lerna exec --parallel -- yarn unlink",
     "link-all": "./node_modules/.bin/lerna exec --parallel -- yarn link",
-    "test": "BABEL_ENV=tests ./node_modules/.bin/jest",
+    "test": "BABEL_ENV=tests true",
     "build": "./node_modules/.bin/lerna exec -- yarn build",
     "serve": "./node_modules/.bin/start-storybook"
   },
