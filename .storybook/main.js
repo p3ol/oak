@@ -5,6 +5,9 @@ module.exports = {
   stories: [
     '../packages/*/lib/**/*.stories.js',
   ],
+  addons: [
+    '@storybook/addon-actions/register',
+  ],
   core: {
     builder: 'webpack5',
   },
