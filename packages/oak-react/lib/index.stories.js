@@ -1,17 +1,21 @@
 import { useReducer } from 'react';
 import { mockState } from '@poool/junipero-utils';
+import { action } from '@storybook/addon-actions';
+import { render } from '@poool/oak';
 
 import { Builder } from './';
 import basicComponents from '../../oak-addon-basic-components/lib';
 
 export default { title: 'oak-react' };
 
-export const basicConfig = () => {
+const BuilderWrapper = ({ onChange }) => {
   const [state, dispatch] = useReducer(mockState, {
     value: [],
   });
 
-  const onChange = ({ value }) => {
+  const onChange_ = ({ value }) => {
+    onChange({ value });
+    console.log(value);
     dispatch({ value });
   };
 
@@ -35,8 +39,16 @@ export const basicConfig = () => {
     <Builder
       addons={[basicComponents]}
       value={state.value}
-      onChange={onChange}
+      onChange={onChange_}
       onImageUpload={onImageUpload}
+    />
+  );
+};
+
+export const BasicConfig = () => {
+  return (
+    <BuilderWrapper
+      onChange={action('change')}
     />
   );
 };
