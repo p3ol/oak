@@ -13,7 +13,7 @@ import { GROUP_CORE, GROUP_OTHER } from '../../components';
 import { FIELD_TEXT, FIELD_SELECT } from '../../fields';
 import Builder from '../Builder';
 
-export default forwardRef((options, ref) => {
+export default forwardRef((options, ref, onChange = () => {}) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
@@ -102,7 +102,8 @@ export default forwardRef((options, ref) => {
     dispatch(state);
   };
 
-  const onChange = content => {
+  const onChange_ = content => {
+    onChange(content);
     dispatch({ content: content || state.content });
     options?.events?.onChange?.({ value: content || state.content });
   };
@@ -152,7 +153,7 @@ export default forwardRef((options, ref) => {
         parent.push(elmt);
     }
 
-    onChange();
+    onChange_();
   };
 
   const removeElement = (elmt, { parent = state.content } = {}) => {
@@ -161,12 +162,12 @@ export default forwardRef((options, ref) => {
     }
 
     parent.splice(parent.findIndex(e => e.id === elmt.id), 1);
-    onChange();
+    onChange_();
   };
 
   const setElement = (elmt, props) => {
     Object.assign(elmt, props);
-    onChange();
+    onChange_();
   };
 
   const moveElement = (
@@ -188,7 +189,7 @@ export default forwardRef((options, ref) => {
 
     const newIndex = parent.indexOf(target);
     parent.splice(position === 'after' ? newIndex + 1 : newIndex, 0, elmt);
-    onChange();
+    onChange_();
   };
 
   const findNearestParent = (elmt, { parent = state.content } = {}) => {
@@ -243,7 +244,7 @@ export default forwardRef((options, ref) => {
   const setContent = content_ => {
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
-    onChange(content_);
+    onChange_(content_);
   };
 
   const getComponent = (type, { parent = state.components } = {}) =>

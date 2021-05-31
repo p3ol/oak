@@ -44,9 +44,9 @@ class oak {
   }
 }
 
-export const render = (elmt, options = {}) => {
+export const render = (elmt, options = {}, onChange) => {
   const app = new oak();
-  ReactDOM.render(<App ref={app.ref} {...options} />, elmt);
+  ReactDOM.render(<App ref={app.ref} {...options} onChange={onChange} />, elmt);
 
   return app;
 };
