@@ -19,6 +19,7 @@ export default forwardRef((options, ref) => {
     content: [],
     fieldTypes: [FIELD_TEXT, FIELD_SELECT],
     _settingsHolderRef: null,
+    memory: [],
   });
 
   useEffect(() => {
@@ -56,6 +57,7 @@ export default forwardRef((options, ref) => {
     getComponent,
     getField,
     _setSettingsHolderRef,
+    undo,
   }), Object.values(state));
 
   const init = () => {
@@ -103,6 +105,8 @@ export default forwardRef((options, ref) => {
   };
 
   const onChange = content => {
+    console.log('hi');
+    state.memory.push(cloneDeep(content) || cloneDeep(state.content));
     dispatch({ content: content || state.content });
     options?.events?.onChange?.({ value: content || state.content });
   };
@@ -262,6 +266,14 @@ export default forwardRef((options, ref) => {
     }
 
     dispatch({ _settingsHolderRef: ref });
+  };
+
+  const undo = () => {
+
+    if (state.memory.length > 1) {
+      state.memory.pop();
+      setContent(state.memory[state.memory.length - 1]);
+    }
   };
 
   return (

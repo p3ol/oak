@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Button } from '@poool/junipero';
 
 import { useOptions, useBuilder } from '../../hooks';
 import Element from '../Element';
@@ -11,6 +12,7 @@ export default () => {
     content,
     addElement,
     _setSettingsHolderRef,
+    undo,
   } = useBuilder();
   const { debug } = useOptions();
 
@@ -21,6 +23,7 @@ export default () => {
 
   return (
     <div className="oak-builder">
+      <Button onClick={() => undo()}>undo</Button>
       { content.map((item, i) => (
         <Element
           key={item.id || i}

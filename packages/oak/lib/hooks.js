@@ -19,6 +19,7 @@ export const useBuilder = () => {
     findNearestParent,
     getComponent,
     getField,
+    undo,
     _setSettingsHolderRef,
   } = useContext(AppContext);
 
@@ -34,6 +35,7 @@ export const useBuilder = () => {
     findNearestParent,
     getComponent,
     getField,
+    undo,
     _setSettingsHolderRef,
   };
 };
