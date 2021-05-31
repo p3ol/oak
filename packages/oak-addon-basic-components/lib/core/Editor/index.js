@@ -4,6 +4,7 @@ import { Slate, Editable, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
 import isHotkey from 'is-hotkey';
 import { mockState } from '@poool/junipero-utils';
+import { useTimeout } from '@poool/junipero';
 
 import { withHtml, toggleMark } from './editor';
 import Element from './Element';
@@ -35,9 +36,13 @@ export default ({
     }
   }, [value]);
 
+  useTimeout(() => {
+    onChange?.({ value: state.value });
+  }, 500, [state.value])
+  ;
+
   const onChange_ = val => {
     dispatch({ value: val });
-    onChange?.({ value: val });
   };
 
   const onKeyDown = e => {
