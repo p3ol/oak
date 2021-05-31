@@ -14,7 +14,6 @@ const BuilderWrapper = ({ onChange }) => {
 
   const onChange_ = ({ value }) => {
     onChange({ value });
-    console.log(value);
     dispatch({ value });
   };
 
