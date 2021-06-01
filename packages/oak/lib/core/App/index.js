@@ -287,7 +287,8 @@ export default forwardRef((options, ref) => {
 
   const undo = () => {
     if (state.memory.length > 1) {
-      dispatch({ memory: cloneDeep(state.memory.pop()) });
+      state.memory.pop();
+      dispatch({ memory: cloneDeep(state.memory) });
       setContent(state.memory[state.memory.length - 1]);
     }
   };
