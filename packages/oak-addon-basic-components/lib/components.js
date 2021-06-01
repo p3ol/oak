@@ -19,6 +19,7 @@ export const COMPONENT_TITLE = {
   deserialize: element => ({
     content: deserialize(element.content),
   }),
+  isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'title',
     content: 'This is a title',
