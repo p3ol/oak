@@ -107,7 +107,9 @@ export default forwardRef((options, ref) => {
   const onChange = content => {
     state.memory.push(cloneDeep(content) || cloneDeep(state.content));
     dispatch({ content: content || state.content });
-    options?.events?.onChange?.({ value: content || state.content });
+    const content_ = cloneDeep(content || state.content);
+    content_.forEach(e => serializeElement(e));
+    options?.events?.onChange?.({ value: content_ });
   };
 
   const getGroup_ = id => {
@@ -241,6 +243,21 @@ export default forwardRef((options, ref) => {
     if (component?.deserialize &&
       component.isSerialized?.(elmt)) {
       Object.assign(elmt, component.deserialize(elmt));
+    }
+  };
+
+  const serializeElement = elmt => {
+    if (Array.isArray(elmt.cols)) {
+      elmt.cols.forEach(c => serializeElement(c));
+    } else if (Array.isArray(elmt.content)) {
+      elmt.content.forEach(e => serializeElement(e));
+    }
+
+    const component = getComponent(elmt.type);
+
+    if (component?.serialize &&
+      !component.isSerialized?.(elmt)) {
+      Object.assign(elmt, component.serialize(elmt));
     }
   };
 
