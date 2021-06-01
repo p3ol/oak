@@ -105,7 +105,6 @@ export default forwardRef((options, ref) => {
   };
 
   const onChange = content => {
-    console.log('hi');
     state.memory.push(cloneDeep(content) || cloneDeep(state.content));
     dispatch({ content: content || state.content });
     options?.events?.onChange?.({ value: content || state.content });
@@ -269,9 +268,11 @@ export default forwardRef((options, ref) => {
   };
 
   const undo = () => {
+    console.log(state.memory[state.memory.length - 2])
+    ;
 
     if (state.memory.length > 1) {
-      state.memory.pop();
+      dispatch({ memory: cloneDeep(state.memory.pop()) });
       setContent(state.memory[state.memory.length - 1]);
     }
   };
