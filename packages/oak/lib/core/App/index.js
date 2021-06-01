@@ -238,7 +238,8 @@ export default forwardRef((options, ref) => {
 
     const component = getComponent(elmt.type);
 
-    if (component?.deserialize) {
+    if (component?.deserialize &&
+      component.isSerialized?.(elmt)) {
       Object.assign(elmt, component.deserialize(elmt));
     }
   };
@@ -268,9 +269,6 @@ export default forwardRef((options, ref) => {
   };
 
   const undo = () => {
-    console.log(state.memory[state.memory.length - 2])
-    ;
-
     if (state.memory.length > 1) {
       dispatch({ memory: cloneDeep(state.memory.pop()) });
       setContent(state.memory[state.memory.length - 1]);

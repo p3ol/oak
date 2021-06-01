@@ -1,4 +1,4 @@
-import { serialize, deserialize } from './core/Editor/html';
+import { serialize, deserialize, isSerialized } from './core/Editor/html';
 import Text from './core/Text';
 import Title from './core/Title';
 import Image from './core/Image';
@@ -42,6 +42,7 @@ export const COMPONENT_TEXT = {
   deserialize: element => ({
     content: deserialize(element.content),
   }),
+  isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'text',
     content: 'This is some fancy text content, you can even use ' +
@@ -82,6 +83,7 @@ export const COMPONENT_BUTTON = {
   deserialize: element => ({
     content: deserialize(element.content),
   }),
+  isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'button',
     content: 'Click me!',

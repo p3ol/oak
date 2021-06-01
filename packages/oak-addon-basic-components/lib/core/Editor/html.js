@@ -68,3 +68,5 @@ export const deserialize = content => {
 
   return [{ children: result }];
 };
+
+export const isSerialized = content => typeof content === 'string';
