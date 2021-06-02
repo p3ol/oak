@@ -20,6 +20,7 @@ export const useBuilder = () => {
     getComponent,
     getField,
     undo,
+    redo,
     _setSettingsHolderRef,
   } = useContext(AppContext);
 
@@ -36,6 +37,7 @@ export const useBuilder = () => {
     getComponent,
     getField,
     undo,
+    redo,
     _setSettingsHolderRef,
   };
 };

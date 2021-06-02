@@ -20,6 +20,7 @@ export default forwardRef((options, ref) => {
     fieldTypes: [FIELD_TEXT, FIELD_SELECT],
     _settingsHolderRef: null,
     memory: [],
+    actualInMemory: 0,
   });
 
   useEffect(() => {
@@ -58,6 +59,7 @@ export default forwardRef((options, ref) => {
     getField,
     _setSettingsHolderRef,
     undo,
+    redo,
   }), Object.values(state));
 
   const init = () => {
@@ -106,7 +108,10 @@ export default forwardRef((options, ref) => {
 
   const onChange = content => {
     state.memory.push(cloneDeep(content) || cloneDeep(state.content));
-    dispatch({ content: content || state.content });
+    dispatch({
+      content: content || state.content,
+      actualInMemory: state.actualInMemory + 1,
+    });
     const content_ = cloneDeep(content || state.content);
     content_.forEach(e => serializeElement(e));
     options?.events?.onChange?.({ value: content_ });
@@ -261,10 +266,16 @@ export default forwardRef((options, ref) => {
     }
   };
 
+  //TODO: onChange, slice array after, to avoid redo after a change event
   const setContent = content_ => {
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
-    onChange(content_);
+    dispatch({
+      content: content_ || state.content,
+    });
+    const contentCopy = cloneDeep(content_);
+    contentCopy.forEach(e => serializeElement(e));
+    options?.events?.onChange?.({ value: contentCopy });
   };
 
   const getComponent = (type, { parent = state.components } = {}) =>
@@ -286,10 +297,20 @@ export default forwardRef((options, ref) => {
   };
 
   const undo = () => {
-    if (state.memory.length > 1) {
-      state.memory.pop();
-      dispatch({ memory: cloneDeep(state.memory) });
-      setContent(state.memory[state.memory.length - 1]);
+    const actualInMemory = state.actualInMemory - 1;
+
+    if (actualInMemory > 0) {
+      dispatch({ actualInMemory });
+      setContent(state.memory[actualInMemory - 1]);
+    }
+  };
+
+  const redo = () => {
+    const actualInMemory = state.actualInMemory + 1;
+
+    if (actualInMemory <= state.memory.length) {
+      dispatch({ actualInMemory });
+      setContent(state.memory[actualInMemory - 1]);
     }
   };
 

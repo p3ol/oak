@@ -13,6 +13,7 @@ export default () => {
     addElement,
     _setSettingsHolderRef,
     undo,
+    redo,
   } = useBuilder();
   const { debug } = useOptions();
 
@@ -23,7 +24,8 @@ export default () => {
 
   return (
     <div className="oak-builder">
-      <Button onClick={() => undo()}>undo</Button>
+      <Button onClick={undo}>undo</Button>
+      <Button onClick={redo}>redo</Button>
       { content.map((item, i) => (
         <Element
           key={item.id || i}
