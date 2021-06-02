@@ -3,3 +3,22 @@
 .oak-builder
   .oak-add-element
     text-align: center
+
+  .oak-undo-redo
+    width:100%
+    display: flex
+    justify-content: flex-end
+
+    .oak-undo,.oak-redo
+      cursor: pointer
+      align-items: center
+      padding: 10px 15px
+      height: 40px
+      background: $color-black-squeeze
+      border-radius: 3px
+
+      &:hover
+        box-shadow: 0 0 0 1px $color-deep-sea-green
+
+    .oak-undo
+      margin-right: 10px

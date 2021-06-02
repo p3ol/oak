@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import { Button } from '@poool/junipero';
 
 import { useOptions, useBuilder } from '../../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
+import Icon from '../Icon';
 
 export default () => {
   const catalogueRef = useRef();
@@ -24,8 +24,15 @@ export default () => {
 
   return (
     <div className="oak-builder">
-      <Button onClick={undo}>undo</Button>
-      <Button onClick={redo}>redo</Button>
+      <div className="oak-undo-redo">
+        <a onClick={undo} className="oak-undo primary">
+          <Icon>undo</Icon>
+        </a>
+        <a onClick={redo} className="oak-redo primary">
+          <Icon>redo</Icon>
+        </a>
+      </div>
+
       { content.map((item, i) => (
         <Element
           key={item.id || i}
