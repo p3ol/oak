@@ -107,10 +107,12 @@ export default forwardRef((options, ref) => {
   };
 
   const onChange = content => {
-    state.memory.push(cloneDeep(content) || cloneDeep(state.content));
+    const newMemory = state.memory.slice(0, state.actualInMemory);
+    newMemory.push(cloneDeep(content) || cloneDeep(state.content));
     dispatch({
       content: content || state.content,
       actualInMemory: state.actualInMemory + 1,
+      memory: newMemory,
     });
     const content_ = cloneDeep(content || state.content);
     content_.forEach(e => serializeElement(e));
@@ -266,7 +268,6 @@ export default forwardRef((options, ref) => {
     }
   };
 
-  //TODO: onChange, slice array after, to avoid redo after a change event
   const setContent = content_ => {
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
