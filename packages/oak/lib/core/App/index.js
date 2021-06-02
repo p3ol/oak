@@ -21,6 +21,8 @@ export default forwardRef((options, ref) => {
     _settingsHolderRef: null,
     memory: [],
     actualInMemory: 0,
+    isUndoPossible: false,
+    isRedoPossible: false,
   });
 
   useEffect(() => {
@@ -48,6 +50,8 @@ export default forwardRef((options, ref) => {
     components: state.components,
     _settingsHolderRef: state._settingsHolderRef,
     options,
+    isUndoPossible: state.isUndoPossible,
+    isRedoPossible: state.isRedoPossible,
     addElement,
     removeElement,
     setElement,
@@ -113,6 +117,8 @@ export default forwardRef((options, ref) => {
       content: content || state.content,
       actualInMemory: state.actualInMemory + 1,
       memory: newMemory,
+      isRedoPossible: false,
+      isUndoPossible: state.actualInMemory > 0,
     });
     const content_ = cloneDeep(content || state.content);
     content_.forEach(e => serializeElement(e));
@@ -301,7 +307,11 @@ export default forwardRef((options, ref) => {
     const actualInMemory = state.actualInMemory - 1;
 
     if (actualInMemory > 0) {
-      dispatch({ actualInMemory });
+      dispatch({
+        actualInMemory,
+        isUndoPossible: actualInMemory > 1,
+        isRedoPossible: true,
+      });
       setContent(state.memory[actualInMemory - 1]);
     }
   };
@@ -310,7 +320,11 @@ export default forwardRef((options, ref) => {
     const actualInMemory = state.actualInMemory + 1;
 
     if (actualInMemory <= state.memory.length) {
-      dispatch({ actualInMemory });
+      dispatch({
+        actualInMemory,
+        isRedoPossible: actualInMemory < state.memory.length,
+        isUndoPossible: true,
+      });
       setContent(state.memory[actualInMemory - 1]);
     }
   };
