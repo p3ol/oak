@@ -4,7 +4,7 @@ import { Slate, Editable, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
 import isHotkey from 'is-hotkey';
 import { mockState } from '@poool/junipero-utils';
-import { useTimeout } from '@poool/junipero';
+import { Button } from '@poool/junipero';
 
 import { withHtml, toggleMark } from './editor';
 import Element from './Element';
@@ -36,11 +36,6 @@ export default ({
     }
   }, [value]);
 
-  useTimeout(() => {
-    onChange?.({ value: state.value });
-  }, 500, [state.value])
-  ;
-
   const onChange_ = val => {
     dispatch({ value: val });
   };
@@ -52,6 +47,11 @@ export default ({
         toggleMark(editor, mark);
       }
     });
+  };
+
+  const updateValue = e => {
+    e.preventDefault();
+    onChange?.({ value: state.value });
   };
 
   return (
@@ -74,6 +74,9 @@ export default ({
           onKeyDown={onKeyDown}
           className="oak-text-editable"
         />
+      </div>
+      <div className="oak-text-editor-flex">
+        <Button className="primary" onClick={updateValue}>Save</Button>
       </div>
     </Slate>
   );
