@@ -17,8 +17,13 @@
       background: $color-black-squeeze
       border-radius: 3px
 
+      &.disabled
+        opacity: 0.5
+        cursor: default
+
       &:hover
-        box-shadow: 0 0 0 1px $color-deep-sea-green
+        &:not(.disabled)
+          box-shadow: 0 0 0 1px $color-deep-sea-green
 
     .oak-undo
       margin-right: 10px

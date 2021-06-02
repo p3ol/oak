@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { classNames } from '@poool/junipero-utils';
 
 import { useOptions, useBuilder } from '../../hooks';
 import Element from '../Element';
@@ -14,6 +15,8 @@ export default () => {
     _setSettingsHolderRef,
     undo,
     redo,
+    isUndoPossible,
+    isRedoPossible,
   } = useBuilder();
   const { debug } = useOptions();
 
@@ -25,10 +28,14 @@ export default () => {
   return (
     <div className="oak-builder">
       <div className="oak-undo-redo">
-        <a onClick={undo} className="oak-undo primary">
+        <a onClick={() => isUndoPossible && undo()}
+          className={classNames('oak-undo', !isUndoPossible && 'disabled')}
+        >
           <Icon>undo</Icon>
         </a>
-        <a onClick={redo} className="oak-redo primary">
+        <a onClick={() => isRedoPossible && redo()}
+          className={classNames('oak-redo', !isRedoPossible && 'disabled')}
+        >
           <Icon>redo</Icon>
         </a>
       </div>
