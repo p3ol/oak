@@ -1,12 +1,12 @@
-import { useMemo, useCallback, useReducer, useEffect } from 'react';
-import { createEditor } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
-import { withHistory } from 'slate-history';
-import isHotkey from 'is-hotkey';
+import { classNames } from '@poool/junipero';
 import { mockState } from '@poool/junipero-utils';
-import { Button } from '@poool/junipero';
+import isHotkey from 'is-hotkey';
+import { useCallback, useEffect, useMemo, useReducer } from 'react';
+import { createEditor } from 'slate';
+import { withHistory } from 'slate-history';
+import { Editable, Slate, withReact } from 'slate-react';
 
-import { withHtml, toggleMark } from './editor';
+import { toggleMark, withHtml } from './editor';
 import Element from './Element';
 import Leaf from './Leaf';
 import MarkButton from './MarkButton';
@@ -76,7 +76,11 @@ export default ({
         />
       </div>
       <div className="oak-text-editor-flex">
-        <Button className="primary" onClick={updateValue}>Save</Button>
+        <a onClick={updateValue}
+          className={classNames('oak-validate')}
+        >
+          Save
+        </a>
       </div>
     </Slate>
   );
