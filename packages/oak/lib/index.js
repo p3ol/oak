@@ -5,40 +5,40 @@ import { useOptions, useBuilder, useElement } from './hooks';
 import App from './core/App';
 
 class oak {
-  ref = createRef()
+  #ref = createRef()
 
   addGroup (...args) {
-    this.ref?.current?.addGroup(...args);
+    this.#ref.current?.addGroup(...args);
 
     return this;
   }
 
   removeGroup (...args) {
-    this.ref?.current?.removeGroup(...args);
+    this.#ref.current?.removeGroup(...args);
 
     return this;
   }
 
   setContent (...args) {
-    this.ref?.current?.setContent(...args);
+    this.#ref.current?.setContent(...args);
 
     return this;
   }
 
   addElement (...args) {
-    this.ref?.current?.addElement(...args);
+    this.#ref.current?.addElement(...args);
 
     return this;
   }
 
   removeElement (...args) {
-    this.ref?.current?.removeElement(...args);
+    this.#ref.current?.removeElement(...args);
 
     return this;
   }
 
   setElement (...args) {
-    this.ref?.current?.setElement(...args);
+    this.#ref.current?.setElement(...args);
 
     return this;
   }

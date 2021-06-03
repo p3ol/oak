@@ -1,4 +1,10 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import { render, useOptions, useBuilder, useElement } from '@poool/oak';
 
 export { useOptions, useBuilder, useElement };
@@ -13,13 +19,14 @@ export const Builder = forwardRef(({
 }, ref) => {
   const innerRef = useRef();
   const [builder, setBuilder] = useState();
-  useEffect(() => {
-    builder?.setContent?.(value);
-  }, [value]);
 
   useImperativeHandle(ref, () => ({
     innerRef,
   }));
+
+  useEffect(() => {
+    builder?.setContent?.(value);
+  }, [value]);
 
   useEffect(() => {
     const builder_ = render(innerRef.current, {
