@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { render, useOptions, useBuilder, useElement } from '@poool/oak';
 
 export { useOptions, useBuilder, useElement };
@@ -12,10 +12,9 @@ export const Builder = forwardRef(({
   ...rest
 }, ref) => {
   const innerRef = useRef();
-  const builderRef = useRef();
-
+  const [builder, setBuilder] = useState();
   useEffect(() => {
-    builderRef.current?.setContent(value);
+    builder?.setContent?.(value);
   }, [value]);
 
   useImperativeHandle(ref, () => ({
@@ -23,7 +22,7 @@ export const Builder = forwardRef(({
   }));
 
   useEffect(() => {
-    render(innerRef.current, {
+    const builder_ = render(innerRef.current, {
       ...options,
       ...rest,
       content: value,
@@ -34,6 +33,7 @@ export const Builder = forwardRef(({
         onImageUpload,
       },
     });
+    setBuilder(builder_);
   }, [innerRef.current]);
 
   return (
