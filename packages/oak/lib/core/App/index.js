@@ -274,7 +274,7 @@ export default forwardRef((options, ref) => {
     }
   };
 
-  const setContent = content_ => {
+  const setContent = (content_, isFromParentApp = false) => {
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
     dispatch({
@@ -282,7 +282,7 @@ export default forwardRef((options, ref) => {
     });
     const contentCopy = cloneDeep(content_);
     contentCopy.forEach(e => serializeElement(e));
-    options?.events?.onChange?.({ value: contentCopy });
+    !isFromParentApp && options?.events?.onChange?.({ value: contentCopy });
   };
 
   const getComponent = (type, { parent = state.components } = {}) =>
