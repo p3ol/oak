@@ -1,4 +1,4 @@
-import { Node } from 'slate';
+import { Node, Text } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const ELEMENT_TAGS = {
@@ -20,7 +20,18 @@ const TEXT_TAGS = {
 };
 
 export const serialize = content => {
-  return content.map(n => Node.string(n)).join('\n');
+  return content.map(n => {
+    return n.children.map(e => {
+      return '<span style="' +
+      `${e.bold ? 'font-weight: bold;' : ''}` +
+      `${e.underline ? 'text-decoration: underline;' : ''}` +
+      `${e.italic ? 'font-style: italic;' : ''}` +
+      '">' +
+    Node.string(e) +
+    '</span>';
+    }).join('');
+
+  }).join('\n');
 };
 
 export const deserializeNode = el => {
