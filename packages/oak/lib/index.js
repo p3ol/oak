@@ -7,6 +7,10 @@ import App from './core/App';
 class oak {
   #ref = createRef()
 
+  setRef (ref) {
+    this.#ref.current = ref;
+  }
+
   addGroup (...args) {
     this.#ref.current?.addGroup(...args);
 
@@ -46,7 +50,9 @@ class oak {
 
 export const render = (elmt, options = {}, onChange) => {
   const app = new oak();
-  ReactDOM.render(<App ref={app.ref} {...options} onChange={onChange} />, elmt);
+  ReactDOM.render((
+    <App ref={app.setRef.bind(app)} {...options} onChange={onChange} />
+  ), elmt);
 
   return app;
 };

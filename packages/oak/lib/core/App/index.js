@@ -274,15 +274,19 @@ export default forwardRef((options, ref) => {
     }
   };
 
-  const setContent = (content_, isFromParentApp = false) => {
+  const setContent = content_ => {
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
     dispatch({
       content: content_ || state.content,
     });
+  };
+
+  const setContentWithDispatch = content_ => {
+    setContent(content_);
     const contentCopy = cloneDeep(content_);
     contentCopy.forEach(e => serializeElement(e));
-    !isFromParentApp && options?.events?.onChange?.({ value: contentCopy });
+    options?.events?.onChange?.({ value: contentCopy });
   };
 
   const getComponent = (type, { parent = state.components } = {}) =>
@@ -312,7 +316,7 @@ export default forwardRef((options, ref) => {
         isUndoPossible: actualInMemory > 1,
         isRedoPossible: true,
       });
-      setContent(state.memory[actualInMemory - 1]);
+      setContentWithDispatch(state.memory[actualInMemory - 1]);
     }
   };
 
@@ -325,7 +329,7 @@ export default forwardRef((options, ref) => {
         isRedoPossible: actualInMemory < state.memory.length,
         isUndoPossible: true,
       });
-      setContent(state.memory[actualInMemory - 1]);
+      setContentWithDispatch(state.memory[actualInMemory - 1]);
     }
   };
 

@@ -18,18 +18,18 @@ export const Builder = forwardRef(({
   ...rest
 }, ref) => {
   const innerRef = useRef();
-  const [builder, setBuilder] = useState();
+  const builderRef = useRef();
 
   useImperativeHandle(ref, () => ({
     innerRef,
   }));
 
   useEffect(() => {
-    builder?.setContent?.(value);
+    builderRef.current?.setContent?.(value);
   }, [value]);
 
   useEffect(() => {
-    const builder_ = render(innerRef.current, {
+    builderRef.current = render(innerRef.current, {
       ...options,
       ...rest,
       content: value,
@@ -40,7 +40,6 @@ export const Builder = forwardRef(({
         onImageUpload,
       },
     });
-    setBuilder(builder_);
   }, [innerRef.current]);
 
   return (
