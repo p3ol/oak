@@ -22,13 +22,15 @@ const TEXT_TAGS = {
 export const serialize = content => {
   return content.map(n => {
     return n.children.map(e => {
-      return '<span style="' +
-      `${e.bold ? 'font-weight: bold;' : ''}` +
-      `${e.underline ? 'text-decoration: underline;' : ''}` +
-      `${e.italic ? 'font-style: italic;' : ''}` +
-      '">' +
-    Node.string(e) +
-    '</span>';
+      let string = Node.string(e);
+
+      if (e.bold) string = `<b>${string}</b>`;
+
+      if (e.underline) string = `<u>${string}</u>`;
+
+      if (e.italic) string = `<i>${string}</i>`;
+
+      return string;
     }).join('');
 
   }).join('\n');
@@ -80,4 +82,6 @@ export const deserialize = content => {
   return [{ children: result }];
 };
 
-export const isSerialized = content => typeof content === 'string';
+export const isSerialized = content => {
+  return typeof content === 'string';
+};
