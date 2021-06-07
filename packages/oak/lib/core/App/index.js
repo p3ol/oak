@@ -45,6 +45,8 @@ export default forwardRef((options, ref) => {
     getField,
     undo,
     redo,
+    isUndoPossible: state.isUndoPossible,
+    isRedoPossible: state.isRedoPossible,
   }));
 
   const getContext = useCallback(() => ({

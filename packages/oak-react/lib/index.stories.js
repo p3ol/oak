@@ -229,8 +229,14 @@ const BuilderWrapper = ({ onChange }) => {
 
   return (
     <>
-      <button onClick={undo}>undo from parent</button>
-      <button onClick={redo}>Redo from parent</button>
+      <button onClick={undo}>
+        undo from parent, possible :
+        {String(ref.current?.builderRef.current?.isUndoPossible())}
+      </button>
+      <button onClick={redo}>
+        Redo from parent:
+        {String(ref.current?.builderRef.current?.isRedoPossible())}
+      </button>
       <Builder
         addons={[basicComponents]}
         value={state.value}

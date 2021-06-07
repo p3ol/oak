@@ -54,6 +54,14 @@ class oak {
   redo (...args) {
     this.#ref.current?.redo(...args);
   }
+
+  isUndoPossible () {
+    return this.#ref.current?.isUndoPossible;
+  }
+
+  isRedoPossible () {
+    return this.#ref.current?.isRedoPossible;
+  }
 }
 
 export const render = (elmt, options = {}) => {
