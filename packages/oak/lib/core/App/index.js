@@ -19,8 +19,8 @@ export default forwardRef((options, ref) => {
     content: [],
     fieldTypes: [FIELD_TEXT, FIELD_SELECT],
     _settingsHolderRef: null,
-    memory: [],
-    positionInMemory: 0,
+    memory: [[]],
+    positionInMemory: 1,
     isUndoPossible: false,
     isRedoPossible: false,
   });
@@ -105,6 +105,8 @@ export default forwardRef((options, ref) => {
       const content_ = cloneDeep(options.content);
       content_.forEach(e => normalizeElement(e));
       state.content = content_;
+      state.memory = cloneDeep([content_]);
+      state.positionInMemory = 1;
     }
 
     dispatch(state);
@@ -275,6 +277,15 @@ export default forwardRef((options, ref) => {
   };
 
   const setContent = content_ => {
+
+    if (state.memory.length === 0 ||
+      (state.memory.length === 1 && state.memory[0].length === 0)) {
+      dispatch({
+        memory: [content_],
+        positionInMemory: 1,
+      });
+    }
+
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
     dispatch({
