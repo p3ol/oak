@@ -1,4 +1,4 @@
-import { Transforms, Editor } from 'slate';
+import { Transforms, Element, Editor } from 'slate';
 
 import { deserializeNode } from './html';
 
@@ -40,4 +40,19 @@ export const toggleMark = (editor, format) => {
   } else {
     Editor.addMark(editor, format, true);
   }
+};
+
+export const isBlockActive = (editor, format) => {
+  const [match] = Editor.nodes(editor, {
+    match: n => !Editor.isEditor(n) && Element.isElement(n) &&
+      n.type === format,
+  });
+
+  return !!match;
+};
+
+export const toggleBlock = (editor, format) => {
+  const isActive = isBlockActive(editor, format);
+  const newProperty = { type: isActive ? 'paragraph' : format };
+  Transforms.setNodes(editor, newProperty);
 };
