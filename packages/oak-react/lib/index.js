@@ -3,7 +3,6 @@ import {
   useEffect,
   useImperativeHandle,
   useRef,
-  useState,
 } from 'react';
 import { render, useOptions, useBuilder, useElement } from '@poool/oak';
 
