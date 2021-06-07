@@ -19,6 +19,7 @@ const Row = ({
       content: [],
       id: uuid(),
       style: {},
+      type: 'col',
     });
 
     setElement(element, { cols: element.cols });

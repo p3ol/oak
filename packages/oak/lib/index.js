@@ -7,6 +7,10 @@ import App from './core/App';
 class oak {
   #ref = createRef()
 
+  setRef (ref) {
+    this.#ref.current = ref;
+  }
+
   addGroup (...args) {
     this.#ref.current?.addGroup(...args);
 
@@ -42,11 +46,27 @@ class oak {
 
     return this;
   }
+
+  undo (...args) {
+    this.#ref.current?.undo(...args);
+  }
+
+  redo (...args) {
+    this.#ref.current?.redo(...args);
+  }
+
+  isUndoPossible () {
+    return this.#ref.current?.isUndoPossible;
+  }
+
+  isRedoPossible () {
+    return this.#ref.current?.isRedoPossible;
+  }
 }
 
 export const render = (elmt, options = {}) => {
   const app = new oak();
-  ReactDOM.render(<App ref={app.ref} {...options} />, elmt);
+  ReactDOM.render(<App ref={app.setRef.bind(app)} {...options} />, elmt);
 
   return app;
 };

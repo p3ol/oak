@@ -20,7 +20,20 @@ const TEXT_TAGS = {
 };
 
 export const serialize = content => {
-  return content.map(n => Node.string(n)).join('\n');
+  return content.map(n => {
+    return n.children.map(e => {
+      let string = Node.string(e);
+
+      if (e.bold) string = `<b>${string}</b>`;
+
+      if (e.underline) string = `<u>${string}</u>`;
+
+      if (e.italic) string = `<i>${string}</i>`;
+
+      return string;
+    }).join('');
+
+  }).join('\n');
 };
 
 export const deserializeNode = el => {
@@ -67,4 +80,8 @@ export const deserialize = content => {
   const result = deserializeNode(parsed.body);
 
   return [{ children: result }];
+};
+
+export const isSerialized = content => {
+  return typeof content === 'string';
 };

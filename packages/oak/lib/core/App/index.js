@@ -19,6 +19,10 @@ export default forwardRef((options, ref) => {
     content: [],
     fieldTypes: [FIELD_TEXT, FIELD_SELECT],
     _settingsHolderRef: null,
+    memory: [[]],
+    positionInMemory: 1,
+    isUndoPossible: false,
+    isRedoPossible: false,
   });
 
   useEffect(() => {
@@ -39,6 +43,10 @@ export default forwardRef((options, ref) => {
     contains,
     getComponent,
     getField,
+    undo,
+    redo,
+    isUndoPossible: state.isUndoPossible,
+    isRedoPossible: state.isRedoPossible,
   }));
 
   const getContext = useCallback(() => ({
@@ -46,6 +54,8 @@ export default forwardRef((options, ref) => {
     components: state.components,
     _settingsHolderRef: state._settingsHolderRef,
     options,
+    isUndoPossible: state.isUndoPossible,
+    isRedoPossible: state.isRedoPossible,
     addElement,
     removeElement,
     setElement,
@@ -56,6 +66,8 @@ export default forwardRef((options, ref) => {
     getComponent,
     getField,
     _setSettingsHolderRef,
+    undo,
+    redo,
   }), Object.values(state));
 
   const init = () => {
@@ -97,14 +109,26 @@ export default forwardRef((options, ref) => {
       const content_ = cloneDeep(options.content);
       content_.forEach(e => normalizeElement(e));
       state.content = content_;
+      state.memory = cloneDeep([content_]);
+      state.positionInMemory = 1;
     }
 
     dispatch(state);
   };
 
   const onChange = content => {
-    dispatch({ content: content || state.content });
-    options?.events?.onChange?.({ value: content || state.content });
+    const newMemory = state.memory.slice(0, state.positionInMemory);
+    newMemory.push(cloneDeep(content) || cloneDeep(state.content));
+    dispatch({
+      content: content || state.content,
+      positionInMemory: state.positionInMemory + 1,
+      memory: newMemory,
+      isRedoPossible: false,
+      isUndoPossible: state.positionInMemory > 0,
+    });
+    const content_ = cloneDeep(content || state.content);
+    content_.forEach(e => serializeElement(e));
+    options?.events?.onChange?.({ value: content_ });
   };
 
   const getGroup_ = id => {
@@ -235,15 +259,49 @@ export default forwardRef((options, ref) => {
 
     const component = getComponent(elmt.type);
 
-    if (component?.deserialize) {
+    if (component?.deserialize &&
+      component.isSerialized?.(elmt)) {
       Object.assign(elmt, component.deserialize(elmt));
     }
   };
 
+  const serializeElement = elmt => {
+    if (Array.isArray(elmt.cols)) {
+      elmt.cols.forEach(c => serializeElement(c));
+    } else if (Array.isArray(elmt.content)) {
+      elmt.content.forEach(e => serializeElement(e));
+    }
+
+    const component = getComponent(elmt.type);
+
+    if (component?.serialize &&
+      !component.isSerialized?.(elmt)) {
+      Object.assign(elmt, component.serialize(elmt));
+    }
+  };
+
   const setContent = content_ => {
+
+    if (state.memory.length === 0 ||
+      (state.memory.length === 1 && state.memory[0].length === 0)) {
+      dispatch({
+        memory: [content_],
+        positionInMemory: 1,
+      });
+    }
+
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
-    onChange(content_);
+    dispatch({
+      content: content_ || state.content,
+    });
+  };
+
+  const setContentWithDispatch = content_ => {
+    setContent(content_);
+    const contentCopy = cloneDeep(content_);
+    contentCopy.forEach(e => serializeElement(e));
+    options?.events?.onChange?.({ value: contentCopy });
   };
 
   const getComponent = (type, { parent = state.components } = {}) =>
@@ -262,6 +320,32 @@ export default forwardRef((options, ref) => {
     }
 
     dispatch({ _settingsHolderRef: ref });
+  };
+
+  const undo = () => {
+    const positionInMemory = state.positionInMemory - 1;
+
+    if (positionInMemory > 0) {
+      dispatch({
+        positionInMemory,
+        isUndoPossible: positionInMemory > 1,
+        isRedoPossible: true,
+      });
+      setContentWithDispatch(state.memory[positionInMemory - 1]);
+    }
+  };
+
+  const redo = () => {
+    const positionInMemory = state.positionInMemory + 1;
+
+    if (positionInMemory <= state.memory.length) {
+      dispatch({
+        positionInMemory,
+        isRedoPossible: positionInMemory < state.memory.length,
+        isUndoPossible: true,
+      });
+      setContentWithDispatch(state.memory[positionInMemory - 1]);
+    }
   };
 
   return (

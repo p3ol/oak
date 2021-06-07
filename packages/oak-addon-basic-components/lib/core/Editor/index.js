@@ -1,11 +1,12 @@
-import { useMemo, useCallback, useReducer, useEffect } from 'react';
-import { createEditor } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
-import { withHistory } from 'slate-history';
-import isHotkey from 'is-hotkey';
+import { classNames } from '@poool/junipero';
 import { mockState } from '@poool/junipero-utils';
+import isHotkey from 'is-hotkey';
+import { useCallback, useEffect, useMemo, useReducer } from 'react';
+import { createEditor } from 'slate';
+import { withHistory } from 'slate-history';
+import { Editable, Slate, withReact } from 'slate-react';
 
-import { withHtml, toggleMark } from './editor';
+import { toggleMark, withHtml } from './editor';
 import Element from './Element';
 import Leaf from './Leaf';
 import MarkButton from './MarkButton';
@@ -37,7 +38,6 @@ export default ({
 
   const onChange_ = val => {
     dispatch({ value: val });
-    onChange?.({ value: val });
   };
 
   const onKeyDown = e => {
@@ -47,6 +47,11 @@ export default ({
         toggleMark(editor, mark);
       }
     });
+  };
+
+  const updateValue = e => {
+    e.preventDefault();
+    onChange?.({ value: state.value });
   };
 
   return (
@@ -69,6 +74,13 @@ export default ({
           onKeyDown={onKeyDown}
           className="oak-text-editable"
         />
+      </div>
+      <div className="oak-text-editor-flex">
+        <a onClick={updateValue}
+          className={classNames('oak-validate')}
+        >
+          Save
+        </a>
       </div>
     </Slate>
   );

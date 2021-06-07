@@ -19,6 +19,10 @@ export const useBuilder = () => {
     findNearestParent,
     getComponent,
     getField,
+    undo,
+    redo,
+    isUndoPossible,
+    isRedoPossible,
     _setSettingsHolderRef,
   } = useContext(AppContext);
 
@@ -34,6 +38,10 @@ export const useBuilder = () => {
     findNearestParent,
     getComponent,
     getField,
+    undo,
+    redo,
+    isUndoPossible,
+    isRedoPossible,
     _setSettingsHolderRef,
   };
 };
