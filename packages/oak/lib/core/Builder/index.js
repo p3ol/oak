@@ -1,8 +1,10 @@
 import { useRef } from 'react';
+import { classNames } from '@poool/junipero-utils';
 
 import { useOptions, useBuilder } from '../../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
+import Icon from '../Icon';
 
 export default () => {
   const catalogueRef = useRef();
@@ -11,6 +13,10 @@ export default () => {
     content,
     addElement,
     _setSettingsHolderRef,
+    undo,
+    redo,
+    isUndoPossible,
+    isRedoPossible,
   } = useBuilder();
   const { debug } = useOptions();
 
@@ -21,6 +27,19 @@ export default () => {
 
   return (
     <div className="oak-builder">
+      <div className="oak-undo-redo">
+        <a onClick={() => isUndoPossible && undo()}
+          className={classNames('oak-undo', !isUndoPossible && 'disabled')}
+        >
+          <Icon>undo</Icon>
+        </a>
+        <a onClick={() => isRedoPossible && redo()}
+          className={classNames('oak-redo', !isRedoPossible && 'disabled')}
+        >
+          <Icon>redo</Icon>
+        </a>
+      </div>
+
       { content.map((item, i) => (
         <Element
           key={item.id || i}

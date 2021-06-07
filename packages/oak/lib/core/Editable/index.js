@@ -6,6 +6,7 @@ import {
   useReducer,
   useState,
   useImperativeHandle,
+  useEffect,
 } from 'react';
 import {
   mockState,
@@ -33,6 +34,11 @@ export default forwardRef(({
     opened: false,
     element: cloneDeep(element),
   });
+
+  useEffect(() => {
+    dispatch({ element: cloneDeep(element) });
+  }, [element]);
+
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
     ...((typeof component?.settings?.popperSettings === 'function'
       ? component?.settings?.popperSettings({ optionButtonElement: reference })
