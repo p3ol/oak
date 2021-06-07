@@ -58,24 +58,40 @@ export default ({
     >
       <div className="oak-text-editor">
         <div className="oak-toolbar">
-          <MarkButton format="bold" icon="format_bold" />
-          <MarkButton format="italic" icon="format_italic" />
-          <MarkButton format="underline" icon="format_underlined" />
+          <MarkButton
+            format="bold"
+            icon="format_bold"
+            tooltipText="Bold"
+          />
+          <MarkButton
+            format="italic"
+            icon="format_italic"
+            tooltipText="Italic"
+          />
+          <MarkButton
+            format="underline"
+            icon="format_underlined"
+            tooltipText="Underline"
+          />
           <BlockButton
             format="text-left"
             icon="format_align_left"
+            tooltipText="Align left"
           />
           <BlockButton
             format="text-center"
             icon="format_align_center"
+            tooltipText="Align center"
           />
           <BlockButton
             format="text-right"
             icon="format_align_right"
+            tooltipText="Align right"
           />
           <BlockButton
             format="text-justify"
             icon="format_align_justify"
+            tooltipText="Align justify"
           />
         </div>
         <Editable
