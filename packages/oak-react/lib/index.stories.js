@@ -225,16 +225,16 @@ const BuilderWrapper = ({ onChange }) => {
         id: '8bdf90df-7955-4e95-b2ce-76ac2e1a1566',
       },
     ] });
-  }, 3000, []);
+  }, 1500, []);
 
   return (
     <>
       <button onClick={undo}>
-        undo from parent, possible :
+        Undo from parent, possible :
         {String(ref.current?.builderRef.current?.isUndoPossible())}
       </button>
       <button onClick={redo}>
-        Redo from parent:
+        Redo from parent, possible :
         {String(ref.current?.builderRef.current?.isRedoPossible())}
       </button>
       <Builder
