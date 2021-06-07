@@ -43,6 +43,8 @@ export default forwardRef((options, ref) => {
     contains,
     getComponent,
     getField,
+    undo,
+    redo,
   }));
 
   const getContext = useCallback(() => ({

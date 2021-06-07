@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useRef } from 'react';
 import { mockState } from '@poool/junipero-utils';
 import { action } from '@storybook/addon-actions';
 import { useTimeout } from '@poool/junipero-hooks';
@@ -12,6 +12,15 @@ const BuilderWrapper = ({ onChange }) => {
   const [state, dispatch] = useReducer(mockState, {
     value: [],
   });
+  const ref = useRef();
+
+  const undo = () => {
+    ref.current?.builderRef.current?.undo();
+  };
+
+  const redo = () => {
+    ref.current?.builderRef.current?.redo();
+  };
 
   const onChange_ = ({ value }) => {
     onChange({ value });
@@ -219,12 +228,17 @@ const BuilderWrapper = ({ onChange }) => {
   }, 3000, []);
 
   return (
-    <Builder
-      addons={[basicComponents]}
-      value={state.value}
-      onChange={onChange_}
-      onImageUpload={onImageUpload}
-    />
+    <>
+      <button onClick={undo}>undo from parent</button>
+      <button onClick={redo}>Redo from parent</button>
+      <Builder
+        addons={[basicComponents]}
+        value={state.value}
+        onChange={onChange_}
+        onImageUpload={onImageUpload}
+        ref={ref}
+      />
+    </>
   );
 };
 

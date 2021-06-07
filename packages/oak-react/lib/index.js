@@ -21,6 +21,7 @@ export const Builder = forwardRef(({
 
   useImperativeHandle(ref, () => ({
     innerRef,
+    builderRef,
   }));
 
   useEffect(() => {

@@ -46,6 +46,14 @@ class oak {
 
     return this;
   }
+
+  undo (...args) {
+    this.#ref.current?.undo(...args);
+  }
+
+  redo (...args) {
+    this.#ref.current?.redo(...args);
+  }
 }
 
 export const render = (elmt, options = {}) => {
