@@ -6,6 +6,7 @@ import isHotkey from 'is-hotkey';
 import { mockState } from '@poool/junipero-utils';
 
 import { withHtml, toggleMark } from './editor';
+import BlockButton from './BlockButton';
 import Element from './Element';
 import Leaf from './Leaf';
 import MarkButton from './MarkButton';
@@ -60,6 +61,22 @@ export default ({
           <MarkButton format="bold" icon="format_bold" />
           <MarkButton format="italic" icon="format_italic" />
           <MarkButton format="underline" icon="format_underlined" />
+          <BlockButton
+            format="text-left"
+            icon="format_align_left"
+          />
+          <BlockButton
+            format="text-center"
+            icon="format_align_center"
+          />
+          <BlockButton
+            format="text-right"
+            icon="format_align_right"
+          />
+          <BlockButton
+            format="text-justify"
+            icon="format_align_justify"
+          />
         </div>
         <Editable
           onDrop={e => e.preventDefault()}
