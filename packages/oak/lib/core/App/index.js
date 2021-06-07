@@ -20,7 +20,7 @@ export default forwardRef((options, ref) => {
     fieldTypes: [FIELD_TEXT, FIELD_SELECT],
     _settingsHolderRef: null,
     memory: [],
-    actualInMemory: 0,
+    positionInMemory: 0,
     isUndoPossible: false,
     isRedoPossible: false,
   });
@@ -111,14 +111,14 @@ export default forwardRef((options, ref) => {
   };
 
   const onChange = content => {
-    const newMemory = state.memory.slice(0, state.actualInMemory);
+    const newMemory = state.memory.slice(0, state.positionInMemory);
     newMemory.push(cloneDeep(content) || cloneDeep(state.content));
     dispatch({
       content: content || state.content,
-      actualInMemory: state.actualInMemory + 1,
+      positionInMemory: state.positionInMemory + 1,
       memory: newMemory,
       isRedoPossible: false,
-      isUndoPossible: state.actualInMemory > 0,
+      isUndoPossible: state.positionInMemory > 0,
     });
     const content_ = cloneDeep(content || state.content);
     content_.forEach(e => serializeElement(e));
@@ -308,28 +308,28 @@ export default forwardRef((options, ref) => {
   };
 
   const undo = () => {
-    const actualInMemory = state.actualInMemory - 1;
+    const positionInMemory = state.positionInMemory - 1;
 
-    if (actualInMemory > 0) {
+    if (positionInMemory > 0) {
       dispatch({
-        actualInMemory,
-        isUndoPossible: actualInMemory > 1,
+        positionInMemory,
+        isUndoPossible: positionInMemory > 1,
         isRedoPossible: true,
       });
-      setContentWithDispatch(state.memory[actualInMemory - 1]);
+      setContentWithDispatch(state.memory[positionInMemory - 1]);
     }
   };
 
   const redo = () => {
-    const actualInMemory = state.actualInMemory + 1;
+    const positionInMemory = state.positionInMemory + 1;
 
-    if (actualInMemory <= state.memory.length) {
+    if (positionInMemory <= state.memory.length) {
       dispatch({
-        actualInMemory,
-        isRedoPossible: actualInMemory < state.memory.length,
+        positionInMemory,
+        isRedoPossible: positionInMemory < state.memory.length,
         isUndoPossible: true,
       });
-      setContentWithDispatch(state.memory[actualInMemory - 1]);
+      setContentWithDispatch(state.memory[positionInMemory - 1]);
     }
   };
 

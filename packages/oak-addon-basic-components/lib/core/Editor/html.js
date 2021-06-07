@@ -1,4 +1,4 @@
-import { Node, Text } from 'slate';
+import { Node } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const ELEMENT_TAGS = {
