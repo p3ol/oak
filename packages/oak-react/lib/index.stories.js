@@ -243,6 +243,9 @@ const BuilderWrapper = ({ onChange }) => {
         onChange={onChange_}
         onImageUpload={onImageUpload}
         ref={ref}
+        options={{
+          memoryMaximum: 5,
+        }}
       />
     </>
   );
