@@ -300,7 +300,6 @@ export default forwardRef((options, ref) => {
       });
     }
 
-    console.log(content_);
     content_ = cloneDeep(content_);
     content_.forEach(e => normalizeElement(e));
     dispatch({
@@ -334,9 +333,6 @@ export default forwardRef((options, ref) => {
   };
 
   const undo = () => {
-    console.log(state.positionInMemory);
-    console.log(state.memory);
-
     const positionInMemory = state.positionInMemory - 1;
 
     if (positionInMemory > 0) {
