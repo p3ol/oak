@@ -44,8 +44,12 @@ export default forwardRef(({
       ? component?.settings?.popperSettings({ optionButtonElement: reference })
       : component?.settings?.popperSettings
     ) || {
-      strategy: 'fixed',
       modifiers: [{
+        name: 'preventOverflow',
+        options: {
+          boundary: true,
+        },
+      }, {
         name: 'offset',
         options: {
           offset: [0, 5],
