@@ -10,6 +10,7 @@ import { toggleMark, withHtml } from './editor';
 import BlockButton from './BlockButton';
 import Element from './Element';
 import Leaf from './Leaf';
+import ColorButton from './ColorButton';
 import MarkButton from './MarkButton';
 
 const HOTKEYS = {
@@ -78,6 +79,7 @@ export default ({
             icon="format_underlined"
             tooltipText="Underline"
           />
+          <ColorButton />
           <BlockButton
             format="text-left"
             icon="format_align_left"

@@ -1,4 +1,4 @@
-export default ({ text, bold, code, italic, underline }) => {
+export default ({ text, bold, code, color, italic, underline }) => {
   if (bold) {
     text = (
       <strong>{ text }</strong>
@@ -20,6 +20,12 @@ export default ({ text, bold, code, italic, underline }) => {
   if (underline) {
     text = (
       <u>{ text }</u>
+    );
+  }
+
+  if (color) {
+    text = (
+      <span style={{ color }}>{ text }</span>
     );
   }
 

@@ -17,6 +17,7 @@ const TEXT_TAGS = {
   STRONG: () => ({ bold: true }),
   B: () => ({ bold: true }),
   U: () => ({ underline: true }),
+  SPAN: el => ({ color: el.leaf?.color }),
 };
 
 export const serialize = content => {
@@ -30,6 +31,8 @@ export const serialize = content => {
 
       if (e.italic) string = `<i>${string}</i>`;
 
+      if (e.color) string = `<span style="color:${e.color};">${string}</span>`;
+
       return string;
     }).join('');
 
@@ -37,6 +40,8 @@ export const serialize = content => {
 };
 
 export const deserializeNode = el => {
+  console.log({ el });
+
   if (el.nodeType === 3) {
     return el.textContent;
   } else if (el.nodeType !== 1) {
@@ -64,7 +69,7 @@ export const deserializeNode = el => {
 
   if (TEXT_TAGS[nodeName]) {
     const attrs = TEXT_TAGS[nodeName](el);
-
+    console.log({ nodeName, attrs });
     return children.map(child => jsx('text', attrs, child));
   }
 

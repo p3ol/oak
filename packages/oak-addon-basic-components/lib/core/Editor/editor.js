@@ -34,11 +34,14 @@ export const withHtml = editor => {
 export const isMarkActive = (editor, format) =>
   Editor.marks(editor)?.[format] === true;
 
-export const toggleMark = (editor, format) => {
-  if (isMarkActive(editor, format)) {
+const isDefaultColor = (format, value) =>
+  format === 'color' && value === '#000000'
+
+export const toggleMark = (editor, format, value = true) => {
+  if (isMarkActive(editor, format) || isDefaultColor(format, value)) {
     Editor.removeMark(editor, format);
   } else {
-    Editor.addMark(editor, format, true);
+    Editor.addMark(editor, format, value);
   }
 };
 
