@@ -16,6 +16,32 @@ export default ({ attributes, children, element }) => {
       return (
         <ol { ...attributes }>{ children }</ol>
       );
+    case 'text-left':
+      return (
+        <div style={{ textAlign: 'left' }} { ...attributes }>{ children }</div>
+      );
+    case 'text-center':
+      return (
+        <div
+          style={{ textAlign: 'center' }}
+          { ...attributes }
+        >
+          { children }
+        </div>
+      );
+    case 'text-right':
+      return (
+        <div style={{ textAlign: 'right' }} { ...attributes }>{ children }</div>
+      );
+    case 'text-justify':
+      return (
+        <div
+          style={{ textAlign: 'justify' }}
+          { ...attributes }
+        >
+          { children }
+        </div>
+      );
     default:
       return (
         <div { ...attributes }>{ children }</div>

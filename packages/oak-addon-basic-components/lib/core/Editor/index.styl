@@ -22,17 +22,22 @@
       padding: 2px
 
       &.oak-active
-        color: $color-woodsmoke
+        .oak-icons
+          color: $color-woodsmoke
 
       &.oak-underline
         .oak-icons
           font-size: 18px
+
+      &.oak-text-left
+        margin-left: 15px
 
     .oak-icons
       color: $color-shuttle-gray
       font-size: 20px
 
   .oak-text-editable
+    box-sizing: border-box
     padding: 10px
     width: 100%
 
@@ -40,7 +45,7 @@
   display: flex
   justify-content: flex-end
   margin-top: 20px
-  
+
   .oak-validate
     cursor: pointer
     align-items: center
@@ -49,3 +54,12 @@
     background: $color-black-squeeze
     border-radius: 3px
     line-height: normal
+
+.junipero.tooltip
+  z-index: 1
+
+  .tooltip-inner
+    font-size: 12px
+
+  .arrow
+    display: none
