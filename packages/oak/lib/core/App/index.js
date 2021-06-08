@@ -117,11 +117,21 @@ export default forwardRef((options, ref) => {
   };
 
   const onChange = content => {
-    const newMemory = state.memory.slice(0, state.positionInMemory);
+    let newMemory = state.memory.slice(0, state.positionInMemory);
     newMemory.push(cloneDeep(content) || cloneDeep(state.content));
+
+    let offset = 0;
+    const maximum = options.memoryMaximum || 100;
+
+    if (newMemory.length > maximum + 1) {
+      offset = newMemory.length - maximum + 1;
+    }
+
+    newMemory = newMemory.slice(offset);
+
     dispatch({
       content: content || state.content,
-      positionInMemory: state.positionInMemory + 1,
+      positionInMemory: state.positionInMemory + 1 - offset,
       memory: newMemory,
       isRedoPossible: false,
       isUndoPossible: state.positionInMemory > 0,
