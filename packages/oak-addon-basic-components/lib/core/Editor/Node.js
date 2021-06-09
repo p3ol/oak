@@ -28,6 +28,22 @@ const Node = ({ type, text, children, ...rest }) => {
       return (
         <ol>{ children }</ol>
       );
+    case 'text-left':
+      return (
+        <div style={{ textAlign: 'left' }}>{ children }</div>
+      );
+    case 'text-center':
+      return (
+        <div style={{ textAlign: 'center' }}>{ children }</div>
+      );
+    case 'text-right':
+      return (
+        <div style={{ textAlign: 'right' }}>{ children }</div>
+      );
+    case 'text-justify':
+      return (
+        <div style={{ textAlign: 'justify' }}>{ children }</div>
+      );
     default:
       return (
         <div>{ children }</div>
