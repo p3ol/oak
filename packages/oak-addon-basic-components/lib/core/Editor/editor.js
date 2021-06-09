@@ -35,7 +35,7 @@ export const isMarkActive = (editor, format) =>
   Editor.marks(editor)?.[format] === true;
 
 const isDefaultColor = (format, value) =>
-  format === 'color' && value === '#000000'
+  format === 'color' && value === '#000000';
 
 export const toggleMark = (editor, format, value = true) => {
   if (isMarkActive(editor, format) || isDefaultColor(format, value)) {

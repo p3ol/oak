@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSlate } from 'slate-react';
 import { Transforms } from 'slate';
-import { Dropdown, DropdownMenu, ColorField, DropdownToggle, Tooltip, TextField } from '@poool/junipero';
+import {
+  ColorField,
+  Dropdown,
+  DropdownMenu,
+  DropdownToggle,
+  Tooltip,
+} from '@poool/junipero';
 import { classNames } from '@poool/junipero-utils';
 
 import { toggleMark } from './editor';
@@ -18,7 +24,7 @@ export default ({ className }) => {
     }
 
     setSelection(editor.selection);
-  }, [editor.selection])
+  }, [editor.selection]);
 
   const onChange = field => {
     if (!selection) {
@@ -30,19 +36,20 @@ export default ({ className }) => {
     toggleMark(editor, 'color', field.value);
   };
 
-  const onClick = e => {
+  const onClick = () => {
     colorFieldRef.current?.dropdownRef.current?.open();
     const selectedColor = getSelectedColor();
     setColor(selectedColor);
-  }
+  };
 
   const getSelectedColor = () => {
     const path = selection?.anchor?.path;
     const selectedRow = editor.children[path?.[0]];
     const selectedContent = selectedRow?.children[path?.[1]];
     const selectedColor = selectedContent?.color || '#000000';
+
     return selectedColor;
-  }
+  };
 
   return (
     <Dropdown>
