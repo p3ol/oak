@@ -8,7 +8,9 @@ const ELEMENT_TAGS = {
   OL: () => ({ type: 'numbered-list' }),
   P: () => ({ type: 'paragraph' }),
   UL: () => ({ type: 'bulleted-list' }),
-  DIV: el => ({ type: `text-${el.style.textAlign}` }),
+  DIV: el => el.style.textAlign
+    ? ({ type: `text-${el.style.textAlign}` })
+    : null,
 };
 
 const TEXT_TAGS = {
@@ -33,8 +35,12 @@ const ALIGNMENTS = {
 
 export const serialize = content => {
   return content.map((n, i) => {
-    const children = n.children.map(e => {
+    let childHasChildren = false;
+
+    let children = n.children.map(e => {
       if (e.children && e.children.length) {
+        childHasChildren = true;
+
         return serialize([e]);
       }
 
@@ -56,7 +62,10 @@ export const serialize = content => {
     }).join('');
 
     if (ALIGNMENTS[n.type]) {
-      return `<div style="text-align:${ALIGNMENTS[n.type]};">${children}</div>`;
+      children = `<div style="text-align:${ALIGNMENTS[n.type]};">` +
+        `${children}</div>`;
+    } else if (!childHasChildren) {
+      children = `<div>${children}</div>`;
     }
 
     return children + (i === content.length - 1 ? '' : '\n');
@@ -106,7 +115,7 @@ export const deserialize = content => {
 
   const parsed = new DOMParser().parseFromString(content, 'text/html');
   const result = deserializeNode(parsed.body);
-  console.log({ result });
+
   return [{ children: result }];
 };
 
