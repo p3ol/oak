@@ -17,7 +17,7 @@ const TEXT_TAGS = {
   STRONG: () => ({ bold: true }),
   B: () => ({ bold: true }),
   U: () => ({ underline: true }),
-  SPAN: el => ({ color: el.leaf?.color }),
+  SPAN: el => ({ color: el.style?.color }),
 };
 
 export const serialize = content => {
