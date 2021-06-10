@@ -23,6 +23,12 @@ export default ({ attributes, children, leaf }) => {
     );
   }
 
+  if (leaf.size) {
+    children = (
+      <span style={{ fontSize: leaf.size }}>{ children }</span>
+    );
+  }
+
   return (
     <span { ...attributes }>{ children }</span>
   );

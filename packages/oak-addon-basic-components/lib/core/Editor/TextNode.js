@@ -1,4 +1,4 @@
-export default ({ text, bold, code, italic, underline }) => {
+export default ({ text, bold, code, italic, size, underline }) => {
   if (bold) {
     text = (
       <strong>{ text }</strong>
@@ -20,6 +20,12 @@ export default ({ text, bold, code, italic, underline }) => {
   if (underline) {
     text = (
       <u>{ text }</u>
+    );
+  }
+
+  if (size) {
+    text = (
+      <span style={{ fontSize: size }}>{ text }</span>
     );
   }
 

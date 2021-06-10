@@ -11,6 +11,7 @@ import BlockButton from './BlockButton';
 import Element from './Element';
 import Leaf from './Leaf';
 import MarkButton from './MarkButton';
+import SizeButton from './SizeButton';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -55,6 +56,15 @@ export default ({
     onChange?.({ value: state.value });
   };
 
+  const getTextSize = () => {
+    const path = editor.selection?.anchor?.path;
+    const selectedRow = editor.children[path?.[0]];
+    const selectedContent = selectedRow?.children[path?.[1]];
+    const selectedSize = parseInt(selectedContent?.size?.split('p')[0]);
+
+    return selectedSize || 14;
+  };
+
   return (
     <Slate
       editor={editor}
@@ -77,6 +87,20 @@ export default ({
             format="underline"
             icon="format_underlined"
             tooltipText="Underline"
+          />
+          <SizeButton
+            icon="text_fields"
+            increase={false}
+            currentSize={getTextSize()}
+            tooltipText="Decrease size"
+          />
+          <span className="oak-text-size">
+            { `${getTextSize()}px` }
+          </span>
+          <SizeButton
+            icon="format_size"
+            currentSize={getTextSize()}
+            tooltipText="Increase size"
           />
           <BlockButton
             format="text-left"
