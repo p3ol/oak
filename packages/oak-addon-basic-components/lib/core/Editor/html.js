@@ -34,12 +34,12 @@ const ALIGNMENTS = {
 };
 
 export const serialize = content => {
-  return content.map((n, i) => {
-    let childHasChildren = false;
+  const res = content.map((n, i) => {
+    let shouldWrapContent = true;
 
     let children = n.children.map(e => {
       if (e.children && e.children.length) {
-        childHasChildren = true;
+        shouldWrapContent = false;
 
         return serialize([e]);
       }
@@ -58,19 +58,26 @@ export const serialize = content => {
 
       if (e.color) string = `<span style="color:${e.color};">${string}</span>`;
 
+      if (e.text === '') {
+        shouldWrapContent = false;
+        string = '<br />';
+      }
+
       return string;
     }).join('');
 
     if (ALIGNMENTS[n.type]) {
       children = `<div style="text-align:${ALIGNMENTS[n.type]};">` +
         `${children}</div>`;
-    } else if (!childHasChildren) {
+    } else if (shouldWrapContent) {
       children = `<div>${children}</div>`;
     }
 
     return children + (i === content.length - 1 ? '' : '\n');
 
   }).join('');
+
+  return res;
 };
 
 export const deserializeNode = el => {

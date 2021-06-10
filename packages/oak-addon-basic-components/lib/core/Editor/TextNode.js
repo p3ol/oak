@@ -1,4 +1,9 @@
 export default ({ text, bold, code, color, italic, size, underline }) => {
+
+  if (text === '') {
+    return (<br />);
+  }
+
   if (bold) {
     text = (
       <strong>{ text }</strong>

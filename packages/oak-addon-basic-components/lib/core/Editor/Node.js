@@ -1,7 +1,9 @@
+import { exists } from '@poool/junipero-utils';
+
 import TextNode from './TextNode';
 
 const Node = ({ type, text, children, ...rest }) => {
-  if (text) {
+  if (exists(text)) {
     return (
       <TextNode text={text} { ...rest } />
     );
@@ -45,9 +47,9 @@ const Node = ({ type, text, children, ...rest }) => {
         <div style={{ textAlign: 'justify' }}>{ children }</div>
       );
     default:
-      return (
-        <div>{ children }</div>
-      );
+      return children[0].props.text
+        ? (<div>{ children }</div>)
+        : children;
   }
 };
 
