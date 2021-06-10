@@ -10,6 +10,7 @@ import { toggleMark, withHtml } from './editor';
 import BlockButton from './BlockButton';
 import Element from './Element';
 import Leaf from './Leaf';
+import ColorButton from './ColorButton';
 import MarkButton from './MarkButton';
 import SizeButton from './SizeButton';
 
@@ -88,6 +89,7 @@ export default ({
             icon="format_underlined"
             tooltipText="Underline"
           />
+          <ColorButton />
           <SizeButton
             icon="text_fields"
             increase={false}
