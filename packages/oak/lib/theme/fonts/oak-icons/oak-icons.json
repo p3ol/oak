@@ -6306,7 +6306,11 @@
         {
           "ligatures": "horizontal_rule",
           "id": 1240,
-          "order": 0
+          "order": 29,
+          "prevSize": 24,
+          "code": 59672,
+          "name": "horizontal_rule",
+          "tempChar": ""
         },
         {
           "ligatures": "hourglass_bottom",
