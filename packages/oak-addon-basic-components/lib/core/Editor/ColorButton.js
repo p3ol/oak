@@ -60,7 +60,7 @@ export default ({ className }) => {
             onClick={onClick}
             className={classNames(
               'oak-toolbar-button',
-              'oak-color',
+              'oak-color-button',
               className,
             )}
           >

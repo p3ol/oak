@@ -26,7 +26,11 @@ export default ({
       <a
         href="#"
         onClick={onClick}
-        className={classNames('oak-toolbar-button', className)}
+        className={classNames(
+          'oak-toolbar-button',
+          'oak-size-button',
+          className,
+        )}
       >
         <i className="oak-icons">{icon}</i>
       </a>

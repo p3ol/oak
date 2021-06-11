@@ -91,16 +91,14 @@ export default ({
           />
           <ColorButton />
           <SizeButton
-            icon="text_fields"
+            icon="horizontal_rule"
             increase={false}
             currentSize={getTextSize()}
             tooltipText="Decrease size"
           />
-          <span className="oak-text-size">
-            { `${getTextSize()}px` }
-          </span>
+          <span className="oak-text-size">{ getTextSize() }</span>
           <SizeButton
-            icon="format_size"
+            icon="add"
             currentSize={getTextSize()}
             tooltipText="Increase size"
           />
