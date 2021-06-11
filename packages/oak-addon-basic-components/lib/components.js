@@ -3,6 +3,7 @@ import Text from './core/Text';
 import Title from './core/Title';
 import Image from './core/Image';
 import Button from './core/Button';
+import EmptySpace from './core/EmptySpace';
 
 export const COMPONENT_TITLE = {
   id: 'title',
@@ -92,6 +93,32 @@ export const COMPONENT_BUTTON = {
     url: '',
     settings: {
       buttonType: 'button',
+    },
+  }),
+};
+
+export const COMPONENT_EMPTY_SPACE = {
+  id: 'empty-space',
+  name: 'Empty space',
+  type: 'component',
+  render: EmptySpace,
+  icon: 'view_comfy',
+  options: EmptySpace.options,
+  settings: EmptySpace.settings,
+  editable: true,
+  // serialize: element => ({
+  //   content: serialize(element.content),
+  // }),
+  // deserialize: element => ({
+  //   content: deserialize(element.content),
+  // }),
+  // isSerialized: element => isSerialized(element.content),
+  construct: () => ({
+    type: 'empty-space',
+    styles: {},
+    settings: {
+      height: '8px',
+      className: '',
     },
   }),
 };
