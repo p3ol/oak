@@ -133,6 +133,7 @@ export default forwardRef(({
               ) }
               <Field
                 field={field}
+                editableRef={popper}
                 element={state.element}
                 onChange={onSettingChange_}
                 onCustomChange={onSettingCustomChange_}
