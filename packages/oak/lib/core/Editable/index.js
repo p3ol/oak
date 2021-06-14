@@ -16,6 +16,7 @@ import {
 } from '@poool/junipero-utils';
 import { useEventListener } from '@poool/junipero-hooks';
 import { usePopper } from 'react-popper';
+import { Button } from '@poool/junipero';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Field from './Field';
@@ -145,11 +146,7 @@ export default forwardRef(({
           update: onUpdate_,
         }) }
         <div className="oak-text-editor-flex">
-          <a onClick={onSave}
-            className={classNames('oak-validate')}
-          >
-          Save
-          </a>
+          <Button className="primary" onClick={onSave}>Save</Button>
         </div>
       </div>
     </div>
