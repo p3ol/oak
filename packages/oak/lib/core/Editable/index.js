@@ -16,6 +16,7 @@ import {
 } from '@poool/junipero-utils';
 import { useEventListener } from '@poool/junipero-hooks';
 import { usePopper } from 'react-popper';
+import { Button } from '@poool/junipero';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Field from './Field';
@@ -101,13 +102,15 @@ export default forwardRef(({
   const onSettingChange_ = (name, field) => {
     set(state.element, name, field.checked ?? field.value);
     dispatch({ element: state.element });
-    setElement(element, state.element);
   };
 
   const onSettingCustomChange_ = (name, renderer, field) => {
     const changes = renderer
       .onChange(name, field, state.element);
     dispatch({ element: Object.assign(state.element, changes) });
+  };
+
+  const onSave = () => {
     setElement(element, state.element);
   };
 
@@ -130,6 +133,7 @@ export default forwardRef(({
               ) }
               <Field
                 field={field}
+                editableRef={popper}
                 element={state.element}
                 onChange={onSettingChange_}
                 onCustomChange={onSettingCustomChange_}
@@ -142,6 +146,9 @@ export default forwardRef(({
           component,
           update: onUpdate_,
         }) }
+        <div className="oak-text-editor-flex">
+          <Button className="primary" onClick={onSave}>Save</Button>
+        </div>
       </div>
     </div>
   );
