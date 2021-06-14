@@ -12,6 +12,7 @@ export const FIELD_SELECT = {
   render: (props, { field } = {}) => (
     <SelectField
       { ...props }
+      onClick={e => e.stopPropagation()}
       options={field.options}
       parseTitle={field.parseTitle || (o => o?.title || o)}
       parseValue={field.parseValue || (o => o?.value || o)}
