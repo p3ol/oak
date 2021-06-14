@@ -10217,10 +10217,10 @@ postcss-load-config@^3.0.0:
     cosmiconfig "^7.0.0"
     import-cwd "^3.0.0"
 
-postcss-loader@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-6.0.0.tgz#88ca53a229011fb90c66dec4fcb4e221fe977bc3"
-  integrity sha512-e2sgvf58Q5I1gCwxFIqnVV+L9IMAEtFwXHMFTX18UpXK9BpR1Hgk4YYhuvJYwIkcfXBsAXLxrs0ZNhlOHXIZSQ==
+postcss-loader@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-6.1.0.tgz#13c800a00b3c7d434a1319a73d85e2df0714cdde"
+  integrity sha512-yA/cXBfACkthZNA2hQxOnaReVfQ6uLmvbEDQzNafpbK40URZJvP/28dL1DG174Gvz3ptkkHbbwDBCh+gXR94CA==
   dependencies:
     cosmiconfig "^7.0.0"
     klona "^2.0.4"
@@ -10539,10 +10539,10 @@ postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz#443f6a20ced6481a2bda4fa8532a6e55d789a2cb"
   integrity sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
 
-postcss@8.3.1, postcss@^8.2.15:
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.1.tgz#71f380151c227f83b898294a46481f689f86b70a"
-  integrity sha512-9qH0MGjsSm+fjxOi3GnwViL1otfi7qkj+l/WX5gcRGmZNGsIcqc+A5fBkE6PUobEQK4APqYVaES+B3Uti98TCw==
+postcss@8.3.4:
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.4.tgz#41ece1c43f2f7c74dc7d90144047ce052757b822"
+  integrity sha512-/tZY0PXExXXnNhKv3TOvZAOUYRyuqcCbBm2c17YMDK0PlVII3K7/LKdt3ScHL+hhouddjUWi+1sKDf9xXW+8YA==
   dependencies:
     colorette "^1.2.2"
     nanoid "^3.1.23"
@@ -10556,6 +10556,15 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.2
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
+
+postcss@^8.2.15:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.1.tgz#71f380151c227f83b898294a46481f689f86b70a"
+  integrity sha512-9qH0MGjsSm+fjxOi3GnwViL1otfi7qkj+l/WX5gcRGmZNGsIcqc+A5fBkE6PUobEQK4APqYVaES+B3Uti98TCw==
+  dependencies:
+    colorette "^1.2.2"
+    nanoid "^3.1.23"
+    source-map-js "^0.6.2"
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -11556,10 +11565,10 @@ rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@2.51.1:
-  version "2.51.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.51.1.tgz#87bcd4095fe79b14c9bec0edc7ffa44e4827f793"
-  integrity sha512-8xfDbAtBleXotb6qKEHWuo/jkn94a9dVqGc7Rwl3sqspCVlnCfbRek7ldhCARSi7h32H0xR4QThm1t9zHN+3uw==
+rollup@2.51.2:
+  version "2.51.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.51.2.tgz#6de71e28c833089a0bd745a09671a3e2b92af6b7"
+  integrity sha512-ReV2eGEadA7hmXSzjxdDKs10neqH2QURf2RxJ6ayAlq93ugy6qIvXMmbc5cWMGCDh1h5T4thuWO1e2VNbMq8FA==
   optionalDependencies:
     fsevents "~2.3.1"
 
@@ -12416,10 +12425,10 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-stylus-loader@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/stylus-loader/-/stylus-loader-6.0.0.tgz#ea3c4adb4cee492ebf6d63dea2e1743480ca29a4"
-  integrity sha512-cB3Mtu2+JGZYm5WUzGyo4En6r087F11eaZK+EUn/6Fj8Eo4mY5DpWH82lvTfjAV2EP42Fd7NWvWG20sJYCyuFw==
+stylus-loader@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/stylus-loader/-/stylus-loader-6.1.0.tgz#7a3a719a27cb2b9617896d6da28fda94c3ed9762"
+  integrity sha512-qKO34QCsOtSJrXxQQmXsPeaVHh6hMumBAFIoJTcsSr2VzrA6o/CW9HCGR8spCjzJhN8oKQHdj/Ytx0wwXyElkw==
   dependencies:
     fast-glob "^3.2.5"
     klona "^2.0.4"

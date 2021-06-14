@@ -7,6 +7,7 @@ export default ({
   element,
   onChange,
   onCustomChange,
+  editableRef,
 }) => {
   const options = useOptions();
   const { getField } = useBuilder();
@@ -29,5 +30,6 @@ export default ({
     field,
     element,
     options,
+    editableRef,
   });
 };
