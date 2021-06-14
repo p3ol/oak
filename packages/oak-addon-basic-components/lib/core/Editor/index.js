@@ -39,6 +39,7 @@ export default ({
 
   const onChange_ = val => {
     dispatch({ value: val });
+    onChange?.({ value: state.value });
   };
 
   const onKeyDown = e => {
@@ -48,11 +49,6 @@ export default ({
         toggleMark(editor, mark);
       }
     });
-  };
-
-  const updateValue = e => {
-    e.preventDefault();
-    onChange?.({ value: state.value });
   };
 
   return (
@@ -107,13 +103,6 @@ export default ({
           onKeyDown={onKeyDown}
           className="oak-text-editable"
         />
-      </div>
-      <div className="oak-text-editor-flex">
-        <a onClick={updateValue}
-          className={classNames('oak-validate')}
-        >
-          Save
-        </a>
       </div>
     </Slate>
   );
