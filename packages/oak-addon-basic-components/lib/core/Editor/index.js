@@ -10,7 +10,9 @@ import { toggleMark, withHtml } from './editor';
 import BlockButton from './BlockButton';
 import Element from './Element';
 import Leaf from './Leaf';
+import ColorButton from './ColorButton';
 import MarkButton from './MarkButton';
+import SizeButton from './SizeButton';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -51,6 +53,20 @@ export default ({
     });
   };
 
+  const updateValue = e => {
+    e.preventDefault();
+    onChange?.({ value: state.value });
+  };
+
+  const getTextSize = () => {
+    const path = editor.selection?.anchor?.path;
+    const selectedRow = editor.children[path?.[0]];
+    const selectedContent = selectedRow?.children[path?.[1]];
+    const selectedSize = parseInt(selectedContent?.size?.split('p')[0]);
+
+    return selectedSize || 14;
+  };
+
   return (
     <Slate
       editor={editor}
@@ -73,6 +89,19 @@ export default ({
             format="underline"
             icon="format_underlined"
             tooltipText="Underline"
+          />
+          <ColorButton />
+          <SizeButton
+            icon="horizontal_rule"
+            increase={false}
+            currentSize={getTextSize()}
+            tooltipText="Decrease size"
+          />
+          <span className="oak-text-size">{ getTextSize() }</span>
+          <SizeButton
+            icon="add"
+            currentSize={getTextSize()}
+            tooltipText="Increase size"
           />
           <BlockButton
             format="text-left"

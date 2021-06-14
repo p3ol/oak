@@ -2,7 +2,7 @@
   "metadata": {
     "name": "Oak icons",
     "lastOpened": 0,
-    "created": 1622628988056
+    "created": 1623333341987
   },
   "iconSets": [
     {
@@ -1479,7 +1479,11 @@
         {
           "ligatures": "format_size",
           "id": 281,
-          "order": 0
+          "order": 27,
+          "prevSize": 24,
+          "code": 59671,
+          "name": "format_size",
+          "tempChar": ""
         },
         {
           "ligatures": "format_strikethrough",
@@ -1503,7 +1507,7 @@
           "prevSize": 24,
           "code": 59661,
           "name": "format_underlined",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "functions",
@@ -1542,7 +1546,7 @@
           "prevSize": 24,
           "code": 59662,
           "name": "insert_photo",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "mode_comment",
@@ -1596,7 +1600,7 @@
           "prevSize": 24,
           "code": 59663,
           "name": "drag_handle",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_shapes",
@@ -1625,7 +1629,7 @@
           "prevSize": 24,
           "code": 59664,
           "name": "text_fields",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "monetization_on",
@@ -1639,7 +1643,7 @@
           "prevSize": 24,
           "code": 59665,
           "name": "title",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "table_chart",
@@ -2593,7 +2597,7 @@
           "prevSize": 24,
           "code": 59668,
           "name": "view_comfy",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "view_compact",
@@ -4277,7 +4281,7 @@
           "prevSize": 24,
           "code": 59666,
           "name": "view_column",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "view_day",
@@ -6302,7 +6306,11 @@
         {
           "ligatures": "horizontal_rule",
           "id": 1240,
-          "order": 0
+          "order": 29,
+          "prevSize": 24,
+          "code": 59672,
+          "name": "horizontal_rule",
+          "tempChar": ""
         },
         {
           "ligatures": "hourglass_bottom",

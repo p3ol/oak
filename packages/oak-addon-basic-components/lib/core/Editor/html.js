@@ -17,6 +17,10 @@ const TEXT_TAGS = {
   STRONG: () => ({ bold: true }),
   B: () => ({ bold: true }),
   U: () => ({ underline: true }),
+  SPAN: el => ({
+    color: el.style?.color,
+    size: el.style?.fontSize,
+  }),
 };
 
 export const serialize = content => {
@@ -29,6 +33,12 @@ export const serialize = content => {
       if (e.underline) string = `<u>${string}</u>`;
 
       if (e.italic) string = `<i>${string}</i>`;
+
+      if (e.size) {
+        string = `<span style="font-size:${e.size};">${string}</span>`;
+      }
+
+      if (e.color) string = `<span style="color:${e.color};">${string}</span>`;
 
       return string;
     }).join('');

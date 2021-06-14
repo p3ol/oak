@@ -13,13 +13,25 @@ export default ({ attributes, children, leaf }) => {
 
   if (leaf.italic) {
     children = (
-      <em>{children}</em>
+      <em>{ children }</em>
     );
   }
 
   if (leaf.underline) {
     children = (
-      <u>{children}</u>
+      <u>{ children }</u>
+    );
+  }
+
+  if (leaf.color) {
+    children = (
+      <span style={{ color: leaf.color }}>{ children }</span>
+    );
+  }
+
+  if (leaf.size) {
+    children = (
+      <span style={{ fontSize: leaf.size }}>{ children }</span>
     );
   }
 
