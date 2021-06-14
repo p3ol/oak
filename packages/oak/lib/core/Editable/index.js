@@ -101,13 +101,15 @@ export default forwardRef(({
   const onSettingChange_ = (name, field) => {
     set(state.element, name, field.checked ?? field.value);
     dispatch({ element: state.element });
-    setElement(element, state.element);
   };
 
   const onSettingCustomChange_ = (name, renderer, field) => {
     const changes = renderer
       .onChange(name, field, state.element);
     dispatch({ element: Object.assign(state.element, changes) });
+  };
+
+  const onSave = () => {
     setElement(element, state.element);
   };
 
@@ -142,7 +144,15 @@ export default forwardRef(({
           component,
           update: onUpdate_,
         }) }
+        <div className="oak-text-editor-flex">
+          <a onClick={onSave}
+            className={classNames('oak-validate')}
+          >
+          Save
+          </a>
+        </div>
       </div>
+
     </div>
   );
 
