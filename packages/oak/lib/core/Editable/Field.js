@@ -31,5 +31,6 @@ export default ({
     element,
     options,
     editableRef,
-  });
+    onChange,
+  }) || null;
 };

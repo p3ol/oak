@@ -9,14 +9,16 @@ import {
   useEffect,
 } from 'react';
 import {
+  Button,
+  Tabs,
+  Tab,
   mockState,
   cloneDeep,
   classNames,
   set,
-} from '@poool/junipero-utils';
-import { useEventListener } from '@poool/junipero-hooks';
+  useEventListener,
+} from '@poool/junipero';
 import { usePopper } from 'react-popper';
-import { Button } from '@poool/junipero';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Field from './Field';
@@ -114,6 +116,11 @@ export default forwardRef(({
     setElement(element, state.element);
   };
 
+  const onCancel = e => {
+    e.preventDefault();
+    close();
+  };
+
   const settingsForm = (
     <div
       ref={setPopper}
@@ -125,28 +132,54 @@ export default forwardRef(({
         { component.settings?.title || 'Element options' }
       </div>
       <div className="oak-form">
-        { component.settings?.fields?.map((field, i) =>
-          (!field.condition || field.condition(state.element)) && (
-            <div className="oak-field" key={i}>
-              { field.label && (
-                <label>{ field.label }</label>
+        <Tabs>
+          { [
+            { title: 'Settings', content: component.settings },
+            { title: 'Styling', content: component.settings?.styling },
+          ].map((tab, t) => (
+            <Tab key={t} title={tab.title}>
+              { tab.content?.fields?.map((field, i) =>
+                (!field.condition || field.condition(state.element)) && (
+                  <div className="oak-field" key={i}>
+                    { field.label && (
+                      <label>{ field.label }</label>
+                    ) }
+                    { field.fields ? (
+                      <div className="oak-fields">
+                        { field.fields.map((f, n) => (
+                          <div className="oak-field" key={n}>
+                            <Field
+                              field={f}
+                              editableRef={popper}
+                              element={state.element}
+                              onChange={onSettingChange_}
+                              onCustomChange={onSettingCustomChange_}
+                            />
+                          </div>
+                        )) }
+                      </div>
+                    ) : (
+                      <Field
+                        field={field}
+                        editableRef={popper}
+                        element={state.element}
+                        onChange={onSettingChange_}
+                        onCustomChange={onSettingCustomChange_}
+                      />
+                    ) }
+                  </div>
+                )
               ) }
-              <Field
-                field={field}
-                editableRef={popper}
-                element={state.element}
-                onChange={onSettingChange_}
-                onCustomChange={onSettingCustomChange_}
-              />
-            </div>
-          )
-        ) }
-        { component.settings?.renderForm?.({
-          element: cloneDeep(element),
-          component,
-          update: onUpdate_,
-        }) }
-        <div className="oak-text-editor-flex">
+              { tab.content?.renderForm?.({
+                element: cloneDeep(element),
+                component,
+                update: onUpdate_,
+              }) }
+            </Tab>
+          )) }
+        </Tabs>
+        <div className="oak-editable-buttons">
+          <a href="#" onClick={onCancel}>Cancel</a>
           <Button className="primary" onClick={onSave}>Save</Button>
         </div>
       </div>

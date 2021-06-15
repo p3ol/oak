@@ -1,3 +1,5 @@
+import { DEFAULT_STYLES_SETTINGS } from '../../defaults';
+
 export default {
   title: 'Row options',
   popperSettings: {
@@ -52,4 +54,7 @@ export default {
       { title: 'Disabled', value: false },
     ],
   }],
+  styling: {
+    ...DEFAULT_STYLES_SETTINGS,
+  },
 };
