@@ -4,9 +4,14 @@ import {
   useReducer,
   useState,
 } from 'react';
+import {
+  Tabs,
+  Tab,
+  classNames,
+  mockState,
+  useEventListener,
+} from '@poool/junipero';
 import { usePopper } from 'react-popper';
-import { classNames, mockState } from '@poool/junipero-utils';
-import { useEventListener } from '@poool/junipero-hooks';
 
 import { useBuilder } from '../../hooks';
 import Icon from '../Icon';
@@ -24,7 +29,6 @@ export default forwardRef(({
   const [arrow, setArrow] = useState();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
-    currentTab: null,
   });
 
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
@@ -89,9 +93,7 @@ export default forwardRef(({
   const getGroups = () =>
     components.filter(c => c.type === 'group');
 
-  const renderComponents = () => {
-    const group = state.currentTab || getGroups()[0];
-
+  const renderComponents = group => {
     if (!group) {
       return null;
     }
@@ -110,11 +112,6 @@ export default forwardRef(({
         )) }
       </div>
     );
-  };
-
-  const onGroupSelect = (group, e) => {
-    e?.preventDefault();
-    dispatch({ currentTab: group });
   };
 
   const onAppend_ = (component, e) => {
@@ -148,34 +145,13 @@ export default forwardRef(({
           data-placement={placement}
         >
           <div className="oak-groups">
-            <ul className="oak-tabs">
+            <Tabs>
               { getGroups().map((g, i) => (
-                <li
-                  key={g.id}
-                  className={classNames(
-                    'oak-tab',
-                    {
-                      active: (!state.currentTab && i === 0) ||
-                        state.currentTab === g,
-                    }
-                  )}
-                >
-                  <a
-                    href="#"
-                    onClick={e => {
-                      e.preventDefault();
-                      onGroupSelect(g);
-                    }}
-                  >
-                    { g.name }
-                  </a>
-                </li>
+                <Tab key={i} title={g.name}>
+                  { renderComponents(g) }
+                </Tab>
               )) }
-            </ul>
-
-            <div className="oak-group">
-              { renderComponents() }
-            </div>
+            </Tabs>
           </div>
           <div
             ref={setArrow}
