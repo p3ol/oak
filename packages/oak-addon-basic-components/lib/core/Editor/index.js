@@ -41,7 +41,7 @@ export default ({
 
   const onChange_ = val => {
     dispatch({ value: val });
-    onChange?.({ value: state.value });
+    onChange?.({ value: val });
   };
 
   const onKeyDown = e => {
@@ -51,11 +51,6 @@ export default ({
         toggleMark(editor, mark);
       }
     });
-  };
-
-  const updateValue = e => {
-    e.preventDefault();
-    onChange?.({ value: state.value });
   };
 
   const getTextSize = () => {
