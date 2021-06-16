@@ -1,3 +1,5 @@
+import { Text } from '@poool/oak';
+
 import settings from './index.settings';
 
 const Image = ({
@@ -6,8 +8,17 @@ const Image = ({
 }) => {
   const getName = () =>
     element.name ||
-    (/data:/.test(element.url) ? 'Local image' : element.url) ||
-    'Empty image';
+    (/data:/.test(element.url) ? (
+      <Text
+        name="addons.basicComponents.components.image.local"
+        default="Local image"
+      />
+    ) : element.url) || (
+      <Text
+        name="addons.basicComponents.components.image.empty"
+        default="Empty image"
+      />
+    );
 
   return (
     <div className={className}>
