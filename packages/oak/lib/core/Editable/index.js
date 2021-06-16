@@ -105,6 +105,7 @@ export default forwardRef(({
 
   const onCancel = e => {
     e.preventDefault();
+    dispatch({ element: cloneDeep(element) });
     close();
   };
 
