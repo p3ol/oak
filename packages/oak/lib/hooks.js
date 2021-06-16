@@ -24,6 +24,7 @@ export const useBuilder = () => {
     isUndoPossible,
     isRedoPossible,
     _setSettingsHolderRef,
+    getText,
   } = useContext(AppContext);
 
   return {
@@ -43,6 +44,7 @@ export const useBuilder = () => {
     isUndoPossible,
     isRedoPossible,
     _setSettingsHolderRef,
+    getText,
   };
 };
 
