@@ -1,15 +1,19 @@
 import { useEffect, useRef } from 'react';
+import { SelectField } from '@poool/junipero';
 
 import { render } from './';
-import basicComponents from '../../oak-addon-basic-components/lib';
+import basicComponents, { localeFr as basicFrench }
+  from '../../oak-addon-basic-components/lib';
+import french from './languages/fr';
 
 export default { title: 'oak' };
 
 export const basicConfig = () => {
   const containerRef = useRef();
+  const oakRef = useRef();
 
   useEffect(() => {
-    render(containerRef.current, {
+    oakRef.current = render(containerRef.current, {
       debug: true,
       addons: [basicComponents],
       content: [
@@ -196,7 +200,26 @@ export const basicConfig = () => {
     });
   }, []);
 
+  const setTexts = field => {
+    oakRef.current?.setTexts(field.value);
+  };
+
   return (
-    <div ref={containerRef} id="container" />
+    <div>
+      <div>
+        <SelectField
+          style={{ marginBottom: 50 }}
+          placeholder="Language"
+          options={[
+            { title: 'Default (english)', value: {} },
+            { title: 'French', value: { ...french, ...basicFrench } },
+          ]}
+          parseTitle={o => o.title}
+          parseValue={o => o.value}
+          onChange={setTexts}
+        />
+      </div>
+      <div ref={containerRef} id="container" />
+    </div>
   );
 };
