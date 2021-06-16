@@ -41,7 +41,7 @@ const Col = ({
 
   const onEdit_ = e => {
     e.preventDefault();
-    editableRef.current?.open();
+    editableRef.current?.toggle();
   };
 
   const onPrepend_ = component => {

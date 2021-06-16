@@ -9,20 +9,27 @@ import {
   useEffect,
 } from 'react';
 import {
+  Button,
+  Tabs,
+  Tab,
   mockState,
   cloneDeep,
   classNames,
   set,
-} from '@poool/junipero-utils';
-import { useEventListener } from '@poool/junipero-hooks';
+  mergeDeep,
+  omit,
+} from '@poool/junipero';
 import { usePopper } from 'react-popper';
-import { Button } from '@poool/junipero';
 
 import { useBuilder, useOptions } from '../../hooks';
+import {
+  DEFAULT_SETTINGS,
+  DEFAULT_STYLES_SETTINGS,
+  DEFAULT_RESPONSIVE_SETTINGS,
+} from '../../defaults';
 import Field from './Field';
 
 export default forwardRef(({
-  globalEventsTarget = global,
   children,
   element,
   component,
@@ -65,10 +72,6 @@ export default forwardRef(({
     toggle,
   }));
 
-  useEventListener('click', e => {
-    onClickOutside_(e);
-  }, globalEventsTarget);
-
   const open = () => {
     dispatch({ opened: true });
   };
@@ -79,21 +82,6 @@ export default forwardRef(({
 
   const toggle = () =>
     state.opened ? close() : open();
-
-  const onClickOutside_ = e => {
-    if (!popper || !reference || !state.opened) {
-      return;
-    }
-
-    if (
-      reference !== e.target &&
-      !reference.contains(e.target) &&
-      popper !== e.target &&
-      !popper.contains(e.target)
-    ) {
-      dispatch({ opened: false });
-    }
-  };
 
   const onUpdate_ = elmt => {
     setElement(element, elmt);
@@ -112,7 +100,36 @@ export default forwardRef(({
 
   const onSave = () => {
     setElement(element, state.element);
+    close();
   };
+
+  const onCancel = e => {
+    e.preventDefault();
+    dispatch({ element: cloneDeep(element) });
+    close();
+  };
+
+  const tabs = [
+    mergeDeep(
+      {},
+      component.settings?.defaults?.settings !== false
+        ? cloneDeep(DEFAULT_SETTINGS) : {},
+      omit(component.settings || {}, ['defaults', 'styling', 'responsive']),
+      { title: 'Settings' },
+    ),
+    mergeDeep(
+      {},
+      component.settings?.defaults?.styling !== false
+        ? cloneDeep(DEFAULT_STYLES_SETTINGS) : {},
+      component.settings?.styling || {}
+    ),
+    mergeDeep(
+      {},
+      component.settings?.defaults?.responsive !== false
+        ? cloneDeep(DEFAULT_RESPONSIVE_SETTINGS) : {},
+      component.settings?.responsive || {}
+    ),
+  ];
 
   const settingsForm = (
     <div
@@ -125,28 +142,51 @@ export default forwardRef(({
         { component.settings?.title || 'Element options' }
       </div>
       <div className="oak-form">
-        { component.settings?.fields?.map((field, i) =>
-          (!field.condition || field.condition(state.element)) && (
-            <div className="oak-field" key={i}>
-              { field.label && (
-                <label>{ field.label }</label>
+        <Tabs>
+          { tabs.map((tab, t) => (
+            <Tab key={t} title={tab.title}>
+              { tab?.fields?.map((field, i) =>
+                (!field.condition || field.condition(state.element)) && (
+                  <div className="oak-field" key={i}>
+                    { field.label && (
+                      <label>{ field.label }</label>
+                    ) }
+                    { field.fields ? (
+                      <div className="oak-fields">
+                        { field.fields.map((f, n) => (
+                          <div className="oak-field" key={n}>
+                            <Field
+                              field={f}
+                              editableRef={popper}
+                              element={state.element}
+                              onChange={onSettingChange_}
+                              onCustomChange={onSettingCustomChange_}
+                            />
+                          </div>
+                        )) }
+                      </div>
+                    ) : (
+                      <Field
+                        field={field}
+                        editableRef={popper}
+                        element={state.element}
+                        onChange={onSettingChange_}
+                        onCustomChange={onSettingCustomChange_}
+                      />
+                    ) }
+                  </div>
+                )
               ) }
-              <Field
-                field={field}
-                editableRef={popper}
-                element={state.element}
-                onChange={onSettingChange_}
-                onCustomChange={onSettingCustomChange_}
-              />
-            </div>
-          )
-        ) }
-        { component.settings?.renderForm?.({
-          element: cloneDeep(element),
-          component,
-          update: onUpdate_,
-        }) }
-        <div className="oak-text-editor-flex">
+              { tab?.renderForm?.({
+                element: cloneDeep(element),
+                component,
+                update: onUpdate_,
+              }) }
+            </Tab>
+          )) }
+        </Tabs>
+        <div className="oak-editable-buttons">
+          <a href="#" onClick={onCancel}>Cancel</a>
           <Button className="primary" onClick={onSave}>Save</Button>
         </div>
       </div>

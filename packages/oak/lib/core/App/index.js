@@ -10,14 +10,19 @@ import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
-import { FIELD_TEXT, FIELD_SELECT } from '../../fields';
+import {
+  FIELD_TEXT,
+  FIELD_SELECT,
+  FIELD_COLOR,
+  FIELD_CORE_IMAGE,
+} from '../../fields';
 import Builder from '../Builder';
 
 export default forwardRef((options, ref) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
-    fieldTypes: [FIELD_TEXT, FIELD_SELECT],
+    fieldTypes: [FIELD_TEXT, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE],
     _settingsHolderRef: null,
     memory: [[]],
     positionInMemory: 1,
