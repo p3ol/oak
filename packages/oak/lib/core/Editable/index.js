@@ -17,11 +17,16 @@ import {
   classNames,
   set,
   mergeDeep,
+  omit,
 } from '@poool/junipero';
 import { usePopper } from 'react-popper';
 
 import { useBuilder, useOptions } from '../../hooks';
-import { DEFAULT_STYLES_SETTINGS } from '../../defaults';
+import {
+  DEFAULT_SETTINGS,
+  DEFAULT_STYLES_SETTINGS,
+  DEFAULT_RESPONSIVE_SETTINGS,
+} from '../../defaults';
 import Field from './Field';
 
 export default forwardRef(({
@@ -103,13 +108,27 @@ export default forwardRef(({
     close();
   };
 
-  const tabs = [{
-    title: 'Settings',
-    content: component.settings,
-  }, {
-    title: 'Styling',
-    content: mergeDeep(DEFAULT_STYLES_SETTINGS, component.settings?.styling),
-  }];
+  const tabs = [
+    mergeDeep(
+      {},
+      component.settings?.defaults?.settings !== false
+        ? cloneDeep(DEFAULT_SETTINGS) : {},
+      omit(component.settings || {}, ['defaults', 'styling', 'responsive']),
+      { title: 'Settings' },
+    ),
+    mergeDeep(
+      {},
+      component.settings?.defaults?.styling !== false
+        ? cloneDeep(DEFAULT_STYLES_SETTINGS) : {},
+      component.settings?.styling || {}
+    ),
+    mergeDeep(
+      {},
+      component.settings?.defaults?.responsive !== false
+        ? cloneDeep(DEFAULT_RESPONSIVE_SETTINGS) : {},
+      component.settings?.responsive || {}
+    ),
+  ];
 
   const settingsForm = (
     <div
@@ -125,7 +144,7 @@ export default forwardRef(({
         <Tabs>
           { tabs.map((tab, t) => (
             <Tab key={t} title={tab.title}>
-              { tab.content?.fields?.map((field, i) =>
+              { tab?.fields?.map((field, i) =>
                 (!field.condition || field.condition(state.element)) && (
                   <div className="oak-field" key={i}>
                     { field.label && (
@@ -157,7 +176,7 @@ export default forwardRef(({
                   </div>
                 )
               ) }
-              { tab.content?.renderForm?.({
+              { tab?.renderForm?.({
                 element: cloneDeep(element),
                 component,
                 update: onUpdate_,

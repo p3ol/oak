@@ -11,7 +11,13 @@ export const COMPONENT_DEFAULT = {
   ),
 };
 
+export const DEFAULT_SETTINGS = {
+  title: 'Settings',
+  fields: [],
+};
+
 export const DEFAULT_STYLES_SETTINGS = {
+  title: 'Styling',
   fields: [{
     label: 'Paddings',
     fields: [{
@@ -96,5 +102,59 @@ export const DEFAULT_STYLES_SETTINGS = {
     label: 'Background color',
     type: 'color',
     key: 'styles.backgroundColor',
+  }, {
+    label: 'Custom element css class',
+    type: 'text',
+    key: 'settings.className',
+  }],
+};
+
+export const DEFAULT_RESPONSIVE_SETTINGS = {
+  title: 'Responsive',
+  fields: [{
+    key: 'responsive.xl',
+    type: 'select',
+    label: 'Extra-large screens',
+    default: 'show',
+    options: [
+      { title: 'Visible', value: 'show' },
+      { title: 'Hidden', value: 'hide' },
+    ],
+  }, {
+    key: 'responsive.lg',
+    type: 'select',
+    label: 'Large screens (desktop)',
+    default: 'show',
+    options: [
+      { title: 'Visible', value: 'show' },
+      { title: 'Hidden', value: 'hide' },
+    ],
+  }, {
+    key: 'responsive.md',
+    type: 'select',
+    label: 'Medium screens (tablet)',
+    default: 'show',
+    options: [
+      { title: 'Visible', value: 'show' },
+      { title: 'Hidden', value: 'hide' },
+    ],
+  }, {
+    key: 'responsive.sm',
+    type: 'select',
+    label: 'Small screens (phones)',
+    default: 'show',
+    options: [
+      { title: 'Visible', value: 'show' },
+      { title: 'Hidden', value: 'hide' },
+    ],
+  }, {
+    key: 'responsive.xs',
+    type: 'select',
+    label: 'Extra-small screens (old phones)',
+    default: 'show',
+    options: [
+      { title: 'Visible', value: 'show' },
+      { title: 'Hidden', value: 'hide' },
+    ],
   }],
 };
