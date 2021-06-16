@@ -5,7 +5,7 @@ import {
   useCallback,
   useImperativeHandle,
 } from 'react';
-import { mockState, cloneDeep } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
@@ -28,6 +28,7 @@ export default forwardRef((options, ref) => {
     positionInMemory: 1,
     isUndoPossible: false,
     isRedoPossible: false,
+    texts: options?.texts || {},
   });
 
   useEffect(() => {
@@ -52,6 +53,8 @@ export default forwardRef((options, ref) => {
     redo,
     isUndoPossible: state.isUndoPossible,
     isRedoPossible: state.isRedoPossible,
+    getText,
+    setTexts,
   }));
 
   const getContext = useCallback(() => ({
@@ -73,6 +76,7 @@ export default forwardRef((options, ref) => {
     _setSettingsHolderRef,
     undo,
     redo,
+    getText,
   }), Object.values(state));
 
   const init = () => {
@@ -362,6 +366,12 @@ export default forwardRef((options, ref) => {
       setContentWithDispatch(state.memory[positionInMemory - 1]);
     }
   };
+
+  const getText = (key, def) =>
+    get(state.texts, key, def);
+
+  const setTexts = texts =>
+    dispatch({ texts });
 
   return (
     <div className="oak">
