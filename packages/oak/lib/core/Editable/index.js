@@ -16,10 +16,12 @@ import {
   cloneDeep,
   classNames,
   set,
+  mergeDeep,
 } from '@poool/junipero';
 import { usePopper } from 'react-popper';
 
 import { useBuilder, useOptions } from '../../hooks';
+import { DEFAULT_STYLES_SETTINGS } from '../../defaults';
 import Field from './Field';
 
 export default forwardRef(({
@@ -101,6 +103,14 @@ export default forwardRef(({
     close();
   };
 
+  const tabs = [{
+    title: 'Settings',
+    content: component.settings,
+  }, {
+    title: 'Styling',
+    content: mergeDeep(DEFAULT_STYLES_SETTINGS, component.settings?.styling),
+  }];
+
   const settingsForm = (
     <div
       ref={setPopper}
@@ -113,10 +123,7 @@ export default forwardRef(({
       </div>
       <div className="oak-form">
         <Tabs>
-          { [
-            { title: 'Settings', content: component.settings },
-            { title: 'Styling', content: component.settings?.styling },
-          ].map((tab, t) => (
+          { tabs.map((tab, t) => (
             <Tab key={t} title={tab.title}>
               { tab.content?.fields?.map((field, i) =>
                 (!field.condition || field.condition(state.element)) && (

@@ -31,7 +31,7 @@ export const basicConfig = () => {
                 },
               ],
               id: '98247547-4b39-41fd-aab9-566ff7eca833',
-              style: {},
+              styles: {},
             },
           ],
           id: '0cdbefca-4f3c-4f82-be58-a0a5a59a4088',
@@ -60,7 +60,7 @@ export const basicConfig = () => {
                 },
               ],
               id: '31db9fa0-6786-4e49-af97-5675ebc0b9be',
-              style: {},
+              styles: {},
             },
             {
               content: [
@@ -79,7 +79,7 @@ export const basicConfig = () => {
                 },
               ],
               id: '64724e53-959c-4e9d-824b-63602fbb868e',
-              style: {},
+              styles: {},
             },
           ],
           id: '85c51dde-8f4b-4260-bbb8-62e9af295efe',
@@ -111,7 +111,7 @@ export const basicConfig = () => {
                 },
               ],
               id: 'e3f0186a-ac56-4140-9fe3-892b4ec69d65',
-              style: {},
+              styles: {},
             },
             {
               content: [
@@ -134,7 +134,7 @@ export const basicConfig = () => {
                 },
               ],
               id: '42274a39-a794-4e63-abb3-0c9b7e3f72b7',
-              style: {},
+              styles: {},
             },
             {
               type: 'col',
@@ -164,7 +164,7 @@ export const basicConfig = () => {
                 },
               ],
               id: 'dc4513aa-f169-4240-8240-5209ef19884b',
-              style: {},
+              styles: {},
             },
           ],
           id: 'eabe5e7d-f465-45c2-976a-7b4547e7bcaa',
@@ -186,7 +186,7 @@ export const basicConfig = () => {
                 },
               ],
               id: 'cc64f6bf-e138-47ed-bc0b-a7a434445c06',
-              style: {},
+              styles: {},
               size: 5,
             },
           ],
