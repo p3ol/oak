@@ -16,6 +16,7 @@ export default ({
   const commonProps = {
     id: field.id,
     name: field.name,
+    disabled: field.disabled,
     onChange: renderer.onChange
       ? onCustomChange.bind(null, field.key, renderer)
       : onChange.bind(null, field.key),
