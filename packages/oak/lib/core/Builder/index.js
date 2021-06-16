@@ -18,7 +18,7 @@ export default () => {
     isUndoPossible,
     isRedoPossible,
   } = useBuilder();
-  const { debug } = useOptions();
+  const { debug, historyButtonsEnabled } = useOptions();
 
   const onAppend = component => {
     addElement(component.construct());
@@ -27,18 +27,20 @@ export default () => {
 
   return (
     <div className="oak-builder">
-      <div className="oak-undo-redo">
-        <a onClick={() => isUndoPossible && undo()}
-          className={classNames('oak-undo', !isUndoPossible && 'disabled')}
-        >
-          <Icon>undo</Icon>
-        </a>
-        <a onClick={() => isRedoPossible && redo()}
-          className={classNames('oak-redo', !isRedoPossible && 'disabled')}
-        >
-          <Icon>redo</Icon>
-        </a>
-      </div>
+      { historyButtonsEnabled !== false && (
+        <div className="oak-undo-redo">
+          <a onClick={() => isUndoPossible && undo()}
+            className={classNames('oak-undo', !isUndoPossible && 'disabled')}
+          >
+            <Icon>undo</Icon>
+          </a>
+          <a onClick={() => isRedoPossible && redo()}
+            className={classNames('oak-redo', !isRedoPossible && 'disabled')}
+          >
+            <Icon>redo</Icon>
+          </a>
+        </div>
+      ) }
 
       { content.map((item, i) => (
         <Element

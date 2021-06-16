@@ -1,5 +1,5 @@
 export default {
-  title: 'Row options',
+  title: t => t('core.components.row.settings.title', 'Row options'),
   popperSettings: {
     placement: 'right-start',
     modifiers: [{
@@ -13,43 +13,85 @@ export default {
     type: 'select',
     key: 'settings.flexDirection',
     default: 'row',
-    label: 'Direction',
-    options: [
-      { title: 'Row (left to right)', value: 'row' },
-      { title: 'Reversed row (right to left)', value: 'row-reverse' },
-      { title: 'Column (top to bottom)', value: 'column' },
-      { title: 'Column reversed (bottom to top)', value: 'column-reverse' },
-    ],
+    label: t =>
+      t('core.components.row.settings.flexDirection.title', 'Direction'),
+    options: [{
+      title: t => t('core.components.row.settings.flexDirection.row',
+        'Row (left to right)'),
+      value: 'row',
+    }, {
+      title: t => t('core.components.row.settings.flexDirection.rowReverse',
+        'Reversed row (right to left)'),
+      value: 'row-reverse',
+    }, {
+      title: t => t('core.components.row.settings.flexDirection.column',
+        'Column (top to bottom)'),
+      value: 'column',
+    }, {
+      title: t => t('core.components.row.settings.flexDirection.columnReverse',
+        'Column reversed (bottom to top)'),
+      value: 'column-reverse',
+    }],
   }, {
     type: 'select',
     key: 'settings.justifyContent',
     default: 'flex-start',
-    label: 'Horizontal alignment',
-    options: [
-      { title: 'Left', value: 'flex-start' },
-      { title: 'Center', value: 'center' },
-      { title: 'Right', value: 'flex-end' },
-      { title: 'Spaced between', value: 'space-between' },
-      { title: 'With space around', value: 'space-between' },
-    ],
+    label: t => t('core.components.row.settings.justifyContent.title',
+      'Horizontal alignment'),
+    options: [{
+      title: t => t('core.components.row.settings.justifyContent.flexStart',
+        'Left'),
+      value: 'flex-start',
+    }, {
+      title: t => t('core.components.row.settings.justifyContent.center',
+        'Center'),
+      value: 'center',
+    }, {
+      title: t => t('core.components.row.settings.justifyContent.flexEnd',
+        'Right'),
+      value: 'flex-end',
+    }, {
+      title: t => t('core.components.row.settings.justifyContent.spaceBetween',
+        'With space between'),
+      value: 'space-between',
+    }, {
+      title: t => t('core.components.row.settings.justifyContent.spaceAround',
+        'With space around'),
+      value: 'space-around',
+    }],
   }, {
     type: 'select',
     key: 'settings.alignItems',
     default: 'flex-start',
-    label: 'Vertical alignment',
-    options: [
-      { title: 'Top', value: 'flex-start' },
-      { title: 'Center', value: 'center' },
-      { title: 'Bottom', value: 'flex-end' },
-    ],
+    label: t => t('core.components.row.settings.alignItems.title',
+      'Vertical alignment'),
+    options: [{
+      title: t => t('core.components.row.settings.alignItems.flexStart',
+        'Top'),
+      value: 'flex-start',
+    }, {
+      title: t => t('core.components.row.settings.alignItems.center',
+        'Center'),
+      value: 'center',
+    }, {
+      title: t => t('core.components.row.settings.alignItems.flexEnd',
+        'Bottom'),
+      value: 'flex-end',
+    }],
   }, {
     type: 'select',
     key: 'settings.gutters',
     default: true,
-    label: 'Column gutters',
-    options: [
-      { title: 'Enabled', value: true },
-      { title: 'Disabled', value: false },
-    ],
+    label: t => t('core.components.row.settings.gutters.title',
+      'Column gutters'),
+    options: [{
+      title: t => t('core.components.row.settings.gutters.enabled',
+        'Enabled'),
+      value: true,
+    }, {
+      title: t => t('core.components.row.settings.gutters.disabled',
+        'Disabled'),
+      value: false,
+    }],
   }],
 };

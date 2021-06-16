@@ -4,7 +4,7 @@ import Row from './core/Row';
 
 export const COMPONENT_ROW = {
   id: 'row',
-  name: 'Row',
+  name: t => t('core.components.row.name', 'Row'),
   type: 'component',
   render: Row,
   icon: 'view_column',
@@ -27,7 +27,7 @@ export const COMPONENT_ROW = {
 
 export const GROUP_CORE = {
   id: 'core',
-  name: 'Core components',
+  name: t => t('core.groups.core.title', 'Core components'),
   type: 'group',
   components: [
     COMPONENT_ROW,
@@ -36,7 +36,7 @@ export const GROUP_CORE = {
 
 export const GROUP_OTHER = {
   id: 'other',
-  name: 'Other',
+  name: t => t('core.groups.other.title', 'Other'),
   type: 'group',
   components: [],
 };

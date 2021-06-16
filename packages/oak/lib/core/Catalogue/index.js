@@ -15,6 +15,7 @@ import { usePopper } from 'react-popper';
 
 import { useBuilder } from '../../hooks';
 import Icon from '../Icon';
+import Text from '../Text';
 
 export default forwardRef(({
   globalEventsTarget = global,
@@ -106,7 +107,7 @@ export default forwardRef(({
               { typeof c.icon === 'function' ? c.icon() : (
                 <Icon className="oak-component-icon">{ c.icon }</Icon>
               ) }
-              <span>{ c.name }</span>
+              <span><Text>{ c.name }</Text></span>
             </a>
           </div>
         )) }
@@ -147,7 +148,7 @@ export default forwardRef(({
           <div className="oak-groups">
             <Tabs>
               { getGroups().map((g, i) => (
-                <Tab key={i} title={g.name}>
+                <Tab key={i} title={<Text>{ g.name }</Text>}>
                   { renderComponents(g) }
                 </Tab>
               )) }
