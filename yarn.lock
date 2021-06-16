@@ -2169,30 +2169,30 @@
   dependencies:
     eslint-rule-composer "0.3.0"
 
-"@poool/junipero-hooks@2.0.0-beta.7", "@poool/junipero-hooks@^2.0.0-beta.7":
-  version "2.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-beta.7.tgz#97d9463c2aac5edeccee69aab0bf8d32fc7ab76a"
-  integrity sha512-BiYfM7rcV7eRWQ3vuUt2NTxjHJcMc1O18ZzflIDzOLzHKKjeg1lbN4DTrmxeh626jeEdHy1vH+SeXKgIB4efpA==
+"@poool/junipero-hooks@2.0.0-beta.28", "@poool/junipero-hooks@^2.0.0-beta.28":
+  version "2.0.0-beta.28"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-beta.28.tgz#8c78f0d5f916feffe75549f0090846a975ea5a1f"
+  integrity sha512-BD96Y51TqZxS4/3x7s9H2tYOGjIrx49Z2OkNcBB3bxCu6CR35FizdFvczN9xi6TgRSJVDy7sz4P0k4wIFE1AKg==
   dependencies:
     "@babel/runtime-corejs3" "7.13.17"
     core-js "3.10.2"
 
-"@poool/junipero-utils@2.0.0-beta.7", "@poool/junipero-utils@^2.0.0-beta.7":
-  version "2.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-beta.7.tgz#a0ee75c41db82dd92b231def6ffc91722c7436fc"
-  integrity sha512-fLwRd4OC6xzJdqmt4W5Nu/QtpfJFpqx+2ANshOhRU7LicK3wi5ISI4U9dOwTwKgECCcOeH73F6QgSN6vXcqd/Q==
+"@poool/junipero-utils@2.0.0-beta.28", "@poool/junipero-utils@^2.0.0-beta.28":
+  version "2.0.0-beta.28"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-beta.28.tgz#75bb0318190b528e86a7721a0d9de9e5670d6067"
+  integrity sha512-EZiUsXR39awhXlSX80skCdhaXoM5DgvsKUTl75+TSH6kEjNyqGcBdky3Ksx+kYBYv/JCG1r/9tuEcEBb3Nqpew==
   dependencies:
     "@babel/runtime-corejs3" "7.13.17"
     core-js "3.10.2"
 
-"@poool/junipero@2.0.0-beta.26":
-  version "2.0.0-beta.26"
-  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-beta.26.tgz#3a8b56327e09e2fbc3269b905e03714365f1f1db"
-  integrity sha512-b5vSj5azxNRsKIdxDa4DBjRnI2vbhGjKcr5zReWzBTdyTFDWr+zqQ23pleB0wbCZ+J/yvG0iZKMkoUoGOqwZ2A==
+"@poool/junipero@2.0.0-beta.28":
+  version "2.0.0-beta.28"
+  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-beta.28.tgz#73214c1b277f21eacfd656de3f6597ba759d10b4"
+  integrity sha512-hJmAO/hZmqACgDHxyQxDe00kCttE6Ppq4E7Ii8PdweW5hnlA6SF6hBdshV6mptPL3ojMC8WvvyLLZtuY2hI0EQ==
   dependencies:
     "@babel/runtime-corejs3" "7.13.17"
-    "@poool/junipero-hooks" "^2.0.0-beta.7"
-    "@poool/junipero-utils" "^2.0.0-beta.7"
+    "@poool/junipero-hooks" "^2.0.0-beta.28"
+    "@poool/junipero-utils" "^2.0.0-beta.28"
     core-js "3.10.2"
     prop-types "15.7.2"
 
