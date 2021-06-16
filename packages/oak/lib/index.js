@@ -83,4 +83,5 @@ export const render = (elmt, options = {}) => {
 export { Text };
 
 export { useOptions, useBuilder, useElement };
+
 export { default as localeFr } from './languages/fr';
