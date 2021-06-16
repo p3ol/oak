@@ -16,7 +16,6 @@ import {
   cloneDeep,
   classNames,
   set,
-  useEventListener,
 } from '@poool/junipero';
 import { usePopper } from 'react-popper';
 
@@ -24,7 +23,6 @@ import { useBuilder, useOptions } from '../../hooks';
 import Field from './Field';
 
 export default forwardRef(({
-  globalEventsTarget = global,
   children,
   element,
   component,
@@ -67,10 +65,6 @@ export default forwardRef(({
     toggle,
   }));
 
-  useEventListener('click', e => {
-    onClickOutside_(e);
-  }, globalEventsTarget);
-
   const open = () => {
     dispatch({ opened: true });
   };
@@ -81,21 +75,6 @@ export default forwardRef(({
 
   const toggle = () =>
     state.opened ? close() : open();
-
-  const onClickOutside_ = e => {
-    if (!popper || !reference || !state.opened) {
-      return;
-    }
-
-    if (
-      reference !== e.target &&
-      !reference.contains(e.target) &&
-      popper !== e.target &&
-      !popper.contains(e.target)
-    ) {
-      dispatch({ opened: false });
-    }
-  };
 
   const onUpdate_ = elmt => {
     setElement(element, elmt);
@@ -114,6 +93,7 @@ export default forwardRef(({
 
   const onSave = () => {
     setElement(element, state.element);
+    close();
   };
 
   const onCancel = e => {
