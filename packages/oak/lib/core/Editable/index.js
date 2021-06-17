@@ -27,6 +27,7 @@ import {
   DEFAULT_STYLES_SETTINGS,
   DEFAULT_RESPONSIVE_SETTINGS,
 } from '../../defaults';
+import Text from '../Text';
 import Field from './Field';
 
 export default forwardRef(({
@@ -115,7 +116,7 @@ export default forwardRef(({
       component.settings?.defaults?.settings !== false
         ? cloneDeep(DEFAULT_SETTINGS) : {},
       omit(component.settings || {}, ['defaults', 'styling', 'responsive']),
-      { title: 'Settings' },
+      { title: t => t('core.settings.title', 'Settings') },
     ),
     mergeDeep(
       {},
@@ -139,17 +140,24 @@ export default forwardRef(({
       className="oak-editable"
     >
       <div className="oak-title">
-        { component.settings?.title || 'Element options' }
+        { component.settings?.title ? (
+          <Text>{ component.settings?.title }</Text>
+        ) : (
+          <Text
+            name="core.components.default.settings.title"
+            default="Element options"
+          />
+        ) }
       </div>
       <div className="oak-form">
         <Tabs>
           { tabs.map((tab, t) => (
-            <Tab key={t} title={tab.title}>
+            <Tab key={t} title={<Text>{ tab.title }</Text>}>
               { tab?.fields?.map((field, i) =>
                 (!field.condition || field.condition(state.element)) && (
                   <div className="oak-field" key={i}>
                     { field.label && (
-                      <label>{ field.label }</label>
+                      <label><Text>{ field.label }</Text></label>
                     ) }
                     { field.fields ? (
                       <div className="oak-fields">
@@ -186,8 +194,12 @@ export default forwardRef(({
           )) }
         </Tabs>
         <div className="oak-editable-buttons">
-          <a href="#" onClick={onCancel}>Cancel</a>
-          <Button className="primary" onClick={onSave}>Save</Button>
+          <a href="#" onClick={onCancel}>
+            <Text default="Cancel" name="core.settings.cancel" />
+          </a>
+          <Button className="primary" onClick={onSave}>
+            <Text default="Save" name="core.settings.save" />
+          </Button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useReducer, useEffect } from 'react';
 import { TouchableZone, Loader, classNames, mockState } from '@poool/junipero';
-import { useOptions, useElement } from '@poool/oak';
+import { Text, useOptions, useElement } from '@poool/oak';
 
 export default ({
   className,
@@ -105,7 +105,12 @@ export default ({
           <div className="oak-image-field-info">
             <div className="oak-image-name">{ getName() }</div>
             <div className="oak-image-field-actions">
-              <a href="#" className="oak-delete" onClick={onReset}>Delete</a>
+              <a href="#" className="oak-delete" onClick={onReset}>
+                <Text
+                  name="addons.basicComponents.fields.image.del"
+                  default="Delete"
+                />
+              </a>
             </div>
           </div>
         </>
@@ -116,7 +121,12 @@ export default ({
           ) : (
             <>
               <i className="oak-icons">add</i>
-              <span>Add an image</span>
+              <span>
+                <Text
+                  name="addons.basicComponents.fields.image.add"
+                  default="Add an image"
+                />
+              </span>
             </>
           )}
         </TouchableZone>

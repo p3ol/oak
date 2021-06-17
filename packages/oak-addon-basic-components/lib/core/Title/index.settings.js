@@ -1,17 +1,21 @@
+const prefix = 'addons.basicComponents.components.title.settings';
+
 export default {
-  title: 'Title options',
+  title: t => t(prefix + '.title', 'Title options'),
   fields: [{
     type: 'select',
     key: 'headingLevel',
     default: 'h1',
-    label: 'Type',
+    label: t => t(prefix + '.type.title', 'Type'),
     options: Array.from({ length: 6 }).map((_, i) => ({
-      title: `Title ${i + 1} (h${i + 1})`, value: `h${i + 1}`,
+      title: t => t(prefix + '.type.value', 'Title') +
+        ` ${i + 1} (h${i + 1})`,
+      value: `h${i + 1}`,
     })),
   }, {
     type: 'richtext',
     key: 'content',
     default: '',
-    label: 'Content',
+    label: t => t(prefix + '.content.title', 'Content'),
   }],
 };

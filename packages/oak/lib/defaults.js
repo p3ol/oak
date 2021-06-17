@@ -2,7 +2,7 @@ import { classNames } from '@poool/junipero-utils';
 
 export const COMPONENT_DEFAULT = {
   id: 'unknown',
-  name: 'Unknown',
+  name: t => t('core.components.unknown.title', 'Unknown'),
   type: 'component',
   render: ({ element, className }) => (
     <pre className={classNames('oak-unknown', className)}>
@@ -12,52 +12,52 @@ export const COMPONENT_DEFAULT = {
 };
 
 export const DEFAULT_SETTINGS = {
-  title: 'Settings',
+  title: t => t('core.settings.title', 'Settings'),
   fields: [],
 };
 
 export const DEFAULT_STYLES_SETTINGS = {
-  title: 'Styling',
+  title: t => t('core.styling.title', 'Styling'),
   fields: [{
-    label: 'Paddings',
+    label: t => t('core.styling.paddings.title', 'Paddings'),
     fields: [{
       type: 'text',
       key: 'styles.paddingTop',
-      placeholder: 'Top',
+      placeholder: t => t('core.styling.paddings.top', 'Top'),
     }, {
       type: 'text',
       key: 'styles.paddingRight',
-      placeholder: 'Right',
+      placeholder: t => t('core.styling.paddings.right', 'Right'),
     }, {
       type: 'text',
       key: 'styles.paddingBottom',
-      placeholder: 'Bottom',
+      placeholder: t => t('core.styling.paddings.bottom', 'Bottom'),
     }, {
       type: 'text',
       key: 'styles.paddingLeft',
-      placeholder: 'Left',
+      placeholder: t => t('core.styling.paddings.left', 'Left'),
     }],
   }, {
-    label: 'Margins',
+    label: t => t('core.styling.margins.title', 'Margins'),
     fields: [{
       type: 'text',
       key: 'styles.marginTop',
-      placeholder: 'Top',
+      placeholder: t => t('core.styling.margins.top', 'Top'),
     }, {
       type: 'text',
       key: 'styles.marginRight',
-      placeholder: 'Right',
+      placeholder: t => t('core.styling.margins.right', 'Right'),
     }, {
       type: 'text',
       key: 'styles.marginBottom',
-      placeholder: 'Bottom',
+      placeholder: t => t('core.styling.margins.bottom', 'Bottom'),
     }, {
       type: 'text',
       key: 'styles.marginLeft',
-      placeholder: 'Left',
+      placeholder: t => t('core.styling.margins.left', 'Left'),
     }],
   }, {
-    label: 'Background image',
+    label: t => t('core.styling.background.image.title', 'Background image'),
     fields: [{
       key: 'styles.backgroundImage',
       type: 'core-image',
@@ -65,96 +65,173 @@ export const DEFAULT_STYLES_SETTINGS = {
       key: 'styles.backgroundSize',
       type: 'select',
       default: 'default',
-      options: [
-        { title: 'Default', value: 'default' },
-        { title: 'Cover', value: 'cover' },
-        { title: 'Contain', value: 'contain' },
-      ],
+      placeholder: t =>
+        t('core.styling.background.size.title', 'Background size'),
+      options: [{
+        title: t => t('core.styling.background.size.default', 'Default'),
+        value: 'default',
+      }, {
+        title: t => t('core.styling.background.size.cover', 'Cover'),
+        value: 'cover',
+      }, {
+        title: t => t('core.styling.background.size.contain', 'Contain'),
+        value: 'contain',
+      }],
     }, {
       key: 'styles.backgroundPosition',
       type: 'select',
       default: 'center',
-      options: [
-        { title: 'Center', value: 'center' },
-        { title: 'Top', value: 'top' },
-        { title: 'Right', value: 'right' },
-        { title: 'Bottom', value: 'bottom' },
-        { title: 'Left', value: 'left' },
-        { title: 'Center top', value: 'center top' },
-        { title: 'Center bottom', value: 'center bottom' },
-        { title: 'Left top', value: 'left top' },
-        { title: 'Left bottom', value: 'left bottom' },
-        { title: 'Right top', value: 'right top' },
-        { title: 'Right bottom', value: 'right bottom' },
-      ],
+      placeholder: t =>
+        t('core.styling.background.position.title', 'Background position'),
+      options: [{
+        title: t => t('core.styling.background.position.center', 'Center'),
+        value: 'center',
+      }, {
+        title: t => t('core.styling.background.position.top', 'Top'),
+        value: 'top',
+      }, {
+        title: t => t('core.styling.background.position.right', 'Right'),
+        value: 'right',
+      }, {
+        title: t => t('core.styling.background.position.bottom', 'Bottom'),
+        value: 'bottom',
+      }, {
+        title: t => t('core.styling.background.position.left', 'Left'),
+        value: 'left',
+      }, {
+        title: t =>
+          t('core.styling.background.position.centerTop', 'Center top'),
+        value: 'center top',
+      }, {
+        title: t =>
+          t('core.styling.background.position.centerBottom', 'Center bottom'),
+        value: 'center bottom',
+      }, {
+        title: t =>
+          t('core.styling.background.position.leftCenter', 'Center left'),
+        value: 'left center',
+      }, {
+        title: t =>
+          t('core.styling.background.position.leftTop', 'Left top'),
+        value: 'left top',
+      }, {
+        title: t =>
+          t('core.styling.background.position.leftBottom', 'Left bottom'),
+        value: 'left bottom',
+      }, {
+        title: t =>
+          t('core.styling.background.position.rightCenter', 'Center right'),
+        value: 'right center',
+      }, {
+        title: t =>
+          t('core.styling.background.position.rightTop', 'Right top'),
+        value: 'right top',
+      }, {
+        title: t =>
+          t('core.styling.background.position.rightBottom', 'Right bottom'),
+        value: 'right bottom',
+      }],
     }, {
       key: 'styles.backgroundRepeat',
       type: 'select',
       default: 'no-repeat',
-      options: [
-        { title: 'No repeat', value: 'no-repeat' },
-        { title: 'Repeat horizontally', value: 'repeat-x' },
-        { title: 'Repeat vertically', value: 'repeat-x' },
-        { title: 'Repeat both horizontally & vertically', value: 'repeat' },
+      placeholder: t =>
+        t('core.styling.background.repeat.title', 'Background repeat'),
+      options: [{
+        title: t =>
+          t('core.styling.background.repeat.noRepeat', 'No repeat'),
+        value: 'no-repeat',
+      }, {
+        title: t =>
+          t('core.styling.background.repeat.repeatX', 'Repeat horizontally'),
+        value: 'repeat-x',
+      }, {
+        title: t =>
+          t('core.styling.background.repeat.repeatY', 'Repeat vertically'),
+        value: 'repeat-x',
+      }, {
+        title: t => t('core.styling.background.repeat.both',
+          'Repeat both horizontally & vertically'),
+        value: 'repeat',
+      },
       ],
     }],
   }, {
-    label: 'Background color',
+    label: t =>
+      t('core.styling.background.color.title', 'Background color'),
+    placeholder: '#FFF',
     type: 'color',
     key: 'styles.backgroundColor',
   }, {
-    label: 'Custom element css class',
+    label: t =>
+      t('core.styling.className.title', 'Custom element css class'),
     type: 'text',
+    placeholder: 'my-button',
     key: 'settings.className',
   }],
 };
 
 export const DEFAULT_RESPONSIVE_SETTINGS = {
-  title: 'Responsive',
+  title: t => t('core.responsive.title', 'Responsive'),
   fields: [{
     key: 'responsive.xl',
     type: 'select',
-    label: 'Extra-large screens',
+    label: t => t('core.responsive.xl', 'Extra-large screens'),
     default: 'show',
-    options: [
-      { title: 'Visible', value: 'show' },
-      { title: 'Hidden', value: 'hide' },
-    ],
+    options: [{
+      title: t => t('core.responsive.show', 'Visible'),
+      value: 'show',
+    }, {
+      title: t => t('core.responsive.hide', 'Hidden'),
+      value: 'hide',
+    }],
   }, {
     key: 'responsive.lg',
     type: 'select',
-    label: 'Large screens (desktop)',
+    label: t => t('core.responsive.lg', 'Large screens (desktop)'),
     default: 'show',
-    options: [
-      { title: 'Visible', value: 'show' },
-      { title: 'Hidden', value: 'hide' },
-    ],
+    options: [{
+      title: t => t('core.responsive.show', 'Visible'),
+      value: 'show',
+    }, {
+      title: t => t('core.responsive.hide', 'Hidden'),
+      value: 'hide',
+    }],
   }, {
     key: 'responsive.md',
     type: 'select',
-    label: 'Medium screens (tablet)',
+    label: t => t('core.responsive.md', 'Medium screens (tablet)'),
     default: 'show',
-    options: [
-      { title: 'Visible', value: 'show' },
-      { title: 'Hidden', value: 'hide' },
-    ],
+    options: [{
+      title: t => t('core.responsive.show', 'Visible'),
+      value: 'show',
+    }, {
+      title: t => t('core.responsive.hide', 'Hidden'),
+      value: 'hide',
+    }],
   }, {
     key: 'responsive.sm',
     type: 'select',
-    label: 'Small screens (phones)',
+    label: t => t('core.responsive.sm', 'Small screens (phones)'),
     default: 'show',
-    options: [
-      { title: 'Visible', value: 'show' },
-      { title: 'Hidden', value: 'hide' },
-    ],
+    options: [{
+      title: t => t('core.responsive.show', 'Visible'),
+      value: 'show',
+    }, {
+      title: t => t('core.responsive.hide', 'Hidden'),
+      value: 'hide',
+    }],
   }, {
     key: 'responsive.xs',
     type: 'select',
-    label: 'Extra-small screens (old phones)',
+    label: t => t('core.responsive.xs', 'Extra-small screens (old phones)'),
     default: 'show',
-    options: [
-      { title: 'Visible', value: 'show' },
-      { title: 'Hidden', value: 'hide' },
-    ],
+    options: [{
+      title: t => t('core.responsive.show', 'Visible'),
+      value: 'show',
+    }, {
+      title: t => t('core.responsive.hide', 'Hidden'),
+      value: 'hide',
+    }],
   }],
 };

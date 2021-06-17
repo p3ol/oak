@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { useOptions, useBuilder, useElement } from './hooks';
 import App from './core/App';
+import Text from './core/Text';
 
 class oak {
   #ref = createRef()
@@ -62,6 +63,14 @@ class oak {
   isRedoPossible () {
     return this.#ref.current?.isRedoPossible;
   }
+
+  setTexts (...args) {
+    return this.#ref.current?.setTexts(...args);
+  }
+
+  getText (...args) {
+    return this.#ref.current?.getText(...args);
+  }
 }
 
 export const render = (elmt, options = {}) => {
@@ -71,4 +80,8 @@ export const render = (elmt, options = {}) => {
   return app;
 };
 
+export { Text };
+
 export { useOptions, useBuilder, useElement };
+
+export { default as localeFr } from './languages/fr';

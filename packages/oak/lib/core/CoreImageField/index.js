@@ -1,6 +1,7 @@
 import { useReducer, useEffect } from 'react';
 import { TouchableZone, Loader, classNames, mockState } from '@poool/junipero';
-import { useOptions } from '@poool/oak';
+
+import { useOptions } from '../../hooks';
 
 export default ({
   className,

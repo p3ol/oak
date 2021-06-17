@@ -6,7 +6,7 @@ import Button from './core/Button';
 
 export const COMPONENT_TITLE = {
   id: 'title',
-  name: 'Title',
+  name: t => t('addons.basicComponents.components.title.name', 'Title'),
   type: 'component',
   icon: 'title',
   render: Title,
@@ -30,7 +30,7 @@ export const COMPONENT_TITLE = {
 
 export const COMPONENT_TEXT = {
   id: 'text',
-  name: 'Text',
+  name: t => t('addons.basicComponents.components.text.name', 'Text'),
   type: 'component',
   render: Text,
   icon: 'format_align_left',
@@ -54,7 +54,7 @@ export const COMPONENT_TEXT = {
 
 export const COMPONENT_IMAGE = {
   id: 'image',
-  name: 'Image',
+  name: t => t('addons.basicComponents.components.image.name', 'Image'),
   type: 'component',
   render: Image,
   icon: 'image',
@@ -71,7 +71,7 @@ export const COMPONENT_IMAGE = {
 
 export const COMPONENT_BUTTON = {
   id: 'button',
-  name: 'Button',
+  name: t => t('addons.basicComponents.components.button.name', 'Button'),
   type: 'component',
   render: Button,
   icon: 'view_comfy',
