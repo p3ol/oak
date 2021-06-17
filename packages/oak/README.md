@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/@poool/oak.svg)](https://www.npmjs.com/package/@poool/oak)
 
 <br />
-<p>A page builder for the futur of the internet</p>
+<p>A page builder for the future of the internet</p>
 
 </div>
 

@@ -1,0 +1,135 @@
+---
+sidebar_label: Options
+sidebar_position: 1
+---
+
+# Options
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+export const frameworks = [
+  { label: 'Plain JS', value: 'plain' },
+  { label: 'React', value: 'react' },
+];
+
+Oak is easily configurable with a bunch of options.
+
+### `debug`
+
+Type: __boolean__
+
+Enable/disable debug output
+
+<Tabs
+  groupId="framework"
+  defaultValue="plain"
+  values={frameworks}
+>
+  <TabItem value="plain">
+
+```javascript
+import { render } from '@poool/oak';
+
+render(element, { debug: true })
+```
+
+  </TabItem>
+
+  <TabItem value="react">
+
+```jsx
+import { Builder } from '@poool/oak-react';
+
+export default () => (
+  <Builder options={{ debug: true }} />
+);
+```
+
+  </TabItem>
+</Tabs>
+
+
+### `addons`
+
+Type: __array__
+
+Pass a list of addons before first render.
+
+<Tabs
+  groupId="framework"
+  defaultValue="plain"
+  values={frameworks}
+>
+  <TabItem value="plain">
+
+```javascript
+import { render } from '@poool/oak';
+import basicComponents from '@poool/oak-addon-basic-components';
+
+render(element, { addons: [basicComponents] });
+```
+
+  </TabItem>
+
+  <TabItem value="react">
+
+```jsx
+import { Builder } from '@poool/oak-react';
+import basicComponents from '@poool/oak-addon-basic-components';
+
+export default () => (
+  <Builder options={{ addons: [basicComponents] }} />
+);
+```
+
+  </TabItem>
+</Tabs>
+
+
+### `content`
+
+Type: __array__
+
+Pre-fill the builder with some oak-formatted content
+
+<Tabs
+  groupId="framework"
+  defaultValue="plain"
+  values={frameworks}
+>
+  <TabItem value="plain">
+
+```javascript
+import { render } from '@poool/oak';
+
+const content = [
+  { type: 'title', headingLevel: 'h1', content: 'This is a title' },
+  { type: 'text', content: 'This is a text' },
+];
+
+render(element, { content });
+```
+
+  </TabItem>
+
+  <TabItem value="react">
+
+```jsx
+import { Builder } from '@poool/oak-react';
+
+const content = [
+  { type: 'title', headingLevel: 'h1', content: 'This is a title' },
+  { type: 'text', content: 'This is a text' },
+];
+
+// You can either use the value prop or the options={{ content }} prop
+// The value prop will be used after the first render to be applied using
+// oak.setContent() and will override the options.content prop
+export default () => (
+  <Builder value={content} />
+);
+```
+
+  </TabItem>
+</Tabs>

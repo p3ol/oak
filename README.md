@@ -12,7 +12,7 @@
 
 | Name | Description | |
 | :--: | :--: | :--: |
-| `@poool/oak` | A page builder for the futur of the internet | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak) |
+| `@poool/oak` | A page builder for the future of the internet | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak) |
 | `@poool/oak-addon-basic-components` | A collection of basic but useful components | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak-addon-basic-components) |
 | `@poool/oak-react` | A React wrapper around Oak | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak-react) |
 

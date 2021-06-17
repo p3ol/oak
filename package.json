@@ -1,6 +1,7 @@
 {
   "private": true,
   "workspaces": [
+    "docs",
     "packages/*"
   ],
   "scripts": {
@@ -11,7 +12,8 @@
     "link-all": "./node_modules/.bin/lerna exec --parallel -- yarn link",
     "test": "BABEL_ENV=tests true",
     "build": "./node_modules/.bin/lerna exec -- yarn build",
-    "serve": "./node_modules/.bin/start-storybook"
+    "serve": "./node_modules/.bin/start-storybook",
+    "docs": "yarn workspace @poool/oak-docs"
   },
   "devDependencies": {
     "@babel/core": "7.14.6",
