@@ -50,7 +50,8 @@ const Node = ({ type, text, children, ...rest }) => {
       return children[0]
         ? children[0].props.text
           ? (<>{ children }<br /></>)
-          : children : <br />;
+          : children
+        : <br />;
   }
 };
 
