@@ -3,7 +3,6 @@
 <h1>🌳 oak</h1>
 
 [![GitHub](https://img.shields.io/github/license/p3ol/oak.svg)](https://github.com/p3ol/oak)
-[![npm](https://img.shields.io/npm/v/@poool/oak.svg)](https://www.npmjs.com/package/@poool/oak)
 
 <br />
 <p>Modern, lightweight &amp; modulable page builder</p>
