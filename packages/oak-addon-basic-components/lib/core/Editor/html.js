@@ -27,7 +27,6 @@ const TEXT_TAGS = {
 };
 
 const ALIGNMENTS = {
-  'text-left': 'left',
   'text-center': 'center',
   'text-right': 'right',
   'text-justify': 'justify',
