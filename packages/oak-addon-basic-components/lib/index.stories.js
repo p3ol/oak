@@ -14,7 +14,6 @@ export const internalEditor = () => {
     'This is a <strong>fancy</strong> text<br />with a line break'));
 
   const onChange = ({ value }) => {
-    console.log('onChange', value, serialize(value), deserialize(serialize(value)));
     setValue(value);
   };
 
