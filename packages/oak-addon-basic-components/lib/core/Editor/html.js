@@ -48,7 +48,7 @@ export const serialize = (node = []) => {
   }
 
   if (Text.isText(node)) {
-    const string = Node.string(node);
+    const string = Node.string(node).replace('\n', '<br />');
     let styles = '';
 
     if (node.bold) styles += 'font-weight:bold;';
@@ -98,25 +98,21 @@ export const deserializeNode = el => {
     return '\n';
   }
 
-  const { nodeName } = el;
-  const parent = el;
-
-  const children = Array.from(parent.childNodes)
-    .map(deserializeNode)
-    .flat();
+  const children = Array.from(el.childNodes)
+    .map(deserializeNode);
 
   if (el.nodeName === 'BODY') {
     return jsx('fragment', {}, children);
   }
 
-  if (ELEMENT_TAGS[nodeName]) {
-    const attrs = ELEMENT_TAGS[nodeName](el);
+  if (ELEMENT_TAGS[el.nodeName]) {
+    const attrs = ELEMENT_TAGS[el.nodeName](el);
 
     return jsx('element', attrs, children);
   }
 
-  if (TEXT_TAGS[nodeName]) {
-    const attrs = TEXT_TAGS[nodeName](el);
+  if (TEXT_TAGS[el.nodeName]) {
+    const attrs = TEXT_TAGS[el.nodeName](el);
 
     return children.map(child => jsx('text', attrs, child));
   }
