@@ -61,7 +61,7 @@ export default ({
       : selectedRow?.children?.[path?.[1]];
     const selectedSize = parseInt(selectedContent?.size?.split('p')[0]);
 
-    return selectedSize || 14;
+    return selectedSize || 16;
   };
 
   return (
