@@ -1,4 +1,4 @@
-import { Node } from 'slate';
+import { Node, Text } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const ELEMENT_TAGS = {
@@ -8,6 +8,9 @@ const ELEMENT_TAGS = {
   OL: () => ({ type: 'numbered-list' }),
   P: () => ({ type: 'paragraph' }),
   UL: () => ({ type: 'bulleted-list' }),
+  DIV: el => el.style.textAlign
+    ? ({ type: `text-${el.style.textAlign}` })
+    : null,
 };
 
 const TEXT_TAGS = {
@@ -17,33 +20,73 @@ const TEXT_TAGS = {
   STRONG: () => ({ bold: true }),
   B: () => ({ bold: true }),
   U: () => ({ underline: true }),
-  SPAN: el => ({
-    color: el.style?.color,
-    size: el.style?.fontSize,
+  SPAN: ({ style = {} }) => ({
+    ...(style.color ? { color: style.color } : {}),
+    ...(style.fontSize ? { size: style.fontSize } : {}),
+    ...(style.fontWeight ? { bold: style.fontWeight === 'bold' } : {}),
+    ...(style.fontStyle ? { italic: style.fontStyle === 'italic' } : {}),
+    ...(style.textDecoration ? {
+      underline: style?.textDecoration === 'underline',
+    } : {}),
   }),
 };
 
-export const serialize = content => {
-  return content.map(n => {
-    return n.children.map(e => {
-      let string = Node.string(e);
+const ALIGNMENTS = {
+  'text-center': 'center',
+  'text-right': 'right',
+  'text-justify': 'justify',
+};
 
-      if (e.bold) string = `<b>${string}</b>`;
+export const serialize = (node = []) => {
+  if (Array.isArray(node)) {
+    return node
+      .map((n, i) =>
+        serialize(n) +
+        (n.children && i !== node.length - 1 ? '<br />' : '')
+      )
+      .join('');
+  }
 
-      if (e.underline) string = `<u>${string}</u>`;
+  if (Text.isText(node)) {
+    const string = Node.string(node).replace('\n', '<br />');
+    let styles = '';
 
-      if (e.italic) string = `<i>${string}</i>`;
+    if (node.bold) styles += 'font-weight:bold;';
 
-      if (e.size) {
-        string = `<span style="font-size:${e.size};">${string}</span>`;
-      }
+    if (node.underline) styles += 'text-decoration:underline;';
 
-      if (e.color) string = `<span style="color:${e.color};">${string}</span>`;
+    if (node.italic) styles += 'font-style:italic;';
 
+    if (node.size) styles += `font-size:${node.size};`;
+
+    if (node.color) styles += `color:${node.color};`;
+
+    if (styles.length > 0) {
+      styles = ` style="${styles}"`;
+
+      return `<span${styles}>${string}</span>`;
+    } else {
       return string;
-    }).join('');
+    }
+  }
 
-  }).join('\n');
+  const children = node.children?.map(n => serialize(n)).join('');
+
+  switch (node.type) {
+    case 'text-center':
+    case 'text-right':
+    case 'text-justify':
+      return `<div style="text-align:${ALIGNMENTS[node.type]};">` +
+        `${children}</div>`;
+    case 'quote':
+      return `<blockquote><p>${children}</p></blockquote>`;
+    case 'paragraph':
+      return `<div>${children}</div>`;
+    case 'link':
+      return `<a href="${node.url}">${children}</a>`;
+    default:
+      return children;
+  }
 };
 
 export const deserializeNode = el => {
@@ -55,25 +98,21 @@ export const deserializeNode = el => {
     return '\n';
   }
 
-  const { nodeName } = el;
-  const parent = el;
-
-  const children = Array.from(parent.childNodes)
-    .map(deserializeNode)
-    .flat();
+  const children = Array.from(el.childNodes)
+    .map(deserializeNode);
 
   if (el.nodeName === 'BODY') {
     return jsx('fragment', {}, children);
   }
 
-  if (ELEMENT_TAGS[nodeName]) {
-    const attrs = ELEMENT_TAGS[nodeName](el);
+  if (ELEMENT_TAGS[el.nodeName]) {
+    const attrs = ELEMENT_TAGS[el.nodeName](el);
 
     return jsx('element', attrs, children);
   }
 
-  if (TEXT_TAGS[nodeName]) {
-    const attrs = TEXT_TAGS[nodeName](el);
+  if (TEXT_TAGS[el.nodeName]) {
+    const attrs = TEXT_TAGS[el.nodeName](el);
 
     return children.map(child => jsx('text', attrs, child));
   }

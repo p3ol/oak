@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import settings from './index.settings';
 import Node from '../Editor/Node';
 
@@ -6,7 +8,10 @@ const Text = ({ element, className }) => (
     { typeof element.content === 'string' ? (
       <Node type="paragraph" children={[{ text: element.content }]} />
     ) : element.content.map((c, i) => (
-      <Node { ...c } key={i} />
+      <Fragment key={i}>
+        <Node { ...c } />
+        { i < element.content.length - 1 ? <br /> : null }
+      </Fragment>
     )) }
   </div>
 );
