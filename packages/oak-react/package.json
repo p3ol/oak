@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.14.6",
-    "@poool/junipero": "2.0.0-beta.28",
+    "@poool/junipero": "2.0.0-beta.29",
     "@poool/junipero-hooks": "2.0.0-beta.28",
     "@poool/junipero-utils": "2.0.0-beta.28",
     "core-js": "3.14.0"
