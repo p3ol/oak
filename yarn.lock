@@ -2196,6 +2196,17 @@
     core-js "3.10.2"
     prop-types "15.7.2"
 
+"@poool/junipero@2.0.0-beta.29":
+  version "2.0.0-beta.29"
+  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-beta.29.tgz#a0cdfc27386bea4253622502bf2a3a8eeda67a35"
+  integrity sha512-bmV1UHgzFC4lbRdZlY1wzbrMOtO5aqYLOP6KRVPoRUjWBxQMGr2aZ6Y/bUAxSGqIaxRqaazI525sMBBSCXwHLw==
+  dependencies:
+    "@babel/runtime-corejs3" "7.13.17"
+    "@poool/junipero-hooks" "^2.0.0-beta.28"
+    "@poool/junipero-utils" "^2.0.0-beta.28"
+    core-js "3.10.2"
+    prop-types "15.7.2"
+
 "@popperjs/core@2.9.2", "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
