@@ -4,25 +4,38 @@ import { Slate, Editable, withReact } from 'slate-react';
 
 import '../../oak/lib/index.styl';
 
-import { deserialize } from './core/Editor/html';
+import { deserialize, serialize } from './core/Editor/html';
 import Editor from './core/Editor';
 
 export default { title: 'oak-addon-basic-components' };
 
 export const internalEditor = () => {
   const [value, setValue] = useState(deserialize(
-    'This is a <strong>fancy</strong> text'));
+    'This is a <strong>fancy</strong> text<br />with a line break'));
+
+  const onChange = ({ value }) => {
+    console.log('onChange', value, serialize(value), deserialize(serialize(value)));
+    setValue(value);
+  };
 
   return (
     <>
-      <Editor value={value} onChange={({ value }) => setValue(value)} />
-      <p>
-        Unserialized initial value: { JSON.stringify(deserialize(
-          'This is a <strong>fancy</strong> text')) }
-      </p>
-      <p>
-        Current value: { JSON.stringify(value) }
-      </p>
+      <Editor
+        value={value}
+        onChange={onChange}
+      />
+      <div>
+        Current value:
+        <pre>{ JSON.stringify(value, null, 2) }</pre>
+      </div>
+      <div>
+        Serialized value:
+        <pre>{ JSON.stringify(serialize(value), null, 2)}</pre>
+      </div>
+      <div>
+        Deserialized serialized value: { ' ' }
+        <pre>{ JSON.stringify(deserialize(serialize(value)), null, 2) }</pre>
+      </div>
     </>
   );
 };

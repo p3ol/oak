@@ -58,7 +58,8 @@ export const basicConfig = () => {
                 },
                 {
                   type: 'text',
-                  content: 'I want this word bold',
+                  content: 'I want this word <span style="font-weight: bold;"' +
+                    '>bold</span><br />and this on a new line',
                   settings: {},
                   id: '7b617499-e8db-4e8a-a7fd-f687df67c216',
                 },
