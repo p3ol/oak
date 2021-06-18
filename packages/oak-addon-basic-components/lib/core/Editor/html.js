@@ -1,4 +1,4 @@
-import { Node } from 'slate';
+import { Node, Text } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const ELEMENT_TAGS = {
@@ -20,9 +20,14 @@ const TEXT_TAGS = {
   STRONG: () => ({ bold: true }),
   B: () => ({ bold: true }),
   U: () => ({ underline: true }),
-  SPAN: el => ({
-    color: el.style?.color,
-    size: el.style?.fontSize,
+  SPAN: ({ style = {} }) => ({
+    ...(style.color ? { color: style.color } : {}),
+    ...(style.fontSize ? { size: style.fontSize } : {}),
+    ...(style.fontWeight ? { bold: style.fontWeight === 'bold' } : {}),
+    ...(style.fontStyle ? { italic: style.fontStyle === 'italic' } : {}),
+    ...(style.textDecoration ? {
+      underline: style?.textDecoration === 'underline',
+    } : {}),
   }),
 };
 
@@ -32,51 +37,56 @@ const ALIGNMENTS = {
   'text-justify': 'justify',
 };
 
-export const serialize = content => {
-  const res = content.map((n, i) => {
-    let shouldWrapContent = true;
+export const serialize = (node = []) => {
+  if (Array.isArray(node)) {
+    return node
+      .map((n, i) =>
+        serialize(n) +
+        (n.children && i !== node.length - 1 ? '<br />' : '')
+      )
+      .join('');
+  }
 
-    let children = n.children.map(e => {
-      if (e.children && e.children.length) {
-        shouldWrapContent = false;
+  if (Text.isText(node)) {
+    const string = Node.string(node);
+    let styles = '';
 
-        return serialize([e]);
-      }
+    if (node.bold) styles += 'font-weight:bold;';
 
-      let string = Node.string(e);
+    if (node.underline) styles += 'text-decoration:underline;';
 
-      if (e.bold) string = `<b>${string}</b>`;
+    if (node.italic) styles += 'font-style:italic;';
 
-      if (e.underline) string = `<u>${string}</u>`;
+    if (node.size) styles += `font-size:${node.size};`;
 
-      if (e.italic) string = `<i>${string}</i>`;
+    if (node.color) styles += `color:${node.color};`;
 
-      if (e.size) {
-        string = `<span style="font-size:${e.size};">${string}</span>`;
-      }
+    if (styles.length > 0) {
+      styles = ` style="${styles}"`;
 
-      if (e.color) string = `<span style="color:${e.color};">${string}</span>`;
-
-      if (e.text === '') {
-        shouldWrapContent = false;
-        string = '<br />';
-      }
-
+      return `<span${styles}>${string}</span>`;
+    } else {
       return string;
-    }).join('');
-
-    if (ALIGNMENTS[n.type]) {
-      children = `<div style="text-align:${ALIGNMENTS[n.type]};">` +
-        `${children}</div>`;
-    } else if (shouldWrapContent) {
-      children = `<div>${children}</div>`;
     }
+  }
 
-    return children + (i === content.length - 1 ? '' : '\n');
+  const children = node.children?.map(n => serialize(n)).join('');
 
-  }).join('');
-
-  return res;
+  switch (node.type) {
+    case 'text-center':
+    case 'text-right':
+    case 'text-justify':
+      return `<div style="text-align:${ALIGNMENTS[node.type]};">` +
+        `${children}</div>`;
+    case 'quote':
+      return `<blockquote><p>${children}</p></blockquote>`;
+    case 'paragraph':
+      return `<div>${children}</div>`;
+    case 'link':
+      return `<a href="${node.url}">${children}</a>`;
+    default:
+      return children;
+  }
 };
 
 export const deserializeNode = el => {
