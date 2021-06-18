@@ -30,10 +30,6 @@ const Node = ({ type, text, children, ...rest }) => {
       return (
         <ol>{ children }</ol>
       );
-    case 'text-left':
-      return (
-        <>{ children }<br /></>
-      );
     case 'text-center':
       return (
         <div style={{ textAlign: 'center' }}>{ children }</div>
@@ -47,11 +43,7 @@ const Node = ({ type, text, children, ...rest }) => {
         <div style={{ textAlign: 'justify' }}>{ children }</div>
       );
     default:
-      return children[0]
-        ? children[0].props.text
-          ? (<>{ children }<br /></>)
-          : children
-        : <br />;
+      return children;
   }
 };
 
