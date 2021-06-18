@@ -56,7 +56,9 @@ export default ({
   const getTextSize = () => {
     const path = editor.selection?.anchor?.path;
     const selectedRow = editor.children[path?.[0]];
-    const selectedContent = selectedRow?.children[path?.[1]];
+    const selectedContent = Array.isArray(selectedRow)
+      ? selectedRow[path?.[1]]
+      : selectedRow?.children?.[path?.[1]];
     const selectedSize = parseInt(selectedContent?.size?.split('p')[0]);
 
     return selectedSize || 14;
