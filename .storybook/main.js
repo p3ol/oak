@@ -15,6 +15,8 @@ module.exports = {
     config.resolve.alias = {
       '@poool/oak/lib': path.resolve('./packages/oak/lib'),
       '@poool/oak': path.resolve('./packages/oak/lib'),
+      'react': 'preact/compat',
+      'react-dom': 'preact/compat',
     };
 
     config.module.rules.push({

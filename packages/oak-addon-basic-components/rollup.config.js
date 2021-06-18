@@ -3,6 +3,7 @@ import path from 'path';
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import { terser } from 'rollup-plugin-terser';
@@ -12,13 +13,16 @@ const defaultOutput = './dist';
 const name = 'oak-addon-basic-components';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['@poool/oak'];
-const defaultGlobals = { '@poool/oak': 'oak' };
-
 const defaultPlugins = [
   babel({
     exclude: /node_modules/,
     babelHelpers: 'runtime',
+  }),
+  alias({
+    entries: [
+      { find: 'react', replacement: 'preact/compat' },
+      { find: 'react-dom', replacement: 'preact/compat' },
+    ],
   }),
   resolve({
     rootDir: path.resolve('../../'),
@@ -29,14 +33,12 @@ const defaultPlugins = [
 
 const getConfig = (format, {
   output = defaultOutput,
-  globals = defaultGlobals,
-  external = defaultExternals,
 } = {}) => ({
   input,
   plugins: [
     ...defaultPlugins,
   ],
-  external,
+  external: ['@poool/oak'],
   output: {
     ...(format === 'esm' ? {
       dir: `${output}/esm`,
@@ -47,28 +49,20 @@ const getConfig = (format, {
     format,
     name,
     sourcemap: true,
-    globals,
-    exports: 'auto',
+    globals: { '@poool/oak': 'oak' },
+    exports: 'named',
   },
   ...(format === 'esm' ? {
     manualChunks: id => {
       if (id.includes('node_modules')) {
         return 'vendor';
-      } else {
-        return path.parse(id).name;
       }
     },
   } : {}),
 });
 
 export default [
-  ...formats.map(f => getConfig(f, {
-    output: `${defaultOutput}/standalone`,
-  })),
-  ...formats.map(f => getConfig(f, {
-    external: ['@poool/oak', 'react', 'react-dom'],
-    globals: { '@poool/oak': 'oak', react: 'React', 'react-dom': 'ReactDOM' },
-  })),
+  ...formats.map(f => getConfig(f)),
   {
     input: './lib/index.styl',
     plugins: [
