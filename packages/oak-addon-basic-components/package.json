@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak-addon-basic-components",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-addon-basic-components.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -24,7 +24,7 @@
     "@babel/runtime-corejs3": "7.14.6",
     "@poool/junipero": "2.0.0-beta.29",
     "@poool/junipero-utils": "2.0.0-beta.28",
-    "@poool/oak": "^1.0.0-alpha.7",
+    "@poool/oak": "^1.0.0-alpha.8",
     "core-js": "3.14.0",
     "is-hotkey": "0.2.0",
     "slate": "0.63.0",
