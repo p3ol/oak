@@ -54,8 +54,14 @@ const getConfig = (format, {
     manualChunks: id => {
       if (id.includes('node_modules')) {
         return 'vendor';
-      } else {
-        return path.parse(id).name;
+      } else if (/packages\/oak\/lib/.test(id)) {
+        const info = path.parse(id);
+
+        if (/lib$/.test(info.dir)) {
+          return info.name;
+        } else {
+          return `${info.dir.split('lib/').pop()}/${info.name}`;
+        }
       }
     },
   } : {}),
