@@ -27,7 +27,7 @@ const defaultPlugins = [
     rootDir: path.resolve('../../'),
   }),
   commonjs(),
-  // terser(),
+  terser(),
 ];
 
 export default [
