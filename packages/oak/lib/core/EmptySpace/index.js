@@ -1,17 +1,11 @@
-import Node from '../../../../oak-addon-basic-components/lib/core/Editor/Node';
 import settings from './index.settings';
+import Text from '../Text';
 
-const EmptySpace = ({ element, className }) => {
-
-  return (
-    <div className={className}>
-      <Node
-        style={{ height: element.settings.height }}
-        text="Empty space"
-      />
-    </div>
-  );
-};
+const EmptySpace = ({ className }) => (
+  <div className={className}>
+    <Text name="core.components.emptySpace.name" default="Empty space" />
+  </div>
+);
 
 EmptySpace.settings = settings;
 

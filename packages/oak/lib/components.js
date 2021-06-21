@@ -28,7 +28,7 @@ export const COMPONENT_ROW = {
 
 export const COMPONENT_EMPTY_SPACE = {
   id: 'empty-space',
-  name: 'Empty space',
+  name: t => t('core.components.emptySpace.name', 'Empty space'),
   type: 'component',
   render: EmptySpace,
   icon: 'view_comfy',
@@ -39,7 +39,7 @@ export const COMPONENT_EMPTY_SPACE = {
     type: 'empty-space',
     styles: {},
     settings: {
-      height: '8px',
+      height: '32px',
       className: '',
     },
   }),

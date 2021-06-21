@@ -1,9 +1,10 @@
 export default {
-  title: 'Empty space options',
+  title: t =>
+    t('core.components.emptySpace.settings.title', 'Empty space options'),
   fields: [{
     type: 'text',
     key: 'settings.height',
-    default: '8px',
-    label: 'Height',
+    default: '32px',
+    label: t => t('core.components.emptySpace.settings.height', 'Height'),
   }],
 };

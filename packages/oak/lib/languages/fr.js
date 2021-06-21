@@ -17,6 +17,13 @@ export default {
           title: 'Options de l\'élément',
         },
       },
+      emptySpace: {
+        name: 'Espace vide',
+        settings: {
+          title: 'Options de l\'espace vide',
+          height: 'Taille',
+        },
+      },
       row: {
         name: 'Rangée',
         settings: {
