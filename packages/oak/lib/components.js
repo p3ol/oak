@@ -32,8 +32,8 @@ export const COMPONENT_EMPTY_SPACE = {
   type: 'component',
   render: EmptySpace,
   icon: 'view_comfy',
-  options: EmptySpace.options,
-  settings: [],
+  options: [],
+  settings: EmptySpace.settings,
   editable: true,
   construct: () => ({
     type: 'empty-space',
