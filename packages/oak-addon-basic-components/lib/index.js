@@ -4,7 +4,6 @@ import {
   COMPONENT_TEXT,
   COMPONENT_IMAGE,
   COMPONENT_BUTTON,
-  COMPONENT_EMPTY_SPACE,
 } from './components';
 import Editor from './core/Editor';
 import ImageField from './core/ImageField';
@@ -38,9 +37,6 @@ export default {
   }, {
     group: 'core',
     component: COMPONENT_BUTTON,
-  }, {
-    group: 'core',
-    component: COMPONENT_EMPTY_SPACE,
   }],
 };
 
