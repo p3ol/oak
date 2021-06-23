@@ -9,14 +9,14 @@
     display: flex
     padding-bottom: 10px
 
-    .oak-undo,.oak-redo
-      color: $color-charade
+    .oak-undo, .oak-redo
+      color: var(--oak-text-color)
       cursor: pointer
       align-items: center
-      padding: 10px 15px
-      height: 40px
+      padding: 10px 15px 6px
       background: $color-black-squeeze
       border-radius: 3px
+      user-select: none
 
       &.disabled
         opacity: 0.5
@@ -24,7 +24,7 @@
 
       &:hover
         &:not(.disabled)
-          box-shadow: 0 0 0 1px $color-deep-sea-green
+          box-shadow: 0 0 0 1px var(--oak-main-color)
 
     .oak-undo
       margin-right: 10px

@@ -1,6 +1,10 @@
 @require "../colors"
+
 .oak
   .junipero.tabs
+    --main-color: var(--oak-main-color)
+    --text-color: var(--oak-text-color)
+
     .titles
       background: $color-link-water
       border: none
@@ -15,7 +19,7 @@
 
         a
           padding: 10px 20px
-          color: $color-woodsmoke
+          color: var(--text-color)
 
           &:after
             display: none
@@ -24,4 +28,4 @@
           background: $color-white
 
           a
-            color: $color-woodsmoke
+            color: var(--text-color)
