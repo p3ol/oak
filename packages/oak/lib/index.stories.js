@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SelectField } from '@poool/junipero';
 
 import { render } from './';
@@ -11,6 +11,7 @@ export default { title: 'oak' };
 export const basicConfig = () => {
   const containerRef = useRef();
   const oakRef = useRef();
+  const [theme, setTheme] = useState();
 
   useEffect(() => {
     oakRef.current = render(containerRef.current, {
@@ -207,7 +208,21 @@ export const basicConfig = () => {
 
   return (
     <div>
-      <div>
+      { theme === 'blue' && (
+        <style type="text/css">
+          {`
+            .oak {
+              --oak-main-color: #2696AF;
+              --oak-darker-main-color: #1e8096;
+              --oak-lighter-main-color: #27aac7;
+              --oak-shadow-color: rgba(38, 150, 175, 0.5);
+              --oak-active-color: #0E6176;
+              --oak-text-color: #000A24;
+            }
+          `}
+        </style>
+      ) }
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <SelectField
           style={{ marginBottom: 50 }}
           placeholder="Language"
@@ -218,6 +233,17 @@ export const basicConfig = () => {
           parseTitle={o => o.title}
           parseValue={o => o.value}
           onChange={setTexts}
+        />
+        <SelectField
+          style={{ marginBottom: 50, marginLeft: 20 }}
+          placeholder="Theme"
+          options={[
+            { title: 'Default', value: 'default' },
+            { title: 'Blue', value: 'blue' },
+          ]}
+          parseTitle={o => o.title}
+          parseValue={o => o.value}
+          onChange={field => setTheme(field.value)}
         />
       </div>
       <div ref={containerRef} id="container" />
