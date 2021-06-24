@@ -43,6 +43,6 @@ export const Builder = forwardRef(({
   }, [innerRef.current]);
 
   return (
-    <div { ...containerProps } ref={innerRef} />
+    <div className="oak-react-wrapper" { ...containerProps } ref={innerRef} />
   );
 });
