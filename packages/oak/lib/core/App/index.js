@@ -88,6 +88,7 @@ export default forwardRef((options, ref) => {
         }
 
         if (addon.components) {
+          console.log(addon.components);
           addon.components.forEach(c => {
             if (c.group) {
               const group = getGroup_(c.group);
@@ -300,7 +301,6 @@ export default forwardRef((options, ref) => {
   };
 
   const setContent = content_ => {
-
     if (state.memory.length === 0 ||
       (state.memory.length === 1 && state.memory[0].length === 0)) {
       dispatch({
