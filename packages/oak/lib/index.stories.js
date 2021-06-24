@@ -250,3 +250,59 @@ export const basicConfig = () => {
     </div>
   );
 };
+
+export const noHistory = () => {
+  const containerRef = useRef();
+  const oakRef = useRef();
+
+  useEffect(() => {
+    oakRef.current = render(containerRef.current, {
+      debug: true,
+      addons: [basicComponents],
+      historyButtonsEnabled: false,
+    });
+  }, []);
+
+  return (
+    <div ref={containerRef} id="container" />
+  );
+};
+
+export const noOtherTab = () => {
+  const containerRef = useRef();
+  const oakRef = useRef();
+
+  useEffect(() => {
+    oakRef.current = render(containerRef.current, {
+      debug: true,
+      addons: [
+        basicComponents,
+        {
+          components: [{
+            group: 'other',
+            component: {
+              ...basicComponents.components[0].component,
+              id: 'other-title',
+              name: 'Other Title',
+            },
+          }, {
+            id: 'dynamic',
+            type: 'group',
+            name: 'Dynamic components',
+            components: [{
+              id: 'dynamic-title',
+              name: 'Dynamic title',
+              type: 'component',
+              construct: () => {},
+            }],
+          }],
+        },
+      ],
+      otherTabEnabled: false,
+    });
+  }, []);
+
+  return (
+    <div ref={containerRef} id="container" />
+  );
+};
