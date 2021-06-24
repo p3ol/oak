@@ -306,3 +306,62 @@ export const noOtherTab = () => {
     <div ref={containerRef} id="container" />
   );
 };
+
+export const multipleGroups = () => {
+  const containerRef = useRef();
+  const oakRef = useRef();
+
+  useEffect(() => {
+    oakRef.current = render(containerRef.current, {
+      debug: true,
+      addons: [
+        basicComponents,
+        {
+          components: [{
+            group: 'other',
+            component: {
+              ...basicComponents.components[0].component,
+              id: 'other-title',
+              name: 'Other Title',
+            },
+          }, {
+            id: 'dynamic',
+            type: 'group',
+            name: 'Dynamic components',
+            components: [],
+          }, {
+            id: 'various',
+            type: 'group',
+            name: 'Various components',
+            components: [],
+          }, {
+            id: 'beautiful',
+            type: 'group',
+            name: 'Beautiful components',
+            components: [],
+          }],
+        },
+      ],
+      otherTabEnabled: false,
+    });
+  }, []);
+
+  return (
+    <>
+      <style>
+        {`
+          .oak .oak-catalogue .oak-popover {
+            width: 800px;
+          }
+
+          .oak .oak-catalogue .oak-components .oak-component {
+            flex: 0 0 25%;
+            width: 25%;
+            max-width: 25%;
+          }
+        `}
+      </style>
+      <div ref={containerRef} id="container" />
+    </>
+  );
+};
