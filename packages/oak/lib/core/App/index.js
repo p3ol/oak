@@ -88,7 +88,6 @@ export default forwardRef((options, ref) => {
         }
 
         if (addon.components) {
-          console.log(addon.components);
           addon.components.forEach(c => {
             if (c.group) {
               const group = getGroup_(c.group);
