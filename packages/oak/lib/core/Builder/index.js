@@ -21,7 +21,7 @@ export default () => {
   const { debug, historyButtonsEnabled } = useOptions();
 
   const onAppend = component => {
-    addElement(component.construct());
+    addElement(component.construct?.() || {});
     catalogueRef.current?.close();
   };
 
