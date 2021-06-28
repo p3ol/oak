@@ -62,7 +62,7 @@ export const FIELD_DATE = {
 };
 
 export const FIELD_TOGGLE = {
-  type: 'date',
+  type: 'toggle',
   render: (props, { field } = {}) => (
     <ToggleField
       { ...props }
