@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak-react",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-react.cjs.js",
   "jsnext:main": "dist/esm/index.js",
