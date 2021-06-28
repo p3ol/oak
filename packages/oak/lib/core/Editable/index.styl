@@ -44,10 +44,12 @@
         margin-bottom: 0
 
       label
-        display: block
         margin-bottom: 5px
 
-      .junipero.field
+        &:not(.toggle)
+          display: block
+
+      .junipero.field:not(.toggle)
         width: 100%
         min-width: 0
         display: block
