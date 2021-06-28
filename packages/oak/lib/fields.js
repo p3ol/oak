@@ -2,6 +2,8 @@ import {
   TextField,
   SelectField,
   ColorField,
+  DateField,
+  ToggleField,
 } from '@poool/junipero';
 
 import CoreImageField from './core/CoreImageField';
@@ -46,5 +48,26 @@ export const FIELD_CORE_IMAGE = {
   type: 'core-image',
   render: props => (
     <CoreImageField { ...props } />
+  ),
+};
+
+export const FIELD_DATE = {
+  type: 'date',
+  render: (props, { field } = {}) => (
+    <DateField
+      { ...props }
+      placeholder={<Text>{ field.placeholder }</Text>}
+    />
+  ),
+};
+
+export const FIELD_TOGGLE = {
+  type: 'date',
+  render: (props, { field } = {}) => (
+    <ToggleField
+      { ...props }
+      checkedLabel={<Text>{ field.checkedLabel }</Text>}
+      uncheckedLabel={<Text>{ field.uncheckedLabel }</Text>}
+    />
   ),
 };

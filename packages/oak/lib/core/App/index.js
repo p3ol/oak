@@ -15,6 +15,8 @@ import {
   FIELD_SELECT,
   FIELD_COLOR,
   FIELD_CORE_IMAGE,
+  FIELD_DATE,
+  FIELD_TOGGLE,
 } from '../../fields';
 import Builder from '../Builder';
 
@@ -22,7 +24,10 @@ export default forwardRef((options, ref) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
-    fieldTypes: [FIELD_TEXT, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE],
+    fieldTypes: [
+      FIELD_TEXT, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE, FIELD_DATE,
+      FIELD_TOGGLE,
+    ],
     _settingsHolderRef: null,
     memory: [[]],
     positionInMemory: 1,
