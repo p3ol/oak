@@ -4,6 +4,7 @@ import {
   useImperativeHandle,
   useRef,
 } from 'react';
+import { classNames } from '@poool/junipero-utils';
 import { render, useOptions, useBuilder, useElement } from '@poool/oak';
 
 export { useOptions, useBuilder, useElement };
@@ -14,6 +15,7 @@ export const Builder = forwardRef(({
   containerProps,
   onChange,
   onImageUpload,
+  className,
   ...rest
 }, ref) => {
   const innerRef = useRef();
@@ -43,6 +45,10 @@ export const Builder = forwardRef(({
   }, [innerRef.current]);
 
   return (
-    <div className="oak-react-wrapper" { ...containerProps } ref={innerRef} />
+    <div
+      className={classNames('oak-react-wrapper', className)}
+      { ...containerProps }
+      ref={innerRef}
+    />
   );
 });
