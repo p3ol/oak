@@ -56,8 +56,8 @@ export default forwardRef((options, ref) => {
     getField,
     undo,
     redo,
-    isUndoPossible: state.isUndoPossible,
-    isRedoPossible: state.isRedoPossible,
+    isUndoPossible: () => state.isUndoPossible,
+    isRedoPossible: () => state.isRedoPossible,
     getText,
     setTexts,
   }));

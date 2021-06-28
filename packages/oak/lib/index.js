@@ -57,11 +57,11 @@ class oak {
   }
 
   isUndoPossible () {
-    return this.#ref.current?.isUndoPossible;
+    return this.#ref.current?.isUndoPossible();
   }
 
   isRedoPossible () {
-    return this.#ref.current?.isRedoPossible;
+    return this.#ref.current?.isRedoPossible();
   }
 
   setTexts (...args) {
@@ -80,7 +80,7 @@ export const render = (elmt, options = {}) => {
   return app;
 };
 
-export { Text };
+export { Text, oak as Lib, App as Builder };
 
 export { useOptions, useBuilder, useElement };
 
