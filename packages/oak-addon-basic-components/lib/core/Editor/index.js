@@ -1,10 +1,9 @@
-import { classNames } from '@poool/junipero';
-import { mockState } from '@poool/junipero-utils';
-import isHotkey from 'is-hotkey';
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
+import { mockState } from '@poool/junipero-utils';
 import { createEditor } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, Slate, withReact } from 'slate-react';
+import isHotkey from 'is-hotkey';
 
 import { toggleMark, withHtml } from './editor';
 import BlockButton from './BlockButton';

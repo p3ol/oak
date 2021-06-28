@@ -1,7 +1,6 @@
 import { useReducer, useRef } from 'react';
 import { mockState } from '@poool/junipero-utils';
 import { action } from '@storybook/addon-actions';
-import { useTimeout } from '@poool/junipero-hooks';
 
 import { Builder } from './';
 import basicComponents from '../../oak-addon-basic-components/lib';
