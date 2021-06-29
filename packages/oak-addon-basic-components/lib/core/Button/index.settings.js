@@ -11,6 +11,7 @@ export default {
     type: 'select',
     key: 'action',
     default: 'link',
+    displayable: true,
     label: t => t(prefix + '.action.title', 'Action'),
     options: [{
       title: t => t(prefix + '.action.openLink', 'Open link'),
@@ -23,12 +24,14 @@ export default {
     type: 'text',
     key: 'url',
     default: '',
+    displayable: true,
     label: t => t(prefix + '.url.title', 'Link url'),
     condition: element => element.action === 'link',
   }, {
     type: 'text',
     key: 'event',
     default: '',
+    displayable: true,
     label: t => t(prefix + '.event.title', 'Event name'),
     condition: element => element.action === 'event',
   }, {
