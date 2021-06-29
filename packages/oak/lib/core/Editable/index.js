@@ -117,18 +117,21 @@ export default forwardRef(({
         ? cloneDeep(DEFAULT_SETTINGS) : {},
       omit(component.settings || {}, ['defaults', 'styling', 'responsive']),
       { title: t => t('core.settings.title', 'Settings') },
+      omit(options.settings || {}, ['defaults', 'styling', 'responsive'])
     ),
     mergeDeep(
       {},
       component.settings?.defaults?.styling !== false
         ? cloneDeep(DEFAULT_STYLES_SETTINGS) : {},
-      component.settings?.styling || {}
+      component.settings?.styling || {},
+      options.settings?.styling || {},
     ),
     mergeDeep(
       {},
       component.settings?.defaults?.responsive !== false
         ? cloneDeep(DEFAULT_RESPONSIVE_SETTINGS) : {},
-      component.settings?.responsive || {}
+      component.settings?.responsive || {},
+      options.settings?.responsive || {},
     ),
   ];
 
@@ -153,38 +156,40 @@ export default forwardRef(({
         <Tabs>
           { tabs.map((tab, t) => (
             <Tab key={t} title={<Text>{ tab.title }</Text>}>
-              { tab?.fields?.map((field, i) =>
-                (!field.condition || field.condition(state.element)) && (
-                  <div className="oak-field" key={i}>
-                    { field.label && (
-                      <label><Text>{ field.label }</Text></label>
-                    ) }
-                    { field.fields ? (
-                      <div className="oak-fields">
-                        { field.fields.map((f, n) => (
-                          <div className="oak-field" key={n}>
-                            <Field
-                              field={f}
-                              editableRef={popper}
-                              element={state.element}
-                              onChange={onSettingChange_}
-                              onCustomChange={onSettingCustomChange_}
-                            />
-                          </div>
-                        )) }
-                      </div>
-                    ) : (
-                      <Field
-                        field={field}
-                        editableRef={popper}
-                        element={state.element}
-                        onChange={onSettingChange_}
-                        onCustomChange={onSettingCustomChange_}
-                      />
-                    ) }
-                  </div>
-                )
-              ) }
+              { tab?.fields
+                ?.sort((a, b) => (b.priority || 0) - (a.priority || 0))
+                ?.map((field, i) =>
+                  (!field.condition || field.condition(state.element)) && (
+                    <div className="oak-field" key={i}>
+                      { field.label && (
+                        <label><Text>{ field.label }</Text></label>
+                      ) }
+                      { field.fields ? (
+                        <div className="oak-fields">
+                          { field.fields.map((f, n) => (
+                            <div className="oak-field" key={n}>
+                              <Field
+                                field={f}
+                                editableRef={popper}
+                                element={state.element}
+                                onChange={onSettingChange_}
+                                onCustomChange={onSettingCustomChange_}
+                              />
+                            </div>
+                          )) }
+                        </div>
+                      ) : (
+                        <Field
+                          field={field}
+                          editableRef={popper}
+                          element={state.element}
+                          onChange={onSettingChange_}
+                          onCustomChange={onSettingCustomChange_}
+                        />
+                      ) }
+                    </div>
+                  )
+                ) }
               { tab?.renderForm?.({
                 element: cloneDeep(element),
                 component,
