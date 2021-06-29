@@ -52,8 +52,9 @@ const Element = ({
     className: classNames('oak-element-content-inner', element.className),
   }) || null;
 
-  const componentProps = component.settings?.fields
-    ?.filter(f => f.displayable === true) || [];
+  const componentProps = component.settings?.fields?.filter(f =>
+    f.displayable === true && (!f.condition || f.condition(element))
+  ) || [];
 
   return (
     <ElementContext.Provider value={getContext()}>
