@@ -47,6 +47,7 @@ const Element = ({
 
   const rendered = component?.render?.({
     element,
+    component,
     parent,
     builder,
     className: classNames('oak-element-content-inner', element.className),
