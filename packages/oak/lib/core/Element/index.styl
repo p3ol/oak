@@ -64,6 +64,7 @@
     &.oak-with-info
       display: flex
       flex-wrap: wrap
+      flex-direction: row
 
       .oak-element-icon
         width: 35px
@@ -85,13 +86,13 @@
         font-style: italic
         color: $color-slate-gray
         width: 100%
-        overflow: hidden
-        text-overflow: ellipsis
-        white-space: nowrap
+        white-space: wrap
+        text-overflow: wrap
 
     &.oak-unknown
       display: block
       overflow: hidden
+      white-space: wrap
       text-overflow: wrap
 
   .oak-options
