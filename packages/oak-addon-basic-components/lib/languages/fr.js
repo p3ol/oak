@@ -50,8 +50,8 @@ export default {
             },
             action: {
               title: 'Action',
-              link: 'Ouvrir un lien',
-              event: 'Déclencher un évènement',
+              openLink: 'Ouvrir un lien',
+              fireEvent: 'Déclencher un évènement',
             },
             url: {
               title: 'URL du lien',

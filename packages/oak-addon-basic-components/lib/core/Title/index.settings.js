@@ -6,6 +6,7 @@ export default {
     type: 'select',
     key: 'headingLevel',
     default: 'h1',
+    displayable: true,
     label: t => t(prefix + '.type.title', 'Type'),
     options: Array.from({ length: 6 }).map((_, i) => ({
       title: t => t(prefix + '.type.value', 'Title') +

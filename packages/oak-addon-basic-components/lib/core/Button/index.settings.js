@@ -13,10 +13,10 @@ export default {
     default: 'link',
     label: t => t(prefix + '.action.title', 'Action'),
     options: [{
-      title: t => t(prefix + '.action.link', 'Open link'),
+      title: t => t(prefix + '.action.openLink', 'Open link'),
       value: 'link',
     }, {
-      title: t => t(prefix + '.action.event', 'Fire event'),
+      title: t => t(prefix + '.action.fireEvent', 'Fire event'),
       value: 'event',
     }],
   }, {
