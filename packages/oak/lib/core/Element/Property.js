@@ -14,13 +14,17 @@ export default ({
 
   return (
     <span className="oak-property">
-      <Text>{ field.label }</Text>
-      <Text name="core.propertyPairSeparator" default=": " />
-      { option ? (
-        <Text>{ option.title }</Text>
-      ) : (
-        <Text>{ value }</Text>
-      ) }
+      <span className="oak-property-key">
+        <Text>{ field.label }</Text>
+        <Text name="core.propertyPairSeparator" default=": " />
+      </span>
+      <span className="oak-property-value">
+        { option ? (
+          <Text>{ option.title }</Text>
+        ) : (
+          <Text>{ value }</Text>
+        ) }
+      </span>
     </span>
   );
 };
