@@ -61,6 +61,34 @@
     white-space: pre-wrap
     width: 100%
 
+    &.oak-with-info
+      display: flex
+      flex-wrap: wrap
+
+      .oak-element-icon
+        width: 35px
+        flex: 0 0 35px
+        max-width: 35px
+
+        .oak-icons
+          color: var(--oak-main-color)
+
+      .oak-element-info
+        flex: 1 0 0
+
+      .oak-element-type
+        margin-bottom: 15px
+
+      .oak-element-props
+        margin-top: 15px
+        font-size: 14px
+        font-style: italic
+        color: $color-slate-gray
+        width: 100%
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
     &.oak-unknown
       display: block
       overflow: hidden

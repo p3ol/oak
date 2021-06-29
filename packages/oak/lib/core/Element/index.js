@@ -9,6 +9,9 @@ import Option from '../Option';
 import Draggable from '../Draggable';
 import Droppable from '../Droppable';
 import Editable from '../Editable';
+import Icon from '../Icon';
+import Text from '../Text';
+import Property from './Property';
 
 const Element = ({
   element,
@@ -42,6 +45,16 @@ const Element = ({
   const component = getComponent(element.type) ||
     COMPONENT_DEFAULT;
 
+  const rendered = component?.render?.({
+    element,
+    parent,
+    builder,
+    className: classNames('oak-element-content-inner', element.className),
+  }) || null;
+
+  const componentProps = component.settings?.fields
+    ?.filter(f => f.displayable === true) || [];
+
   return (
     <ElementContext.Provider value={getContext()}>
       <Droppable disabled={element.type === 'row'} onDrop={onDrop_}>
@@ -55,12 +68,37 @@ const Element = ({
               className
             )}
           >
-            { component?.render?.({
-              element,
-              parent,
-              builder,
-              className: classNames('oak-inner', element.className),
-            }) || null }
+            { ['row', 'col'].includes(element.type) ? (
+              <div className="oak-inner">
+                { rendered }
+              </div>
+            ) : (
+              <div className="oak-inner oak-with-info">
+                <div className="oak-element-icon">
+                  <Icon>{ component?.icon }</Icon>
+                </div>
+                <div className="oak-element-info">
+                  <div className="oak-element-type">
+                    <Text>{ component?.name }</Text>
+                  </div>
+                  <div className="oak-element-content">
+                    { rendered }
+                  </div>
+                  { componentProps.length > 0 && (
+                    <div className="oak-element-props">
+                      { componentProps.map((field, i) => (
+                        <Fragment key={i}>
+                          <Property field={field} />
+                          { i < componentProps.length - 1 && (
+                            <Text name="core.propertySeparator" default=", " />
+                          ) }
+                        </Fragment>
+                      )) }
+                    </div>
+                  ) }
+                </div>
+              </div>
+            ) }
 
             <div className="oak-options">
               <Option

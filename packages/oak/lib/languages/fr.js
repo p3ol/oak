@@ -1,5 +1,6 @@
 export default {
   core: {
+    propertyPairSeparator: ' : ',
     groups: {
       core: {
         title: 'Composants basiques',
