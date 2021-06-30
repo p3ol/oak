@@ -371,8 +371,11 @@ export default forwardRef((options, ref) => {
     }
   };
 
-  const getText = (key, def) =>
-    get(state.texts, key, def);
+  const getText = (key, def) => {
+    if (typeof key !== 'string') return def;
+
+    return get(state.texts, key, def);
+  };
 
   const setTexts = texts =>
     dispatch({ texts });
