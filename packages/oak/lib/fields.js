@@ -29,7 +29,7 @@ export const FIELD_SELECT = {
       placeholder={<Text>{ field.placeholder }</Text>}
       parseTitle={field.parseTitle ||
         (o => o?.title ? <Text>{ o.title }</Text> : o)}
-      parseValue={field.parseValue || (o => o?.value || o)}
+      parseValue={field.parseValue || (o => o?.value ?? o)}
     />
   ),
 };
