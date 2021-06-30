@@ -125,9 +125,12 @@ export default forwardRef(({
             )}
           >
             <a href="#" draggable={false} onClick={onAppend_.bind(null, c)}>
-              { typeof c.icon === 'function' ? c.icon() : (
-                <Icon className="oak-component-icon">{ c.icon }</Icon>
-              ) }
+              <div className="oak-component-icon">
+                { typeof c.icon === 'function'
+                  ? c.icon({ component: c, className: 'oak-icons' })
+                  : <Icon>{ c.icon }</Icon>
+                }
+              </div>
               <span><Text>{ c.name }</Text></span>
             </a>
           </div>

@@ -77,7 +77,10 @@ const Element = ({
             ) : (
               <div className="oak-inner oak-with-info">
                 <div className="oak-element-icon">
-                  <Icon>{ component?.icon }</Icon>
+                  { typeof component?.icon === 'function'
+                    ? component.icon({ component, className: 'oak-icons' })
+                    : <Icon>{ component?.icon }</Icon>
+                  }
                 </div>
                 <div className="oak-element-info">
                   <div className="oak-element-type">
