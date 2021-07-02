@@ -2388,7 +2388,15 @@
   dependencies:
     eslint-rule-composer "0.3.0"
 
-"@poool/junipero-hooks@2.0.0-rc.0", "@poool/junipero-hooks@^2.0.0-rc.0":
+"@poool/junipero-hooks@2.0.0-rc.5":
+  version "2.0.0-rc.5"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.5.tgz#cd141494e72bd5156bd2ba9fbc65a7bd6e730fe9"
+  integrity sha512-kXzQ8Mp2DuNvTej/Eate4onsr5hkvNqhuC4s6tV7VxGQJBZOjyXkI+sY5NxBKq6Ppr7NQwauXZYfHnk9eX90Mw==
+  dependencies:
+    "@babel/runtime-corejs3" "7.13.17"
+    core-js "3.10.2"
+
+"@poool/junipero-hooks@^2.0.0-rc.0":
   version "2.0.0-rc.0"
   resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.0.tgz#1b6c527149375f0e55b47abc60bc997946a19211"
   integrity sha512-Z8JUSRnBsbKCS76cN5ZJQgswf6dBSzxBxhB3fcGNtBxEEasVl7wdPne6Ia5A/h4FfEuhKu/GKgGrCMg60ePkJg==
