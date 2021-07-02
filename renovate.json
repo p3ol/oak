@@ -9,5 +9,8 @@
   }, {
     "packagePatterns": ["^@poool/eslint"],
     "groupName": "poool eslint monorepo"
+  }, {
+    "packagePatterns": ["^@poool/junipero"],
+    "groupName": "poool junipero monorepo"
   }]
 }
