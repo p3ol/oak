@@ -98,6 +98,10 @@ export const deserializeNode = el => {
     return '\n';
   }
 
+  if (el.childNodes.length === 0) {
+    return '';
+  }
+
   const children = Array.from(el.childNodes)
     .map(deserializeNode);
 
