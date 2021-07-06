@@ -46,8 +46,7 @@ export const COMPONENT_TEXT = {
   isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'text',
-    content: 'This is some fancy text content, you can even use ' +
-      '<strong>html</strong> here',
+    content: 'This is some fancy text content',
     settings: {},
   }),
 };
