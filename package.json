@@ -56,6 +56,6 @@
     "style-loader": "3.0.0",
     "stylus": "0.54.8",
     "stylus-loader": "6.1.0",
-    "webpack": "5.42.1"
+    "webpack": "5.43.0"
   }
 }
