@@ -99,7 +99,7 @@ export const deserializeNode = el => {
   }
 
   if (el.childNodes.length === 0) {
-    return '';
+    return [jsx('text', null, '')];
   }
 
   const children = Array.from(el.childNodes)
