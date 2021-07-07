@@ -52,7 +52,12 @@ export default ({
 
     if (events?.onImageUpload) {
       const result = await events.onImageUpload(event);
-      onUrlReady(result);
+
+      if (result) {
+        onUrlReady(result);
+      } else {
+        dispatch({ loading: false });
+      }
     } else {
       const file = e.target.files[0];
 
