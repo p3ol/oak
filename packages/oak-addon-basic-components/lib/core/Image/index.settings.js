@@ -27,12 +27,12 @@ export default {
     type: 'text',
     key: 'settings.width',
     label: t => t(prefix + '.image.size.width', 'Image width'),
-    default: '100',
+    placeholder: t => t(prefix + '.image.size.width', 'Image width'),
   }, {
     condition: e => e?.settings?.size === 'custom',
     type: 'text',
     key: 'settings.height',
     label: t => t(prefix + '.image.size.height', 'Image height'),
-    default: '100',
+    placeholder: t => t(prefix + '.image.size.height', 'Image height'),
   }],
 };
