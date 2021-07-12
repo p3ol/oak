@@ -11,7 +11,7 @@ export default {
     type: 'select',
     key: 'settings.size',
     label: t => t(prefix + '.image.size.title', 'Image size'),
-    default: 'full',
+    default: 'auto',
     options: [{
       title: t => t(prefix + '.image.size.auto', 'Adapted to content'),
       value: 'auto',
