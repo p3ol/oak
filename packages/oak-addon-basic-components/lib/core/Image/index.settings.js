@@ -19,7 +19,7 @@ export default {
       title: t => t(prefix + '.image.size.full', 'Real size'),
       value: 'full',
     }, {
-      title: t => t(prefix + '.image.size.custom', 'Personalized'),
+      title: t => t(prefix + '.image.size.custom', 'Custom'),
       value: 'custom',
     }],
   }, {
