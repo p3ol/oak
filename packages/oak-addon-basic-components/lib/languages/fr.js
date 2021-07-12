@@ -38,6 +38,14 @@ export default {
             title: 'Options d\'image',
             image: {
               title: 'Image',
+              size: {
+                title: 'Taille de l\'image',
+                auto: 'Adaptée au contenu',
+                full: 'Taille réelle',
+                custom: 'Personnalisée',
+                width: 'Largeur de l\'image',
+                height: 'Hauteur de l\'image',
+              },
             },
           },
         },

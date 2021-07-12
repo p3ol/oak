@@ -9,30 +9,30 @@ export default {
     label: t => t(prefix + '.image.title', 'Image'),
   }, {
     type: 'select',
-    key: 'size',
-    label: 'taille de l\'image',
+    key: 'settings.size',
+    label: t => t(prefix + '.image.size.title', 'Image size'),
     default: 'full',
     options: [{
-      title: 'adapté au contenu',
+      title: t => t(prefix + '.image.size.auto', 'Adapted to content'),
       value: 'auto',
     }, {
-      title: 'Taille réelle',
+      title: t => t(prefix + '.image.size.full', 'Real size'),
       value: 'full',
     }, {
-      title: 'Personnalisé',
+      title: t => t(prefix + '.image.size.custom', 'Personalized'),
       value: 'custom',
     }],
   }, {
-    condition: e => e?.size === 'custom',
+    condition: e => e?.settings?.size === 'custom',
     type: 'text',
-    key: 'width',
-    label: 'Largeur de l\'image',
+    key: 'settings.width',
+    label: t => t(prefix + '.image.size.width', 'Image width'),
     default: '100',
   }, {
-    condition: e => e?.size === 'custom',
+    condition: e => e?.settings?.size === 'custom',
     type: 'text',
-    key: 'height',
-    label: 'hauteur de l\'image',
+    key: 'settings.height',
+    label: t => t(prefix + '.image.size.height', 'Image height'),
     default: '100',
   }],
 };
