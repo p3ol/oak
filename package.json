@@ -35,7 +35,7 @@
     "@storybook/react": "6.3.4",
     "autoprefixer": "10.3.0",
     "babel-loader": "8.2.2",
-    "css-loader": "5.2.6",
+    "css-loader": "5.2.7",
     "eslint": "7.30.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-babel": "5.3.1",
