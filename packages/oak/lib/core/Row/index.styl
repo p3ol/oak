@@ -80,21 +80,20 @@
     margin: -($half-gutter)
     width: unquote("calc(100% + ") $gutters unquote(")")
 
-    for i in (flex-start center flex-end)
-      $direction = replace(flex-, '', i)
+    for alignment in (flex-start center flex-end space-between space-around)
 
       &.oak-align
-        &-{$direction}
-          align-items: i
+        &-{alignment}
+          align-items: alignment
 
       &.oak-justify
-        &-{$direction}
-          justify-content: i
+        &-{alignment}
+          justify-content: alignment
 
-    for i in (row row-reverse column column-reverse)
+    for direction  in (row row-reverse column column-reverse)
       &.oak-direction
-        &-{i}
-          flex-direction: i
+        &-{direction}
+          flex-direction: direction
 
     > .oak-col
       padding: $half-gutter
