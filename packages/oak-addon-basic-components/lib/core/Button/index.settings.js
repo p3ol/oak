@@ -14,10 +14,10 @@ export default {
     displayable: true,
     label: t => t(prefix + '.action.title', 'Action'),
     options: [{
-      title: t => t(prefix + '.action.openLink', 'Open link'),
+      title: t => t(prefix + '.action.openLink', 'Open a link'),
       value: 'link',
     }, {
-      title: t => t(prefix + '.action.fireEvent', 'Fire event'),
+      title: t => t(prefix + '.action.fireEvent', 'Trigger an event'),
       value: 'event',
     }],
   }, {
@@ -25,25 +25,25 @@ export default {
     key: 'url',
     default: '',
     displayable: true,
-    label: t => t(prefix + '.url.title', 'Link url'),
+    label: t => t(prefix + '.url.title', 'URL link'),
     condition: element => element.action === 'link',
   }, {
     type: 'text',
     key: 'event',
     default: '',
     displayable: true,
-    label: t => t(prefix + '.event.title', 'Event name'),
+    label: t => t(prefix + '.event.title', 'Javascript event name'),
     condition: element => element.action === 'event',
   }, {
     type: 'select',
     key: 'settings.buttonType',
     default: 'button',
-    label: t => t(prefix + '.type.title', 'Type'),
+    label: t => t(prefix + '.type.title', 'HTML element type'),
     options: [{
       title: t => t(prefix + '.type.button', 'Button'),
       value: 'button',
     }, {
-      title: t => t(prefix + '.type.link', 'Link'),
+      title: t => t(prefix + '.type.links', 'Link'),
       value: 'link',
     }],
   }],

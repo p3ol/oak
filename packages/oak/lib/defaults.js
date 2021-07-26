@@ -68,7 +68,7 @@ export const DEFAULT_STYLES_SETTINGS = {
       placeholder: t =>
         t('core.styling.background.size.title', 'Background size'),
       options: [{
-        title: t => t('core.styling.background.size.default', 'Default'),
+        title: t => t('core.styling.background.size.default', 'By default'),
         value: 'default',
       }, {
         title: t => t('core.styling.background.size.cover', 'Cover'),
@@ -151,7 +151,7 @@ export const DEFAULT_STYLES_SETTINGS = {
         value: 'repeat-x',
       }, {
         title: t => t('core.styling.background.repeat.both',
-          'Repeat both horizontally & vertically'),
+          'Repeat horizontally & vertically'),
         value: 'repeat',
       },
       ],
@@ -164,7 +164,7 @@ export const DEFAULT_STYLES_SETTINGS = {
     key: 'styles.backgroundColor',
   }, {
     label: t =>
-      t('core.styling.className.title', 'Custom element css class'),
+      t('core.styling.className.title', 'Additional CSS class'),
     type: 'text',
     placeholder: 'my-button',
     key: 'settings.className',

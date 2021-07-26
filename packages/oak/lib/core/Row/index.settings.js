@@ -1,5 +1,5 @@
 export default {
-  title: t => t('core.components.row.settings.title', 'Row options'),
+  title: t => t('core.components.row.settings.title', 'Row settings'),
   popperSettings: {
     placement: 'right-start',
     modifiers: [{
@@ -29,7 +29,7 @@ export default {
       value: 'column',
     }, {
       title: t => t('core.components.row.settings.flexDirection.columnReverse',
-        'Column reversed (bottom to top)'),
+        'Reversed column (bottom to top)'),
       value: 'column-reverse',
     }],
   }, {
@@ -52,11 +52,11 @@ export default {
       value: 'flex-end',
     }, {
       title: t => t('core.components.row.settings.justifyContent.spaceBetween',
-        'With space between'),
+        'Space between columns'),
       value: 'space-between',
     }, {
       title: t => t('core.components.row.settings.justifyContent.spaceAround',
-        'With space around'),
+        'Space around columns'),
       value: 'space-around',
     }],
   }, {
@@ -83,7 +83,7 @@ export default {
     key: 'settings.gutters',
     default: true,
     label: t => t('core.components.row.settings.gutters.title',
-      'Column gutters'),
+      'Column gap'),
     options: [{
       title: t => t('core.components.row.settings.gutters.enabled',
         'Enabled'),
