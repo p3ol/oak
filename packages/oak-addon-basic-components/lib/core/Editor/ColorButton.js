@@ -54,7 +54,7 @@ export default ({ className }) => {
   };
 
   return (
-    <Dropdown>
+    <Dropdown className="oak-color-field">
       <DropdownToggle tag="span">
         <Tooltip text="Color">
           <a
@@ -75,9 +75,23 @@ export default ({ className }) => {
       <DropdownMenu>
         <ColorField
           ref={colorFieldRef}
-          className="oak-color-field py-3"
+          className="py-3"
           value={color}
           onChange={onChange}
+          popperOptions={{
+            strategy: 'relative',
+            modifiers: [{
+              name: 'computeStyles',
+              options: {
+                gpuAcceleration: false,
+                adaptive: false,
+                roundOffsets: ({ y }) => ({
+                  x: 0,
+                  y: Math.round(y - 30),
+                }),
+              },
+            }],
+          }}
         />
       </DropdownMenu>
     </Dropdown>
