@@ -31,10 +31,10 @@ export default {
           title: 'Options de rangée',
           flexDirection: {
             title: 'Direction des colonnes',
-            row: 'En ligne',
-            rowReverse: 'En ligne (inversé)',
-            column: 'En colonne',
-            columnReverse: 'En colonne (inversé)',
+            row: 'En ligne (de gauche à droite)',
+            rowReverse: 'En ligne inversée (de droite à gauche)',
+            column: 'En colonne (de haut en bas)',
+            columnReverse: 'En colonne inversée (de bas en haut)',
           },
           justifyContent: {
             title: 'Alignement horizontal',
@@ -78,14 +78,14 @@ export default {
     styling: {
       title: 'Styles',
       paddings: {
-        title: 'Espacements',
+        title: 'Marges internes',
         top: 'Haut',
         right: 'Droite',
         bottom: 'Bas',
         left: 'Gauche',
       },
       margins: {
-        title: 'Marges',
+        title: 'Marges externes',
         top: 'Haut',
         right: 'Droite',
         bottom: 'Bas',
@@ -98,8 +98,8 @@ export default {
         size: {
           title: 'Taille',
           default: 'Par défaut',
-          cover: 'Couverture',
-          contain: 'Contenu',
+          cover: 'Remplir',
+          contain: 'S\'adapter',
         },
         position: {
           title: 'Position',
@@ -134,7 +134,7 @@ export default {
     },
     responsive: {
       title: 'Responsive',
-      fluid: 'Fluide (taille du parent)',
+      fluid: 'Flexible',
       show: 'Affiché',
       hide: 'Caché',
       xl: 'Écrans extra-larges',

@@ -6,7 +6,7 @@ const fixedSizes = Array.from({ length: 12 }).map((_, i) => ({
 
 const responsive = [
   {
-    title: t => t('core.responsive.fluid', 'Fluid'),
+    title: t => t('core.responsive.fluid', 'Flexible'),
     value: 'fluid',
   },
   ...fixedSizes,
@@ -34,7 +34,7 @@ export default {
     label: t => t('core.components.col.settings.size.title', 'Column size'),
     options: [
       {
-        title: t => t('core.responsive.fluid', 'Fluid'),
+        title: t => t('core.responsive.fluid', 'Flexible'),
         value: 'fluid',
       },
       ...fixedSizes,

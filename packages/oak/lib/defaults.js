@@ -19,7 +19,7 @@ export const DEFAULT_SETTINGS = {
 export const DEFAULT_STYLES_SETTINGS = {
   title: t => t('core.styling.title', 'Styling'),
   fields: [{
-    label: t => t('core.styling.paddings.title', 'Paddings'),
+    label: t => t('core.styling.paddings.title', 'Inside spacing'),
     fields: [{
       type: 'text',
       key: 'styles.paddingTop',
@@ -38,7 +38,7 @@ export const DEFAULT_STYLES_SETTINGS = {
       placeholder: t => t('core.styling.paddings.left', 'Left'),
     }],
   }, {
-    label: t => t('core.styling.margins.title', 'Margins'),
+    label: t => t('core.styling.margins.title', 'Outside spacings'),
     fields: [{
       type: 'text',
       key: 'styles.marginTop',
@@ -71,10 +71,10 @@ export const DEFAULT_STYLES_SETTINGS = {
         title: t => t('core.styling.background.size.default', 'By default'),
         value: 'default',
       }, {
-        title: t => t('core.styling.background.size.cover', 'Cover'),
+        title: t => t('core.styling.background.size.cover', 'Fill'),
         value: 'cover',
       }, {
-        title: t => t('core.styling.background.size.contain', 'Contain'),
+        title: t => t('core.styling.background.size.contain', 'Fit'),
         value: 'contain',
       }],
     }, {
