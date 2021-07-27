@@ -148,7 +148,7 @@ export const DEFAULT_STYLES_SETTINGS = {
       }, {
         title: t =>
           t('core.styling.background.repeat.repeatY', 'Repeat vertically'),
-        value: 'repeat-x',
+        value: 'repeat-y',
       }, {
         title: t => t('core.styling.background.repeat.both',
           'Repeat both horizontally & vertically'),
