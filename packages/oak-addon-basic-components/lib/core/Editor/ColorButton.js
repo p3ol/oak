@@ -75,20 +75,14 @@ export default ({ className }) => {
       <DropdownMenu>
         <ColorField
           ref={colorFieldRef}
-          className="py-3"
           value={color}
           onChange={onChange}
           popperOptions={{
             strategy: 'relative',
             modifiers: [{
-              name: 'computeStyles',
+              name: 'offset',
               options: {
-                gpuAcceleration: false,
-                adaptive: false,
-                roundOffsets: ({ y }) => ({
-                  x: 0,
-                  y: Math.round(y - 30),
-                }),
+                offset: [0, -20],
               },
             }],
           }}
