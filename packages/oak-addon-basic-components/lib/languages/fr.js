@@ -10,7 +10,7 @@ export default {
       components: {
         title: {
           name: 'Titre',
-          default: 'Nouveau titre',
+          default: 'Ceci est un titre',
           settings: {
             title: 'Options de titre',
             type: {
@@ -24,7 +24,7 @@ export default {
         },
         text: {
           name: 'Texte',
-          default: 'Nouveau texte',
+          default: 'Ceci est un texte',
           settings: {
             title: 'Options de texte',
             content: {

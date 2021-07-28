@@ -23,7 +23,7 @@ export const COMPONENT_TITLE = {
   construct: () => ({
     type: 'title',
     content: t =>
-      t('addons.basicComponents.components.title.default', 'New title'),
+      t('addons.basicComponents.components.title.default', 'This is a title'),
 
     headingLevel: 'h1',
     settings: {},
@@ -49,7 +49,8 @@ export const COMPONENT_TEXT = {
   construct: () => ({
     type: 'text',
     content: t =>
-      t('addons.basicComponents.components.text.default', 'New text'),
+      t('addons.basicComponents.components.text.default',
+        'This is some fancy text content'),
     settings: {},
   }),
 };
