@@ -70,7 +70,7 @@ export default {
             type: {
               title: 'Type d\'élément HTML',
               button: 'Bouton',
-              link: 'Lien',
+              links: 'Lien',
             },
           },
         },

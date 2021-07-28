@@ -16,7 +16,7 @@ const Image = ({
     ) : element.url) || (
       <Text
         name="addons.basicComponents.components.image.empty"
-        default="Empty image"
+        default="No image"
       />
     );
 

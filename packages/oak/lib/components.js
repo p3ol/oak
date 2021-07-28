@@ -28,7 +28,7 @@ export const COMPONENT_ROW = {
 
 export const COMPONENT_EMPTY_SPACE = {
   id: 'empty-space',
-  name: t => t('core.components.emptySpace.name', 'Empty space'),
+  name: t => t('core.components.emptySpace.name', 'Blank space'),
   type: 'component',
   render: EmptySpace,
   icon: 'view_comfy',

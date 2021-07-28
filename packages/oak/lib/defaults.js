@@ -19,7 +19,7 @@ export const DEFAULT_SETTINGS = {
 export const DEFAULT_STYLES_SETTINGS = {
   title: t => t('core.styling.title', 'Styling'),
   fields: [{
-    label: t => t('core.styling.paddings.title', 'Paddings'),
+    label: t => t('core.styling.paddings.title', 'Inside spacing'),
     fields: [{
       type: 'text',
       key: 'styles.paddingTop',
@@ -38,7 +38,7 @@ export const DEFAULT_STYLES_SETTINGS = {
       placeholder: t => t('core.styling.paddings.left', 'Left'),
     }],
   }, {
-    label: t => t('core.styling.margins.title', 'Margins'),
+    label: t => t('core.styling.margins.title', 'Outside spacings'),
     fields: [{
       type: 'text',
       key: 'styles.marginTop',
@@ -68,13 +68,13 @@ export const DEFAULT_STYLES_SETTINGS = {
       placeholder: t =>
         t('core.styling.background.size.title', 'Background size'),
       options: [{
-        title: t => t('core.styling.background.size.default', 'Default'),
+        title: t => t('core.styling.background.size.default', 'By default'),
         value: 'default',
       }, {
-        title: t => t('core.styling.background.size.cover', 'Cover'),
+        title: t => t('core.styling.background.size.cover', 'Fill'),
         value: 'cover',
       }, {
-        title: t => t('core.styling.background.size.contain', 'Contain'),
+        title: t => t('core.styling.background.size.contain', 'Fit'),
         value: 'contain',
       }],
     }, {
@@ -151,7 +151,7 @@ export const DEFAULT_STYLES_SETTINGS = {
         value: 'repeat-y',
       }, {
         title: t => t('core.styling.background.repeat.both',
-          'Repeat both horizontally & vertically'),
+          'Repeat horizontally & vertically'),
         value: 'repeat',
       },
       ],
@@ -164,7 +164,7 @@ export const DEFAULT_STYLES_SETTINGS = {
     key: 'styles.backgroundColor',
   }, {
     label: t =>
-      t('core.styling.className.title', 'Custom element css class'),
+      t('core.styling.className.title', 'Additional CSS class'),
     type: 'text',
     placeholder: 'my-button',
     key: 'settings.className',

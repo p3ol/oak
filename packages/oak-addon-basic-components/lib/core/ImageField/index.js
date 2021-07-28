@@ -89,7 +89,7 @@ export default ({
   const getName = () =>
     state.name ||
     (/data:/.test(state.value) ? 'Local image' : state.value) ||
-    'Empty image';
+    'No image';
 
   return (
     <div
