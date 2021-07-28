@@ -10,6 +10,7 @@ export default {
       components: {
         title: {
           name: 'Titre',
+          default: 'Nouveau titre',
           settings: {
             title: 'Options de titre',
             type: {
@@ -23,6 +24,7 @@ export default {
         },
         text: {
           name: 'Texte',
+          default: 'Nouveau texte',
           settings: {
             title: 'Options de texte',
             content: {
@@ -51,6 +53,7 @@ export default {
         },
         button: {
           name: 'Bouton',
+          default: 'Cliquez !',
           settings: {
             title: 'Options de bouton',
             content: {

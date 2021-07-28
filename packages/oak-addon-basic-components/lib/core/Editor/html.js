@@ -125,7 +125,7 @@ export const deserializeNode = el => {
 };
 
 export const deserialize = content => {
-  if (!content) {
+  if (!content || typeof content === 'function') {
     return [{ children: [{ text: '' }] }];
   }
 
@@ -136,5 +136,5 @@ export const deserialize = content => {
 };
 
 export const isSerialized = content => {
-  return typeof content === 'string';
+  return typeof content === 'string' || typeof content === 'function';
 };

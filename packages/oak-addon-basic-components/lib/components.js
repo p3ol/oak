@@ -22,7 +22,9 @@ export const COMPONENT_TITLE = {
   isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'title',
-    content: 'This is a title',
+    content: t =>
+      t('addons.basicComponents.components.title.default', 'New title'),
+
     headingLevel: 'h1',
     settings: {},
   }),
@@ -46,7 +48,8 @@ export const COMPONENT_TEXT = {
   isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'text',
-    content: 'This is some fancy text content',
+    content: t =>
+      t('addons.basicComponents.components.text.default', 'New text'),
     settings: {},
   }),
 };
@@ -86,7 +89,8 @@ export const COMPONENT_BUTTON = {
   isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'button',
-    content: 'Click me!',
+    content: t =>
+      t('addons.basicComponents.components.button.default', 'Click me !'),
     action: 'link',
     url: '',
     settings: {

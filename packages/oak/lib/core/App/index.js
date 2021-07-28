@@ -284,6 +284,13 @@ export default forwardRef((options, ref) => {
     const component = getComponent(elmt.type);
 
     if (component?.deserialize &&
+      elmt?.content &&
+      typeof elmt.content === 'function'
+    ) {
+      elmt.content = elmt.content(getText);
+    }
+
+    if (component?.deserialize &&
       component.isSerialized?.(elmt)) {
       Object.assign(elmt, component.deserialize(elmt));
     }
