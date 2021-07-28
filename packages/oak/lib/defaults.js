@@ -19,7 +19,7 @@ export const DEFAULT_SETTINGS = {
 export const DEFAULT_STYLES_SETTINGS = {
   title: t => t('core.styling.title', 'Styling'),
   fields: [{
-    label: t => t('core.styling.paddings.title', 'Inside spacing'),
+    label: t => t('core.styling.paddings.title', 'Inside spacings'),
     fields: [{
       type: 'text',
       key: 'styles.paddingTop',
