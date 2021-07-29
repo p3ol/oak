@@ -6,8 +6,8 @@ import {
   ToggleField,
 } from '@poool/junipero';
 
-import CoreImageField from '../core/CoreImageField';
-import Text from '../core/Text';
+import CoreImageField from './core/CoreImageField';
+import Text from './core/Text';
 
 export const FIELD_TEXT = {
   type: 'text',
@@ -23,19 +23,14 @@ export const FIELD_TEXT = {
 export const FIELD_SELECT = {
   type: 'select',
   render: (props, { field } = {}) => (
-    <>
-      { props.name && (
-        <p className="oak-select-name"><Text>{props.name}</Text></p>
-      )}
-      <SelectField
-        { ...props }
-        options={field.options}
-        placeholder={<Text>{ field.placeholder }</Text>}
-        parseTitle={field.parseTitle ||
-        (o => o?.title ? <Text>{ o.title }</Text> : o)}
-        parseValue={field.parseValue || (o => o?.value ?? o)}
-      />
-    </>
+    <SelectField
+      { ...props }
+      options={field.options}
+      placeholder={<Text>{ field.placeholder }</Text>}
+      parseTitle={field.parseTitle ||
+      (o => o?.title ? <Text>{ o.title }</Text> : o)}
+      parseValue={field.parseValue || (o => o?.value ?? o)}
+    />
   ),
 };
 

@@ -62,10 +62,10 @@ export const DEFAULT_STYLES_SETTINGS = {
       key: 'styles.backgroundImage',
       type: 'core-image',
     }, {
+      label: t => t('core.styling.background.size.title', 'Size'),
       key: 'styles.backgroundSize',
       type: 'select',
       default: 'default',
-      name: t => t('core.styling.background.size.title', 'Size'),
       placeholder: t =>
         t('core.styling.background.size.title', 'Background size'),
       options: [{
@@ -79,10 +79,10 @@ export const DEFAULT_STYLES_SETTINGS = {
         value: 'contain',
       }],
     }, {
+      label: t => t('core.styling.background.position.title', 'Position'),
       key: 'styles.backgroundPosition',
       type: 'select',
       default: 'center',
-      name: t => t('core.styling.background.position.title', 'Position'),
       placeholder: t =>
         t('core.styling.background.position.title', 'Background position'),
       options: [{
@@ -134,10 +134,10 @@ export const DEFAULT_STYLES_SETTINGS = {
         value: 'right bottom',
       }],
     }, {
+      label: t => t('core.styling.background.repeat.title', 'Repeat'),
       key: 'styles.backgroundRepeat',
       type: 'select',
       default: 'no-repeat',
-      name: t => t('core.styling.background.repeat.title', 'Repeat'),
       placeholder: t =>
         t('core.styling.background.repeat.title', 'Background repeat'),
       options: [{

@@ -17,7 +17,7 @@ import {
   FIELD_CORE_IMAGE,
   FIELD_DATE,
   FIELD_TOGGLE,
-} from '../../Fields';
+} from '../../fields';
 import Builder from '../Builder';
 
 export default forwardRef((options, ref) => {
