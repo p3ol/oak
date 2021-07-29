@@ -62,6 +62,7 @@ export const DEFAULT_STYLES_SETTINGS = {
       key: 'styles.backgroundImage',
       type: 'core-image',
     }, {
+      label: t => t('core.styling.background.size.title', 'Size'),
       key: 'styles.backgroundSize',
       type: 'select',
       default: 'default',
@@ -78,6 +79,7 @@ export const DEFAULT_STYLES_SETTINGS = {
         value: 'contain',
       }],
     }, {
+      label: t => t('core.styling.background.position.title', 'Position'),
       key: 'styles.backgroundPosition',
       type: 'select',
       default: 'center',
@@ -132,6 +134,7 @@ export const DEFAULT_STYLES_SETTINGS = {
         value: 'right bottom',
       }],
     }, {
+      label: t => t('core.styling.background.repeat.title', 'Repeat'),
       key: 'styles.backgroundRepeat',
       type: 'select',
       default: 'no-repeat',

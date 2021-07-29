@@ -168,6 +168,11 @@ export default forwardRef(({
                         <div className="oak-fields">
                           { field.fields.map((f, n) => (
                             <div className="oak-field" key={n}>
+                              { f.label && (
+                                <label className="oak-field-label">
+                                  <Text>{ f.label }</Text>
+                                </label>
+                              ) }
                               <Field
                                 field={f}
                                 editableRef={popper}
