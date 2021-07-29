@@ -167,22 +167,20 @@ export default forwardRef(({
                       { field.fields ? (
                         <div className="oak-fields">
                           { field.fields.map((f, n) => (
-                            <>
-                              <div className="oak-field" key={n}>
-                                { f.label && (
-                                  <label className="oak-field-label">
-                                    <Text>{ f.label }</Text>
-                                  </label>
-                                ) }
-                                <Field
-                                  field={f}
-                                  editableRef={popper}
-                                  element={state.element}
-                                  onChange={onSettingChange_}
-                                  onCustomChange={onSettingCustomChange_}
-                                />
-                              </div>
-                            </>
+                            <div className="oak-field" key={n}>
+                              { f.label && (
+                                <label className="oak-field-label">
+                                  <Text>{ f.label }</Text>
+                                </label>
+                              ) }
+                              <Field
+                                field={f}
+                                editableRef={popper}
+                                element={state.element}
+                                onChange={onSettingChange_}
+                                onCustomChange={onSettingCustomChange_}
+                              />
+                            </div>
                           )) }
                         </div>
                       ) : (
