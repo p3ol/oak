@@ -22,6 +22,7 @@ const HOTKEYS = {
 export default ({
   value,
   onChange,
+  element,
 }) => {
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -52,6 +53,29 @@ export default ({
     });
   };
 
+  const computeSize = () => {
+    if (!element || element.type !== 'title') {
+      return 16;
+    } else {
+      switch (element.headingLevel) {
+        case 'h1':
+          return 32;
+        case 'h2':
+          return 24;
+        case 'h3':
+          return 19;
+        case 'h4':
+          return 16;
+        case 'h5':
+          return 13;
+        case 'h6':
+          return 10;
+        default:
+          return 16;
+      }
+    }
+  };
+
   const getTextSize = () => {
     const path = editor.selection?.anchor?.path;
     const selectedRow = editor.children[path?.[0]];
@@ -60,7 +84,7 @@ export default ({
       : selectedRow?.children?.[path?.[1]];
     const selectedSize = parseInt(selectedContent?.size?.split('p')[0]);
 
-    return selectedSize || 16;
+    return selectedSize || computeSize();
   };
 
   return (
@@ -127,6 +151,7 @@ export default ({
           spellCheck={false}
           onKeyDown={onKeyDown}
           className="oak-text-editable"
+          style={{ fontSize: computeSize() }}
         />
       </div>
     </Slate>
