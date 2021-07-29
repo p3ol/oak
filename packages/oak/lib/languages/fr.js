@@ -133,6 +133,7 @@ export default {
       },
     },
     responsive: {
+      default: 'Suivre paramètres généraux',
       title: 'Responsive',
       fluid: 'Flexible',
       show: 'Affiché',

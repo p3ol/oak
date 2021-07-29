@@ -6,14 +6,18 @@ const fixedSizes = Array.from({ length: 12 }).map((_, i) => ({
 
 const responsive = [
   {
-    title: t => t('core.responsive.fluid', 'Flexible'),
-    value: 'fluid',
+    title: t => t('core.responsive.default', 'Follow general settings'),
+    value: 'default',
   },
-  ...fixedSizes,
   {
     title: t => t('core.responsive.hide', 'Hidden'),
     value: 'hide',
   },
+  {
+    title: t => t('core.responsive.fluid', 'Flexible'),
+    value: 'fluid',
+  },
+  ...fixedSizes,
 ];
 
 export default {
@@ -48,33 +52,32 @@ export default {
     fields: [{
       key: 'responsive.xl',
       type: 'select',
+      default: 'default',
       label: t => t('core.responsive.xl', 'Extra-large screens'),
-      placeholder: t => t('core.responsive.xl', 'Extra-large screens'),
       options: responsive,
     }, {
       key: 'responsive.lg',
       type: 'select',
+      default: 'default',
       label: t => t('core.responsive.lg', 'Large screens (desktop)'),
-      placeholder: t => t('core.responsive.lg', 'Large screens (desktop)'),
       options: responsive,
     }, {
       key: 'responsive.md',
       type: 'select',
+      default: 'default',
       label: t => t('core.responsive.md', 'Medium screens (tablet)'),
-      placeholder: t => t('core.responsive.md', 'Medium screens (tablet)'),
       options: responsive,
     }, {
       key: 'responsive.sm',
       type: 'select',
+      default: 'default',
       label: t => t('core.responsive.sm', 'Small screens (phones)'),
-      placeholder: t => t('core.responsive.sm', 'Small screens (phones)'),
       options: responsive,
     }, {
       key: 'responsive.xs',
       type: 'select',
+      default: 'default',
       label: t => t('core.responsive.xs', 'Extra-small screens (old phones)'),
-      placeholder:
-        t => t('core.responsive.xs', 'Extra-small screens (old phones)'),
       options: responsive,
     }],
   },
