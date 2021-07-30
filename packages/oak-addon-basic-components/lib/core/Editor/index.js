@@ -101,7 +101,7 @@ export default ({
             icon="format_bold"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.bold"
+                name="addons.basicComponents.fields.editor.bold_"
                 default="Bold"
               />
             )}

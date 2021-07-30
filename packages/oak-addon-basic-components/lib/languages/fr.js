@@ -9,7 +9,7 @@ export default {
         editor: {
           increase: 'Augmenter la taille',
           decrease: 'Baisser la taille',
-          bold: 'Gras',
+          bold_: 'Gras',
           italic: 'Italique',
           underline: 'Souligner',
           color: 'Couleur',
