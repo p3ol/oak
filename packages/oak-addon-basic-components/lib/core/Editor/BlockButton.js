@@ -1,6 +1,5 @@
 import { useSlate } from 'slate-react';
-import { classNames } from '@poool/junipero-utils';
-import { Tooltip } from '@poool/junipero';
+import { Tooltip, classNames } from '@poool/junipero';
 
 import { isBlockActive, toggleBlock } from './editor';
 

@@ -100,27 +100,30 @@ export default ({
             format="bold"
             icon="format_bold"
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.bold',
-                'Bold')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.bold"
+                default="Bold"
+              />
             )}
           />
           <MarkButton
             format="italic"
             icon="format_italic"
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.italic',
-                'Italic')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.italic"
+                default="Italic"
+              />
             )}
           />
           <MarkButton
             format="underline"
             icon="format_underlined"
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.underline',
-                'Underline')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.underline"
+                default="Underline"
+              />
             )}
           />
           <ColorButton />
@@ -129,9 +132,10 @@ export default ({
             increase={false}
             currentSize={getTextSize()}
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.decrease',
-                'Decrease size')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.decrease"
+                default="Decrease size"
+              />
             )}
           />
           <span className="oak-text-size">{ getTextSize() }</span>
@@ -139,45 +143,50 @@ export default ({
             icon="add"
             currentSize={getTextSize()}
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.increase',
-                'Increase size')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.increase"
+                default="Increase size"
+              />
             )}
           />
           <BlockButton
             format="text-left"
             icon="format_align_left"
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.left',
-                'Align left')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.left"
+                default="Align left"
+              />
             )}
           />
           <BlockButton
             format="text-center"
             icon="format_align_center"
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.center',
-                'Align center')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.center"
+                default="Align center"
+              />
             )}
           />
           <BlockButton
             format="text-right"
             icon="format_align_right"
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.right',
-                'Align right')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.right"
+                default="Align right"
+              />
             )}
           />
           <BlockButton
             format="text-justify"
             icon="format_align_justify"
             tooltipText={(
-              <Text>{t => t('addons.basicComponents.fields.editor.justify',
-                'Justify')}
-              </Text>
+              <Text
+                name="addons.basicComponents.fields.editor.justify"
+                default="Justify"
+              />
             )}
           />
         </div>

@@ -58,9 +58,10 @@ export default ({ className }) => {
     <Dropdown className="oak-color-field">
       <DropdownToggle tag="span">
         <Tooltip text={(
-          <Text>{t => t('addons.basicComponents.fields.editor.color',
-            'Color')}
-          </Text>
+          <Text
+            name="addons.basicComponents.fields.editor.color"
+            default="Color"
+          />
         )}
         >
           <a
