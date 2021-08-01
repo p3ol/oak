@@ -6,6 +6,7 @@ module.exports = {
     }],
     ['@babel/react', {
       runtime: 'automatic',
+      // importSource: 'preact',
     }],
   ],
   plugins: [

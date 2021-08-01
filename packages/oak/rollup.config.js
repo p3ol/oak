@@ -3,6 +3,7 @@ import path from 'path';
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+// import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 import autoprefixer from 'autoprefixer';
@@ -13,14 +14,25 @@ const defaultOutput = './dist';
 const name = 'oak';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = [];
-const defaultGlobals = {};
+const defaultExternals = ['react', 'react-dom', 'react-popper'];
+const defaultGlobals = {
+  react: 'React',
+  'react-dom': 'ReactDOM',
+  'react-popper': 'ReactPopper',
+};
 
 const defaultPlugins = [
   babel({
     exclude: /node_modules/,
     babelHelpers: 'runtime',
   }),
+  // Will use preact when compat will be stable again
+  // alias({
+  //   entries: [
+  //     { find: 'react', replacement: 'preact/compat' },
+  //     { find: 'react-dom', replacement: 'preact/compat' },
+  //   ],
+  // }),
   resolve({
     rootDir: path.resolve('../../'),
   }),
@@ -54,23 +66,21 @@ const getConfig = (format, {
     manualChunks: id => {
       if (id.includes('node_modules')) {
         return 'vendor';
+      } else if (/packages\/oak\/lib/.test(id)) {
+        const info = path.parse(id);
+
+        if (/lib$/.test(info.dir)) {
+          return info.name;
+        } else {
+          return `${info.dir.split('lib/').pop()}/${info.name}`;
+        }
       }
     },
   } : {}),
 });
 
 export default [
-  ...formats.map(f => getConfig(f, {
-    output: `${defaultOutput}/standalone`,
-  })),
-  ...formats.map(f => getConfig(f, {
-    external: ['react', 'react-dom', 'react-popper'],
-    globals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-      'react-popper': 'ReactPopper',
-    },
-  })),
+  ...formats.map(f => getConfig(f)),
   {
     input: './lib/index.styl',
     plugins: [

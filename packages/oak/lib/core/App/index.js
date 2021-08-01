@@ -5,7 +5,7 @@ import {
   useCallback,
   useImperativeHandle,
 } from 'react';
-import { mockState, cloneDeep } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
@@ -15,6 +15,8 @@ import {
   FIELD_SELECT,
   FIELD_COLOR,
   FIELD_CORE_IMAGE,
+  FIELD_DATE,
+  FIELD_TOGGLE,
 } from '../../fields';
 import Builder from '../Builder';
 
@@ -22,12 +24,16 @@ export default forwardRef((options, ref) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
-    fieldTypes: [FIELD_TEXT, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE],
+    fieldTypes: [
+      FIELD_TEXT, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE, FIELD_DATE,
+      FIELD_TOGGLE,
+    ],
     _settingsHolderRef: null,
     memory: [[]],
     positionInMemory: 1,
     isUndoPossible: false,
     isRedoPossible: false,
+    texts: options?.texts || {},
   });
 
   useEffect(() => {
@@ -50,8 +56,10 @@ export default forwardRef((options, ref) => {
     getField,
     undo,
     redo,
-    isUndoPossible: state.isUndoPossible,
-    isRedoPossible: state.isRedoPossible,
+    isUndoPossible: () => state.isUndoPossible,
+    isRedoPossible: () => state.isRedoPossible,
+    getText,
+    setTexts,
   }));
 
   const getContext = useCallback(() => ({
@@ -73,6 +81,7 @@ export default forwardRef((options, ref) => {
     _setSettingsHolderRef,
     undo,
     redo,
+    getText,
   }), Object.values(state));
 
   const init = () => {
@@ -275,6 +284,13 @@ export default forwardRef((options, ref) => {
     const component = getComponent(elmt.type);
 
     if (component?.deserialize &&
+      elmt?.content &&
+      typeof elmt.content === 'function'
+    ) {
+      elmt.content = elmt.content(getText);
+    }
+
+    if (component?.deserialize &&
       component.isSerialized?.(elmt)) {
       Object.assign(elmt, component.deserialize(elmt));
     }
@@ -296,7 +312,6 @@ export default forwardRef((options, ref) => {
   };
 
   const setContent = content_ => {
-
     if (state.memory.length === 0 ||
       (state.memory.length === 1 && state.memory[0].length === 0)) {
       dispatch({
@@ -362,6 +377,15 @@ export default forwardRef((options, ref) => {
       setContentWithDispatch(state.memory[positionInMemory - 1]);
     }
   };
+
+  const getText = (key, def) => {
+    if (typeof key !== 'string') return def;
+
+    return get(state.texts, key, def);
+  };
+
+  const setTexts = texts =>
+    dispatch({ texts });
 
   return (
     <div className="oak">

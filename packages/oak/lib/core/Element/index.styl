@@ -58,12 +58,47 @@
     background: $color-link-water
     min-height: 80px
     padding: 10px
+    white-space: pre-wrap
     width: 100%
 
+    &.oak-with-info
+      display: flex
+      flex-wrap: wrap
+      flex-direction: row
+
+      .oak-element-icon
+        width: 35px
+        flex: 0 0 35px
+        max-width: 35px
+
+        .oak-icons
+          color: var(--oak-main-color)
+          font-size: 25px
+          position: relative
+          top: -1px
+
+      .oak-element-info
+        flex: 1 0 0
+
+      .oak-element-type
+        margin-bottom: 15px
+
+      .oak-element-props
+        margin-top: 15px
+        font-size: 12px
+        font-style: italic
+        color: $color-slate-gray
+        width: 100%
+        white-space: wrap
+        text-overflow: wrap
+
+        .oak-property-key
+          font-weight: bold
+
     &.oak-unknown
-      white-space: pre-wrap
       display: block
       overflow: hidden
+      white-space: wrap
       text-overflow: wrap
 
   .oak-options

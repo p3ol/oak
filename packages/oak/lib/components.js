@@ -1,10 +1,11 @@
 import { v4 as uuid } from 'uuid';
 
 import Row from './core/Row';
+import EmptySpace from './core/EmptySpace';
 
 export const COMPONENT_ROW = {
   id: 'row',
-  name: 'Row',
+  name: t => t('core.components.row.name', 'Row'),
   type: 'component',
   render: Row,
   icon: 'view_column',
@@ -25,18 +26,38 @@ export const COMPONENT_ROW = {
   }),
 };
 
+export const COMPONENT_EMPTY_SPACE = {
+  id: 'empty-space',
+  name: t => t('core.components.emptySpace.name', 'Blank space'),
+  type: 'component',
+  render: EmptySpace,
+  icon: 'view_comfy',
+  options: [],
+  settings: EmptySpace.settings,
+  editable: true,
+  construct: () => ({
+    type: 'empty-space',
+    styles: {},
+    settings: {
+      height: '32px',
+      className: '',
+    },
+  }),
+};
+
 export const GROUP_CORE = {
   id: 'core',
-  name: 'Core components',
+  name: t => t('core.groups.core.title', 'Core components'),
   type: 'group',
   components: [
     COMPONENT_ROW,
+    COMPONENT_EMPTY_SPACE,
   ],
 };
 
 export const GROUP_OTHER = {
   id: 'other',
-  name: 'Other',
+  name: t => t('core.groups.other.title', 'Other'),
   type: 'group',
   components: [],
 };

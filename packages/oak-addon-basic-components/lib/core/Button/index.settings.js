@@ -1,39 +1,50 @@
+const prefix = 'addons.basicComponents.components.button.settings';
+
 export default {
-  title: 'Title options',
+  title: t => t(prefix + '.title', 'Button options'),
   fields: [{
     type: 'richtext',
     key: 'content',
     default: '',
-    label: 'Content',
+    label: t => t(prefix + '.content.title', 'Content'),
   }, {
     type: 'select',
     key: 'action',
     default: 'link',
-    label: 'Action',
-    options: [
-      { title: 'Open link', value: 'link' },
-      { title: 'Fire event', value: 'event' },
-    ],
+    displayable: true,
+    label: t => t(prefix + '.action.title', 'Action'),
+    options: [{
+      title: t => t(prefix + '.action.openLink', 'Open a link'),
+      value: 'link',
+    }, {
+      title: t => t(prefix + '.action.fireEvent', 'Trigger an event'),
+      value: 'event',
+    }],
   }, {
     type: 'text',
     key: 'url',
     default: '',
-    label: 'Link url',
+    displayable: true,
+    label: t => t(prefix + '.url.title', 'URL link'),
     condition: element => element.action === 'link',
   }, {
     type: 'text',
     key: 'event',
     default: '',
-    label: 'Event name',
+    displayable: true,
+    label: t => t(prefix + '.event.title', 'Javascript event name'),
     condition: element => element.action === 'event',
   }, {
     type: 'select',
     key: 'settings.buttonType',
     default: 'button',
-    label: 'Type',
-    options: [
-      { title: 'Button', value: 'button' },
-      { title: 'Link', value: 'link' },
-    ],
+    label: t => t(prefix + '.type.title', 'HTML element type'),
+    options: [{
+      title: t => t(prefix + '.type.button', 'Button'),
+      value: 'button',
+    }, {
+      title: t => t(prefix + '.type.links', 'Link'),
+      value: 'link',
+    }],
   }],
 };

@@ -39,3 +39,5 @@ export default {
     component: COMPONENT_BUTTON,
   }],
 };
+
+export { default as localeFr } from './languages/fr';

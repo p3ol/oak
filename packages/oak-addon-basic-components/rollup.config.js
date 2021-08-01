@@ -3,6 +3,7 @@ import path from 'path';
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+// import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import { terser } from 'rollup-plugin-terser';
@@ -12,14 +13,26 @@ const defaultOutput = './dist';
 const name = 'oak-addon-basic-components';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['@poool/oak'];
-const defaultGlobals = { '@poool/oak': 'oak' };
+const defaultExternals = ['@poool/oak', 'react', 'react-dom', 'react-popper'];
+const defaultGlobals = {
+  '@poool/oak': 'oak',
+  react: 'React',
+  'react-dom': 'ReactDOM',
+  'react-popper': 'ReactPopper',
+};
 
 const defaultPlugins = [
   babel({
     exclude: /node_modules/,
     babelHelpers: 'runtime',
   }),
+  // Will use preact when compat will be stable again
+  // alias({
+  //   entries: [
+  //     { find: 'react', replacement: 'preact/compat' },
+  //     { find: 'react-dom', replacement: 'preact/compat' },
+  //   ],
+  // }),
   resolve({
     rootDir: path.resolve('../../'),
   }),
@@ -29,8 +42,8 @@ const defaultPlugins = [
 
 const getConfig = (format, {
   output = defaultOutput,
-  globals = defaultGlobals,
   external = defaultExternals,
+  globals = defaultGlobals,
 } = {}) => ({
   input,
   plugins: [
@@ -48,7 +61,7 @@ const getConfig = (format, {
     name,
     sourcemap: true,
     globals,
-    exports: 'auto',
+    exports: 'named',
   },
   ...(format === 'esm' ? {
     manualChunks: id => {
@@ -60,13 +73,7 @@ const getConfig = (format, {
 });
 
 export default [
-  ...formats.map(f => getConfig(f, {
-    output: `${defaultOutput}/standalone`,
-  })),
-  ...formats.map(f => getConfig(f, {
-    external: ['@poool/oak', 'react', 'react-dom'],
-    globals: { '@poool/oak': 'oak', react: 'React', 'react-dom': 'ReactDOM' },
-  })),
+  ...formats.map(f => getConfig(f)),
   {
     input: './lib/index.styl',
     plugins: [

@@ -1,27 +1,31 @@
 @require "../colors"
 
-.junipero.tabs
-  .titles
-    background: $color-link-water
-    border: none
+.oak
+  .junipero.tabs
+    --main-color: var(--oak-main-color)
+    --text-color: var(--oak-text-color)
 
-    .title
-      &, &:first-child, &:last-child
-        padding: 0
-        margin: 0
+    .titles
+      background: $color-link-water
+      border: none
 
-        &:after
-          display: none
+      .title
+        &, &:first-child, &:last-child
+          padding: 0
+          margin: 0
 
-      a
-        padding: 10px 20px
-        color: $color-woodsmoke
-
-        &:after
-          display: none
-
-      &.active
-        background: $color-white
+          &:after
+            display: none
 
         a
-          color: $color-woodsmoke
+          padding: 10px 20px
+          color: var(--text-color)
+
+          &:after
+            display: none
+
+        &.active
+          background: $color-white
+
+          a
+            color: var(--text-color)

@@ -3,7 +3,7 @@
 a.oak-option
   color: $color-white
   flex: 0 1 auto
-  background: $color-deep-sea-green
+  background: var(--oak-main-color)
   display: block
   height: 25px
   line-height: 25px
@@ -12,12 +12,13 @@ a.oak-option
   text-decoration: none
   font-size:24px
 
-  &:hover 
-    color: $color-white 
+  &:hover
+    color: $color-white
 
+  &:hover,
   &.oak-opened
-    background: $color-tiber
+    background: var(--oak-active-color)
 
   &.oak-light
-    background-color:rgba(255,255,255, 0)
-    color: $color-deep-sea-green
+    background-color: transparent
+    color: var(--oak-main-color)

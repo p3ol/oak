@@ -1,6 +1,6 @@
 import { useReducer, useEffect } from 'react';
 import { TouchableZone, Loader, classNames, mockState } from '@poool/junipero';
-import { useOptions, useElement } from '@poool/oak';
+import { Text, useOptions, useElement } from '@poool/oak';
 
 export default ({
   className,
@@ -52,7 +52,12 @@ export default ({
 
     if (events?.onImageUpload) {
       const result = await events.onImageUpload(event);
-      onUrlReady(result);
+
+      if (result) {
+        onUrlReady(result);
+      } else {
+        dispatch({ loading: false });
+      }
     } else {
       const file = e.target.files[0];
 
@@ -84,7 +89,7 @@ export default ({
   const getName = () =>
     state.name ||
     (/data:/.test(state.value) ? 'Local image' : state.value) ||
-    'Empty image';
+    'No image';
 
   return (
     <div
@@ -105,7 +110,12 @@ export default ({
           <div className="oak-image-field-info">
             <div className="oak-image-name">{ getName() }</div>
             <div className="oak-image-field-actions">
-              <a href="#" className="oak-delete" onClick={onReset}>Delete</a>
+              <a href="#" className="oak-delete" onClick={onReset}>
+                <Text
+                  name="addons.basicComponents.fields.image.del"
+                  default="Delete"
+                />
+              </a>
             </div>
           </div>
         </>
@@ -116,7 +126,12 @@ export default ({
           ) : (
             <>
               <i className="oak-icons">add</i>
-              <span>Add an image</span>
+              <span>
+                <Text
+                  name="addons.basicComponents.fields.image.add"
+                  default="Add an image"
+                />
+              </span>
             </>
           )}
         </TouchableZone>

@@ -45,14 +45,16 @@ export default ({ className }) => {
   const getSelectedColor = () => {
     const path = selection?.anchor?.path;
     const selectedRow = editor.children[path?.[0]];
-    const selectedContent = selectedRow?.children[path?.[1]];
+    const selectedContent = Array.isArray(selectedRow)
+      ? selectedRow[path?.[1]]
+      : selectedRow?.children?.[path?.[1]];
     const selectedColor = selectedContent?.color || '#000000';
 
     return selectedColor;
   };
 
   return (
-    <Dropdown>
+    <Dropdown className="oak-color-field">
       <DropdownToggle tag="span">
         <Tooltip text="Color">
           <a
@@ -73,9 +75,17 @@ export default ({ className }) => {
       <DropdownMenu>
         <ColorField
           ref={colorFieldRef}
-          className="oak-color-field py-3"
           value={color}
           onChange={onChange}
+          popperOptions={{
+            strategy: 'relative',
+            modifiers: [{
+              name: 'offset',
+              options: {
+                offset: [0, -20],
+              },
+            }],
+          }}
         />
       </DropdownMenu>
     </Dropdown>

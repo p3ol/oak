@@ -13,8 +13,9 @@ import {
 } from '@poool/junipero';
 import { usePopper } from 'react-popper';
 
-import { useBuilder } from '../../hooks';
+import { useBuilder, useOptions } from '../../hooks';
 import Icon from '../Icon';
+import Text from '../Text';
 
 export default forwardRef(({
   globalEventsTarget = global,
@@ -24,6 +25,7 @@ export default forwardRef(({
   onAppend = () => {},
 }, ref) => {
   const { components = [] } = useBuilder();
+  const { otherTabEnabled } = useOptions();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
   const [arrow, setArrow] = useState();
@@ -91,22 +93,45 @@ export default forwardRef(({
   };
 
   const getGroups = () =>
-    components.filter(c => c.type === 'group');
+    components.filter(c =>
+      c.type === 'group' && (otherTabEnabled !== false || c.id !== 'other')
+    );
 
   const renderComponents = group => {
-    if (!group) {
+    if (!group || (otherTabEnabled === false && group.id === 'other')) {
       return null;
+    }
+
+    let components_ = []
+      .concat(group.components)
+      .concat(components
+        .filter(c => c.group === group.id).map(c => c.component));
+
+    if (otherTabEnabled === false && group.id === 'core') {
+      components_ = components_
+        .concat(components.find(c => c.id === 'other')?.components || [])
+        .concat(components
+          .filter(c => c.group === 'other').map(c => c.component));
     }
 
     return (
       <div className="oak-components">
-        { group.components.map((c, i) => (
-          <div key={c.id || i} className="oak-component">
+        { components_.map((c, i) => (
+          <div
+            key={c.id || i}
+            className={classNames(
+              'oak-component',
+              'oak-component-' + (c.id || 'unknown')
+            )}
+          >
             <a href="#" draggable={false} onClick={onAppend_.bind(null, c)}>
-              { typeof c.icon === 'function' ? c.icon() : (
-                <Icon className="oak-component-icon">{ c.icon }</Icon>
-              ) }
-              <span>{ c.name }</span>
+              <div className="oak-component-icon">
+                { typeof c.icon === 'function'
+                  ? c.icon({ component: c, className: 'oak-icons' })
+                  : <Icon>{ c.icon }</Icon>
+                }
+              </div>
+              <span><Text>{ c.name }</Text></span>
             </a>
           </div>
         )) }
@@ -147,7 +172,7 @@ export default forwardRef(({
           <div className="oak-groups">
             <Tabs>
               { getGroups().map((g, i) => (
-                <Tab key={i} title={g.name}>
+                <Tab key={i} title={<Text>{ g.name }</Text>}>
                   { renderComponents(g) }
                 </Tab>
               )) }

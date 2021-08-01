@@ -1,5 +1,23 @@
+const fixedSizes = Array.from({ length: 12 }).map((_, i) => ({
+  title: t => (i + 1) + ' ' + t('core.components.col.settings.size.value',
+    'column(s)'),
+  value: i + 1,
+})).reverse();
+
+const responsive = [
+  {
+    title: t => t('core.responsive.fluid', 'Flexible'),
+    value: 'fluid',
+  },
+  ...fixedSizes,
+  {
+    title: t => t('core.responsive.hide', 'Hidden'),
+    value: 'hide',
+  },
+];
+
 export default {
-  title: 'Col options',
+  title: t => t('core.components.col.settings.title', 'Col options'),
   popperSettings: {
     placement: 'bottom-end',
     modifiers: [{
@@ -13,85 +31,50 @@ export default {
     type: 'select',
     key: 'size',
     default: 'fluid',
-    label: 'Column size',
+    label: t => t('core.components.col.settings.size.title', 'Column size'),
     options: [
-      { title: 'Fluid', value: 'fluid' },
-      ...Array.from({ length: 12 }).map((_, i) => ({
-        title: `${i + 1} column(s)`,
-        value: i + 1,
-      })).reverse(),
+      {
+        title: t => t('core.responsive.fluid', 'Flexible'),
+        value: 'fluid',
+      },
+      ...fixedSizes,
     ],
   }],
   defaults: {
     responsive: false,
   },
   responsive: {
-    title: 'Responsive',
+    title: t => t('core.responsive.title', 'Responsive'),
     fields: [{
       key: 'responsive.xl',
       type: 'select',
-      label: 'Extra-large screens',
+      label: t => t('core.responsive.xl', 'Extra-large screens'),
       default: 'fluid',
-      options: [
-        { title: 'Fluid size', value: 'fluid' },
-        ...Array.from({ length: 12 }).map((_, i) => ({
-          title: `${i + 1} column(s)`,
-          value: i + 1,
-        })).reverse(),
-        { title: 'Hidden', value: 'hide' },
-      ],
+      options: responsive,
     }, {
       key: 'responsive.lg',
       type: 'select',
-      label: 'Large screens (desktop)',
+      label: t => t('core.responsive.lg', 'Large screens (desktop)'),
       default: 'fluid',
-      options: [
-        { title: 'Fluid size', value: 'fluid' },
-        ...Array.from({ length: 12 }).map((_, i) => ({
-          title: `${i + 1} column(s)`,
-          value: i + 1,
-        })).reverse(),
-        { title: 'Hidden', value: 'hide' },
-      ],
+      options: responsive,
     }, {
       key: 'responsive.md',
       type: 'select',
-      label: 'Medium screens (tablet)',
+      label: t => t('core.responsive.md', 'Medium screens (tablet)'),
       default: 'fluid',
-      options: [
-        { title: 'Fluid size', value: 'fluid' },
-        ...Array.from({ length: 12 }).map((_, i) => ({
-          title: `${i + 1} column(s)`,
-          value: i + 1,
-        })).reverse(),
-        { title: 'Hidden', value: 'hide' },
-      ],
+      options: responsive,
     }, {
       key: 'responsive.sm',
       type: 'select',
-      label: 'Small screens (phones)',
+      label: t => t('core.responsive.sm', 'Small screens (phones)'),
       default: 'fluid',
-      options: [
-        { title: 'Fluid size', value: 'fluid' },
-        ...Array.from({ length: 12 }).map((_, i) => ({
-          title: `${i + 1} column(s)`,
-          value: i + 1,
-        })).reverse(),
-        { title: 'Hidden', value: 'hide' },
-      ],
+      options: responsive,
     }, {
       key: 'responsive.xs',
       type: 'select',
-      label: 'Extra-small screens (old phones)',
+      label: t => t('core.responsive.xs', 'Extra-small screens (old phones)'),
       default: 'fluid',
-      options: [
-        { title: 'Fluid size', value: 'fluid' },
-        ...Array.from({ length: 12 }).map((_, i) => ({
-          title: `${i + 1} column(s)`,
-          value: i + 1,
-        })).reverse(),
-        { title: 'Hidden', value: 'hide' },
-      ],
+      options: responsive,
     }],
   },
 };

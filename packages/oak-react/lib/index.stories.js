@@ -1,7 +1,6 @@
 import { useReducer, useRef } from 'react';
 import { mockState } from '@poool/junipero-utils';
 import { action } from '@storybook/addon-actions';
-import { useTimeout } from '@poool/junipero-hooks';
 
 import { Builder } from './';
 import basicComponents from '../../oak-addon-basic-components/lib';
@@ -43,7 +42,7 @@ const BuilderWrapper = ({ onChange }) => {
     });
   };
 
-  useTimeout(() => {
+  const loadContent = () => {
     dispatch({ value: [
       {
         type: 'row',
@@ -225,10 +224,11 @@ const BuilderWrapper = ({ onChange }) => {
         id: '8bdf90df-7955-4e95-b2ce-76ac2e1a1566',
       },
     ] });
-  }, 1500, []);
+  };
 
   return (
     <>
+      <div><button onClick={loadContent}>Load prebuilt appearance</button></div>
       <button onClick={undo}>
         Undo from parent, possible :
         {String(ref.current?.builderRef.current?.isUndoPossible())}

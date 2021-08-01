@@ -16,6 +16,7 @@
   .oak-col-wrapper
     background: $color-link-water
     display: flex
+    flex-wrap: wrap
     flex-direction: row
     position: relative
     border-radius: 5px
@@ -37,11 +38,11 @@
         border-radius: 3px
 
         &:hover
-          color: $color-tiber
+          color: var(--oak-active-color)
 
         &.oak-opened
           &, &:hover
-            background: $color-tiber
+            background: var(--oak-active-color)
             color: $color-white
             border-radius: 3px
 
@@ -58,6 +59,7 @@
     .oak-catalogue
       display: flex
       flex-direction: row
+      flex-wrap: wrap
       justify-content: center
 
       .oak-handle
@@ -140,6 +142,7 @@
     display: flex
     flex: 0 0 auto
     flex-direction: row
+    flex-wrap: wrap
     align-items: center
 
     &.oak-prepend
@@ -163,6 +166,9 @@
       height 50px
       background: $color-catskill-white
       color: $color-shuttle-gray
+
+      &:hover
+        background: $color-catskill-white - 10
 
       & i
         font-size: 15px
