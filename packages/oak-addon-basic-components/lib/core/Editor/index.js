@@ -20,6 +20,11 @@ const HOTKEYS = {
   'mod+u': 'underline',
 };
 
+const SIZES = {
+  text: 16,
+  headings: { h1: 32, h2: 24, h3: 19, h4: 16, h5: 13, h6: 10 },
+};
+
 export default ({
   value,
   onChange,
@@ -54,28 +59,10 @@ export default ({
     });
   };
 
-  const computeSize = () => {
-    if (!element || element.type !== 'title') {
-      return 16;
-    } else {
-      switch (element.headingLevel) {
-        case 'h1':
-          return 32;
-        case 'h2':
-          return 24;
-        case 'h3':
-          return 19;
-        case 'h4':
-          return 16;
-        case 'h5':
-          return 13;
-        case 'h6':
-          return 10;
-        default:
-          return 16;
-      }
-    }
-  };
+  const getDefaultSize = () =>
+    element?.type === 'title'
+      ? SIZES.headings[element.headingLevel] || SIZES.text
+      : SIZES.text;
 
   const getTextSize = () => {
     const path = editor.selection?.anchor?.path;
@@ -85,7 +72,7 @@ export default ({
       : selectedRow?.children?.[path?.[1]];
     const selectedSize = parseInt(selectedContent?.size?.split('p')[0]);
 
-    return selectedSize || computeSize();
+    return selectedSize || getDefaultSize();
   };
 
   return (
@@ -101,7 +88,7 @@ export default ({
             icon="format_bold"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.bold_"
+                name="addons.basicComponents.fields.editor.bold"
                 default="Bold"
               />
             )}
@@ -197,7 +184,7 @@ export default ({
           spellCheck={false}
           onKeyDown={onKeyDown}
           className="oak-text-editable"
-          style={{ fontSize: computeSize() }}
+          style={{ fontSize: getDefaultSize() }}
         />
       </div>
     </Slate>
