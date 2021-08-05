@@ -9,6 +9,7 @@ import {
   Tooltip,
 } from '@poool/junipero';
 import { classNames } from '@poool/junipero-utils';
+import { Text } from '@poool/oak';
 
 import { toggleMark } from './editor';
 
@@ -56,7 +57,13 @@ export default ({ className }) => {
   return (
     <Dropdown className="oak-color-field">
       <DropdownToggle tag="span">
-        <Tooltip text="Color">
+        <Tooltip text={(
+          <Text
+            name="addons.basicComponents.fields.editor.color"
+            default="Color"
+          />
+        )}
+        >
           <a
             href="#"
             onClick={onClick}

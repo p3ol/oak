@@ -4,6 +4,7 @@ import { createEditor } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, Slate, withReact } from 'slate-react';
 import isHotkey from 'is-hotkey';
+import { Text } from '@poool/oak';
 
 import { toggleMark, withHtml } from './editor';
 import BlockButton from './BlockButton';
@@ -19,9 +20,15 @@ const HOTKEYS = {
   'mod+u': 'underline',
 };
 
+const SIZES = {
+  text: 16,
+  headings: { h1: 32, h2: 24, h3: 19, h4: 16, h5: 13, h6: 10 },
+};
+
 export default ({
   value,
   onChange,
+  element,
 }) => {
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -52,6 +59,11 @@ export default ({
     });
   };
 
+  const getDefaultSize = () =>
+    element?.type === 'title'
+      ? SIZES.headings[element.headingLevel] || SIZES.text
+      : SIZES.text;
+
   const getTextSize = () => {
     const path = editor.selection?.anchor?.path;
     const selectedRow = editor.children[path?.[0]];
@@ -60,7 +72,7 @@ export default ({
       : selectedRow?.children?.[path?.[1]];
     const selectedSize = parseInt(selectedContent?.size?.split('p')[0]);
 
-    return selectedSize || 16;
+    return selectedSize || getDefaultSize();
   };
 
   return (
@@ -74,50 +86,95 @@ export default ({
           <MarkButton
             format="bold"
             icon="format_bold"
-            tooltipText="Bold"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.bold"
+                default="Bold"
+              />
+            )}
           />
           <MarkButton
             format="italic"
             icon="format_italic"
-            tooltipText="Italic"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.italic"
+                default="Italic"
+              />
+            )}
           />
           <MarkButton
             format="underline"
             icon="format_underlined"
-            tooltipText="Underline"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.underline"
+                default="Underline"
+              />
+            )}
           />
           <ColorButton />
           <SizeButton
             icon="horizontal_rule"
             increase={false}
             currentSize={getTextSize()}
-            tooltipText="Decrease size"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.decrease"
+                default="Decrease size"
+              />
+            )}
           />
           <span className="oak-text-size">{ getTextSize() }</span>
           <SizeButton
             icon="add"
             currentSize={getTextSize()}
-            tooltipText="Increase size"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.increase"
+                default="Increase size"
+              />
+            )}
           />
           <BlockButton
             format="text-left"
             icon="format_align_left"
-            tooltipText="Align left"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.left"
+                default="Align left"
+              />
+            )}
           />
           <BlockButton
             format="text-center"
             icon="format_align_center"
-            tooltipText="Align center"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.center"
+                default="Align center"
+              />
+            )}
           />
           <BlockButton
             format="text-right"
             icon="format_align_right"
-            tooltipText="Align right"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.right"
+                default="Align right"
+              />
+            )}
           />
           <BlockButton
             format="text-justify"
             icon="format_align_justify"
-            tooltipText="Align justify"
+            tooltipText={(
+              <Text
+                name="addons.basicComponents.fields.editor.justify"
+                default="Justify"
+              />
+            )}
           />
         </div>
         <Editable
@@ -127,6 +184,7 @@ export default ({
           spellCheck={false}
           onKeyDown={onKeyDown}
           className="oak-text-editable"
+          style={{ fontSize: getDefaultSize() }}
         />
       </div>
     </Slate>

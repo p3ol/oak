@@ -13,8 +13,8 @@ export default {
     type: 'richtext',
     serialize,
     deserialize,
-    render: props => (
-      <Editor { ...props } />
+    render: (baseProps, customProps) => (
+      <Editor { ...customProps } { ...baseProps } />
     ),
   }, {
     type: 'image',
