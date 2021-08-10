@@ -2574,10 +2574,10 @@
     "@babel/runtime-corejs3" "7.14.9"
     core-js "3.16.0"
 
-"@poool/junipero@2.0.0-rc.11":
-  version "2.0.0-rc.11"
-  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.11.tgz#edc1c2323ac236f874567bf7923b17f6c67a1526"
-  integrity sha512-4D38SQfzRIc1XDb9zuVwpiovLmco4nR2VVwgnPWNuoPe9/j+5J9sKH3PFYKj6yi0ni7a7dAMV88Qz9W9i3GqIg==
+"@poool/junipero@2.0.0-rc.12":
+  version "2.0.0-rc.12"
+  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.12.tgz#33d9d716a0c3e78740a5975422265c717060f528"
+  integrity sha512-3ZTVlQ3kWWucJtoGN0kPNDO1hBwggYU7GGMZyYhLR1P5h+4u94780R2J7OgPNFusDPns91yocf/XxOLVPNo5OA==
   dependencies:
     "@babel/runtime-corejs3" "7.14.9"
     "@poool/junipero-hooks" "^2.0.0-rc.10"
