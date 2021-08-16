@@ -3,43 +3,47 @@ export default ({ text, bold, code, color, italic, size, underline }) => {
     return (<br />);
   }
 
-  const props = text.indexOf('\n') > -1 ? {
-    dangerouslySetInnerHTML: { __html: text.replace('\n', '<br />') },
-  } : { children: text };
+  if (text.indexOf('\n') > -1) {
+    text = (
+      <span
+        dangerouslySetInnerHTML={{ __html: text.replace('\n', '<br />') }}
+      />
+    );
+  }
 
   if (bold) {
     text = (
-      <strong { ...props } />
+      <strong>{ text }</strong>
     );
   }
 
   if (code) {
     text = (
-      <code { ...props } />
+      <code>{ text }</code>
     );
   }
 
   if (italic) {
     text = (
-      <em { ...props } />
+      <em>{ text }</em>
     );
   }
 
   if (underline) {
     text = (
-      <u { ...props } />
+      <u>{ text }</u>
     );
   }
 
   if (color) {
     text = (
-      <span style={{ color }} { ...props } />
+      <span style={{ color }}>{ text }</span>
     );
   }
 
   if (size) {
     text = (
-      <span style={{ fontSize: size }} { ...props } />
+      <span style={{ fontSize: size }}>{ text }</span>
     );
   }
 
