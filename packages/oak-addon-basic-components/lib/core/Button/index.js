@@ -4,8 +4,8 @@ import settings from './index.settings';
 
 const Button = ({ element, className }) => {
   const { getOverrides } = useBuilder();
-  const overrides = getOverrides('component', 'text');
-  const props = overrides.render ? {
+  const overrides = getOverrides('component', 'button');
+  const props = overrides?.render ? {
     children: overrides.render(element),
   } : {
     dangerouslySetInnerHTML: { __html: element.content },
