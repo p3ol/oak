@@ -10,41 +10,13 @@ export const useBuilder = () => {
   const {
     components = [],
     content = [],
-    _settingsHolderRef,
-    addElement,
-    removeElement,
-    setElement,
-    moveElement,
-    contains,
-    findNearestParent,
-    getComponent,
-    getField,
-    undo,
-    redo,
-    isUndoPossible,
-    isRedoPossible,
-    _setSettingsHolderRef,
-    getText,
+    ...rest
   } = useContext(AppContext);
 
   return {
     components,
     content,
-    _settingsHolderRef,
-    addElement,
-    removeElement,
-    setElement,
-    moveElement,
-    contains,
-    findNearestParent,
-    getComponent,
-    getField,
-    undo,
-    redo,
-    isUndoPossible,
-    isRedoPossible,
-    _setSettingsHolderRef,
-    getText,
+    ...rest,
   };
 };
 

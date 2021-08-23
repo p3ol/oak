@@ -38,6 +38,10 @@ const ALIGNMENTS = {
 };
 
 export const serialize = (node = []) => {
+  if (isSerialized(node)) {
+    return node;
+  }
+
   if (Array.isArray(node)) {
     return node
       .map((n, i) =>
@@ -127,6 +131,10 @@ export const deserializeNode = el => {
 export const deserialize = content => {
   if (!content || typeof content === 'function') {
     return [{ children: [{ text: '' }] }];
+  }
+
+  if (!isSerialized(content)) {
+    return content;
   }
 
   const parsed = new DOMParser().parseFromString(content, 'text/html');

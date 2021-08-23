@@ -14,7 +14,7 @@ export default {
       value: `h${i + 1}`,
     })),
   }, {
-    type: 'richtext',
+    type: 'textarea',
     key: 'content',
     default: '',
     label: t => t(prefix + '.content.title', 'Content'),

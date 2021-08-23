@@ -4,6 +4,8 @@ import { SelectField } from '@poool/junipero';
 import { render } from './';
 import basicComponents, { localeFr as basicFrench }
   from '../../oak-addon-basic-components/lib';
+import richTextField, { serialize, deserialize, renderContent }
+  from '../../oak-addon-richtext-field/lib';
 import french from './languages/fr';
 
 export default { title: 'oak' };
@@ -12,11 +14,12 @@ export const basicConfig = () => {
   const containerRef = useRef();
   const oakRef = useRef();
   const [theme, setTheme] = useState();
+  const [editor, setEditor] = useState();
 
   useEffect(() => {
     oakRef.current = render(containerRef.current, {
       debug: true,
-      addons: [basicComponents],
+      addons: [basicComponents, richTextField],
       content: [
         {
           type: 'row',
@@ -199,8 +202,19 @@ export const basicConfig = () => {
           id: '8bdf90df-7955-4e95-b2ce-76ac2e1a1566',
         },
       ],
+      overrides: [{
+        type: 'component',
+        components: ['text', 'title', 'button'],
+        serialize,
+        deserialize,
+        render: renderContent,
+        fields: [{
+          key: 'content',
+          type: 'richtext',
+        }],
+      }],
     });
-  }, []);
+  }, [editor]);
 
   const setTexts = field => {
     oakRef.current?.setTexts(field.value);
@@ -244,6 +258,17 @@ export const basicConfig = () => {
           parseTitle={o => o.title}
           parseValue={o => o.value}
           onChange={field => setTheme(field.value)}
+        />
+        <SelectField
+          style={{ marginBottom: 50, marginLeft: 20 }}
+          placeholder="Text editor"
+          options={[
+            { title: 'Default', value: 'default' },
+            { title: 'Rich Text', value: 'richtext' },
+          ]}
+          parseTitle={o => o.title}
+          parseValue={o => o.value}
+          onChange={field => setEditor(field.value)}
         />
       </div>
       <div ref={containerRef} id="container" />

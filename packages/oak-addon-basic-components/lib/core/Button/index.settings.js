@@ -3,7 +3,7 @@ const prefix = 'addons.basicComponents.components.button.settings';
 export default {
   title: t => t(prefix + '.title', 'Button options'),
   fields: [{
-    type: 'richtext',
+    type: 'textarea',
     key: 'content',
     default: '',
     label: t => t(prefix + '.content.title', 'Content'),
