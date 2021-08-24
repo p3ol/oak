@@ -4,7 +4,7 @@ import { SelectField } from '@poool/junipero';
 import { render } from './';
 import basicComponents, { localeFr as basicFrench }
   from '../../oak-addon-basic-components/lib';
-import richTextField, { serialize, deserialize, renderContent }
+import richTextField, { renderContent }
   from '../../oak-addon-richtext-field/lib';
 import french from './languages/fr';
 
@@ -17,7 +17,7 @@ export const basicConfig = () => {
   const [editor, setEditor] = useState();
 
   useEffect(() => {
-    oakRef.current = render(containerRef.current, {
+    const ref = render(containerRef.current, {
       debug: true,
       addons: [basicComponents, richTextField],
       content: [
@@ -202,18 +202,24 @@ export const basicConfig = () => {
           id: '8bdf90df-7955-4e95-b2ce-76ac2e1a1566',
         },
       ],
-      overrides: [{
-        type: 'component',
-        components: ['text', 'title', 'button'],
-        serialize,
-        deserialize,
-        render: renderContent,
-        fields: [{
-          key: 'content',
-          type: 'richtext',
+      ...(editor === 'richtext' ? {
+        overrides: [{
+          type: 'component',
+          components: ['text', 'title', 'button'],
+          render: renderContent,
+          fields: [{
+            key: 'content',
+            type: 'richtext',
+          }],
         }],
-      }],
+      } : {}),
     });
+
+    oakRef.current = ref;
+
+    return () => {
+      ref?.destroy();
+    };
   }, [editor]);
 
   const setTexts = field => {

@@ -5,7 +5,7 @@ export default {
   fields: [{
     type: 'textarea',
     key: 'content',
-    default: [],
+    default: '',
     label: t => t(prefix + '.content.title', 'Content'),
   }],
 };

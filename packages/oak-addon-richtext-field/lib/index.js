@@ -2,21 +2,28 @@ import { serialize as s, deserialize as d } from './core/Editor/html';
 import Editor from './core/Editor';
 import Node from './core/Editor/Node';
 
+const serialize = elmt => ({ content: s(elmt.content) });
+
+const deserialize = elmt => ({ content: d(elmt.content) });
+
 export default {
   fieldTypes: [{
     type: 'richtext',
+    default: [],
+    serialize,
+    deserialize,
     render: (baseProps, customProps) => (
       <Editor { ...customProps } { ...baseProps } />
     ),
   }],
 };
 
-export const serialize = elmt => ({ content: s(elmt.content) });
-
-export const deserialize = elmt => ({ content: d(elmt.content) });
-
 export const renderContent = element => typeof element.content === 'string' ? (
-  <Node text={element.content} />
+  <div dangerouslySetInnerHTML={{ __html: element.content }} />
 ) : element.content.map((c, i) => (
   <Node { ...c } key={i} />
 ));
+
+export { serialize, deserialize };
+
+export { default as localeFr } from './languages/fr';

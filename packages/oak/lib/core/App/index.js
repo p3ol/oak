@@ -43,6 +43,10 @@ export default forwardRef((options, ref) => {
     init();
   }, []);
 
+  useEffect(() => {
+    dispatch({ overrides: options.overrides });
+  }, [options?.overrides]);
+
   useImperativeHandle(ref, () => ({
     addGroup,
     removeGroup,
@@ -64,11 +68,13 @@ export default forwardRef((options, ref) => {
     getText,
     setTexts,
     getOverrides,
+    setOverrides,
   }));
 
   const getContext = useCallback(() => ({
     content: state.content,
     components: state.components,
+    overrides: state.overrides,
     _settingsHolderRef: state._settingsHolderRef,
     options,
     isUndoPossible: state.isUndoPossible,
@@ -387,10 +393,14 @@ export default forwardRef((options, ref) => {
   const setTexts = texts =>
     dispatch({ texts });
 
-  const getOverrides = (type, item) =>
+  const getOverrides = useCallback((type, item) => (
     state.overrides
-      .filter(o => o.type === type && filterOverride(type, o, item))
-      .pop();
+      ?.filter(o => o.type === type && filterOverride(type, o, item))
+      ?.pop()
+  ), [state.overrides]);
+
+  const setOverrides = overrides =>
+    dispatch({ overrides });
 
   return (
     <div className="oak">
