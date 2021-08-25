@@ -2,7 +2,11 @@ import { Node, Text } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const ELEMENT_TAGS = {
-  // A: el => ({ type: 'link', url: el.getAttribute('href') }),
+  A: el => ({
+    type: 'link',
+    url: el.getAttribute('href'),
+    target: el.getAttribute('target'),
+  }),
   BLOCKQUOTE: () => ({ type: 'quote' }),
   LI: () => ({ type: 'list-item' }),
   OL: () => ({ type: 'numbered-list' }),
@@ -101,6 +105,12 @@ export const serialize = (node = []) => {
       return `<blockquote><p>${children}</p></blockquote>`;
     case 'paragraph':
       return `<div>${children}</div>`;
+    case 'link': {
+      const target =
+        node.target && node.target !== '' ? 'target="' + node.target + '"' : '';
+
+      return `<a ${target} href="${node.url}" >${children}</a>`;
+    }
     default:
       return children;
   }

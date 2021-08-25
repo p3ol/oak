@@ -54,11 +54,14 @@ export const isBlockActive = (editor, format) => {
   return !!match;
 };
 
-export const toggleLink = (editor, url) => {
-  Transforms.wrapNodes(editor, {
-    type: 'link',
-    url,
-  }, { split: true });
+export const toggleLink = (editor, infos) => {
+  if (infos.url !== '') {
+    Transforms.wrapNodes(editor, {
+      type: 'link',
+      url: infos.url,
+      target: infos.target,
+    }, { split: true });
+  }
 
 };
 

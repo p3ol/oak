@@ -2,7 +2,7 @@ import { exists } from '@poool/junipero-utils';
 
 import TextNode from './TextNode';
 
-const Node = ({ type, text, children, ...rest }) => {
+const Node = ({ type, text, children, url, target, ...rest }) => {
   if (exists(text)) {
     return (
       <TextNode text={text} { ...rest } />
@@ -29,6 +29,10 @@ const Node = ({ type, text, children, ...rest }) => {
     case 'numbered-list':
       return (
         <ol>{ children }</ol>
+      );
+    case 'link':
+      return (
+        <a href={url} target={target}>{ children }</a>
       );
     case 'text-center':
       return (

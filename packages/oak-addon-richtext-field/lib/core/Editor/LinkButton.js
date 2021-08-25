@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import { useSlate } from 'slate-react';
-import { Editor, Element, Transforms } from 'slate';
+import { Editor, Element, Transforms, Range, Operation } from 'slate';
 import {
   TextField,
   ToggleField,
@@ -21,7 +21,7 @@ export default ({ className }) => {
   const [state, dispatch] = useReducer(mockState, {
     selection: editor.selection,
     link: '',
-    target: '',
+    target: null,
   });
 
   useEffect(() => {
@@ -53,15 +53,49 @@ export default ({ className }) => {
         : field.value,
     });
 
+    const url = name === 'link' ? field.value : state.link;
+    const target = name === 'target'
+      ? field.checked ? field.value : null : state.target;
+
     if (isBlockActive(editor, 'link')) {
+      const { selection } = editor;
+
+      if (selection && Range.isCollapsed(selection)) {
+        if (url !== '') {
+          Transforms.setNodes(editor, { url, target }, {
+            match: n => !Editor.isEditor(n) && Element.isElement(n) &&
+            n.type === 'link',
+          });
+        } else {
+          unwrapLink(editor);
+        }
+
+        return;
+      }
+
       unwrapLink(editor);
     }
 
-    toggleLink(editor, name, field.value);
+    toggleLink(editor, { url, target });
   };
 
   const onClick = () => {
-    dispatch({ link: Editor.marks(editor)?.link });
+    let link = '';
+    let target = '';
+
+    if (isBlockActive(editor, 'link')) {
+      const [match] = Editor.nodes(editor, {
+        match: n => !Editor.isEditor(n) && Element.isElement(n) &&
+          n.type === 'link',
+      });
+      link = match[0].url;
+      target = match[0].target;
+    }
+
+    dispatch({
+      link,
+      target,
+    });
     Transforms.select(editor, state.selection);
   };
 
@@ -81,9 +115,9 @@ export default ({ className }) => {
             className={classNames(
               'oak-toolbar-button',
               'oak-link',
-              // {
-              //   'oak-active': isMarkActive(editor, 'link'),
-              // },
+              {
+                'oak-active': isBlockActive(editor, 'link'),
+              },
               className,
             )}
           >

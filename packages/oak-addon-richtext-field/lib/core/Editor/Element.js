@@ -44,7 +44,7 @@ export default ({ attributes, children, element }) => {
       );
     case 'link':
       return (
-        <a>
+        <a href="#" onClick={e => e.preventDefault()}>
           {children}
         </a>
       );
