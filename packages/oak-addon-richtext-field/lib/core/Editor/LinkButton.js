@@ -21,7 +21,7 @@ export default ({ className }) => {
   const [state, dispatch] = useReducer(mockState, {
     selection: editor.selection,
     link: '',
-    target_blank: false,
+    target: '',
   });
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default ({ className }) => {
         : field.value,
     });
 
-    if (isBlockActive(editor)) {
+    if (isBlockActive(editor, 'link')) {
       unwrapLink(editor);
     }
 
@@ -102,9 +102,9 @@ export default ({ className }) => {
         <ToggleField
           checkedLabel="Open in new window"
           uncheckedLabel="Open in new window"
-          checked={state.target_blank}
-          onChange={onChange.bind(null, 'target_blank')}
-          value={true}
+          checked={state.target === '_blank'}
+          onChange={onChange.bind(null, 'target')}
+          value="_blank"
         />
       </DropdownMenu>
     </Dropdown>
