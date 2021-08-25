@@ -1,4 +1,13 @@
-export default ({ text, bold, code, color, italic, size, underline }) => {
+export default ({
+  text,
+  bold,
+  code,
+  color,
+  italic,
+  size,
+  underline,
+  link,
+}) => {
   if (text === '') {
     return (<br />);
   }
@@ -44,6 +53,12 @@ export default ({ text, bold, code, color, italic, size, underline }) => {
   if (size) {
     text = (
       <span style={{ fontSize: size }}>{ text }</span>
+    );
+  }
+
+  if (link) {
+    text = (
+      <a href="#" onClick={e => e.preventDefault()}>{ text }</a>
     );
   }
 

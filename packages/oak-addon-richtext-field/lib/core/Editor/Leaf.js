@@ -35,6 +35,12 @@ export default ({ attributes, children, leaf }) => {
     );
   }
 
+  if (leaf.link) {
+    children = (
+      <a href={leaf.link} target={leaf.target}>{ children }</a>
+    );
+  }
+
   return (
     <span { ...attributes }>{ children }</span>
   );

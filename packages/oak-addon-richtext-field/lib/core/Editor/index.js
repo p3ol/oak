@@ -14,6 +14,7 @@ import Leaf from './Leaf';
 import ColorButton from './ColorButton';
 import MarkButton from './MarkButton';
 import SizeButton from './SizeButton';
+import LinkButton from './LinkButton';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -178,6 +179,7 @@ export default ({
               />
             )}
           />
+          <LinkButton />
         </div>
         <Editable
           onDrop={e => e.preventDefault()}
