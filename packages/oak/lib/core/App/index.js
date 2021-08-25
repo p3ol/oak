@@ -48,6 +48,7 @@ export default forwardRef((options, ref) => {
     addElement,
     setElement,
     removeElement,
+    duplicateElement,
     moveElement,
     setContent,
     findNearestParent,
@@ -71,6 +72,7 @@ export default forwardRef((options, ref) => {
     isRedoPossible: state.isRedoPossible,
     addElement,
     removeElement,
+    duplicateElement,
     setElement,
     moveElement,
     setContent,
@@ -212,6 +214,15 @@ export default forwardRef((options, ref) => {
     onChange();
   };
 
+  const duplicateElement = (elmt, { parent = state.content } = {}) => {
+    parent.splice(
+      parent.findIndex(e => e.id === elmt.id),
+      0,
+      normalizeElement(cloneDeep(elmt), { resetIds: true })
+    );
+    onChange();
+  };
+
   const setElement = (elmt, props) => {
     Object.assign(elmt, props);
     onChange();
@@ -270,14 +281,14 @@ export default forwardRef((options, ref) => {
       contains(elmt, { parent: parent.content })
     );
 
-  const normalizeElement = elmt => {
+  const normalizeElement = (elmt, opts = {}) => {
     if (Array.isArray(elmt.cols)) {
-      elmt.cols.forEach(c => normalizeElement(c));
+      elmt.cols.forEach(c => normalizeElement(c, opts));
     } else if (Array.isArray(elmt.content)) {
-      elmt.content.forEach(e => normalizeElement(e));
+      elmt.content.forEach(e => normalizeElement(e, opts));
     }
 
-    if (!elmt.id) {
+    if (!elmt.id || opts.resetIds) {
       elmt.id = uuid();
     }
 
@@ -294,6 +305,8 @@ export default forwardRef((options, ref) => {
       component.isSerialized?.(elmt)) {
       Object.assign(elmt, component.deserialize(elmt));
     }
+
+    return elmt;
   };
 
   const serializeElement = elmt => {

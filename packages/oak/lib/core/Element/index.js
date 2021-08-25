@@ -21,7 +21,12 @@ const Element = ({
   const editableRef = useRef();
   const elementInnerRef = useRef();
   const builder = useBuilder();
-  const { getComponent, removeElement, moveElement } = builder;
+  const {
+    getComponent,
+    removeElement,
+    duplicateElement,
+    moveElement,
+  } = builder;
 
   const getContext = useCallback(() => ({
     element,
@@ -31,6 +36,11 @@ const Element = ({
   const onDelete_ = e => {
     e?.preventDefault();
     removeElement(element, { parent });
+  };
+
+  const onDuplicate_ = e => {
+    e?.preventDefault();
+    duplicateElement(element, { parent });
   };
 
   const onDrop_ = (data, position) => {
@@ -110,6 +120,11 @@ const Element = ({
                 option={{ icon: 'clear' }}
                 className="oak-remove"
                 onClick={onDelete_}
+              />
+              <Option
+                option={{ icon: 'content_copy' }}
+                className="oak-duplicate"
+                onClick={onDuplicate_}
               />
               { component.options?.map((o, i) => (
                 <Fragment key={i}>
