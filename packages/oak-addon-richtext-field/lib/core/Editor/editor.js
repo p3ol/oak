@@ -54,6 +54,14 @@ export const isBlockActive = (editor, format) => {
   return !!match;
 };
 
+export const toggleLink = (editor, url) => {
+  Transforms.wrapNodes(editor, {
+    type: 'link',
+    url,
+  }, { split: true });
+
+};
+
 export const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
   const newProperty = { type: isActive ? 'paragraph' : format };
