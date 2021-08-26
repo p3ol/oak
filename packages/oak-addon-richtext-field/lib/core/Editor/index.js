@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
 import { mockState } from '@poool/junipero-utils';
-import { createEditor } from 'slate';
+import { createEditor, Editor } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, Slate, withReact } from 'slate-react';
 import isHotkey from 'is-hotkey';
@@ -68,12 +68,7 @@ export default ({
       : SIZES.text;
 
   const getTextSize = () => {
-    const path = editor.selection?.anchor?.path;
-    const selectedRow = editor.children[path?.[0]];
-    const selectedContent = Array.isArray(selectedRow)
-      ? selectedRow[path?.[1]]
-      : selectedRow?.children?.[path?.[1]];
-    const selectedSize = parseInt(selectedContent?.size?.split('p')[0]);
+    const selectedSize = parseInt(Editor.marks(editor)?.size?.split('p')[0]);
 
     return selectedSize || getDefaultSize();
   };
