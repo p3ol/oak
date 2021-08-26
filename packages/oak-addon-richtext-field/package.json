@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak-addon-richtext-field",
-  "version": "1.0.0-beta.15",
+  "version": "1.0.0-rc.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-addon-richtext-field.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -29,7 +29,7 @@
     "@babel/runtime-corejs3": "7.15.3",
     "@poool/junipero": "2.0.0-rc.12",
     "@poool/junipero-utils": "2.0.0-rc.10",
-    "@poool/oak": "^1.0.0-beta.15",
+    "@poool/oak": "^1.0.0-rc.0",
     "core-js": "3.16.2",
     "is-hotkey": "0.2.0",
     "slate": "0.65.3",
