@@ -114,7 +114,7 @@ export default ({ className }) => {
             onClick={onClick}
             className={classNames(
               'oak-toolbar-button',
-              'oak-link',
+              'oak-link-button',
               {
                 'oak-active': isBlockActive(editor, 'link'),
               },
@@ -127,11 +127,12 @@ export default ({ className }) => {
           </a>
         </Tooltip>
       </DropdownToggle>
-      <DropdownMenu>
+      <DropdownMenu className="oak-link-input">
         <TextField
-          placeholder
+          placeholder="Link"
           value={state.link}
           onChange={onChange.bind(null, 'link')}
+          className="oak-link-url"
         />
         <ToggleField
           checkedLabel="Open in new window"
