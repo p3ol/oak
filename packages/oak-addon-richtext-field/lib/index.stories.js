@@ -7,7 +7,7 @@ import '../../oak/lib/index.styl';
 import { deserialize, serialize } from './core/Editor/html';
 import Editor from './core/Editor';
 
-export default { title: 'oak-addon-basic-components' };
+export default { title: 'oak-addon-richtext-field' };
 
 export const internalEditor = () => {
   const [value, setValue] = useState(deserialize(

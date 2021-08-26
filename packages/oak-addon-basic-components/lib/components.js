@@ -1,4 +1,3 @@
-import { serialize, deserialize, isSerialized } from './core/Editor/html';
 import Text from './core/Text';
 import Title from './core/Title';
 import Image from './core/Image';
@@ -13,18 +12,10 @@ export const COMPONENT_TITLE = {
   options: Title.options,
   settings: Title.settings,
   editable: true,
-  serialize: element => ({
-    content: serialize(element.content),
-  }),
-  deserialize: element => ({
-    content: deserialize(element.content),
-  }),
-  isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'title',
     content: t =>
       t('addons.basicComponents.components.title.default', 'This is a title'),
-
     headingLevel: 'h1',
     settings: {},
   }),
@@ -39,13 +30,6 @@ export const COMPONENT_TEXT = {
   options: Text.options,
   settings: Text.settings,
   editable: true,
-  serialize: element => ({
-    content: serialize(element.content),
-  }),
-  deserialize: element => ({
-    content: deserialize(element.content),
-  }),
-  isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'text',
     content: t =>
@@ -81,13 +65,6 @@ export const COMPONENT_BUTTON = {
   options: Button.options,
   settings: Button.settings,
   editable: true,
-  serialize: element => ({
-    content: serialize(element.content),
-  }),
-  deserialize: element => ({
-    content: deserialize(element.content),
-  }),
-  isSerialized: element => isSerialized(element.content),
   construct: () => ({
     type: 'button',
     content: t =>

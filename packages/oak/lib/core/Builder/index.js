@@ -17,11 +17,17 @@ export default () => {
     redo,
     isUndoPossible,
     isRedoPossible,
+    getText,
   } = useBuilder();
   const { debug, historyButtonsEnabled } = useOptions();
 
   const onAppend = component => {
-    addElement(component.construct?.() || {});
+    const element = component.construct?.() || {};
+    addElement({
+      ...element,
+      content: typeof element.content === 'function'
+        ? element.content(getText) : element.content,
+    });
     catalogueRef.current?.close();
   };
 

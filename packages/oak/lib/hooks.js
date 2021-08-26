@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import { AppContext, ElementContext } from './contexts';
 
@@ -10,46 +10,28 @@ export const useBuilder = () => {
   const {
     components = [],
     content = [],
-    _settingsHolderRef,
-    addElement,
-    removeElement,
-    duplicateElement,
-    setElement,
-    moveElement,
-    contains,
-    findNearestParent,
-    getComponent,
-    getField,
-    undo,
-    redo,
-    isUndoPossible,
-    isRedoPossible,
-    _setSettingsHolderRef,
-    getText,
+    ...rest
   } = useContext(AppContext);
 
   return {
     components,
     content,
-    _settingsHolderRef,
-    addElement,
-    removeElement,
-    duplicateElement,
-    setElement,
-    moveElement,
-    contains,
-    findNearestParent,
-    getComponent,
-    getField,
-    undo,
-    redo,
-    isUndoPossible,
-    isRedoPossible,
-    _setSettingsHolderRef,
-    getText,
+    ...rest,
   };
 };
 
 export const useElement = () => {
   return useContext(ElementContext);
+};
+
+export const usePostMountEffect = (cb, changes = []) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (mounted) {
+      cb();
+    } else {
+      setMounted(true);
+    }
+  }, [mounted].concat(changes));
 };

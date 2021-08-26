@@ -9,9 +9,11 @@ import { mockState, cloneDeep, get } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
+import { filterOverride } from '../../utils';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
 import {
   FIELD_TEXT,
+  FIELD_TEXTAREA,
   FIELD_SELECT,
   FIELD_COLOR,
   FIELD_CORE_IMAGE,
@@ -25,8 +27,8 @@ export default forwardRef((options, ref) => {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
     fieldTypes: [
-      FIELD_TEXT, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE, FIELD_DATE,
-      FIELD_TOGGLE,
+      FIELD_TEXT, FIELD_TEXTAREA, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE,
+      FIELD_DATE, FIELD_TOGGLE,
     ],
     _settingsHolderRef: null,
     memory: [[]],
@@ -34,11 +36,16 @@ export default forwardRef((options, ref) => {
     isUndoPossible: false,
     isRedoPossible: false,
     texts: options?.texts || {},
+    overrides: options?.overrides || [],
   });
 
   useEffect(() => {
     init();
   }, []);
+
+  useEffect(() => {
+    dispatch({ overrides: options.overrides });
+  }, [options?.overrides]);
 
   useImperativeHandle(ref, () => ({
     addGroup,
@@ -61,11 +68,14 @@ export default forwardRef((options, ref) => {
     isRedoPossible: () => state.isRedoPossible,
     getText,
     setTexts,
+    getOverrides,
+    setOverrides,
   }));
 
   const getContext = useCallback(() => ({
     content: state.content,
     components: state.components,
+    overrides: state.overrides,
     _settingsHolderRef: state._settingsHolderRef,
     options,
     isUndoPossible: state.isUndoPossible,
@@ -84,6 +94,7 @@ export default forwardRef((options, ref) => {
     undo,
     redo,
     getText,
+    getOverrides,
   }), Object.values(state));
 
   const init = () => {
@@ -293,17 +304,11 @@ export default forwardRef((options, ref) => {
     }
 
     const component = getComponent(elmt.type);
+    const overrides = getOverrides('component', elmt.type);
+    const deserialize = overrides?.deserialize || component?.deserialize;
 
-    if (component?.deserialize &&
-      elmt?.content &&
-      typeof elmt.content === 'function'
-    ) {
-      elmt.content = elmt.content(getText);
-    }
-
-    if (component?.deserialize &&
-      component.isSerialized?.(elmt)) {
-      Object.assign(elmt, component.deserialize(elmt));
+    if (deserialize) {
+      Object.assign(elmt, deserialize(elmt));
     }
 
     return elmt;
@@ -317,10 +322,11 @@ export default forwardRef((options, ref) => {
     }
 
     const component = getComponent(elmt.type);
+    const overrides = getOverrides('component', elmt.type);
+    const serialize = overrides?.serialize || component?.serialize;
 
-    if (component?.serialize &&
-      !component.isSerialized?.(elmt)) {
-      Object.assign(elmt, component.serialize(elmt));
+    if (serialize) {
+      Object.assign(elmt, serialize(elmt));
     }
   };
 
@@ -399,6 +405,15 @@ export default forwardRef((options, ref) => {
 
   const setTexts = texts =>
     dispatch({ texts });
+
+  const getOverrides = useCallback((type, item) => (
+    state.overrides
+      ?.filter(o => o.type === type && filterOverride(type, o, item))
+      ?.pop()
+  ), [state.overrides]);
+
+  const setOverrides = overrides =>
+    dispatch({ overrides });
 
   return (
     <div className="oak">

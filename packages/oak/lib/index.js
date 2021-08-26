@@ -7,6 +7,11 @@ import Text from './core/Text';
 
 class oak {
   #ref = createRef()
+  #parent = null
+
+  constructor (parent) {
+    this.#parent = parent;
+  }
 
   setRef (ref) {
     this.#ref.current = ref;
@@ -71,10 +76,18 @@ class oak {
   getText (...args) {
     return this.#ref.current?.getText(...args);
   }
+
+  setOverrides (...args) {
+    return this.#ref.current?.setOverrides(...args);
+  }
+
+  destroy () {
+    ReactDOM.unmountComponentAtNode(this.#parent);
+  }
 }
 
 export const render = (elmt, options = {}) => {
-  const app = new oak();
+  const app = new oak(elmt);
   ReactDOM.render(<App ref={app.setRef.bind(app)} {...options} />, elmt);
 
   return app;

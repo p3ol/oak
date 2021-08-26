@@ -1,20 +1,23 @@
-import { Fragment } from 'react';
+import { useBuilder } from '@poool/oak';
 
 import settings from './index.settings';
-import Node from '../Editor/Node';
 
-const Text = ({ element, className }) => (
-  <div className={className}>
-    { typeof element.content === 'string' ? (
-      <Node type="paragraph" children={[{ text: element.content }]} />
-    ) : element.content.map((c, i) => (
-      <Fragment key={i}>
-        <Node { ...c } />
-        { i < element.content.length - 1 ? <br /> : null }
-      </Fragment>
-    )) }
-  </div>
-);
+const Text = ({ element, className }) => {
+  const { getOverrides } = useBuilder();
+  const overrides = getOverrides('component', 'text');
+  const props = overrides?.render ? {
+    children: overrides.render(element),
+  } : {
+    dangerouslySetInnerHTML: { __html: element.content },
+  };
+
+  return (
+    <div
+      { ...props }
+      className={className}
+    />
+  );
+};
 
 Text.settings = settings;
 

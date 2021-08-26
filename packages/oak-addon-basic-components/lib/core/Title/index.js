@@ -1,19 +1,22 @@
-import Node from '../Editor/Node';
+import { useBuilder } from '@poool/oak';
+
 import settings from './index.settings';
 
 const Title = ({ element, className }) => {
+  const { getOverrides } = useBuilder();
   const Tag = element.headingLevel || 'h1';
+  const overrides = getOverrides('component', 'title');
+  const props = overrides?.render ? {
+    children: overrides.render(element),
+  } : {
+    dangerouslySetInnerHTML: { __html: element.content },
+  };
 
   return (
-    <div className={className}>
-      <Tag>
-        { typeof element.content === 'string' ? (
-          <Node text={element.content} />
-        ) : element.content.map((c, i) => (
-          <Node { ...c } key={i} />
-        )) }
-      </Tag>
-    </div>
+    <Tag
+      { ...props }
+      className={className}
+    />
   );
 };
 

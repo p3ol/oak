@@ -42,6 +42,12 @@ export default ({ attributes, children, element }) => {
           { children }
         </div>
       );
+    case 'link':
+      return (
+        <a href="#" onClick={e => e.preventDefault()}>
+          {children}
+        </a>
+      );
     default:
       return (
         <div { ...attributes }>{ children }</div>

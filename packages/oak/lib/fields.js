@@ -11,9 +11,24 @@ import Text from './core/Text';
 
 export const FIELD_TEXT = {
   type: 'text',
+  deserialize: elmt => ({ content: '' + elmt.content }),
   render: (props, { field } = {}) => (
     <TextField
       { ...props }
+      placeholder={<Text>{ field.placeholder }</Text>}
+      type={field.valueType || 'text'}
+    />
+  ),
+};
+
+export const FIELD_TEXTAREA = {
+  type: 'textarea',
+  deserialize: elmt => ({ content: '' + elmt.content }),
+  render: (props, { field } = {}) => (
+    <TextField
+      { ...props }
+      tag="textarea"
+      rows={props.rows || 5}
       placeholder={<Text>{ field.placeholder }</Text>}
       type={field.valueType || 'text'}
     />

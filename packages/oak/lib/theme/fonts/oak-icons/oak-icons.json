@@ -2,7 +2,7 @@
   "metadata": {
     "name": "Oak icons",
     "lastOpened": 0,
-    "created": 1623333341987
+    "created": 1629707342436
   },
   "iconSets": [
     {
@@ -846,7 +846,11 @@
         {
           "ligatures": "link, insert_link",
           "id": 164,
-          "order": 0
+          "order": 30,
+          "prevSize": 24,
+          "code": 59673,
+          "name": "link",
+          "tempChar": ""
         },
         {
           "ligatures": "redo",
@@ -855,7 +859,7 @@
           "prevSize": 24,
           "code": 59669,
           "name": "redo",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "remove",
@@ -919,7 +923,7 @@
           "prevSize": 24,
           "code": 59670,
           "name": "undo",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "font_download",
@@ -1358,7 +1362,7 @@
           "prevSize": 24,
           "code": 59651,
           "name": "format_align_center",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_align_justify",
@@ -1367,7 +1371,7 @@
           "prevSize": 24,
           "code": 59652,
           "name": "format_align_justify",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_align_left",
@@ -1376,7 +1380,7 @@
           "prevSize": 24,
           "code": 59653,
           "name": "format_align_left",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_align_right",
@@ -1385,7 +1389,7 @@
           "prevSize": 24,
           "code": 59654,
           "name": "format_align_right",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_bold",
@@ -1394,7 +1398,7 @@
           "prevSize": 24,
           "code": 59655,
           "name": "format_bold",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_clear",
@@ -1418,7 +1422,7 @@
           "prevSize": 24,
           "code": 59656,
           "name": "format_color_text",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_indent_decrease",
@@ -1437,7 +1441,7 @@
           "prevSize": 24,
           "code": 59657,
           "name": "format_italic",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_line_spacing",
@@ -1451,7 +1455,7 @@
           "prevSize": 24,
           "code": 59658,
           "name": "format_list_bulleted",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_list_numbered",
@@ -1460,7 +1464,7 @@
           "prevSize": 24,
           "code": 59659,
           "name": "format_list_numbered",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_paint",
@@ -1474,7 +1478,7 @@
           "prevSize": 24,
           "code": 59660,
           "name": "format_quote",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_size",
@@ -1483,7 +1487,7 @@
           "prevSize": 24,
           "code": 59671,
           "name": "format_size",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_strikethrough",
@@ -1507,7 +1511,7 @@
           "prevSize": 24,
           "code": 59661,
           "name": "format_underlined",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "functions",
@@ -1546,7 +1550,7 @@
           "prevSize": 24,
           "code": 59662,
           "name": "insert_photo",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "mode_comment",
@@ -1600,7 +1604,7 @@
           "prevSize": 24,
           "code": 59663,
           "name": "drag_handle",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "format_shapes",
@@ -1629,7 +1633,7 @@
           "prevSize": 24,
           "code": 59664,
           "name": "text_fields",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "monetization_on",
@@ -1643,7 +1647,7 @@
           "prevSize": 24,
           "code": 59665,
           "name": "title",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "table_chart",
@@ -2597,7 +2601,7 @@
           "prevSize": 24,
           "code": 59668,
           "name": "view_comfy",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "view_compact",
@@ -4281,7 +4285,7 @@
           "prevSize": 24,
           "code": 59666,
           "name": "view_column",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "view_day",
@@ -6310,7 +6314,7 @@
           "prevSize": 24,
           "code": 59672,
           "name": "horizontal_rule",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "hourglass_bottom",

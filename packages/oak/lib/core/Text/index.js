@@ -9,5 +9,6 @@ export default ({
   const handler = name || children;
 
   return typeof handler === 'function'
-    ? handler(getText) : getText(handler, def || handler || null);
+    ? handler(getText)
+    : getText?.(handler, def || handler || null) || def || null;
 };

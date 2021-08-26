@@ -59,7 +59,7 @@ export default ({ className }) => {
       <DropdownToggle tag="span">
         <Tooltip text={(
           <Text
-            name="addons.basicComponents.fields.editor.color"
+            name="addons.richtextField.fields.editor.color"
             default="Color"
           />
         )}

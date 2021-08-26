@@ -7,12 +7,14 @@ import isHotkey from 'is-hotkey';
 import { Text } from '@poool/oak';
 
 import { toggleMark, withHtml } from './editor';
+import { isSerialized, deserialize } from './html';
 import BlockButton from './BlockButton';
 import Element from './Element';
 import Leaf from './Leaf';
 import ColorButton from './ColorButton';
 import MarkButton from './MarkButton';
 import SizeButton from './SizeButton';
+import LinkButton from './LinkButton';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -36,12 +38,13 @@ export default ({
     withHtml(withHistory(withReact(createEditor())))
   ), []);
   const [state, dispatch] = useReducer(mockState, {
-    value: value || [{ children: [{ text: '' }] }],
+    value: (isSerialized(value) ? deserialize(value) : value) ||
+      [{ children: [{ text: '' }] }],
   });
 
   useEffect(() => {
     if (value) {
-      dispatch({ value });
+      dispatch({ value: isSerialized(value) ? deserialize(value) : value });
     }
   }, [value]);
 
@@ -88,7 +91,7 @@ export default ({
             icon="format_bold"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.bold"
+                name="addons.richtextField.fields.editor.bold"
                 default="Bold"
               />
             )}
@@ -98,7 +101,7 @@ export default ({
             icon="format_italic"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.italic"
+                name="addons.richtextField.fields.editor.italic"
                 default="Italic"
               />
             )}
@@ -108,11 +111,12 @@ export default ({
             icon="format_underlined"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.underline"
+                name="addons.richtextField.fields.editor.underline"
                 default="Underline"
               />
             )}
           />
+          <LinkButton />
           <ColorButton />
           <SizeButton
             icon="horizontal_rule"
@@ -120,7 +124,7 @@ export default ({
             currentSize={getTextSize()}
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.decrease"
+                name="addons.richtextField.fields.editor.decrease"
                 default="Decrease size"
               />
             )}
@@ -131,7 +135,7 @@ export default ({
             currentSize={getTextSize()}
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.increase"
+                name="addons.richtextField.fields.editor.increase"
                 default="Increase size"
               />
             )}
@@ -141,7 +145,7 @@ export default ({
             icon="format_align_left"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.left"
+                name="addons.richtextField.fields.editor.left"
                 default="Align left"
               />
             )}
@@ -151,7 +155,7 @@ export default ({
             icon="format_align_center"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.center"
+                name="addons.richtextField.fields.editor.center"
                 default="Align center"
               />
             )}
@@ -161,7 +165,7 @@ export default ({
             icon="format_align_right"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.right"
+                name="addons.richtextField.fields.editor.right"
                 default="Align right"
               />
             )}
@@ -171,7 +175,7 @@ export default ({
             icon="format_align_justify"
             tooltipText={(
               <Text
-                name="addons.basicComponents.fields.editor.justify"
+                name="addons.richtextField.fields.editor.justify"
                 default="Justify"
               />
             )}

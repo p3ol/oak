@@ -1,4 +1,12 @@
-export default ({ text, bold, code, color, italic, size, underline }) => {
+export default ({
+  text,
+  bold,
+  code,
+  color,
+  italic,
+  size,
+  underline,
+}) => {
   if (text === '') {
     return (<br />);
   }
