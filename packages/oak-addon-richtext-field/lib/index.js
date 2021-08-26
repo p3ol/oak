@@ -16,9 +16,9 @@ export default {
 
 export const renderContent = element => typeof element.content === 'string' ? (
   <div dangerouslySetInnerHTML={{ __html: element.content }} />
-) : element.content.map((c, i) => (
+) : Array.isArray(element.content) ? element.content.map((c, i) => (
   <Node { ...c } key={i} />
-));
+)) : null;
 
 export { serialize, deserialize };
 
