@@ -80,17 +80,7 @@ export const serialize = (node = []) => {
       res = string;
     }
 
-    if (node.link) {
-      const attributes = []
-        .concat(`href="${node.link}"`)
-        .concat(node.target ? `target="${node.target}"` : '')
-        .filter(v => !!v)
-        .join(' ');
-
-      return `<a ${attributes}>${res}</a>`;
-    } else {
-      return res;
-    }
+    return res;
   }
 
   const children = node.children?.map(n => serialize(n)).join('');

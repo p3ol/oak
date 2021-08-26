@@ -62,7 +62,6 @@ export const toggleLink = (editor, infos) => {
       target: infos.target,
     }, { split: true });
   }
-
 };
 
 export const toggleBlock = (editor, format) => {
