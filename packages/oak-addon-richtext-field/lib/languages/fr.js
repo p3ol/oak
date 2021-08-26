@@ -17,6 +17,8 @@ export default {
           center: 'Aligner au centre',
           right: 'Aligner à droite',
           justify: 'Justifier',
+          link: 'Lien',
+          blank: 'Ouvrir dans une nouvelle fenêtre',
         },
       },
     },

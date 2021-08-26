@@ -2,7 +2,11 @@ import { Node, Text } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const ELEMENT_TAGS = {
-  A: el => ({ type: 'link', url: el.getAttribute('href') }),
+  A: el => ({
+    type: 'link',
+    url: el.getAttribute('href'),
+    target: el.getAttribute('target'),
+  }),
   BLOCKQUOTE: () => ({ type: 'quote' }),
   LI: () => ({ type: 'list-item' }),
   OL: () => ({ type: 'numbered-list' }),
@@ -65,13 +69,17 @@ export const serialize = (node = []) => {
 
     if (node.color) styles += `color:${node.color};`;
 
+    let res = '';
+
     if (styles.length > 0) {
       styles = ` style="${styles}"`;
 
-      return `<span${styles}>${string}</span>`;
+      res = `<span${styles}>${string}</span>`;
     } else {
-      return string;
+      res = string;
     }
+
+    return res;
   }
 
   const children = node.children?.map(n => serialize(n)).join('');
@@ -86,8 +94,15 @@ export const serialize = (node = []) => {
       return `<blockquote><p>${children}</p></blockquote>`;
     case 'paragraph':
       return `<div>${children}</div>`;
-    case 'link':
-      return `<a href="${node.url}">${children}</a>`;
+    case 'link': {
+      const attributes = []
+        .concat(`href="${node.url}"`)
+        .concat(node.target ? `target="${node.target}"` : '')
+        .filter(v => !!v)
+        .join(' ');
+
+      return `<a ${attributes}>${children}</a>`;
+    }
     default:
       return children;
   }

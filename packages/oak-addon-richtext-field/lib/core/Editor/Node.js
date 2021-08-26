@@ -30,6 +30,10 @@ const Node = ({ type, text, children, ...rest }) => {
       return (
         <ol>{ children }</ol>
       );
+    case 'link':
+      return (
+        <a href="#" onClick={e => e.preventDefault()}>{ children }</a>
+      );
     case 'text-center':
       return (
         <div style={{ textAlign: 'center' }}>{ children }</div>

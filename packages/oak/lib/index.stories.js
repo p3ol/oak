@@ -4,7 +4,7 @@ import { SelectField } from '@poool/junipero';
 import { render } from './';
 import basicComponents, { localeFr as basicFrench }
   from '../../oak-addon-basic-components/lib';
-import richTextField, { renderContent }
+import richTextField, { renderContent, localeFr as editorFrench }
   from '../../oak-addon-richtext-field/lib';
 import french from './languages/fr';
 
@@ -248,7 +248,9 @@ export const basicConfig = () => {
           placeholder="Language"
           options={[
             { title: 'Default (english)', value: {} },
-            { title: 'French', value: { ...french, ...basicFrench } },
+            {
+              title: 'French',
+              value: { ...french, ...basicFrench, ...editorFrench } },
           ]}
           parseTitle={o => o.title}
           parseValue={o => o.value}
