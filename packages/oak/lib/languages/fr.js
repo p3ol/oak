@@ -135,6 +135,7 @@ export default {
     responsive: {
       title: 'Responsive',
       fluid: 'Flexible',
+      auto: 'Adaptée au contenu',
       show: 'Affiché',
       hide: 'Caché',
       xl: 'Écrans extra-larges',
