@@ -116,6 +116,7 @@ export default ({
               />
             )}
           />
+          <LinkButton />
           <ColorButton />
           <SizeButton
             icon="horizontal_rule"
@@ -179,7 +180,6 @@ export default ({
               />
             )}
           />
-          <LinkButton />
         </div>
         <Editable
           onDrop={e => e.preventDefault()}
