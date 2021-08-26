@@ -11,6 +11,7 @@ import {
   Tab,
   mockState,
   cloneDeep,
+  get,
   set,
   mergeDeep,
   omit,
@@ -34,7 +35,12 @@ export default forwardRef(({
   onSave,
   onCancel,
 }, ref) => {
-  const { setElement, _settingsHolderRef, overrides } = useBuilder();
+  const {
+    setElement,
+    overrides,
+    getOverrides,
+    _settingsHolderRef,
+  } = useBuilder();
   const options = useOptions();
   const tabs = useMemo(() => [
     mergeDeep(
@@ -78,15 +84,29 @@ export default forwardRef(({
       ?.sort((a, b) => (b.priority || 0) - (a.priority || 0))
   ), [tabs, overrides]);
 
+  const getFieldKeyTypes = useCallback(() => (
+    getFields().map(f => [f.key, f.type]).filter(f => f.[0])
+  ), [getFields]);
+
+  const normalizeElement = (elmt, method) =>
+    getFieldKeyTypes().reduce((e, [key, type]) => {
+      const field = getOverrides('component', element.type, {
+        output: 'field', field: { key, type },
+      });
+      const value = get(e, key);
+
+      if (typeof field[method] === 'function' && value) {
+        set(e, key, field[method](value));
+      }
+
+      return e;
+    }, cloneDeep(elmt));
+
   const deserialize = elmt =>
-    getFields().reduce((e, field) => (
-      field.deserialize ? field.deserialize(e) : e
-    ), elmt);
+    normalizeElement(elmt, 'deserialize');
 
   const serialize = elmt =>
-    getFields().reduce((e, field) => (
-      field.serialize ? field.serialize(e) : e
-    ), elmt);
+    normalizeElement(elmt, 'serialize');
 
   const onUpdate_ = elmt => {
     dispatch({ element: elmt });

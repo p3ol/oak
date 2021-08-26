@@ -1,10 +1,6 @@
-import { serialize as s, deserialize as d } from './core/Editor/html';
+import { serialize, deserialize } from './core/Editor/html';
 import Editor from './core/Editor';
 import Node from './core/Editor/Node';
-
-const serialize = elmt => ({ content: s(elmt.content) });
-
-const deserialize = elmt => ({ content: d(elmt.content) });
 
 export default {
   fieldTypes: [{

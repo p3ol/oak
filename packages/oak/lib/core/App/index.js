@@ -406,11 +406,30 @@ export default forwardRef((options, ref) => {
   const setTexts = texts =>
     dispatch({ texts });
 
-  const getOverrides = useCallback((type, item) => (
-    state.overrides
+  const getOverrides = (type, item, opts = {}) => {
+    const overrides = state.overrides
       ?.filter(o => o.type === type && filterOverride(type, o, item))
-      ?.pop()
-  ), [state.overrides]);
+      ?.pop();
+
+    switch (type) {
+      case 'component':
+        switch (opts.output) {
+          case 'field': {
+            const field = overrides?.fields
+              .find(f => f.key === opts.field?.key);
+
+            return Object.assign({},
+              getField(field?.type || opts.field?.type),
+              getOverrides(field?.type || opts.field?.type));
+          }
+          default:
+            return overrides;
+        }
+
+      case 'field':
+        return overrides;
+    }
+  };
 
   const setOverrides = overrides =>
     dispatch({ overrides });

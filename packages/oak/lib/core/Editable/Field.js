@@ -10,12 +10,9 @@ export default ({
   editableRef,
 }) => {
   const options = useOptions();
-  const { getField, getOverrides } = useBuilder();
-  const componentOverrides = getOverrides('component', element.type);
-  const type = componentOverrides?.fields
-    .find(f => f.key === field.key)?.type || field.type;
-  const renderer = Object.assign(getField(type) || field,
-    getOverrides('field', field.type));
+  const { getOverrides } = useBuilder();
+  const renderer = getOverrides('component', element.type,
+    { output: 'field', field });
 
   const commonProps = {
     id: field.id,
