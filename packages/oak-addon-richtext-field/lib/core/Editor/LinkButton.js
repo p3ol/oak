@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import { useSlate } from 'slate-react';
-import { Editor, Element, Transforms, Range, Operation } from 'slate';
+import { Editor, Element, Transforms, Range } from 'slate';
 import {
   TextField,
   ToggleField,
@@ -122,21 +122,36 @@ export default ({ className }) => {
             )}
           >
             <i className="oak-icons">
-              format_bold
+              link
             </i>
           </a>
         </Tooltip>
       </DropdownToggle>
       <DropdownMenu className="oak-link-input">
         <TextField
-          placeholder="Link"
+          placeholder={(
+            <Text
+              name="addons.richtextField.fields.editor.link"
+              default="Link"
+            />
+          )}
           value={state.link}
           onChange={onChange.bind(null, 'link')}
           className="oak-link-url"
         />
         <ToggleField
-          checkedLabel="Open in new window"
-          uncheckedLabel="Open in new window"
+          checkedLabel={(
+            <Text
+              name="addons.richtextField.fields.editor.blank"
+              default="Open in a new window"
+            />
+          )}
+          uncheckedLabel={(
+            <Text
+              name="addons.richtextField.fields.editor.blank"
+              default="Open in a new window"
+            />
+          )}
           checked={state.target === '_blank'}
           onChange={onChange.bind(null, 'target')}
           value="_blank"
