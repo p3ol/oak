@@ -49,6 +49,7 @@ export default {
             flexStart: 'En haut',
             center: 'Centré',
             flexEnd: 'En bas',
+            stretch: 'Étiré',
           },
           gutters: {
             title: 'Espacement inter-colonnes',
@@ -135,6 +136,7 @@ export default {
     responsive: {
       title: 'Responsive',
       fluid: 'Flexible',
+      auto: 'Adaptée au contenu',
       show: 'Affiché',
       hide: 'Caché',
       xl: 'Écrans extra-larges',
