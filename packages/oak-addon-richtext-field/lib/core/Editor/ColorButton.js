@@ -43,12 +43,7 @@ export default ({ className }) => {
     setColor(selectedColor);
   };
 
-  const getSelectedColor = () => {
-    const color = Editor.marks(editor)?.color;
-    const selectedColor = color || '#000000';
-
-    return selectedColor;
-  };
+  const getSelectedColor = () => Editor.marks(editor)?.color || '#000000';
 
   return (
     <Dropdown className="oak-color-field">
