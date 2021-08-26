@@ -101,7 +101,7 @@ export const serialize = (node = []) => {
         .filter(v => !!v)
         .join(' ');
 
-      return `<a ${attributes}" >${children}</a>`;
+      return `<a ${attributes}>${children}</a>`;
     }
     default:
       return children;
