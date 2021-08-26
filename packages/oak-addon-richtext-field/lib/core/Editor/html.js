@@ -24,7 +24,6 @@ const TEXT_TAGS = {
   STRONG: () => ({ bold: true }),
   B: () => ({ bold: true }),
   U: () => ({ underline: true }),
-  A: ({ href, target }) => ({ link: href, target }),
   SPAN: ({ style = {} }) => ({
     ...(style.color ? { color: style.color } : {}),
     ...(style.fontSize ? { size: style.fontSize } : {}),
@@ -96,10 +95,13 @@ export const serialize = (node = []) => {
     case 'paragraph':
       return `<div>${children}</div>`;
     case 'link': {
-      const target =
-        node.target && node.target !== '' ? 'target="' + node.target + '"' : '';
+      const attributes = []
+        .concat(`href="${node.url}"`)
+        .concat(node.target ? `target="${node.target}"` : '')
+        .filter(v => !!v)
+        .join(' ');
 
-      return `<a ${target} href="${node.url}" >${children}</a>`;
+      return `<a ${attributes}" >${children}</a>`;
     }
     default:
       return children;

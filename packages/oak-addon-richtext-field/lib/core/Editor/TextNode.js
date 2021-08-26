@@ -6,7 +6,6 @@ export default ({
   italic,
   size,
   underline,
-  link,
 }) => {
   if (text === '') {
     return (<br />);
@@ -53,12 +52,6 @@ export default ({
   if (size) {
     text = (
       <span style={{ fontSize: size }}>{ text }</span>
-    );
-  }
-
-  if (link) {
-    text = (
-      <a href="#" onClick={e => e.preventDefault()}>{ text }</a>
     );
   }
 
