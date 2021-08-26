@@ -49,6 +49,7 @@ export default {
             flexStart: 'En haut',
             center: 'Centré',
             flexEnd: 'En bas',
+            stretch: 'Étiré',
           },
           gutters: {
             title: 'Espacement inter-colonnes',
