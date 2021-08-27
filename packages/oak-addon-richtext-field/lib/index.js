@@ -1,3 +1,5 @@
+import { sanitizeHTML } from '@poool/oak';
+
 import { serialize, deserialize } from './core/Editor/html';
 import Editor from './core/Editor';
 import Node from './core/Editor/Node';
@@ -15,10 +17,10 @@ export default {
 };
 
 export const renderContent = element => typeof element.content === 'string' ? (
-  <div dangerouslySetInnerHTML={{ __html: element.content }} />
-) : Array.isArray(element.content) ? element.content.map((c, i) => (
+  <div dangerouslySetInnerHTML={{ __html: sanitizeHTML(element.content) }} />
+) : element.content.map((c, i) => (
   <Node { ...c } key={i} />
-)) : null;
+));
 
 export { serialize, deserialize };
 

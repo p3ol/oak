@@ -1,7 +1,6 @@
 import { createRef } from 'react';
 import ReactDOM from 'react-dom';
 
-import { useOptions, useBuilder, useElement } from './hooks';
 import App from './core/App';
 import Text from './core/Text';
 
@@ -95,6 +94,8 @@ export const render = (elmt, options = {}) => {
 
 export { Text, oak as Lib, App as Builder };
 
-export { useOptions, useBuilder, useElement };
+export { useOptions, useBuilder, useElement } from './hooks';
+
+export { sanitizeHTML } from './utils';
 
 export { default as localeFr } from './languages/fr';

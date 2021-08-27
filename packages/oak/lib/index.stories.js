@@ -4,7 +4,7 @@ import { SelectField } from '@poool/junipero';
 import { render } from './';
 import basicComponents, { localeFr as basicFrench }
   from '../../oak-addon-basic-components/lib';
-import richTextField, { renderContent, localeFr as editorFrench }
+import richTextField, { localeFr as editorFrench }
   from '../../oak-addon-richtext-field/lib';
 import french from './languages/fr';
 
@@ -32,7 +32,10 @@ export const basicConfig = () => {
               content: [
                 {
                   type: 'title',
-                  content: 'Abonne toi morray',
+                  content: `
+                    Subscribe you <a href="http://google.fr">punk!</a>
+                    <style>body { background: #F00; }</style>
+                  `,
                   headingLevel: 'h1',
                   settings: {},
                   id: 'b5f3ac44-d376-44e6-802a-607f7ffcf494',
@@ -82,7 +85,7 @@ export const basicConfig = () => {
                 },
                 {
                   type: 'text',
-                  content: 'I want this word underlined',
+                  content: 'I want this word <u>underlined</u>',
                   settings: {},
                   id: '9e1f94d6-c021-43f4-8297-9954f87ea56b',
                 },
@@ -189,7 +192,7 @@ export const basicConfig = () => {
               content: [
                 {
                   type: 'text',
-                  content: "we (don't) care your privacy",
+                  content: 'we do care about your privacy',
                   settings: {},
                   id: '27cd83d4-25b9-477f-8077-2bf7119be6e8',
                 },
@@ -206,7 +209,6 @@ export const basicConfig = () => {
         overrides: [{
           type: 'component',
           components: ['text', 'title', 'button'],
-          render: renderContent,
           fields: [{
             key: 'content',
             type: 'richtext',

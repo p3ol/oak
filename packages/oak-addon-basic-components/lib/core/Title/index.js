@@ -1,4 +1,4 @@
-import { useBuilder } from '@poool/oak';
+import { useBuilder, sanitizeHTML } from '@poool/oak';
 
 import settings from './index.settings';
 
@@ -9,7 +9,7 @@ const Title = ({ element, className }) => {
   const props = overrides?.render ? {
     children: overrides.render(element),
   } : {
-    dangerouslySetInnerHTML: { __html: element.content },
+    dangerouslySetInnerHTML: { __html: sanitizeHTML(element.content) },
   };
 
   return (
