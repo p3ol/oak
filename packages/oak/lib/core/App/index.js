@@ -226,10 +226,17 @@ export default forwardRef((options, ref) => {
   };
 
   const duplicateElement = (elmt, { parent = state.content } = {}) => {
+    let newElmt = normalizeElement(cloneDeep(elmt), { resetIds: true });
+    const component = getComponent(elmt.type);
+
+    if (typeof component.duplicate === 'function') {
+      newElmt = component.duplicate(newElmt);
+    }
+
     parent.splice(
       parent.findIndex(e => e.id === elmt.id),
       0,
-      normalizeElement(cloneDeep(elmt), { resetIds: true })
+      newElmt
     );
     onChange();
   };
