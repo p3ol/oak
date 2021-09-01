@@ -14,6 +14,7 @@ export default forwardRef(({
     { ...props }
     ref={ref}
     href="#"
+    onClick={e => e.preventDefault()}
     draggable={draggable ?? false}
     className={classNames('oak-option', className)}
   >
