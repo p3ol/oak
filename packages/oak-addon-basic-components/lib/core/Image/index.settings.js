@@ -5,7 +5,7 @@ export default {
   fields: [{
     type: 'image',
     key: 'url',
-    default: [],
+    default: '',
     label: t => t(prefix + '.image.title', 'Image'),
   }, {
     type: 'select',
