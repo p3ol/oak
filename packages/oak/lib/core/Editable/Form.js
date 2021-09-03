@@ -85,7 +85,7 @@ export default forwardRef(({
   ), [tabs, overrides]);
 
   const getFieldKeyTypes = useCallback(() => (
-    getFields().map(f => [f.key, f.type]).filter(f => f.[0])
+    getFields().map(f => [f.key, f.type]).filter(f => f[0])
   ), [getFields]);
 
   const normalizeElement = (elmt, method) =>
