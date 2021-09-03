@@ -30,7 +30,7 @@
     "react-popper": "^2.2.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.15.3",
+    "@babel/runtime-corejs3": "7.15.4",
     "@poool/junipero": "2.0.0-rc.12",
     "@poool/junipero-hooks": "2.0.0-rc.10",
     "@poool/junipero-utils": "2.0.0-rc.10",
