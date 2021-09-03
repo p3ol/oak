@@ -1,5 +1,5 @@
 export default {
-  title: t => t('core.components.row.settings.title', 'Row options'),
+  title: t => t('core.components.row.settings.title', 'Row settings'),
   popperSettings: {
     placement: 'right-start',
     modifiers: [{

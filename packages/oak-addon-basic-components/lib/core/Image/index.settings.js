@@ -1,7 +1,7 @@
 const prefix = 'addons.basicComponents.components.image.settings';
 
 export default {
-  title: t => t(prefix + '.title', 'Image options'),
+  title: t => t(prefix + '.title', 'Image settings'),
   fields: [{
     type: 'image',
     key: 'url',

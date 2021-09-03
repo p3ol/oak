@@ -1,7 +1,7 @@
 const prefix = 'addons.basicComponents.components.title.settings';
 
 export default {
-  title: t => t(prefix + '.title', 'Title options'),
+  title: t => t(prefix + '.title', 'Title settings'),
   fields: [{
     type: 'select',
     key: 'headingLevel',

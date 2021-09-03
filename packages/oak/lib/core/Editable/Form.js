@@ -147,7 +147,7 @@ export default forwardRef(({
         ) : (
           <Text
             name="core.components.default.settings.title"
-            default="Element options"
+            default="Settings"
           />
         ) }
       </div>
