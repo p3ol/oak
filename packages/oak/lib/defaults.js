@@ -19,7 +19,7 @@ export const DEFAULT_SETTINGS = {
 export const DEFAULT_STYLES_SETTINGS = {
   title: t => t('core.styling.title', 'Styling'),
   fields: [{
-    label: t => t('core.styling.paddings.title', 'Inside spacings'),
+    label: t => t('core.styling.paddings.title', 'Inside spacing'),
     fields: [{
       type: 'text',
       key: 'styles.paddingTop',
@@ -38,7 +38,7 @@ export const DEFAULT_STYLES_SETTINGS = {
       placeholder: t => t('core.styling.paddings.left', 'Left'),
     }],
   }, {
-    label: t => t('core.styling.margins.title', 'Outside spacings'),
+    label: t => t('core.styling.margins.title', 'Outside spacing'),
     fields: [{
       type: 'text',
       key: 'styles.marginTop',
@@ -86,7 +86,7 @@ export const DEFAULT_STYLES_SETTINGS = {
       placeholder: t =>
         t('core.styling.background.position.title', 'Background position'),
       options: [{
-        title: t => t('core.styling.background.position.center', 'Center'),
+        title: t => t('core.styling.background.position.center', 'Centered'),
         value: 'center',
       }, {
         title: t => t('core.styling.background.position.top', 'Top'),
@@ -114,11 +114,11 @@ export const DEFAULT_STYLES_SETTINGS = {
         value: 'left center',
       }, {
         title: t =>
-          t('core.styling.background.position.leftTop', 'Left top'),
+          t('core.styling.background.position.leftTop', 'Top left'),
         value: 'left top',
       }, {
         title: t =>
-          t('core.styling.background.position.leftBottom', 'Left bottom'),
+          t('core.styling.background.position.leftBottom', 'Bottom left'),
         value: 'left bottom',
       }, {
         title: t =>
@@ -126,11 +126,11 @@ export const DEFAULT_STYLES_SETTINGS = {
         value: 'right center',
       }, {
         title: t =>
-          t('core.styling.background.position.rightTop', 'Right top'),
+          t('core.styling.background.position.rightTop', 'Top right'),
         value: 'right top',
       }, {
         title: t =>
-          t('core.styling.background.position.rightBottom', 'Right bottom'),
+          t('core.styling.background.position.rightBottom', 'Bottom right'),
         value: 'right bottom',
       }],
     }, {

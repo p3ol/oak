@@ -100,7 +100,7 @@ export default {
           title: 'Taille',
           default: 'Par défaut',
           cover: 'Remplir',
-          contain: 'S\'adapter',
+          contain: 'Adapter',
         },
         position: {
           title: 'Position',
