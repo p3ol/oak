@@ -54,7 +54,7 @@
     "rollup-plugin-postcss": "4.0.1",
     "rollup-plugin-terser": "7.0.2",
     "style-loader": "3.2.1",
-    "stylus": "0.54.8",
+    "stylus": "0.55.0",
     "stylus-loader": "6.1.0",
     "webpack": "5.52.0"
   }
