@@ -21,7 +21,7 @@ const responsive = [
 ];
 
 export default {
-  title: t => t('core.components.col.settings.title', 'Col settings'),
+  title: t => t('core.components.col.settings.title', 'Col options'),
   popperSettings: {
     placement: 'bottom-end',
     modifiers: [{
@@ -35,7 +35,7 @@ export default {
     type: 'select',
     key: 'size',
     default: 'fluid',
-    label: t => t('core.components.col.settings.size.title', 'Size'),
+    label: t => t('core.components.col.settings.size.title', 'Column size'),
     options: [
       {
         title: t => t('core.responsive.fluid', 'Flexible'),
@@ -56,32 +56,31 @@ export default {
     fields: [{
       key: 'responsive.xl',
       type: 'select',
-      label: t => t('core.responsive.xl', 'Extra large screens'),
+      label: t => t('core.responsive.xl', 'Extra-large screens'),
       default: 'fluid',
       options: responsive,
     }, {
       key: 'responsive.lg',
       type: 'select',
-      label: t => t('core.responsive.lg', 'Large screens (computers)'),
+      label: t => t('core.responsive.lg', 'Large screens (desktop)'),
       default: 'fluid',
       options: responsive,
     }, {
       key: 'responsive.md',
       type: 'select',
-      label: t => t('core.responsive.md', 'Medium screens (tablets)'),
+      label: t => t('core.responsive.md', 'Medium screens (tablet)'),
       default: 'fluid',
       options: responsive,
     }, {
       key: 'responsive.sm',
       type: 'select',
-      label: t => t('core.responsive.sm', 'Small screens (cell phones)'),
+      label: t => t('core.responsive.sm', 'Small screens (phones)'),
       default: 'fluid',
       options: responsive,
     }, {
       key: 'responsive.xs',
       type: 'select',
-      label: t => t('core.responsive.xs',
-        'Very small screens (old fashioned cell phones)'),
+      label: t => t('core.responsive.xs', 'Extra-small screens (old phones)'),
       default: 'fluid',
       options: responsive,
     }],

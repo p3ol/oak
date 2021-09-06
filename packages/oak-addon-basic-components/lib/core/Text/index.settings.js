@@ -1,7 +1,7 @@
 const prefix = 'addons.basicComponents.components.text.settings';
 
 export default {
-  title: t => t(prefix + '.title', 'Text settings'),
+  title: t => t(prefix + '.title', 'Text options'),
   fields: [{
     type: 'textarea',
     key: 'content',

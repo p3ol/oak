@@ -179,7 +179,7 @@ export const DEFAULT_RESPONSIVE_SETTINGS = {
   fields: [{
     key: 'responsive.xl',
     type: 'select',
-    label: t => t('core.responsive.xl', 'Extra large screens'),
+    label: t => t('core.responsive.xl', 'Extra-large screens'),
     default: 'show',
     options: [{
       title: t => t('core.responsive.show', 'Visible'),
@@ -191,7 +191,7 @@ export const DEFAULT_RESPONSIVE_SETTINGS = {
   }, {
     key: 'responsive.lg',
     type: 'select',
-    label: t => t('core.responsive.lg', 'Large screens (computers)'),
+    label: t => t('core.responsive.lg', 'Large screens (desktop)'),
     default: 'show',
     options: [{
       title: t => t('core.responsive.show', 'Visible'),
@@ -203,7 +203,7 @@ export const DEFAULT_RESPONSIVE_SETTINGS = {
   }, {
     key: 'responsive.md',
     type: 'select',
-    label: t => t('core.responsive.md', 'Medium screens (tablets)'),
+    label: t => t('core.responsive.md', 'Medium screens (tablet)'),
     default: 'show',
     options: [{
       title: t => t('core.responsive.show', 'Visible'),
@@ -215,7 +215,7 @@ export const DEFAULT_RESPONSIVE_SETTINGS = {
   }, {
     key: 'responsive.sm',
     type: 'select',
-    label: t => t('core.responsive.sm', 'Small screens (cell phones)'),
+    label: t => t('core.responsive.sm', 'Small screens (phones)'),
     default: 'show',
     options: [{
       title: t => t('core.responsive.show', 'Visible'),
@@ -227,8 +227,7 @@ export const DEFAULT_RESPONSIVE_SETTINGS = {
   }, {
     key: 'responsive.xs',
     type: 'select',
-    label: t => t('core.responsive.xs',
-      'Very small screens (old fashioned cell phones)'),
+    label: t => t('core.responsive.xs', 'Extra-small screens (old phones)'),
     default: 'show',
     options: [{
       title: t => t('core.responsive.show', 'Visible'),

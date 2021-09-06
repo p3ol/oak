@@ -1,6 +1,6 @@
 export default {
   title: t =>
-    t('core.components.emptySpace.settings.title', 'Blank space settings'),
+    t('core.components.emptySpace.settings.title', 'Blank space options'),
   fields: [{
     type: 'text',
     key: 'settings.height',

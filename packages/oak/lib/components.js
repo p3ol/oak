@@ -47,7 +47,7 @@ export const COMPONENT_EMPTY_SPACE = {
 
 export const GROUP_CORE = {
   id: 'core',
-  name: t => t('core.groups.core.title', 'Basic components'),
+  name: t => t('core.groups.core.title', 'Core components'),
   type: 'group',
   components: [
     COMPONENT_ROW,
