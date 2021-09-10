@@ -32,7 +32,7 @@
     "@poool/junipero": "2.0.0-rc.12",
     "@poool/junipero-hooks": "2.0.0-rc.10",
     "@poool/junipero-utils": "2.0.0-rc.10",
-    "core-js": "3.17.2"
+    "core-js": "3.17.3"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
