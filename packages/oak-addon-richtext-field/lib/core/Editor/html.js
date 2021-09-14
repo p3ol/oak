@@ -41,6 +41,18 @@ const ALIGNMENTS = {
   'text-justify': 'justify',
 };
 
+const addAttrsToChildren = (child, attrs) => {
+  if (child.children) {
+    child.children = child.children.map(item => {
+      const itemWithAttrs = addAttrsToChildren(item, attrs);
+
+      return { ...itemWithAttrs, ...attrs };
+    });
+  }
+
+  return child;
+};
+
 export const serialize = (node = []) => {
   if (isSerialized(node)) {
     return node;
@@ -122,7 +134,7 @@ export const deserializeNode = el => {
   }
 
   const children = Array.from(el.childNodes)
-    .map(deserializeNode);
+    .map(deserializeNode).flat();
 
   if (el.nodeName === 'BODY') {
     return jsx('fragment', {}, children);
@@ -137,7 +149,14 @@ export const deserializeNode = el => {
   if (TEXT_TAGS[el.nodeName]) {
     const attrs = TEXT_TAGS[el.nodeName](el);
 
-    return children.map(child => jsx('text', attrs, child));
+    return children.map(child => {
+
+      if (child.children) {
+        return addAttrsToChildren(child, attrs);
+      }
+
+      return jsx('text', attrs, child);
+    });
   }
 
   return children;
