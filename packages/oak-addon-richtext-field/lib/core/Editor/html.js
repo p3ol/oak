@@ -41,17 +41,13 @@ const ALIGNMENTS = {
   'text-justify': 'justify',
 };
 
-const addAttrsToChildren = (child, attrs) => {
-  if (child.children) {
-    child.children = child.children.map(item => {
-      const itemWithAttrs = addAttrsToChildren(item, attrs);
-
-      return { ...itemWithAttrs, ...attrs };
-    });
-  }
-
-  return child;
-};
+const addAttrsToChildren = (child, attrs) => child.children ? {
+  ...child,
+  children: child.children.map(c => ({
+    ...addAttrsToChildren(c, attrs),
+    ...attrs,
+  })),
+} : child;
 
 export const serialize = (node = []) => {
   if (isSerialized(node)) {
@@ -149,14 +145,10 @@ export const deserializeNode = el => {
   if (TEXT_TAGS[el.nodeName]) {
     const attrs = TEXT_TAGS[el.nodeName](el);
 
-    return children.map(child => {
+    return children.map(child => child.children
+      ? addAttrsToChildren(child, attrs)
+      : jsx('text', attrs, child));
 
-      if (child.children) {
-        return addAttrsToChildren(child, attrs);
-      }
-
-      return jsx('text', attrs, child);
-    });
   }
 
   return children;
