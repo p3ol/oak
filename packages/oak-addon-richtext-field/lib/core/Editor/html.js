@@ -145,7 +145,7 @@ export const deserializeNode = el => {
   if (TEXT_TAGS[el.nodeName]) {
     const attrs = TEXT_TAGS[el.nodeName](el);
 
-    return children.map(child => child.children
+    return children.map(child => child?.children
       ? addAttrsToChildren(child, attrs)
       : jsx('text', attrs, child));
 
