@@ -41,6 +41,14 @@ const ALIGNMENTS = {
   'text-justify': 'justify',
 };
 
+const addAttrsToChildren = (child, attrs) => child.children ? {
+  ...child,
+  children: child.children.map(c => ({
+    ...addAttrsToChildren(c, attrs),
+    ...attrs,
+  })),
+} : child;
+
 export const serialize = (node = []) => {
   if (isSerialized(node)) {
     return node;
@@ -122,7 +130,7 @@ export const deserializeNode = el => {
   }
 
   const children = Array.from(el.childNodes)
-    .map(deserializeNode);
+    .map(deserializeNode).flat();
 
   if (el.nodeName === 'BODY') {
     return jsx('fragment', {}, children);
@@ -137,7 +145,10 @@ export const deserializeNode = el => {
   if (TEXT_TAGS[el.nodeName]) {
     const attrs = TEXT_TAGS[el.nodeName](el);
 
-    return children.map(child => jsx('text', attrs, child));
+    return children.map(child => child?.children
+      ? addAttrsToChildren(child, attrs)
+      : jsx('text', attrs, child));
+
   }
 
   return children;
