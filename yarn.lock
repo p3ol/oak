@@ -1485,14 +1485,6 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
-"@babel/runtime-corejs3@7.14.9":
-  version "7.14.9"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.14.9.tgz#fb21b1cf11650dcb8fcf4de2e6b3b8cf411da3f3"
-  integrity sha512-64RiH2ON4/y8qYtoa8rUiyam/tUVyGqRyNYhe+vCRGmjnV4bUlZvY+mwd0RrmLoCpJpdq3RsrNqKb7SJdw/4kw==
-  dependencies:
-    core-js-pure "^3.16.0"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime-corejs3@7.15.4":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.15.4.tgz#403139af262b9a6e8f9ba04a6fdcebf8de692bf1"
@@ -2695,31 +2687,31 @@
   dependencies:
     eslint-rule-composer "0.3.0"
 
-"@poool/junipero-hooks@2.0.0-rc.10", "@poool/junipero-hooks@^2.0.0-rc.10":
-  version "2.0.0-rc.10"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.10.tgz#fcc2e9ac790073f05f0bfbcd1ec99da30b90c980"
-  integrity sha512-pR7DrhMTlh3W3P0MeASboQkS0yY24x0hq3hEEabY9HnYTMmEmB8TaPrxaE8SHapIdnSOd5uS49ULMQKnSVeryQ==
+"@poool/junipero-hooks@2.0.0-rc.14", "@poool/junipero-hooks@^2.0.0-rc.14":
+  version "2.0.0-rc.14"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.14.tgz#76494421a3b9de15d6e1bf1d85f9cba2c7ed95ec"
+  integrity sha512-VeM++RS3wahhS5kqOGeAGy1LnK0IS6VBBh7qgrgZIhh4H/ls4gqTeVAjg/x341taZWwa1y7bI0/KZ6Wlx+78/g==
   dependencies:
-    "@babel/runtime-corejs3" "7.14.9"
-    core-js "3.16.0"
+    "@babel/runtime-corejs3" "7.15.4"
+    core-js "3.18.1"
 
-"@poool/junipero-utils@2.0.0-rc.10", "@poool/junipero-utils@^2.0.0-rc.10":
-  version "2.0.0-rc.10"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.10.tgz#f348fec02888df4b34d7e9cfea7d7bf45a360f11"
-  integrity sha512-M3TNc2W469hlDPX1grVjt/UP4lJx9DipcG5wQUzrOALT62OhDYg/ENlizctGGAmp2QLkrbqagasCazTI7+QUcw==
+"@poool/junipero-utils@2.0.0-rc.14", "@poool/junipero-utils@^2.0.0-rc.14":
+  version "2.0.0-rc.14"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.14.tgz#ef0550659f8385a44e97dcd8acae2ddf4ea39e12"
+  integrity sha512-fXcCTCWlNRLaX5E/UW/xAAjQviKfHJbQVwdXBGZZPzS+VUGw4IGQxchgOK8L+qfdhNXE4cmxAbKxjtspmSJFXg==
   dependencies:
-    "@babel/runtime-corejs3" "7.14.9"
-    core-js "3.16.0"
+    "@babel/runtime-corejs3" "7.15.4"
+    core-js "3.18.1"
 
-"@poool/junipero@2.0.0-rc.12":
-  version "2.0.0-rc.12"
-  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.12.tgz#33d9d716a0c3e78740a5975422265c717060f528"
-  integrity sha512-3ZTVlQ3kWWucJtoGN0kPNDO1hBwggYU7GGMZyYhLR1P5h+4u94780R2J7OgPNFusDPns91yocf/XxOLVPNo5OA==
+"@poool/junipero@2.0.0-rc.14":
+  version "2.0.0-rc.14"
+  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.14.tgz#4f574f8139e54a751525999aa1badadf2a379d35"
+  integrity sha512-dEGuZz4NDfujQm0covNpN7LXHX864UpYSdUXxWXdnM0c07CatWTJFmvcHTRrwMN2sbpxBrN2ssJwK2GMWulpuw==
   dependencies:
-    "@babel/runtime-corejs3" "7.14.9"
-    "@poool/junipero-hooks" "^2.0.0-rc.10"
-    "@poool/junipero-utils" "^2.0.0-rc.10"
-    core-js "3.16.0"
+    "@babel/runtime-corejs3" "7.15.4"
+    "@poool/junipero-hooks" "^2.0.0-rc.14"
+    "@poool/junipero-utils" "^2.0.0-rc.14"
+    core-js "3.18.1"
     prop-types "15.7.2"
 
 "@popperjs/core@2.10.1":
@@ -5839,15 +5831,15 @@ core-js-pure@^3.8.2:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.14.0.tgz#72bcfacba74a65ffce04bf94ae91d966e80ee553"
   integrity sha512-YVh+LN2FgNU0odThzm61BsdkwrbrchumFq3oztnE9vTKC4KS2fvnPmcx8t6jnqAyOTCTF4ZSiuK8Qhh7SNcL4g==
 
-core-js@3.16.0:
-  version "3.16.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.16.0.tgz#1d46fb33720bc1fa7f90d20431f36a5540858986"
-  integrity sha512-5+5VxRFmSf97nM8Jr2wzOwLqRo6zphH2aX+7KsAUONObyzakDNq2G/bgbhinxB4PoV9L3aXQYhiDKyIKWd2c8g==
-
 core-js@3.17.3:
   version "3.17.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.17.3.tgz#8e8bd20e91df9951e903cabe91f9af4a0895bc1e"
   integrity sha512-lyvajs+wd8N1hXfzob1LdOCCHFU4bGMbqqmLn1Q4QlCpDqWPpGf+p0nj+LNrvDDG33j0hZXw2nsvvVpHysxyNw==
+
+core-js@3.18.1:
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.1.tgz#289d4be2ce0085d40fc1244c0b1a54c00454622f"
+  integrity sha512-vJlUi/7YdlCZeL6fXvWNaLUPh/id12WXj3MbkMw5uOyF0PfWPBNOCNbs53YqgrvtujLNlt9JQpruyIKkUZ+PKA==
 
 core-js@^2.4.0:
   version "2.6.12"
