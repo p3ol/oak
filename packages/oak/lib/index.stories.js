@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { SelectField } from '@poool/junipero';
+import { mergeDeep, SelectField } from '@poool/junipero';
 
 import { render } from './';
 import basicComponents, { localeFr as basicFrench }
@@ -252,7 +252,7 @@ export const basicConfig = () => {
             { title: 'Default (english)', value: {} },
             {
               title: 'French',
-              value: { ...french, ...basicFrench, ...editorFrench } },
+              value: mergeDeep(french, basicFrench, editorFrench) },
           ]}
           parseTitle={o => o.title}
           parseValue={o => o.value}

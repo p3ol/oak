@@ -48,6 +48,12 @@ export default {
                 width: 'Largeur de l\'image',
                 height: 'Hauteur de l\'image',
               },
+              align: {
+                title: 'Alignement de l\'image',
+                left: 'Gauche',
+                center: 'Centré',
+                right: 'Droite',
+              },
             },
           },
         },
