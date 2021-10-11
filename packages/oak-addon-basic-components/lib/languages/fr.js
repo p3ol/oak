@@ -49,7 +49,7 @@ export default {
                 height: 'Hauteur de l\'image',
               },
               align: {
-                tile: 'Alignement de l\'image',
+                title: 'Alignement de l\'image',
                 left: 'Gauche',
                 center: 'Centré',
                 right: 'Droite',

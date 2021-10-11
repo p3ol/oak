@@ -228,8 +228,6 @@ export const basicConfig = () => {
     oakRef.current?.setTexts(field.value);
   };
 
-  console.log({ ...french, ...basicFrench, ...editorFrench });
-
   return (
     <div>
       { theme === 'blue' && (
