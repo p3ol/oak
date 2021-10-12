@@ -30,7 +30,7 @@
     "@poool/junipero": "2.0.0-rc.14",
     "@poool/junipero-utils": "2.0.0-rc.14",
     "@poool/oak": "^1.0.0-rc.10",
-    "core-js": "3.18.2"
+    "core-js": "3.18.3"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
