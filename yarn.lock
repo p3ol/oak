@@ -2722,31 +2722,31 @@
   dependencies:
     eslint-rule-composer "0.3.0"
 
-"@poool/junipero-hooks@2.0.0-rc.14", "@poool/junipero-hooks@^2.0.0-rc.14":
-  version "2.0.0-rc.14"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.14.tgz#76494421a3b9de15d6e1bf1d85f9cba2c7ed95ec"
-  integrity sha512-VeM++RS3wahhS5kqOGeAGy1LnK0IS6VBBh7qgrgZIhh4H/ls4gqTeVAjg/x341taZWwa1y7bI0/KZ6Wlx+78/g==
+"@poool/junipero-hooks@2.0.0-rc.15", "@poool/junipero-hooks@^2.0.0-rc.15":
+  version "2.0.0-rc.15"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.15.tgz#53209a020759b1d0f7541c570dbbacc0785a2805"
+  integrity sha512-waZFZSXBxCOI/RhMna6RWVqg22Kq+EqJm57kUcXThgtjFEwnPqUpoqKwsjk8FU+lwwa0HD5JDPrb8hA5u/k3OQ==
   dependencies:
     "@babel/runtime-corejs3" "7.15.4"
-    core-js "3.18.1"
+    core-js "3.18.3"
 
-"@poool/junipero-utils@2.0.0-rc.14", "@poool/junipero-utils@^2.0.0-rc.14":
-  version "2.0.0-rc.14"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.14.tgz#ef0550659f8385a44e97dcd8acae2ddf4ea39e12"
-  integrity sha512-fXcCTCWlNRLaX5E/UW/xAAjQviKfHJbQVwdXBGZZPzS+VUGw4IGQxchgOK8L+qfdhNXE4cmxAbKxjtspmSJFXg==
+"@poool/junipero-utils@2.0.0-rc.15", "@poool/junipero-utils@^2.0.0-rc.15":
+  version "2.0.0-rc.15"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.15.tgz#2f74d7d64337dfec3b859df76539e138dd4f7db0"
+  integrity sha512-ah+52XpxclMQtLAhjRKMIxG8aKEy5APAcPpRPMLrGiHCQo45VAGERPhuZq1wpj6j4LXtDNQVBhQ8v/Xm2PjECw==
   dependencies:
     "@babel/runtime-corejs3" "7.15.4"
-    core-js "3.18.1"
+    core-js "3.18.3"
 
-"@poool/junipero@2.0.0-rc.14":
-  version "2.0.0-rc.14"
-  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.14.tgz#4f574f8139e54a751525999aa1badadf2a379d35"
-  integrity sha512-dEGuZz4NDfujQm0covNpN7LXHX864UpYSdUXxWXdnM0c07CatWTJFmvcHTRrwMN2sbpxBrN2ssJwK2GMWulpuw==
+"@poool/junipero@2.0.0-rc.15":
+  version "2.0.0-rc.15"
+  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.15.tgz#4a0f81e6c339df37befa8d83e5dcf8643b294b42"
+  integrity sha512-iLEzl/o3iq8b0qfjQl/Foxig7in/U1ovHWxyb95kTgawNS/wL/b4AsPn454aafGs+pKlWFzDFZhvizWQhj3SBg==
   dependencies:
     "@babel/runtime-corejs3" "7.15.4"
-    "@poool/junipero-hooks" "^2.0.0-rc.14"
-    "@poool/junipero-utils" "^2.0.0-rc.14"
-    core-js "3.18.1"
+    "@poool/junipero-hooks" "^2.0.0-rc.15"
+    "@poool/junipero-utils" "^2.0.0-rc.15"
+    core-js "3.18.3"
     prop-types "15.7.2"
 
 "@popperjs/core@2.10.2":
@@ -5896,11 +5896,6 @@ core-js-pure@^3.8.2:
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.14.0.tgz#72bcfacba74a65ffce04bf94ae91d966e80ee553"
   integrity sha512-YVh+LN2FgNU0odThzm61BsdkwrbrchumFq3oztnE9vTKC4KS2fvnPmcx8t6jnqAyOTCTF4ZSiuK8Qhh7SNcL4g==
-
-core-js@3.18.1:
-  version "3.18.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.1.tgz#289d4be2ce0085d40fc1244c0b1a54c00454622f"
-  integrity sha512-vJlUi/7YdlCZeL6fXvWNaLUPh/id12WXj3MbkMw5uOyF0PfWPBNOCNbs53YqgrvtujLNlt9JQpruyIKkUZ+PKA==
 
 core-js@3.18.3:
   version "3.18.3"
