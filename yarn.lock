@@ -2722,31 +2722,31 @@
   dependencies:
     eslint-rule-composer "0.3.0"
 
-"@poool/junipero-hooks@2.0.0-rc.14", "@poool/junipero-hooks@^2.0.0-rc.14":
-  version "2.0.0-rc.14"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.14.tgz#76494421a3b9de15d6e1bf1d85f9cba2c7ed95ec"
-  integrity sha512-VeM++RS3wahhS5kqOGeAGy1LnK0IS6VBBh7qgrgZIhh4H/ls4gqTeVAjg/x341taZWwa1y7bI0/KZ6Wlx+78/g==
+"@poool/junipero-hooks@2.0.0-rc.15", "@poool/junipero-hooks@^2.0.0-rc.15":
+  version "2.0.0-rc.15"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.15.tgz#53209a020759b1d0f7541c570dbbacc0785a2805"
+  integrity sha512-waZFZSXBxCOI/RhMna6RWVqg22Kq+EqJm57kUcXThgtjFEwnPqUpoqKwsjk8FU+lwwa0HD5JDPrb8hA5u/k3OQ==
   dependencies:
     "@babel/runtime-corejs3" "7.15.4"
-    core-js "3.18.1"
+    core-js "3.18.3"
 
-"@poool/junipero-utils@2.0.0-rc.14", "@poool/junipero-utils@^2.0.0-rc.14":
-  version "2.0.0-rc.14"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.14.tgz#ef0550659f8385a44e97dcd8acae2ddf4ea39e12"
-  integrity sha512-fXcCTCWlNRLaX5E/UW/xAAjQviKfHJbQVwdXBGZZPzS+VUGw4IGQxchgOK8L+qfdhNXE4cmxAbKxjtspmSJFXg==
+"@poool/junipero-utils@2.0.0-rc.15", "@poool/junipero-utils@^2.0.0-rc.15":
+  version "2.0.0-rc.15"
+  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.15.tgz#2f74d7d64337dfec3b859df76539e138dd4f7db0"
+  integrity sha512-ah+52XpxclMQtLAhjRKMIxG8aKEy5APAcPpRPMLrGiHCQo45VAGERPhuZq1wpj6j4LXtDNQVBhQ8v/Xm2PjECw==
   dependencies:
     "@babel/runtime-corejs3" "7.15.4"
-    core-js "3.18.1"
+    core-js "3.18.3"
 
-"@poool/junipero@2.0.0-rc.14":
-  version "2.0.0-rc.14"
-  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.14.tgz#4f574f8139e54a751525999aa1badadf2a379d35"
-  integrity sha512-dEGuZz4NDfujQm0covNpN7LXHX864UpYSdUXxWXdnM0c07CatWTJFmvcHTRrwMN2sbpxBrN2ssJwK2GMWulpuw==
+"@poool/junipero@2.0.0-rc.15":
+  version "2.0.0-rc.15"
+  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.15.tgz#4a0f81e6c339df37befa8d83e5dcf8643b294b42"
+  integrity sha512-iLEzl/o3iq8b0qfjQl/Foxig7in/U1ovHWxyb95kTgawNS/wL/b4AsPn454aafGs+pKlWFzDFZhvizWQhj3SBg==
   dependencies:
     "@babel/runtime-corejs3" "7.15.4"
-    "@poool/junipero-hooks" "^2.0.0-rc.14"
-    "@poool/junipero-utils" "^2.0.0-rc.14"
-    core-js "3.18.1"
+    "@poool/junipero-hooks" "^2.0.0-rc.15"
+    "@poool/junipero-utils" "^2.0.0-rc.15"
+    core-js "3.18.3"
     prop-types "15.7.2"
 
 "@popperjs/core@2.10.2":
@@ -2769,10 +2769,10 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@rollup/plugin-alias@3.1.5":
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.5.tgz#73356a3a1eab2e1e2fd952f9f53cd89fc740d952"
-  integrity sha512-yzUaSvCC/LJPbl9rnzX3HN7vy0tq7EzHoEiQl1ofh4n5r2Rd5bj/+zcJgaGA76xbw95/JjWQyvHg9rOJp2y0oQ==
+"@rollup/plugin-alias@3.1.8":
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.8.tgz#645fd84659e08d3d1b059408fcdf69c1dd435a6b"
+  integrity sha512-tf7HeSs/06wO2LPqKNY3Ckbvy0JRe7Jyn98bXnt/gfrxbe+AJucoNJlsEVi9sdgbQtXemjbakCpO/76JVgnHpA==
   dependencies:
     slash "^3.0.0"
 
@@ -2797,10 +2797,10 @@
     magic-string "^0.25.7"
     resolve "^1.17.0"
 
-"@rollup/plugin-node-resolve@13.0.5":
-  version "13.0.5"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-13.0.5.tgz#016abe58796a4ff544d6beac7818921e3d3777fc"
-  integrity sha512-mVaw6uxtvuGx/XCI4qBQXsDZJUfyx5vp39iE0J/7Hd6wDhEbjHr6aES7Nr9yWbuE0BY+oKp6N7Bq6jX5NCGNmQ==
+"@rollup/plugin-node-resolve@13.0.6":
+  version "13.0.6"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-13.0.6.tgz#29629070bb767567be8157f575cfa8f2b8e9ef77"
+  integrity sha512-sFsPDMPd4gMqnh2gS0uIxELnoRUp5kBl5knxD2EO0778G1oOJv4G1vyT2cpWz75OU2jDVcXhjVUuTAczGyFNKA==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     "@types/resolve" "1.17.1"
@@ -5896,11 +5896,6 @@ core-js-pure@^3.8.2:
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.14.0.tgz#72bcfacba74a65ffce04bf94ae91d966e80ee553"
   integrity sha512-YVh+LN2FgNU0odThzm61BsdkwrbrchumFq3oztnE9vTKC4KS2fvnPmcx8t6jnqAyOTCTF4ZSiuK8Qhh7SNcL4g==
-
-core-js@3.18.1:
-  version "3.18.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.1.tgz#289d4be2ce0085d40fc1244c0b1a54c00454622f"
-  integrity sha512-vJlUi/7YdlCZeL6fXvWNaLUPh/id12WXj3MbkMw5uOyF0PfWPBNOCNbs53YqgrvtujLNlt9JQpruyIKkUZ+PKA==
 
 core-js@3.18.3:
   version "3.18.3"
@@ -13039,10 +13034,10 @@ slate-history@0.66.0:
   dependencies:
     is-plain-object "^5.0.0"
 
-slate-hyperscript@0.66.0:
-  version "0.66.0"
-  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.66.0.tgz#87f0581de00f71ee61014e2afc825a2c11897e2f"
-  integrity sha512-uMBwuVBKl5jk0V37BMYhJdqO/R8mgoKvYGo1NmJbTxwf2capX4/4RgQtPPH20o09rbx8l9e554hLc8UiRPGg4w==
+slate-hyperscript@0.67.0:
+  version "0.67.0"
+  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.67.0.tgz#b066febf10a5176106fe1fcdcdc76460f3eb721b"
+  integrity sha512-3c+d2ePTUk5J7wMjs2CZIJPhb1/VnTltel+qnQarOWlXtJng7oRc8BNaYbNfkl2ecT9W5bpxpsy1r6x5ICXucQ==
   dependencies:
     is-plain-object "^5.0.0"
 
@@ -14654,10 +14649,10 @@ webpack@4:
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
 
-webpack@5.58.1:
-  version "5.58.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.58.1.tgz#df8aad72b617a9d0db8c89d4f410784ee93320d7"
-  integrity sha512-4Z/dmbTU+VmkCb2XNgW7wkE5TfEcSooclprn/UEuVeAkwHhn07OcgUsyaKHGtCY/VobjnsYBlyhKeMLiSoOqPg==
+webpack@5.59.0:
+  version "5.59.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.59.0.tgz#a5038fc0d4d9350ee528e7e1e0282080c63efcf5"
+  integrity sha512-2HiFHKnWIb/cBfOfgssQn8XIRvntISXiz//F1q1+hKMs+uzC1zlVCJZEP7XqI1wzrDyc/ZdB4G+MYtz5biJxCA==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
