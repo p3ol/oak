@@ -1,0 +1,108 @@
+import { Schema } from 'prosemirror-model';
+
+const pDOM = ['p', 0];
+const blockquoteDOM = ['blockquote', 0];
+const brDOM = ['br'];
+const uDOM = ['u', 0];
+const emDOM = ['em', 0];
+const strongDOM = ['strong', 0];
+const codeDOM = ['code', 0];
+
+export const nodes = {
+  doc: {
+    content: 'block+',
+  },
+
+  paragraph: {
+    content: 'inline*',
+    group: 'block',
+    parseDOM: [{ tag: 'p' }],
+    toDOM () { return pDOM; },
+  },
+
+  blockquote: {
+    content: 'block+',
+    group: 'block',
+    defining: true,
+    parseDOM: [{ tag: 'blockquote' }],
+    toDOM () { return blockquoteDOM; },
+  },
+
+  text: {
+    group: 'inline',
+  },
+
+  hard_break: {
+    inline: true,
+    group: 'inline',
+    selectable: false,
+    parseDOM: [{ tag: 'br' }],
+    toDOM () { return brDOM; },
+  },
+};
+
+export const marks = {
+  link: {
+    attrs: {
+      href: {},
+      title: { default: null },
+    },
+    inclusive: false,
+    parseDOM: [{ tag: 'a[href]', getAttrs (dom) {
+      return {
+        href: dom.getAttribute('href'),
+        title: dom.getAttribute('title'),
+      };
+    } }],
+    toDOM (node) {
+      const { href, title } = node.attrs;
+
+      return ['a', { href, title }, 0];
+    },
+  },
+
+  em: {
+    parseDOM: [{ tag: 'i' }, { tag: 'em' }, { style: 'font-style=italic' }],
+    toDOM () { return emDOM; },
+  },
+
+  strong: {
+    parseDOM: [{ tag: 'strong' },
+      {
+        tag: 'b',
+        getAttrs: node => node.style.fontWeight !== 'normal' && null,
+      }, {
+        style: 'font-weight',
+        getAttrs: value => /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null,
+      }],
+    toDOM () { return strongDOM; },
+  },
+
+  color: {
+    attrs: {
+      color: {},
+    },
+    parseDOM: [{
+      tag: 'span',
+      getAttrs: node => {
+        return { color: node.style.color };
+      },
+    }],
+    toDOM: e => {
+
+      return ['span', { style: `color:${e?.attrs?.color}` }, 0];
+    },
+  },
+
+  code: {
+    parseDOM: [{ tag: 'code' }],
+    toDOM () { return codeDOM; },
+  },
+
+  underline: {
+    parseDOM: [{ tag: 'u' }, { style: 'font-style=underline' }],
+    toDOM: () => uDOM,
+  },
+};
+
+export const schema = new Schema({ nodes, marks });
