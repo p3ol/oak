@@ -2,22 +2,34 @@
 import ColorButton from './colorButton';
 import { schema } from './schema';
 
-export default ({ onToggle }) => {
+export default ({ onToggleMark, onToggleBlock }) => {
 
   return (
     <>
-      <button onClick={onToggle.bind(null, schema.marks.strong)}>
+      <button onClick={onToggleMark.bind(null, schema.marks.strong)}>
         Bold
       </button>
-      <button onClick={onToggle.bind(null, schema.marks.em)}>
+      <button onClick={onToggleMark.bind(null, schema.marks.em)}>
         italic
       </button>
-      <button onClick={onToggle.bind(null, schema.marks.underline)}>
+      <button onClick={onToggleMark.bind(null, schema.marks.underline)}>
         underline
       </button>
       <ColorButton
-        onChange={color => onToggle(schema.marks.color, { color })}
+        onChange={color => onToggleMark(schema.marks.color, { color })}
       />
+      <button onClick={onToggleBlock.bind(null, { alignment: 'left' })}>
+        left
+      </button>
+      <button onClick={onToggleBlock.bind(null, { alignment: 'center' })}>
+        center
+      </button>
+      <button onClick={onToggleBlock.bind(null, { alignment: 'right' })}>
+        right
+      </button>
+      <button onClick={onToggleBlock.bind(null, { alignment: 'justify' })}>
+        justified
+      </button>
     </>
   );
 };

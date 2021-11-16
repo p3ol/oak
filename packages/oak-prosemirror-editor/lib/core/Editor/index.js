@@ -1,6 +1,6 @@
-import { Transform } from 'prosemirror-transform';
-import { DOMParser, Mark } from 'prosemirror-model';
 import { ProseMirror, useProseMirror } from 'use-prosemirror';
+import { DOMParser } from 'prosemirror-model';
+import { setBlockType } from 'prosemirror-commands';
 
 import { schema } from './schema';
 import MenuBar from './menuBar';
@@ -20,10 +20,13 @@ export default ({ value }) => {
   const onToggleMark = (mark_, attr = {}) => {
     toggleMark(mark_, attr)(state, tr => setState(state.apply(tr)));
   };
+  const onToggleBlock = (attr = {}) => {
+    setBlockType(schema.nodes.paragraph, attr)(state, tr => setState(state.apply(tr)));
+  };
 
   return (
     <>
-      <MenuBar onToggle={onToggleMark} />
+      <MenuBar onToggleBlock={onToggleBlock} onToggleMark={onToggleMark} />
       <ProseMirror state={state} onChange={setState} />
     </>
   );

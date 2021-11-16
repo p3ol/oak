@@ -20,18 +20,18 @@ export const nodes = {
     parseDOM: [{
       tag: 'p',
       getAttrs: node => {
-        console.log(node.style);
-
         return { alignment: node.style.textAlign === 'center' ? 'center'
-          : node.style.textAlign === 'right' ? 'right' : 'left' };
+          : node.style.textAlign === 'right' ? 'right'
+            : node.style.textAlign === 'justify' ? 'justify'
+              : 'left' };
       },
     }, {
       tag: 'div',
       getAttrs: node => {
-        console.log(node.style);
-
         return { alignment: node.style.textAlign === 'center' ? 'center'
-          : node.style.textAlign === 'right' ? 'right' : 'left' };
+          : node.style.textAlign === 'right' ? 'right'
+            : node.style.textAlign === 'justify' ? 'justify'
+              : 'left' };
       },
     },
     ],
