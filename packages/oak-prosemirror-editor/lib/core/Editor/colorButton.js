@@ -7,11 +7,10 @@ import {
   Tooltip,
 } from '@poool/junipero';
 import { Text } from '@poool/oak';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 export default ({ className, onChange }) => {
   const colorFieldRef = useRef();
-  const [color, setColor] = useState('#000000');
 
   const onChange_ = field => {
     onChange(field.value);

@@ -25,11 +25,12 @@ const isDefault = (markAttrs, defaultAttrs) => {
   }
 
   return true;
-}
+};
 
 export const toggleMark = (markType, attrs) => {
   return function (state, dispatch) {
     const { empty, $cursor, ranges } = state.selection;
+
     if ((empty && !$cursor) || !markApplies(state.doc, ranges, markType)) {
       return false;
     }
@@ -51,24 +52,25 @@ export const toggleMark = (markType, attrs) => {
 
         for (let i = 0; i < ranges.length; i++) {
           const { $from, $to } = ranges[i];
-          if (has && 
-            (Object.keys(markType.attrs).length === 0 
-            || isDefault(attrs, markType.attrs))
+
+          if (has &&
+            (Object.keys(markType.attrs).length === 0 ||
+            isDefault(attrs, markType.attrs))
           ) {
-            tr.removeMark($from.pos, $to.pos, markType)
+            tr.removeMark($from.pos, $to.pos, markType);
           } else {
-          let from = $from.pos;
-          let to = $to.pos;
-          const start = $from.nodeAfter;
-          const end = $to.nodeBefore;
-          const spaceStart = start && start.isText
-            ? /^\s*/.exec(start.text)[0].length : 0;
-          const spaceEnd = end && end.isText
-            ? /\s*$/.exec(end.text)[0].length : 0;
+            let from = $from.pos;
+            let to = $to.pos;
+            const start = $from.nodeAfter;
+            const end = $to.nodeBefore;
+            const spaceStart = start && start.isText
+              ? /^\s*/.exec(start.text)[0].length : 0;
+            const spaceEnd = end && end.isText
+              ? /\s*$/.exec(end.text)[0].length : 0;
 
-          if (from + spaceStart < to) { from += spaceStart; to -= spaceEnd; }
+            if (from + spaceStart < to) { from += spaceStart; to -= spaceEnd; }
 
-          tr.addMark(from, to, markType.create(attrs));
+            tr.addMark(from, to, markType.create(attrs));
           }
         }
 

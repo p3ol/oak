@@ -41,7 +41,8 @@ export default ({ value, onChange }) => {
   };
 
   const onToggleBlock = (attr = {}) => {
-    setBlockType(schema.nodes.paragraph, attr)(state, tr => onChange_(state.apply(tr)));
+    const transformation = setBlockType(schema.nodes.paragraph, attr);
+    transformation(state, tr => onChange_(state.apply(tr)));
   };
 
   return (
