@@ -28,14 +28,20 @@ export const nodes = {
     }, {
       tag: 'div',
       getAttrs: node => {
-        return { alignment: node.style.textAlign === 'center' ? 'center'
-          : node.style.textAlign === 'right' ? 'right'
-            : node.style.textAlign === 'justify' ? 'justify'
-              : 'left' };
+        return node.innerHTML.length === 0 ? false
+          : { alignment: node.style.textAlign === 'center' ? 'center'
+            : node.style.textAlign === 'right' ? 'right'
+              : node.style.textAlign === 'justify' ? 'justify'
+                : 'left' };
       },
+    }, {
+      tag: 'br',
     },
     ],
-    toDOM: e => ['div', { style: `text-align: ${e?.attrs?.alignment}` }, 0],
+    toDOM: e => {
+      return e.content.size === 0 ? ['br']
+        : ['div', { style: `text-align: ${e?.attrs?.alignment}` }, 0];
+    },
   },
 
   text: {
@@ -43,10 +49,14 @@ export const nodes = {
   },
 
   hard_break: {
-    inline: true,
-    group: 'inline',
+    group: 'block',
     selectable: false,
-    parseDOM: [{ tag: 'br' }],
+    parseDOM: [{
+      tag: 'br',
+    }, {
+      tag: 'div',
+      getAttrs: node => node.innerHTML.length === 0,
+    }],
     toDOM () { return brDOM; },
   },
 };
