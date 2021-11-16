@@ -1,11 +1,23 @@
-import { toggleMark } from 'prosemirror-commands';
 
-import { marks } from './schema';
+import ColorButton from './colorButton';
+import { schema } from './schema';
 
-export default ({ state, setState }) => {
-  const applyMark_ = () => {
-    toggleMark(marks.strong)(state, setState);
-  };
+export default ({ onToggle }) => {
 
-  return (<button onClick={applyMark_.bind(null)}>Bold</button>);
+  return (
+    <>
+      <button onClick={onToggle.bind(null, schema.marks.strong)}>
+        Bold
+      </button>
+      <button onClick={onToggle.bind(null, schema.marks.em)}>
+        italic
+      </button>
+      <button onClick={onToggle.bind(null, schema.marks.underline)}>
+        underline
+      </button>
+      <ColorButton
+        onChange={color => onToggle(schema.marks.color, { color })}
+      />
+    </>
+  );
 };
