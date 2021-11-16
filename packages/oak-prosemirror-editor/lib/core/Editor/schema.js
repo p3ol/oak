@@ -1,7 +1,5 @@
 import { Schema } from 'prosemirror-model';
 
-const pDOM = ['p', 0];
-const blockquoteDOM = ['blockquote', 0];
 const brDOM = ['br'];
 const uDOM = ['u', 0];
 const emDOM = ['em', 0];
@@ -14,18 +12,30 @@ export const nodes = {
   },
 
   paragraph: {
+    attrs: {
+      alignment: { default: 'left' },
+    },
     content: 'inline*',
     group: 'block',
-    parseDOM: [{ tag: 'p' }],
-    toDOM () { return pDOM; },
-  },
+    parseDOM: [{
+      tag: 'p',
+      getAttrs: node => {
+        console.log(node.style);
 
-  blockquote: {
-    content: 'block+',
-    group: 'block',
-    defining: true,
-    parseDOM: [{ tag: 'blockquote' }],
-    toDOM () { return blockquoteDOM; },
+        return { alignment: node.style.textAlign === 'center' ? 'center'
+          : node.style.textAlign === 'right' ? 'right' : 'left' };
+      },
+    }, {
+      tag: 'div',
+      getAttrs: node => {
+        console.log(node.style);
+
+        return { alignment: node.style.textAlign === 'center' ? 'center'
+          : node.style.textAlign === 'right' ? 'right' : 'left' };
+      },
+    },
+    ],
+    toDOM: e => ['div', { style: `text-align: ${e?.attrs?.alignment}` }, 0],
   },
 
   text: {
@@ -80,7 +90,9 @@ export const marks = {
 
   color: {
     attrs: {
-      color: {},
+      color: {
+        default: '#000000',
+      },
     },
     parseDOM: [{
       tag: 'span',

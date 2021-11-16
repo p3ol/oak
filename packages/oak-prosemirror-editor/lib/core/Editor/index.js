@@ -18,14 +18,6 @@ export default ({ value }) => {
   });
 
   const onToggleMark = (mark_, attr = {}) => {
-    // const mark = new Mark();
-    // mark.type = mark_;
-    // mark.attrs = { color: attr.color };
-    // console.log(state.selection);
-    // console.log(mark, attr);
-    // state.tr.addMark(state.selection.ranges[0].$from, state.selection.ranges[0].$to, mark_.create(attr));
-    // setState(state.apply(state.tr));
-
     toggleMark(mark_, attr)(state, tr => setState(state.apply(tr)));
   };
 

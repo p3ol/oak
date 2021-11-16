@@ -19,10 +19,17 @@ const markApplies = (doc, ranges, type) => {
   return false;
 };
 
+const isDefault = (markAttrs, defaultAttrs) => {
+  for (const attr in defaultAttrs) {
+    if (markAttrs[attr] !== defaultAttrs[attr].default) return false;
+  }
+
+  return true;
+}
+
 export const toggleMark = (markType, attrs) => {
   return function (state, dispatch) {
     const { empty, $cursor, ranges } = state.selection;
-
     if ((empty && !$cursor) || !markApplies(state.doc, ranges, markType)) {
       return false;
     }
@@ -44,7 +51,12 @@ export const toggleMark = (markType, attrs) => {
 
         for (let i = 0; i < ranges.length; i++) {
           const { $from, $to } = ranges[i];
-
+          if (has && 
+            (Object.keys(markType.attrs).length === 0 
+            || isDefault(attrs, markType.attrs))
+          ) {
+            tr.removeMark($from.pos, $to.pos, markType)
+          } else {
           let from = $from.pos;
           let to = $to.pos;
           const start = $from.nodeAfter;
@@ -57,6 +69,7 @@ export const toggleMark = (markType, attrs) => {
           if (from + spaceStart < to) { from += spaceStart; to -= spaceEnd; }
 
           tr.addMark(from, to, markType.create(attrs));
+          }
         }
 
         dispatch(tr.scrollIntoView());
