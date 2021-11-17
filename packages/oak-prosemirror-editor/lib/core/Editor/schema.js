@@ -1,7 +1,7 @@
 import { Schema } from 'prosemirror-model';
 
 const brDOM = ['br'];
-const uDOM = ['u', 0];
+const uDOM = ['span', { style: 'text-decoration: underline' }, 0];
 const emDOM = ['em', 0];
 const strongDOM = ['strong', 0];
 const codeDOM = ['code', 0];
@@ -81,6 +81,26 @@ export const marks = {
     },
   },
 
+  size: {
+    attrs: {
+      size: { },
+    },
+    parseDOM: [
+      { tag: 'span',
+        getAttrs: node => {
+          const size = node.style.fontSize;
+
+          return size ? { size } : false;
+        },
+      }],
+    toDOM: node => {
+      return ['span', { style: `font-size: ${node.attrs.size}` }, 0];
+    },
+  },
+  underline: {
+    parseDOM: [{ tag: 'u' }, { style: 'text-decoration=underline' }],
+    toDOM: () => uDOM,
+  },
   em: {
     parseDOM: [{ tag: 'i' }, { tag: 'em' }, { style: 'font-style=italic' }],
     toDOM () { return emDOM; },
@@ -121,10 +141,6 @@ export const marks = {
     toDOM () { return codeDOM; },
   },
 
-  underline: {
-    parseDOM: [{ tag: 'u' }, { style: 'font-style=underline' }],
-    toDOM: () => uDOM,
-  },
 };
 
 export const schema = new Schema({ nodes, marks });
