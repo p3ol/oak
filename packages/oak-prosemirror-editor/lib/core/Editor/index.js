@@ -47,7 +47,11 @@ export default ({ value, onChange }) => {
 
   return (
     <>
-      <MenuBar onToggleBlock={onToggleBlock} onToggleMark={onToggleMark} />
+      <MenuBar
+        state={state}
+        onToggleBlock={onToggleBlock}
+        onToggleMark={onToggleMark}
+      />
       <ProseMirror state={state} onChange={onChange_} />
     </>
   );

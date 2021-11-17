@@ -1,4 +1,4 @@
-export const getMarkAttrs = (editorState, type) => {
+export const getActiveAttrs = (editorState, type) => {
   const { from, to } = editorState.selection;
   let marks = [];
 

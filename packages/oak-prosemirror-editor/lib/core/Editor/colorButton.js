@@ -7,17 +7,26 @@ import {
   Tooltip,
 } from '@poool/junipero';
 import { Text } from '@poool/oak';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
-export default ({ className, onChange }) => {
+import { schema } from './schema';
+import { getActiveAttrs } from './utils';
+
+export default ({ className, onChange, state }) => {
   const colorFieldRef = useRef();
+  const [color, setColor] = useState('#000000');
 
   const onChange_ = field => {
     onChange(field.value);
+    setColor(field.value);
   };
 
   const onClick = () => {
     colorFieldRef.current?.dropdownRef.current?.open();
+  };
+
+  const getSelectedColor = () => {
+    return getActiveAttrs(state, schema.marks.color).color || '#000000';
   };
 
   return (
@@ -39,7 +48,10 @@ export default ({ className, onChange }) => {
               className,
             )}
           >
-            <i className="oak-icons">
+            <i className="oak-icons" style={{
+              color: getSelectedColor(),
+            }}
+            >
               format_color_text
             </i>
           </a>
@@ -49,6 +61,7 @@ export default ({ className, onChange }) => {
         <ColorField
           ref={colorFieldRef}
           onChange={onChange_}
+          value={color}
           popperOptions={{
             strategy: 'relative',
             modifiers: [{
