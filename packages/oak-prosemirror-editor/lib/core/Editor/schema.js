@@ -59,6 +59,7 @@ export const marks = {
     attrs: {
       href: {},
       title: { default: null },
+      target: {},
     },
     inclusive: false,
     parseDOM: [{
@@ -67,6 +68,7 @@ export const marks = {
         return {
           href: dom.getAttribute('href'),
           title: dom.getAttribute('title'),
+          target: dom.getAttribute('target'),
         };
       },
     }],
@@ -93,6 +95,7 @@ export const marks = {
       return ['span', { style: `font-size: ${node.attrs.size}` }, 0];
     },
   },
+
   underline: {
     parseDOM: [
       { tag: 'u' },

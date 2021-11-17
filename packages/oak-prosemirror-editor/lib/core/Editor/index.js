@@ -4,8 +4,8 @@ import { setBlockType, baseKeymap } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
 
 import { schema } from './schema';
-import MenuBar from './menuBar';
 import { toggleMark } from './transform';
+import Toolbar from './Toolbar';
 
 export default ({ value, onChange }) => {
 
@@ -46,13 +46,13 @@ export default ({ value, onChange }) => {
   };
 
   return (
-    <>
-      <MenuBar
+    <div className="oak-text-editor">
+      <Toolbar
         state={state}
         onToggleBlock={onToggleBlock}
         onToggleMark={onToggleMark}
       />
       <ProseMirror state={state} onChange={onChange_} />
-    </>
+    </div>
   );
 };

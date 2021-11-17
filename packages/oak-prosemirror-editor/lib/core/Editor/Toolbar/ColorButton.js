@@ -9,8 +9,8 @@ import {
 import { Text } from '@poool/oak';
 import { useRef, useState } from 'react';
 
-import { schema } from './schema';
-import { getActiveAttrs } from './utils';
+import { schema } from '../schema';
+import { getActiveAttrs } from '../utils';
 
 export default ({ className, onChange, state }) => {
   const colorFieldRef = useRef();

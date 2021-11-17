@@ -1,0 +1,86 @@
+.oak-text-editor
+  background: var(--oak-text-editor-color)
+  border-radius: 4px
+  width: 100%
+
+  .oak-toolbar
+    background: var(--oak-text-editor-toolbar-color)
+    border-radius: 4px 4px 0 0
+    padding: 4px 5px
+    display: flex
+    align-items: center
+
+    a.oak-toolbar-button
+      border-radius: 2px
+      display: flex
+      margin-right: 5px
+      align-items: center
+      justify-content: center
+      text-decoration: none
+      padding: 2px
+
+      &.oak-active
+        .oak-icons
+          color: var(--text-color)
+
+      &.oak-underline
+        .oak-icons
+          font-size: 18px
+
+      &.oak-color-button
+        margin-right: 20px
+
+      &.oak-size-button
+        margin-right: 0
+
+        i
+          font-size: 18px
+
+      &.oak-text-left
+        margin-left: 20px
+
+    .oak-icons
+      color: $color-shuttle-gray
+      font-size: 20px
+
+    .oak-text-size
+      font-size: 14px
+      margin: 0 10px
+
+  .oak-text-editable
+    box-sizing: border-box
+    padding: 10px
+    width: 100%
+
+    a
+      color: blue !important
+      text-decoration: underline
+
+.junipero.tooltip
+  z-index: 1
+
+  .tooltip-inner
+    font-size: 12px
+
+  .arrow
+    display: none
+
+.oak-color-field
+  .color-input
+    padding: 0px 10px
+
+    .junipero.dropdown-menu .menu-inner
+      box-shadow: none
+      margin-bottom: 10px
+
+  .junipero.color-input .color-wheel .lightness
+    border-radius: 4px
+    margin-bottom: 5px
+
+.oak-link-field
+  .oak-link-input
+    .menu-inner
+      padding: 10px
+    
+    .oak-link-url
+      padding-bottom: 10px
