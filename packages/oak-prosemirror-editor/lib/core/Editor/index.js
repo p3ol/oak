@@ -9,12 +9,12 @@ import { toggleMark } from './transform';
 
 export default ({ value, onChange }) => {
 
-  const test = document.createElement('div');
-  test.innerHTML = value;
+  const content = document.createElement('div');
+  content.innerHTML = value;
 
   const [state, setState] = useProseMirror({
     schema,
-    doc: DOMParser.fromSchema(schema).parse(test),
+    doc: DOMParser.fromSchema(schema).parse(content),
     docFormat: 'html',
     plugins: [
       keymap(baseKeymap),
