@@ -1,11 +1,5 @@
 import { Schema } from 'prosemirror-model';
 
-const brDOM = ['br'];
-const uDOM = ['span', { style: 'text-decoration: underline' }, 0];
-const emDOM = ['em', 0];
-const strongDOM = ['strong', 0];
-const codeDOM = ['code', 0];
-
 export const nodes = {
   doc: {
     content: 'block+',
@@ -39,8 +33,7 @@ export const nodes = {
     },
     ],
     toDOM: e => {
-      return e.content.size === 0 ? ['br']
-        : ['div', { style: `text-align: ${e?.attrs?.alignment}` }, 0];
+      return ['div', { style: `text-align: ${e?.attrs?.alignment}` }, 0];
     },
   },
 
@@ -57,7 +50,7 @@ export const nodes = {
       tag: 'div',
       getAttrs: node => node.innerHTML.length === 0,
     }],
-    toDOM () { return brDOM; },
+    toDOM () { return ['br']; },
   },
 };
 
@@ -68,12 +61,15 @@ export const marks = {
       title: { default: null },
     },
     inclusive: false,
-    parseDOM: [{ tag: 'a[href]', getAttrs (dom) {
-      return {
-        href: dom.getAttribute('href'),
-        title: dom.getAttribute('title'),
-      };
-    } }],
+    parseDOM: [{
+      tag: 'a[href]',
+      getAttrs: dom => {
+        return {
+          href: dom.getAttribute('href'),
+          title: dom.getAttribute('title'),
+        };
+      },
+    }],
     toDOM (node) {
       const { href, title } = node.attrs;
 
@@ -98,12 +94,16 @@ export const marks = {
     },
   },
   underline: {
-    parseDOM: [{ tag: 'u' }, { style: 'text-decoration=underline' }],
-    toDOM: () => uDOM,
+    parseDOM: [
+      { tag: 'u' },
+      { style: 'text-decoration=underline' },
+    ],
+    toDOM: () => ['span', { style: 'text-decoration: underline' }, 0],
   },
+
   em: {
     parseDOM: [{ tag: 'i' }, { tag: 'em' }, { style: 'font-style=italic' }],
-    toDOM () { return emDOM; },
+    toDOM: () => ['em', 0],
   },
 
   strong: {
@@ -115,7 +115,7 @@ export const marks = {
         style: 'font-weight',
         getAttrs: value => /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null,
       }],
-    toDOM () { return strongDOM; },
+    toDOM: () => ['strong', 0],
   },
 
   color: {
@@ -131,16 +131,9 @@ export const marks = {
       },
     }],
     toDOM: e => {
-
       return ['span', { style: `color:${e?.attrs?.color}` }, 0];
     },
   },
-
-  code: {
-    parseDOM: [{ tag: 'code' }],
-    toDOM () { return codeDOM; },
-  },
-
 };
 
 export const schema = new Schema({ nodes, marks });
