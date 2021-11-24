@@ -7,7 +7,13 @@ import MarkButton from './MarkButton';
 import SizeButton from './SizeButton';
 import LinkButton from './LinkButton';
 
-export default ({ onToggleMark, onToggleBlock, state, element = 'text' }) => {
+export default ({
+  onToggleMark,
+  onToggleBlock,
+  onToggleLink,
+  state,
+  element = 'text',
+}) => {
 
   const SIZES = {
     text: 16,
@@ -63,7 +69,10 @@ export default ({ onToggleMark, onToggleBlock, state, element = 'text' }) => {
           />
         )}
       />
-      <LinkButton />
+      <LinkButton
+        state={state}
+        onChange={link => onToggleLink(link)}
+      />
       <ColorButton
         state={state}
         onChange={color => onToggleMark(schema.marks.color, { color })}
@@ -95,7 +104,12 @@ export default ({ onToggleMark, onToggleBlock, state, element = 'text' }) => {
       />
 
       <MarkButton
-        onClick={onToggleBlock.bind(null, { alignment: 'left' })}
+        onClick={
+          onToggleBlock.bind(
+            null,
+            schema.nodes.paragraph,
+            { alignment: 'left' }
+          )}
         icon="format_align_left"
         format="text-left"
         tooltipText={(
@@ -106,7 +120,11 @@ export default ({ onToggleMark, onToggleBlock, state, element = 'text' }) => {
         )}
       />
       <MarkButton
-        onClick={onToggleBlock.bind(null, { alignment: 'center' })}
+        onClick={onToggleBlock.bind(
+          null,
+          schema.nodes.paragraph,
+          { alignment: 'center' }
+        )}
         icon="format_align_center"
         format="text-center"
         tooltipText={(
@@ -117,7 +135,11 @@ export default ({ onToggleMark, onToggleBlock, state, element = 'text' }) => {
         )}
       />
       <MarkButton
-        onClick={onToggleBlock.bind(null, { alignment: 'right' })}
+        onClick={onToggleBlock.bind(
+          null,
+          schema.nodes.paragraph,
+          { alignment: 'right' }
+        )}
         icon="format_align_right"
         format="text-right"
         tooltipText={(
@@ -128,7 +150,11 @@ export default ({ onToggleMark, onToggleBlock, state, element = 'text' }) => {
         )}
       />
       <MarkButton
-        onClick={onToggleBlock.bind(null, { alignment: 'justify' })}
+        onClick={onToggleBlock.bind(
+          null,
+          schema.nodes.paragraph,
+          { alignment: 'justify' }
+        )}
         icon="format_align_justify"
         format="text-justify"
         tooltipText={(

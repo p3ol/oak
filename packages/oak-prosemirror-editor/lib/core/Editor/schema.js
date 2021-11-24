@@ -39,8 +39,8 @@ export const nodes = {
 
   text: {
     group: 'inline',
+    inline: true,
   },
-
   hard_break: {
     group: 'block',
     selectable: false,
@@ -56,12 +56,12 @@ export const nodes = {
 
 export const marks = {
   link: {
+    spanning: false,
     attrs: {
-      href: {},
+      href: { default: null },
       title: { default: null },
-      target: {},
+      target: { default: null },
     },
-    inclusive: false,
     parseDOM: [{
       tag: 'a[href]',
       getAttrs: dom => {
@@ -73,9 +73,9 @@ export const marks = {
       },
     }],
     toDOM (node) {
-      const { href, title } = node.attrs;
+      const { href, title, target } = node.attrs;
 
-      return ['a', { href, title }, 0];
+      return ['a', { href, title, target }, 0];
     },
   },
 

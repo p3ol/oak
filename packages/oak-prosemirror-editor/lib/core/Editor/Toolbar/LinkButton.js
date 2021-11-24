@@ -1,19 +1,49 @@
-import { classNames, Dropdown, DropdownMenu, DropdownToggle, mockState, TextField, ToggleField, Tooltip } from '@poool/junipero';
+import {
+  classNames,
+  Dropdown,
+  DropdownMenu,
+  DropdownToggle,
+  exists,
+  mockState,
+  TextField,
+  ToggleField,
+  Tooltip,
+} from '@poool/junipero';
 import { Text } from '@poool/oak';
 import { useReducer } from 'react';
 
-export default ({ className }) => {
+import { schema } from '../schema';
+import { getActiveAttrs } from '../utils';
+
+export default ({ className, state: prosemirrorState, onChange }) => {
   const [state, dispatch] = useReducer(mockState, {
-    link: '',
+    href: '',
     target: null,
   });
 
   const onClick = () => {
-
+    const {
+      href,
+      target,
+    } = getActiveAttrs(prosemirrorState, schema.marks.link);
+    dispatch({ href, target });
   };
 
-  const onChange = () => {
-
+  const onChange_ = (name, field) => {
+    dispatch({
+      [name]: exists(field.checked)
+        ? field.checked
+          ? field.value
+          : null
+        : field.value,
+    });
+    onChange({
+      ...state,
+      [name]: exists(field.checked)
+        ? field.checked
+          ? field.value
+          : null
+        : field.value });
   };
 
   return (
@@ -52,8 +82,8 @@ export default ({ className }) => {
               default="Link"
             />
           )}
-          value={state.link}
-          onChange={onChange.bind(null, 'link')}
+          value={state.href}
+          onChange={onChange_.bind(null, 'href')}
           className="oak-link-url"
         />
         <ToggleField
@@ -70,7 +100,7 @@ export default ({ className }) => {
             />
           )}
           checked={state.target === '_blank'}
-          onChange={onChange.bind(null, 'target')}
+          onChange={onChange_.bind(null, 'target')}
           value="_blank"
         />
       </DropdownMenu>

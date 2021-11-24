@@ -1,6 +1,5 @@
-
 /**
-  THESE TWO FUNCTIONS ARE REPLACEMENTS
+  THESE TWO FIRST FUNCTIONS ARE REPLACEMENTS
   FOR THE PROSEMIRROR-COMMAND TOGGLEMARK
   FUNCTION WHICH DID NOT SUPPORT THE CHANGE OF MARK ATTRIBUTE
  */
@@ -79,5 +78,23 @@ export const toggleMark = (markType, attrs) => {
     }
 
     return true;
+  };
+};
+
+export const removeActiveMark = markType => {
+
+  return (state, dispatch) => {
+    const tr = state.tr;
+    const { from, to } = state.selection;
+    state.doc.nodesBetween(from, to, (node, pos) => {
+
+      if (markType.isInSet(node.marks)) {
+        tr.removeMark(
+          pos,
+          pos + Math.max(node.textContent.length, 1), markType
+        );
+      }
+    });
+    dispatch(tr.scrollIntoView());
   };
 };
