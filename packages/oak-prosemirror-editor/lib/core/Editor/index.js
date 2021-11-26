@@ -7,9 +7,13 @@ import { keymap } from 'prosemirror-keymap';
 import { schema } from './schema';
 import { removeActiveMark, toggleMark } from './transform';
 import Toolbar from './Toolbar';
+import { SIZES } from './utils';
 
-export default ({ value, onChange }) => {
+export default ({ value, onChange, element }) => {
+
   const viewRef = useRef();
+  const [editorView, setEditorView] = useState(null);
+
   const content = document.createElement('div');
   content.innerHTML = value;
 
@@ -22,8 +26,6 @@ export default ({ value, onChange }) => {
       keymap(baseKeymap),
     ],
   });
-
-  const [editorView, setEditorView] = useState(null);
 
   useEffect(() => {
     setEditorView(viewRef.current.view);
@@ -44,6 +46,12 @@ export default ({ value, onChange }) => {
     div.remove();
 
     return inner;
+  };
+
+  const getDefaultSize = () => {
+    return element?.type === 'title'
+      ? SIZES.headings[element.headingLevel] || SIZES.text
+      : SIZES.text;
   };
 
   const onToggleMark = (mark, attr = {}) => {
@@ -71,9 +79,15 @@ export default ({ value, onChange }) => {
         onToggleBlock={onToggleBlock}
         onToggleMark={onToggleMark}
         onToggleLink={onToggleLink}
+        defaultSize={getDefaultSize()}
         dispatch={tr => onChange_(state.apply(tr))}
       />
-      <ProseMirror ref={viewRef} state={state} onChange={onChange_} />
+      <ProseMirror
+        ref={viewRef}
+        state={state}
+        onChange={onChange_}
+        style={{ fontSize: getDefaultSize() }}
+      />
     </div>
   );
 };

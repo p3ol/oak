@@ -12,26 +12,15 @@ export default ({
   onToggleBlock,
   onToggleLink,
   state,
-  element = 'text',
+  defaultSize,
 }) => {
-
-  const SIZES = {
-    text: 16,
-    headings: { h1: 32, h2: 24, h3: 19, h4: 16, h5: 13, h6: 10 },
-  };
-
-  const getDefaultSize = () => {
-    return element?.type === 'title'
-      ? SIZES.headings[element.headingLevel] || SIZES.text
-      : SIZES.text;
-  };
 
   const getTextSize = () => {
     const selectedSize = parseInt(
       getActiveAttrs(state, schema.marks.size).size?.split('p')[0]
     );
 
-    return selectedSize || getDefaultSize();
+    return selectedSize || defaultSize;
   };
 
   return (
