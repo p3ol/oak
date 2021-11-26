@@ -106,7 +106,7 @@ export const marks = {
 
   em: {
     parseDOM: [{ tag: 'i' }, { tag: 'em' }, { style: 'font-style=italic' }],
-    toDOM: () => ['em', 0],
+    toDOM: () => ['span', { style: 'font-style: italic' }, 0],
   },
 
   strong: {
@@ -118,7 +118,7 @@ export const marks = {
         style: 'font-weight',
         getAttrs: value => /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null,
       }],
-    toDOM: () => ['strong', 0],
+    toDOM: () => ['span', { style: 'font-weight: bold' }, 0],
   },
 
   color: {
