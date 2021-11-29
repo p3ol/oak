@@ -28,11 +28,14 @@ export const nodes = {
               : node.style.textAlign === 'justify' ? 'justify'
                 : 'left' };
       },
-    }, {
-      tag: 'br',
     },
     ],
     toDOM: e => {
+
+      if (e.textContent.length === 0) {
+        return ['br'];
+      }
+
       return ['div', { style: `text-align: ${e?.attrs?.alignment}` }, 0];
     },
   },
