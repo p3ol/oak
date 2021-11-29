@@ -50,7 +50,7 @@ export default ({ value, onChange, element }) => {
 
   const getDefaultSize = () => {
     return element?.type === 'title'
-      ? SIZES.headings[element.headingLevel] || SIZES.text
+      ? SIZES.headings[element?.headingLevel] || SIZES.text
       : SIZES.text;
   };
 

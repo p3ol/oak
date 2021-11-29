@@ -1,6 +1,13 @@
 import { Tooltip, classNames } from '@poool/junipero';
 
-export default ({ tooltipText, onClick, format, className, icon }) => {
+export default ({
+  tooltipText,
+  onClick,
+  format,
+  className,
+  icon,
+  active = false,
+}) => {
   return (
     <Tooltip text={tooltipText}>
       <a
@@ -10,7 +17,7 @@ export default ({ tooltipText, onClick, format, className, icon }) => {
           'oak-toolbar-button',
           'oak-' + format,
           {
-            'oak-active': false,
+            'oak-active': active,
           },
           className,
         )}

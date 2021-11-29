@@ -12,7 +12,7 @@ import { useRef, useState } from 'react';
 import { schema } from '../schema';
 import { getActiveAttrs } from '../utils';
 
-export default ({ className, onChange, state }) => {
+export default ({ className, onChange, state, active = false }) => {
   const colorFieldRef = useRef();
   const [color, setColor] = useState('#000000');
 
@@ -45,6 +45,9 @@ export default ({ className, onChange, state }) => {
             className={classNames(
               'oak-toolbar-button',
               'oak-color-button',
+              {
+                'oak-active': active,
+              },
               className,
             )}
           >

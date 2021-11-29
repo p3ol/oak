@@ -15,7 +15,12 @@ import { useReducer } from 'react';
 import { schema } from '../schema';
 import { getActiveAttrs } from '../utils';
 
-export default ({ className, state: prosemirrorState, onChange }) => {
+export default ({
+  className,
+  state: prosemirrorState,
+  onChange,
+  active = false,
+}) => {
   const [state, dispatch] = useReducer(mockState, {
     href: '',
     target: null,
@@ -63,7 +68,7 @@ export default ({ className, state: prosemirrorState, onChange }) => {
               'oak-toolbar-button',
               'oak-link-button',
               {
-                'oak-active': false,
+                'oak-active': active,
               },
               className,
             )}

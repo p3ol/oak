@@ -15,3 +15,15 @@ export const getActiveAttrs = (editorState, type) => {
 
   return mark ? mark.attrs : {};
 };
+
+export const isMarkActive = (state, type) => {
+  const { from, $from, to, empty } = state.selection;
+  if (empty) return type.isInSet(state.storedMarks || $from.marks());
+  else return state.doc.rangeHasMark(from, to, type);
+};
+
+export const getAlignment = (state, alignment) => {
+  const { $from } = state.selection;
+
+  return $from.node(1)?.attrs?.alignment === alignment;
+};

@@ -2,7 +2,7 @@ import { Text } from '@poool/oak';
 
 import ColorButton from './ColorButton';
 import { schema } from '../schema';
-import { getActiveAttrs } from '../utils';
+import { getActiveAttrs, getAlignment, isMarkActive } from '../utils';
 import MarkButton from './MarkButton';
 import SizeButton from './SizeButton';
 import LinkButton from './LinkButton';
@@ -27,6 +27,7 @@ export default ({
     <div className="oak-toolbar">
       <MarkButton
         onClick={onToggleMark.bind(null, schema.marks.strong)}
+        active={isMarkActive(state, schema.marks.strong)}
         icon="format_bold"
         format="bold"
         tooltipText={(
@@ -38,7 +39,7 @@ export default ({
       />
       <MarkButton
         onClick={onToggleMark.bind(null, schema.marks.em)}
-        icon="format_italic"
+        active={isMarkActive(state, schema.marks.em)}
         format="italic"
         tooltipText={(
           <Text
@@ -49,6 +50,7 @@ export default ({
       />
       <MarkButton
         onClick={onToggleMark.bind(null, schema.marks.underline)}
+        active={isMarkActive(state, schema.marks.underline)}
         icon="format_underlined"
         format="underline"
         tooltipText={(
@@ -61,10 +63,12 @@ export default ({
       <LinkButton
         state={state}
         onChange={link => onToggleLink(link)}
+        active={isMarkActive(state, schema.marks.link)}
       />
       <ColorButton
         state={state}
         onChange={color => onToggleMark(schema.marks.color, { color })}
+        active={isMarkActive(state, schema.marks.color)}
       />
       <SizeButton
         onClick={size => onToggleMark(schema.marks.size, size)}
@@ -99,6 +103,7 @@ export default ({
             schema.nodes.paragraph,
             { alignment: 'left' }
           )}
+        active={getAlignment(state, 'left')}
         icon="format_align_left"
         format="text-left"
         tooltipText={(
@@ -114,6 +119,7 @@ export default ({
           schema.nodes.paragraph,
           { alignment: 'center' }
         )}
+        active={getAlignment(state, 'center')}
         icon="format_align_center"
         format="text-center"
         tooltipText={(
@@ -129,6 +135,7 @@ export default ({
           schema.nodes.paragraph,
           { alignment: 'right' }
         )}
+        active={getAlignment(state, 'right')}
         icon="format_align_right"
         format="text-right"
         tooltipText={(
@@ -144,6 +151,7 @@ export default ({
           schema.nodes.paragraph,
           { alignment: 'justify' }
         )}
+        active={getAlignment(state, 'justify')}
         icon="format_align_justify"
         format="text-justify"
         tooltipText={(
