@@ -31,7 +31,6 @@ export const nodes = {
     },
     ],
     toDOM: e => {
-
       if (e.textContent.length === 0) {
         return ['br'];
       }
@@ -62,7 +61,6 @@ export const marks = {
     spanning: false,
     attrs: {
       href: { default: null },
-      title: { default: null },
       target: { default: null },
     },
     parseDOM: [{
@@ -70,15 +68,14 @@ export const marks = {
       getAttrs: dom => {
         return {
           href: dom.getAttribute('href'),
-          title: dom.getAttribute('title'),
           target: dom.getAttribute('target'),
         };
       },
     }],
     toDOM (node) {
-      const { href, title, target } = node.attrs;
+      const { href, target } = node.attrs;
 
-      return ['a', { href, title, target }, 0];
+      return ['a', { href, target }, 0];
     },
   },
 
