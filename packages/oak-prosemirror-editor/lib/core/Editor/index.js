@@ -3,6 +3,7 @@ import { ProseMirror, useProseMirror } from 'use-prosemirror';
 import { DOMParser as proseDOMParser, DOMSerializer } from 'prosemirror-model';
 import { setBlockType, baseKeymap } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
+import { classNames } from '@poool/junipero';
 
 import { schema } from './schema';
 import { removeActiveMark, toggleMark, updateActiveLink } from './transform';
@@ -79,7 +80,7 @@ export default ({ value, onChange, element }) => {
   };
 
   return (
-    <div className="oak-text-editor">
+    <div className="oak-text-editor oak-prosemirror">
       <Toolbar
         state={state}
         onToggleBlock={onToggleBlock}
@@ -89,6 +90,7 @@ export default ({ value, onChange, element }) => {
         dispatch={tr => onChange_(state.apply(tr))}
       />
       <ProseMirror
+        className="oak-text-input"
         ref={viewRef}
         state={state}
         onChange={onChange_}

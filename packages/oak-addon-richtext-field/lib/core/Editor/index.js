@@ -79,7 +79,7 @@ export default ({
       value={state.value}
       onChange={onChange_}
     >
-      <div className="oak-text-editor">
+      <div className="oak-text-editor oak-slate">
         <div className="oak-toolbar">
           <MarkButton
             format="bold"
