@@ -1,5 +1,7 @@
+import { schema } from './schema';
+
 /**
-  THESE TWO FIRST FUNCTIONS ARE REPLACEMENTS
+  THESE THREE FIRST FUNCTIONS ARE REPLACEMENTS
   FOR THE PROSEMIRROR-COMMAND TOGGLEMARK
   FUNCTION WHICH DID NOT SUPPORT THE CHANGE OF MARK ATTRIBUTE
  */
@@ -97,4 +99,14 @@ export const removeActiveMark = markType => {
     });
     dispatch(tr.scrollIntoView());
   };
+};
+
+export const updateActiveLink = (state, attrs = {}) => {
+  const { $cursor } = state.selection;
+
+  const activeLink = schema.marks.link.isInSet(
+    state.storedMarks || $cursor.marks()
+  );
+
+  if (activeLink) { activeLink.attrs = attrs; }
 };

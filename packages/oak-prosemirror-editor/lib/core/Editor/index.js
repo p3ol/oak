@@ -5,7 +5,7 @@ import { setBlockType, baseKeymap } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
 
 import { schema } from './schema';
-import { removeActiveMark, toggleMark } from './transform';
+import { removeActiveMark, toggleMark, updateActiveLink } from './transform';
 import Toolbar from './Toolbar';
 import { SIZES } from './utils';
 
@@ -63,13 +63,19 @@ export default ({ value, onChange, element }) => {
     transformation(state, tr => onChange_(state.apply(tr)));
   };
 
-  const onToggleLink = async (attr = {}) => {
-    removeActiveMark(schema.marks.link)(state, tr => {
-      const transitionState = state.apply(tr);
-      editorView.updateState(transitionState);
-      const newLink = toggleMark(schema.marks.link, attr);
-      newLink(transitionState, tra => onChange_(transitionState.apply(tra)));
-    });
+  const onToggleLink = (attr = {}) => {
+    const { empty } = state.selection;
+
+    if (empty) {
+      updateActiveLink(state, attr);
+    } else {
+      removeActiveMark(schema.marks.link)(state, tr => {
+        const transitionState = state.apply(tr);
+        editorView.updateState(transitionState);
+        const newLink = toggleMark(schema.marks.link, attr);
+        newLink(transitionState, tra => onChange_(transitionState.apply(tra)));
+      });
+    }
   };
 
   return (
