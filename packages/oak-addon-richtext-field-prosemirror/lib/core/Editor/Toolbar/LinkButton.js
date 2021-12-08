@@ -26,7 +26,8 @@ export default ({
     target: null,
   });
 
-  const onClick = () => {
+  const onClick = e => {
+    e.preventDefault();
     const {
       href,
       target,

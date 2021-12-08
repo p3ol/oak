@@ -8,11 +8,16 @@ export default ({
   icon,
   active = false,
 }) => {
+  const onClick_ = e => {
+    e.preventDefault();
+    onClick();
+  };
+
   return (
     <Tooltip text={tooltipText}>
       <a
         href="#"
-        onClick={onClick}
+        onClick={onClick_}
         className={classNames(
           'oak-toolbar-button',
           'oak-' + format,

@@ -8,7 +8,8 @@ export default ({
   onClick,
   currentSize,
 }) => {
-  const changeSize = () => {
+  const changeSize = e => {
+    e.preventDefault();
     const newSize = increasing ? currentSize + 1 : currentSize - 1;
     onClick({ size: `${newSize}px` });
   };

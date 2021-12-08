@@ -21,7 +21,8 @@ export default ({ className, onChange, state, active = false }) => {
     setColor(field.value);
   };
 
-  const onClick = () => {
+  const onClick = e => {
+    e.preventDefault();
     colorFieldRef.current?.dropdownRef.current?.open();
   };
 
