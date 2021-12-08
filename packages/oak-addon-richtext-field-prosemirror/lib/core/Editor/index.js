@@ -13,7 +13,7 @@ export default ({ value, onChange, element }) => {
 
   const viewRef = useRef();
   const [editorView, setEditorView] = useState(null);
-
+  const [size, setSize] = useState(SIZES.text);
   const content = document.createElement('div');
   content.innerHTML = value;
 
@@ -26,6 +26,13 @@ export default ({ value, onChange, element }) => {
       keymap(baseKeymap),
     ],
   });
+
+  useEffect(() => {
+    const size = element?.type === 'title'
+      ? SIZES.headings[element?.headingLevel] : SIZES.text;
+    schema.marks.size.attrs.size.default = `${size}px`;
+    setSize(size);
+  }, [element?.headingLevel]);
 
   useEffect(() => {
     setEditorView(viewRef.current.view);
@@ -72,8 +79,13 @@ export default ({ value, onChange, element }) => {
       removeActiveMark(schema.marks.link)(state, tr => {
         const transitionState = state.apply(tr);
         editorView.updateState(transitionState);
-        const newLink = toggleMark(schema.marks.link, attr);
-        newLink(transitionState, tra => onChange_(transitionState.apply(tra)));
+
+        if (attr.href !== '' && attr.href !== null) {
+          const newLink = toggleMark(schema.marks.link, attr);
+          newLink(transitionState, t => onChange_(transitionState.apply(t)));
+        } else {
+          onChange_(transitionState);
+        }
       });
     }
   };
@@ -85,7 +97,7 @@ export default ({ value, onChange, element }) => {
         onToggleBlock={onToggleBlock}
         onToggleMark={onToggleMark}
         onToggleLink={onToggleLink}
-        defaultSize={getDefaultSize()}
+        defaultSize={size}
         dispatch={tr => onChange_(state.apply(tr))}
       />
       <ProseMirror

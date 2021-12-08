@@ -1,5 +1,7 @@
 import { Schema } from 'prosemirror-model';
 
+import { SIZES } from './utils';
+
 export const nodes = {
   doc: {
     content: 'block+',
@@ -71,7 +73,7 @@ export const marks = {
         };
       },
     }],
-    toDOM (node) {
+    toDOM: node => {
       const { href, target } = node.attrs;
 
       return ['a', { href, target }, 0];
@@ -79,7 +81,7 @@ export const marks = {
   },
   size: {
     attrs: {
-      size: { },
+      size: { default: `${SIZES.text}px` },
     },
     parseDOM: [
       { tag: 'span',
