@@ -1,11 +1,11 @@
 import { Text } from '@poool/oak';
 
-import ColorButton from './ColorButton';
 import { schema } from '../schema';
 import { getActiveAttrs, getAlignment, isMarkActive } from '../utils';
+import ColorButton from './ColorButton';
 import MarkButton from './MarkButton';
-import SizeButton from './SizeButton';
 import LinkButton from './LinkButton';
+import SizeButton from './SizeButton';
 
 export default ({
   onToggleMark,
@@ -14,7 +14,6 @@ export default ({
   state,
   defaultSize,
 }) => {
-
   const getTextSize = () => {
     const selectedSize = parseInt(
       getActiveAttrs(state, schema.marks.size).size?.split('p')[0]
@@ -95,14 +94,12 @@ export default ({
           />
         )}
       />
-
       <MarkButton
-        onClick={
-          onToggleBlock.bind(
-            null,
-            schema.nodes.paragraph,
-            { alignment: 'left' }
-          )}
+        onClick={onToggleBlock.bind(
+          null,
+          schema.nodes.paragraph,
+          { alignment: 'left' }
+        )}
         active={getAlignment(state, 'left')}
         icon="format_align_left"
         format="text-left"

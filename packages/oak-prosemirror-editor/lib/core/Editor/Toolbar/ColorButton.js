@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import {
   classNames,
   ColorField,
@@ -7,7 +8,6 @@ import {
   Tooltip,
 } from '@poool/junipero';
 import { Text } from '@poool/oak';
-import { useRef, useState } from 'react';
 
 import { schema } from '../schema';
 import { getActiveAttrs } from '../utils';

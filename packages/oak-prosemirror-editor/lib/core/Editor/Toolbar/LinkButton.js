@@ -1,3 +1,4 @@
+import { useReducer } from 'react';
 import {
   classNames,
   Dropdown,
@@ -10,7 +11,6 @@ import {
   Tooltip,
 } from '@poool/junipero';
 import { Text } from '@poool/oak';
-import { useReducer } from 'react';
 
 import { schema } from '../schema';
 import { getActiveAttrs } from '../utils';

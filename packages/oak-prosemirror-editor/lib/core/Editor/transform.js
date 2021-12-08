@@ -1,14 +1,13 @@
 import { schema } from './schema';
 
 /**
-  THESE THREE FIRST FUNCTIONS ARE REPLACEMENTS
-  FOR THE PROSEMIRROR-COMMAND TOGGLEMARK
-  FUNCTION WHICH DID NOT SUPPORT THE CHANGE OF MARK ATTRIBUTE
+  These three first functions are replacements
+  for the prosemirror-command togglemark
+  function which did not support the change of mark attribute
  */
 
 const markApplies = (doc, ranges, type) => {
-  for (let i = 0; i < ranges.length; i++) {
-    const { $from, $to } = ranges[i];
+  for (const { $from, $to } of ranges) {
     let can = $from.depth === 0 ? doc.type.allowsMarkType(type) : false;
     doc.nodesBetween($from.pos, $to.pos, node => {
       if (can) return false;
@@ -29,7 +28,7 @@ const isDefault = (markAttrs, defaultAttrs) => {
 };
 
 export const toggleMark = (markType, attrs) => {
-  return function (state, dispatch) {
+  return (state, dispatch) => {
     const { empty, $cursor, ranges } = state.selection;
 
     if ((empty && !$cursor) || !markApplies(state.doc, ranges, markType)) {
@@ -46,17 +45,18 @@ export const toggleMark = (markType, attrs) => {
       } else {
         let has = false; const tr = state.tr;
 
-        for (let i = 0; !has && i < ranges.length; i++) {
-          const { $from, $to } = ranges[i];
+        for (const { $from, $to } of ranges) {
           has = state.doc.rangeHasMark($from.pos, $to.pos, markType);
         }
 
         for (let i = 0; i < ranges.length; i++) {
           const { $from, $to } = ranges[i];
 
-          if (has &&
-            (Object.keys(markType.attrs).length === 0 ||
-            isDefault(attrs, markType.attrs))
+          if (
+            has && (
+              Object.keys(markType.attrs).length === 0 ||
+              isDefault(attrs, markType.attrs)
+            )
           ) {
             tr.removeMark($from.pos, $to.pos, markType);
           } else {
@@ -69,7 +69,10 @@ export const toggleMark = (markType, attrs) => {
             const spaceEnd = end && end.isText
               ? /\s*$/.exec(end.text)[0].length : 0;
 
-            if (from + spaceStart < to) { from += spaceStart; to -= spaceEnd; }
+            if (from + spaceStart < to) {
+              from += spaceStart;
+              to -= spaceEnd;
+            }
 
             tr.addMark(from, to, markType.create(attrs));
           }
@@ -83,9 +86,8 @@ export const toggleMark = (markType, attrs) => {
   };
 };
 
-export const removeActiveMark = markType => {
-
-  return (state, dispatch) => {
+export const removeActiveMark = markType =>
+  (state, dispatch) => {
     const tr = state.tr;
     const { from, to } = state.selection;
     state.doc.nodesBetween(from, to, (node, pos) => {
@@ -99,7 +101,6 @@ export const removeActiveMark = markType => {
     });
     dispatch(tr.scrollIntoView());
   };
-};
 
 export const updateActiveLink = (state, attrs = {}) => {
   const { $cursor } = state.selection;
@@ -108,5 +109,7 @@ export const updateActiveLink = (state, attrs = {}) => {
     state.storedMarks || $cursor.marks()
   );
 
-  if (activeLink) { activeLink.attrs = attrs; }
+  if (activeLink) {
+    activeLink.attrs = attrs;
+  }
 };

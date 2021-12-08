@@ -3,12 +3,11 @@ import { ProseMirror, useProseMirror } from 'use-prosemirror';
 import { DOMParser as proseDOMParser, DOMSerializer } from 'prosemirror-model';
 import { setBlockType, baseKeymap } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
-import { classNames } from '@poool/junipero';
 
 import { schema } from './schema';
 import { removeActiveMark, toggleMark, updateActiveLink } from './transform';
-import Toolbar from './Toolbar';
 import { SIZES } from './utils';
+import Toolbar from './Toolbar';
 
 export default ({ value, onChange, element }) => {
 
@@ -90,7 +89,7 @@ export default ({ value, onChange, element }) => {
         dispatch={tr => onChange_(state.apply(tr))}
       />
       <ProseMirror
-        className="oak-text-input"
+        className="oak-text-editable"
         ref={viewRef}
         state={state}
         onChange={onChange_}

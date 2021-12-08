@@ -4,31 +4,31 @@ export const nodes = {
   doc: {
     content: 'block+',
   },
-
   paragraph: {
     attrs: {
       alignment: { default: 'left' },
     },
     content: 'inline*',
     group: 'block',
-    parseDOM: [{
-      tag: 'p',
-      getAttrs: node => {
-        return { alignment: node.style.textAlign === 'center' ? 'center'
-          : node.style.textAlign === 'right' ? 'right'
-            : node.style.textAlign === 'justify' ? 'justify'
-              : 'left' };
-      },
-    }, {
-      tag: 'div',
-      getAttrs: node => {
-        return node.innerHTML.length === 0 ? false
-          : { alignment: node.style.textAlign === 'center' ? 'center'
+    parseDOM: [
+      {
+        tag: 'p',
+        getAttrs: node => {
+          return { alignment: node.style.textAlign === 'center' ? 'center'
             : node.style.textAlign === 'right' ? 'right'
               : node.style.textAlign === 'justify' ? 'justify'
                 : 'left' };
+        },
+      }, {
+        tag: 'div',
+        getAttrs: node => {
+          return node.innerHTML.length === 0 ? false
+            : { alignment: node.style.textAlign === 'center' ? 'center'
+              : node.style.textAlign === 'right' ? 'right'
+                : node.style.textAlign === 'justify' ? 'justify'
+                  : 'left' };
+        },
       },
-    },
     ],
     toDOM: e => {
       if (e.textContent.length === 0) {
@@ -38,12 +38,11 @@ export const nodes = {
       return ['div', { style: `text-align: ${e?.attrs?.alignment}` }, 0];
     },
   },
-
   text: {
     group: 'inline',
     inline: true,
   },
-  hard_break: {
+  hardBreak: {
     group: 'block',
     selectable: false,
     parseDOM: [{
@@ -78,7 +77,6 @@ export const marks = {
       return ['a', { href, target }, 0];
     },
   },
-
   size: {
     attrs: {
       size: { },
@@ -95,7 +93,6 @@ export const marks = {
       return ['span', { style: `font-size: ${node.attrs.size}` }, 0];
     },
   },
-
   underline: {
     parseDOM: [
       { tag: 'u' },
@@ -103,12 +100,10 @@ export const marks = {
     ],
     toDOM: () => ['span', { style: 'text-decoration: underline' }, 0],
   },
-
   em: {
     parseDOM: [{ tag: 'i' }, { tag: 'em' }, { style: 'font-style=italic' }],
     toDOM: () => ['span', { style: 'font-style: italic' }, 0],
   },
-
   strong: {
     parseDOM: [{ tag: 'strong' },
       {
@@ -120,7 +115,6 @@ export const marks = {
       }],
     toDOM: () => ['span', { style: 'font-weight: bold' }, 0],
   },
-
   color: {
     attrs: {
       color: {
