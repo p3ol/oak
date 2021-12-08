@@ -3,7 +3,7 @@ import { SelectField } from '@poool/junipero';
 
 import Editor from './core/Editor';
 
-export default { title: 'oak-prosemirror-editor' };
+export default { title: 'oak-addon-richtext-field-prosemirror' };
 
 export const classicEditor = () => {
   const [value, setValue] = useState('This is a <strong>fancy</strong> text<br />with a line break');

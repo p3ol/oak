@@ -1,17 +1,17 @@
 {
-  "name": "@poool/oak-addon-prosemirror-editor",
+  "name": "@poool/oak-addon-richtext-field-prosemirror",
   "version": "1.0.0-rc.11",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/oak-addon-prosemirror-editor.cjs.js",
+  "main": "dist/oak-addon-richtext-field-prosemirror.cjs.js",
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "esnext": "src/index.js",
-  "unpkg": "dist/oak-addon-prosemirror-editor.min.js",
-  "cdn": "dist/oak-addon-prosemirror-editor.min.js",
+  "unpkg": "dist/oak-addon-richtext-field-prosemirror.min.js",
+  "cdn": "dist/oak-addon-richtext-field-prosemirror.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",
-    "directory": "packages/oak-addon-prosemirror-editor"
+    "directory": "packages/oak-addon-richtext-field-prosemirror"
   },
   "author": "Maxime Da Silva <maximed@poool.fr>",
   "license": "MIT",

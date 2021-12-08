@@ -7,7 +7,7 @@ import basicComponents, { localeFr as basicFrench }
 import richTextField, { localeFr as editorFrench }
   from '../../oak-addon-richtext-field/lib';
 import french from './languages/fr';
-import proseMirrorEditor from '../../oak-prosemirror-editor/lib';
+import proseMirrorEditor from '../../oak-addon-richtext-field-prosemirror/lib';
 
 export default { title: 'oak' };
 
