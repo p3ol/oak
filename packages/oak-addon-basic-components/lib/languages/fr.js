@@ -81,6 +81,10 @@ export default {
               button: 'Bouton',
               links: 'Lien',
             },
+            key: {
+              title: 'Identifiant du bouton',
+              placeholder: 'Ex : mon-bouton',
+            },
           },
         },
       },

@@ -46,5 +46,11 @@ export default {
       title: t => t(prefix + '.type.links', 'Link'),
       value: 'link',
     }],
+  }, {
+    type: 'text',
+    key: 'key',
+    default: '',
+    label: t => t(prefix + '.key.title', 'Button id'),
+    placeholder: t => t(prefix + '.key.placeholder', 'Ex: my-button'),
   }],
 };

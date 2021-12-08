@@ -3,6 +3,9 @@ import Title from './core/Title';
 import Image from './core/Image';
 import Button from './core/Button';
 
+const generateKey = () =>
+  'field' + Math.floor(Math.random() * (1000000 - 10000 + 1) + 10000);
+
 export const COMPONENT_TITLE = {
   id: 'title',
   name: t => t('addons.basicComponents.components.title.name', 'Title'),
@@ -74,5 +77,7 @@ export const COMPONENT_BUTTON = {
     settings: {
       buttonType: 'button',
     },
+    key: generateKey(),
   }),
+  duplicate: elmt => Object.assign(elmt, { key: generateKey() }),
 };
