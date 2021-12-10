@@ -5,9 +5,8 @@ import {
   useCallback,
   useImperativeHandle,
 } from 'react';
-import { mockState, cloneDeep, get } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get, mergeDeep } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
-import { mergeDeep } from '@poool/junipero';
 
 import { AppContext } from '../../contexts';
 import { filterOverride } from '../../utils';
