@@ -5,7 +5,7 @@ import {
   useCallback,
   useImperativeHandle,
 } from 'react';
-import { mockState, cloneDeep, get } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get, mergeDeep } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
@@ -228,9 +228,11 @@ export default forwardRef((options, ref) => {
   const duplicateElement = (elmt, { parent = state.content } = {}) => {
     let newElmt = normalizeElement(cloneDeep(elmt), { resetIds: true });
     const component = getComponent(elmt.type);
+    const overrides = getOverrides('component', elmt.type);
+    const duplicate = overrides?.duplicate || component?.duplicate;
 
-    if (typeof component.duplicate === 'function') {
-      newElmt = component.duplicate(newElmt);
+    if (typeof duplicate === 'function') {
+      newElmt = duplicate(newElmt);
     }
 
     parent.splice(
@@ -414,15 +416,30 @@ export default forwardRef((options, ref) => {
     dispatch({ texts });
 
   const getOverrides = (type, item, opts = {}) => {
-    const overrides = state.overrides
-      ?.filter(o => o.type === type && filterOverride(type, o, item))
-      ?.pop();
+    const overrides = [];
+    state.overrides
+      .forEach(o => {
+        for (const comp of o.components) {
+          const index = overrides.findIndex(o => o.components[0] === comp);
+
+          if (index === -1) {
+            overrides.push({ ...o, components: [comp] });
+          } else {
+            overrides[index] = {
+              ...mergeDeep({ ...o }, overrides[index]),
+              components: [comp] };
+          }
+        }
+      });
+    const override = overrides?.filter(
+      o => o.type === type && filterOverride(type, o, item)
+    ).pop();
 
     switch (type) {
       case 'component':
         switch (opts.output) {
           case 'field': {
-            const field = overrides?.fields
+            const field = override?.fields
               .find(f => f.key === opts.field?.key);
 
             return Object.assign({},
@@ -430,11 +447,11 @@ export default forwardRef((options, ref) => {
               getOverrides(field?.type || opts.field?.type));
           }
           default:
-            return overrides;
+            return override;
         }
 
       case 'field':
-        return overrides;
+        return override;
     }
   };
 
