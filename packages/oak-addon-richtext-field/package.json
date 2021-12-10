@@ -35,7 +35,7 @@
     "slate": "0.72.0",
     "slate-history": "0.66.0",
     "slate-hyperscript": "0.67.0",
-    "slate-react": "0.72.0"
+    "slate-react": "0.72.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
