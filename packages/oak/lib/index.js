@@ -5,8 +5,8 @@ import App from './core/App';
 import Text from './core/Text';
 
 class oak {
-  #ref = createRef()
-  #parent = null
+  #ref = createRef();
+  #parent = null;
 
   constructor (parent) {
     this.#parent = parent;
