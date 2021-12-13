@@ -15,37 +15,28 @@ export const basicConfig = () => {
   const containerRef = useRef();
   const oakRef = useRef();
   const [theme, setTheme] = useState();
-  const [editor, setEditor] = useState();
+  const [currentAddon, setCurrentAddon] = useState({});
 
   useEffect(() => {
     const ref = render(containerRef.current, {
       debug: true,
-      addons: [basicComponents, richTextField, proseMirrorEditor],
+      addons: [basicComponents, currentAddon],
       content: [
         {
           type: 'text',
           content: 'This is some fancy text ' +
-          's<span style="color:rgb(195, 63, 63);">contentcontent</span>',
+          '<span style="color:rgb(195, 63, 63);">content</span>',
           settings: {},
           id: '81d6c270-062c-4a89-979e-a58b3c405e38',
         },
       ],
-      ...(editor === 'richtext' ? {
+      ...(currentAddon.fieldTypes ? {
         overrides: [{
           type: 'component',
           components: ['text', 'title', 'button'],
           fields: [{
             key: 'content',
             type: 'richtext',
-          }],
-        }],
-      } : editor === 'prosemirror' ? {
-        overrides: [{
-          type: 'component',
-          components: ['text', 'title', 'button'],
-          fields: [{
-            key: 'content',
-            type: 'prosemirror',
           }],
         }],
       } : {}),
@@ -56,7 +47,7 @@ export const basicConfig = () => {
     return () => {
       ref?.destroy();
     };
-  }, [editor]);
+  }, [currentAddon]);
 
   const setTexts = field => {
     oakRef.current?.setTexts(field.value);
@@ -107,13 +98,13 @@ export const basicConfig = () => {
           style={{ marginBottom: 50, marginLeft: 20 }}
           placeholder="Text editor"
           options={[
-            { title: 'Default', value: 'default' },
-            { title: 'Rich Text', value: 'richtext' },
-            { title: 'prose mirror', value: 'prosemirror' },
+            { title: 'Default', value: {} },
+            { title: 'Slate', value: richTextField },
+            { title: 'Prose mirror', value: proseMirrorEditor },
           ]}
           parseTitle={o => o.title}
           parseValue={o => o.value}
-          onChange={field => setEditor(field.value)}
+          onChange={field => setCurrentAddon(field.value)}
         />
       </div>
       <div ref={containerRef} id="container" />
