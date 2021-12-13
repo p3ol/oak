@@ -12,13 +12,7 @@ import { AppContext } from '../../contexts';
 import { filterOverride } from '../../utils';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
 import {
-  FIELD_TEXT,
-  FIELD_TEXTAREA,
-  FIELD_SELECT,
-  FIELD_COLOR,
-  FIELD_CORE_IMAGE,
-  FIELD_DATE,
-  FIELD_TOGGLE,
+  BASE_FIELDTYPES,
 } from '../../fields';
 import Builder from '../Builder';
 
@@ -26,10 +20,7 @@ export default forwardRef((options, ref) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
-    fieldTypes: [
-      FIELD_TEXT, FIELD_TEXTAREA, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE,
-      FIELD_DATE, FIELD_TOGGLE,
-    ],
+    fieldTypes: [...BASE_FIELDTYPES],
     _settingsHolderRef: null,
     memory: [[]],
     positionInMemory: 1,
@@ -98,11 +89,22 @@ export default forwardRef((options, ref) => {
   }), Object.values(state));
 
   const init = () => {
+    state.fieldTypes = [...BASE_FIELDTYPES];
+
     if (options.addons) {
       options.addons.forEach(addon => {
         if (addon.fieldTypes) {
-          state.fieldTypes = (state.fieldTypes || [])
-            .concat(addon.fieldTypes);
+
+          addon.fieldTypes.forEach(fieldType => {
+            const index = state.fieldTypes
+              .findIndex(ft => ft.type === fieldType.type);
+
+            if (index === -1) {
+              state.fieldTypes.push(fieldType);
+            } else {
+              state.fieldTypes[index] = fieldType;
+            }
+          });
         }
 
         if (addon.components) {
