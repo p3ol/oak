@@ -30,9 +30,9 @@ export default () => {
       content: typeof element.content === 'function'
         ? element.content(getText) : element.content,
       ...(
-        overrides?.afterConstruct &&
-        typeof overrides.afterConstruct === 'function'
-          ? overrides.afterConstruct()
+        overrides?.construct &&
+        typeof overrides.construct === 'function'
+          ? overrides.construct(element)
           : {}
       ),
     });
