@@ -29,7 +29,12 @@ export default () => {
       ...element,
       content: typeof element.content === 'function'
         ? element.content(getText) : element.content,
-      ...(overrides?.afterConstruct ? overrides.afterConstruct() : {}),
+      ...(
+        overrides?.afterConstruct &&
+        typeof overrides.afterConstruct === 'function'
+          ? overrides.afterConstruct()
+          : {}
+      ),
     });
     catalogueRef.current?.close();
   };
