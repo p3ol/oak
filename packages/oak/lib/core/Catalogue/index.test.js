@@ -1,12 +1,11 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import Catalogue from '.';
-import { withBuilder } from '../../../tests/utils';
+import { withBuilder } from '@tests-utils';
 
 describe('Catalogue', () => {
   it('should render component', () => {
     const { container } = render(withBuilder(<Catalogue />, {}));
     expect(container.querySelector('.oak-catalogue')).toBeTruthy();
-    expect(true).toBeTruthy();
   });
 
   it('should open catalog when clicking on "+"', async () => {
