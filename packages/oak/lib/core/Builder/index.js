@@ -18,15 +18,18 @@ export default () => {
     isUndoPossible,
     isRedoPossible,
     getText,
+    getOverrides,
   } = useBuilder();
   const { debug, historyButtonsEnabled } = useOptions();
 
   const onAppend = component => {
     const element = component.construct?.() || {};
+    const overrides = getOverrides('component', element.type);
     addElement({
       ...element,
       content: typeof element.content === 'function'
         ? element.content(getText) : element.content,
+      ...(overrides?.afterConstruct ? overrides.afterConstruct() : {}),
     });
     catalogueRef.current?.close();
   };
