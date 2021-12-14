@@ -8,7 +8,7 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
   },
   overrides: [{
-    files: ['packages/**/*.test.js'],
+    files: ['packages/**/*.test.js', 'packages/**/tests/**/*.js'],
     env: {
       jest: true,
     },
