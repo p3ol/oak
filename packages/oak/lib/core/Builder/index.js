@@ -25,14 +25,17 @@ export default () => {
   const onAppend = component => {
     const element = component.construct?.() || {};
     const overrides = getOverrides('component', element.type);
-    addElement({
+    const elementWithContent = {
       ...element,
       content: typeof element.content === 'function'
         ? element.content(getText) : element.content,
+    };
+    addElement({
+      ...elementWithContent,
       ...(
         overrides?.construct &&
         typeof overrides.construct === 'function'
-          ? overrides.construct(element)
+          ? overrides.construct(elementWithContent)
           : {}
       ),
     });
