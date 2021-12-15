@@ -134,6 +134,7 @@ const Col = ({
             />
           </Editable>
           <Option
+            className="oak-remove"
             option={{ icon: 'clear' }}
             onClick={onRemove_}
           />
