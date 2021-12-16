@@ -10,7 +10,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
-const name = 'oak-aaddon-prosemirror-editor';
+const name = 'oak-addon-richtext-field-prosemirror';
 const formats = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = ['@poool/oak', 'react', 'react-dom', 'react-popper'];
