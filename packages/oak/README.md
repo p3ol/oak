@@ -20,7 +20,7 @@ yarn add @poool/oak
 ```javascript
 import { render } from '@poool/oak';
 
-render(document.getElementById('app'));
+render(document.getElementById('app'), { /* options */ });
 ```
 
 Don't forget to import styles, for example using `style-loader` and `webpack`:
@@ -35,27 +35,189 @@ Or import them directly inside your own styles using `less`, `sass` or `stylus`:
 @import "@poool/oak/dist/oak.min.css";
 ```
 
-#### Dependencies
+## Documentation
 
-Oak is bundled with all its internal dependencies, but you can also use it without them:
+### Options
 
-```javascript
-// ESM version
-import { render } from '@poool/oak/dist/standalone/esm';
+#### addons
+- Type: `Array`
+- Default: `[]`
 
-// Require version
-const { render } = require('@poool/oak/dist/standalone/oak.cjs.js');
+Adds a list of addons to add to the page builder. See [addons](#addons) for more information.
+
+#### content
+- Type: `Array`
+- Default: `[]`
+
+Default content to add to the builder on init.
+
+#### debug
+- Type: `Boolean`
+- Default: `false`
+
+Enable/disable debug output.
+
+#### events
+- Type: `Object`
+- Default: `{}`
+
+Event listeners to attach to the builder. See [events](#events) for more information.
+
+#### historyButtonsEnabled
+- Type: `Boolean`
+- Default: `true`
+
+Enable/disable undo/redo buttons.
+
+#### otherTabEnabled
+- Type: `Boolean`
+- Default: `true`
+
+Whether to display the `Other components` tab inside the builder's catalogue dropdown.
+
+#### overrides
+- Type: `Array`
+- Default: `[]`
+
+Defines a list of components/fields to override. See [overrides](#overrides) for more information.
+
+#### settings
+- Type: `Object`
+- Default: `{}`
+
+Custom settings to add to the components' settings panel. See [settings](#settings) for more information.
+
+#### settingsContainer
+- Type: `Node`
+- Default: `null`
+
+Element in which to render the components' settings panel.
+
+#### texts
+- Type: `Object`
+- Default: `{}`
+
+Override texts used by the builder. See [texts](#texts) for more information.
+
+### Addons
+
+Creating addons allows you to add new components or field types to the builder.
+
+An addon is an object with the following format:
+```js
+{
+  components: [{
+    id: String,
+    name: String|Function,
+    type: String,
+    render: Function,
+    construct: Function,
+    icon?: String|Function,
+    options?: Object,
+    settings?: Object,
+    editable?: Boolean,
+    duplicate?: Function,
+  }],
+  fieldTypes: [{
+    type: String,
+    render: Function,
+    default?: Any,
+    serialize?: Function,
+    deserialize?: Function,
+  }]
+}
 ```
 
-Don't forget to install these dependencies as they will be required at runtime:
-- [react](https://www.npmjs.com/package/react)
-- [react-dom](https://www.npmjs.com/package/react-dom)
-- [react-popper](https://www.npmjs.com/package/react-popper)
-- [@popperjs/core](https://www.npmjs.com/package/@popperjs/core)
+For example, if you need to add a new `quote` component & a new `enhancedtext` field type:
 
-## [Documentation](https://oak.design)
+```js
+import { render } from '@poool/oak';
 
-https://oak.design
+render(element, {
+  components: [{
+    id: 'quote',
+    name: translate => translate('customTexts.quote.title', 'Quote component'),
+    type: 'component',
+    render: ({ content, author }) =>
+      `<blockquote>${content}<cite>${author}</cite></blockquote>`,
+    construct: () => ({
+      type: 'quote',
+      content: '',
+      author: '',
+    }),
+    settings: {
+      title: translate => translate('customTexts.quote.settings.title',
+        'Quote options'),
+      fields: [{
+        key: 'content',
+        type: 'enhancedtext',
+        default: '',
+        displayable: true,
+      }, {
+        key: 'author',
+        type: 'text',
+        displayable: true,
+      }],
+    },
+  }],
+  fieldTypes: [{
+    type: 'enhancedtext',
+    default: '',
+    render: (baseProps, customProps) => (
+      <textarea { ...customProps } { ...baseProps } />
+    ),
+  }]
+});
+```
+
+If you need to have a look at more complex examples, feel free to take a look at all the addons we have already created in the `packages` folder.
+
+### Events
+
+#### onChange
+- Arguments: `({ value: Array }: Object)`
+
+Example:
+```js
+render(element, {
+  events: {
+    onChange: ({ value }) => console.log(value),
+  },
+});
+```
+
+Called everytime the builder's content changes.
+
+#### onImageUpload
+- Arguments: `(event: Event)`
+
+Called when an image is uploaded using the `image` field type. The event argument is the native file `input` event.
+
+Example:
+```js
+render(element, {
+  events: {
+    onImageUpload: event => {
+      const reader = new FileReader();
+      const image = e.target.files[0];
+
+      return { url: reader.readAsDataURL(image), name: image.name };
+    },
+  },
+});
+```
+
+### Overrides
+
+// TODO
+
+### Settings
+
+// TODO
+
+### Texts
+
+// TODO
 
 ## Contributing
 
