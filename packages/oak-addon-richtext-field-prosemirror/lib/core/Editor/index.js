@@ -10,13 +10,9 @@ import { SIZES } from './utils';
 import Toolbar from './Toolbar';
 
 export default ({ value, onChange, element }) => {
-
   const viewRef = useRef();
   const [editorView, setEditorView] = useState(null);
   const [size, setSize] = useState(SIZES.text);
-  const content = document.createElement('div');
-  content.innerHTML = value;
-
   const [state, setState] = useProseMirror({
     schema,
     doc: proseDOMParser.fromSchema(schema)
