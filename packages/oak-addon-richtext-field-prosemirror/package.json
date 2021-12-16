@@ -1,0 +1,50 @@
+{
+  "name": "@poool/oak-addon-richtext-field-prosemirror",
+  "version": "1.0.0-rc.11",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "main": "dist/oak-addon-richtext-field-prosemirror.cjs.js",
+  "jsnext:main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "esnext": "src/index.js",
+  "unpkg": "dist/oak-addon-richtext-field-prosemirror.min.js",
+  "cdn": "dist/oak-addon-richtext-field-prosemirror.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/oak-addon-richtext-field-prosemirror"
+  },
+  "author": "Maxime Da Silva <maximed@poool.fr>",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">= 12",
+    "yarn": ">= 1"
+  },
+  "peerDependencies": {
+    "@poool/oak": "^1.0.0-rc.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.15.4",
+    "@poool/junipero": "2.0.0-rc.15",
+    "@poool/junipero-utils": "2.0.0-rc.15",
+    "@poool/oak": "^1.0.0-rc.11",
+    "core-js": "3.19.0",
+    "prosemirror-commands": "1.1.12",
+    "prosemirror-model": "1.15.0",
+    "prosemirror-schema-basic": "1.1.2",
+    "prosemirror-state": "1.3.4",
+    "prosemirror-view": "1.22.0",
+    "prosemirror-keymap": "1.1.5",
+    "use-prosemirror": "1.2.2"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && rollup -c",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

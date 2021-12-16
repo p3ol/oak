@@ -1,9 +1,17 @@
-@require "@poool/oak/lib/theme/colors"
-
-.oak-text-editor.oak-slate
+.oak-prosemirror.oak-text-editor
   background: var(--oak-text-editor-color)
   border-radius: 4px
   width: 100%
+
+  .oak-text-editable
+    padding: 10px
+    box-sizing: border-box
+    width: 100%
+
+    a
+      color: blue
+      text-decoration: underline
+
 
   .oak-toolbar
     background: var(--oak-text-editor-toolbar-color)
@@ -48,16 +56,7 @@
     .oak-text-size
       font-size: 14px
       margin: 0 10px
-
-  .oak-text-editable
-    box-sizing: border-box
-    padding: 10px
-    width: 100%
-
-    a
-      color: blue !important
-      text-decoration: underline
-
+  
   .junipero.tooltip
     z-index: 1
 
