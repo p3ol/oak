@@ -1,9 +1,17 @@
-@require "@poool/oak/lib/theme/colors"
-
-.oak-text-editor
+.oak-prosemirror.oak-text-editor
   background: var(--oak-text-editor-color)
   border-radius: 4px
   width: 100%
+
+  .oak-text-editable
+    padding: 10px
+    box-sizing: border-box
+    width: 100%
+
+    a
+      color: blue
+      text-decoration: underline
+
 
   .oak-toolbar
     background: var(--oak-text-editor-toolbar-color)
@@ -48,29 +56,32 @@
     .oak-text-size
       font-size: 14px
       margin: 0 10px
+  
+  .junipero.tooltip
+    z-index: 1
 
-  .oak-text-editable
-    box-sizing: border-box
-    padding: 10px
-    width: 100%
+    .tooltip-inner
+      font-size: 12px
 
-.junipero.tooltip
-  z-index: 1
+    .arrow
+      display: none
 
-  .tooltip-inner
-    font-size: 12px
+  .oak-color-field
+    .color-input
+      padding: 0px 10px
 
-  .arrow
-    display: none
+      .junipero.dropdown-menu .menu-inner
+        box-shadow: none
+        margin-bottom: 10px
 
-.oak-color-field
-  .color-input
-    padding: 0px 10px
-    
-    .junipero.dropdown-menu .menu-inner
-      box-shadow: none
-      margin-bottom: 10px
+    .junipero.color-input .color-wheel .lightness
+      border-radius: 4px
+      margin-bottom: 5px
 
-  .junipero.color-input .color-wheel .lightness
-    border-radius: 4px
-    margin-bottom: 5px
+  .oak-link-field
+    .oak-link-input.junipero.dropdown-menu
+      .menu-inner
+        padding: 10px
+      
+      .oak-link-url
+        margin-bottom: 10px

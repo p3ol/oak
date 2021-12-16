@@ -9,6 +9,10 @@ const responsive = [
     title: t => t('core.responsive.fluid', 'Flexible'),
     value: 'fluid',
   },
+  {
+    title: t => t('core.responsive.auto', 'Adapted to content'),
+    value: 'auto',
+  },
   ...fixedSizes,
   {
     title: t => t('core.responsive.hide', 'Hidden'),
@@ -36,6 +40,10 @@ export default {
       {
         title: t => t('core.responsive.fluid', 'Flexible'),
         value: 'fluid',
+      },
+      {
+        title: t => t('core.responsive.auto', 'Adapted to content'),
+        value: 'auto',
       },
       ...fixedSizes,
     ],

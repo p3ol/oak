@@ -15,6 +15,7 @@ const DragOption = {
     return (
       <Draggable dragImage={dragImage} data={element}>
         <Option
+          onClick={e => e.preventDefault()}
           option={{ icon: 'drag_handle' }}
           className={classNames(className, 'oak-drag-handle')}
         />

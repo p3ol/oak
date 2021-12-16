@@ -1,0 +1,48 @@
+{
+  "name": "@poool/oak-addon-richtext-field",
+  "version": "1.0.0-rc.15",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "main": "dist/oak-addon-richtext-field.cjs.js",
+  "jsnext:main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "esnext": "src/index.js",
+  "unpkg": "dist/oak-addon-richtext-field.min.js",
+  "cdn": "dist/oak-addon-richtext-field.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/oak-addon-richtext-field"
+  },
+  "author": "Ugo Stephant <ugo@poool.fr>",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">= 12",
+    "yarn": ">= 1"
+  },
+  "peerDependencies": {
+    "@poool/oak": "^1.0.0-rc.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.16.5",
+    "@poool/junipero": "2.0.0-rc.15",
+    "@poool/junipero-utils": "2.0.0-rc.15",
+    "@poool/oak": "^1.0.0-rc.15",
+    "core-js": "3.20.0",
+    "is-hotkey": "0.2.0",
+    "slate": "0.72.0",
+    "slate-history": "0.66.0",
+    "slate-hyperscript": "0.67.0",
+    "slate-react": "0.72.1"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && rollup -c",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

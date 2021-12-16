@@ -129,7 +129,7 @@ export default ({
               <span>
                 <Text
                   name="addons.basicComponents.fields.image.add"
-                  default="Add an image"
+                  default="Add image"
                 />
               </span>
             </>

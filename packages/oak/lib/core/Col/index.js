@@ -22,7 +22,7 @@ const Col = ({
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
   const settingsElementRef = useRef();
-  const { addElement, moveElement } = useBuilder();
+  const { addElement, moveElement, getText } = useBuilder();
 
   const onPrependCol_ = e => {
     e.preventDefault();
@@ -45,14 +45,22 @@ const Col = ({
   };
 
   const onPrepend_ = component => {
-    addElement?.(component.construct(),
-      { parent: element.content, position: 'before' });
+    const elmt = component.construct?.() || {};
+    addElement?.({
+      ...elmt,
+      content: typeof elmt.content === 'function'
+        ? elmt.content(getText) : elmt.content,
+    }, { parent: element.content, position: 'before' });
     prependCatalogueRef.current?.close();
   };
 
   const onAppend_ = component => {
-    addElement?.(component.construct(),
-      { parent: element.content, position: 'after' });
+    const elmt = component.construct?.() || {};
+    addElement?.({
+      ...elmt,
+      content: typeof elmt.content === 'function'
+        ? elmt.content(getText) : elmt.content,
+    }, { parent: element.content, position: 'after' });
     appendCatalogueRef.current?.close();
   };
 

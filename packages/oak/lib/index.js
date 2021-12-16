@@ -1,12 +1,16 @@
 import { createRef } from 'react';
 import ReactDOM from 'react-dom';
 
-import { useOptions, useBuilder, useElement } from './hooks';
 import App from './core/App';
 import Text from './core/Text';
 
 class oak {
-  #ref = createRef()
+  #ref = createRef();
+  #parent = null;
+
+  constructor (parent) {
+    this.#parent = parent;
+  }
 
   setRef (ref) {
     this.#ref.current = ref;
@@ -71,10 +75,18 @@ class oak {
   getText (...args) {
     return this.#ref.current?.getText(...args);
   }
+
+  setOverrides (...args) {
+    return this.#ref.current?.setOverrides(...args);
+  }
+
+  destroy () {
+    ReactDOM.unmountComponentAtNode(this.#parent);
+  }
 }
 
 export const render = (elmt, options = {}) => {
-  const app = new oak();
+  const app = new oak(elmt);
   ReactDOM.render(<App ref={app.setRef.bind(app)} {...options} />, elmt);
 
   return app;
@@ -82,6 +94,8 @@ export const render = (elmt, options = {}) => {
 
 export { Text, oak as Lib, App as Builder };
 
-export { useOptions, useBuilder, useElement };
+export { useOptions, useBuilder, useElement } from './hooks';
+
+export { sanitizeHTML } from './utils';
 
 export { default as localeFr } from './languages/fr';

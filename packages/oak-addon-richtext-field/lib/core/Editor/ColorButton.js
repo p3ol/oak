@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSlate } from 'slate-react';
-import { Transforms } from 'slate';
+import { Transforms, Editor } from 'slate';
 import {
   ColorField,
   Dropdown,
@@ -43,23 +43,14 @@ export default ({ className }) => {
     setColor(selectedColor);
   };
 
-  const getSelectedColor = () => {
-    const path = selection?.anchor?.path;
-    const selectedRow = editor.children[path?.[0]];
-    const selectedContent = Array.isArray(selectedRow)
-      ? selectedRow[path?.[1]]
-      : selectedRow?.children?.[path?.[1]];
-    const selectedColor = selectedContent?.color || '#000000';
-
-    return selectedColor;
-  };
+  const getSelectedColor = () => Editor.marks(editor)?.color || '#000000';
 
   return (
     <Dropdown className="oak-color-field">
       <DropdownToggle tag="span">
         <Tooltip text={(
           <Text
-            name="addons.basicComponents.fields.editor.color"
+            name="addons.richtextField.fields.editor.color"
             default="Color"
           />
         )}
@@ -84,6 +75,8 @@ export default ({ className }) => {
           ref={colorFieldRef}
           value={color}
           onChange={onChange}
+          opened={true}
+          trigger="manual"
           popperOptions={{
             strategy: 'relative',
             modifiers: [{

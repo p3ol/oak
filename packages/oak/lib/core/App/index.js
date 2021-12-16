@@ -5,18 +5,14 @@ import {
   useCallback,
   useImperativeHandle,
 } from 'react';
-import { mockState, cloneDeep, get } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get, mergeDeep } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
+import { filterOverride } from '../../utils';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
 import {
-  FIELD_TEXT,
-  FIELD_SELECT,
-  FIELD_COLOR,
-  FIELD_CORE_IMAGE,
-  FIELD_DATE,
-  FIELD_TOGGLE,
+  BASE_FIELDTYPES,
 } from '../../fields';
 import Builder from '../Builder';
 
@@ -24,21 +20,23 @@ export default forwardRef((options, ref) => {
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
-    fieldTypes: [
-      FIELD_TEXT, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE, FIELD_DATE,
-      FIELD_TOGGLE,
-    ],
+    fieldTypes: [...BASE_FIELDTYPES],
     _settingsHolderRef: null,
     memory: [[]],
     positionInMemory: 1,
     isUndoPossible: false,
     isRedoPossible: false,
     texts: options?.texts || {},
+    overrides: options?.overrides || [],
   });
 
   useEffect(() => {
     init();
-  }, []);
+  }, [options]);
+
+  useEffect(() => {
+    dispatch({ overrides: options.overrides || [] });
+  }, [options?.overrides]);
 
   useImperativeHandle(ref, () => ({
     addGroup,
@@ -48,6 +46,7 @@ export default forwardRef((options, ref) => {
     addElement,
     setElement,
     removeElement,
+    duplicateElement,
     moveElement,
     setContent,
     findNearestParent,
@@ -60,17 +59,21 @@ export default forwardRef((options, ref) => {
     isRedoPossible: () => state.isRedoPossible,
     getText,
     setTexts,
+    getOverrides,
+    setOverrides,
   }));
 
   const getContext = useCallback(() => ({
     content: state.content,
     components: state.components,
+    overrides: state.overrides,
     _settingsHolderRef: state._settingsHolderRef,
     options,
     isUndoPossible: state.isUndoPossible,
     isRedoPossible: state.isRedoPossible,
     addElement,
     removeElement,
+    duplicateElement,
     setElement,
     moveElement,
     setContent,
@@ -82,14 +85,26 @@ export default forwardRef((options, ref) => {
     undo,
     redo,
     getText,
+    getOverrides,
   }), Object.values(state));
 
   const init = () => {
+    state.fieldTypes = [...BASE_FIELDTYPES];
+
     if (options.addons) {
       options.addons.forEach(addon => {
         if (addon.fieldTypes) {
-          state.fieldTypes = (state.fieldTypes || [])
-            .concat(addon.fieldTypes);
+
+          addon.fieldTypes.forEach(fieldType => {
+            const index = state.fieldTypes
+              .findIndex(ft => ft.type === fieldType.type);
+
+            if (index === -1) {
+              state.fieldTypes.push(fieldType);
+            } else {
+              state.fieldTypes[index] = fieldType;
+            }
+          });
         }
 
         if (addon.components) {
@@ -212,6 +227,24 @@ export default forwardRef((options, ref) => {
     onChange();
   };
 
+  const duplicateElement = (elmt, { parent = state.content } = {}) => {
+    let newElmt = normalizeElement(cloneDeep(elmt), { resetIds: true });
+    const component = getComponent(elmt.type);
+    const overrides = getOverrides('component', elmt.type);
+    const duplicate = overrides?.duplicate || component?.duplicate;
+
+    if (typeof duplicate === 'function') {
+      newElmt = duplicate(newElmt);
+    }
+
+    parent.splice(
+      parent.findIndex(e => e.id === elmt.id),
+      0,
+      newElmt
+    );
+    onChange();
+  };
+
   const setElement = (elmt, props) => {
     Object.assign(elmt, props);
     onChange();
@@ -270,30 +303,26 @@ export default forwardRef((options, ref) => {
       contains(elmt, { parent: parent.content })
     );
 
-  const normalizeElement = elmt => {
+  const normalizeElement = (elmt, opts = {}) => {
     if (Array.isArray(elmt.cols)) {
-      elmt.cols.forEach(c => normalizeElement(c));
+      elmt.cols.forEach(c => normalizeElement(c, opts));
     } else if (Array.isArray(elmt.content)) {
-      elmt.content.forEach(e => normalizeElement(e));
+      elmt.content.forEach(e => normalizeElement(e, opts));
     }
 
-    if (!elmt.id) {
+    if (!elmt.id || opts.resetIds) {
       elmt.id = uuid();
     }
 
     const component = getComponent(elmt.type);
+    const overrides = getOverrides('component', elmt.type);
+    const deserialize = overrides?.deserialize || component?.deserialize;
 
-    if (component?.deserialize &&
-      elmt?.content &&
-      typeof elmt.content === 'function'
-    ) {
-      elmt.content = elmt.content(getText);
+    if (deserialize) {
+      Object.assign(elmt, deserialize(elmt));
     }
 
-    if (component?.deserialize &&
-      component.isSerialized?.(elmt)) {
-      Object.assign(elmt, component.deserialize(elmt));
-    }
+    return elmt;
   };
 
   const serializeElement = elmt => {
@@ -304,10 +333,11 @@ export default forwardRef((options, ref) => {
     }
 
     const component = getComponent(elmt.type);
+    const overrides = getOverrides('component', elmt.type);
+    const serialize = overrides?.serialize || component?.serialize;
 
-    if (component?.serialize &&
-      !component.isSerialized?.(elmt)) {
-      Object.assign(elmt, component.serialize(elmt));
+    if (serialize) {
+      Object.assign(elmt, serialize(elmt));
     }
   };
 
@@ -386,6 +416,49 @@ export default forwardRef((options, ref) => {
 
   const setTexts = texts =>
     dispatch({ texts });
+
+  const getOverrides = (type, item, opts = {}) => {
+    const overrides = [];
+    state.overrides
+      .forEach(o => {
+        for (const comp of o.components) {
+          const index = overrides.findIndex(o => o.components[0] === comp);
+
+          if (index === -1) {
+            overrides.push({ ...o, components: [comp] });
+          } else {
+            overrides[index] = {
+              ...mergeDeep({ ...o }, overrides[index]),
+              components: [comp] };
+          }
+        }
+      });
+    const override = overrides?.filter(
+      o => o.type === type && filterOverride(type, o, item)
+    ).pop();
+
+    switch (type) {
+      case 'component':
+        switch (opts.output) {
+          case 'field': {
+            const field = override?.fields
+              .find(f => f.key === opts.field?.key);
+
+            return Object.assign({},
+              getField(field?.type || opts.field?.type),
+              getOverrides(field?.type || opts.field?.type));
+          }
+          default:
+            return override;
+        }
+
+      case 'field':
+        return override;
+    }
+  };
+
+  const setOverrides = overrides =>
+    dispatch({ overrides });
 
   return (
     <div className="oak">

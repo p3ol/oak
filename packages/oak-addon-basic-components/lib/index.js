@@ -1,22 +1,13 @@
-import { serialize, deserialize } from './core/Editor/html';
 import {
   COMPONENT_TITLE,
   COMPONENT_TEXT,
   COMPONENT_IMAGE,
   COMPONENT_BUTTON,
 } from './components';
-import Editor from './core/Editor';
 import ImageField from './core/ImageField';
 
 export default {
   fieldTypes: [{
-    type: 'richtext',
-    serialize,
-    deserialize,
-    render: (baseProps, customProps) => (
-      <Editor { ...customProps } { ...baseProps } />
-    ),
-  }, {
     type: 'image',
     onChange: (key, { value, name }) => {
       return { name: name || '', url: value || '' };

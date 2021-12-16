@@ -6,18 +6,6 @@ export default {
           add: 'Ajouter une image',
           del: 'Supprimer',
         },
-        editor: {
-          increase: 'Augmenter la taille',
-          decrease: 'Baisser la taille',
-          bold: 'Gras',
-          italic: 'Italique',
-          underline: 'Souligner',
-          color: 'Couleur',
-          left: 'Aligner à gauche',
-          center: 'Aligner au centre',
-          right: 'Aligner à droite',
-          justify: 'Justifier',
-        },
       },
       components: {
         title: {
@@ -59,6 +47,12 @@ export default {
                 custom: 'Personnalisée',
                 width: 'Largeur de l\'image',
                 height: 'Hauteur de l\'image',
+              },
+              align: {
+                title: 'Alignement de l\'image',
+                left: 'Gauche',
+                center: 'Centré',
+                right: 'Droite',
               },
             },
           },

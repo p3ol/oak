@@ -10,8 +10,9 @@ export default ({
   editableRef,
 }) => {
   const options = useOptions();
-  const { getField } = useBuilder();
-  const renderer = getField(field.type) || field;
+  const { getOverrides } = useBuilder();
+  const renderer = getOverrides('component', element.type,
+    { output: 'field', field });
 
   const commonProps = {
     id: field.id,

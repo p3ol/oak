@@ -2,7 +2,11 @@ import { Node, Text } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const ELEMENT_TAGS = {
-  A: el => ({ type: 'link', url: el.getAttribute('href') }),
+  A: el => ({
+    type: 'link',
+    url: el.getAttribute('href'),
+    target: el.getAttribute('target'),
+  }),
   BLOCKQUOTE: () => ({ type: 'quote' }),
   LI: () => ({ type: 'list-item' }),
   OL: () => ({ type: 'numbered-list' }),
@@ -37,7 +41,19 @@ const ALIGNMENTS = {
   'text-justify': 'justify',
 };
 
+const addAttrsToChildren = (child, attrs) => child.children ? {
+  ...child,
+  children: child.children.map(c => ({
+    ...addAttrsToChildren(c, attrs),
+    ...attrs,
+  })),
+} : child;
+
 export const serialize = (node = []) => {
+  if (isSerialized(node)) {
+    return node;
+  }
+
   if (Array.isArray(node)) {
     return node
       .map((n, i) =>
@@ -61,13 +77,17 @@ export const serialize = (node = []) => {
 
     if (node.color) styles += `color:${node.color};`;
 
+    let res = '';
+
     if (styles.length > 0) {
       styles = ` style="${styles}"`;
 
-      return `<span${styles}>${string}</span>`;
+      res = `<span${styles}>${string}</span>`;
     } else {
-      return string;
+      res = string;
     }
+
+    return res;
   }
 
   const children = node.children?.map(n => serialize(n)).join('');
@@ -82,8 +102,15 @@ export const serialize = (node = []) => {
       return `<blockquote><p>${children}</p></blockquote>`;
     case 'paragraph':
       return `<div>${children}</div>`;
-    case 'link':
-      return `<a href="${node.url}">${children}</a>`;
+    case 'link': {
+      const attributes = []
+        .concat(`href="${node.url}"`)
+        .concat(node.target ? `target="${node.target}"` : '')
+        .filter(v => !!v)
+        .join(' ');
+
+      return `<a ${attributes}>${children}</a>`;
+    }
     default:
       return children;
   }
@@ -103,7 +130,7 @@ export const deserializeNode = el => {
   }
 
   const children = Array.from(el.childNodes)
-    .map(deserializeNode);
+    .map(deserializeNode).flat();
 
   if (el.nodeName === 'BODY') {
     return jsx('fragment', {}, children);
@@ -118,7 +145,10 @@ export const deserializeNode = el => {
   if (TEXT_TAGS[el.nodeName]) {
     const attrs = TEXT_TAGS[el.nodeName](el);
 
-    return children.map(child => jsx('text', attrs, child));
+    return children.map(child => child?.children
+      ? addAttrsToChildren(child, attrs)
+      : jsx('text', attrs, child));
+
   }
 
   return children;
@@ -127,6 +157,10 @@ export const deserializeNode = el => {
 export const deserialize = content => {
   if (!content || typeof content === 'function') {
     return [{ children: [{ text: '' }] }];
+  }
+
+  if (!isSerialized(content)) {
+    return content;
   }
 
   const parsed = new DOMParser().parseFromString(content, 'text/html');

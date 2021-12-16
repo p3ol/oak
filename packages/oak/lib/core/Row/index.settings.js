@@ -77,6 +77,10 @@ export default {
       title: t => t('core.components.row.settings.alignItems.flexEnd',
         'Bottom'),
       value: 'flex-end',
+    }, {
+      title: t => t('core.components.row.settings.alignItems.stretch',
+        'Stretch'),
+      value: 'stretch',
     }],
   }, {
     type: 'select',

@@ -11,9 +11,24 @@ import Text from './core/Text';
 
 export const FIELD_TEXT = {
   type: 'text',
+  deserialize: val => '' + val,
   render: (props, { field } = {}) => (
     <TextField
       { ...props }
+      placeholder={<Text>{ field.placeholder }</Text>}
+      type={field.valueType || 'text'}
+    />
+  ),
+};
+
+export const FIELD_TEXTAREA = {
+  type: 'textarea',
+  deserialize: val => '' + val,
+  render: (props, { field } = {}) => (
+    <TextField
+      { ...props }
+      tag="textarea"
+      rows={props.rows || 5}
       placeholder={<Text>{ field.placeholder }</Text>}
       type={field.valueType || 'text'}
     />
@@ -71,3 +86,8 @@ export const FIELD_TOGGLE = {
     />
   ),
 };
+
+export const BASE_FIELDTYPES = [
+  FIELD_TEXT, FIELD_TEXTAREA, FIELD_SELECT, FIELD_COLOR, FIELD_CORE_IMAGE,
+  FIELD_DATE, FIELD_TOGGLE,
+];

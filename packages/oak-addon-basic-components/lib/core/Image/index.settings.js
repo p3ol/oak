@@ -5,7 +5,7 @@ export default {
   fields: [{
     type: 'image',
     key: 'url',
-    default: [],
+    default: '',
     label: t => t(prefix + '.image.title', 'Image'),
   }, {
     type: 'select',
@@ -34,5 +34,20 @@ export default {
     key: 'settings.height',
     label: t => t(prefix + '.image.size.height', 'Image height'),
     placeholder: t => t(prefix + '.image.size.height', 'Image height'),
+  }, {
+    type: 'select',
+    key: 'settings.textAlign',
+    label: t => t(prefix + '.image.align.title', 'Image alignment'),
+    default: 'left',
+    options: [{
+      title: t => t(prefix + '.image.align.left', 'Left'),
+      value: 'left',
+    }, {
+      title: t => t(prefix + '.image.align.center', 'Center'),
+      value: 'center',
+    }, {
+      title: t => t(prefix + '.image.align.right', 'Right'),
+      value: 'right',
+    }],
   }],
 };
