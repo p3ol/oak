@@ -39,6 +39,7 @@ export default ({
       <MarkButton
         onClick={onToggleMark.bind(null, schema.marks.em)}
         active={isMarkActive(state, schema.marks.em)}
+        icon="format_italic"
         format="italic"
         tooltipText={(
           <Text
