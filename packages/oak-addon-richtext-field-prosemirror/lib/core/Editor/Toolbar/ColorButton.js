@@ -66,6 +66,8 @@ export default ({ className, onChange, state, active = false }) => {
           ref={colorFieldRef}
           onChange={onChange_}
           value={color}
+          opened={true}
+          trigger="manual"
           popperOptions={{
             strategy: 'relative',
             modifiers: [{
