@@ -13,7 +13,7 @@
 ## Packages
 
 | Name | Description | |
-| :--: | :--: | :--: |
+| :-- | :-- | :-- |
 | `@poool/oak` | The famous page builder itself | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak) |
 | `@poool/oak-addon-basic-components` | A collection of basic yet useful oak components | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak-addon-basic-components) |
 | `@poool/oak-addon-richtext-field` | WYSIWYG text field using [Slate](https://github.com/ianstormtaylor/slate) | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak-addon-richtext-field) |
