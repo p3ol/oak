@@ -59,7 +59,7 @@ export const nodes = {
 
 export const marks = {
   link: {
-    spanning: false,
+    spanning: true,
     attrs: {
       href: { default: null },
       target: { default: null },
