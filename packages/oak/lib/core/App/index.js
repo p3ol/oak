@@ -35,7 +35,7 @@ export default forwardRef((options, ref) => {
   }, [options]);
 
   useEffect(() => {
-    dispatch({ overrides: options.overrides });
+    dispatch({ overrides: options.overrides || [] });
   }, [options?.overrides]);
 
   useImperativeHandle(ref, () => ({
