@@ -12536,10 +12536,10 @@ prosemirror-transform@^1.0.0, prosemirror-transform@^1.1.0:
   dependencies:
     prosemirror-model "^1.0.0"
 
-prosemirror-view@1.23.3:
-  version "1.23.3"
-  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.23.3.tgz#9ba85fefaf45e813c46562b694fc5f6f9a5cba9c"
-  integrity sha512-89icyMdXXwxmTxYj0TIuG5M/d0iKeu79tr+PVtC/4qtCOoHrPSPrblJcFOuOWcxGlA/Ei8PqJB4g5HkKR8jWvQ==
+prosemirror-view@1.23.4:
+  version "1.23.4"
+  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.23.4.tgz#387c62ad875e572f8f23cc9e41657134c0c6a5ed"
+  integrity sha512-POMcregk43MNMvjNsOVDvy33TDa9OViNPRwNJW+ZlpSAmf68qUAjp4aqsUE/AHk5eHXk/+uh6JW2J72OyATS/g==
   dependencies:
     prosemirror-model "^1.14.3"
     prosemirror-state "^1.0.0"
