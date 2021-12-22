@@ -32,7 +32,7 @@ export default forwardRef((options, ref) => {
 
   useEffect(() => {
     init();
-  }, [options]);
+  }, options.forceRender ? [options] : []);
 
   useEffect(() => {
     dispatch({ overrides: options.overrides || [] });

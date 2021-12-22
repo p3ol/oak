@@ -20,6 +20,7 @@ export const basicConfig = () => {
   useEffect(() => {
     const ref = render(containerRef.current, {
       debug: true,
+      forceRender: true,
       addons: [basicComponents, currentAddon],
       content: [
         {
