@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 
 import { COMPONENT_DEFAULT } from '../../defaults';
 import { ElementContext } from '../../contexts';
-import { useBuilder } from '../../hooks';
+import { useBuilder, useOptions } from '../../hooks';
 import Option from '../Option';
 import Draggable from '../Draggable';
 import Droppable from '../Droppable';
@@ -27,6 +27,7 @@ const Element = ({
     duplicateElement,
     moveElement,
   } = builder;
+  const options = useOptions();
 
   const getContext = useCallback(() => ({
     element,
@@ -63,7 +64,10 @@ const Element = ({
     className: classNames('oak-element-content-inner', element.className),
   }) || null;
 
-  const componentProps = component.settings?.fields?.filter(f =>
+  const componentProps = [
+    ...component.settings?.fields || [],
+    ...options?.settings?.fields || [],
+  ].filter(f =>
     f.displayable === true && (!f.condition || f.condition(element))
   ) || [];
 
