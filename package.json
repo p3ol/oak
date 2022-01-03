@@ -41,7 +41,7 @@
     "eslint-plugin-babel": "5.3.1",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "5.2.0",
+    "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-react": "7.27.1",
     "lerna": "4.0.0",
     "postcss": "8.4.5",
