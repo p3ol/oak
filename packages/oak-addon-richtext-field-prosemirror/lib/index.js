@@ -9,3 +9,5 @@ export default {
     ),
   }],
 };
+
+export { default as localeFr } from './languages/fr';
