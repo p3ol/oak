@@ -29,7 +29,6 @@
     "@babel/runtime-corejs3": "7.16.8",
     "@poool/junipero": "2.0.0-rc.15",
     "@poool/junipero-utils": "2.0.0-rc.15",
-    "@poool/oak": "^1.0.0-rc.17",
     "core-js": "3.20.2"
   },
   "scripts": {
