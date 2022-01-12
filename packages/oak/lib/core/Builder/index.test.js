@@ -51,6 +51,7 @@ describe('Builder', () => {
     const { getByText, container } = render(withBuilder(<Builder />, {
       addElement: addElementMock,
       components,
+      getOverrides: () => ({}),
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
     fireEvent.click(getByText('component 1'));
