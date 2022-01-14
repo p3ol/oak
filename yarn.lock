@@ -16537,10 +16537,10 @@ use-latest@^1.0.0:
   dependencies:
     use-isomorphic-layout-effect "^1.0.0"
 
-use-prosemirror@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/use-prosemirror/-/use-prosemirror-1.2.2.tgz#cbc9aa9e247ba724081b97cb703a7efd1baf9c56"
-  integrity sha512-Q/5g6A2lJ2jFU6Och4cPFfeMBjLjSdPthOpQA3muKmcswgOWMY9VHWL4171i8Nx/heZuwJ/3dH374z8gvZiRtQ==
+use-prosemirror@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/use-prosemirror/-/use-prosemirror-1.2.3.tgz#ffce0d9e3090933c0b3318d1fb890689b9922a94"
+  integrity sha512-YrrMKT+jTMIyK0PF/p0KyVYvISLAY6GCQ7q4QK6QXWYwiWkhBmbsrLAHRhE/mEf4ouvvdFedBaTfT7dawFOz+w==
 
 use@^3.1.0:
   version "3.1.1"
