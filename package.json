@@ -33,7 +33,7 @@
     "@storybook/builder-webpack5": "6.4.13",
     "@storybook/manager-webpack5": "6.4.13",
     "@storybook/react": "6.4.13",
-    "@testing-library/jest-dom": "5.15.1",
+    "@testing-library/jest-dom": "5.16.1",
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "13.5.0",
     "autoprefixer": "10.4.2",
