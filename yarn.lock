@@ -13730,10 +13730,10 @@ property-information@^5.0.0, property-information@^5.3.0:
   dependencies:
     xtend "^4.0.0"
 
-prosemirror-commands@1.1.12:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.1.12.tgz#5cb0fef4e5a0039e2fa19b42a5626af03d7c2ec3"
-  integrity sha512-+CrMs3w/ZVPSkR+REg8KL/clyFLv/1+SgY/OMN+CB22Z24j9TZDje72vL36lOZ/E4NeRXuiCcmENcW/vAcG67A==
+prosemirror-commands@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.2.0.tgz#d83e25a9a6422fedda26496b79cb297c05d63fdf"
+  integrity sha512-Q9e7R9DXSL44Vd2HO+kDMRZbxJPfL8TvzbbwApOuSl8rfZx7oTJoycg/VnVRO7ZxEEFy7oGhVpWYooba4Ci8Gg==
   dependencies:
     prosemirror-model "^1.0.0"
     prosemirror-state "^1.0.0"
