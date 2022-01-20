@@ -18,7 +18,7 @@
     "@babel/eslint-parser": "7.16.5",
     "@babel/eslint-plugin": "7.16.5",
     "@babel/plugin-transform-runtime": "7.16.10",
-    "@babel/preset-env": "7.16.10",
+    "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
     "@percy/storybook": "4.1.0",
     "@poool/eslint-config": "1.5.0",
