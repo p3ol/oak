@@ -11895,10 +11895,10 @@ property-information@^5.0.0, property-information@^5.3.0:
   dependencies:
     xtend "^4.0.0"
 
-prosemirror-commands@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.2.0.tgz#d83e25a9a6422fedda26496b79cb297c05d63fdf"
-  integrity sha512-Q9e7R9DXSL44Vd2HO+kDMRZbxJPfL8TvzbbwApOuSl8rfZx7oTJoycg/VnVRO7ZxEEFy7oGhVpWYooba4Ci8Gg==
+prosemirror-commands@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.2.1.tgz#eae0cb714df695260659b78ff5d201d3a037e50d"
+  integrity sha512-S/IkpXfpuLFsRynC2HQ5iYROUPiZskKS1+ClcWycGJvj4HMb/mVfeEkQrixYxgTl96EAh+RZQNWPC06GZXk5tQ==
   dependencies:
     prosemirror-model "^1.0.0"
     prosemirror-state "^1.0.0"

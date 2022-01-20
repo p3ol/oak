@@ -30,7 +30,7 @@
     "@poool/junipero": "2.0.0-rc.15",
     "@poool/junipero-utils": "2.0.0-rc.15",
     "core-js": "3.20.3",
-    "prosemirror-commands": "1.2.0",
+    "prosemirror-commands": "1.2.1",
     "prosemirror-keymap": "1.1.5",
     "prosemirror-model": "1.16.1",
     "prosemirror-schema-basic": "1.1.2",
