@@ -107,4 +107,58 @@ describe('<Editable />', () => {
     );
     expect(getByText('field title')).toBeTruthy();
   });
+
+  it('should close form on cancel', async () => {
+    const { container, getByText } = render(withBuilder(
+      <ComplexElement
+        component={{
+          settings: {
+            title: 'test',
+            fields: [{
+              label: 'field title',
+              type: 'select',
+              key: 'settings.key',
+              options: [{}],
+            }],
+          },
+        }}
+      />
+      , { getOverrides: () => jest.fn() }));
+    fireEvent.click(container.querySelector('#toggle'));
+    await waitFor(
+      () => expect(container.querySelector('.oak-opened')).toBeTruthy()
+    );
+    expect(getByText('field title')).toBeTruthy();
+    fireEvent.click(container.querySelector('.oak-editable-buttons>a'));
+    await waitFor(
+      () => expect(container.querySelector('.oak-opened')).toBeFalsy()
+    );
+  });
+
+  it('should close form on save', async () => {
+    const { container, getByText } = render(withBuilder(
+      <ComplexElement
+        component={{
+          settings: {
+            title: 'test',
+            fields: [{
+              label: 'field title',
+              type: 'select',
+              key: 'settings.key',
+              options: [{}],
+            }],
+          },
+        }}
+      />
+      , { getOverrides: () => jest.fn(), setElement: () => jest.fn() }));
+    fireEvent.click(container.querySelector('#toggle'));
+    await waitFor(
+      () => expect(container.querySelector('.oak-opened')).toBeTruthy()
+    );
+    expect(getByText('field title')).toBeTruthy();
+    fireEvent.click(container.querySelector('.oak-editable-buttons>button'));
+    await waitFor(
+      () => expect(container.querySelector('.oak-opened')).toBeFalsy()
+    );
+  });
 });
