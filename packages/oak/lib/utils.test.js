@@ -65,6 +65,7 @@ describe('Utils', () => {
       const result = filterOverride('component', override, 'row');
       expect(result).toBeTruthy();
     });
+
     it('should return true if field item exists', () => {
       const override = {
         components: [],

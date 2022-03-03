@@ -21,6 +21,7 @@ describe('<Droppable />', () => {
     fireEvent(container.querySelector('p'), dragOverEvent);
     expect(container.querySelector('p').className).toContain('drag-top');
   });
+
   it('should add drag-bottom event on dragOver if element is on bottom', () => {
     const { container } = render(<Droppable><p>hello</p></Droppable>);
     fireEvent.dragEnter(container.querySelector('p'));
@@ -83,6 +84,7 @@ describe('<Droppable />', () => {
     expect(container.querySelector('p').className).not.toContain('drag-bottom');
     expect(dragLeaveMock).toHaveBeenCalled();
   });
+
   it('should trigger onDrop props event when drop', () => {
     const dropMock = jest.fn();
     const { container } = render(
@@ -150,6 +152,7 @@ describe('<Droppable />', () => {
       Object.defineProperty(dragOverEvent, 'clientY', { value: 1 });
       expect(dragOverMock).not.toHaveBeenCalled();
     });
+
     it('should not trigger onDrop props event when drop', () => {
       const dropMock = jest.fn();
       const { container } = render(
