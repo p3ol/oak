@@ -23,8 +23,8 @@ export const isMarkActive = (state, type) => {
     : state.doc.rangeHasMark(from, to, type);
 };
 
-export const getAlignment = (state, alignment) => {
+export const getAlignment = state => {
   const { $from } = state.selection;
 
-  return $from.node(1)?.attrs?.alignment === alignment;
+  return $from.node(1)?.attrs?.alignment;
 };
