@@ -1,13 +1,16 @@
 const path = require('path');
 
 module.exports = {
-  displayName: 'oak addon basic components',
+  displayName: {
+    name: 'oak addon basic components',
+    color: 'blue',
+  },
   testEnvironment: 'jsdom',
   clearMocks: true,
   resetMocks: true,
   rootDir: path.resolve(__dirname),
   moduleNameMapper: {
-    '^@tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
+    '^@mocks(.+)$': path.resolve(__dirname, 'tests/__mocks__') + '$1',
   },
   transform: {
     '^.+\\.js$': 'babel-jest',
