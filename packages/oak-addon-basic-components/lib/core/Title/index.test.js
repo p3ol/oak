@@ -81,6 +81,7 @@ describe('<Text />', () => {
 
     expect(container.querySelector('h1')).toBeTruthy();
   });
+
   afterEach(() => {
     builderSpies.reset();
   });

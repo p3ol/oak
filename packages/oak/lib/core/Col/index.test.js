@@ -92,9 +92,9 @@ describe('Col', () => {
     }));
     expect(container.querySelector('.oak-editable')).toBeFalsy();
     fireEvent.click(container.querySelector('.oak-options .oak-edit'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-editable')).toBeTruthy()
-    );
+    ));
   });
 
   it('should call remove method after clicking on remove button', () => {

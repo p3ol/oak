@@ -10,33 +10,37 @@ describe('<Element />', () => {
     editable: true,
   };
   it('should render', () => {
-    const { container } = render(withBuilder(<Element
-      element={{
-        type: 'type',
-        cols: [{
+    const { container } = render(withBuilder((
+      <Element
+        element={{
           type: 'type',
-          content: [],
-          id: 'my-id',
-          style: {},
-        }],
-      }}
-    />, { getComponent: () => jest.fn() }));
+          cols: [{
+            type: 'type',
+            content: [],
+            id: 'my-id',
+            style: {},
+          }],
+        }}
+      />
+    ), { getComponent: () => jest.fn() }));
     expect(container.querySelector('.oak-element')).toBeTruthy();
   });
 
   it('should remove element when clicking on remove cross', () => {
     const mockRemoveElement = jest.fn();
-    const { container } = render(withBuilder(<Element
-      element={{
-        type: 'type',
-        cols: [{
+    const { container } = render(withBuilder((
+      <Element
+        element={{
           type: 'type',
-          content: [],
-          id: 'my-id',
-          style: {},
-        }],
-      }}
-    />, {
+          cols: [{
+            type: 'type',
+            content: [],
+            id: 'my-id',
+            style: {},
+          }],
+        }}
+      />
+    ), {
       getComponent: () => component,
       removeElement: mockRemoveElement,
     }));
@@ -47,18 +51,20 @@ describe('<Element />', () => {
 
   it('should duplicate element when clicking on duplicate button', () => {
     const mockDuplicateElement = jest.fn();
-    const { container } = render(withBuilder(<Element
-      element={{
-        editable: true,
-        type: 'type',
-        cols: [{
+    const { container } = render(withBuilder((
+      <Element
+        element={{
+          editable: true,
           type: 'type',
-          content: [],
-          id: 'my-id',
-          style: {},
-        }],
-      }}
-    />, {
+          cols: [{
+            type: 'type',
+            content: [],
+            id: 'my-id',
+            style: {},
+          }],
+        }}
+      />
+    ), {
       getComponent: () => component,
       duplicateElement: mockDuplicateElement,
     }));
@@ -69,18 +75,20 @@ describe('<Element />', () => {
 
   it('should display edit button if component is editabled', () => {
     const mockDuplicateElement = jest.fn();
-    const { container } = render(withBuilder(<Element
-      element={{
-        editable: true,
-        type: 'type',
-        cols: [{
+    const { container } = render(withBuilder((
+      <Element
+        element={{
+          editable: true,
           type: 'type',
-          content: [],
-          id: 'my-id',
-          style: {},
-        }],
-      }}
-    />, {
+          cols: [{
+            type: 'type',
+            content: [],
+            id: 'my-id',
+            style: {},
+          }],
+        }}
+      />
+    ), {
       getComponent: () => component,
       duplicateElement: mockDuplicateElement,
     }));
@@ -91,18 +99,20 @@ describe('<Element />', () => {
   it('should not display edit button if component is not editabled', () => {
     const componentUneditable = { ...component, editable: false };
     const mockDuplicateElement = jest.fn();
-    const { container } = render(withBuilder(<Element
-      element={{
-        editable: true,
-        type: 'type',
-        cols: [{
+    const { container } = render(withBuilder((
+      <Element
+        element={{
+          editable: true,
           type: 'type',
-          content: [],
-          id: 'my-id',
-          style: {},
-        }],
-      }}
-    />, {
+          cols: [{
+            type: 'type',
+            content: [],
+            id: 'my-id',
+            style: {},
+          }],
+        }}
+      />
+    ), {
       getComponent: () => componentUneditable,
       duplicateElement: mockDuplicateElement,
     }));
@@ -113,18 +123,20 @@ describe('<Element />', () => {
   it('should open edit menu if component is editable ' +
   'and click on edit button ', async () => {
     const mockDuplicateElement = jest.fn();
-    const { container } = render(withBuilder(<Element
-      element={{
-        editable: true,
-        type: 'type',
-        cols: [{
+    const { container } = render(withBuilder((
+      <Element
+        element={{
+          editable: true,
           type: 'type',
-          content: [],
-          id: 'my-id',
-          style: {},
-        }],
-      }}
-    />, {
+          cols: [{
+            type: 'type',
+            content: [],
+            id: 'my-id',
+            style: {},
+          }],
+        }}
+      />
+    ), {
       getComponent: () => component,
       duplicateElement: mockDuplicateElement,
       getOverrides: () => jest.fn(),

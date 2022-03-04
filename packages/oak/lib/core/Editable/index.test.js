@@ -1,7 +1,7 @@
-import { fireEvent, render, waitFor } from '@testing-library/react';
 import { useRef } from 'react';
-import { withBuilder } from '@tests-utils';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 
+import { withBuilder } from '@tests-utils';
 import Editable from '.';
 
 describe('<Editable />', () => {
@@ -60,13 +60,13 @@ describe('<Editable />', () => {
     ));
     expect(container.querySelector('.oak-opened')).toBeNull();
     fireEvent.click(container.querySelector('#open'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeTruthy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-opened')).toBeTruthy()
+    ));
     fireEvent.click(container.querySelector('#close'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeFalsy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-opened')).toBeFalsy()
+    ));
   });
 
   it('should open and close alternatively ' +
@@ -76,17 +76,17 @@ describe('<Editable />', () => {
     ));
     expect(container.querySelector('.oak-opened')).toBeNull();
     fireEvent.click(container.querySelector('#toggle'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeTruthy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-opened')).toBeTruthy()
+    ));
     fireEvent.click(container.querySelector('#toggle'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeFalsy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-opened')).toBeFalsy()
+    ));
   });
 
   it('should display form from component settings', async () => {
-    const { container, getByText } = render(withBuilder(
+    const { container, getByText } = render(withBuilder((
       <ComplexElement
         component={{
           settings: {
@@ -100,16 +100,16 @@ describe('<Editable />', () => {
           },
         }}
       />
-      , { getOverrides: () => jest.fn() }));
+    ), { getOverrides: () => jest.fn() }));
     fireEvent.click(container.querySelector('#toggle'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeTruthy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-opened')).toBeTruthy()
+    ));
     expect(getByText('field title')).toBeTruthy();
   });
 
   it('should close form on cancel', async () => {
-    const { container, getByText } = render(withBuilder(
+    const { container, getByText } = render(withBuilder((
       <ComplexElement
         component={{
           settings: {
@@ -123,20 +123,20 @@ describe('<Editable />', () => {
           },
         }}
       />
-      , { getOverrides: () => jest.fn() }));
+    ), { getOverrides: () => jest.fn() }));
     fireEvent.click(container.querySelector('#toggle'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeTruthy()
+    await waitFor(() =>
+      expect(container.querySelector('.oak-opened')).toBeTruthy()
     );
     expect(getByText('field title')).toBeTruthy();
     fireEvent.click(container.querySelector('.oak-editable-buttons>a'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeFalsy()
+    await waitFor(() =>
+      expect(container.querySelector('.oak-opened')).toBeFalsy()
     );
   });
 
   it('should close form on save', async () => {
-    const { container, getByText } = render(withBuilder(
+    const { container, getByText } = render(withBuilder((
       <ComplexElement
         component={{
           settings: {
@@ -150,15 +150,15 @@ describe('<Editable />', () => {
           },
         }}
       />
-      , { getOverrides: () => jest.fn(), setElement: () => jest.fn() }));
+    ), { getOverrides: () => jest.fn(), setElement: () => jest.fn() }));
     fireEvent.click(container.querySelector('#toggle'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeTruthy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-opened')).toBeTruthy()
+    ));
     expect(getByText('field title')).toBeTruthy();
     fireEvent.click(container.querySelector('.oak-editable-buttons>button'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeFalsy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-opened')).toBeFalsy()
+    ));
   });
 });

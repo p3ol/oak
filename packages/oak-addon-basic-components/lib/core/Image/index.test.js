@@ -18,9 +18,7 @@ describe('<Image />', () => {
   });
 
   it('should display "no image" if there is no image', () => {
-    const { getByText } = render(
-      <Image element={{}} />
-    );
+    const { getByText } = render(<Image element={{}} />);
     expect(getByText('No image')).toBeTruthy();
   });
 

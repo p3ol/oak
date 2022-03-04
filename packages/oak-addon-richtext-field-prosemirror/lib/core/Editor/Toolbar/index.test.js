@@ -21,9 +21,9 @@ describe('<Toolbar />', () => {
       />
     );
     expect(true).toBeTruthy();
-    await waitFor(
-      () => expect(container.querySelector('.oak-toolbar')).toBeTruthy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-toolbar')).toBeTruthy()
+    ));
   });
 
   it('should trigger onToggleBlock if blockButton is clicked', async () => {
@@ -69,9 +69,11 @@ describe('<Toolbar />', () => {
       container.querySelector('.oak-link-url input'),
       { target: { value: 'http://example.com' } }
     );
-    await waitFor(() => expect(onToggleLinkMock).toHaveBeenCalledWith({
-      href: 'http://example.com',
-    }));
+    await waitFor(() => (
+      expect(onToggleLinkMock).toHaveBeenCalledWith({
+        href: 'http://example.com',
+      })
+    ));
   });
 
   it('should display the right size', async () => {
@@ -85,9 +87,11 @@ describe('<Toolbar />', () => {
         state={{}}
       />
     );
-    await waitFor(() => expect(
-      container.querySelector('.oak-text-size').textContent
-    ).toEqual('17'));
+    await waitFor(() => (
+      expect(
+        container.querySelector('.oak-text-size').textContent
+      ).toEqual('17')
+    ));
   });
 
   it('should decrease size when clicking on "-" button', async () => {
@@ -101,9 +105,11 @@ describe('<Toolbar />', () => {
         state={{}}
       />
     );
-    await waitFor(() => expect(
-      container.querySelector('.oak-text-size').textContent
-    ).toEqual('17'));
+    await waitFor(() => (
+      expect(
+        container.querySelector('.oak-text-size').textContent
+      ).toEqual('17')
+    ));
     fireEvent.click(getByText('horizontal_rule'));
     expect(onToggleMarkMock)
       .toHaveBeenCalledWith(schema.marks.size, { size: '16px' });
@@ -139,10 +145,11 @@ describe('<Toolbar />', () => {
         state={{}}
       />
     );
-    await waitFor(
-      () => expect(container.querySelector('.oak-underline.oak-active'))
-        .toBeTruthy()
-    );
+    await waitFor(() => (
+      expect(
+        container.querySelector('.oak-underline.oak-active')
+      ).toBeTruthy()
+    ));
   });
 
   it('should set active mode on a alignment ' +
@@ -179,9 +186,9 @@ describe('<Toolbar />', () => {
       container.querySelector('.color-input input'),
       { target: { value: '#ff0000' } }
     );
-    await waitFor(
-      () => expect(onToggleMarkMock)
+    await waitFor(() => (
+      expect(onToggleMarkMock)
         .toHaveBeenCalledWith(schema.marks.color, { color: '#ff0000' })
-    );
+    ));
   });
 });

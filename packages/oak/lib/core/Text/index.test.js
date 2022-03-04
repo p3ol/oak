@@ -20,17 +20,17 @@ describe('<Text />', () => {
 
   it('should name props in priority', () => {
     const mockHandler = jest.fn();
-    render(withBuilder(
+    render(withBuilder((
       <Text name="name props">children props</Text>
-      , { getText: mockHandler }));
+    ), { getText: mockHandler }));
     expect(mockHandler).toHaveBeenCalledWith('name props', 'name props');
   });
 
   it('should use default propsfor second args in priority', () => {
     const mockHandler = jest.fn();
-    render(withBuilder(
+    render(withBuilder((
       <Text name="name props" default="default props">children props</Text>
-      , { getText: mockHandler }));
+    ), { getText: mockHandler }));
     expect(mockHandler).toHaveBeenCalledWith('name props', 'default props');
   });
 

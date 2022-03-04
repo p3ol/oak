@@ -1,4 +1,3 @@
-
 export const builderSpies = {
   getOverrides: jest.fn(),
   reset: function () {

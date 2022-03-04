@@ -93,7 +93,7 @@ describe('<Row />', () => {
 
   it('should splice element cols when removing a col', async () => {
     const mockSetElement = jest.fn();
-    const { container } = render(withBuilder(
+    const { container } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -104,7 +104,7 @@ describe('<Row />', () => {
           ],
         }}
       />
-      , { setElement: mockSetElement }));
+    ), { setElement: mockSetElement }));
     const colsAfter = [
       { content: [] },
       { content: [] },
@@ -121,7 +121,7 @@ describe('<Row />', () => {
   it('should remove the correct col', async () => {
     const mockSetElement = jest.fn();
 
-    const { container, rerender } = render(withBuilder(
+    const { container, rerender } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -132,7 +132,7 @@ describe('<Row />', () => {
           ],
         }}
       />
-      , { setElement: mockSetElement }));
+    ), { setElement: mockSetElement }));
     let colsAfter = [
       { content: [], id: '2' },
       { content: [], id: '3' },
@@ -200,17 +200,18 @@ describe('<Row />', () => {
     }));
 
     // remove last col
-    rerender(withBuilder(<Row
-      element={{
-        cols: [
-          { content: [], id: '1' },
-          { content: [], id: '2' },
-          { content: [], id: '3' },
-          { content: [], id: '4' },
-        ],
-      }}
-    />
-    , { setElement: mockSetElement }));
+    rerender(withBuilder((
+      <Row
+        element={{
+          cols: [
+            { content: [], id: '1' },
+            { content: [], id: '2' },
+            { content: [], id: '3' },
+            { content: [], id: '4' },
+          ],
+        }}
+      />
+    ), { setElement: mockSetElement }));
 
     colsAfter = [
       { content: [], id: '1' },
@@ -228,7 +229,7 @@ describe('<Row />', () => {
 
   it('should add col on divide', async () => {
     const mockSetElement = jest.fn();
-    const { container } = render(withBuilder(
+    const { container } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -239,7 +240,7 @@ describe('<Row />', () => {
           ],
         }}
       />
-      , { setElement: mockSetElement }));
+    ), { setElement: mockSetElement }));
 
     container.querySelector('.oak-divider>a').click();
     await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
@@ -248,7 +249,7 @@ describe('<Row />', () => {
   it('should add col before selected col if ' +
     'left button is clicked', async () => {
     const mockSetElement = jest.fn();
-    const { container } = render(withBuilder(
+    const { container } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -259,7 +260,7 @@ describe('<Row />', () => {
           ],
         }}
       />
-      , { setElement: mockSetElement }));
+    ), { setElement: mockSetElement }));
     const colsAfter = [
       expect.objectContaining({
         type: 'col',
@@ -281,7 +282,7 @@ describe('<Row />', () => {
   it('should add col after selected col if ' +
     'right button is clicked', async () => {
     const mockSetElement = jest.fn();
-    const { container } = render(withBuilder(
+    const { container } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -292,7 +293,7 @@ describe('<Row />', () => {
           ],
         }}
       />
-      , { setElement: mockSetElement }));
+    ), { setElement: mockSetElement }));
     const colsAfter = [
       { content: [], id: '1' },
       expect.objectContaining({

@@ -4,9 +4,7 @@ import Option from '.';
 
 describe('<Option />', () => {
   it('should render', () => {
-    const { container } = render(
-      <Option />
-    );
+    const { container } = render(<Option />);
     expect(container.querySelector('.oak-option')).toBeTruthy();
   });
 
@@ -20,11 +18,7 @@ describe('<Option />', () => {
   });
 
   it('should set custom icon to option icon', () => {
-    const { container } = render(
-      <Option
-        option={{ icon: 'custom' }}
-      />
-    );
+    const { container } = render(<Option option={{ icon: 'custom' }} />);
     expect(container.querySelector('.oak-icons').innerHTML).toEqual('custom');
   });
 

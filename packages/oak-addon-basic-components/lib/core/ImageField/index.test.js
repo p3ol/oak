@@ -1,6 +1,7 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
-import ImageField from '.';
+
 import { elementSpies, optionsSpies } from '@mocks/@poool/oak';
+import ImageField from '.';
 
 describe('<ImageField />', () => {
 
@@ -54,9 +55,9 @@ describe('<ImageField />', () => {
     fireEvent.change(input, { target: { files: [newFile] } });
     expect(container.querySelector('.oak-image-field-preview'))
       .not.toBeTruthy();
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-image-field-preview')).toBeTruthy()
-    );
+    ));
 
     expect(container.querySelector('.oak-image-name').innerHTML)
       .toEqual('test.jpeg');
@@ -104,9 +105,9 @@ describe('<ImageField />', () => {
     fireEvent.change(input, { target: { files: [newFile] } });
     expect(container.querySelector('.oak-image-field-preview'))
       .not.toBeTruthy();
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-image-field-preview')).toBeTruthy()
-    );
+    ));
 
     expect(container.querySelector('.oak-image-name').innerHTML)
       .toEqual('uploaded123.jpeg');
@@ -124,10 +125,10 @@ describe('<ImageField />', () => {
       .toEqual('name.jpg');
 
     fireEvent.click(container.querySelector('.oak-delete'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-image-field-preview'))
+    await waitFor(() => (
+      expect(container.querySelector('.oak-image-field-preview'))
         .not.toBeTruthy()
-    );
+    ));
 
     expect(getByText('Add image')).toBeTruthy();
   });
