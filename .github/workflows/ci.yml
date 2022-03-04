@@ -37,6 +37,10 @@ jobs:
         run: yarn build
       - name: Test
         run: yarn test
+      - name: Codecov upload
+        uses: codecov/codecov-action@v2.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   build:
     name: Building
     runs-on: ubuntu-latest
