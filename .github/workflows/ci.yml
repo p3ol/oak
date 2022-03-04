@@ -33,6 +33,8 @@ jobs:
           node-version: 16
       - name: Install deps
         run: yarn install
+      - name: Build
+        run: yarn build
       - name: Test
         run: yarn test
   build:
