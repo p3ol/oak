@@ -101,7 +101,7 @@ export default ({
           schema.nodes.paragraph,
           { alignment: 'left' }
         )}
-        active={getAlignment(state, 'left')}
+        active={getAlignment(state) === 'left'}
         icon="format_align_left"
         format="text-left"
         tooltipText={(
@@ -117,7 +117,7 @@ export default ({
           schema.nodes.paragraph,
           { alignment: 'center' }
         )}
-        active={getAlignment(state, 'center')}
+        active={getAlignment(state) === 'center'}
         icon="format_align_center"
         format="text-center"
         tooltipText={(
@@ -133,7 +133,7 @@ export default ({
           schema.nodes.paragraph,
           { alignment: 'right' }
         )}
-        active={getAlignment(state, 'right')}
+        active={getAlignment(state) === 'right'}
         icon="format_align_right"
         format="text-right"
         tooltipText={(
@@ -149,7 +149,7 @@ export default ({
           schema.nodes.paragraph,
           { alignment: 'justify' }
         )}
-        active={getAlignment(state, 'justify')}
+        active={getAlignment(state) === 'justify'}
         icon="format_align_justify"
         format="text-justify"
         tooltipText={(

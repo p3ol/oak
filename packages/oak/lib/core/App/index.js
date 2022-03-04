@@ -122,11 +122,14 @@ export default forwardRef((options, ref) => {
               !state.components.find(cp => cp.id === c.id)
             ) {
               state.components.push(c);
-            } else {
+            } else if (options.otherTabEnabled) {
               const group = getGroup_('other');
 
-              if (!group.components.find(cp => cp.id === c.id)) {
-                group.components.push(c);
+              if (
+                c.component &&
+                !group.components.find(cp => cp.id === c.component.id)
+              ) {
+                group.components.push(c.component);
               }
             }
           });

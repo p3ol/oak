@@ -21,7 +21,7 @@ export const sanitizeHTML = content => {
     // Disable all links
     parsed.querySelectorAll('a[href]').forEach(item => {
       item.removeAttribute('href');
-      item.removeAttribute('_target');
+      item.removeAttribute('target');
       item.setAttribute('role', 'link');
     });
 

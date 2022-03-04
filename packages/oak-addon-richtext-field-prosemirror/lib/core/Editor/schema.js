@@ -95,13 +95,6 @@ export const marks = {
       return ['span', { style: `font-size: ${node.attrs.size}` }, 0];
     },
   },
-  underline: {
-    parseDOM: [
-      { tag: 'u' },
-      { style: 'text-decoration=underline' },
-    ],
-    toDOM: () => ['span', { style: 'text-decoration: underline' }, 0],
-  },
   em: {
     parseDOM: [{ tag: 'i' }, { tag: 'em' }, { style: 'font-style=italic' }],
     toDOM: () => ['span', { style: 'font-style: italic' }, 0],
@@ -132,6 +125,13 @@ export const marks = {
     toDOM: e => {
       return ['span', { style: `color:${e?.attrs?.color}` }, 0];
     },
+  },
+  underline: {
+    parseDOM: [
+      { tag: 'u' },
+      { style: 'text-decoration=underline' },
+    ],
+    toDOM: () => ['span', { style: 'text-decoration: underline' }, 0],
   },
 };
 
