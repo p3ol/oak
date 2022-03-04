@@ -209,7 +209,33 @@ render(element, {
 
 ### Overrides
 
-// TODO
+While addons are great to add new components, you might have to override existing components and their behavior.
+That's where `overrides` comes in handy.
+
+There are currently only one type of override:
+- `components`: Allows to override the various fields of one or multiple existing component
+
+#### components
+
+```js
+render(element, {
+  overrides: [{
+    type: 'component',
+    components: ['title', 'text', 'button'],
+    fields: [{
+      key: 'content',
+      type: 'richtext',
+    }],
+    construct: elmt => ({ ...elmt, id: uuid() }),
+    duplicate: elmt => ({ ...elmt, id: uuid() }),
+  }],
+});
+```
+
+In this example:
+- `components: ['title', 'text', 'button']` -> Apply our override only to the title, text & button components
+- `fields: [...]` -> For the component lists above, make the `content` field from a `textarea` (default) to a `richtext` (enhanced)
+- `construct` & `duplicate` -> Allows to apply custom logics to creation & duplication of a particular component
 
 ### Settings
 
