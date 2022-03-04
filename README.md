@@ -6,6 +6,7 @@
 
 [![GitHub](https://img.shields.io/github/license/p3ol/oak.svg)](https://github.com/p3ol/oak)
 [![CI](https://github.com/p3ol/oak/workflows/CI/badge.svg)](https://github.com/p3ol/oak/actions)
+[![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
 
 <p>Modern, lightweight &amp; modulable page builder</p>
 </div>

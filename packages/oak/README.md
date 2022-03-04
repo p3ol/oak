@@ -2,7 +2,10 @@
 
 <h1>🌳 oak</h1>
 
+[![GitHub](https://img.shields.io/github/license/p3ol/oak.svg)](https://github.com/p3ol/oak)
 [![npm](https://img.shields.io/npm/v/@poool/oak.svg)](https://www.npmjs.com/package/@poool/oak)
+[![CI](https://github.com/p3ol/oak/actions/workflows/ci.yml/badge.svg)](https://github.com/p3ol/oak/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
 
 <br />
 <p>A page builder for the future of the internet</p>
@@ -179,6 +182,8 @@ If you need to have a look at more complex examples, feel free to take a look at
 
 Example:
 ```js
+import { render } from '@poool/oak';
+
 render(element, {
   events: {
     onChange: ({ value }) => console.log(value),
@@ -195,6 +200,8 @@ Called when an image is uploaded using the `image` field type. The event argumen
 
 Example:
 ```js
+import { render } from '@poool/oak';
+
 render(element, {
   events: {
     onImageUpload: event => {
@@ -209,20 +216,134 @@ render(element, {
 
 ### Overrides
 
-// TODO
+While addons are great to add new components, you might have to override existing components and their behavior.
+That's where `overrides` comes in handy.
+
+There are currently only one type of override:
+- `components`: Allows to override the various fields of one or multiple existing component
+
+#### components
+
+A `component` override has the following format:
+```js
+{
+  type: 'component',
+  components: Array,
+  fields: Array,
+  construct?: Function,
+  duplicate?: Function,
+}
+```
+
+For example, if you want to override the `content` field for the `title`, `text` & `button` components and make it a `richtext` field instead of a basic `textarea` (and for the sake of this example, also add a unique ID on creation & duplication):
+
+```js
+import { render } from '@poool/oak';
+
+render(element, {
+  overrides: [{
+    type: 'component',
+    components: ['title', 'text', 'button'],
+    fields: [{
+      key: 'content',
+      type: 'richtext',
+    }],
+    construct: elmt => ({ ...elmt, id: uuid() }),
+    duplicate: elmt => ({ ...elmt, id: uuid() }),
+  }],
+});
+```
 
 ### Settings
 
-// TODO
+You may also be able to override the various settings tabs for any component.
+Note: The settings are merged together and not replaced.
+
+Settings format:
+```js
+{
+  title?: String|Function,
+  fields: [{
+    key: String,
+    type: String,
+    default: Any,
+    displayable?: Boolean,
+    label?: String|Function,
+    condition?: Function,
+    options?: [{
+      title: String|Function,
+      value: Any,
+    }],
+  }],
+}
+```
+
+For example, if you want to add an `xxs` option to the Responsive settings tab:
+
+```js
+import { render } from '@poool/oak';
+
+render(element, {
+  settings: {
+    responsive: {
+      fields: [{
+        key: 'responsive.xxs',
+        type: 'select',
+        label: 'Extra-extra-small screens (your granny\'s phone)',
+        default: 'show',
+        options: [{
+          title: 'Visible',
+          value: 'show',
+        }, {
+          title: 'Hidden',
+          value: 'hide',
+        }],
+      }],
+    },
+  },
+});
+})
+```
 
 ### Texts
 
-// TODO
+Most of the core components & available official addons are already translated in english (default language) & french.
+If you need to override all the texts with your own language, it is mostly the same principle as for the settings.
+
+For example, if you need to override the settings panel buttons texts:
+
+```js
+import { render } from '@poool/oak';
+
+render(element, {
+  texts: {
+    core: {
+      settings: {
+        cancel: 'Annuler',
+        save: 'Sauvegarder',
+      },
+    },
+  },
+});
+```
+
+A full example text object is available inside the `core/languages/fr.js` folder of every package of this repository, including the core library itself.
+
+To use these translations, every `label`, `title` of `name` property inside components, fieldTypes, overrides & settings can either be a string (not translated), or a function, for which the first argument is a function called the `translate` function.
+This function is passed to each of these property for you to be able to provide the text key & the default value in your current language.
+
+For example, if you need to add a translated label to one of your custom components' fields:
+
+```js
+{
+  label: t => t('custom.myComponent.myField.label', 'My field'),
+}
+```
 
 ## Contributing
 
-Please check the [CONTRIBUTING.md](https://github.com/p3ol/junipero/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
+Please check the [CONTRIBUTING.md](https://github.com/p3ol/oak/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
 
 ## License
 
-This software is licensed under [MIT](https://github.com/p3ol/junipero/blob/master/LICENSE).
+This software is licensed under [MIT](https://github.com/p3ol/oak/blob/master/LICENSE).
