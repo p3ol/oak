@@ -144,8 +144,8 @@ describe('<Element />', () => {
     expect(container.querySelector('.oak-element')).toBeTruthy();
     expect(container.querySelector('.oak-editable')).not.toBeTruthy();
     fireEvent.click(container.querySelector('.oak-edit'));
-    await waitFor(() => {
-      expect(container.querySelector('.oak-editable')).toBeTruthy();
-    });
+    await waitFor(() => (
+      expect(container.querySelector('.oak-editable')).toBeTruthy()
+    ));
   });
 });

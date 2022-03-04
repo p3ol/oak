@@ -126,9 +126,11 @@ describe('<Toolbar />', () => {
         state={{}}
       />
     );
-    await waitFor(() => expect(
-      container.querySelector('.oak-text-size').textContent
-    ).toEqual('17'));
+    await waitFor(() => (
+      expect(
+        container.querySelector('.oak-text-size').textContent
+      ).toEqual('17')
+    ));
     fireEvent.click(getByText('add'));
     expect(onToggleMarkMock)
       .toHaveBeenCalledWith(schema.marks.size, { size: '18px' });
@@ -164,10 +166,9 @@ describe('<Toolbar />', () => {
         state={{}}
       />
     );
-    await waitFor(
-      () => expect(container.querySelector('.oak-text-left.oak-active'))
-        .toBeTruthy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-text-left.oak-active')).toBeTruthy()
+    ));
   });
 
   it('should trigger toggleMark with new color if ' +

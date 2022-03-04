@@ -11,9 +11,9 @@ describe('Catalogue', () => {
   it('should open catalog when clicking on "+"', async () => {
     const { container } = render(<Catalogue />);
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
   });
 
   it('should display all builder\'s groups', async () => {
@@ -27,9 +27,9 @@ describe('Catalogue', () => {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
     expect(container.querySelectorAll('.oak-groups .title').length).toBe(4);
     expect(container.querySelectorAll('.oak-groups .title')[0].textContent)
       .toBe(components[0].name);
@@ -51,9 +51,9 @@ describe('Catalogue', () => {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
     expect(container.querySelectorAll('.oak-groups .title').length).toBe(5);
     expect(container.querySelectorAll('.oak-groups .title')[0].textContent)
       .toBe(components[0].name);
@@ -76,9 +76,9 @@ describe('Catalogue', () => {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
     expect(container.querySelectorAll('.oak-groups .title').length).toBe(4);
     expect(container.querySelectorAll('.oak-groups .title')[0].textContent)
       .toBe(components[0].name);
@@ -96,9 +96,9 @@ describe('Catalogue', () => {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
     expect(
       container.querySelectorAll('.oak-groups .title')[0].className
     ).toContain('active');
@@ -118,9 +118,9 @@ describe('Catalogue', () => {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
     expect(
       container.querySelectorAll('.oak-groups .title')[0].className
     ).toContain('active');
@@ -179,9 +179,9 @@ describe('Catalogue', () => {
     }));
 
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
     expect(
       container.querySelectorAll('.oak-components .oak-component').length
     ).toEqual(4);
@@ -240,9 +240,9 @@ describe('Catalogue', () => {
     }));
 
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
     expect(
       container.querySelectorAll('.oak-components .oak-component').length
     ).toEqual(2);
@@ -307,9 +307,9 @@ describe('Catalogue', () => {
     }));
 
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
-    );
+    ));
     expect(
       container.querySelectorAll('.oak-components .oak-component').length
     ).toEqual(3);

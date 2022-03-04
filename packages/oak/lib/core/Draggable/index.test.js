@@ -18,20 +18,20 @@ describe('<Draggable />', () => {
     const { container } = render(<Draggable><p>hello</p></Draggable>);
     fireEvent.dragStart(container.querySelector('p'));
     expect(container.querySelector('p').className).toContain('dragging');
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('p').className).toContain('dragged') &&
       expect(container.querySelector('p').className).not.toContain('dragging')
-    );
+    ));
   });
 
   it('should remove draggedClassname when drag is Over', async () => {
     const { container } = render(<Draggable><p>hello</p></Draggable>);
     fireEvent.dragStart(container.querySelector('p'));
     expect(container.querySelector('p').className).toContain('dragging');
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('p').className).toContain('dragged') &&
       expect(container.querySelector('p').className).not.toContain('dragging')
-    );
+    ));
     fireEvent.dragEnd(container.querySelector('p'));
     expect(container.querySelector('p').className).not.toContain('dragged');
   });
@@ -52,10 +52,10 @@ describe('<Draggable />', () => {
       <Draggable onDragEnd={onDragEndMock}><p>hello</p></Draggable>
     );
     fireEvent.dragStart(container.querySelector('p'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('p').className).toContain('dragged') &&
       expect(container.querySelector('p').className).not.toContain('dragging')
-    );
+    ));
     fireEvent.dragEnd(container.querySelector('p'));
     expect(onDragEndMock).toHaveBeenCalled();
   });

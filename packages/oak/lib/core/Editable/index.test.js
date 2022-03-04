@@ -49,9 +49,9 @@ describe('<Editable />', () => {
     ));
     expect(container.querySelector('.oak-opened')).toBeNull();
     fireEvent.click(container.querySelector('#open'));
-    await waitFor(
-      () => expect(container.querySelector('.oak-opened')).toBeTruthy()
-    );
+    await waitFor(() => (
+      expect(container.querySelector('.oak-opened')).toBeTruthy()
+    ));
   });
 
   it('should close menu when close button is clicked', async () => {
@@ -125,14 +125,14 @@ describe('<Editable />', () => {
       />
     ), { getOverrides: () => jest.fn() }));
     fireEvent.click(container.querySelector('#toggle'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-opened')).toBeTruthy()
-    );
+    ));
     expect(getByText('field title')).toBeTruthy();
     fireEvent.click(container.querySelector('.oak-editable-buttons>a'));
-    await waitFor(() =>
+    await waitFor(() => (
       expect(container.querySelector('.oak-opened')).toBeFalsy()
-    );
+    ));
   });
 
   it('should close form on save', async () => {
