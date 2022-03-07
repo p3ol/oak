@@ -12,8 +12,7 @@
     "link-all": "./node_modules/.bin/lerna exec --parallel -- yarn link",
     "test": "BABEL_ENV=tests ./node_modules/.bin/jest",
     "build": "./node_modules/.bin/lerna exec -- yarn build",
-    "serve": "./node_modules/.bin/start-storybook",
-    "docs": "yarn workspace @poool/oak-docs"
+    "serve": "./node_modules/.bin/start-storybook"
   },
   "devDependencies": {
     "@babel/core": "7.17.5",
