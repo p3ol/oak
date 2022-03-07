@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.17.2",
-    "@poool/junipero": "2.0.0-rc.16",
+    "@poool/junipero": "2.0.0-rc.17",
     "@poool/junipero-utils": "2.0.0-rc.16",
     "core-js": "3.21.1",
     "prosemirror-commands": "1.2.1",
