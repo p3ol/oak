@@ -18,11 +18,11 @@
 New components:
 - `Title`: Allows to add pre-made hx headers (h1, h2, ...) to your content
 - `Text`: Basic text node managed with a textarea field
-- `Image`: Basic image component uploaded using `ImageField` field type
+- `Image`: Basic image component uploaded using `image` field type
 - `Button`: Basic HTML button/link component
 
 New field types:
-- `ImageField`: Allows to upload an image and use it inside an element (uses oak's `onImageUpload` event)
+- `image`: Allows to upload an image and use it inside an element (uses oak's `onImageUpload` event)
 
 
 ## Installation
