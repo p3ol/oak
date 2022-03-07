@@ -25,12 +25,6 @@
 
 You'll find inside each package the documentation associated with it.
 
-## Contributing
-
-![https://github.com/p3ol/oak/graphs/contributors](https://contrib.rocks/image?repo=p3ol/oak)
-
-Please check the [CONTRIBUTING.md](https://github.com/p3ol/oak/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
-
 ## Development
 
 Install dependencies:
@@ -44,6 +38,13 @@ Run examples with Storybook:
 ```bash
 yarn serve
 ```
+
+## Contributing
+
+[![](https://contrib.rocks/image?repo=p3ol/oak)](https://github.com/p3ol/oak/graphs/contributors)
+
+Please check the [CONTRIBUTING.md](https://github.com/p3ol/oak/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
+
 
 ## License
 
