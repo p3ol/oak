@@ -137,39 +137,41 @@ For example, if you need to add a new `quote` component & a new `enhancedtext` f
 import { render } from '@poool/oak';
 
 render(element, {
-  components: [{
-    id: 'quote',
-    name: translate => translate('customTexts.quote.title', 'Quote component'),
-    type: 'component',
-    render: ({ content, author }) =>
-      `<blockquote>${content}<cite>${author}</cite></blockquote>`,
-    construct: () => ({
-      type: 'quote',
-      content: '',
-      author: '',
-    }),
-    settings: {
-      title: translate => translate('customTexts.quote.settings.title',
-        'Quote options'),
-      fields: [{
-        key: 'content',
-        type: 'enhancedtext',
-        default: '',
-        displayable: true,
-      }, {
-        key: 'author',
-        type: 'text',
-        displayable: true,
-      }],
-    },
+  addons: [{
+    components: [{
+      id: 'quote',
+      name: translate => translate('customTexts.quote.title', 'Quote component'),
+      type: 'component',
+      render: ({ content, author }) =>
+        `<blockquote>${content}<cite>${author}</cite></blockquote>`,
+      construct: () => ({
+        type: 'quote',
+        content: '',
+        author: '',
+      }),
+      settings: {
+        title: translate => translate('customTexts.quote.settings.title',
+          'Quote options'),
+        fields: [{
+          key: 'content',
+          type: 'enhancedtext',
+          default: '',
+          displayable: true,
+        }, {
+          key: 'author',
+          type: 'text',
+          displayable: true,
+        }],
+      },
+    }],
+    fieldTypes: [{
+      type: 'enhancedtext',
+      default: '',
+      render: (baseProps, customProps) => (
+        <textarea { ...customProps } { ...baseProps } />
+      ),
+    }],
   }],
-  fieldTypes: [{
-    type: 'enhancedtext',
-    default: '',
-    render: (baseProps, customProps) => (
-      <textarea { ...customProps } { ...baseProps } />
-    ),
-  }]
 });
 ```
 
