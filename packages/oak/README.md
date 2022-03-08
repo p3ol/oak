@@ -82,7 +82,7 @@ Whether to display the `Other components` tab inside the builder's catalogue dro
 - Type: `Array`
 - Default: `[]`
 
-Defines a list of components/fields to override. See [overrides](#overrides) for more information.
+Defines a list of components to override. See [overrides](#overrides) for more information.
 
 #### settings
 - Type: `Object`
