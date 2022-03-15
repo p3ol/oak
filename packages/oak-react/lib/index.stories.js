@@ -43,7 +43,7 @@ const BuilderWrapper = ({ onChange }) => {
   };
 
   const loadContent = () => {
-    dispatch({ value: [
+    ref.current?.builderRef.current?.setContent([
       {
         type: 'row',
         settings: {
@@ -223,7 +223,7 @@ const BuilderWrapper = ({ onChange }) => {
         ],
         id: '8bdf90df-7955-4e95-b2ce-76ac2e1a1566',
       },
-    ] });
+    ]);
   };
 
   return (
