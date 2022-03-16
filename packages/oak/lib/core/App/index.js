@@ -38,6 +38,10 @@ export default forwardRef((options, ref) => {
     dispatch({ overrides: options.overrides || [] });
   }, [options?.overrides]);
 
+  useEffect(() => {
+    setContent(options.content);
+  }, []);
+
   useImperativeHandle(ref, () => ({
     addGroup,
     removeGroup,
@@ -135,14 +139,6 @@ export default forwardRef((options, ref) => {
           });
         }
       });
-    }
-
-    if (options.content) {
-      const content_ = cloneDeep(options.content);
-      content_.forEach(e => normalizeElement(e));
-      state.content = content_;
-      state.memory = cloneDeep([content_]);
-      state.positionInMemory = 1;
     }
 
     dispatch(state);
@@ -344,7 +340,22 @@ export default forwardRef((options, ref) => {
     }
   };
 
-  const setContent = content_ => {
+  const setContent = content => {
+
+    if (content) {
+      const content_ = cloneDeep(content);
+      content_.forEach(e => normalizeElement(e));
+      dispatch({
+        content: content_,
+        memory: cloneDeep([content_]),
+        positionInMemory: 1,
+        isUndoPossible: false,
+        isRedoPossible: false,
+      });
+    }
+  };
+
+  const setContentWithDispatch = content_ => {
     if (state.memory.length === 0 ||
       (state.memory.length === 1 && state.memory[0].length === 0)) {
       dispatch({
@@ -358,10 +369,6 @@ export default forwardRef((options, ref) => {
     dispatch({
       content: content_ || state.content,
     });
-  };
-
-  const setContentWithDispatch = content_ => {
-    setContent(content_);
     const contentCopy = cloneDeep(content_);
     contentCopy.forEach(e => serializeElement(e));
     options?.events?.onChange?.({ value: contentCopy });

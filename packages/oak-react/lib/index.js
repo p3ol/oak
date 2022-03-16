@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  useEffect,
   useImperativeHandle,
   useRef,
 } from 'react';
@@ -25,10 +24,6 @@ const Builder_ = forwardRef(({
     innerRef,
     builderRef,
   }));
-
-  useEffect(() => {
-    builderRef.current?.setContent?.(value);
-  }, [value]);
 
   return (
     <div
