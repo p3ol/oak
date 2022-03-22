@@ -31,9 +31,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.17.7",
-    "@poool/junipero": "2.0.0-rc.18",
-    "@poool/junipero-hooks": "2.0.0-rc.16",
-    "@poool/junipero-utils": "2.0.0-rc.16",
+    "@poool/junipero": "2.0.0-rc.19",
+    "@poool/junipero-hooks": "2.0.0-rc.19",
+    "@poool/junipero-utils": "2.0.0-rc.19",
     "@popperjs/core": "2.11.4",
     "core-js": "3.21.1",
     "preact": "10.6.6",
