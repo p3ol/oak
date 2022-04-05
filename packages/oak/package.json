@@ -34,7 +34,7 @@
     "@poool/junipero": "2.0.0-rc.19",
     "@poool/junipero-hooks": "2.0.0-rc.19",
     "@poool/junipero-utils": "2.0.0-rc.19",
-    "@popperjs/core": "2.11.4",
+    "@popperjs/core": "2.11.5",
     "core-js": "3.21.1",
     "preact": "10.7.1",
     "react-popper": "2.2.5",
