@@ -13,4 +13,10 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.styl$': 'jest-css-modules-transform',
   },
+  transformIgnorePatterns: [
+    '/node_modules/(?!(uuid))',
+  ],
+  setupFilesAfterEnv: [
+    './tests/env.js',
+  ],
 };
