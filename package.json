@@ -48,7 +48,7 @@
     "eslint-plugin-n": "15.2.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-react": "7.30.0",
     "jest": "28.1.0",
     "jest-css-modules-transform": "4.4.2",
     "jest-environment-jsdom": "28.1.0",
