@@ -37,7 +37,7 @@
     "@popperjs/core": "2.11.5",
     "core-js": "3.22.5",
     "preact": "10.7.2",
-    "react-popper": "2.2.5",
+    "react-popper": "2.3.0",
     "uuid": "8.3.2"
   },
   "scripts": {
