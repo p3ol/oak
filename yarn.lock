@@ -12933,7 +12933,14 @@ prosemirror-keymap@1.2.0:
     prosemirror-state "^1.0.0"
     w3c-keyname "^2.2.0"
 
-prosemirror-model@1.16.1, prosemirror-model@^1.0.0, prosemirror-model@^1.16.0, prosemirror-model@^1.2.0:
+prosemirror-model@1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.17.0.tgz#f99fe93e9b45e48559ebf0f50262ef900a6246b7"
+  integrity sha512-RJBDgZs/W26yyx1itrk5b3H9FxIro3K7Xjc2QWJI99Gu1nxYAnIggqI3fIOD8Jd/6QZfM+t6elZFJPycVexMTA==
+  dependencies:
+    orderedmap "^1.1.0"
+
+prosemirror-model@^1.0.0, prosemirror-model@^1.16.0, prosemirror-model@^1.2.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.16.1.tgz#fb388270bc9609b66298d6a7e15d0cc1d6c61253"
   integrity sha512-r1/w0HDU40TtkXp0DyKBnFPYwd8FSlUSJmGCGFv4DeynfeSlyQF2FD0RQbVEMOe6P3PpUSXM6LZBV7W/YNZ4mA==
@@ -13894,7 +13901,7 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
-"safer-buffer@>= 2.1.2 < 3", "safer-buffer@>= 2.1.2 < 3.0.0", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@^2.1.2, safer-buffer@~2.1.0:
+"safer-buffer@>= 2.1.2 < 3", "safer-buffer@>= 2.1.2 < 3.0.0", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
@@ -14737,15 +14744,14 @@ stylus-loader@7.0.0:
     klona "^2.0.5"
     normalize-path "^3.0.0"
 
-stylus@0.57.0:
-  version "0.57.0"
-  resolved "https://registry.yarnpkg.com/stylus/-/stylus-0.57.0.tgz#a46f04f426c19ceef54abb1a9d189fd4e886df41"
-  integrity sha512-yOI6G8WYfr0q8v8rRvE91wbxFU+rJPo760Va4MF6K0I6BZjO4r+xSynkvyPBP9tV1CIEUeRsiidjIs2rzb1CnQ==
+stylus@0.58.0:
+  version "0.58.0"
+  resolved "https://registry.yarnpkg.com/stylus/-/stylus-0.58.0.tgz#1125d8381173356b22c675f165c17da3ec81f5ff"
+  integrity sha512-q27Pof0PINInv/gTO1AH+6C1VkoedEOPp38CB/DFWdSgu4fBCwnxM8cZEm4M1zU+Jr6rmZ75hkmqk2QyDze10g==
   dependencies:
     css "^3.0.0"
     debug "^4.3.2"
     glob "^7.1.6"
-    safer-buffer "^2.1.2"
     sax "~1.2.4"
     source-map "^0.7.3"
 
