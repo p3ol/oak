@@ -34,7 +34,7 @@
     "prosemirror-keymap": "1.2.0",
     "prosemirror-model": "1.16.1",
     "prosemirror-schema-basic": "1.2.0",
-    "prosemirror-state": "1.3.4",
+    "prosemirror-state": "1.4.0",
     "prosemirror-view": "1.23.13",
     "use-prosemirror": "1.2.3"
   },
