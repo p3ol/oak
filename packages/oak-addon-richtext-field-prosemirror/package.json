@@ -35,7 +35,7 @@
     "prosemirror-model": "1.17.0",
     "prosemirror-schema-basic": "1.2.0",
     "prosemirror-state": "1.4.0",
-    "prosemirror-view": "1.23.13",
+    "prosemirror-view": "1.26.0",
     "use-prosemirror": "1.2.3"
   },
   "scripts": {
