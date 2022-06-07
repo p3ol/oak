@@ -67,7 +67,7 @@
     "style-loader": "3.3.1",
     "stylus": "0.58.1",
     "stylus-loader": "7.0.0",
-    "webpack": "5.72.1"
+    "webpack": "5.73.0"
   },
   "dependencies": {}
 }
