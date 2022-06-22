@@ -37,6 +37,13 @@ export default forwardRef(({
     placement,
     modifiers: [
       ...(popperOptions.modifiers || []),
+      {
+        name: 'preventOverflow',
+        enabled: true,
+        options: {
+          boundary: document.querySelector('.oak'),
+        },
+      },
       { name: 'arrow', options: { element: arrow } },
       {
         name: 'offset',

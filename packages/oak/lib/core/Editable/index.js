@@ -39,8 +39,9 @@ export default forwardRef(({
     ) || {
       modifiers: [{
         name: 'preventOverflow',
+        enabled: true,
         options: {
-          boundary: true,
+          boundary: document.querySelector('.oak'),
         },
       }, {
         name: 'offset',
