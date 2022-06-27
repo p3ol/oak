@@ -9,6 +9,12 @@ module.exports = {
   moduleNameMapper: {
     '^@tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
   },
+  coveragePathIgnorePatterns: [
+    'node_modules',
+    'dist',
+    'tests/',
+    '^.+\\.styl$',
+  ],
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.styl$': 'jest-css-modules-transform',

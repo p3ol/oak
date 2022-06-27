@@ -13,4 +13,10 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.styl$': 'jest-css-modules-transform',
   },
+  coveragePathIgnorePatterns: [
+    'node_modules',
+    'dist',
+    'tests/',
+    '^.+\\.styl$',
+  ],
 };
