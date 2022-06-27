@@ -69,6 +69,24 @@ const Col = ({
       parent: element.content, position: 'after' });
   };
 
+  const onPasteBefore_ = elmt => {
+    addElement(elmt, {
+      parent: element.content,
+      position: 'before',
+      normalizeOptions: { resetIds: true },
+    });
+    prependCatalogueRef.current?.close();
+  };
+
+  const onPasteAfter_ = elmt => {
+    addElement(elmt, {
+      parent: element.content,
+      position: 'after',
+      normalizeOptions: { resetIds: true },
+    });
+    appendCatalogueRef.current?.close();
+  };
+
   return (
     <div
       { ...rest }
@@ -92,6 +110,7 @@ const Col = ({
               <Catalogue
                 ref={prependCatalogueRef}
                 onAppend={onPrepend_}
+                onPaste={onPasteBefore_}
               />
             ) }
 
@@ -111,6 +130,7 @@ const Col = ({
             <Catalogue
               ref={appendCatalogueRef}
               onAppend={onAppend_}
+              onPaste={onPasteAfter_}
             />
           </div>
         </Droppable>
