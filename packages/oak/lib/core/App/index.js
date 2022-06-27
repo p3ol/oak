@@ -89,7 +89,7 @@ export default forwardRef((options, ref) => {
     redo,
     getText,
     getOverrides,
-  }), [...Object.values(state), oakRef]);
+  }), Object.values(state));
 
   const init = () => {
     state.fieldTypes = [...BASE_FIELDTYPES];
