@@ -40,7 +40,7 @@ export default forwardRef(({
         name: 'preventOverflow',
         enabled: true,
         options: {
-          boundary: oakRef.current,
+          boundary: oakRef?.current,
         },
       },
       { name: 'arrow', options: { element: arrow } },
