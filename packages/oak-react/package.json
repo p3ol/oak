@@ -23,8 +23,8 @@
   "peerDependencies": {
     "@poool/oak": "^1.0.0-rc.0",
     "@popperjs/core": "^2.9.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
     "react-popper": "^2.2.0"
   },
   "dependencies": {
