@@ -4,6 +4,7 @@ import {
   useReducer,
   useCallback,
   useImperativeHandle,
+  useRef,
 } from 'react';
 import { mockState, cloneDeep, get, mergeDeep } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
@@ -17,6 +18,7 @@ import {
 import Builder from '../Builder';
 
 export default forwardRef((options, ref) => {
+  const oakRef = useRef();
   const [state, dispatch] = useReducer(mockState, {
     components: [GROUP_CORE, GROUP_OTHER],
     content: [],
@@ -71,6 +73,7 @@ export default forwardRef((options, ref) => {
     options,
     isUndoPossible: state.isUndoPossible,
     isRedoPossible: state.isRedoPossible,
+    oakRef,
     addElement,
     removeElement,
     duplicateElement,
@@ -86,7 +89,7 @@ export default forwardRef((options, ref) => {
     redo,
     getText,
     getOverrides,
-  }), Object.values(state));
+  }), [...Object.values(state), oakRef]);
 
   const init = () => {
     state.fieldTypes = [...BASE_FIELDTYPES];
@@ -464,7 +467,7 @@ export default forwardRef((options, ref) => {
     dispatch({ overrides });
 
   return (
-    <div className="oak">
+    <div className="oak" ref={oakRef}>
       <AppContext.Provider value={getContext()}>
         <Builder />
       </AppContext.Provider>

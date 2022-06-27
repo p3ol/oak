@@ -24,7 +24,7 @@ export default forwardRef(({
   onToggle = () => {},
   onAppend = () => {},
 }, ref) => {
-  const { components = [] } = useBuilder();
+  const { components = [], oakRef } = useBuilder();
   const { otherTabEnabled } = useOptions();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
@@ -32,7 +32,6 @@ export default forwardRef(({
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
   });
-
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
     placement,
     modifiers: [
@@ -41,7 +40,7 @@ export default forwardRef(({
         name: 'preventOverflow',
         enabled: true,
         options: {
-          boundary: document.querySelector('.oak'),
+          boundary: oakRef.current,
         },
       },
       { name: 'arrow', options: { element: arrow } },
