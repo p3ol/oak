@@ -19,7 +19,7 @@ export default forwardRef(({
   element,
   component,
 }, ref) => {
-  const { _settingsHolderRef, overrides } = useBuilder();
+  const { _settingsHolderRef, overrides, oakRef } = useBuilder();
   const options = useOptions();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
@@ -39,8 +39,9 @@ export default forwardRef(({
     ) || {
       modifiers: [{
         name: 'preventOverflow',
+        enabled: true,
         options: {
-          boundary: true,
+          boundary: oakRef.current,
         },
       }, {
         name: 'offset',
