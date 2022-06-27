@@ -109,7 +109,7 @@ describe('Col', () => {
   });
 
   it('should add element inside col when ' +
-  'adding a new element via catalogue', () => {
+  'adding a new element via catalogue', async () => {
     const component = {
       content: 'myContent',
       type: 'my-component-type',
@@ -142,8 +142,11 @@ describe('Col', () => {
       }
     ));
 
-    fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
-    fireEvent.click(getByText('component 1'));
+    await waitFor(() => {
+      fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
+      fireEvent.click(getByText('component 1'));
+    });
+
     expect(addElementMock).toHaveBeenCalledWith(
       component,
       { parent: element.content, position: 'after' },

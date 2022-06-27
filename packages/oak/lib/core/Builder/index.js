@@ -42,6 +42,11 @@ export default () => {
     catalogueRef.current?.close();
   };
 
+  const onPaste = element => {
+    addElement(element, { normalizeOptions: { resetIds: true } });
+    catalogueRef.current?.close();
+  };
+
   return (
     <div className="oak-builder">
       { historyButtonsEnabled !== false && (
@@ -68,7 +73,11 @@ export default () => {
       )) }
 
       <div className="oak-add-element">
-        <Catalogue ref={catalogueRef} onAppend={onAppend} />
+        <Catalogue
+          ref={catalogueRef}
+          onAppend={onAppend}
+          onPaste={onPaste}
+        />
       </div>
 
       <div ref={_setSettingsHolderRef} />
