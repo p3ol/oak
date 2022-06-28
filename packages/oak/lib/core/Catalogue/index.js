@@ -2,7 +2,6 @@ import {
   forwardRef,
   useImperativeHandle,
   useReducer,
-  useState,
 } from 'react';
 import {
   Tabs,
@@ -11,7 +10,12 @@ import {
   mockState,
   useEventListener,
 } from '@poool/junipero';
-import { usePopper } from 'react-popper';
+import {
+  useFloating,
+  offset,
+  autoUpdate,
+  autoPlacement,
+} from '@floating-ui/react-dom';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Icon from '../Icon';
@@ -20,36 +24,23 @@ import Text from '../Text';
 export default forwardRef(({
   globalEventsTarget = global,
   placement = 'bottom',
-  popperOptions = {},
   onToggle = () => {},
   onAppend = () => {},
 }, ref) => {
   const { components = [], oakRef } = useBuilder();
   const { otherTabEnabled } = useOptions();
-  const [popper, setPopper] = useState();
-  const [reference, setReference] = useState();
-  const [arrow, setArrow] = useState();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
   });
-  const { styles: popperStyles, attributes } = usePopper(reference, popper, {
+  const { x, y, reference, floating, strategy, refs } = useFloating({
     placement,
-    modifiers: [
-      ...(popperOptions.modifiers || []),
-      {
-        name: 'preventOverflow',
-        enabled: true,
-        options: {
-          boundary: oakRef?.current,
-        },
-      },
-      { name: 'arrow', options: { element: arrow } },
-      {
-        name: 'offset',
-        options: {
-          offset: [arrow && /-(start|end)/.test(placement) ? -5 : 0, 16],
-        },
-      },
+    whileElementsMounted: autoUpdate,
+    middleware: [
+      offset({ mainAxis: 16 }),
+      autoPlacement({
+        boundary: oakRef?.current,
+        allowedPlacements: ['top', 'bottom'],
+      }),
     ],
   });
 
@@ -84,15 +75,15 @@ export default forwardRef(({
   };
 
   const onClickOutside_ = e => {
-    if (!popper || !reference) {
+    if (!refs.floating.current || !refs.reference.current) {
       return;
     }
 
     if (
-      !reference.contains(e.target) &&
-      reference !== e.target &&
-      !popper.contains(e.target) &&
-      popper !== e.target
+      !refs.reference.current.contains(e.target) &&
+      refs.reference.current !== e.target &&
+      !refs.floating.current.contains(e.target) &&
+      refs.floating.current !== e.target
     ) {
       close();
     }
@@ -158,7 +149,7 @@ export default forwardRef(({
       )}
     >
       <a
-        ref={setReference}
+        ref={reference}
         className="oak-handle"
         onClick={toggle}
         draggable={false}
@@ -169,11 +160,13 @@ export default forwardRef(({
 
       { state.opened && (
         <div
-          ref={setPopper}
-          style={popperStyles.popper}
+          ref={floating}
           className="oak-popover"
-          {...attributes.popper}
-          data-placement={placement}
+          style={{
+            position: strategy,
+            top: y ?? 0,
+            left: x ?? 0,
+          }}
         >
           <div className="oak-groups">
             <Tabs>
@@ -184,11 +177,6 @@ export default forwardRef(({
               )) }
             </Tabs>
           </div>
-          <div
-            ref={setArrow}
-            style={popperStyles.arrow}
-            className="oak-arrow"
-          />
         </div>
       ) }
     </div>

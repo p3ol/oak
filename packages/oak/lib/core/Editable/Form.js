@@ -29,8 +29,7 @@ import Field from './Field';
 export default forwardRef(({
   element,
   component,
-  styles,
-  attributes,
+  style,
   popper,
   onSave,
   onCancel,
@@ -39,7 +38,6 @@ export default forwardRef(({
     setElement,
     overrides,
     getOverrides,
-    _settingsHolderRef,
   } = useBuilder();
   const options = useOptions();
   const tabs = useMemo(() => [
@@ -137,8 +135,7 @@ export default forwardRef(({
   return (
     <div
       ref={ref}
-      style={styles.popper}
-      {...attributes.popper}
+      style={style}
       className="oak-editable"
     >
       <div className="oak-title">
