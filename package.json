@@ -22,7 +22,7 @@
     "@babel/plugin-transform-runtime": "7.18.6",
     "@babel/preset-env": "7.18.6",
     "@babel/preset-react": "7.18.6",
-    "@percy/storybook": "4.2.1",
+    "@percy/storybook": "4.3.0",
     "@poool/eslint-config": "2.0.0",
     "@poool/eslint-config-react": "2.0.0",
     "@poool/eslint-plugin": "2.0.0",
