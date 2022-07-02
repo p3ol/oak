@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import Builder from '.';
 import { withBuilder } from '@tests-utils';
 
@@ -53,7 +53,11 @@ describe('Builder', () => {
       components,
       getOverrides: () => ({}),
     }));
-    fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
+
+    await waitFor(() => {
+      fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
+    });
+
     fireEvent.click(getByText('component 1'));
     expect(addElementMock).toHaveBeenCalledWith(component);
   });
@@ -108,5 +112,34 @@ describe('Builder', () => {
 
     expect(undoMock).not.toHaveBeenCalled();
     expect(redoMock).not.toHaveBeenCalled();
+  });
+
+  it('should allow to copy/paste an element', async () => {
+    const addElementMock = jest.fn();
+    const { container, queryByText } = render(withBuilder(
+      <Builder />,
+      {
+        getComponent: () => ({ type: 'text' }),
+        addElement: addElementMock,
+      }
+    ));
+
+    globalThis.navigator.clipboard
+      .writeText('{"type":"text","content":"Pasted element"}');
+
+    await waitFor(() => {
+      fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
+    });
+
+    expect(queryByText('Pasted element')).toBeFalsy();
+
+    await waitFor(() => {
+      fireEvent
+        .click(container.querySelector('.oak-catalogue a.oak-clipboard'));
+    });
+
+    expect(addElementMock).toHaveBeenCalledWith({
+      type: 'text', content: 'Pasted element',
+    }, expect.anything());
   });
 });

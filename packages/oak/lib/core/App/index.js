@@ -205,9 +205,9 @@ export default forwardRef((options, ref) => {
 
   const addElement = (
     elmt,
-    { parent = state.content, position = 'after' } = {}
+    { parent = state.content, position = 'after', normalizeOptions = {} } = {}
   ) => {
-    normalizeElement(elmt);
+    normalizeElement(elmt, normalizeOptions);
 
     switch (position) {
       case 'before':

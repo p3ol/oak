@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { COMPONENT_DEFAULT } from '../../defaults';
 import { ElementContext } from '../../contexts';
 import { useBuilder, useOptions } from '../../hooks';
+import { copyToClipboard } from '../../utils';
 import Option from '../Option';
 import Draggable from '../Draggable';
 import Droppable from '../Droppable';
@@ -51,6 +52,11 @@ const Element = ({
   const onEdit_ = e => {
     e?.preventDefault();
     editableRef.current?.toggle();
+  };
+
+  const onCopy_ = e => {
+    e?.preventDefault();
+    copyToClipboard(JSON.stringify(element));
   };
 
   const component = getComponent(element.type) ||
@@ -129,6 +135,11 @@ const Element = ({
                 option={{ icon: 'content_copy' }}
                 className="oak-duplicate"
                 onClick={onDuplicate_}
+              />
+              <Option
+                option={{ icon: 'content_paste' }}
+                className="oak-copy"
+                onClick={onCopy_}
               />
               { component.options?.map((o, i) => (
                 <Fragment key={i}>

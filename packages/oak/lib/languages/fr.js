@@ -1,6 +1,7 @@
 export default {
   core: {
     propertyPairSeparator: ' : ',
+    pasteFromClipboard: 'Coller depuis le presse-papier',
     groups: {
       core: {
         title: 'Composants basiques',
