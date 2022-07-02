@@ -21,7 +21,7 @@ const DragOption = {
     return (
       <Draggable
         ref={optionRef}
-        onBeforeDrag={onDrag}
+        onBeforeDragStart={onDrag}
         dragImage={dragImage}
         data={element}
       >
