@@ -1,4 +1,83 @@
-# [](https://github.com/p3ol/oak/compare/v1.0.1...v) (2022-03-16)
+# [](https://github.com/p3ol/oak/compare/v1.1.0...v) (2022-07-02)
+
+
+
+# [1.1.0](https://github.com/p3ol/oak/compare/v1.0.2...v1.1.0) (2022-07-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prosemirror-view to v1.26.3 ([5d8ea1d](https://github.com/p3ol/oak/commit/5d8ea1d59cbc97bace02d9902288c1fa12e91d36))
+* fix wrong row drag image ([2372431](https://github.com/p3ol/oak/commit/237243182e3cbad48c183c2f1cdf8b69cb09c904))
+* **oak:** add missing clipboard inside col content ([309dd72](https://github.com/p3ol/oak/commit/309dd72438e9b5cc95c30b0b754d66e114cf6b58))
+
+
+### Features
+
+* add tooltips to various options ([322aed2](https://github.com/p3ol/oak/commit/322aed2b8c873920a301da169d4be17a3c12afe2))
+* **oak:** add copy & paste actions ([a3af777](https://github.com/p3ol/oak/commit/a3af7775eafaf7dd0e5ce70cce0db529afc5ef35))
+* **oak:** add new paste icon ([2eaece2](https://github.com/p3ol/oak/commit/2eaece2309ae648e62311df42893e6ef40c7a571))
+
+
+
+## [1.0.2](https://github.com/p3ol/oak/compare/v1.0.1...v1.0.2) (2022-06-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @popperjs/core to v2.11.5 ([ffc3a15](https://github.com/p3ol/oak/commit/ffc3a15c85fa32d7bb821ef0644e1a541d3b59d6))
+* **deps:** update dependency core-js to v3.22.1 ([b6eeb39](https://github.com/p3ol/oak/commit/b6eeb39923dd59752d11b76597c15a5e1775c3e0))
+* **deps:** update dependency core-js to v3.22.2 ([f999a67](https://github.com/p3ol/oak/commit/f999a672e55f21ed6d0a611e383f3f5f9ee6e111))
+* **deps:** update dependency core-js to v3.22.4 ([635fa05](https://github.com/p3ol/oak/commit/635fa05572afbab4e99ac184c435ebc44b90b86d))
+* **deps:** update dependency core-js to v3.22.5 ([a808b1d](https://github.com/p3ol/oak/commit/a808b1d31b98ac99796b7f34626bb4b718e7a58c))
+* **deps:** update dependency core-js to v3.22.7 ([5b967a9](https://github.com/p3ol/oak/commit/5b967a90e25c009075943365aea0d5ccb3dbef7a))
+* **deps:** update dependency core-js to v3.22.8 ([575a4cb](https://github.com/p3ol/oak/commit/575a4cb546be725162844687fca1673f47be1ebf))
+* **deps:** update dependency core-js to v3.23.1 ([e12b3ce](https://github.com/p3ol/oak/commit/e12b3ce514c0e5c1f0002326951d853d893b3d36))
+* **deps:** update dependency core-js to v3.23.2 ([29fa97b](https://github.com/p3ol/oak/commit/29fa97b218fe39be67b7bccea21f9640d325c81b))
+* **deps:** update dependency core-js to v3.23.3 ([ce5e45f](https://github.com/p3ol/oak/commit/ce5e45f79dd5e9d8221fa73155ae76e410d4763c))
+* **deps:** update dependency preact to v10.7.0 ([3307cc5](https://github.com/p3ol/oak/commit/3307cc52372761b115dcd52c9b75ce8330db4a1d))
+* **deps:** update dependency preact to v10.7.1 ([1130858](https://github.com/p3ol/oak/commit/1130858a35272ad004f7ac58477629f2f8a02c44))
+* **deps:** update dependency preact to v10.7.2 ([cba3f0c](https://github.com/p3ol/oak/commit/cba3f0cddac048a12a3ccf6e34b8a35a88acb80d))
+* **deps:** update dependency preact to v10.7.3 ([020d829](https://github.com/p3ol/oak/commit/020d8294aae11a940445dd1391610725203c3bec))
+* **deps:** update dependency preact to v10.8.2 ([30dfd8f](https://github.com/p3ol/oak/commit/30dfd8fbafad9fabf74824be3553aa8ac1854be7))
+* **deps:** update dependency prosemirror-commands to v1.2.2 ([5b7bf7a](https://github.com/p3ol/oak/commit/5b7bf7a44619ee39c11a6f85e03ab635cb75179b))
+* **deps:** update dependency prosemirror-commands to v1.3.0 ([8652166](https://github.com/p3ol/oak/commit/8652166d441d2b3e40f369c86153e0b974b89ed5))
+* **deps:** update dependency prosemirror-keymap to v1.2.0 ([579fd6d](https://github.com/p3ol/oak/commit/579fd6dea8d578dd68f180f6d1fba5188cd3b040))
+* **deps:** update dependency prosemirror-model to v1.17.0 ([62c7085](https://github.com/p3ol/oak/commit/62c7085f240dda45af3e7f148dbd746855f1638b))
+* **deps:** update dependency prosemirror-model to v1.18.0 ([9d427d5](https://github.com/p3ol/oak/commit/9d427d5587e8f46ff1585fb753e504d8e0616b18))
+* **deps:** update dependency prosemirror-model to v1.18.1 ([a905d3f](https://github.com/p3ol/oak/commit/a905d3fb35e383171b16ae917c07b6c930af62a2))
+* **deps:** update dependency prosemirror-schema-basic to v1.2.0 ([af7626b](https://github.com/p3ol/oak/commit/af7626bb052f5741fe52174f2c1eeea93541a6c6))
+* **deps:** update dependency prosemirror-state to v1.4.0 ([9d81cdd](https://github.com/p3ol/oak/commit/9d81cdd7243e02d27f4f63e58fe5531ddf42bdcc))
+* **deps:** update dependency prosemirror-state to v1.4.1 ([328030b](https://github.com/p3ol/oak/commit/328030bd33405296d633edbf3ccac59541150847))
+* **deps:** update dependency prosemirror-view to v1.23.10 ([f83d759](https://github.com/p3ol/oak/commit/f83d759933441af7bf65b5a062cc897b5a7864ee))
+* **deps:** update dependency prosemirror-view to v1.23.11 ([08b451a](https://github.com/p3ol/oak/commit/08b451adfe2d74f50cf486636504e8d6c5c3a001))
+* **deps:** update dependency prosemirror-view to v1.23.12 ([d733883](https://github.com/p3ol/oak/commit/d7338832866c714b813efc929bd9c19f7aad3e8d))
+* **deps:** update dependency prosemirror-view to v1.23.13 ([a7ee26f](https://github.com/p3ol/oak/commit/a7ee26f23f53c24fe5dbfc0feeec6545e4e0c038))
+* **deps:** update dependency prosemirror-view to v1.26.0 ([c312c82](https://github.com/p3ol/oak/commit/c312c820fda94693a9e309997e7898dd81a383e7))
+* **deps:** update dependency prosemirror-view to v1.26.1 ([93366a2](https://github.com/p3ol/oak/commit/93366a2ade04ee91729d5df277a41d95af3fcece))
+* **deps:** update dependency prosemirror-view to v1.26.2 ([017b480](https://github.com/p3ol/oak/commit/017b4800ce45455e85a3de08c04dfab34d8e69f1))
+* **deps:** update dependency react-popper to v2.3.0 ([4bfea4f](https://github.com/p3ol/oak/commit/4bfea4fdf6e341ab4abff68ef2f7239b3c37f27e))
+* **deps:** update dependency slate to v0.76.0 ([8721547](https://github.com/p3ol/oak/commit/87215477600a9da5d027875968e866602e0ecbc2))
+* **deps:** update dependency slate to v0.76.1 ([efa4a5d](https://github.com/p3ol/oak/commit/efa4a5d4118bd16703a94513c9ef2815377f6218))
+* **deps:** update dependency slate to v0.78.0 ([ad7121b](https://github.com/p3ol/oak/commit/ad7121bd3863ae2c7a356d989f5d9dd6ef1aa35d))
+* **deps:** update dependency slate to v0.81.0 ([39fdaeb](https://github.com/p3ol/oak/commit/39fdaeb44a6b3a42803f041ec83e945a2a346544))
+* **deps:** update dependency slate to v0.81.1 ([1c0e684](https://github.com/p3ol/oak/commit/1c0e684f609d7a8478e4252c0a21669bf40abede))
+* **deps:** update dependency slate-hyperscript to v0.77.0 ([411796e](https://github.com/p3ol/oak/commit/411796e42839d647c2a17d2732b20d92935a92f1))
+* **deps:** update dependency slate-react to v0.76.0 ([05dda85](https://github.com/p3ol/oak/commit/05dda854a73bae6a64b888490d2a47b83d12d3f9))
+* **deps:** update dependency slate-react to v0.76.1 ([40fad6a](https://github.com/p3ol/oak/commit/40fad6a394689ae5b24884e965040c580d5b5ae3))
+* **deps:** update dependency slate-react to v0.78.1 ([3bb1e08](https://github.com/p3ol/oak/commit/3bb1e08c46a12f4564009a28db39440c618bc47e))
+* **deps:** update dependency slate-react to v0.80.0 ([4147f7e](https://github.com/p3ol/oak/commit/4147f7e8ec04003ff6d30a81ffb85fc075aba6c1))
+* **deps:** update dependency slate-react to v0.81.0 ([6aa15b6](https://github.com/p3ol/oak/commit/6aa15b6c49b32beef716c3acb93730bb54e3e2e8))
+* **deps:** update poool junipero monorepo to v2.0.0-rc.19 ([198ebba](https://github.com/p3ol/oak/commit/198ebbabf556e3f9bdcd9964a76e45ab9350f4db))
+* **deps:** update poool junipero monorepo to v2.0.0-rc.21 ([996b256](https://github.com/p3ol/oak/commit/996b2562c16ec99df6582576177dddcc41cad529))
+* **oak:** fix potentially non existing oakRef inside tests ([740440c](https://github.com/p3ol/oak/commit/740440c3de422e730de280181b7a3d2df0bc55c1))
+* **popper-js:** add boundary to preventOverflow to prevent popper from overflowing oak ([6f4a5f8](https://github.com/p3ol/oak/commit/6f4a5f813b413cdce9ca67963514b46c20f81dbc))
+
+
+### Features
+
+* **popper:** use ref instead of document queryselector ([fc7eb80](https://github.com/p3ol/oak/commit/fc7eb80d4da1061596117d96216120d55c6c6554))
+* remove ref from context useCallback dependancy array ([c5d29ad](https://github.com/p3ol/oak/commit/c5d29ad02f7af4a8c464cbcf264ecd995b7a34d0))
 
 
 
@@ -413,15 +492,12 @@
 
 
 
-# [1.0.0-beta.15](https://github.com/p3ol/oak/compare/v1.0.0-beta.13...v1.0.0-beta.15) (2021-08-26)
+# [1.0.0-beta.15](https://github.com/p3ol/oak/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2021-08-26)
 
 
 ### Bug Fixes
 
 * **addon-basic-components:** fix missing checks ([26a589d](https://github.com/p3ol/oak/commit/26a589d53e042153f377f210797cdb74d873aa73))
-* **deps:** update dependency core-js to v3.16.3 ([e57eedb](https://github.com/p3ol/oak/commit/e57eedbf1dfd272cc1a1a0c093f05abf6ca39148))
-* fix cols not being 100% wide when row is in column mode ([e7a17ca](https://github.com/p3ol/oak/commit/e7a17ca03a3e0a98240ba6ce17854f0eb60cba29))
-* fix icons layout issues ([fe45b77](https://github.com/p3ol/oak/commit/fe45b772f6e2d67d87d430c80b0404aadc44e84d))
 * fix richtext serialization issues ([f7732e5](https://github.com/p3ol/oak/commit/f7732e5a9560c6cf3f78c384b22b54d98f88956d))
 * **lib:** fix element construct with translated default content ([f5b5baa](https://github.com/p3ol/oak/commit/f5b5baa84b8fcd5b08f875d0d370c9f6d1b60003))
 * **lib:** fix missing text issues ([07036a3](https://github.com/p3ol/oak/commit/07036a3a6db7165a93201c8534afbbd028c4d444))
@@ -430,7 +506,6 @@
 ### Features
 
 * add auto sized column (based on content) ([8733062](https://github.com/p3ol/oak/commit/873306299180062ac89f8398f693720ae5b4035f))
-* add duplicate ability ([d7ac36c](https://github.com/p3ol/oak/commit/d7ac36cbb9a73b9431984efea6585c3b9a11ee5e))
 * add link button ([3c210ee](https://github.com/p3ol/oak/commit/3c210eeae29e1e35db5e21c7c68a647dac136850))
 * add stretch flex align option ([80ce49d](https://github.com/p3ol/oak/commit/80ce49da5c5270349c1c76e5bb933f81c07b2469))
 * **link:** use block instead of node for link handling ([51aaa9c](https://github.com/p3ol/oak/commit/51aaa9c91e7b1fe7dfd94c8421b8a61a12037560))
@@ -443,6 +518,22 @@
 * **text-editor:** removes link on leaf ([d3d8b97](https://github.com/p3ol/oak/commit/d3d8b97ac5802ee56e9c6246a7827e373e259608))
 * **text-editor:** removes unecessary quote ([7322439](https://github.com/p3ol/oak/commit/73224395d9beb7cfdd96064ae8500043695f4ee1))
 * **text-editor:** stop using true false on targets ([aa2ade1](https://github.com/p3ol/oak/commit/aa2ade13d1ab29bebe81f090d63ce048da5dc444))
+
+
+
+# [1.0.0-beta.14](https://github.com/p3ol/oak/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2021-08-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.16.3 ([e57eedb](https://github.com/p3ol/oak/commit/e57eedbf1dfd272cc1a1a0c093f05abf6ca39148))
+* fix cols not being 100% wide when row is in column mode ([e7a17ca](https://github.com/p3ol/oak/commit/e7a17ca03a3e0a98240ba6ce17854f0eb60cba29))
+* fix icons layout issues ([fe45b77](https://github.com/p3ol/oak/commit/fe45b772f6e2d67d87d430c80b0404aadc44e84d))
+
+
+### Features
+
+* add duplicate ability ([d7ac36c](https://github.com/p3ol/oak/commit/d7ac36cbb9a73b9431984efea6585c3b9a11ee5e))
 
 
 
