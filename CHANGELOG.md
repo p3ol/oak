@@ -1,4 +1,13 @@
-# [](https://github.com/p3ol/oak/compare/v1.1.0...v) (2022-07-02)
+# [](https://github.com/p3ol/oak/compare/v1.1.1...v) (2022-07-02)
+
+
+
+## [1.1.1](https://github.com/p3ol/oak/compare/v1.1.0...v1.1.1) (2022-07-02)
+
+
+### Bug Fixes
+
+* **oak:** onbeforedragstart typo ([6fe3da3](https://github.com/p3ol/oak/commit/6fe3da3af3ef7f364cbc011647fa41961dc96068))
 
 
 
