@@ -39,7 +39,6 @@ export default forwardRef(({
     setElement,
     overrides,
     getOverrides,
-    _settingsHolderRef,
   } = useBuilder();
   const options = useOptions();
   const tabs = useMemo(() => [
