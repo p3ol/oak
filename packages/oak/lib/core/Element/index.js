@@ -79,10 +79,13 @@ const Element = ({
 
   return (
     <ElementContext.Provider value={getContext()}>
-      <Droppable disabled={element.type === 'row'} onDrop={onDrop_}>
+      <Droppable
+        ref={elementInnerRef}
+        disabled={element.type === 'row'}
+        onDrop={onDrop_}
+      >
         <Draggable data={element} disabled={element.type === 'row'}>
           <div
-            ref={elementInnerRef}
             id={element.id || uuid()}
             className={classNames(
               'oak-element',
