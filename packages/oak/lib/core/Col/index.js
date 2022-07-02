@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { classNames } from '@poool/junipero-utils';
+import { Tooltip, classNames } from '@poool/junipero';
 
 import { useBuilder } from '../../hooks';
 import Catalogue from '../Catalogue';
@@ -9,6 +9,7 @@ import Droppable from '../Droppable';
 import Editable from '../Editable';
 import settings from './index.settings';
 import Icon from '../Icon';
+import Text from '../Text';
 
 const Col = ({
   element,
@@ -22,7 +23,7 @@ const Col = ({
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
   const settingsElementRef = useRef();
-  const { addElement, moveElement, getText } = useBuilder();
+  const { addElement, moveElement, getText, oakRef } = useBuilder();
 
   const onPrependCol_ = e => {
     e.preventDefault();
@@ -100,9 +101,15 @@ const Col = ({
     >
       <div className="oak-col-wrapper">
         <div className="oak-divider oak-prepend">
-          <a href="#" draggable={false} onClick={onPrependCol_}>
-            <Icon className="oak-append-icon">add</Icon>
-          </a>
+          <Tooltip
+            placement="right"
+            container={oakRef?.current || '.oak'}
+            text={<Text name="core.tooltips.addColumn" default="Add column" />}
+          >
+            <a href="#" draggable={false} onClick={onPrependCol_}>
+              <Icon className="oak-append-icon">add</Icon>
+            </a>
+          </Tooltip>
         </div>
         <Droppable disabled={element.content.length > 0} onDrop={onDrop_}>
           <div className="oak-col-inner">
@@ -135,9 +142,15 @@ const Col = ({
           </div>
         </Droppable>
         <div className="oak-divider oak-append">
-          <a href="#" draggable={false} onClick={onAppendCol_}>
-            <Icon className="oak-append-icon">add</Icon>
-          </a>
+          <Tooltip
+            placement="left"
+            container={oakRef?.current || '.oak'}
+            text={<Text name="core.tooltips.addColumn" default="Add column" />}
+          >
+            <a href="#" draggable={false} onClick={onAppendCol_}>
+              <Icon className="oak-append-icon">add</Icon>
+            </a>
+          </Tooltip>
         </div>
 
         <div className="oak-options">
@@ -151,12 +164,14 @@ const Col = ({
               className="oak-edit"
               option={{ icon: 'edit' }}
               onClick={onEdit_}
+              name={<Text name="core.tooltips.edit" default="Edit" />}
             />
           </Editable>
           <Option
             className="oak-remove"
             option={{ icon: 'clear' }}
             onClick={onRemove_}
+            name={<Text name="core.tooltips.remove" default="Remove" />}
           />
         </div>
       </div>

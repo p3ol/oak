@@ -133,16 +133,21 @@ const Element = ({
                 option={{ icon: 'clear' }}
                 className="oak-remove"
                 onClick={onDelete_}
+                name={<Text name="core.tooltips.remove" default="Remove" />}
               />
               <Option
                 option={{ icon: 'content_copy' }}
                 className="oak-duplicate"
                 onClick={onDuplicate_}
+                name={(
+                  <Text name="core.tooltips.duplicate" default="Duplicate" />
+                )}
               />
               <Option
                 option={{ icon: 'content_paste' }}
                 className="oak-copy"
                 onClick={onCopy_}
+                name={<Text name="core.tooltips.copy" default="Copy" />}
               />
               { component.options?.map((o, i) => (
                 <Fragment key={i}>
@@ -168,6 +173,7 @@ const Element = ({
                     option={{ icon: 'edit' }}
                     className="oak-edit"
                     onClick={onEdit_}
+                    name={<Text name="core.tooltips.edit" default="Edit" />}
                   />
                 </Editable>
               ) }

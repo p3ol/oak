@@ -85,7 +85,7 @@ export default forwardRef(({
   return (
     <>
       { children && cloneElement(Children.only(children), {
-        ref: setReference,
+        ref: r => { setReference(r?.isOak ? r.innerRef.current : r); },
         className: classNames(
           Children.only(children).props.className,
           { 'oak-opened': state.opened }
