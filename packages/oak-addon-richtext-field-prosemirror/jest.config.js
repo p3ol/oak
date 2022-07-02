@@ -9,10 +9,16 @@ module.exports = {
   clearMocks: true,
   resetMocks: true,
   rootDir: path.resolve(__dirname),
+  moduleNameMapper: {
+    '^@poool/oak$': path.resolve(__dirname, '../oak/lib/index.js'),
+  },
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.styl$': 'jest-css-modules-transform',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(uuid))',
+  ],
   coveragePathIgnorePatterns: [
     'node_modules',
     'dist',
