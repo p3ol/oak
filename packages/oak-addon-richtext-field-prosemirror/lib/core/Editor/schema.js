@@ -33,10 +33,6 @@ export const nodes = {
       },
     ],
     toDOM: e => {
-      if (e.textContent.length === 0) {
-        return ['br'];
-      }
-
       return ['div', { style: `text-align: ${e?.attrs?.alignment}` }, 0];
     },
   },
@@ -44,8 +40,9 @@ export const nodes = {
     group: 'inline',
     inline: true,
   },
-  hardBreak: {
-    group: 'block',
+  hard_break: {
+    inline: true,
+    group: 'inline',
     selectable: false,
     parseDOM: [{
       tag: 'br',
