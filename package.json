@@ -26,7 +26,7 @@
     "@poool/eslint-config": "2.0.0",
     "@poool/eslint-config-react": "2.0.0",
     "@poool/eslint-plugin": "2.0.0",
-    "@popperjs/core": "2.11.5",
+    "@popperjs/core": "2.11.6",
     "@rollup/plugin-alias": "3.1.9",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-commonjs": "22.0.2",
