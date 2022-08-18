@@ -39,7 +39,8 @@ const Builder_ = forwardRef(({
     return () => {
       ref?.destroy();
     };
-  }, [options]);
+  }, []);
+
   useImperativeHandle(ref, () => ({
     innerRef,
     builderRef,

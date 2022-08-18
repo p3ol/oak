@@ -92,7 +92,7 @@ export const render = (elmt, options = {}) => {
   return app;
 };
 
-export { Text, oak as Lib, App as Builder };
+export { Text, oak as Lib };
 
 export { useOptions, useBuilder, useElement } from './hooks';
 
