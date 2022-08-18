@@ -50,11 +50,7 @@ const Builder_ = forwardRef(({
       className={classNames('oak-react-wrapper', className)}
       { ...containerProps }
       ref={innerRef}
-    >
-      {/* <Builder
-
-      /> */}
-    </div>
+    />
   );
 });
 
