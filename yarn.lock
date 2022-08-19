@@ -12729,10 +12729,10 @@ prosemirror-transform@^1.0.0, prosemirror-transform@^1.1.0:
   dependencies:
     prosemirror-model "^1.0.0"
 
-prosemirror-view@1.27.1:
-  version "1.27.1"
-  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.27.1.tgz#0990547f8c83e3959c1ca00c53631641375d8d77"
-  integrity sha512-aUb5W6o3BdPQhbOKOvyPJZckVDfbEoCTN5Z24CYdYkoUIT2QAWHwlfTpMCBn4hkaHiTI6trbdFDQhAwaKjYSiw==
+prosemirror-view@1.27.2:
+  version "1.27.2"
+  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.27.2.tgz#7f1e9b73698ba2622c515e2a617fd49232d214c4"
+  integrity sha512-RE2GLUaYXUyrpUl58vHoznZ3wKAj7z8f1ZZolivljwwOe1yiSzsEsuJPZmm3mpBXRgHGk7LWh5v+uhdDXAbjkA==
   dependencies:
     prosemirror-model "^1.16.0"
     prosemirror-state "^1.0.0"
