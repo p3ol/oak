@@ -5,7 +5,7 @@
   "packageRules": [{
     "updateTypes": ["patch", "pin"],
     "depTypeList": ["devDependencies", "dependencies"],
-    "excludePackagePatterns": ["prosemirror*"],
+    "excludePackagePatterns": ["^prosemirror"],
     "automerge": true
   }, {
     "packagePatterns": ["^@poool/eslint"],
