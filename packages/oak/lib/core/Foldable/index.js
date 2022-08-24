@@ -14,9 +14,8 @@ const Row = ({
 }) => {
   const { setElement, moveElement } = useBuilder();
 
-  const onDivide = (index, isBefore, isOnContent) => {
-    const side = isOnContent ? 'content' : 'seeMore';
-    element[side]?.cols.splice(isBefore ? index : index + 1, 0, {
+  const onDivide = (index, isBefore, part) => {
+    element[part]?.splice(isBefore ? index : index + 1, 0, {
       content: [],
       id: uuid(),
       style: {},
@@ -26,18 +25,18 @@ const Row = ({
     setElement(element, { content: element.content, seeMore: element.seeMore });
   };
 
-  const onRemoveCol = (index, isOnContent) => {
-    const side = isOnContent ? 'content' : 'seeMore';
-
-    if (element[side]?.cols.length > 1) {
-      element[side]?.cols.splice(index, 1);
-      setElement(element, { content: element.content, seeMore: element.seeMore });
+  const onRemoveCol = (index, part) => {
+    if (element[part]?.length > 1) {
+      element[part]?.splice(index, 1);
+      setElement(element, {
+        content: element.cols,
+        seeMore: element.seeMore,
+        seeLess: element.seeLess,
+      });
     }
   };
 
-  const onDropElement = (position, data, isOnContent) => {
-    const side = isOnContent ? 'content' : 'seeMore';
-
+  const onDropElement = (position, data) => {
     moveElement(data, element, { parent, position });
   };
 
@@ -47,7 +46,7 @@ const Row = ({
       style={element.style}
     >
       <div>See more content section</div>
-      <Droppable onDrop={onDropElement.bind(null, 'before', true)}>
+      <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="oak-drop-zone oak-before" />
       </Droppable>
       <div
@@ -61,21 +60,21 @@ const Row = ({
             'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        { element?.content?.cols?.map((col, i) => (
+        { element?.cols?.map((col, i) => (
           <Col
             key={i}
             element={col}
-            onPrepend={onDivide.bind(null, i, true, true)}
-            onAppend={onDivide.bind(null, i, false, true)}
-            onRemove={onRemoveCol.bind(null, i, true)}
+            onPrepend={onDivide.bind(null, i, true, 'cols')}
+            onAppend={onDivide.bind(null, i, false, 'cols')}
+            onRemove={onRemoveCol.bind(null, i, 'cols')}
           />
         )) }
       </div>
-      <Droppable onDrop={onDropElement.bind(null, 'after', true)}>
+      <Droppable onDrop={onDropElement.bind(null, 'after')}>
         <div className="oak-drop-zone oak-after" />
       </Droppable>
       <div>See More title section</div>
-      <Droppable onDrop={onDropElement.bind(null, 'before', false)}>
+      <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="oak-drop-zone oak-before" />
       </Droppable>
       <div
@@ -89,21 +88,21 @@ const Row = ({
             'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        { element?.seeMore?.cols?.map((col, i) => (
+        { element?.seeMore?.map((col, i) => (
           <Col
             key={i}
             element={col}
-            onPrepend={onDivide.bind(null, i, true, false)}
-            onAppend={onDivide.bind(null, i, false, false)}
-            onRemove={onRemoveCol.bind(null, i, false)}
+            onPrepend={onDivide.bind(null, i, true, 'seeMore')}
+            onAppend={onDivide.bind(null, i, false, 'seeMore')}
+            onRemove={onRemoveCol.bind(null, i, 'seeMore')}
           />
         )) }
       </div>
-      <Droppable onDrop={onDropElement.bind(null, 'after', false)}>
+      <Droppable onDrop={onDropElement.bind(null, 'after')}>
         <div className="oak-drop-zone oak-after" />
       </Droppable>
       <div>See less title section</div>
-      <Droppable onDrop={onDropElement.bind(null, 'before', false)}>
+      <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="oak-drop-zone oak-before" />
       </Droppable>
       <div
@@ -117,17 +116,17 @@ const Row = ({
             'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        { element?.seeLess?.cols?.map((col, i) => (
+        { element?.seeLess?.map((col, i) => (
           <Col
             key={i}
             element={col}
-            onPrepend={onDivide.bind(null, i, true, false)}
-            onAppend={onDivide.bind(null, i, false, false)}
-            onRemove={onRemoveCol.bind(null, i, false)}
+            onPrepend={onDivide.bind(null, i, true, 'seeLess')}
+            onAppend={onDivide.bind(null, i, false, 'seeLess')}
+            onRemove={onRemoveCol.bind(null, i, 'seeLess')}
           />
         )) }
       </div>
-      <Droppable onDrop={onDropElement.bind(null, 'after', false)}>
+      <Droppable onDrop={onDropElement.bind(null, 'after')}>
         <div className="oak-drop-zone oak-after" />
       </Droppable>
     </div>

@@ -257,12 +257,6 @@ export default forwardRef((options, ref) => {
     target,
     { parent = state.content, position = 'after' } = {}
   ) => {
-    console.log(elmt);
-    console.log(target);
-    console.log(!elmt.id ||
-      !target.id ||
-      elmt.id === target.id ||
-      contains(target, { parent: elmt }));
 
     if (
       !elmt.id ||
@@ -275,29 +269,33 @@ export default forwardRef((options, ref) => {
 
     const nearestParent = findNearestParent(elmt);
     nearestParent?.splice(nearestParent?.findIndex(e => e.id === elmt.id), 1);
-    console.log(nearestParent);
     const newIndex = parent.indexOf(target);
     parent.splice(position === 'after' ? newIndex + 1 : newIndex, 0, elmt);
     onChange();
   };
 
   const findNearestParent = (elmt, { parent = state.content } = {}) => {
-    console.log(elmt);
-
     for (const e of parent) {
       if (e.id === elmt.id) {
         return parent;
       } else if (Array.isArray(e.cols)) {
         const nearest = findNearestParent(elmt, { parent: e.cols });
+
+        if (Array.isArray(e.seeMore)) {
+          const nearest = findNearestParent(elmt, { parent: e.seeMore });
+          if (nearest) return nearest;
+        }
+
+        if (Array.isArray(e.seeLess)) {
+          const nearest = findNearestParent(elmt, { parent: e.seeLess });
+          if (nearest) return nearest;
+        }
+
         if (nearest) return nearest;
       } else if (Array.isArray(e.content)) {
         const nearest = findNearestParent(elmt, { parent: e.content });
         if (nearest) return nearest;
 
-        if (isArray(e.seeMore)) {
-          const nearest = findNearestParent(elmt, { parent: e.seeMore });
-          if (nearest) return nearest;
-        }
       }
     }
 
@@ -319,23 +317,27 @@ export default forwardRef((options, ref) => {
       contains(elmt, { parent: parent.content })
     ) ||
     (
-      parent.seeMore &&
-      contains(elmt, { parent: parent.seeMore.cols })
+      Array.isArray(parent.seeMore) &&
+      contains(elmt, { parent: parent.seeMore })
     ) ||
     (
-      parent.seeLess &&
-      contains(elmt, { parent: parent.seeLess.cols })
+      Array.isArray(parent.seeLess) &&
+      contains(elmt, { parent: parent.seeLess })
     );
 
   const normalizeElement = (elmt, opts = {}) => {
     if (Array.isArray(elmt.cols)) {
       elmt.cols.forEach(c => normalizeElement(c, opts));
-    } else if (Array.isArray(elmt.content)) {
-      elmt.content.forEach(e => normalizeElement(e, opts));
 
       if (Array.isArray(elmt.seeMore)) {
-        elmt.content.forEach(e => normalizeElement(e, opts));
+        normalizeElement(elmt.seeMore, opts);
       }
+
+      if (Array.isArray(elmt.seeLess)) {
+        normalizeElement(elmt.seeLess, opts);
+      }
+    } else if (Array.isArray(elmt.content)) {
+      elmt.content.forEach(e => normalizeElement(e, opts));
     }
 
     if (!elmt.id || opts.resetIds) {
@@ -356,12 +358,16 @@ export default forwardRef((options, ref) => {
   const serializeElement = elmt => {
     if (Array.isArray(elmt.cols)) {
       elmt.cols.forEach(c => serializeElement(c));
-    } else if (Array.isArray(elmt.content)) {
-      elmt.content.forEach(e => serializeElement(e));
 
       if (Array.isArray(elmt.seeMore)) {
         elmt.seeMore.forEach(e => serializeElement(e));
       }
+
+      if (Array.isArray(elmt.seeLess)) {
+        elmt.seeLess.forEach(e => serializeElement(e));
+      }
+    } else if (Array.isArray(elmt.content)) {
+      elmt.content.forEach(e => serializeElement(e));
     }
 
     const component = getComponent(elmt.type);

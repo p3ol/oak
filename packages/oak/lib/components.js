@@ -41,38 +41,32 @@ export const COMPONENT_FOLDABLE = {
     settings: {
       alignItems: 'flex-start',
     },
-    content: {
-      cols: [{
-        type: 'col',
-        content: [],
+    cols: [{
+      type: 'col',
+      content: [],
+      id: uuid(),
+      style: {},
+    }],
+    seeMore: [{
+      type: 'col',
+      content: [{
+        type: 'text',
         id: uuid(),
-        style: {},
+        content: 'see more',
       }],
-    },
-    seeMore: {
-      cols: [{
-        type: 'col',
-        content: [{
-          type: 'text',
-          id: uuid(),
-          content: 'see more',
-        }],
+      id: uuid(),
+      style: {},
+    }],
+    seeLess: [{
+      type: 'col',
+      content: [{
+        type: 'text',
         id: uuid(),
-        style: {},
+        content: 'see less',
       }],
-    },
-    seeLess: {
-      cols: [{
-        type: 'col',
-        content: [{
-          type: 'text',
-          id: uuid(),
-          content: 'see less',
-        }],
-        id: uuid(),
-        style: {},
-      }],
-    },
+      id: uuid(),
+      style: {},
+    }],
   }),
 };
 
