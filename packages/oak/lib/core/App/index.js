@@ -6,7 +6,7 @@ import {
   useImperativeHandle,
   useRef,
 } from 'react';
-import { mockState, cloneDeep, get, mergeDeep } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get, mergeDeep, isArray } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
@@ -257,6 +257,13 @@ export default forwardRef((options, ref) => {
     target,
     { parent = state.content, position = 'after' } = {}
   ) => {
+    console.log(elmt);
+    console.log(target);
+    console.log(!elmt.id ||
+      !target.id ||
+      elmt.id === target.id ||
+      contains(target, { parent: elmt }));
+
     if (
       !elmt.id ||
       !target.id ||
@@ -268,13 +275,15 @@ export default forwardRef((options, ref) => {
 
     const nearestParent = findNearestParent(elmt);
     nearestParent?.splice(nearestParent?.findIndex(e => e.id === elmt.id), 1);
-
+    console.log(nearestParent);
     const newIndex = parent.indexOf(target);
     parent.splice(position === 'after' ? newIndex + 1 : newIndex, 0, elmt);
     onChange();
   };
 
   const findNearestParent = (elmt, { parent = state.content } = {}) => {
+    console.log(elmt);
+
     for (const e of parent) {
       if (e.id === elmt.id) {
         return parent;
@@ -284,6 +293,11 @@ export default forwardRef((options, ref) => {
       } else if (Array.isArray(e.content)) {
         const nearest = findNearestParent(elmt, { parent: e.content });
         if (nearest) return nearest;
+
+        if (isArray(e.seeMore)) {
+          const nearest = findNearestParent(elmt, { parent: e.seeMore });
+          if (nearest) return nearest;
+        }
       }
     }
 
@@ -303,6 +317,14 @@ export default forwardRef((options, ref) => {
     (
       Array.isArray(parent.content) &&
       contains(elmt, { parent: parent.content })
+    ) ||
+    (
+      parent.seeMore &&
+      contains(elmt, { parent: parent.seeMore.cols })
+    ) ||
+    (
+      parent.seeLess &&
+      contains(elmt, { parent: parent.seeLess.cols })
     );
 
   const normalizeElement = (elmt, opts = {}) => {
@@ -310,6 +332,10 @@ export default forwardRef((options, ref) => {
       elmt.cols.forEach(c => normalizeElement(c, opts));
     } else if (Array.isArray(elmt.content)) {
       elmt.content.forEach(e => normalizeElement(e, opts));
+
+      if (Array.isArray(elmt.seeMore)) {
+        elmt.content.forEach(e => normalizeElement(e, opts));
+      }
     }
 
     if (!elmt.id || opts.resetIds) {
@@ -332,6 +358,10 @@ export default forwardRef((options, ref) => {
       elmt.cols.forEach(c => serializeElement(c));
     } else if (Array.isArray(elmt.content)) {
       elmt.content.forEach(e => serializeElement(e));
+
+      if (Array.isArray(elmt.seeMore)) {
+        elmt.seeMore.forEach(e => serializeElement(e));
+      }
     }
 
     const component = getComponent(elmt.type);

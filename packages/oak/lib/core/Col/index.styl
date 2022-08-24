@@ -99,7 +99,7 @@
       .oak-element
         margin-bottom: 0
 
-      .oak-element.oak-row
+      .oak-element.oak-row, .oak-element.oak-foldable
         margin-top: 40px
         margin-bottom: 0
 
@@ -114,7 +114,7 @@
         .oak-col-wrapper
           background: $color-white
 
-          .oak-element:not(.oak-row) .oak-inner
+          .oak-element:not(.oak-row) .oak-inner,  .oak-element:not(.oak-foldable) .oak-inner
             background: $color-link-water
 
           .oak-col-wrapper
@@ -124,7 +124,7 @@
               background: transparent
               border: 1px solid $color-hawkes-blue
 
-            .oak-element:not(.oak-row) .oak-inner
+            .oak-element:not(.oak-row) .oak-inner, .oak-element:not(.oak-foldable) .oak-inner
               background: $color-white
 
       .oak-element

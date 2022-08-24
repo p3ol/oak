@@ -81,10 +81,13 @@ const Element = ({
     <ElementContext.Provider value={getContext()}>
       <Droppable
         ref={elementInnerRef}
-        disabled={element.type === 'row'}
+        disabled={element.type === 'row' || element.type === 'foldable'}
         onDrop={onDrop_}
       >
-        <Draggable data={element} disabled={element.type === 'row'}>
+        <Draggable
+          data={element}
+          disabled={element.type === 'row' || element.type === 'foldable'}
+        >
           <div
             id={element.id || uuid()}
             className={classNames(
@@ -93,7 +96,7 @@ const Element = ({
               className
             )}
           >
-            { ['row', 'col'].includes(element.type) ? (
+            { ['row', 'col', 'foldable'].includes(element.type) ? (
               <div className="oak-inner">
                 { rendered }
               </div>
