@@ -20,6 +20,7 @@ const Builder_ = forwardRef(({
 }, ref) => {
   const innerRef = useRef();
   const builderRef = useRef();
+
   useEffect(() => {
     const ref = render(innerRef.current, {
       ref: builderRef,
