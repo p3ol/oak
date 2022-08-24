@@ -1,10 +1,11 @@
 import {
   forwardRef,
+  useEffect,
   useImperativeHandle,
   useRef,
 } from 'react';
 import { classNames } from '@poool/junipero-utils';
-import { Builder, useOptions, useBuilder, useElement } from '@poool/oak';
+import { useOptions, useBuilder, useElement, render } from '@poool/oak';
 
 export { useOptions, useBuilder, useElement };
 
@@ -20,6 +21,27 @@ const Builder_ = forwardRef(({
   const innerRef = useRef();
   const builderRef = useRef();
 
+  useEffect(() => {
+    const ref = render(innerRef.current, {
+      ref: builderRef,
+      ...options,
+      ...rest,
+      content: value,
+      events: {
+        ...options.events,
+        ...rest.events,
+        onChange,
+        onImageUpload,
+      },
+    });
+
+    builderRef.current = ref;
+
+    return () => {
+      ref?.destroy();
+    };
+  }, []);
+
   useImperativeHandle(ref, () => ({
     innerRef,
     builderRef,
@@ -30,20 +52,7 @@ const Builder_ = forwardRef(({
       className={classNames('oak-react-wrapper', className)}
       { ...containerProps }
       ref={innerRef}
-    >
-      <Builder
-        ref={builderRef}
-        { ...options }
-        { ...rest }
-        content={value}
-        events={{
-          ...options.events,
-          ...rest.events,
-          onChange,
-          onImageUpload,
-        }}
-      />
-    </div>
+    />
   );
 });
 
