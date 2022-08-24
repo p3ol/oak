@@ -79,7 +79,7 @@ const Row = ({
       </Droppable>
       <div
         className={classNames(
-          'oak-foldable-seeMore',
+          'oak-foldable-content',
           element.settings?.flexDirection &&
             'oak-direction-' + element.settings.flexDirection,
           element.settings?.alignItems &&
@@ -107,7 +107,7 @@ const Row = ({
       </Droppable>
       <div
         className={classNames(
-          'oak-foldable-seeMore',
+          'oak-foldable-content',
           element.settings?.flexDirection &&
             'oak-direction-' + element.settings.flexDirection,
           element.settings?.alignItems &&

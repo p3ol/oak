@@ -10,6 +10,7 @@
   margin-bottom: 20px
   width: 100%
   border: 1px solid var(--oak-main-color)
+  border-radius: 3px
 
   .oak-drop-zone
     position: absolute
@@ -102,30 +103,3 @@
     > .oak-col
       padding: $half-gutter
 
-  .oak-foldable-seeMore
-    display: flex
-    flex-direction: row
-    flex-wrap: wrap
-    margin: -($half-gutter)
-    width: unquote("calc(100% + ") $gutters unquote(")")
-
-    for alignment in (flex-start center flex-end space-between space-around)
-
-      &.oak-align
-        &-{alignment}
-          align-items: alignment
-
-      &.oak-justify
-        &-{alignment}
-          justify-content: alignment
-
-    for direction in (row row-reverse column column-reverse)
-      &.oak-direction
-        &-{direction}
-          flex-direction: direction
-
-          > .oak-col
-            width: 100%
-
-    > .oak-col
-      padding: $half-gutter
