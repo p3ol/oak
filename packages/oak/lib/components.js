@@ -29,10 +29,10 @@ export const COMPONENT_ROW = {
 
 export const COMPONENT_FOLDABLE = {
   id: 'foldable',
-  name: 'foldable',
+  name: t => t('core.components.foldable.name', 'Foldable'),
   type: 'component',
   render: Foldable,
-  icon: 'view_column',
+  icon: 'unfold_less',
   editable: true,
   options: Foldable.options,
   settings: Foldable.settings,

@@ -4,8 +4,8 @@ import { classNames, omit } from '@poool/junipero-utils';
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
 import Droppable from '../Droppable';
-import options from '../Row/index.options';
-import settings from '../Row/index.settings';
+import options from './index.options';
+import settings from './index.settings';
 
 const Row = ({
   element,

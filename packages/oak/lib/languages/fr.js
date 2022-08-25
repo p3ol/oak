@@ -67,6 +67,44 @@ export default {
           },
         },
       },
+      foldable: {
+        name: 'Pliable',
+        settings: {
+          title: 'Options du composant pliable',
+          flexDirection: {
+            title: 'Direction des colonnes',
+            row: 'En ligne (de gauche à droite)',
+            rowReverse: 'En ligne inversée (de droite à gauche)',
+            column: 'En colonne (de haut en bas)',
+            columnReverse: 'En colonne inversée (de bas en haut)',
+          },
+          justifyContent: {
+            title: 'Alignement horizontal',
+            flexStart: 'Gauche',
+            center: 'Centre',
+            flexEnd: 'Droite',
+            spaceBetween: 'Espace entre les colonnes',
+            spaceAround: 'Espace autour des colonnes',
+          },
+          alignItems: {
+            title: 'Alignement vertical',
+            flexStart: 'En haut',
+            center: 'Centré',
+            flexEnd: 'En bas',
+            stretch: 'Étiré',
+          },
+          gutters: {
+            title: 'Espacement inter-colonnes',
+            enabled: 'Activé',
+            disabled: 'Désactivé',
+          },
+          seeMorePlacement: {
+            title: 'Placement du voir plus',
+            before: 'Avant',
+            after: 'Après',
+          },
+        },
+      },
       col: {
         settings: {
           title: 'Options de colonne',
