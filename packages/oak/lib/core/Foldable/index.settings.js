@@ -11,6 +11,24 @@ export default {
   },
   fields: [{
     type: 'select',
+    key: 'settings.seeMorePosition',
+    default: 'after',
+    label: t => t('core.components.foldable.settings.seeMorePosition.title',
+      'See more placement'
+    ),
+    options: [{
+      title: t => t('core.components.foldable.settings.seeMorePosition.before',
+        'Before'
+      ),
+      value: 'before',
+    }, {
+      title: t => t('core.components.foldable.settings.seeMorePosition.after',
+        'After'
+      ),
+      value: 'after',
+    }],
+  }, {
+    type: 'select',
     key: 'settings.flexDirection',
     default: 'row',
     label: t =>
@@ -106,24 +124,6 @@ export default {
       title: t => t('core.components.foldable.settings.gutters.disabled',
         'Disabled'),
       value: false,
-    }],
-  }, {
-    type: 'select',
-    key: 'settings.seeMorePosition',
-    default: 'after',
-    label: t => t('core.components.foldable.settings.seeMorePosition.title',
-      'See more placement'
-    ),
-    options: [{
-      title: t => t('core.components.foldable.settings.seeMorePosition.before',
-        'Before'
-      ),
-      value: 'before',
-    }, {
-      title: t => t('core.components.foldable.settings.seeMorePosition.after',
-        'After'
-      ),
-      value: 'after',
     }],
   }],
 };
