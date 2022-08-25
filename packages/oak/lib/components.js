@@ -52,7 +52,7 @@ export const COMPONENT_FOLDABLE = {
       content: [{
         type: 'text',
         id: uuid(),
-        content: 'see more',
+        content: '<div style="text-align: center">see more</div>',
       }],
       id: uuid(),
       style: {},
@@ -62,7 +62,7 @@ export const COMPONENT_FOLDABLE = {
       content: [{
         type: 'text',
         id: uuid(),
-        content: 'see less',
+        content: '<div style="text-align: center">see less</div>',
       }],
       id: uuid(),
       style: {},
