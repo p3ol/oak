@@ -109,7 +109,7 @@ export default {
     }],
   }, {
     type: 'select',
-    key: 'settings.seeMorePlacement',
+    key: 'settings.seeMorePosition',
     default: 'before',
     label: t => t('core.components.foldable.settings.seeMorePosition.title',
       'See more placement'
