@@ -41,32 +41,52 @@ export const COMPONENT_FOLDABLE = {
     settings: {
       alignItems: 'flex-start',
     },
-    cols: [{
-      type: 'col',
-      content: [],
-      id: uuid(),
-      style: {},
-    }],
-    seeMore: [{
-      type: 'col',
-      content: [{
-        type: 'text',
+    content: {
+      type: 'row',
+      settings: {
+        alignItems: 'flex-start',
+      },
+      cols: [{
+        type: 'col',
+        content: [],
         id: uuid(),
-        content: '<div style="text-align: center">see more</div>',
+        style: {},
       }],
+    },
+    seeMore: {
+      type: 'row',
+      settings: {
+        alignItems: 'flex-start',
+      },
       id: uuid(),
-      style: {},
-    }],
-    seeLess: [{
-      type: 'col',
-      content: [{
-        type: 'text',
+      cols: [{
+        type: 'col',
+        content: [{
+          type: 'text',
+          id: uuid(),
+          content: '<div style="text-align: center">see less</div>',
+        }],
         id: uuid(),
-        content: '<div style="text-align: center">see less</div>',
+        style: {},
       }],
+    },
+    seeLess: {
+      type: 'row',
       id: uuid(),
-      style: {},
-    }],
+      settings: {
+        alignItems: 'center',
+      },
+      cols: [{
+        type: 'col',
+        content: [{
+          type: 'text',
+          id: uuid(),
+          content: '<div style="text-align: center">see less</div>',
+        }],
+        id: uuid(),
+        style: {},
+      }],
+    },
   }),
 };
 
@@ -94,9 +114,9 @@ export const GROUP_CORE = {
   name: t => t('core.groups.core.title', 'Core components'),
   type: 'group',
   components: [
-    COMPONENT_FOLDABLE,
     COMPONENT_ROW,
     COMPONENT_EMPTY_SPACE,
+    COMPONENT_FOLDABLE,
   ],
 };
 

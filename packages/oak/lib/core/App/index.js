@@ -6,7 +6,7 @@ import {
   useImperativeHandle,
   useRef,
 } from 'react';
-import { mockState, cloneDeep, get, mergeDeep, isArray } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get, mergeDeep } from '@poool/junipero-utils';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
@@ -281,21 +281,28 @@ export default forwardRef((options, ref) => {
       } else if (Array.isArray(e.cols)) {
         const nearest = findNearestParent(elmt, { parent: e.cols });
 
-        if (Array.isArray(e.seeMore)) {
-          const nearest = findNearestParent(elmt, { parent: e.seeMore });
-          if (nearest) return nearest;
-        }
-
-        if (Array.isArray(e.seeLess)) {
-          const nearest = findNearestParent(elmt, { parent: e.seeLess });
-          if (nearest) return nearest;
-        }
-
         if (nearest) return nearest;
       } else if (Array.isArray(e.content)) {
         const nearest = findNearestParent(elmt, { parent: e.content });
         if (nearest) return nearest;
+      } else if (e.content instanceof Object) {
+        let nearest;
+        nearest = findNearestParent(elmt, { parent: e.content.cols });
+        if (nearest) return nearest;
 
+        if (e.seeMore) {
+          nearest = findNearestParent(elmt, { parent: e.seeMore.cols });
+          if (nearest) return nearest;
+
+        }
+
+        if (e.seeMore) {
+          nearest = findNearestParent(elmt, { parent: e.seeLess.cols });
+          if (nearest) return nearest;
+
+        }
+
+        if (nearest) return nearest;
       }
     }
 
@@ -317,27 +324,34 @@ export default forwardRef((options, ref) => {
       contains(elmt, { parent: parent.content })
     ) ||
     (
-      Array.isArray(parent.seeMore) &&
-      contains(elmt, { parent: parent.seeMore })
+      Array.isArray(parent.content?.cols) &&
+      contains(elmt, { parent: parent.content.cols })
     ) ||
     (
-      Array.isArray(parent.seeLess) &&
-      contains(elmt, { parent: parent.seeLess })
+      Array.isArray(parent.seeMore?.cols) &&
+      contains(elmt, { parent: parent.seeMore.cols })
+    ) ||
+    (
+      Array.isArray(parent.seeLess?.cols) &&
+      contains(elmt, { parent: parent.seeLess.cols })
     );
 
   const normalizeElement = (elmt, opts = {}) => {
     if (Array.isArray(elmt.cols)) {
       elmt.cols.forEach(c => normalizeElement(c, opts));
 
-      if (Array.isArray(elmt.seeMore)) {
-        normalizeElement(elmt.seeMore, opts);
-      }
-
-      if (Array.isArray(elmt.seeLess)) {
-        normalizeElement(elmt.seeLess, opts);
-      }
     } else if (Array.isArray(elmt.content)) {
       elmt.content.forEach(e => normalizeElement(e, opts));
+    } else if (elmt.content instanceof Object) {
+      normalizeElement(elmt.content);
+
+      if (elmt.seeMore) {
+        normalizeElement(elmt.seeMore);
+      }
+
+      if (elmt.seless) {
+        normalizeElement(elmt.seeLess);
+      }
     }
 
     if (!elmt.id || opts.resetIds) {
@@ -359,15 +373,18 @@ export default forwardRef((options, ref) => {
     if (Array.isArray(elmt.cols)) {
       elmt.cols.forEach(c => serializeElement(c));
 
-      if (Array.isArray(elmt.seeMore)) {
-        elmt.seeMore.forEach(e => serializeElement(e));
-      }
-
-      if (Array.isArray(elmt.seeLess)) {
-        elmt.seeLess.forEach(e => serializeElement(e));
-      }
     } else if (Array.isArray(elmt.content)) {
       elmt.content.forEach(e => serializeElement(e));
+    } else if (elmt.content instanceof Object) {
+      serializeElement(elmt.content);
+
+      if (elmt.seeMore) {
+        serializeElement(elmt.seeMore);
+      }
+
+      if (elmt.seeLess) {
+        serializeElement(elmt.seeLess);
+      }
     }
 
     const component = getComponent(elmt.type);

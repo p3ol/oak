@@ -6,6 +6,7 @@ import Draggable from '../Draggable';
 import Text from '../Text';
 
 const DragOption = {
+  name: 'drag',
   render: ({ element, elementInnerRef, className }) => {
     const optionRef = useRef();
     const [dragImage, setDragImage] = useState(null);

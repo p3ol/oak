@@ -18,6 +18,7 @@ const Element = ({
   element,
   parent,
   className,
+  config = {},
 }) => {
   const editableRef = useRef();
   const elementInnerRef = useRef();
@@ -67,6 +68,7 @@ const Element = ({
     component,
     parent,
     builder,
+    config,
     className: classNames('oak-element-content-inner', element.className),
   }) || null;
 
@@ -132,27 +134,33 @@ const Element = ({
             ) }
 
             <div className="oak-options">
-              <Option
-                option={{ icon: 'clear' }}
-                className="oak-remove"
-                onClick={onDelete_}
-                name={<Text name="core.tooltips.remove" default="Remove" />}
-              />
-              <Option
-                option={{ icon: 'content_copy' }}
-                className="oak-duplicate"
-                onClick={onDuplicate_}
-                name={(
-                  <Text name="core.tooltips.duplicate" default="Duplicate" />
-                )}
-              />
+              {!config.cantBeDeleted && (
+                <Option
+                  option={{ icon: 'clear' }}
+                  className="oak-remove"
+                  onClick={onDelete_}
+                  name={<Text name="core.tooltips.remove" default="Remove" />}
+                />
+              )}
+              {!config.cantBeDuplicated && (
+                <Option
+                  option={{ icon: 'content_copy' }}
+                  className="oak-duplicate"
+                  onClick={onDuplicate_}
+                  name={(
+                    <Text name="core.tooltips.duplicate" default="Duplicate" />
+                  )}
+                />
+              )}
               <Option
                 option={{ icon: 'content_paste' }}
                 className="oak-copy"
                 onClick={onCopy_}
                 name={<Text name="core.tooltips.copy" default="Copy" />}
               />
-              { component.options?.map((o, i) => (
+              { (config.cantBeDragged ? component.options.filter(
+                c => c.name !== 'drag'
+              ) : component.options)?.map((o, i) => (
                 <Fragment key={i}>
                   { o?.render?.({
                     option: o,
@@ -165,7 +173,7 @@ const Element = ({
                     index: i,
                   }) }
                 </Fragment>
-              )) }
+              ))}
               { component.editable && (
                 <Editable
                   element={element}
