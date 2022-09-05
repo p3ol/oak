@@ -152,4 +152,19 @@ describe('Col', () => {
       { parent: element.content, position: 'after' },
     );
   });
+
+  it('should not display remove cross if ' +
+  'cantBeDeleted config has been enabled', () => {
+    const element = { type: 'col', content: [] };
+
+    const { container, rerender } = render(
+      <Col element={element} />
+    );
+
+    expect(container.querySelector('.oak-remove')).toBeDefined();
+
+    rerender(<Col element={element} config={{ cantBeDeleted: true }} />);
+
+    expect(container.querySelector('.oak-remove')).toBeNull();
+  });
 });

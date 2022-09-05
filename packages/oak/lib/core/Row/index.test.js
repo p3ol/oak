@@ -31,21 +31,6 @@ describe('<Row />', () => {
     expect(container.querySelectorAll('.oak-col').length).toBe(4);
   });
 
-  it('should add custom element style to element', () => {
-    const { container } = render(
-      <Row
-        className="custom-class"
-        element={{
-          cols: [],
-          style: { backgroundColor: 'red' },
-        }}
-      />
-    );
-    expect(container.querySelector('.custom-class')).toBeTruthy();
-    expect(container.querySelector('.custom-class').getAttribute('style'))
-      .toContain('background-color: red');
-  });
-
   it('should add correct flex direction className', () => {
     const { container } = render(
       <Row
@@ -311,5 +296,83 @@ describe('<Row />', () => {
     }, {
       cols: colsAfter,
     }));
+  });
+
+  it('should not display drop zones if ' +
+  'notDroppable config is enabled', () => {
+    const { container, rerender } = render(withBuilder((
+      <Row
+        config={{
+          notDroppable: false,
+        }}
+        element={{
+          cols: [
+            { content: [], id: '1' },
+            { content: [], id: '2' },
+            { content: [], id: '3' },
+            { content: [], id: '4' },
+          ],
+        }}
+      />
+    ), {}));
+
+    expect(container.querySelectorAll('.oak-drop-zone').length).toEqual(2);
+
+    rerender(withBuilder(<Row
+      config={{
+        notDroppable: true,
+      }}
+      element={{
+        cols: [
+          { content: [], id: '1' },
+          { content: [], id: '2' },
+          { content: [], id: '3' },
+          { content: [], id: '4' },
+        ],
+      }}
+    />
+    , {}));
+
+    expect(container.querySelectorAll('.oak-drop-zone').length).toEqual(0);
+  });
+
+  it('should not be able to remove last col if ' +
+  'cantBeDeleted config is enabled', async () => {
+    const mockSetElement = jest.fn();
+    const { container, rerender } = render(withBuilder((
+      <Row
+        config={{
+          notDroppable: false,
+        }}
+        element={{
+          cols: [
+            { content: [], id: '1' },
+            { content: [], id: '2' },
+            { content: [], id: '3' },
+            { content: [], id: '4' },
+          ],
+        }}
+      />
+    ), { setElement: mockSetElement }));
+    container.querySelector('.oak-remove').click();
+    await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
+
+    rerender(withBuilder(<Row
+      config={{
+        cantBeDeleted: true,
+      }}
+      element={{
+        cols: [
+          { content: [], id: '1' },
+          { content: [], id: '2' },
+          { content: [], id: '3' },
+          { content: [], id: '4' },
+        ],
+      }}
+    />
+    , { setElement: mockSetElement }));
+    container.querySelector('.oak-remove').click();
+    await jest.runAllTicks();
+    await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
   });
 });

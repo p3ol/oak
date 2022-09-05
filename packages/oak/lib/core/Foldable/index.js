@@ -26,9 +26,7 @@ const Foldable = ({
   return (
     <div
       { ...omit(rest, ['builder']) }
-      style={element.style}
       className={classNames(
-        'oak-foldable-content',
         element.settings?.flexDirection &&
             'oak-direction-' + element.settings.flexDirection,
         element.settings?.alignItems &&
@@ -59,7 +57,6 @@ const Foldable = ({
         />
       </div>
       <div>See More title section</div>
-
       <div
         className={classNames(
           'oak-foldable-see-more',
@@ -74,8 +71,8 @@ const Foldable = ({
       >
         <Element
           element={element.seeMore}
-          config={config}
           parent={element}
+          config={config}
         />
       </div>
 
@@ -85,11 +82,11 @@ const Foldable = ({
         className={classNames(
           'oak-foldable-see-less',
           'oak-foldable-content',
-          element.seeless?.settings?.flexDirection &&
+          element.seeLess?.settings?.flexDirection &&
             'oak-direction-' + element.seeLess.settings.flexDirection,
-          element.seeless?.settings?.alignItems &&
+          element.seeLess?.settings?.alignItems &&
             'oak-align-' + element.seeLess.settings.alignItems,
-          element.seeless?.settings?.justifyContent &&
+          element.seeLess?.settings?.justifyContent &&
             'oak-justify-' + element.seeLess.settings.justifyContent,
         )}
       >

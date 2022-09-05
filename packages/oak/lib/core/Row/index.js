@@ -65,6 +65,9 @@ const Row = ({
           <Col
             key={i}
             element={col}
+            config={{
+              cantBeDeleted: config.cantBeDeleted && element.cols.length <= 1,
+            }}
             onPrepend={onDivide.bind(null, i, true)}
             onAppend={onDivide.bind(null, i, false)}
             onRemove={onRemoveCol.bind(null, i)}
