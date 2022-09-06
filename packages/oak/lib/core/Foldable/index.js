@@ -47,7 +47,7 @@ const Foldable = ({
           element.content?.settings?.alignItems &&
             'oak-align-' + element.content.settings.alignItems,
           element.content?.settings?.justifyContent &&
-            'oak-justify-' + element.content.ettings.justifyContent,
+            'oak-justify-' + element.content.settings.justifyContent,
         )}
       >
         <Element
