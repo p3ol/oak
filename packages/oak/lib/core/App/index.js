@@ -12,17 +12,15 @@ import { v4 as uuid } from 'uuid';
 import { AppContext } from '../../contexts';
 import { filterOverride } from '../../utils';
 import { GROUP_CORE, GROUP_OTHER } from '../../components';
-import {
-  BASE_FIELDTYPES,
-} from '../../fields';
+import { BASE_FIELDTYPES } from '../../fields';
 import Builder from '../Builder';
 
 export default forwardRef((options, ref) => {
   const oakRef = useRef();
   const [state, dispatch] = useReducer(mockState, {
-    components: [GROUP_CORE, GROUP_OTHER],
+    components: [cloneDeep(GROUP_CORE), cloneDeep(GROUP_OTHER)],
     content: [],
-    fieldTypes: [...BASE_FIELDTYPES],
+    fieldTypes: [...cloneDeep(BASE_FIELDTYPES)],
     _settingsHolderRef: null,
     memory: [[]],
     positionInMemory: 1,
