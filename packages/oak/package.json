@@ -30,7 +30,7 @@
     "react-popper": "^2.2.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.18.9",
+    "@babel/runtime-corejs3": "7.19.0",
     "@poool/junipero": "2.0.0-rc.21",
     "@poool/junipero-hooks": "2.0.0-rc.21",
     "@poool/junipero-utils": "2.0.0-rc.21",
@@ -38,7 +38,7 @@
     "core-js": "3.25.0",
     "preact": "10.10.6",
     "react-popper": "2.3.0",
-    "uuid": "8.3.2"
+    "uuid": "9.0.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
