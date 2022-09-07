@@ -23,7 +23,6 @@ const Builder_ = forwardRef(({
 
   useEffect(() => {
     const ref = render(innerRef.current, {
-      ref: builderRef,
       ...options,
       ...rest,
       content: value,
