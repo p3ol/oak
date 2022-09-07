@@ -42,6 +42,7 @@ export default forwardRef((options, ref) => {
 
   useEffect(() => {
     setContent(options.content);
+    options?.onReady?.();
   }, []);
 
   useImperativeHandle(ref, () => ({
