@@ -1,10 +1,11 @@
 import { classNames, omit } from '@poool/junipero-utils';
 
 import { useBuilder } from '../../hooks';
-import Droppable from '../Droppable';
 import options from './index.options';
 import settings from './index.settings';
+import Droppable from '../Droppable';
 import Element from '../Element';
+import Text from '../Text';
 
 const Foldable = ({
   element,
@@ -38,7 +39,10 @@ const Foldable = ({
       <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="oak-drop-zone oak-before" />
       </Droppable>
-      <div>See more content section</div>
+      <Text
+        name="core.components.foldable.sections.content"
+        default="See more content section"
+      />
       <div
         className={classNames(
           'oak-foldable-content',
@@ -56,7 +60,10 @@ const Foldable = ({
           config={config}
         />
       </div>
-      <div>See More title section</div>
+      <Text
+        name="core.components.foldable.sections.seeMore"
+        default="See More title section"
+      />
       <div
         className={classNames(
           'oak-foldable-see-more',
@@ -75,9 +82,10 @@ const Foldable = ({
           config={config}
         />
       </div>
-
-      <div>See less title section</div>
-
+      <Text
+        name="core.components.foldable.sections.seeLess"
+        default="See less title section"
+      />
       <div
         className={classNames(
           'oak-foldable-see-less',

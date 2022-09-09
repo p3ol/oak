@@ -176,10 +176,8 @@ const Col = ({
               name={<Text name="core.tooltips.remove" default="Remove" />}
             />
           ) }
-
         </div>
       </div>
-
       <div ref={settingsElementRef} />
     </div>
   );

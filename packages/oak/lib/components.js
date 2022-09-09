@@ -22,7 +22,6 @@ export const COMPONENT_ROW = {
       type: 'col',
       content: [],
       id: uuid(),
-      style: {},
     }],
   }),
 };
@@ -50,7 +49,6 @@ export const COMPONENT_FOLDABLE = {
         type: 'col',
         content: [],
         id: uuid(),
-        style: {},
       }],
     },
     seeMore: {
@@ -67,7 +65,6 @@ export const COMPONENT_FOLDABLE = {
           content: '<div style="text-align: center">see less</div>',
         }],
         id: uuid(),
-        style: {},
       }],
     },
     seeLess: {
@@ -84,7 +81,6 @@ export const COMPONENT_FOLDABLE = {
           content: '<div style="text-align: center">see less</div>',
         }],
         id: uuid(),
-        style: {},
       }],
     },
   }),

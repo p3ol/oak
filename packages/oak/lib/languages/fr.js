@@ -69,6 +69,11 @@ export default {
       },
       foldable: {
         name: 'Pliable',
+        sections: {
+          content: 'Section du contenu du voir plus',
+          seeMore: 'Section du voir plus',
+          seeLess: 'Section du voir moins',
+        },
         settings: {
           title: 'Options du composant pliable',
           flexDirection: {

@@ -256,7 +256,6 @@ export default forwardRef((options, ref) => {
     target,
     { parent = state.content, position = 'after' } = {}
   ) => {
-
     if (
       !elmt.id ||
       !target.id ||

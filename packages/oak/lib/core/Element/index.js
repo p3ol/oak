@@ -173,7 +173,7 @@ const Element = ({
                     index: i,
                   }) }
                 </Fragment>
-              ))}
+              )) }
               { component.editable && (
                 <Editable
                   element={element}
