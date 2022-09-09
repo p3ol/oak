@@ -7,6 +7,11 @@ module.exports = {
     'tests/',
     '^.+\\.styl$',
   ],
+  collectCoverageFrom: [
+    '**/*.js',
+    '!**/*{.settings,.config,.stories}.js',
+    '!**/*{schema,components,defaults,fields}.js',
+  ],
   projects: [
     '<rootDir>/packages/oak/jest.config.js',
     '<rootDir>/packages/oak-addon-basic-components/jest.config.js',

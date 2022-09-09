@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, cleanup, fireEvent } from '@testing-library/react';
 
 import { withBuilder } from '@tests-utils';
 import Row from '.';
@@ -95,7 +95,7 @@ describe('<Row />', () => {
       { content: [] },
       { content: [] },
     ];
-    container.querySelectorAll('.oak-remove')[1].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[1]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -125,7 +125,7 @@ describe('<Row />', () => {
     ];
 
     //remove first col
-    container.querySelectorAll('.oak-remove')[0].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[0]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -151,7 +151,7 @@ describe('<Row />', () => {
       { content: [], id: '4' },
     ];
 
-    container.querySelectorAll('.oak-remove')[1].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[1]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -177,7 +177,7 @@ describe('<Row />', () => {
       { content: [], id: '4' },
     ];
 
-    container.querySelectorAll('.oak-remove')[2].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[2]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -204,7 +204,7 @@ describe('<Row />', () => {
       { content: [], id: '3' },
     ];
 
-    container.querySelectorAll('.oak-remove')[3].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[3]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -227,7 +227,7 @@ describe('<Row />', () => {
       />
     ), { setElement: mockSetElement }));
 
-    container.querySelector('.oak-divider>a').click();
+    fireEvent.click(container.querySelector('.oak-divider>a'));
     await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
   });
 
@@ -256,7 +256,7 @@ describe('<Row />', () => {
       { content: [], id: '3' },
       { content: [], id: '4' },
     ];
-    container.querySelectorAll('.oak-divider>a')[0].click();
+    fireEvent.click(container.querySelectorAll('.oak-divider>a')[0]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -290,7 +290,7 @@ describe('<Row />', () => {
       { content: [], id: '4' },
 
     ];
-    container.querySelectorAll('.oak-divider>a')[1].click();
+    fireEvent.click(container.querySelectorAll('.oak-divider>a')[1]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -298,81 +298,7 @@ describe('<Row />', () => {
     }));
   });
 
-  it('should not display drop zones if ' +
-  'notDroppable config is enabled', () => {
-    const { container, rerender } = render(withBuilder((
-      <Row
-        config={{
-          notDroppable: false,
-        }}
-        element={{
-          cols: [
-            { content: [], id: '1' },
-            { content: [], id: '2' },
-            { content: [], id: '3' },
-            { content: [], id: '4' },
-          ],
-        }}
-      />
-    ), {}));
-
-    expect(container.querySelectorAll('.oak-drop-zone').length).toEqual(2);
-
-    rerender(withBuilder(<Row
-      config={{
-        notDroppable: true,
-      }}
-      element={{
-        cols: [
-          { content: [], id: '1' },
-          { content: [], id: '2' },
-          { content: [], id: '3' },
-          { content: [], id: '4' },
-        ],
-      }}
-    />
-    , {}));
-
-    expect(container.querySelectorAll('.oak-drop-zone').length).toEqual(0);
-  });
-
-  it('should not be able to remove last col if ' +
-  'cantBeDeleted config is enabled', async () => {
-    const mockSetElement = jest.fn();
-    const { container, rerender } = render(withBuilder((
-      <Row
-        config={{
-          notDroppable: false,
-        }}
-        element={{
-          cols: [
-            { content: [], id: '1' },
-            { content: [], id: '2' },
-            { content: [], id: '3' },
-            { content: [], id: '4' },
-          ],
-        }}
-      />
-    ), { setElement: mockSetElement }));
-    container.querySelector('.oak-remove').click();
-    await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
-
-    rerender(withBuilder(<Row
-      config={{
-        cantBeDeleted: true,
-      }}
-      element={{
-        cols: [
-          { content: [], id: '1' },
-          { content: [], id: '2' },
-          { content: [], id: '3' },
-          { content: [], id: '4' },
-        ],
-      }}
-    />
-    , { setElement: mockSetElement }));
-    container.querySelector('.oak-remove').click();
-    await jest.runAllTicks();
-    await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
+  afterEach(() => {
+    cleanup();
   });
 });

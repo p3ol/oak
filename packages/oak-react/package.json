@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak-react",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-react.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -28,11 +28,11 @@
     "react-popper": "^2.2.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.18.9",
+    "@babel/runtime-corejs3": "7.19.0",
     "@poool/junipero": "2.0.0-rc.21",
     "@poool/junipero-hooks": "2.0.0-rc.21",
     "@poool/junipero-utils": "2.0.0-rc.21",
-    "core-js": "3.25.0"
+    "core-js": "3.25.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
