@@ -22,7 +22,9 @@ const Builder_ = forwardRef(({
   const builderRef = useRef();
 
   useEffect(() => {
-    const ref = render(innerRef.current, {
+    // In order to avoid react diffing inside our own render tree
+    const elmt = innerRef.current.querySelector('div');
+    const ref = render(elmt, {
       ...options,
       ...rest,
       content: value,
@@ -44,13 +46,19 @@ const Builder_ = forwardRef(({
   useImperativeHandle(ref, () => ({
     innerRef,
     builderRef,
+    setContent,
   }));
+
+  const setContent = (...args) => {
+    builderRef.current?.setContent(...args);
+  };
 
   return (
     <div
       className={classNames('oak-react-wrapper', className)}
       { ...containerProps }
       ref={innerRef}
+      dangerouslySetInnerHTML={{ __html: '<div></div>' }}
     />
   );
 });
