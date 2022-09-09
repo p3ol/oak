@@ -297,6 +297,78 @@ describe('<Row />', () => {
       cols: colsAfter,
     }));
   });
+  it('should not display drop zones if ' +
+  'notDroppable config is enabled', () => {
+    const { container, rerender } = render(withBuilder((
+      <Row
+        config={{
+          notDroppable: false,
+        }}
+        element={{
+          cols: [
+            { content: [], id: '1' },
+            { content: [], id: '2' },
+            { content: [], id: '3' },
+            { content: [], id: '4' },
+          ],
+        }}
+      />
+    ), {}));
+
+    expect(container.querySelectorAll('.oak-drop-zone').length).toEqual(2);
+
+    rerender(withBuilder(<Row
+      config={{
+        notDroppable: true,
+      }}
+      element={{
+        cols: [
+          { content: [], id: '1' },
+          { content: [], id: '2' },
+          { content: [], id: '3' },
+          { content: [], id: '4' },
+        ],
+      }}
+    />
+    , {}));
+
+    expect(container.querySelectorAll('.oak-drop-zone').length).toEqual(0);
+  });
+
+  it('should not be able to remove last col if ' +
+  'cantBeDeleted config is enabled', async () => {
+    const mockSetElement = jest.fn();
+    const { container, rerender } = render(withBuilder((
+      <Row
+        config={{
+          notDroppable: false,
+        }}
+        element={{
+          cols: [
+            { content: [], id: '1' },
+            { content: [], id: '2' },
+            { content: [], id: '3' },
+            { content: [], id: '4' },
+          ],
+        }}
+      />
+    ), { setElement: mockSetElement }));
+    fireEvent.click(container.querySelector('.oak-remove'));
+    await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
+
+    rerender(withBuilder(<Row
+      config={{
+        cantBeDeleted: true,
+      }}
+      element={{
+        cols: [
+          { content: [], id: '1' },
+        ],
+      }}
+    />
+    , { setElement: mockSetElement }));
+    expect(container.querySelector('.oak-remove')).toBeNull();
+  });
 
   afterEach(() => {
     cleanup();

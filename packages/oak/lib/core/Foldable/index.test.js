@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { withBuilder } from '@tests-utils';
 import Foldable from '.';
 import { COMPONENT_ROW } from '../../components';
@@ -241,8 +241,8 @@ describe('<Foldable />', () => {
   });
 
   it('should not be able to delete the last col of sub row', async () => {
-    const mockSetElement = jest.fn().mockReturnValue({ content: [] });
-    const { container } = render(withBuilder(
+    const mockSetElement = jest.fn();
+    const { container, rerender } = render(withBuilder(
       <Foldable
         element={{
           content: {
@@ -273,11 +273,45 @@ describe('<Foldable />', () => {
       }
     ));
     const content = container.querySelectorAll('.oak-foldable-content')[0];
-    content.querySelectorAll('.oak-remove')[1].click();
+    fireEvent.click(content.querySelectorAll('.oak-remove')[1]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledTimes(1));
 
-    content.querySelectorAll('.oak-remove')[1].click();
-    await jest.runAllTicks();
-    expect(mockSetElement).toHaveBeenCalledTimes(1);
+    rerender(withBuilder(
+      <Foldable
+        element={{
+          content: {
+            type: 'row',
+            cols: [
+              { content: [] },
+            ],
+          },
+          seeMore: {
+            cols: [
+              { content: [] },
+              { content: [] },
+            ],
+          },
+          seeLess: {
+            cols: [
+              { content: [] },
+              { content: [] },
+              { content: [] },
+            ],
+          },
+        }}
+      />,
+      {
+        getComponent: jest.fn().mockReturnValue(COMPONENT_ROW),
+        setElement: mockSetElement,
+      }
+    ));
+    await waitFor(() =>
+      expect(container.querySelectorAll('.oak-foldable-content')[0]
+        .querySelector('.oak-remove')).toBeNull()
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 });
