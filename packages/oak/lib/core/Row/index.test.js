@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, cleanup, fireEvent } from '@testing-library/react';
 
 import { withBuilder } from '@tests-utils';
 import Row from '.';
@@ -110,7 +110,7 @@ describe('<Row />', () => {
       { content: [] },
       { content: [] },
     ];
-    container.querySelectorAll('.oak-remove')[1].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[1]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -140,7 +140,7 @@ describe('<Row />', () => {
     ];
 
     //remove first col
-    container.querySelectorAll('.oak-remove')[0].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[0]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -166,7 +166,7 @@ describe('<Row />', () => {
       { content: [], id: '4' },
     ];
 
-    container.querySelectorAll('.oak-remove')[1].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[1]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -192,7 +192,7 @@ describe('<Row />', () => {
       { content: [], id: '4' },
     ];
 
-    container.querySelectorAll('.oak-remove')[2].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[2]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -219,7 +219,7 @@ describe('<Row />', () => {
       { content: [], id: '3' },
     ];
 
-    container.querySelectorAll('.oak-remove')[3].click();
+    fireEvent.click(container.querySelectorAll('.oak-remove')[3]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -242,7 +242,7 @@ describe('<Row />', () => {
       />
     ), { setElement: mockSetElement }));
 
-    container.querySelector('.oak-divider>a').click();
+    fireEvent.click(container.querySelector('.oak-divider>a'));
     await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
   });
 
@@ -271,7 +271,7 @@ describe('<Row />', () => {
       { content: [], id: '3' },
       { content: [], id: '4' },
     ];
-    container.querySelectorAll('.oak-divider>a')[0].click();
+    fireEvent.click(container.querySelectorAll('.oak-divider>a')[0]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
@@ -305,11 +305,15 @@ describe('<Row />', () => {
       { content: [], id: '4' },
 
     ];
-    container.querySelectorAll('.oak-divider>a')[1].click();
+    fireEvent.click(container.querySelectorAll('.oak-divider>a')[1]);
     await waitFor(() => expect(mockSetElement).toHaveBeenCalledWith({
       cols: colsAfter,
     }, {
       cols: colsAfter,
     }));
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 });
