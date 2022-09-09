@@ -1,4 +1,87 @@
-# [](https://github.com/p3ol/oak/compare/v1.1.1...v) (2022-07-02)
+# [](https://github.com/p3ol/oak/compare/v1.2.3...v) (2022-09-09)
+
+
+
+## [1.2.3](https://github.com/p3ol/oak/compare/v1.2.2...v1.2.3) (2022-09-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.25.1 ([cdfb2f6](https://github.com/p3ol/oak/commit/cdfb2f6d032978ffdde46f38bf0f9f4410bb4cdb))
+* **react:** avoid interfering with react diffing algo ([9974014](https://github.com/p3ol/oak/commit/9974014c912fda7abbfdd6376ff65f645f2b409d))
+
+
+
+## [1.2.2](https://github.com/p3ol/oak/compare/v1.2.1...v1.2.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* **lib:** fix components still existing between renders ([b2a66f2](https://github.com/p3ol/oak/commit/b2a66f2f0db0b530a1983fe647483521495d4f94))
+
+
+
+## [1.2.1](https://github.com/p3ol/oak/compare/v1.2.0...v1.2.1) (2022-09-07)
+
+
+### Bug Fixes
+
+* **deps:** update dependency uuid to v9 ([7b4d98c](https://github.com/p3ol/oak/commit/7b4d98c5114a7511eff139d82c8be52019b5c024))
+* **lib:** correctly handle non-ready sub react library ([f8a7f26](https://github.com/p3ol/oak/commit/f8a7f2685be881930045a5be6cc8c271aefb56c7))
+* **react:** remove unneeded ref override ([befd29d](https://github.com/p3ol/oak/commit/befd29de281fd19e1f1c933c4ae01ae4d8ab07cd))
+
+
+
+# [1.2.0](https://github.com/p3ol/oak/compare/v1.1.2...v1.2.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @popperjs/core to v2.11.6 ([12d3bdd](https://github.com/p3ol/oak/commit/12d3bddea058cd948e7f8141cde10aec3512ccf6))
+* **deps:** update dependency core-js to v3.24.0 ([078213a](https://github.com/p3ol/oak/commit/078213a698cda9bce201e870dd239807ba71ec13))
+* **deps:** update dependency core-js to v3.24.1 ([168e4ce](https://github.com/p3ol/oak/commit/168e4ce17bd1d9b23021e11bdd4d28deba48e74b))
+* **deps:** update dependency core-js to v3.25.0 ([cd12e0a](https://github.com/p3ol/oak/commit/cd12e0aa30f2b55efe8ea05ed7139ca480cb16fc))
+* **deps:** update dependency preact to v10.10.1 ([4a7d8f7](https://github.com/p3ol/oak/commit/4a7d8f7d95ffb69cdb117a5ffcec2c94e11c61a3))
+* **deps:** update dependency preact to v10.10.2 ([cee6f79](https://github.com/p3ol/oak/commit/cee6f79b6aee342cd6d1abd60325857625a6f2bd))
+* **deps:** update dependency preact to v10.10.3 ([1adf033](https://github.com/p3ol/oak/commit/1adf033b055940dbd2a566729860f121f2afe22f))
+* **deps:** update dependency preact to v10.10.4 ([07244ee](https://github.com/p3ol/oak/commit/07244ee1598444629cc5f00fd587e778330edd96))
+* **deps:** update dependency preact to v10.10.5 ([a8b3149](https://github.com/p3ol/oak/commit/a8b314975cc03b01d8e74777168188ca84f5c931))
+* **deps:** update dependency preact to v10.10.6 ([404774c](https://github.com/p3ol/oak/commit/404774ce573a727510f0871521737f62af329ed4))
+* **deps:** update dependency prosemirror-view to v1.27.1 ([88136a9](https://github.com/p3ol/oak/commit/88136a95fa8c5860c5ca7e35006f345f4e9af5eb))
+* **deps:** update dependency prosemirror-view to v1.27.2 ([49af1af](https://github.com/p3ol/oak/commit/49af1af08de7126feaba72f9487343da1de251cf))
+* **deps:** update dependency slate to v0.82.0 ([7dce27e](https://github.com/p3ol/oak/commit/7dce27ed2cd819727bf6f83ad51b933cf15c294e))
+* **deps:** update dependency slate to v0.82.1 ([fb78127](https://github.com/p3ol/oak/commit/fb78127db3ec2e447f1203514b6060419a5c059e))
+* **deps:** update dependency slate-react to v0.82.0 ([26ae6b6](https://github.com/p3ol/oak/commit/26ae6b6ebd6dbd75c773b0f142837af1e1e9ae48))
+* **deps:** update dependency slate-react to v0.82.1 ([c19dd68](https://github.com/p3ol/oak/commit/c19dd68e943e576f16b30acdcd65a92ab840e773))
+* **oak-react:** remove useless comment section ([e09221b](https://github.com/p3ol/oak/commit/e09221b8faa0589be6cfd248923b17016c5e79b0))
+* **oak-react:** remove useless export and delete options dependancy on useEffect ([8bbaea3](https://github.com/p3ol/oak/commit/8bbaea3b82faf319923b0f33cd98732f8c72d715))
+* **oak-react:** stop using Builder from oak and set up a useEffect with render function ([82cb25e](https://github.com/p3ol/oak/commit/82cb25ef2524a672028b572222f4f133f7895319))
+* remove useless 'use-prosemirror' dependency ([25275ac](https://github.com/p3ol/oak/commit/25275acbc34098b6d43014ef85a5b9a6e8c562cc))
+* **renovate:** disallow renovate from auto-closing prosemirror dependencies ([51cf0ed](https://github.com/p3ol/oak/commit/51cf0ed9f97efb6193a57724ee5cd0db37fe43b8))
+* **renovate:** use ^ pattern matcher instead of * ([e0dc3ab](https://github.com/p3ol/oak/commit/e0dc3ab03c724c0f9b915a67cfbb3bd15925fc98))
+
+
+### Features
+
+* **oak:** lint oak-react/index ([b035c5a](https://github.com/p3ol/oak/commit/b035c5a2175b09922e6aca41018e2b4384aa2e91))
+
+
+
+## [1.1.2](https://github.com/p3ol/oak/compare/v1.1.1...v1.1.2) (2022-07-21)
+
+
+### Bug Fixes
+
+* **addon-richtext-field-prosemirror:** fix editor using new useProseMirror ([da15099](https://github.com/p3ol/oak/commit/da15099f4333ffccd1dcebade97477eccea4b61c))
+* **addon-richtext-field-prosemirror:** fix hard breaks ([553e0d7](https://github.com/p3ol/oak/commit/553e0d79f7f81187c5c6ae0c88145d81b026fe3b))
+* **addon-richtext-field-prosemirror:** internalize useProseMirror ([d793b2a](https://github.com/p3ol/oak/commit/d793b2a5aa06c11df4754914b15a7c9b781bc0d8))
+* **deps:** update dependency core-js to v3.23.4 ([7ebbdba](https://github.com/p3ol/oak/commit/7ebbdbab0a1f00edad24f3c9cb39832e6c3cc1ac))
+* **deps:** update dependency core-js to v3.23.5 ([6f5b38b](https://github.com/p3ol/oak/commit/6f5b38bf865fea301b22a403f50ac63e04c78998))
+* **deps:** update dependency preact to v10.10.0 ([c3b9dd9](https://github.com/p3ol/oak/commit/c3b9dd9268920118fde10575c6e39a231e0f78b4))
+* **deps:** update dependency preact to v10.9.0 ([5f8a390](https://github.com/p3ol/oak/commit/5f8a3900100b82000af32b306782a09d53fc9526))
+* **deps:** update dependency prosemirror-view to v1.26.4 ([276c802](https://github.com/p3ol/oak/commit/276c80291c7ef1a3522857f1dd9ffe6cc0efa05c))
+* **deps:** update dependency prosemirror-view to v1.26.5 ([10bff93](https://github.com/p3ol/oak/commit/10bff936ff42936187cbf5d7850864015680a875))
+* **deps:** update dependency prosemirror-view to v1.27.0 ([fe16008](https://github.com/p3ol/oak/commit/fe16008555b85561355ec57c97f6e53153646ab8))
 
 
 
