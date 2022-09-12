@@ -147,7 +147,7 @@ export const render = (elmt, options = {}) => {
 
   root.render((
     <App
-      {...options}
+      options={options}
       onReady={app.setReady.bind(app)}
       ref={app.setRef.bind(app)}
     />
