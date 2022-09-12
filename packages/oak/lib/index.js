@@ -1,5 +1,5 @@
 import { createRef } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './core/App';
 import Text from './core/Text';
@@ -137,20 +137,21 @@ class oak {
   }
 
   destroy () {
-    ReactDOM.unmountComponentAtNode(this.#parent);
+    this.#parent.unmount();
   }
 }
 
 export const render = (elmt, options = {}) => {
-  const app = new oak(elmt);
+  const root = createRoot(elmt);
+  const app = new oak(root);
 
-  ReactDOM.render((
+  root.render((
     <App
       {...options}
       onReady={app.setReady.bind(app)}
       ref={app.setRef.bind(app)}
     />
-  ), elmt);
+  ));
 
   return app;
 };
