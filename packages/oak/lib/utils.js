@@ -32,3 +32,6 @@ export const sanitizeHTML = content => {
     return '';
   }
 };
+
+export const copyToClipboard = value =>
+  globalThis.navigator.clipboard.writeText(value);

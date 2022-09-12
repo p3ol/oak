@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { COMPONENT_DEFAULT } from '../../defaults';
 import { ElementContext } from '../../contexts';
 import { useBuilder, useOptions } from '../../hooks';
+import { copyToClipboard } from '../../utils';
 import Option from '../Option';
 import Draggable from '../Draggable';
 import Droppable from '../Droppable';
@@ -53,6 +54,11 @@ const Element = ({
     editableRef.current?.toggle();
   };
 
+  const onCopy_ = e => {
+    e?.preventDefault();
+    copyToClipboard(JSON.stringify(element));
+  };
+
   const component = getComponent(element.type) ||
     COMPONENT_DEFAULT;
 
@@ -73,10 +79,13 @@ const Element = ({
 
   return (
     <ElementContext.Provider value={getContext()}>
-      <Droppable disabled={element.type === 'row'} onDrop={onDrop_}>
+      <Droppable
+        ref={elementInnerRef}
+        disabled={element.type === 'row'}
+        onDrop={onDrop_}
+      >
         <Draggable data={element} disabled={element.type === 'row'}>
           <div
-            ref={elementInnerRef}
             id={element.id || uuid()}
             className={classNames(
               'oak-element',
@@ -124,11 +133,21 @@ const Element = ({
                 option={{ icon: 'clear' }}
                 className="oak-remove"
                 onClick={onDelete_}
+                name={<Text name="core.tooltips.remove" default="Remove" />}
               />
               <Option
                 option={{ icon: 'content_copy' }}
                 className="oak-duplicate"
                 onClick={onDuplicate_}
+                name={(
+                  <Text name="core.tooltips.duplicate" default="Duplicate" />
+                )}
+              />
+              <Option
+                option={{ icon: 'content_paste' }}
+                className="oak-copy"
+                onClick={onCopy_}
+                name={<Text name="core.tooltips.copy" default="Copy" />}
               />
               { component.options?.map((o, i) => (
                 <Fragment key={i}>
@@ -154,6 +173,7 @@ const Element = ({
                     option={{ icon: 'edit' }}
                     className="oak-edit"
                     onClick={onEdit_}
+                    name={<Text name="core.tooltips.edit" default="Edit" />}
                   />
                 </Editable>
               ) }

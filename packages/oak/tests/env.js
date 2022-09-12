@@ -5,3 +5,15 @@ Object.defineProperty(global, 'crypto', {
     getRandomValues: arr => crypto.randomBytes(arr.length),
   },
 });
+
+const clipboard = {
+  data: '',
+};
+
+Object.defineProperty(globalThis.navigator, 'clipboard', {
+  value: {
+    _: clipboard,
+    writeText: val => { clipboard.data = val; },
+    readText: () => Promise.resolve(clipboard.data),
+  },
+});

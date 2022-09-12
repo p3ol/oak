@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
-import { ProseMirror, useProseMirror } from 'use-prosemirror';
 import { DOMParser as proseDOMParser, DOMSerializer } from 'prosemirror-model';
 import { setBlockType, baseKeymap } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
 
+import { useProseMirror } from '../../hooks';
 import { schema } from './schema';
 import { removeActiveMark, toggleMark, updateActiveLink } from './transform';
 import { SIZES } from './utils';
+import ProseMirror from '../ProseMirror';
 import Toolbar from './Toolbar';
 
 export default ({ value, onChange, element }) => {
   const viewRef = useRef();
-  const [editorView, setEditorView] = useState(null);
   const [size, setSize] = useState(SIZES.text);
   const [state, setState] = useProseMirror({
     schema,
@@ -29,10 +29,6 @@ export default ({ value, onChange, element }) => {
     schema.marks.size.attrs.size.default = `${size}px`;
     setSize(size);
   }, [element?.headingLevel]);
-
-  useEffect(() => {
-    setEditorView(viewRef.current.view);
-  }, [viewRef]);
 
   const onChange_ = value => {
     setState(value);
@@ -74,7 +70,7 @@ export default ({ value, onChange, element }) => {
     } else {
       removeActiveMark(schema.marks.link)(state, tr => {
         const transitionState = state.apply(tr);
-        editorView.updateState(transitionState);
+        viewRef.current.view.updateState(transitionState);
 
         if (attr.href !== '' && attr.href !== null) {
           const newLink = toggleMark(schema.marks.link, attr);

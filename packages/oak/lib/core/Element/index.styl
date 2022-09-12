@@ -8,6 +8,12 @@
     margin-top: 40px
 
   &:not(.oak-row)
+    cursor: move
+    cursor: grab
+
+    &:active
+      cursor: gragging
+
     &:before, &:after
       content: ''
       display: none

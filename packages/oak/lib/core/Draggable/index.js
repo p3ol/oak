@@ -9,6 +9,7 @@ export default forwardRef(({
   dragImage,
   dragImageOffset = { x: 0, y: 0 },
   onDrag,
+  onBeforeDragStart,
   onDragStart,
   onDragEnd,
   ...rest
@@ -27,6 +28,8 @@ export default forwardRef(({
     if (disabled) {
       return;
     }
+
+    onBeforeDragStart?.(e);
 
     const targetRect = e.currentTarget.getBoundingClientRect();
 

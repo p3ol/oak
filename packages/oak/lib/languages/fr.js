@@ -1,6 +1,15 @@
 export default {
   core: {
     propertyPairSeparator: ' : ',
+    pasteFromClipboard: 'Coller depuis le presse-papier',
+    tooltips: {
+      addColumn: 'Ajouter une colonne',
+      copy: 'Copier',
+      duplicate: 'Dupliquer',
+      edit: 'Editer',
+      remove: 'Supprimer',
+      move: 'Déplacer',
+    },
     groups: {
       core: {
         title: 'Composants basiques',

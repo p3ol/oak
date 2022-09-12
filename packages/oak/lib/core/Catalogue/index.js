@@ -26,11 +26,13 @@ export default forwardRef(({
   placement = 'bottom',
   onToggle = () => {},
   onAppend = () => {},
+  onPaste = () => {},
 }, ref) => {
-  const { components = [], oakRef } = useBuilder();
+  const { components = [], getComponent, oakRef } = useBuilder();
   const { otherTabEnabled } = useOptions();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
+    clipboard: null,
   });
   const { x, y, reference, floating, strategy, refs } = useFloating({
     placement,
@@ -57,10 +59,28 @@ export default forwardRef(({
   const open = () => {
     dispatch({ opened: true });
     onToggle({ opened: true });
+
+    checkClipboard();
+  };
+
+  const checkClipboard = async () => {
+    let clipboard;
+
+    try {
+      const element = JSON.parse(
+        await globalThis.navigator.clipboard.readText()
+      );
+
+      if (getComponent(element.type)) {
+        clipboard = element;
+      }
+    } catch (e) {}
+
+    dispatch({ clipboard });
   };
 
   const close = () => {
-    dispatch({ opened: false });
+    dispatch({ opened: false, clipboard: null });
     onToggle({ opened: false });
   };
 
@@ -176,6 +196,18 @@ export default forwardRef(({
                 </Tab>
               )) }
             </Tabs>
+            { state.clipboard && (
+              <a
+                onClick={onPaste.bind(null, state.clipboard)}
+                className="oak-clipboard"
+              >
+                <Icon>content_paste</Icon>
+                <Text
+                  name="core.pasteFromClipboard"
+                  default="Paste from clipboard"
+                />
+              </a>
+            ) }
           </div>
         </div>
       ) }

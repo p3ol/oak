@@ -29,8 +29,6 @@ export default forwardRef(({
     opened: false,
   });
 
-  console.log(oakRef.current);
-
   const { x, y, reference, floating, strategy, refs } = useFloating({
     whileElementsMounted: autoUpdate,
     middleware: [
@@ -82,7 +80,7 @@ export default forwardRef(({
   return (
     <>
       { children && cloneElement(Children.only(children), {
-        ref: reference,
+        ref: r => reference(r?.isOak ? r.innerRef.current || r : r),
         className: classNames(
           Children.only(children).props.className,
           { 'oak-opened': state.opened }

@@ -7,6 +7,8 @@ import Text from './core/Text';
 class oak {
   #ref = createRef();
   #parent = null;
+  #ready = false;
+  #callsQueue = [];
 
   constructor (parent) {
     this.#parent = parent;
@@ -16,68 +18,122 @@ class oak {
     this.#ref.current = ref;
   }
 
+  setReady () {
+    if (this.#ready) {
+      return;
+    }
+
+    this.#ready = true;
+    this.#callsQueue.forEach(cb => cb());
+    this.#callsQueue = undefined;
+  }
+
+  #ensureMethod (method) {
+    if (!this.#ready) {
+      this.#callsQueue.push(method);
+    } else {
+      method();
+    }
+  }
+
   addGroup (...args) {
-    this.#ref.current?.addGroup(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.addGroup(...args);
+    });
 
     return this;
   }
 
   removeGroup (...args) {
-    this.#ref.current?.removeGroup(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.removeGroup(...args);
+    });
 
     return this;
   }
 
   setContent (...args) {
-    this.#ref.current?.setContent(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.setContent(...args);
+    });
 
     return this;
   }
 
   addElement (...args) {
-    this.#ref.current?.addElement(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.addElement(...args);
+    });
 
     return this;
   }
 
   removeElement (...args) {
-    this.#ref.current?.removeElement(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.removeElement(...args);
+    });
 
     return this;
   }
 
   setElement (...args) {
-    this.#ref.current?.setElement(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.setElement(...args);
+    });
 
     return this;
   }
 
   undo (...args) {
-    this.#ref.current?.undo(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.undo(...args);
+    });
   }
 
   redo (...args) {
-    this.#ref.current?.redo(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.redo(...args);
+    });
   }
 
   isUndoPossible () {
+    if (!this.#ready) {
+      return false;
+    }
+
     return this.#ref.current?.isUndoPossible();
   }
 
   isRedoPossible () {
+    if (!this.#ready) {
+      return false;
+    }
+
     return this.#ref.current?.isRedoPossible();
   }
 
   setTexts (...args) {
-    return this.#ref.current?.setTexts(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.setTexts(...args);
+    });
+
+    return this;
   }
 
   getText (...args) {
+    if (!this.#ready) {
+      return null;
+    }
+
     return this.#ref.current?.getText(...args);
   }
 
   setOverrides (...args) {
-    return this.#ref.current?.setOverrides(...args);
+    this.#ensureMethod(() => {
+      this.#ref.current?.setOverrides(...args);
+    });
+
+    return this;
   }
 
   destroy () {
@@ -87,12 +143,19 @@ class oak {
 
 export const render = (elmt, options = {}) => {
   const app = new oak(elmt);
-  ReactDOM.render(<App ref={app.setRef.bind(app)} {...options} />, elmt);
+
+  ReactDOM.render((
+    <App
+      {...options}
+      onReady={app.setReady.bind(app)}
+      ref={app.setRef.bind(app)}
+    />
+  ), elmt);
 
   return app;
 };
 
-export { Text, oak as Lib, App as Builder };
+export { Text, oak as Lib };
 
 export { useOptions, useBuilder, useElement } from './hooks';
 
