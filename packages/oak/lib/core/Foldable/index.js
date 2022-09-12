@@ -54,11 +54,24 @@ const Foldable = ({
             'oak-justify-' + element.content.settings.justifyContent,
         )}
       >
-        <Element
-          element={element.content}
-          parent={element}
-          config={config}
-        />
+        <Droppable disabled={element.content.length > 0} onDrop={onDropElement}>
+          <div className="oak-foldable-inner">
+            { element.content.map(elt => (
+              <Element
+                key={elt.id}
+                element={elt}
+                parent={element.content}
+                config={config}
+              />
+            )) }
+
+            {/* <Catalogue
+              ref={appendCatalogueRef}
+              onAppend={onAppend_}
+              onPaste={onPasteAfter_}
+            /> */}
+          </div>
+        </Droppable>
       </div>
       <Text
         name="core.components.foldable.sections.seeMore"
@@ -76,11 +89,14 @@ const Foldable = ({
             'oak-justify-' + element.seeMore.settings.justifyContent,
         )}
       >
-        <Element
-          element={element.seeMore}
-          parent={element}
-          config={config}
-        />
+        { element.seeMore.map(elt => (
+          <Element
+            key={elt.id}
+            element={elt}
+            parent={element.seeMore}
+            config={config}
+          />
+        )) }
       </div>
       <Text
         name="core.components.foldable.sections.seeLess"
@@ -98,11 +114,14 @@ const Foldable = ({
             'oak-justify-' + element.seeLess.settings.justifyContent,
         )}
       >
-        <Element
-          element={element.seeLess}
-          parent={element}
-          config={config}
-        />
+        { element.seeLess.map(elt => (
+          <Element
+            key={elt.id}
+            element={elt}
+            parent={element.seeLess}
+            config={config}
+          />
+        )) }
       </div>
       <Droppable onDrop={onDropElement.bind(null, 'after')}>
         <div className="oak-drop-zone oak-after" />

@@ -158,9 +158,7 @@ const Element = ({
                 onClick={onCopy_}
                 name={<Text name="core.tooltips.copy" default="Copy" />}
               />
-              { (config.cantBeDragged ? component.options.filter(
-                c => c.name !== 'drag'
-              ) : component.options)?.map((o, i) => (
+              { component.options.map((o, i) => (
                 <Fragment key={i}>
                   { o?.render?.({
                     option: o,

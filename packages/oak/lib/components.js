@@ -40,49 +40,17 @@ export const COMPONENT_FOLDABLE = {
     settings: {
       alignItems: 'flex-start',
     },
-    content: {
-      type: 'row',
-      settings: {
-        alignItems: 'flex-start',
-      },
-      cols: [{
-        type: 'col',
-        content: [],
-        id: uuid(),
-      }],
-    },
-    seeMore: {
-      type: 'row',
-      settings: {
-        alignItems: 'flex-start',
-      },
+    content: [],
+    seeMore: [{
+      type: 'text',
       id: uuid(),
-      cols: [{
-        type: 'col',
-        content: [{
-          type: 'text',
-          id: uuid(),
-          content: '<div style="text-align: center">see less</div>',
-        }],
-        id: uuid(),
-      }],
-    },
-    seeLess: {
-      type: 'row',
+      content: '<div style="text-align: center">see less</div>',
+    }],
+    seeLess: [{
+      type: 'text',
       id: uuid(),
-      settings: {
-        alignItems: 'center',
-      },
-      cols: [{
-        type: 'col',
-        content: [{
-          type: 'text',
-          id: uuid(),
-          content: '<div style="text-align: center">see less</div>',
-        }],
-        id: uuid(),
-      }],
-    },
+      content: '<div style="text-align: center">see less</div>',
+    }],
   }),
 };
 
