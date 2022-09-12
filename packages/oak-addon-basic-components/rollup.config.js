@@ -7,6 +7,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import { terser } from 'rollup-plugin-terser';
+import replace from '@rollup/plugin-replace';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
@@ -38,6 +39,10 @@ const defaultPlugins = [
   }),
   commonjs(),
   terser(),
+  replace({
+    preventAssignment: true,
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  }),
 ];
 
 const getConfig = (format, {
@@ -51,14 +56,20 @@ const getConfig = (format, {
   ],
   external,
   output: {
+    name,
     ...(format === 'esm' ? {
       dir: `${output}/esm`,
       chunkFileNames: '[name].js',
     } : {
       file: `${output}/${name}.${format}.js`,
     }),
+    ...(format === 'umd' && {
+      name: 'OakAddonBasicComponents',
+      intro: `var global = typeof global !== "undefined" ? global :
+        typeof self !== "undefined" ? self :
+        typeof window !== "undefined" ? window : {}`,
+    }),
     format,
-    name,
     sourcemap: true,
     globals,
     exports: 'named',
