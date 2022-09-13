@@ -45,20 +45,7 @@ const Row = ({
       style={element.style}
     >
       <div>See more content section</div>
-      <Droppable onDrop={onDropElement.bind(null, 'before')}>
-        <div className="oak-drop-zone oak-before" />
-      </Droppable>
-      <div
-        className={classNames(
-          'oak-foldable-content',
-          element.settings?.flexDirection &&
-            'oak-direction-' + element.settings.flexDirection,
-          element.settings?.alignItems &&
-            'oak-align-' + element.settings.alignItems,
-          element.settings?.justifyContent &&
-            'oak-justify-' + element.settings.justifyContent,
-        )}
-      >
+      <div className="oak-foldable-content">
         <Droppable disabled={element.cols.length > 0} onDrop={onDropElement}>
           <>
             { element?.cols.length ? element?.cols?.map((elt, i) => (
@@ -79,74 +66,50 @@ const Row = ({
           </>
         </Droppable>
       </div>
-      <Droppable onDrop={onDropElement.bind(null, 'after')}>
-        <div className="oak-drop-zone oak-after" />
-      </Droppable>
       <div>See More title section</div>
-      <Droppable onDrop={onDropElement.bind(null, 'before')}>
-        <div className="oak-drop-zone oak-before" />
-      </Droppable>
-      <div
-        className={classNames(
-          'oak-foldable-content',
-          element.settings?.flexDirection &&
-            'oak-direction-' + element.settings.flexDirection,
-          element.settings?.alignItems &&
-            'oak-align-' + element.settings.alignItems,
-          element.settings?.justifyContent &&
-            'oak-justify-' + element.settings.justifyContent,
-        )}
-      >
-        { element?.seeMore.length ? element?.seeMore?.map((elt, i) => (
-          <Element
-            key={i}
-            element={elt}
-            parent={element.seeMore}
-          />
-        )) : (
-          <Catalogue
-            ref={appendCatalogueRef}
-            onAppend={onAppend_.bind(null, element.seeMore)}
-            onPaste={onPasteAfter_}
-          />
-        ) }
+      <div className="oak-foldable-content">
+        <Droppable disabled={element.seeMore.length > 0} onDrop={onDropElement}>
+          <>
+            { element?.seeMore.length ? element?.seeMore?.map((elt, i) => (
+              <Element
+                key={i}
+                element={elt}
+                parent={element.seeMore}
+              />
+            )) : (
+              <div className="oak-foldable-content-empty">
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onAppend_.bind(null, element.seeMore)}
+                  onPaste={onPasteAfter_}
+                />
+              </div>
+            )}
+          </>
+        </Droppable>
       </div>
-      <Droppable onDrop={onDropElement.bind(null, 'after')}>
-        <div className="oak-drop-zone oak-after" />
-      </Droppable>
       <div>See less title section</div>
-      <Droppable onDrop={onDropElement.bind(null, 'before')}>
-        <div className="oak-drop-zone oak-before" />
-      </Droppable>
-      <div
-        className={classNames(
-          'oak-foldable-content',
-          element.settings?.flexDirection &&
-            'oak-direction-' + element.settings.flexDirection,
-          element.settings?.alignItems &&
-            'oak-align-' + element.settings.alignItems,
-          element.settings?.justifyContent &&
-            'oak-justify-' + element.settings.justifyContent,
-        )}
-      >
-        { element?.seeLess.length ? element?.seeLess?.map((elt, i) => (
-          <Element
-            key={i}
-            element={elt}
-            parent={element.seeLess}
-          />
-        )) : (
-          <Catalogue
-            ref={appendCatalogueRef}
-            onAppend={onAppend_.bind(null, element.seeLess)}
-            onPaste={onPasteAfter_}
-          />
-        ) }
-
+      <div className="oak-foldable-content">
+        <Droppable disabled={element.seeLess.length > 0} onDrop={onDropElement}>
+          <>
+            { element?.seeLess.length ? element?.seeLess?.map((elt, i) => (
+              <Element
+                key={i}
+                element={elt}
+                parent={element.seeLess}
+              />
+            )) : (
+              <div className="oak-foldable-content-empty">
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onAppend_.bind(null, element.seeLess)}
+                  onPaste={onPasteAfter_}
+                />
+              </div>
+            )}
+          </>
+        </Droppable>
       </div>
-      <Droppable onDrop={onDropElement.bind(null, 'after')}>
-        <div className="oak-drop-zone oak-after" />
-      </Droppable>
     </div>
   );
 };
