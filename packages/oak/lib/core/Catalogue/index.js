@@ -14,7 +14,7 @@ import {
   useFloating,
   offset,
   autoUpdate,
-  autoPlacement,
+  flip,
 } from '@floating-ui/react-dom';
 
 import { useBuilder, useOptions } from '../../hooks';
@@ -39,9 +39,10 @@ export default forwardRef(({
     whileElementsMounted: autoUpdate,
     middleware: [
       offset({ mainAxis: 16 }),
-      autoPlacement({
+      flip({
         boundary: oakRef?.current,
-        allowedPlacements: ['top', 'bottom'],
+        mainAxis: 'y',
+        fallbackStrategy: 'initialPlacement',
       }),
     ],
   });
