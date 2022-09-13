@@ -179,20 +179,18 @@ describe('<Toolbar />', () => {
     const onToggleMarkMock = jest.fn();
     const { container, getByText } = render(
       <Toolbar
-        onToggleMark={ onToggleMarkMock }
+        onToggleMark={onToggleMarkMock}
         onToggleBlock={() => jest.fn()}
         onToggleLink={() => jest.fn()}
         state={{}}
       />
     );
     fireEvent.click(getByText('format_color_text'));
-    await user.type(
-      container.querySelector('.color-input input'),
-      '#FF0000'
-    );
-    await waitFor(() => (
-      expect(onToggleMarkMock)
-        .toHaveBeenCalledWith(schema.marks.color, { color: '#FF0000' })
-    ));
+    const field = container.querySelector('.color-input input');
+    await user.clear(field);
+    await user.type(field, '#FF0000');
+
+    expect(onToggleMarkMock)
+      .toHaveBeenLastCalledWith(schema.marks.color, { color: '#FF0000' });
   });
 });
