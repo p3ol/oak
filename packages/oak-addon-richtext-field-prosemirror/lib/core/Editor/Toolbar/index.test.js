@@ -1,4 +1,5 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Toolbar from '.';
 import { schema } from '../schema';
@@ -56,6 +57,7 @@ describe('<Toolbar />', () => {
 
   it('should trigger onToggleLink if link change', async () => {
     const onToggleLinkMock = jest.fn();
+    const user = userEvent.setup();
     const { getByText, container } = render(
       <Toolbar
         onToggleMark={() => jest.fn()}
@@ -65,9 +67,9 @@ describe('<Toolbar />', () => {
       />
     );
     fireEvent.click(getByText('link'));
-    fireEvent.change(
+    await user.type(
       container.querySelector('.oak-link-url input'),
-      { target: { value: 'http://example.com' } }
+      'http://example.com'
     );
     await waitFor(() => (
       expect(onToggleLinkMock).toHaveBeenCalledWith({
@@ -173,23 +175,22 @@ describe('<Toolbar />', () => {
 
   it('should trigger toggleMark with new color if ' +
   'color has changed', async () => {
+    const user = userEvent.setup();
     const onToggleMarkMock = jest.fn();
     const { container, getByText } = render(
       <Toolbar
-        onToggleMark={ onToggleMarkMock }
+        onToggleMark={onToggleMarkMock}
         onToggleBlock={() => jest.fn()}
         onToggleLink={() => jest.fn()}
         state={{}}
       />
     );
     fireEvent.click(getByText('format_color_text'));
-    fireEvent.change(
-      container.querySelector('.color-input input'),
-      { target: { value: '#ff0000' } }
-    );
-    await waitFor(() => (
-      expect(onToggleMarkMock)
-        .toHaveBeenCalledWith(schema.marks.color, { color: '#ff0000' })
-    ));
+    const field = container.querySelector('.color-input input');
+    await user.clear(field);
+    await user.type(field, '#FF0000');
+
+    expect(onToggleMarkMock)
+      .toHaveBeenLastCalledWith(schema.marks.color, { color: '#FF0000' });
   });
 });

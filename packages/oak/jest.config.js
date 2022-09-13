@@ -8,6 +8,11 @@ module.exports = {
   rootDir: path.resolve(__dirname),
   moduleNameMapper: {
     '^@tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
+    '^react$': 'preact/compat',
+    '^react-dom/test-utils$': 'preact/test-utils',
+    '^react-dom$': 'preact/compat',
+    '^react/jsx-runtime$': 'preact/jsx-runtime',
+    '^@testing-library/react$': '@testing-library/preact',
   },
   coveragePathIgnorePatterns: [
     'node_modules',
@@ -20,7 +25,7 @@ module.exports = {
     '^.+\\.styl$': 'jest-css-modules-transform',
   },
   transformIgnorePatterns: [
-    '/node_modules/(?!(uuid))',
+    '/node_modules/(?!(uuid|preact))',
   ],
   setupFilesAfterEnv: [
     './tests/env.js',
