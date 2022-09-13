@@ -13,7 +13,7 @@ const Row = ({
   parent,
   ...rest
 }) => {
-  const { moveElement, addElement, getText, depth } = useBuilder();
+  const { moveElement, addElement, getText } = useBuilder();
   const appendCatalogueRef = useRef();
 
   const onAppend_ = (parent, component) => {
