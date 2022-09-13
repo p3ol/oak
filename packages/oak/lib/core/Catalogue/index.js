@@ -22,7 +22,7 @@ import Icon from '../Icon';
 import Text from '../Text';
 
 export default forwardRef(({
-  globalEventsTarget = global,
+  globalEventsTarget = globalThis,
   placement = 'bottom',
   onToggle = () => {},
   onAppend = () => {},

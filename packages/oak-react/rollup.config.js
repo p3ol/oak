@@ -4,6 +4,7 @@ import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
+import replace from '@rollup/plugin-replace';
 
 const input = './lib/index.js';
 const output = './dist';
@@ -28,6 +29,10 @@ const defaultPlugins = [
   }),
   commonjs(),
   terser(),
+  replace({
+    preventAssignment: true,
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  }),
 ];
 
 export default [
@@ -43,6 +48,12 @@ export default [
         chunkFileNames: '[name].js',
       } : {
         file: `${output}/${name}.${f}.js`,
+      }),
+      ...(f === 'umd' && {
+        name: 'OakReact',
+        intro: `var global = typeof global !== "undefined" ? global :
+          typeof self !== "undefined" ? self :
+          typeof window !== "undefined" ? window : {}`,
       }),
       format: f,
       name,

@@ -3,9 +3,10 @@ import path from 'path';
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-// import alias from '@rollup/plugin-alias';
+import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
+import replace from '@rollup/plugin-replace';
 import autoprefixer from 'autoprefixer';
 import url from 'postcss-url';
 
@@ -14,30 +15,30 @@ const defaultOutput = './dist';
 const name = 'oak';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['react', 'react-dom', 'react-popper'];
-const defaultGlobals = {
-  react: 'React',
-  'react-dom': 'ReactDOM',
-  'react-popper': 'ReactPopper',
-};
+const defaultExternals = [];
+const defaultGlobals = {};
 
 const defaultPlugins = [
+  alias({
+    entries: [
+      { find: 'react', replacement: 'preact/compat' },
+      { find: 'react-dom', replacement: 'preact/compat' },
+      { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' },
+    ],
+  }),
   babel({
     exclude: /node_modules/,
     babelHelpers: 'runtime',
   }),
-  // Will use preact when compat will be stable again
-  // alias({
-  //   entries: [
-  //     { find: 'react', replacement: 'preact/compat' },
-  //     { find: 'react-dom', replacement: 'preact/compat' },
-  //   ],
-  // }),
   resolve({
     rootDir: path.resolve('../../'),
   }),
   commonjs(),
   terser(),
+  replace({
+    preventAssignment: true,
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  }),
 ];
 
 const getConfig = (format, {
@@ -51,14 +52,20 @@ const getConfig = (format, {
   ],
   external,
   output: {
+    name,
     ...(format === 'esm' ? {
       dir: `${output}/esm`,
       chunkFileNames: '[name].js',
     } : {
       file: `${output}/${name}.${format}.js`,
     }),
+    ...(format === 'umd' && {
+      name: 'Oak',
+      intro: `var global = typeof global !== "undefined" ? global :
+        typeof self !== "undefined" ? self :
+        typeof window !== "undefined" ? window : {}`,
+    }),
     format,
-    name,
     sourcemap: true,
     globals,
   },
