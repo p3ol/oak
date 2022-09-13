@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  useMemo,
   useEffect,
   useReducer,
   useCallback,
@@ -15,8 +16,9 @@ import { GROUP_CORE, GROUP_OTHER } from '../../components';
 import { BASE_FIELDTYPES } from '../../fields';
 import Builder from '../Builder';
 
-export default forwardRef((options, ref) => {
+export default forwardRef(({ options: opts, onReady }, ref) => {
   const oakRef = useRef();
+  const options = useMemo(() => opts || {}, [opts]);
   const [state, dispatch] = useReducer(mockState, {
     components: [cloneDeep(GROUP_CORE), cloneDeep(GROUP_OTHER)],
     content: [],
@@ -39,8 +41,8 @@ export default forwardRef((options, ref) => {
   }, [options?.overrides]);
 
   useEffect(() => {
-    setContent(options.content);
-    options?.onReady?.();
+    setContent(options?.content || []);
+    onReady?.();
   }, []);
 
   useImperativeHandle(ref, () => ({
