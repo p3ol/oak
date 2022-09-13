@@ -1,4 +1,4 @@
-import { classNames, omit } from '@poool/junipero-utils';
+import { omit } from '@poool/junipero-utils';
 import { useRef } from 'react';
 
 import { useBuilder } from '../../hooks';
@@ -16,13 +16,23 @@ const Row = ({
   const { moveElement, addElement, getText } = useBuilder();
   const appendCatalogueRef = useRef();
 
-  const onAppend_ = (parent, component) => {
+  const onAppend_ = (parent, position, component) => {
     const elmt = component.construct?.() || {};
     addElement?.({
       ...elmt,
       content: typeof elmt.content === 'function'
         ? elmt.content(getText) : elmt.content,
-    }, { parent, position: 'after' });
+    }, { parent, position });
+    appendCatalogueRef.current?.close();
+  };
+
+  const onPrepend_ = (parent, p, component) => {
+    const elmt = component.construct?.() || {};
+    addElement?.({
+      ...elmt,
+      content: typeof elmt.content === 'function'
+        ? elmt.content(getText) : elmt.content,
+    }, { parent, position: 'before' });
     appendCatalogueRef.current?.close();
   };
 
@@ -48,17 +58,31 @@ const Row = ({
       <div className="oak-foldable-content">
         <Droppable disabled={element.cols.length > 0} onDrop={onDropElement}>
           <>
-            { element?.cols.length ? element?.cols?.map((elt, i) => (
-              <Element
-                key={i}
-                element={elt}
-                parent={element.cols}
-              />
-            )) : (
+            { element?.cols.length ? (
+              <>
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onAppend_.bind(null, element.cols, 'before')}
+                  onPaste={onPasteAfter_}
+                />
+                {element?.cols?.map(elt => (
+                  <Element
+                    key={elt.id}
+                    element={elt}
+                    parent={element.cols}
+                  />
+                ))}
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onAppend_.bind(null, element.cols, 'after')}
+                  onPaste={onPasteAfter_}
+                />
+              </>
+            ) : (
               <div className="oak-foldable-content-empty">
                 <Catalogue
                   ref={appendCatalogueRef}
-                  onAppend={onAppend_.bind(null, element.cols)}
+                  onAppend={onAppend_.bind(null, element.cols, 'after')}
                   onPaste={onPasteAfter_}
                 />
               </div>
@@ -70,17 +94,31 @@ const Row = ({
       <div className="oak-foldable-content">
         <Droppable disabled={element.seeMore.length > 0} onDrop={onDropElement}>
           <>
-            { element?.seeMore.length ? element?.seeMore?.map((elt, i) => (
-              <Element
-                key={i}
-                element={elt}
-                parent={element.seeMore}
-              />
-            )) : (
+            { element?.seeMore.length ? (
+              <>
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onAppend_.bind(null, element.seeMore, 'before')}
+                  onPaste={onPasteAfter_}
+                />
+                { element?.seeMore?.map(elt => (
+                  <Element
+                    key={elt.id}
+                    element={elt}
+                    parent={element.seeMore}
+                  />
+                ))}
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onAppend_.bind(null, element.seeMore, 'after')}
+                  onPaste={onPasteAfter_}
+                />
+              </>
+            ) : (
               <div className="oak-foldable-content-empty">
                 <Catalogue
                   ref={appendCatalogueRef}
-                  onAppend={onAppend_.bind(null, element.seeMore)}
+                  onAppend={onAppend_.bind(null, element.seeMore, 'after')}
                   onPaste={onPasteAfter_}
                 />
               </div>
@@ -92,17 +130,31 @@ const Row = ({
       <div className="oak-foldable-content">
         <Droppable disabled={element.seeLess.length > 0} onDrop={onDropElement}>
           <>
-            { element?.seeLess.length ? element?.seeLess?.map((elt, i) => (
-              <Element
-                key={i}
-                element={elt}
-                parent={element.seeLess}
-              />
-            )) : (
+            { element?.seeLess.length ? (
+              <>
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onPrepend_.bind(null, element.seeLess, 'before')}
+                  onPaste={onPasteAfter_}
+                />
+                { element?.seeLess?.map(elt => (
+                  <Element
+                    key={elt.id}
+                    element={elt}
+                    parent={element.seeLess}
+                  />
+                ))}
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onAppend_.bind(null, element.seeLess, 'after')}
+                  onPaste={onPasteAfter_}
+                />
+              </>
+            ) : (
               <div className="oak-foldable-content-empty">
                 <Catalogue
                   ref={appendCatalogueRef}
-                  onAppend={onAppend_.bind(null, element.seeLess)}
+                  onAppend={onAppend_.bind(null, element.seeLess, 'after')}
                   onPaste={onPasteAfter_}
                 />
               </div>
