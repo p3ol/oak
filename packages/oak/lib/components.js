@@ -22,6 +22,7 @@ export const COMPONENT_ROW = {
       type: 'col',
       content: [],
       id: uuid(),
+      style: {},
     }],
   }),
 };
@@ -40,16 +41,31 @@ export const COMPONENT_FOLDABLE = {
     settings: {
       alignItems: 'flex-start',
     },
-    content: [],
-    seeMore: [{
-      type: 'text',
+    cols: [{
+      type: 'col',
+      content: [],
       id: uuid(),
-      content: '<div style="text-align: center">see less</div>',
+      style: {},
+    }],
+    seeMore: [{
+      type: 'col',
+      content: [{
+        type: 'text',
+        id: uuid(),
+        content: '<div style="text-align: center">see more</div>',
+      }],
+      id: uuid(),
+      style: {},
     }],
     seeLess: [{
-      type: 'text',
+      type: 'col',
+      content: [{
+        type: 'text',
+        id: uuid(),
+        content: '<div style="text-align: center">see less</div>',
+      }],
       id: uuid(),
-      content: '<div style="text-align: center">see less</div>',
+      style: {},
     }],
   }),
 };
@@ -78,9 +94,9 @@ export const GROUP_CORE = {
   name: t => t('core.groups.core.title', 'Core components'),
   type: 'group',
   components: [
+    COMPONENT_FOLDABLE,
     COMPONENT_ROW,
     COMPONENT_EMPTY_SPACE,
-    COMPONENT_FOLDABLE,
   ],
 };
 

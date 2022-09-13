@@ -1,23 +1,39 @@
+import { v4 as uuid } from 'uuid';
 import { classNames, omit } from '@poool/junipero-utils';
 
 import { useBuilder } from '../../hooks';
+import Col from '../Col';
+import Droppable from '../Droppable';
 import options from './index.options';
 import settings from './index.settings';
-import Droppable from '../Droppable';
-import Element from '../Element';
-import Text from '../Text';
 
-const Foldable = ({
+const Row = ({
   element,
   parent,
   ...rest
 }) => {
-  const { moveElement } = useBuilder();
-  const config = {
-    cantBeDeleted: true,
-    cantBeDragged: true,
-    cantBeDuplicated: true,
-    notDroppable: true,
+  const { setElement, moveElement } = useBuilder();
+
+  const onDivide = (index, isBefore, part) => {
+    element[part]?.splice(isBefore ? index : index + 1, 0, {
+      content: [],
+      id: uuid(),
+      style: {},
+      type: 'col',
+    });
+
+    setElement(element, { content: element.content, seeMore: element.seeMore });
+  };
+
+  const onRemoveCol = (index, part) => {
+    if (element[part]?.length > 1) {
+      element[part]?.splice(index, 1);
+      setElement(element, {
+        content: element.cols,
+        seeMore: element.seeMore,
+        seeLess: element.seeLess,
+      });
+    }
   };
 
   const onDropElement = (position, data) => {
@@ -27,99 +43,86 @@ const Foldable = ({
   return (
     <div
       { ...omit(rest, ['builder']) }
-      className={classNames(
-        element.settings?.flexDirection &&
-            'oak-direction-' + element.settings.flexDirection,
-        element.settings?.alignItems &&
-            'oak-align-' + element.settings.alignItems,
-        element.settings?.justifyContent &&
-            'oak-justify-' + element.settings.justifyContent,
-      )}
+      style={element.style}
     >
+      <div>See more content section</div>
       <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="oak-drop-zone oak-before" />
       </Droppable>
-      <Text
-        name="core.components.foldable.sections.content"
-        default="See more content section"
-      />
       <div
         className={classNames(
           'oak-foldable-content',
-          element.content?.settings?.flexDirection &&
-            'oak-direction-' + element.content.settings.flexDirection,
-          element.content?.settings?.alignItems &&
-            'oak-align-' + element.content.settings.alignItems,
-          element.content?.settings?.justifyContent &&
-            'oak-justify-' + element.content.settings.justifyContent,
+          element.settings?.flexDirection &&
+            'oak-direction-' + element.settings.flexDirection,
+          element.settings?.alignItems &&
+            'oak-align-' + element.settings.alignItems,
+          element.settings?.justifyContent &&
+            'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        <Droppable disabled={element.content.length > 0} onDrop={onDropElement}>
-          <div className="oak-foldable-inner">
-            { element.content.map(elt => (
-              <Element
-                key={elt.id}
-                element={elt}
-                parent={element.content}
-                config={config}
-              />
-            )) }
-
-            {/* <Catalogue
-              ref={appendCatalogueRef}
-              onAppend={onAppend_}
-              onPaste={onPasteAfter_}
-            /> */}
-          </div>
-        </Droppable>
-      </div>
-      <Text
-        name="core.components.foldable.sections.seeMore"
-        default="See More title section"
-      />
-      <div
-        className={classNames(
-          'oak-foldable-see-more',
-          'oak-foldable-content',
-          element.seeMore?.settings?.flexDirection &&
-            'oak-direction-' + element.seeMore.settings.flexDirection,
-          element.seeMore?.settings?.alignItems &&
-            'oak-align-' + element.seeMore.settings.alignItems,
-          element.seeMore?.settings?.justifyContent &&
-            'oak-justify-' + element.seeMore.settings.justifyContent,
-        )}
-      >
-        { element.seeMore.map(elt => (
-          <Element
-            key={elt.id}
-            element={elt}
-            parent={element.seeMore}
-            config={config}
+        { element?.cols?.map((col, i) => (
+          <Col
+            key={i}
+            element={col}
+            onPrepend={onDivide.bind(null, i, true, 'cols')}
+            onAppend={onDivide.bind(null, i, false, 'cols')}
+            onRemove={onRemoveCol.bind(null, i, 'cols')}
           />
         )) }
       </div>
-      <Text
-        name="core.components.foldable.sections.seeLess"
-        default="See less title section"
-      />
+      <Droppable onDrop={onDropElement.bind(null, 'after')}>
+        <div className="oak-drop-zone oak-after" />
+      </Droppable>
+      <div>See More title section</div>
+      <Droppable onDrop={onDropElement.bind(null, 'before')}>
+        <div className="oak-drop-zone oak-before" />
+      </Droppable>
       <div
         className={classNames(
-          'oak-foldable-see-less',
           'oak-foldable-content',
-          element.seeLess?.settings?.flexDirection &&
-            'oak-direction-' + element.seeLess.settings.flexDirection,
-          element.seeLess?.settings?.alignItems &&
-            'oak-align-' + element.seeLess.settings.alignItems,
-          element.seeLess?.settings?.justifyContent &&
-            'oak-justify-' + element.seeLess.settings.justifyContent,
+          element.settings?.flexDirection &&
+            'oak-direction-' + element.settings.flexDirection,
+          element.settings?.alignItems &&
+            'oak-align-' + element.settings.alignItems,
+          element.settings?.justifyContent &&
+            'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        { element.seeLess.map(elt => (
-          <Element
-            key={elt.id}
-            element={elt}
-            parent={element.seeLess}
-            config={config}
+        { element?.seeMore?.map((col, i) => (
+          <Col
+            key={i}
+            element={col}
+            onPrepend={onDivide.bind(null, i, true, 'seeMore')}
+            onAppend={onDivide.bind(null, i, false, 'seeMore')}
+            onRemove={onRemoveCol.bind(null, i, 'seeMore')}
+          />
+        )) }
+      </div>
+      <Droppable onDrop={onDropElement.bind(null, 'after')}>
+        <div className="oak-drop-zone oak-after" />
+      </Droppable>
+      <div>See less title section</div>
+      <Droppable onDrop={onDropElement.bind(null, 'before')}>
+        <div className="oak-drop-zone oak-before" />
+      </Droppable>
+      <div
+        className={classNames(
+          'oak-foldable-content',
+          element.settings?.flexDirection &&
+            'oak-direction-' + element.settings.flexDirection,
+          element.settings?.alignItems &&
+            'oak-align-' + element.settings.alignItems,
+          element.settings?.justifyContent &&
+            'oak-justify-' + element.settings.justifyContent,
+        )}
+      >
+        { element?.seeLess?.map((col, i) => (
+          <Col
+            key={i}
+            element={col}
+            onPrepend={onDivide.bind(null, i, true, 'seeLess')}
+            onAppend={onDivide.bind(null, i, false, 'seeLess')}
+            onRemove={onRemoveCol.bind(null, i, 'seeLess')}
           />
         )) }
       </div>
@@ -130,6 +133,7 @@ const Foldable = ({
   );
 };
 
-Foldable.settings = settings;
-Foldable.options = options;
-export default Foldable;
+Row.options = options;
+Row.settings = settings;
+
+export default Row;

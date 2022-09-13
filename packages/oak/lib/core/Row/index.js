@@ -10,7 +10,6 @@ import settings from './index.settings';
 const Row = ({
   element,
   parent,
-  config = {},
   ...rest
 }) => {
   const { setElement, removeElement, moveElement } = useBuilder();
@@ -27,13 +26,11 @@ const Row = ({
   };
 
   const onRemoveCol = index => {
-    if (element.cols.length > 1 || !config.cantBeDeleted) {
-      element.cols.splice(index, 1);
-      setElement(element, { cols: element.cols });
+    element.cols.splice(index, 1);
+    setElement(element, { cols: element.cols });
 
-      if (element.cols.length <= 0) {
-        removeElement(element, { parent });
-      }
+    if (element.cols.length <= 0) {
+      removeElement(element, { parent });
     }
   };
 
@@ -44,12 +41,11 @@ const Row = ({
   return (
     <div
       { ...omit(rest, ['builder']) }
+      style={element.style}
     >
-      {!config.notDroppable && (
-        <Droppable onDrop={onDropElement.bind(null, 'before')}>
-          <div className="oak-drop-zone oak-before" />
-        </Droppable>
-      )}
+      <Droppable onDrop={onDropElement.bind(null, 'before')}>
+        <div className="oak-drop-zone oak-before" />
+      </Droppable>
       <div
         className={classNames(
           'oak-row-content',
@@ -65,20 +61,15 @@ const Row = ({
           <Col
             key={i}
             element={col}
-            config={{
-              cantBeDeleted: config.cantBeDeleted && element.cols.length <= 1,
-            }}
             onPrepend={onDivide.bind(null, i, true)}
             onAppend={onDivide.bind(null, i, false)}
             onRemove={onRemoveCol.bind(null, i)}
           />
         )) }
       </div>
-      {!config.notDroppable && (
-        <Droppable onDrop={onDropElement.bind(null, 'after')}>
-          <div className="oak-drop-zone oak-after" />
-        </Droppable>
-      )}
+      <Droppable onDrop={onDropElement.bind(null, 'after')}>
+        <div className="oak-drop-zone oak-after" />
+      </Droppable>
     </div>
   );
 };

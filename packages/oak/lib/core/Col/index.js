@@ -12,7 +12,6 @@ import Icon from '../Icon';
 import Text from '../Text';
 
 const Col = ({
-  config = {},
   element,
   className,
   onPrepend,
@@ -168,16 +167,15 @@ const Col = ({
               name={<Text name="core.tooltips.edit" default="Edit" />}
             />
           </Editable>
-          { !config.cantBeDeleted && (
-            <Option
-              className="oak-remove"
-              option={{ icon: 'clear' }}
-              onClick={onRemove_}
-              name={<Text name="core.tooltips.remove" default="Remove" />}
-            />
-          ) }
+          <Option
+            className="oak-remove"
+            option={{ icon: 'clear' }}
+            onClick={onRemove_}
+            name={<Text name="core.tooltips.remove" default="Remove" />}
+          />
         </div>
       </div>
+
       <div ref={settingsElementRef} />
     </div>
   );
