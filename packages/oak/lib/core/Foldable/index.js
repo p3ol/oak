@@ -1,39 +1,38 @@
-import { v4 as uuid } from 'uuid';
 import { classNames, omit } from '@poool/junipero-utils';
+import { useRef } from 'react';
 
 import { useBuilder } from '../../hooks';
-import Col from '../Col';
-import Droppable from '../Droppable';
 import options from './index.options';
 import settings from './index.settings';
+import Catalogue from '../Catalogue';
+import Droppable from '../Droppable';
+import Element from '../Element';
 
 const Row = ({
   element,
   parent,
   ...rest
 }) => {
-  const { setElement, moveElement } = useBuilder();
+  const { moveElement, addElement, getText, depth } = useBuilder();
+  const appendCatalogueRef = useRef();
 
-  const onDivide = (index, isBefore, part) => {
-    element[part]?.splice(isBefore ? index : index + 1, 0, {
-      content: [],
-      id: uuid(),
-      style: {},
-      type: 'col',
-    });
-
-    setElement(element, { content: element.content, seeMore: element.seeMore });
+  const onAppend_ = (parent, component) => {
+    const elmt = component.construct?.() || {};
+    addElement?.({
+      ...elmt,
+      content: typeof elmt.content === 'function'
+        ? elmt.content(getText) : elmt.content,
+    }, { parent, position: 'after' });
+    appendCatalogueRef.current?.close();
   };
 
-  const onRemoveCol = (index, part) => {
-    if (element[part]?.length > 1) {
-      element[part]?.splice(index, 1);
-      setElement(element, {
-        content: element.cols,
-        seeMore: element.seeMore,
-        seeLess: element.seeLess,
-      });
-    }
+  const onPasteAfter_ = elmt => {
+    addElement(elmt, {
+      parent: element.content,
+      position: 'after',
+      normalizeOptions: { resetIds: true },
+    });
+    appendCatalogueRef.current?.close();
   };
 
   const onDropElement = (position, data) => {
@@ -60,15 +59,25 @@ const Row = ({
             'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        { element?.cols?.map((col, i) => (
-          <Col
-            key={i}
-            element={col}
-            onPrepend={onDivide.bind(null, i, true, 'cols')}
-            onAppend={onDivide.bind(null, i, false, 'cols')}
-            onRemove={onRemoveCol.bind(null, i, 'cols')}
-          />
-        )) }
+        <Droppable disabled={element.cols.length > 0} onDrop={onDropElement}>
+          <>
+            { element?.cols.length ? element?.cols?.map((elt, i) => (
+              <Element
+                key={i}
+                element={elt}
+                parent={element.cols}
+              />
+            )) : (
+              <div className="oak-foldable-content-empty">
+                <Catalogue
+                  ref={appendCatalogueRef}
+                  onAppend={onAppend_.bind(null, element.cols)}
+                  onPaste={onPasteAfter_}
+                />
+              </div>
+            )}
+          </>
+        </Droppable>
       </div>
       <Droppable onDrop={onDropElement.bind(null, 'after')}>
         <div className="oak-drop-zone oak-after" />
@@ -88,15 +97,19 @@ const Row = ({
             'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        { element?.seeMore?.map((col, i) => (
-          <Col
+        { element?.seeMore.length ? element?.seeMore?.map((elt, i) => (
+          <Element
             key={i}
-            element={col}
-            onPrepend={onDivide.bind(null, i, true, 'seeMore')}
-            onAppend={onDivide.bind(null, i, false, 'seeMore')}
-            onRemove={onRemoveCol.bind(null, i, 'seeMore')}
+            element={elt}
+            parent={element.seeMore}
           />
-        )) }
+        )) : (
+          <Catalogue
+            ref={appendCatalogueRef}
+            onAppend={onAppend_.bind(null, element.seeMore)}
+            onPaste={onPasteAfter_}
+          />
+        ) }
       </div>
       <Droppable onDrop={onDropElement.bind(null, 'after')}>
         <div className="oak-drop-zone oak-after" />
@@ -116,15 +129,20 @@ const Row = ({
             'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        { element?.seeLess?.map((col, i) => (
-          <Col
+        { element?.seeLess.length ? element?.seeLess?.map((elt, i) => (
+          <Element
             key={i}
-            element={col}
-            onPrepend={onDivide.bind(null, i, true, 'seeLess')}
-            onAppend={onDivide.bind(null, i, false, 'seeLess')}
-            onRemove={onRemoveCol.bind(null, i, 'seeLess')}
+            element={elt}
+            parent={element.seeLess}
           />
-        )) }
+        )) : (
+          <Catalogue
+            ref={appendCatalogueRef}
+            onAppend={onAppend_.bind(null, element.seeLess)}
+            onPaste={onPasteAfter_}
+          />
+        ) }
+
       </div>
       <Droppable onDrop={onDropElement.bind(null, 'after')}>
         <div className="oak-drop-zone oak-after" />

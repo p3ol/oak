@@ -2,6 +2,8 @@
 @require "../../theme/vars"
 
 .oak-foldable
+  border: 2px solid $color-white
+  background: $color-link-water
   display: flex
   flex-wrap: wrap
   flex-direction: row
@@ -9,8 +11,25 @@
   margin-top: 30px
   margin-bottom: 20px
   width: 100%
-  border: 1px solid var(--oak-main-color)
   border-radius: 3px
+
+  .oak-foldable-content
+    margin: 30px 20px 30px 20px
+    padding: 20px
+    background: $color-white
+    display: flex
+    align-items: center
+    min-height:200px
+    height: fit-content
+    .oak-foldable-content-empty
+      width: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      min-height: 150px
+    .oak-element
+      margin: 30px 20px 30px 20px
+      width: 100%
 
   .oak-drop-zone
     position: absolute
@@ -74,32 +93,4 @@
 
         &:active
           cursor: gragging
-
-  .oak-foldable-content
-    display: flex
-    flex-direction: row
-    flex-wrap: wrap
-    margin: -($half-gutter)
-    width: unquote("calc(100% + ") $gutters unquote(")")
-
-    for alignment in (flex-start center flex-end space-between space-around)
-
-      &.oak-align
-        &-{alignment}
-          align-items: alignment
-
-      &.oak-justify
-        &-{alignment}
-          justify-content: alignment
-
-    for direction in (row row-reverse column column-reverse)
-      &.oak-direction
-        &-{direction}
-          flex-direction: direction
-
-          > .oak-col
-            width: 100%
-
-    > .oak-col
-      padding: $half-gutter
 
