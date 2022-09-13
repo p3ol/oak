@@ -4,12 +4,16 @@ import {
   cloneElement,
   forwardRef,
   useReducer,
-  useState,
   useEffect,
   useImperativeHandle,
 } from 'react';
 import { mockState, classNames } from '@poool/junipero';
-import { usePopper } from 'react-popper';
+import {
+  useFloating,
+  offset,
+  autoUpdate,
+  autoPlacement,
+} from '@floating-ui/react-dom';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Form from './Form';
@@ -21,36 +25,23 @@ export default forwardRef(({
 }, ref) => {
   const { _settingsHolderRef, overrides, oakRef } = useBuilder();
   const options = useOptions();
-  const [popper, setPopper] = useState();
-  const [reference, setReference] = useState();
-
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
+  });
+
+  const { x, y, reference, floating, strategy, refs } = useFloating({
+    whileElementsMounted: autoUpdate,
+    middleware: [
+      offset({ mainAxis: 5 }),
+      autoPlacement({
+        boundary: oakRef?.current,
+      }),
+    ],
   });
 
   useEffect(() => {
     close();
   }, [overrides]);
-
-  const { styles: popperStyles, attributes } = usePopper(reference, popper, {
-    ...((typeof component?.settings?.popperSettings === 'function'
-      ? component?.settings?.popperSettings({ optionButtonElement: reference })
-      : component?.settings?.popperSettings
-    ) || {
-      modifiers: [{
-        name: 'preventOverflow',
-        enabled: true,
-        options: {
-          boundary: oakRef?.current,
-        },
-      }, {
-        name: 'offset',
-        options: {
-          offset: [0, 5],
-        },
-      }],
-    }),
-  });
 
   useImperativeHandle(ref, () => ({
     open,
@@ -71,12 +62,15 @@ export default forwardRef(({
 
   const renderForm = () => (
     <Form
-      ref={setPopper}
-      popper={popper}
+      ref={floating}
+      popper={refs.floating}
       element={element}
       component={component}
-      styles={popperStyles}
-      attributes={attributes}
+      style={{
+        position: strategy,
+        top: y ?? 0,
+        left: x ?? 0,
+      }}
       onSave={close}
       onCancel={close}
     />
@@ -85,7 +79,7 @@ export default forwardRef(({
   return (
     <>
       { children && cloneElement(Children.only(children), {
-        ref: r => { setReference(r?.isOak ? r.innerRef.current : r); },
+        ref: r => reference(r?.isOak ? r.innerRef.current || r : r),
         className: classNames(
           Children.only(children).props.className,
           { 'oak-opened': state.opened }

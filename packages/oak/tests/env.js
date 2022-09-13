@@ -17,3 +17,9 @@ Object.defineProperty(globalThis.navigator, 'clipboard', {
     readText: () => Promise.resolve(clipboard.data),
   },
 });
+
+globalThis.ResizeObserver = class ResizeObserver {
+  observe () {}
+  unobserve () {}
+  disconnect () {}
+};
