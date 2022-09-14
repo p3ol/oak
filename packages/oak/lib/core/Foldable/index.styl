@@ -26,6 +26,7 @@
     & :nth-child(2)
       &.oak-element
         margin-top: 20px
+
     &.drag-enter .oak-foldable-content-empty
       background: $color-catskill-white
       border-radius: 5px
@@ -38,7 +39,7 @@
       height: 26px
       
       .oak-handle-inner i
-        font-size: 20px
+        font-size: 20px 
 
     .oak-foldable-content-empty
       width: 100%
@@ -47,21 +48,19 @@
       align-items: center
       min-height: 150px
 
+      .oak-handle 
+        width: 40px
+        height: 40px
+
+        .oak-handle-inner i
+          font-size: 30px
+
     .oak-element
       margin-left: 20px
       margin-right: 20px
       width: 100%
       &.oak-row
         margin-top: 20px
-
-      .oak-handle 
-        width: 40px
-        height: 40px
-        .oak-handle-inner i
-          font-size: 30px
-
-    
-
 
   > .oak-options
     top: -25px
@@ -87,4 +86,3 @@
 
         &:active
           cursor: gragging
-
