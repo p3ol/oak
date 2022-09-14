@@ -32,9 +32,9 @@ describe('<Foldable />', () => {
         }}
       />
     ));
-    let content = container.querySelectorAll('.oak-foldable-content')[0];
-    let seeMore = container.querySelectorAll('.oak-foldable-content')[1];
-    let seeLess = container.querySelectorAll('.oak-foldable-content')[2];
+    let seeMore = container.querySelectorAll('.oak-foldable-content')[0];
+    let seeLess = container.querySelectorAll('.oak-foldable-content')[1];
+    let content = container.querySelectorAll('.oak-foldable-content')[2];
 
     expect(content.querySelectorAll('.oak-element').length).toEqual(3);
     expect(seeMore.querySelectorAll('.oak-element').length).toEqual(0);
@@ -52,9 +52,9 @@ describe('<Foldable />', () => {
         }}
       />
     ));
-    content = container.querySelectorAll('.oak-foldable-content')[0];
-    seeMore = container.querySelectorAll('.oak-foldable-content')[1];
-    seeLess = container.querySelectorAll('.oak-foldable-content')[2];
+    seeMore = container.querySelectorAll('.oak-foldable-content')[0];
+    seeLess = container.querySelectorAll('.oak-foldable-content')[1];
+    content = container.querySelectorAll('.oak-foldable-content')[2];
 
     expect(content.querySelectorAll('.oak-element').length).toEqual(0);
     expect(seeMore.querySelectorAll('.oak-element').length).toEqual(2);
@@ -74,9 +74,9 @@ describe('<Foldable />', () => {
         }}
       />
     ));
-    content = container.querySelectorAll('.oak-foldable-content')[0];
-    seeMore = container.querySelectorAll('.oak-foldable-content')[1];
-    seeLess = container.querySelectorAll('.oak-foldable-content')[2];
+    seeMore = container.querySelectorAll('.oak-foldable-content')[0];
+    seeLess = container.querySelectorAll('.oak-foldable-content')[1];
+    content = container.querySelectorAll('.oak-foldable-content')[2];
 
     expect(content.querySelectorAll('.oak-element').length).toEqual(0);
     expect(seeMore.querySelectorAll('.oak-element').length).toEqual(0);
@@ -119,9 +119,9 @@ describe('<Foldable />', () => {
         }}
       />
     ));
-    let content = container.querySelectorAll('.oak-foldable-content')[0];
-    let seeMore = container.querySelectorAll('.oak-foldable-content')[1];
-    let seeLess = container.querySelectorAll('.oak-foldable-content')[2];
+    let seeMore = container.querySelectorAll('.oak-foldable-content')[0];
+    let seeLess = container.querySelectorAll('.oak-foldable-content')[1];
+    let content = container.querySelectorAll('.oak-foldable-content')[2];
 
     expect(content.querySelectorAll('.oak-catalogue').length).toEqual(1);
     expect(seeMore.querySelectorAll('.oak-catalogue').length).toEqual(1);
@@ -137,9 +137,9 @@ describe('<Foldable />', () => {
       />
     ));
 
-    content = container.querySelectorAll('.oak-foldable-content')[0];
-    seeMore = container.querySelectorAll('.oak-foldable-content')[1];
-    seeLess = container.querySelectorAll('.oak-foldable-content')[2];
+    seeMore = container.querySelectorAll('.oak-foldable-content')[0];
+    seeLess = container.querySelectorAll('.oak-foldable-content')[1];
+    content = container.querySelectorAll('.oak-foldable-content')[2];
 
     expect(content.querySelectorAll('.oak-catalogue').length).toEqual(2);
     expect(seeMore.querySelectorAll('.oak-catalogue').length).toEqual(2);
@@ -163,7 +163,7 @@ describe('<Foldable />', () => {
       />
       , { removeElement: mockRemoveElement }));
 
-    const content = container.querySelectorAll('.oak-foldable-content')[0];
+    const content = container.querySelectorAll('.oak-foldable-content')[2];
     const contentToDelete = { type: 'row', cols: [], id: 3 };
     expect(content.querySelectorAll('.oak-element').length).toEqual(4);
 
@@ -206,7 +206,7 @@ describe('<Foldable />', () => {
       />
       , { addElement: mockAddElement, components: groupMock }));
 
-    let content = container.querySelectorAll('.oak-foldable-content')[0];
+    let content = container.querySelectorAll('.oak-foldable-content')[2];
 
     fireEvent.click(content.querySelector('.oak-catalogue .oak-handle'));
     await waitFor(
@@ -215,7 +215,7 @@ describe('<Foldable />', () => {
       ).not.toBeUndefined()
     );
 
-    content = container.querySelectorAll('.oak-foldable-content')[0];
+    content = container.querySelectorAll('.oak-foldable-content')[2];
 
     let popover = content.querySelector('.oak-popover .oak-components');
     fireEvent.click(popover.querySelector('.oak-components .oak-component a'));
@@ -233,7 +233,7 @@ describe('<Foldable />', () => {
       , { addElement: mockAddElement, components: groupMock }
     ));
 
-    content = container.querySelectorAll('.oak-foldable-content')[0];
+    content = container.querySelectorAll('.oak-foldable-content')[2];
 
     fireEvent.click(content.querySelectorAll('.oak-catalogue .oak-handle')[1]);
     await waitFor(
@@ -287,7 +287,7 @@ describe('<Foldable />', () => {
     ));
 
     //adding on content
-    let content = container.querySelectorAll('.oak-foldable-content')[0];
+    let content = container.querySelectorAll('.oak-foldable-content')[2];
 
     fireEvent.click(content.querySelector('.oak-catalogue .oak-handle'));
     await waitFor(
@@ -296,7 +296,7 @@ describe('<Foldable />', () => {
       ).not.toBeUndefined()
     );
 
-    content = container.querySelectorAll('.oak-foldable-content')[0];
+    content = container.querySelectorAll('.oak-foldable-content')[2];
 
     let popover = content.querySelector('.oak-popover .oak-components');
     fireEvent.click(popover.querySelector('.oak-components .oak-component a'));
@@ -308,7 +308,7 @@ describe('<Foldable />', () => {
     }, { parent: element.content, position: 'before' }));
 
     // adding on see more
-    content = container.querySelectorAll('.oak-foldable-content')[1];
+    content = container.querySelectorAll('.oak-foldable-content')[0];
 
     fireEvent.click(content.querySelector('.oak-catalogue .oak-handle'));
     await waitFor(
@@ -317,7 +317,7 @@ describe('<Foldable />', () => {
       ).not.toBeUndefined()
     );
 
-    content = container.querySelectorAll('.oak-foldable-content')[1];
+    content = container.querySelectorAll('.oak-foldable-content')[0];
 
     popover = content.querySelector('.oak-popover .oak-components');
     fireEvent.click(popover.querySelector('.oak-components .oak-component a'));
@@ -329,7 +329,7 @@ describe('<Foldable />', () => {
     }, { parent: element.seeMore, position: 'before' }));
 
     // adding on see less
-    content = container.querySelectorAll('.oak-foldable-content')[2];
+    content = container.querySelectorAll('.oak-foldable-content')[1];
 
     fireEvent.click(content.querySelector('.oak-catalogue .oak-handle'));
     await waitFor(
@@ -338,7 +338,7 @@ describe('<Foldable />', () => {
       ).not.toBeUndefined()
     );
 
-    content = container.querySelectorAll('.oak-foldable-content')[2];
+    content = container.querySelectorAll('.oak-foldable-content')[1];
 
     popover = content.querySelector('.oak-popover .oak-components');
     fireEvent.click(popover.querySelector('.oak-components .oak-component a'));
