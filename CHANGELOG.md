@@ -1,4 +1,31 @@
-# [](https://github.com/p3ol/oak/compare/v1.2.3...v) (2022-09-09)
+# [](https://github.com/p3ol/oak/compare/v2.0.0...v) (2022-09-14)
+
+
+
+# [2.0.0](https://github.com/p3ol/oak/compare/v1.2.3...v2.0.0) (2022-09-13)
+
+## BREAKING
+
+- `@poool/oak` now uses Preact internally to avoid needing React for the vanilla js part of the library.
+- It also replaces the need for React Popper with the new `@floating-ui/react-dom`, but still needs `@poool/junipero` to get rid of it upstream to be able to remove the peer dependencies.
+
+### Bug Fixes
+
+* add missing importSources ([539dba6](https://github.com/p3ol/oak/commit/539dba672c09d2e650754d8711b51b24ef59af72))
+* correctly configure umb bundle ([fe7e2bc](https://github.com/p3ol/oak/commit/fe7e2bcb101f5910d2fa39cd1ff0a8dd96eb257c))
+* **deps:** update dependency preact to v10.11.0 ([07c505e](https://github.com/p3ol/oak/commit/07c505e6632faa0572bc44fa0a0efbe8e4154ace))
+* **deps:** update dependency prosemirror-commands to v1.3.1 ([2f1293f](https://github.com/p3ol/oak/commit/2f1293fcca860e7d95fb7964a3373f0f0abfa6d9))
+* **deps:** update dependency prosemirror-view to v1.28.0 ([f8307ef](https://github.com/p3ol/oak/commit/f8307ef4124b7419846538364516ebcf56a33db8))
+* **deps:** update dependency slate-react to v0.82.2 ([9e9a9a3](https://github.com/p3ol/oak/commit/9e9a9a37b0e0b8c19ca1c0f1dec08c4eacb7dacf))
+* **lib:** bring back needed peer deps ([558a094](https://github.com/p3ol/oak/commit/558a0949416c6b745162a05bbc0fd5400f49dfca))
+* **lib:** prevent infinite renders due to options being real props ([4adcb97](https://github.com/p3ol/oak/commit/4adcb979f1e0b6bdd327d35f4a00f346755dc855))
+* **lib:** replace flip with autoplacement for v1 ([41e3fc2](https://github.com/p3ol/oak/commit/41e3fc21e77bfae49e3257f26a8e93692cdd8896))
+* **lib:** use flip instead of autoplacement for catalogue ([4942c04](https://github.com/p3ol/oak/commit/4942c04ea1597f01e49059fa754d2b4adcf579b1))
+
+
+### Features
+
+* **lib:** replace all internal react with preact ([b5b3564](https://github.com/p3ol/oak/commit/b5b3564f5be472cd22dc94afcc2d32ef835ac435))
 
 
 
