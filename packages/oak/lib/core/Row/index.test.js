@@ -31,21 +31,6 @@ describe('<Row />', () => {
     expect(container.querySelectorAll('.oak-col').length).toBe(4);
   });
 
-  it('should add custom element style to element', () => {
-    const { container } = render(
-      <Row
-        className="custom-class"
-        element={{
-          cols: [],
-          style: { backgroundColor: 'red' },
-        }}
-      />
-    );
-    expect(container.querySelector('.custom-class')).toBeTruthy();
-    expect(container.querySelector('.custom-class').getAttribute('style'))
-      .toContain('background-color: red');
-  });
-
   it('should add correct flex direction className', () => {
     const { container } = render(
       <Row
