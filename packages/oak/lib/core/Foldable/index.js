@@ -7,6 +7,7 @@ import settings from './index.settings';
 import Catalogue from '../Catalogue';
 import Droppable from '../Droppable';
 import Element from '../Element';
+import Text from '../Text';
 
 const Foldable = ({
   element,
@@ -42,44 +43,12 @@ const Foldable = ({
     <div
       { ...omit(rest, ['builder']) }
     >
-      <div>See more content section</div>
-      <Droppable
-        disabled={element.content.length > 0}
-        onDrop={onDropElement.bind(null, element.content)}
-      >
-        <div className="oak-foldable-content">
-          { element?.content.length ? (
-            <>
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.content, 'before')}
-                onPaste={onPaste.bind(null, element.content, 'before')}
-              />
-              {element?.content?.map(elt => (
-                <Element
-                  key={elt.id}
-                  element={elt}
-                  parent={element.content}
-                />
-              ))}
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.content, 'after')}
-                onPaste={onPaste.bind(null, element.content, 'after')}
-              />
-            </>
-          ) : (
-            <div className="oak-foldable-content-empty">
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.content, 'after')}
-                onPaste={onPaste.bind(null, element.content, 'after')}
-              />
-            </div>
-          )}
-        </div>
-      </Droppable>
-      <div>See More title section</div>
+      <div className="oak-foldable-section-title">
+        <Text
+          name="core.components.foldable.sectionsTitle.seeMore"
+          default="Label when collapsed"
+        />
+      </div>
       <Droppable
         disabled={element.seeMore.length > 0}
         onDrop={onDropElement.bind(null, element.seeMore)}
@@ -116,7 +85,12 @@ const Foldable = ({
           )}
         </div>
       </Droppable>
-      <div>See less title section</div>
+      <div className="oak-foldable-section-title">
+        <Text
+          name="core.components.foldable.sectionsTitle.seeLess"
+          default="Label when expanded"
+        />
+      </div>
       <Droppable
         disabled={element.seeLess.length > 0}
         onDrop={onDropElement.bind(null, element.seeLess)}
@@ -148,6 +122,48 @@ const Foldable = ({
                 ref={appendCatalogueRef}
                 onAppend={onAppend_.bind(null, element.seeLess, 'after')}
                 onPaste={onPaste.bind(null, element.seeLess, 'after')}
+              />
+            </div>
+          )}
+        </div>
+      </Droppable>
+      <div className="oak-foldable-section-title">
+        <Text
+          name="core.components.foldable.sectionsTitle.content"
+          default="Content"
+        />
+      </div>
+      <Droppable
+        disabled={element.content.length > 0}
+        onDrop={onDropElement.bind(null, element.content)}
+      >
+        <div className="oak-foldable-content">
+          { element?.content.length ? (
+            <>
+              <Catalogue
+                ref={appendCatalogueRef}
+                onAppend={onAppend_.bind(null, element.content, 'before')}
+                onPaste={onPaste.bind(null, element.content, 'before')}
+              />
+              {element?.content?.map(elt => (
+                <Element
+                  key={elt.id}
+                  element={elt}
+                  parent={element.content}
+                />
+              ))}
+              <Catalogue
+                ref={appendCatalogueRef}
+                onAppend={onAppend_.bind(null, element.content, 'after')}
+                onPaste={onPaste.bind(null, element.content, 'after')}
+              />
+            </>
+          ) : (
+            <div className="oak-foldable-content-empty">
+              <Catalogue
+                ref={appendCatalogueRef}
+                onAppend={onAppend_.bind(null, element.content, 'after')}
+                onPaste={onPaste.bind(null, element.content, 'after')}
               />
             </div>
           )}
