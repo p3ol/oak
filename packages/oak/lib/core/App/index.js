@@ -280,6 +280,10 @@ export default forwardRef((options, ref) => {
       } else if (Array.isArray(e.cols)) {
         const nearest = findNearestParent(elmt, { parent: e.cols });
 
+        if (nearest) return nearest;
+      } else if (Array.isArray(e.content)) {
+        const nearest = findNearestParent(elmt, { parent: e.content });
+
         if (Array.isArray(e.seeMore)) {
           const nearest = findNearestParent(elmt, { parent: e.seeMore });
           if (nearest) return nearest;
@@ -290,9 +294,6 @@ export default forwardRef((options, ref) => {
           if (nearest) return nearest;
         }
 
-        if (nearest) return nearest;
-      } else if (Array.isArray(e.content)) {
-        const nearest = findNearestParent(elmt, { parent: e.content });
         if (nearest) return nearest;
 
       }
@@ -328,6 +329,9 @@ export default forwardRef((options, ref) => {
     if (Array.isArray(elmt.cols)) {
       elmt.cols.forEach(c => normalizeElement(c, opts));
 
+    } else if (Array.isArray(elmt.content)) {
+      elmt.content.forEach(e => normalizeElement(e, opts));
+
       if (Array.isArray(elmt.seeMore)) {
         normalizeElement(elmt.seeMore, opts);
       }
@@ -335,8 +339,6 @@ export default forwardRef((options, ref) => {
       if (Array.isArray(elmt.seeLess)) {
         normalizeElement(elmt.seeLess, opts);
       }
-    } else if (Array.isArray(elmt.content)) {
-      elmt.content.forEach(e => normalizeElement(e, opts));
     }
 
     if (!elmt.id || opts.resetIds) {
@@ -358,6 +360,9 @@ export default forwardRef((options, ref) => {
     if (Array.isArray(elmt.cols)) {
       elmt.cols.forEach(c => serializeElement(c));
 
+    } else if (Array.isArray(elmt.content)) {
+      elmt.content.forEach(e => serializeElement(e));
+
       if (Array.isArray(elmt.seeMore)) {
         elmt.seeMore.forEach(e => serializeElement(e));
       }
@@ -365,8 +370,6 @@ export default forwardRef((options, ref) => {
       if (Array.isArray(elmt.seeLess)) {
         elmt.seeLess.forEach(e => serializeElement(e));
       }
-    } else if (Array.isArray(elmt.content)) {
-      elmt.content.forEach(e => serializeElement(e));
     }
 
     const component = getComponent(elmt.type);

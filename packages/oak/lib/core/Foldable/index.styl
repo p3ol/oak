@@ -22,53 +22,46 @@
     align-items: center
     min-height:200px
     height: fit-content
+    
+    & :nth-child(2)
+      &.oak-element
+        margin-top: 20px
+    &.drag-enter .oak-foldable-content-empty
+      background: $color-catskill-white
+      border-radius: 5px
+
+      .oak-handle
+        display: none
+
+    .oak-handle 
+      width: 26px
+      height: 26px
+      
+      .oak-handle-inner i
+        font-size: 20px
+
     .oak-foldable-content-empty
       width: 100%
       display: flex
       justify-content: center
       align-items: center
       min-height: 150px
+
     .oak-element
-      margin: 30px 20px 30px 20px
+      margin-left: 20px
+      margin-right: 20px
       width: 100%
+      &.oak-row
+        margin-top: 20px
 
-  .oak-drop-zone
-    position: absolute
-    left: 0
-    width: 100%
-    z-index: 1
+      .oak-handle 
+        width: 40px
+        height: 40px
+        .oak-handle-inner i
+          font-size: 30px
 
-    &:after
-      content: ''
-      width: 100%
-      left: 0
-      height: 5px
-      border-radius: 2px
-      background: $color-catskill-white
-      opacity: 0
-      position: absolute
+    
 
-    &.oak-before
-      top: -35px
-      height: 35px
-
-    &.oak-after
-      top: 100%
-      height: 20px
-
-      &:after
-        top: 8px
-
-    &.drag-enter
-      &:after
-        opacity: 1
-
-  &:first-child
-    border-radius: 0 5px 5px 5px
-
-  & > .oak-inner
-    padding: 0
-    background: none
 
   > .oak-options
     top: -25px

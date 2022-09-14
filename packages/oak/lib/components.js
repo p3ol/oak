@@ -38,10 +38,8 @@ export const COMPONENT_FOLDABLE = {
   settings: Foldable.settings,
   construct: () => ({
     type: 'foldable',
-    settings: {
-      alignItems: 'flex-start',
-    },
-    cols: [],
+    settings: {},
+    content: [],
     seeMore: [],
     seeLess: [],
   }),
