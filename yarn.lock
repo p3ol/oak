@@ -3198,20 +3198,20 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@poool/eslint-config-react@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-2.0.0.tgz#8609b20425db9933132f0d890427a83f8e3828cf"
-  integrity sha512-v7xjVlYz1/oBptMCJcWJ8fnXoDFshOehhcawaU6HROJONep1l7oaG9H3RWLIf5btprk3ehX6ZaYb3mDtyQApvg==
+"@poool/eslint-config-react@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-config-react/-/eslint-config-react-2.0.1.tgz#8bbeab8c48bba97b07b3be3b3d981764d02fb0cc"
+  integrity sha512-3EmT5OW4pKbfDunM1ZRMuF7OKbtHIHDXd071aUIWlDN8mOGnPvlN+u9jN/Km8SlF3WSnEQ/Cb3FkUYU4NfzCiQ==
 
-"@poool/eslint-config@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-2.0.0.tgz#eafe61dd86c2d11010066b35167d66b1c83e4b6b"
-  integrity sha512-DY7gyCXQhVI7D1KXv3BH1t0E+ubZYxzALVkQ/kRzMq0shqimc87TgTs6NUBvLP3RfqPKdl8YLNe51KFUUvRCxQ==
+"@poool/eslint-config@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-config/-/eslint-config-2.0.1.tgz#8d44cbe548c7df7ee5b3dae881807baaaeaac572"
+  integrity sha512-8w7R6gN7AFgL5HS8POEnpOkarRL1ZQX8IBNeqPawmAjGfTC87oXS8sq8ze+TIQJPd7Vp7Z22JwnbTMv0LuHbVg==
 
-"@poool/eslint-plugin@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-2.0.0.tgz#ed837340c64121c94ad20dfb5d897e2b863be862"
-  integrity sha512-qhR0vOh+6tiPbI7re3gG8bvR590Ut1ekOee9lksCL8LBq8601Ym+fniwyvR5osNSeVJ5BDwL0IHnZGYJtHdjCQ==
+"@poool/eslint-plugin@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@poool/eslint-plugin/-/eslint-plugin-2.0.1.tgz#e05552ed887aa042cc2560ebd513cbf1ad8c0c96"
+  integrity sha512-H0Y9HWRZ6HAZzuWBHKoOZ0nho7Wep1iNW1pPfmg1vw7o6WF04/W034Mi488T51UeHXzUnj0/DktDVyYTJXwS0g==
   dependencies:
     eslint-rule-composer "0.3.0"
 
