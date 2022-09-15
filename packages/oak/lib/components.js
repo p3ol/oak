@@ -69,7 +69,6 @@ export const GROUP_CORE = {
   name: t => t('core.groups.core.title', 'Core components'),
   type: 'group',
   components: [
-    COMPONENT_FOLDABLE,
     COMPONENT_ROW,
     COMPONENT_EMPTY_SPACE,
   ],

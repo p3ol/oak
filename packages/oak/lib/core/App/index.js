@@ -12,7 +12,7 @@ import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
 import { filterOverride } from '../../utils';
-import { GROUP_CORE, GROUP_OTHER } from '../../components';
+import { COMPONENT_FOLDABLE, GROUP_CORE, GROUP_OTHER } from '../../components';
 import { BASE_FIELDTYPES } from '../../fields';
 import Builder from '../Builder';
 
@@ -20,7 +20,11 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
   const oakRef = useRef();
   const options = useMemo(() => opts || {}, [opts]);
   const [state, dispatch] = useReducer(mockState, {
-    components: [cloneDeep(GROUP_CORE), cloneDeep(GROUP_OTHER)],
+    components: [
+      cloneDeep(GROUP_CORE),
+      cloneDeep(GROUP_OTHER),
+      cloneDeep({ group: 'core', component: COMPONENT_FOLDABLE }),
+    ],
     content: [],
     fieldTypes: [...cloneDeep(BASE_FIELDTYPES)],
     _settingsHolderRef: null,
