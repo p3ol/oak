@@ -29,7 +29,7 @@
     "@babel/runtime-corejs3": "7.19.0",
     "@poool/junipero": "2.0.0-rc.21",
     "@poool/junipero-utils": "2.0.0-rc.21",
-    "core-js": "3.25.1",
+    "core-js": "3.25.2",
     "is-hotkey": "0.2.0",
     "slate": "0.82.1",
     "slate-history": "0.66.0",
