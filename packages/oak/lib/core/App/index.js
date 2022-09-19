@@ -425,7 +425,7 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     parent.reduce((val, c) => val || (
       c.type === 'group'
         ? getComponent(type, { parent: c.components })
-        : c.id === type ? c : val
+        : c.id === type ? c : c.component?.id === type ? c.component : val
     ), null);
 
   const getField = type =>
