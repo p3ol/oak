@@ -27,20 +27,5 @@ export default {
       ),
       value: 'after',
     }],
-  }, {
-    type: 'select',
-    key: 'settings.gutters',
-    default: true,
-    label: t => t('core.components.foldable.settings.gutters.title',
-      'Column gap'),
-    options: [{
-      title: t => t('core.components.foldable.settings.gutters.enabled',
-        'Enabled'),
-      value: true,
-    }, {
-      title: t => t('core.components.foldable.settings.gutters.disabled',
-        'Disabled'),
-      value: false,
-    }],
   }],
 };
