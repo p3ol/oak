@@ -68,14 +68,14 @@ export default {
         },
       },
       foldable: {
-        name: 'Pliable',
+        name: 'Accordéon',
         sectionsTitle: {
           content: 'Contenu',
           seeMore: 'Label une fois plié',
           seeLess: 'Label une fois déplié',
         },
         settings: {
-          title: 'Options du composant pliable',
+          title: 'Options du composant accordéon',
           gutters: {
             title: 'Espacement inter-colonnes',
             enabled: 'Activé',
