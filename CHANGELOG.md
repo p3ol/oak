@@ -1,4 +1,59 @@
-# [](https://github.com/p3ol/oak/compare/v1.2.3...v) (2022-09-09)
+# [](https://github.com/p3ol/oak/compare/v1.3.0...v) (2022-09-21)
+
+
+
+# [1.3.0](https://github.com/p3ol/oak/compare/v1.2.4...v1.3.0) (2022-09-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.25.2 ([8702363](https://github.com/p3ol/oak/commit/870236329053b11c1e953a9d5431551359533572))
+* **deps:** update dependency preact to v10.11.0 ([07c505e](https://github.com/p3ol/oak/commit/07c505e6632faa0572bc44fa0a0efbe8e4154ace))
+* **deps:** update dependency prosemirror-commands to v1.3.1 ([2f1293f](https://github.com/p3ol/oak/commit/2f1293fcca860e7d95fb7964a3373f0f0abfa6d9))
+* **deps:** update dependency prosemirror-view to v1.28.0 ([f8307ef](https://github.com/p3ol/oak/commit/f8307ef4124b7419846538364516ebcf56a33db8))
+* **deps:** update dependency slate-react to v0.82.2 ([9e9a9a3](https://github.com/p3ol/oak/commit/9e9a9a37b0e0b8c19ca1c0f1dec08c4eacb7dacf))
+* **deps:** update dependency slate-react to v0.83.0 ([6e5f40c](https://github.com/p3ol/oak/commit/6e5f40cff0d468887a455b2aa110e9306a45b8a0))
+* fuck everything up after, as always ([6604b80](https://github.com/p3ol/oak/commit/6604b801cee9cb497bbdf6b5596a01ef226c9171))
+* **oak-core:** repair getComponent function ([1b7c00e](https://github.com/p3ol/oak/commit/1b7c00ee92ae7c1186967907d6c019dfab3ae059))
+
+
+### Features
+
+* **foldable:** add translations and add Foldable options ([322aad6](https://github.com/p3ol/oak/commit/322aad694cb4b0f53c0941771b368032e6cf6c73))
+* **foldable:** add unit tests and hide remove cross on col when its the last one ([c93cca8](https://github.com/p3ol/oak/commit/c93cca801382ff6e65584e49d1affe5996f5916a))
+* **foldable:** centerize default seeMore and seeLess text content ([875d424](https://github.com/p3ol/oak/commit/875d424433900f2f94029ff87511cc7aaad10465))
+* **foldable:** learn how to translate foldable into french ([2a7486a](https://github.com/p3ol/oak/commit/2a7486aedaa9e316782417bdf8fb56ea1bf482d9))
+* **foldable:** put seeMorePosition on top of Foldable settings ([39ae575](https://github.com/p3ol/oak/commit/39ae57587d85201b4a8f0e1b0c716562e8c7c6d6))
+* **foldable:** regenerate font with correct icomoon json ([64b4463](https://github.com/p3ol/oak/commit/64b44639bf116dca47dba4e39559b914dcbfff55))
+* **foldable:** regenerate icons json ([075f79a](https://github.com/p3ol/oak/commit/075f79af88ca459f3e6dec4416dbcaf422f10b0e))
+* **foldable:** remove duplicated and useless style ([b158cbb](https://github.com/p3ol/oak/commit/b158cbb113d616f2777a7472ef586517698e4d64))
+* **foldable:** remove gutters option ([874c626](https://github.com/p3ol/oak/commit/874c626e40d251df10f28381301b7044781bb3e8))
+* **foldable:** remove useless options on foldable component settings ([4c0a172](https://github.com/p3ol/oak/commit/4c0a17251ab85a6c35646062f42ee6afd1a7eb1e))
+* **foldable:** repair some little bugs ([db2dd6a](https://github.com/p3ol/oak/commit/db2dd6a58c24b18a5a0a31b9956df7f37f2e7e30))
+* **foldable:** repair style on catalog icon ([4aeeda5](https://github.com/p3ol/oak/commit/4aeeda594a004410ea0bbd2e4eb160ccb6b3a1af))
+* **foldable:** rework all the behavior of the see more component ([792089d](https://github.com/p3ol/oak/commit/792089dfb091030d6cd45007bfa5411529cbd36b))
+* **foldable:** set after as default value for seeMorePosition field ([542a7d2](https://github.com/p3ol/oak/commit/542a7d273d6b981f94beb486e1673bedc9e696a0))
+* **foldable:** set foldable at the bottom of the core components on catalogue: where it should be ([8f6de6c](https://github.com/p3ol/oak/commit/8f6de6c9c7b45c8ecde8dff1f092dc7b6a5e746e))
+* **foldable:** translate section title and restyle itÃ ([1c08884](https://github.com/p3ol/oak/commit/1c08884cad105c9d2d86e2ccd823aa37e0e4b0d8))
+* **oak-ciore:** add buttons to add elements when element list is not empty on foldable sections ([cbf2341](https://github.com/p3ol/oak/commit/cbf23415398d063e8636c216fa95efdf1e171bf7))
+* **oak-core:** add unfold icon to oak-icons ([7b11794](https://github.com/p3ol/oak/commit/7b11794e2e487ac43c4060b2c569b981a7926192))
+* **oak-core:** lint files ([fbe86ae](https://github.com/p3ol/oak/commit/fbe86ae5f197dab8ae5363d491a726b84fa4bb7d))
+* **oak-core:** remove useless code and add foldable empty to seeMore and seeless sectiosn ([81d1d4f](https://github.com/p3ol/oak/commit/81d1d4f4fefb21f5a67e56b279747d71d111cac0))
+* **oak-core:** repair some lint and add translations ([3ce9cc9](https://github.com/p3ol/oak/commit/3ce9cc984c45cdf05d10b5c60e4a83f43eff9391))
+* **oak-core:** reverts all the stuff made when foldable used row ([3ac2351](https://github.com/p3ol/oak/commit/3ac23519755b09ea1e8f57f5d414274ca6086a4f))
+* **oak-core:** rework foldable component again, to not use rows anymore ([51e5ffb](https://github.com/p3ol/oak/commit/51e5ffb603af36c6ea0c98f918ce4cd75134b36d))
+* **oak-core:** use seeMorePosition instead of seeMorePlacement ([3d5dbf3](https://github.com/p3ol/oak/commit/3d5dbf313bcd12076ed39ca746d3057259de23c7))
+* **oak:** add seeMore and seeLess sections to all the recursives functions ([37bd9de](https://github.com/p3ol/oak/commit/37bd9de7c9b2e1565e270e2d1b613a87a65949f1))
+* **oak:** wip add seeMore component ([dd8c137](https://github.com/p3ol/oak/commit/dd8c137b54bf9a2a29c04f9970362b31918c53f7))
+
+
+
+## [1.2.4](https://github.com/p3ol/oak/compare/v1.2.3...v1.2.4) (2022-09-14)
+
+
+### Bug Fixes
+
+* **lib:** prevent infinite renders due to options being real props ([8769abc](https://github.com/p3ol/oak/commit/8769abc2207ffd129e2aded2638777a48e1d16ed))
 
 
 
