@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 import Row from './core/Row';
+import Foldable from './core/Foldable';
 import EmptySpace from './core/EmptySpace';
 
 export const COMPONENT_ROW = {
@@ -23,6 +24,24 @@ export const COMPONENT_ROW = {
       id: uuid(),
       style: {},
     }],
+  }),
+};
+
+export const COMPONENT_FOLDABLE = {
+  id: 'foldable',
+  name: t => t('core.components.foldable.name', 'Foldable'),
+  type: 'component',
+  render: Foldable,
+  icon: 'unfold_less',
+  editable: true,
+  options: Foldable.options,
+  settings: Foldable.settings,
+  construct: () => ({
+    type: 'foldable',
+    settings: {},
+    content: [],
+    seeMore: [],
+    seeLess: [],
   }),
 };
 

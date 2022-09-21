@@ -41,7 +41,6 @@ const Row = ({
   return (
     <div
       { ...omit(rest, ['builder']) }
-      style={element.style}
     >
       <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="oak-drop-zone oak-before" />

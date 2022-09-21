@@ -2,7 +2,7 @@
   "metadata": {
     "name": "Oak icons",
     "lastOpened": 0,
-    "created": 1656339411082
+    "created": 1662458609787
   },
   "iconSets": [
     {
@@ -3130,7 +3130,11 @@
         {
           "ligatures": "unfold_less",
           "id": 604,
-          "order": 0
+          "order": 32,
+          "prevSize": 24,
+          "code": 59675,
+          "name": "unfold_less",
+          "tempChar": ""
         },
         {
           "ligatures": "unfold_more",
@@ -4289,7 +4293,7 @@
           "prevSize": 24,
           "code": 59666,
           "name": "view_column",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "view_day",
@@ -6318,7 +6322,7 @@
           "prevSize": 24,
           "code": 59672,
           "name": "horizontal_rule",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "ligatures": "hourglass_bottom",
@@ -25891,7 +25895,10 @@
       "color": 0,
       "bgColor": 16777215,
       "name": "icomoon",
-      "classSelector": ".icon"
+      "classSelector": ".icon",
+      "height": 32,
+      "columns": 16,
+      "margin": 16
     },
     "historySize": 50,
     "showLiga": true

@@ -1,0 +1,96 @@
+@require "../../theme/colors"
+@require "../../theme/vars"
+
+.oak-foldable
+  border: 2px solid $color-white
+  background: $color-link-water
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row
+  position: relative
+  margin-top: 30px
+  margin-bottom: 20px
+  width: 100%
+  border-radius: 3px
+
+  & :first-child
+    &.oak-foldable-section-title
+      margin-top: 30px
+
+  .oak-foldable-section-title
+    color: $color-slate-gray
+    margin-left: 20px
+
+  .oak-foldable-content
+    margin: 5px 20px 30px 20px
+    padding: 20px
+    background: $color-white
+    display: flex
+    flex-direction: column
+    align-items: center
+    min-height:200px
+    height: fit-content
+    
+    & :nth-child(2)
+      &.oak-element
+        margin-top: 20px
+
+    &.drag-enter .oak-foldable-content-empty
+      background: $color-catskill-white
+      border-radius: 5px
+
+      .oak-handle
+        display: none
+
+    .oak-handle 
+      width: 26px
+      height: 26px
+      
+      .oak-handle-inner i
+        font-size: 20px 
+
+    .oak-foldable-content-empty
+      width: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      min-height: 150px
+
+      .oak-handle 
+        width: 40px
+        height: 40px
+
+        .oak-handle-inner i
+          font-size: 30px
+
+    .oak-element
+      margin-left: 20px
+      margin-right: 20px
+      width: 100%
+      &.oak-row
+        margin-top: 20px
+
+  > .oak-options
+    top: -25px
+    left: 0
+    transform: none
+    display: flex
+    visibility: visible
+    z-index: 2
+
+    a.oak-option
+      &:first-child
+        border-radius: 3px 0 0 0
+
+        &:last-child
+          border-radius: 3px 3px 0 0
+
+      &:last-child, &.oak-edit
+        border-radius: 0 3px 0 0
+
+      &.oak-drag-handle
+        cursor: move
+        cursor: grab
+
+        &:active
+          cursor: gragging

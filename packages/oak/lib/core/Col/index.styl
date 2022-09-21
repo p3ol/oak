@@ -99,10 +99,17 @@
       .oak-element
         margin-bottom: 0
 
+      .oak-foldable
+        background: $color-white
+
+        .oak-foldable-content
+          background: $color-link-water
+
       .oak-element.oak-row
         margin-top: 40px
         margin-bottom: 0
 
+      .oak-element.oak-row, .oak-element.oak-foldable
         &:first-child
           margin-top: 20px
 
@@ -113,6 +120,12 @@
 
         .oak-col-wrapper
           background: $color-white
+
+          .oak-foldable
+            background: $color-link-water
+
+            .oak-foldable-content
+              background: $color-white
 
           .oak-element:not(.oak-row) .oak-inner
             background: $color-link-water

@@ -12,7 +12,7 @@ import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
 import { filterOverride } from '../../utils';
-import { GROUP_CORE, GROUP_OTHER } from '../../components';
+import { COMPONENT_FOLDABLE, GROUP_CORE, GROUP_OTHER } from '../../components';
 import { BASE_FIELDTYPES } from '../../fields';
 import Builder from '../Builder';
 
@@ -20,7 +20,11 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
   const oakRef = useRef();
   const options = useMemo(() => opts || {}, [opts]);
   const [state, dispatch] = useReducer(mockState, {
-    components: [cloneDeep(GROUP_CORE), cloneDeep(GROUP_OTHER)],
+    components: [
+      cloneDeep(GROUP_CORE),
+      cloneDeep(GROUP_OTHER),
+      cloneDeep({ group: 'core', component: COMPONENT_FOLDABLE }),
+    ],
     content: [],
     fieldTypes: [...cloneDeep(BASE_FIELDTYPES)],
     _settingsHolderRef: null,
@@ -258,6 +262,7 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     target,
     { parent = state.content, position = 'after' } = {}
   ) => {
+
     if (
       !elmt.id ||
       !target.id ||
@@ -269,7 +274,6 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
 
     const nearestParent = findNearestParent(elmt);
     nearestParent?.splice(nearestParent?.findIndex(e => e.id === elmt.id), 1);
-
     const newIndex = parent.indexOf(target);
     parent.splice(position === 'after' ? newIndex + 1 : newIndex, 0, elmt);
     onChange();
@@ -281,10 +285,23 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
         return parent;
       } else if (Array.isArray(e.cols)) {
         const nearest = findNearestParent(elmt, { parent: e.cols });
+
         if (nearest) return nearest;
       } else if (Array.isArray(e.content)) {
         const nearest = findNearestParent(elmt, { parent: e.content });
+
+        if (Array.isArray(e.seeMore)) {
+          const nearest = findNearestParent(elmt, { parent: e.seeMore });
+          if (nearest) return nearest;
+        }
+
+        if (Array.isArray(e.seeLess)) {
+          const nearest = findNearestParent(elmt, { parent: e.seeLess });
+          if (nearest) return nearest;
+        }
+
         if (nearest) return nearest;
+
       }
     }
 
@@ -304,13 +321,30 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     (
       Array.isArray(parent.content) &&
       contains(elmt, { parent: parent.content })
+    ) ||
+    (
+      Array.isArray(parent.seeMore) &&
+      contains(elmt, { parent: parent.seeMore })
+    ) ||
+    (
+      Array.isArray(parent.seeLess) &&
+      contains(elmt, { parent: parent.seeLess })
     );
 
   const normalizeElement = (elmt, opts = {}) => {
     if (Array.isArray(elmt.cols)) {
       elmt.cols.forEach(c => normalizeElement(c, opts));
+
     } else if (Array.isArray(elmt.content)) {
       elmt.content.forEach(e => normalizeElement(e, opts));
+
+      if (Array.isArray(elmt.seeMore)) {
+        normalizeElement(elmt.seeMore, opts);
+      }
+
+      if (Array.isArray(elmt.seeLess)) {
+        normalizeElement(elmt.seeLess, opts);
+      }
     }
 
     if (!elmt.id || opts.resetIds) {
@@ -331,8 +365,17 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
   const serializeElement = elmt => {
     if (Array.isArray(elmt.cols)) {
       elmt.cols.forEach(c => serializeElement(c));
+
     } else if (Array.isArray(elmt.content)) {
       elmt.content.forEach(e => serializeElement(e));
+
+      if (Array.isArray(elmt.seeMore)) {
+        elmt.seeMore.forEach(e => serializeElement(e));
+      }
+
+      if (Array.isArray(elmt.seeLess)) {
+        elmt.seeLess.forEach(e => serializeElement(e));
+      }
     }
 
     const component = getComponent(elmt.type);
@@ -382,7 +425,7 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     parent.reduce((val, c) => val || (
       c.type === 'group'
         ? getComponent(type, { parent: c.components })
-        : c.id === type ? c : val
+        : c.id === type ? c : c.component?.id === type ? c.component : val
     ), null);
 
   const getField = type =>

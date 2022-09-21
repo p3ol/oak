@@ -67,6 +67,27 @@ export default {
           },
         },
       },
+      foldable: {
+        name: 'Accordéon',
+        sectionsTitle: {
+          content: 'Contenu',
+          seeMore: 'Label une fois plié',
+          seeLess: 'Label une fois déplié',
+        },
+        settings: {
+          title: 'Options du composant accordéon',
+          gutters: {
+            title: 'Espacement inter-colonnes',
+            enabled: 'Activé',
+            disabled: 'Désactivé',
+          },
+          seeMorePlacement: {
+            title: 'Placement du voir plus',
+            before: 'Avant',
+            after: 'Après',
+          },
+        },
+      },
       col: {
         settings: {
           title: 'Options de colonne',

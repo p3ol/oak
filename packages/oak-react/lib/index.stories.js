@@ -2,7 +2,7 @@ import { useReducer, useRef } from 'react';
 import { mockState } from '@poool/junipero-utils';
 import { action } from '@storybook/addon-actions';
 
-import { Builder } from './';
+import { Builder } from './index';
 import basicComponents from '../../oak-addon-basic-components/lib';
 
 export default { title: 'oak-react' };
