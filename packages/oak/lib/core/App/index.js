@@ -38,7 +38,7 @@ export default forwardRef(({ options, onReady }, ref) => {
 
   useEffect(() => {
     init();
-  }, [state.ptions]);
+  }, [state.options]);
 
   useEffect(() => {
     dispatch({ overrides: state.options.overrides || [] });
