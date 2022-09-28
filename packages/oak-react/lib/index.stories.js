@@ -10,6 +10,10 @@ export default { title: 'oak-react' };
 const BuilderWrapper = ({ onChange }) => {
   const [state, dispatch] = useReducer(mockState, {
     value: [],
+    onChange_: ({ value }) => {
+      onChange({ from: 'before handler', value });
+      dispatch({ value });
+    },
   });
   const ref = useRef();
 
@@ -21,9 +25,13 @@ const BuilderWrapper = ({ onChange }) => {
     ref.current?.builderRef.current?.redo();
   };
 
-  const onChange_ = ({ value }) => {
-    onChange({ value });
-    dispatch({ value });
+  const changeHandler = () => {
+    dispatch({
+      onChange_: ({ value }) => {
+        onChange({ from: 'after handler', value });
+        dispatch({ value });
+      },
+    });
   };
 
   // Simulate file upload
@@ -229,6 +237,7 @@ const BuilderWrapper = ({ onChange }) => {
   return (
     <>
       <div><button onClick={loadContent}>Load prebuilt appearance</button></div>
+      <button onClick={changeHandler}>Change onChange handler</button>
       <button onClick={undo}>
         Undo from parent, possible :
         {String(ref.current?.builderRef.current?.isUndoPossible())}
@@ -240,7 +249,7 @@ const BuilderWrapper = ({ onChange }) => {
       <Builder
         addons={[basicComponents]}
         value={state.value}
-        onChange={onChange_}
+        onChange={state.onChange_}
         onImageUpload={onImageUpload}
         ref={ref}
         options={{

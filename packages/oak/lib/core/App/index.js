@@ -16,9 +16,8 @@ import { COMPONENT_FOLDABLE, GROUP_CORE, GROUP_OTHER } from '../../components';
 import { BASE_FIELDTYPES } from '../../fields';
 import Builder from '../Builder';
 
-export default forwardRef(({ options: opts, onReady }, ref) => {
+export default forwardRef(({ options, onReady }, ref) => {
   const oakRef = useRef();
-  const options = useMemo(() => opts || {}, [opts]);
   const [state, dispatch] = useReducer(mockState, {
     components: [
       cloneDeep(GROUP_CORE),
@@ -32,17 +31,18 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     positionInMemory: 1,
     isUndoPossible: false,
     isRedoPossible: false,
+    options,
     texts: options?.texts || {},
     overrides: options?.overrides || [],
   });
 
   useEffect(() => {
     init();
-  }, [options]);
+  }, [state.ptions]);
 
   useEffect(() => {
-    dispatch({ overrides: options.overrides || [] });
-  }, [options?.overrides]);
+    dispatch({ overrides: state.options.overrides || [] });
+  }, [state.options?.overrides]);
 
   useEffect(() => {
     setContent(options?.content || []);
@@ -51,6 +51,7 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
 
   useImperativeHandle(ref, () => ({
     addGroup,
+    setOptions,
     removeGroup,
     addComponent,
     removeComponent,
@@ -103,8 +104,8 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
   const init = () => {
     state.fieldTypes = [...BASE_FIELDTYPES];
 
-    if (options.addons) {
-      options.addons.forEach(addon => {
+    if (state.options.addons) {
+      state.options.addons.forEach(addon => {
         if (addon.fieldTypes) {
 
           addon.fieldTypes.forEach(fieldType => {
@@ -157,7 +158,7 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     newMemory.push(cloneDeep(content) || cloneDeep(state.content));
 
     let offset = 0;
-    const maximum = options.memoryMaximum || 100;
+    const maximum = state.options.memoryMaximum || 100;
 
     if (newMemory.length > maximum + 1) {
       offset = newMemory.length - maximum + 1;
@@ -174,7 +175,7 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     });
     const content_ = cloneDeep(content || state.content);
     content_.forEach(e => serializeElement(e));
-    options?.events?.onChange?.({ value: content_ });
+    state.options?.events?.onChange?.({ value: content_ });
   };
 
   const getGroup_ = id => {
@@ -206,6 +207,10 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     const group = getGroup_(groupId);
     group.components = group.components.filter(c => c.id !== id);
     dispatch({ components: state.components });
+  };
+
+  const setOptions = options => {
+    dispatch({ options });
   };
 
   const addElement = (
@@ -418,7 +423,7 @@ export default forwardRef(({ options: opts, onReady }, ref) => {
     });
     const contentCopy = cloneDeep(content_);
     contentCopy.forEach(e => serializeElement(e));
-    options?.events?.onChange?.({ value: contentCopy });
+    state.options?.events?.onChange?.({ value: contentCopy });
   };
 
   const getComponent = (type, { parent = state.components } = {}) =>
