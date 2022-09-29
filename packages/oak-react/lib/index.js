@@ -43,6 +43,20 @@ const Builder_ = forwardRef(({
     };
   }, []);
 
+  useEffect(() => {
+    builderRef.current?.setOptions({
+      ...options,
+      ...rest,
+      content: value,
+      events: {
+        ...options.events,
+        ...rest.events,
+        onChange,
+        onImageUpload,
+      },
+    });
+  }, [options, onChange, onImageUpload]);
+
   useImperativeHandle(ref, () => ({
     innerRef,
     builderRef,

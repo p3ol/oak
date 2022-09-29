@@ -136,6 +136,14 @@ class oak {
     return this;
   }
 
+  setOptions (...args) {
+    this.#ensureMethod(() => {
+      this.#ref.current?.setOptions(...args);
+    });
+
+    return this;
+  }
+
   destroy () {
     ReactDOM.unmountComponentAtNode(this.#parent);
   }
