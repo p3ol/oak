@@ -13970,10 +13970,10 @@ slate-hyperscript@0.77.0:
   dependencies:
     is-plain-object "^5.0.0"
 
-slate-react@0.83.0:
-  version "0.83.0"
-  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.83.0.tgz#ef48ef54bb9c61dc318431cf0a60e79c490a0e2d"
-  integrity sha512-P+Pv7oPcd1CebRYOGziGM0fqwUrGEqophrb3XnxCN3HbNTIll70dbAsJZxkXIDxp727a+8FcLl8X105tGw7WRA==
+slate-react@0.83.1:
+  version "0.83.1"
+  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.83.1.tgz#f8a98dd56e4c6937d6d64ce1d58bf68934a19952"
+  integrity sha512-oZ9qEBGZaFcu0TWB0j+VQ6L3+rq0eIWRXLvcDWrK+tI8VdEQYet1iqiBZAjb9WhBEXXJzauDubB9Xe/x+voRJw==
   dependencies:
     "@types/is-hotkey" "^0.1.1"
     "@types/lodash" "^4.14.149"
