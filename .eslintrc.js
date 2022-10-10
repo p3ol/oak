@@ -1,6 +1,7 @@
 const OFF = 0;
 
 module.exports = {
+  parser: '@typescript-eslint/parser',
   extends: ['@poool/eslint-config-react'],
   rules: {
     'react/prop-types': 0,
