@@ -1,4 +1,4 @@
-import { COMPONENT } from "../../component";
+import { COMPONENT, Style } from "../../component";
 
 declare type Responsive =
   | 12
@@ -17,7 +17,8 @@ declare type Responsive =
   | "auto"
   | "hide";
 
-export declare interface TYPE_COL extends COMPONENT {
+export declare type TYPE_COL = {
+  type: "col";
   responsive?: {
     xl?: Responsive;
     lg?: Responsive;
@@ -25,5 +26,7 @@ export declare interface TYPE_COL extends COMPONENT {
     sm?: Responsive;
     xs?: Responsive;
   };
-  content: Array<Component>;
-}
+  content?: Array<COMPONENT>;
+  style?: Style;
+  [key: string]: any;
+};

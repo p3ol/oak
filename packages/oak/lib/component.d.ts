@@ -1,7 +1,8 @@
-import { TYPE_COL } from "./core/Col/index";
-import { TYPE_ROW } from "./core/Row/index";
+import { TYPE_COL } from "./core/Col";
+import { TYPE_ROW } from "./core/Row";
+import { TYPE_EMPTY_SPACE } from "./core/EmptySpace";
 
-declare interface Style {
+export declare interface Style {
   paddingTop?: String | Number;
   paddingBottom?: String | Number;
   paddingRight?: String | Number;
@@ -15,9 +16,17 @@ declare interface Style {
   backgroundPosition?: String;
   backgroundRepeat?: "no-repeat" | "repeat-y" | "repeat-x" | "repeat";
   backgroundColor?: String;
+  [key: string]: any;
 }
 
-export declare interface COMPONENT {
+export declare type COMPONENT =
+  | COMPONENT_BASE
+  | TYPE_EMPTY_SPACE
+  | TYPE_COL
+  | TYPE_ROW;
+
+export declare interface COMPONENT_BASE {
+  type: string;
   style?: Style;
   responsive?: {
     xl?: "hide" | "show";
@@ -25,7 +34,9 @@ export declare interface COMPONENT {
     md?: "hide" | "show";
     sm?: "hide" | "show";
     xs?: "hide" | "show";
+    [key: string]: any;
   };
+  [key: string]: any;
 }
 
-export { TYPE_COL, TYPE_ROW };
+export { TYPE_COL, TYPE_ROW, TYPE_EMPTY_SPACE };
