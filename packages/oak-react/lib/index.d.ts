@@ -1,8 +1,5 @@
 import { ComponentPropsWithoutRef, Ref } from "react";
-import {
-  Options,
-  COMPONENT,
-} from "@poool/oak";
+import { Options, COMPONENT } from "@poool/oak";
 
 interface BuilderProps extends ComponentPropsWithoutRef<any> {
   [key: string]: any;
@@ -13,7 +10,7 @@ interface BuilderProps extends ComponentPropsWithoutRef<any> {
   onImageUpload?: (event: any) => { url: string; name?: string };
   className?: String;
   ref?: Ref<any>;
-  content: Array<COMPONENT>;
+  content?: Array<COMPONENT>;
 }
 declare function Builder(props: BuilderProps): JSX.Element;
 export { Builder };
