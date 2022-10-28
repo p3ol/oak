@@ -59,7 +59,7 @@ export default [
     } : {}),
   })), {
     input: './lib/index.d.ts',
-    output: [{ file: 'dist/types/index.d.ts', format: 'es' }],
+    output: [{ file: `${output}/${name}.d.ts`, format: 'es' }],
     plugins: [dts()],
   },
 ];

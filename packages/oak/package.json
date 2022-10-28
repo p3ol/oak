@@ -8,6 +8,7 @@
   "esnext": "src/index.js",
   "unpkg": "dist/oak.min.js",
   "cdn": "dist/oak.min.js",
+  "types": "dist/oak.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",
@@ -47,6 +48,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "types": "./dist/types/index.d.ts"
+  }
 }
