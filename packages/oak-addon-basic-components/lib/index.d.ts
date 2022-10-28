@@ -1,24 +1,24 @@
-import { BaseComponent } from '@poool/oak';
+import { BaseElement } from '@poool/oak';
 import { ResponsiveDisplay } from '@poool/oak/lib/component';
 
-export declare interface TextComponent extends BaseComponent {
+export declare interface TextElement extends BaseElement {
   type: 'text';
   responsive?: ResponsiveDisplay;
   url: String;
   content?: String;
-  [key?: String]: any;
+  [key: string]: any;
 }
 
-export declare interface TitleComponent extends BaseComponent {
+export declare interface TitleElement extends BaseElement {
   type: 'text';
   responsive?: ResponsiveDisplay;
   url: String;
   content?: String;
   heading: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  [key?: String]: any;
+  [key: string]: any;
 }
 
-export declare interface ImageComponent extends BaseComponent {
+export declare interface ImageElement extends BaseElement {
   type: 'image';
   responsive?: ResponsiveDisplay;
   url: String;
@@ -27,12 +27,12 @@ export declare interface ImageComponent extends BaseComponent {
     width?: String;
     height?: String;
     textAlign?: 'left' | 'center' | 'right';
-    [key?: String]: any;
+    [key: string]: any;
   }
-  [key?: String]: any;
+  [key: string]: any;
 }
 
-export declare interface ButtonComponent extends BaseComponent {
+export declare interface ButtonElement extends BaseElement {
   type: 'Button';
   responsive?: ResponsiveDisplay;
   action: 'link' | 'event';
@@ -41,7 +41,7 @@ export declare interface ButtonComponent extends BaseComponent {
   event?: String;
   settings: {
     buttonType: 'button' | 'link';
-    [key?: String]: any
+    [key: string]: any
   }
-  [key?: String]: any
+  [key: string]: any
 }

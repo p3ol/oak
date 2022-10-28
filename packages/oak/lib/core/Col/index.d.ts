@@ -1,4 +1,4 @@
-import { Component, BaseComponent } from '../../component';
+import { Element, BaseElement } from '../../component';
 
 declare type responsiveGrow =
   | 12
@@ -17,7 +17,7 @@ declare type responsiveGrow =
   | 'auto'
   | 'hide';
 
-export declare interface ColComponent extends BaseComponent {
+export declare interface ColElement extends BaseElement {
   type: 'col';
   responsive?: {
     xl?: responsiveGrow;
@@ -27,6 +27,6 @@ export declare interface ColComponent extends BaseComponent {
     xs?: responsiveGrow;
     [key: string]: any;
   };
-  content?: Array<Component>;
+  content?: Array<Element>;
   [key: string]: any;
 }

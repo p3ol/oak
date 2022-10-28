@@ -1,9 +1,9 @@
-import { Component } from './component';
+import { Element } from './component';
 
 export declare function useOptions(): Object;
 export declare function useBuilder(): {
   components: Array<any>;
-  content: Array<Component>;
+  content: Array<Element>;
   [key: string]: any;
 };
 export declare function useElement(): {

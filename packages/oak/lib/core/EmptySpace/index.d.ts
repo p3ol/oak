@@ -1,6 +1,6 @@
-import { BaseComponent, ResponsiveDisplay } from '../../component';
+import { BaseElement, ResponsiveDisplay } from '../../component';
 
-export declare interface EmptySpaceComponent extends BaseComponent {
+export declare interface EmptySpaceElement extends BaseElement {
   type: 'empty-space';
   settings?: {
     height?: string;

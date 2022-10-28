@@ -1,11 +1,19 @@
 import { MutableRefObject } from 'react';
 
-import { Component } from './component';
+import { Element, BaseElement } from './component';
 import { useElement, useBuilder, useOptions } from './hooks';
 
 interface OverrideField {
   key: string;
   type: string;
+}
+
+interface Field {
+  type: String;
+  render: (
+    props: any,
+    options?: {field: Object, element: Element}
+  ) => JSX.Element;
 }
 
 interface OverrideComponent {
@@ -20,11 +28,11 @@ interface OverrideComponent {
   /** construct function overrides, takes the element,
    * and should return new Object
    * */
-  construct?: (element: Object) => Object;
+  construct?: () => Element;
   /** duplicate function overrides, takes the element,
    * and should return new Object
   */
-  duplicate?: (element: Object) => Object;
+  duplicate?: (element: Element) => Element;
 }
 interface AddonComponent {
   id: String;
@@ -139,8 +147,8 @@ interface Options {
     });
    */
   events?: {
-    onChange: (props: { value: Array<Component> }) => void;
-    onImageUpload: (props: { value: Array<Component> }) => {
+    onChange: (props: { value: Array<Element> }) => void;
+    onImageUpload: (props: { value: Array<Element> }) => {
       url: string;
       name?: string;
     };
@@ -203,24 +211,35 @@ interface Options {
   /**Element in which to render the components' settings panel. */
   settingsContainer?: any;
 }
-declare interface Oak {
+
+interface ElementProps extends Omit<Element, 'id'> {}
+
+export interface Oak {
   setRef: (ref: MutableRefObject<any>) => Oak;
   setReady: () => Oak;
   addGroup:
     (props: {id?: String, name?: String, components?: Array<Object>}) => Oak;
   removeGroup: (id: number) => Oak;
-  setContent: (content: Array<Component>) => Oak;
-  addElement: () => Oak;
-  removeElement: () => Oak;
-  setElement: () => Oak;
+  setContent: (content: Array<Element>) => Oak;
+  addElement: (
+    elmt: Element,
+    options?: {
+      parent?: Array<Element>,
+      position: 'after' | 'before',
+      normalizeOptions: Object
+    }) => Oak;
+  removeElement: (
+    elmt: Element, options?: { parent?: Array<Element>}
+  ) => Oak;
+  setElement: (elmt: Element, props: ElementProps) => Oak;
   undo: () => Oak;
   redo: () => Oak;
-  isUndoPossible: () => Oak;
-  isRedoPossible: () => Oak;
-  setTexts: () => Oak;
-  getText: () => Oak;
-  setOverrides: () => Oak;
-  setOptions: () => Oak;
+  isUndoPossible: () => Boolean;
+  isRedoPossible: () => Boolean;
+  setTexts: (texts: TextKey) => Oak;
+  getText: (key?: String, def?: String) => Oak;
+  setOverrides: (overrides: Array<OverrideComponent | OverrideField>) => Oak;
+  setOptions: (options: Options) => Oak;
   destroy: () => Oak;
 }
 
@@ -231,4 +250,10 @@ export {
   useBuilder,
   useElement,
   render,
+  Options,
+  Element,
+  OverrideComponent,
+  Field,
+  AddonComponent,
+  BaseElement,
 };

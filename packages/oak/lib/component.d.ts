@@ -1,14 +1,14 @@
 
 import {
-  ButtonComponent,
-  ImageComponent,
-  TextComponent,
-  TitleComponent,
+  ButtonElement,
+  ImageElement,
+  TextElement,
+  TitleElement,
 } from '@poool/oak-addon-basic-components';
 
-import { ColComponent } from './core/Col';
-import { RowComponent } from './core/Row';
-import { EmptySpaceComponent } from './core/EmptySpace';
+import { ColElement } from './core/Col';
+import { RowElement } from './core/Row';
+import { EmptySpaceElement } from './core/EmptySpace';
 
 export declare interface Style {
   paddingTop?: String | Number;
@@ -35,8 +35,9 @@ export declare interface ResponsiveDisplay {
   xs?: 'show' | 'hide';
   [key: string]: any;
 }
-declare interface BaseComponent {
+declare interface BaseElement {
   type: String;
+  id: String | number;
   style?: Style;
   responsive?: {
     xl?: any;
@@ -51,14 +52,14 @@ declare interface BaseComponent {
   }
   [key: string]: any;
 }
-export declare type Component =
-  | BaseComponent
-  | EmptySpaceComponent
-  | ColComponent
-  | RowComponent
-  | TextComponent
-  | ButtonComponent
-  | TitleComponent
-  | ImageComponent
+export declare type Element =
+  | BaseElement
+  | EmptySpaceElement
+  | ColElement
+  | RowElement
+  | TextElement
+  | ButtonElement
+  | TitleElement
+  | ImageElement
 
-export { ColComponent, RowComponent, EmptySpaceComponent, BaseComponent };
+export { ColElement, RowElement, EmptySpaceElement, BaseElement };

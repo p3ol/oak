@@ -1,7 +1,7 @@
-import { ColComponent } from '../Col';
-import { BaseComponent, ResponsiveDisplay } from '../../component';
+import { ColElement } from '../Col';
+import { BaseElement, ResponsiveDisplay } from '../../component';
 
-export declare interface RowComponent extends BaseComponent {
+export declare interface RowElement extends BaseElement {
   type: 'row';
   settings?: {
     flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
@@ -16,6 +16,6 @@ export declare interface RowComponent extends BaseComponent {
     [key: string]: any;
   };
   responsive?: ResponsiveDisplay
-  cols: Array<ColComponent>;
+  cols: Array<ColElement>;
   [key: string]: any;
 }
