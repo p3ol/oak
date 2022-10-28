@@ -1,10 +1,11 @@
-import { COMPONENT_BASE } from "../../component";
+import { BaseComponent, ResponsiveDisplay } from '../../component';
 
-export declare type TYPE_EMPTY_SPACE = {
-  type: "empty-space";
+export declare interface EmptySpaceComponent extends BaseComponent {
+  type: 'empty-space';
   settings?: {
-    height: string;
+    height?: string;
     [key: string]: any;
   };
+  responsive?: ResponsiveDisplay;
   [key: string]: any;
-} & COMPONENT_BASE;
+}

@@ -1,6 +1,6 @@
-import { COMPONENT, Style } from "../../component";
+import { Component, BaseComponent } from '../../component';
 
-declare type Responsive =
+declare type responsiveGrow =
   | 12
   | 11
   | 10
@@ -13,20 +13,20 @@ declare type Responsive =
   | 3
   | 2
   | 1
-  | "fluid"
-  | "auto"
-  | "hide";
+  | 'fluid'
+  | 'auto'
+  | 'hide';
 
-export declare type TYPE_COL = {
-  type: "col";
+export declare interface ColComponent extends BaseComponent {
+  type: 'col';
   responsive?: {
-    xl?: Responsive;
-    lg?: Responsive;
-    md?: Responsive;
-    sm?: Responsive;
-    xs?: Responsive;
+    xl?: responsiveGrow;
+    lg?: responsiveGrow;
+    md?: responsiveGrow;
+    sm?: responsiveGrow;
+    xs?: responsiveGrow;
+    [key: string]: any;
   };
-  content?: Array<COMPONENT>;
-  style?: Style;
+  content?: Array<Component>;
   [key: string]: any;
-};
+}

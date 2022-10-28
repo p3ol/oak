@@ -1,6 +1,14 @@
-import { TYPE_COL } from "./core/Col";
-import { TYPE_ROW } from "./core/Row";
-import { TYPE_EMPTY_SPACE } from "./core/EmptySpace";
+
+import {
+  ButtonComponent,
+  ImageComponent,
+  TextComponent,
+  TitleComponent,
+} from '@poool/oak-addon-basic-components';
+
+import { ColComponent } from './core/Col';
+import { RowComponent } from './core/Row';
+import { EmptySpaceComponent } from './core/EmptySpace';
 
 export declare interface Style {
   paddingTop?: String | Number;
@@ -12,31 +20,45 @@ export declare interface Style {
   marginRight?: String | Number;
   marginLeft?: String | Number;
   backgroundImage?: String | null;
-  backgroungSize?: "contain" | "cover";
+  backgroungSize?: 'contain' | 'cover';
   backgroundPosition?: String;
-  backgroundRepeat?: "no-repeat" | "repeat-y" | "repeat-x" | "repeat";
+  backgroundRepeat?: 'no-repeat' | 'repeat-y' | 'repeat-x' | 'repeat';
   backgroundColor?: String;
   [key: string]: any;
 }
 
-export declare type COMPONENT =
-  | COMPONENT_BASE
-  | TYPE_EMPTY_SPACE
-  | TYPE_COL
-  | TYPE_ROW;
-
-export declare interface COMPONENT_BASE {
-  type: string;
-  style?: Style;
-  responsive?: {
-    xl?: "hide" | "show";
-    lg?: "hide" | "show";
-    md?: "hide" | "show";
-    sm?: "hide" | "show";
-    xs?: "hide" | "show";
-    [key: string]: any;
-  };
+export declare interface ResponsiveDisplay {
+  xl?: 'show' | 'hide';
+  lg?: 'show' | 'hide';
+  md?: 'show' | 'hide';
+  sm?: 'show' | 'hide';
+  xs?: 'show' | 'hide';
   [key: string]: any;
 }
+declare interface BaseComponent {
+  type: String;
+  style?: Style;
+  responsive?: {
+    xl?: any;
+    lg?: any;
+    md?: any;
+    sm?: any;
+    xs?: any;
+    [key: string]: any;
+  };
+  settings?: {
+    [key: string]: any;
+  }
+  [key: string]: any;
+}
+export declare type Component =
+  | BaseComponent
+  | EmptySpaceComponent
+  | ColComponent
+  | RowComponent
+  | TextComponent
+  | ButtonComponent
+  | TitleComponent
+  | ImageComponent
 
-export { TYPE_COL, TYPE_ROW, TYPE_EMPTY_SPACE };
+export { ColComponent, RowComponent, EmptySpaceComponent, BaseComponent };

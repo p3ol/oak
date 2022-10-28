@@ -1,7 +1,6 @@
 const OFF = 0;
 
 module.exports = {
-  parser: '@typescript-eslint/parser',
   extends: ['@poool/eslint-config-react'],
   rules: {
     'react/prop-types': 0,
@@ -15,6 +14,17 @@ module.exports = {
     },
     rules: {
       'import/order': OFF,
+    },
+  }, {
+    files: ['packages/**/*.{ts,tsx}'],
+    parser: '@typescript-eslint/parser',
+    globals: {
+      JSX: 'readonly',
+      React: 'readonly',
+    },
+    rules: {
+      // function params are considered as unused vars
+      'no-unused-vars': 0,
     },
   }],
 };

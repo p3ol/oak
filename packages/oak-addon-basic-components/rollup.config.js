@@ -5,6 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 // import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
+import dts from 'rollup-plugin-dts';
 import autoprefixer from 'autoprefixer';
 import { terser } from 'rollup-plugin-terser';
 
@@ -107,6 +108,13 @@ export default [
       }
 
       warn(warning);
+    },
+  },
+  {
+    input: './lib/index.d.ts',
+    plugins: [dts()],
+    output: {
+      file: `${defaultOutput}/${name}.d.ts`,
     },
   },
 ];

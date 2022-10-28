@@ -6,6 +6,7 @@
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "esnext": "src/index.js",
+  "types":  "dist/oak-addon-basic-components.d.ts",
   "unpkg": "dist/oak-addon-basic-components.min.js",
   "cdn": "dist/oak-addon-basic-components.min.js",
   "repository": {
