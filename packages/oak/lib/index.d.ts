@@ -38,18 +38,31 @@ interface AddonComponent {
   id: String;
   name: String | Function;
   type: 'component';
-  render: Function;
-  construct: Function;
+  render: (element: Element, className: String) => JSX.Element;
+  construct: () => Element;
   icon?: String | Function;
-  options?: Object;
-  settings?: Object;
+  options?: Array<any>;
+  settings?: {
+    title?: String | ((handler: Function) => String);
+    fields?: Array<{
+      type?: String,
+      key?: String,
+      label?: String | ((handler: Function) => String)
+      options?: Array<{
+        title: String | ((handler: Function) => String),
+        value: any
+      }>
+      default?: any
+      [key: string]: any
+    }>
+  };
   editable?: Boolean;
-  duplicate?: Function;
+  duplicate?: (elmt: Element) => Element;
 }
 
 interface AddonFieldType {
   type: String;
-  render: Function;
+  render: () => JSX.Element;
   default?: any;
   serialize?: Function;
   deserialize?: Function;
