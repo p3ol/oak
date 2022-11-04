@@ -31,7 +31,7 @@
     "@poool/junipero-utils": "2.0.0-rc.21",
     "core-js": "3.26.0",
     "is-hotkey": "0.2.0",
-    "slate": "0.82.1",
+    "slate": "0.84.0",
     "slate-history": "0.66.0",
     "slate-hyperscript": "0.77.0",
     "slate-react": "0.83.2"
