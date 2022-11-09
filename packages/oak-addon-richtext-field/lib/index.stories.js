@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 
-import '../../oak/lib/index.styl';
+import '../../oak/lib/index.sass';
 
 import { deserialize, serialize } from './core/Editor/html';
 import Editor from './core/Editor';
@@ -18,7 +18,7 @@ export const internalEditor = () => {
   };
 
   return (
-    <>
+    <div className="oak">
       <Editor
         value={value}
         onChange={onChange}
@@ -35,7 +35,7 @@ export const internalEditor = () => {
         Deserialized serialized value: { ' ' }
         <pre>{ JSON.stringify(deserialize(serialize(value)), null, 2) }</pre>
       </div>
-    </>
+    </div>
   );
 };
 

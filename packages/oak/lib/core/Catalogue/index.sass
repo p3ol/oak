@@ -1,21 +1,21 @@
-@require "../../theme/colors"
+@use "colors" as colors
 
 .oak-catalogue
   &.oak-opened
     .oak-handle
       transform: rotate(45deg)
-      background: $color-catskill-white
+      background: colors.$catskill-white
 
   .oak-handle
     display: inline-block
     width: 40px
     height: 40px
-    background: $color-link-water
+    background: colors.$link-water
     border-radius: 50%
     position: relative
     cursor: pointer
     transition: transform .1s ease-in-out
-    color: $color-shuttle-gray
+    color: colors.$shuttle-gray
     text-decoration: none
     transform: none
 
@@ -31,19 +31,19 @@
         font-size: 30px
 
     &:hover
-      background: $color-catskill-white
+      background: colors.$catskill-white
 
   .oak-popover
-    background: $color-white
+    background: colors.$white
     border-radius: 5px
     width: 400px
     min-height: 100px
     text-align: left
-    box-shadow: 0 7px 30px 0 rgba($color-hawkes-blue, 0.5)
+    box-shadow: 0 7px 30px 0 rgba(colors.$hawkes-blue, 0.5)
     z-index: 50
 
     a
-      color: $color-charade
+      color: colors.$charade
       text-decoration: none
 
   .junipero.tabs
@@ -68,7 +68,7 @@
         padding: 10px 15px
         width: 100%
         height: 40px
-        background: $color-black-squeeze
+        background: colors.$black-squeeze
         border-radius: 3px
 
         &:hover
@@ -94,7 +94,7 @@
     display: flex
     align-items: center
     justify-content: center
-    background: $color-black-squeeze
+    background: colors.$black-squeeze
     padding: 10px 0
     border-radius: 0 0 5px 5px
     color: var(--oak-main-color)

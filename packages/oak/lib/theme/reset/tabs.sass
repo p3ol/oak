@@ -1,4 +1,4 @@
-@require "../colors"
+@use "colors" as colors
 
 .oak
   .junipero.tabs
@@ -6,7 +6,7 @@
     --text-color: var(--oak-text-color)
 
     .titles
-      background: $color-link-water
+      background: colors.$link-water
       border: none
 
       .title
@@ -25,7 +25,7 @@
             display: none
 
         &.active
-          background: $color-white
+          background: colors.$white
 
           a
             color: var(--text-color)

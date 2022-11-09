@@ -1,3 +1,5 @@
+@use "colors" as colors
+
 .oak-image-field
   display: flex
   align-items: center
@@ -18,7 +20,7 @@
     background-size: cover
     background-repeat: no-repeat
     background-position: center
-    background-color: $color-slate-gray
+    background-color: colors.$slate-gray
     overflow: hidden
 
   .oak-image-field-info
@@ -27,5 +29,5 @@
 
     .oak-image-field-actions
       .oak-delete
-        color: $color-shiraz
+        color: colors.$shiraz
         font-size: 12px

@@ -82,22 +82,22 @@ const getConfig = (format, {
 export default [
   ...formats.map(f => getConfig(f)),
   {
-    input: './lib/index.styl',
+    input: './lib/index.sass',
     plugins: [
       postcss({
-        extensions: ['.styl'],
+        extensions: ['.sass'],
         minimize: true,
         inject: false,
         extract: true,
         sourceMap: true,
         modules: false,
         use: {
-          stylus: {
-            paths: [
+          sass: {
+            includePaths: [
               path.resolve('node_modules'),
               path.resolve('../../node_modules'),
+              path.resolve('./lib/theme'),
             ],
-            includeCSS: true,
           },
         },
         plugins: [

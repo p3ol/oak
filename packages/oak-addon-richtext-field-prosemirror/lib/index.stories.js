@@ -37,7 +37,7 @@ export const titleEditor = () => {
   };
 
   return (
-    <>
+    <div className="oak">
       <SelectField
         options={options}
         placeholder="Choose one item"
@@ -49,6 +49,6 @@ export const titleEditor = () => {
         onChange={onChange}
         element={{ type: 'title', headingLevel }}
       />
-    </>
+    </div>
   );
 };
