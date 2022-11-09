@@ -48,13 +48,13 @@ export default [
       name,
       sourcemap: true,
       globals: defaultGlobals,
+      ...(f === 'esm' ? {
+        manualChunks: id => {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      } : {}),
     },
-    ...(f === 'esm' ? {
-      manualChunks: id => {
-        if (id.includes('node_modules')) {
-          return 'vendor';
-        }
-      },
-    } : {}),
   })),
 ];

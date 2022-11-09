@@ -10,7 +10,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
-const name = 'oak-addon-richtext-field-prosemirror';
+const name = 'oak-addon-richtext-field';
 const formats = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = ['@poool/oak', 'react', 'react-dom', 'react-popper'];
@@ -62,14 +62,14 @@ const getConfig = (format, {
     sourcemap: true,
     globals,
     exports: 'named',
+    ...(format === 'esm' ? {
+      manualChunks: id => {
+        if (id.includes('node_modules')) {
+          return 'vendor';
+        }
+      },
+    } : {}),
   },
-  ...(format === 'esm' ? {
-    manualChunks: id => {
-      if (id.includes('node_modules')) {
-        return 'vendor';
-      }
-    },
-  } : {}),
 });
 
 export default [

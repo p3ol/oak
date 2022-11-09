@@ -5,17 +5,17 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 // import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
-import { terser } from 'rollup-plugin-terser';
 import autoprefixer from 'autoprefixer';
-import url from 'postcss-url';
+import { terser } from 'rollup-plugin-terser';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
-const name = 'oak';
+const name = 'oak-addon-basic-components';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['react', 'react-dom', 'react-popper'];
+const defaultExternals = ['@poool/oak', 'react', 'react-dom', 'react-popper'];
 const defaultGlobals = {
+  '@poool/oak': 'oak',
   react: 'React',
   'react-dom': 'ReactDOM',
   'react-popper': 'ReactPopper',
@@ -42,8 +42,8 @@ const defaultPlugins = [
 
 const getConfig = (format, {
   output = defaultOutput,
-  globals = defaultGlobals,
   external = defaultExternals,
+  globals = defaultGlobals,
 } = {}) => ({
   input,
   plugins: [
@@ -61,22 +61,15 @@ const getConfig = (format, {
     name,
     sourcemap: true,
     globals,
-  },
-  ...(format === 'esm' ? {
-    manualChunks: id => {
-      if (id.includes('node_modules')) {
-        return 'vendor';
-      } else if (/packages\/oak\/lib/.test(id)) {
-        const info = path.parse(id);
-
-        if (/lib$/.test(info.dir)) {
-          return info.name;
-        } else {
-          return `${info.dir.split('lib/').pop()}/${info.name}`;
+    exports: 'named',
+    ...(format === 'esm' ? {
+      manualChunks: id => {
+        if (id.includes('node_modules')) {
+          return 'vendor';
         }
-      }
-    },
-  } : {}),
+      },
+    } : {}),
+  },
 });
 
 export default [
@@ -101,12 +94,6 @@ export default [
           },
         },
         plugins: [
-          url({
-            url: 'copy',
-            useHash: true,
-            basePath: path.resolve('./lib/theme/fonts'),
-            assetsPath: path.resolve('./dist/assets'),
-          }),
           autoprefixer({ env: process.env.BROWSERSLIST_ENV }),
         ],
       }),
