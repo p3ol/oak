@@ -32,7 +32,7 @@
     "core-js": "3.26.0",
     "is-hotkey": "0.2.0",
     "slate": "0.85.0",
-    "slate-history": "0.66.0",
+    "slate-history": "0.85.0",
     "slate-hyperscript": "0.77.0",
     "slate-react": "0.83.2"
   },
