@@ -40,7 +40,7 @@
     "autoprefixer": "10.4.13",
     "babel-jest": "29.3.1",
     "babel-loader": "9.1.0",
-    "css-loader": "6.7.1",
+    "css-loader": "6.7.2",
     "eslint": "8.27.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-babel": "5.3.1",
