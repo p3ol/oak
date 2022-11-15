@@ -1,7 +1,7 @@
-@require '../../theme/colors'
+@use "colors" as colors
 
 a.oak-option
-  color: $color-white
+  color: colors.$white
   flex: 0 1 auto
   background: var(--oak-main-color)
   display: block
@@ -12,7 +12,7 @@ a.oak-option
   text-decoration: none
 
   &:hover
-    color: $color-white
+    color: colors.$white
 
   &:hover,
   &.oak-opened

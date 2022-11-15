@@ -1,18 +1,20 @@
-@require "../../theme/colors"
+@use "sass:color"
+@use "sass:math"
+@use "colors" as colors
 
 .oak-col
   flex: 1 0 0
   position: relative
 
-  for $i in (1..12)
-    &-{$i}
-      flex: 0 0 (($i / 12) * 100)%
+  @for $i from 1 through 12
+    &-#{$i}
+      flex: 0 0 #{(math.div($i, 12) * 100) + '%'}
 
   &:first-child > .oak-col-wrapper
     border-radius: 0 5px 5px 5px
 
   .oak-col-wrapper
-    background: $color-link-water
+    background: colors.$link-water
     display: flex
     flex-wrap: wrap
     flex-direction: row
@@ -31,7 +33,7 @@
 
       & > .oak-option
         background: transparent
-        color: $color-shuttle-gray
+        color: colors.$shuttle-gray
         margin-left: 2px
         border-radius: 3px
 
@@ -41,7 +43,7 @@
         &.oak-opened
           &, &:hover
             background: var(--oak-active-color)
-            color: $color-white
+            color: colors.$white
             border-radius: 3px
 
         i
@@ -89,7 +91,7 @@
 
     &.drag-enter
       .oak-catalogue
-        background: $color-catskill-white
+        background: colors.$catskill-white
         border-radius: 5px
 
         .oak-handle
@@ -100,10 +102,10 @@
         margin-bottom: 0
 
       .oak-foldable
-        background: $color-white
+        background: colors.$white
 
         .oak-foldable-content
-          background: $color-link-water
+          background: colors.$link-water
 
       .oak-element.oak-row
         margin-top: 40px
@@ -119,30 +121,30 @@
             background: transparent
 
         .oak-col-wrapper
-          background: $color-white
+          background: colors.$white
 
           .oak-foldable
-            background: $color-link-water
+            background: colors.$link-water
 
             .oak-foldable-content
-              background: $color-white
+              background: colors.$white
 
           .oak-element:not(.oak-row) .oak-inner
-            background: $color-link-water
+            background: colors.$link-water
 
           .oak-col-wrapper
-            background: $color-link-water
+            background: colors.$link-water
 
             .oak-col-wrapper
               background: transparent
-              border: 1px solid $color-hawkes-blue
+              border: 1px solid colors.$hawkes-blue
 
             .oak-element:not(.oak-row) .oak-inner
-              background: $color-white
+              background: colors.$white
 
       .oak-element
         .oak-inner
-          background: $color-white
+          background: colors.$white
           margin-top: 20px
 
         &:first-child
@@ -174,12 +176,12 @@
       align-items: center
       justify-content: center
       width: 15px
-      height 50px
-      background: $color-catskill-white
-      color: $color-shuttle-gray
+      height: 50px
+      background: colors.$catskill-white
+      color: colors.$shuttle-gray
 
       &:hover
-        background: $color-catskill-white - 10
+        background: color.adjust(colors.$catskill-white, $red: -10, $green: -10, $blue: -10)
 
       & i
         font-size: 15px

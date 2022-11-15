@@ -1,4 +1,4 @@
-@require "@poool/oak/lib/theme/colors"
+@use "colors" as colors
 
 .oak-text-editor.oak-slate
   background: var(--oak-text-editor-color)
@@ -42,7 +42,7 @@
         margin-left: 20px
 
     .oak-icons
-      color: $color-shuttle-gray
+      color: colors.$shuttle-gray
       font-size: 20px
 
     .oak-text-size

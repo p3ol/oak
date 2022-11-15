@@ -1,4 +1,4 @@
-@require "@poool/oak/lib/theme/colors"
+@use "colors" as colors
 
 .oak-element.oak-image
   .oak-element-content-inner
@@ -13,7 +13,7 @@
     background-size: cover
     background-repeat: no-repeat
     background-position: center
-    background-color: $color-slate-gray
+    background-color: colors.$slate-gray
     overflow: hidden
 
   .oak-image-info
