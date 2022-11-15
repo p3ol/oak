@@ -1,4 +1,46 @@
-# [](https://github.com/p3ol/oak/compare/v1.3.0...v) (2022-09-21)
+# [](https://github.com/p3ol/oak/compare/v1.4.0...v) (2022-11-15)
+
+
+
+# [1.4.0](https://github.com/p3ol/oak/compare/v1.3.1...v1.4.0) (2022-11-15)
+
+
+### Bug Fixes
+
+* **deps:** update babel monorepo ([6e2be28](https://github.com/p3ol/oak/commit/6e2be28a1280c9d62e4444d7ae0cd7819879decd))
+* **deps:** update dependency core-js to v3.25.4 ([4d8bac5](https://github.com/p3ol/oak/commit/4d8bac51d9c471f708cefe0f9a56e5c5621243e7))
+* **deps:** update dependency core-js to v3.25.5 ([8cd9131](https://github.com/p3ol/oak/commit/8cd9131291aebd2a7b244af9039750d8e5a5316b))
+* **deps:** update dependency core-js to v3.26.0 ([32d5a35](https://github.com/p3ol/oak/commit/32d5a35677f9d771a5d85199769a13ad074606b9))
+* **deps:** update dependency core-js to v3.26.1 ([eef192e](https://github.com/p3ol/oak/commit/eef192e9a46fe6c014ee930bb28ad7e5c46dbfc8))
+* **deps:** update dependency preact to v10.11.1 ([6419d8c](https://github.com/p3ol/oak/commit/6419d8c479b8644f08a54a9a0656ee3a432c4f37))
+* **deps:** update dependency preact to v10.11.2 ([55ac082](https://github.com/p3ol/oak/commit/55ac0821ec71365606d863eb5f47cc645b295b97))
+* **deps:** update dependency preact to v10.11.3 ([98ba670](https://github.com/p3ol/oak/commit/98ba670973cd441efc7dadf81237c85310828919))
+* **deps:** update dependency prosemirror-model to v1.18.2 ([e19753f](https://github.com/p3ol/oak/commit/e19753f2c614ee39df1a3930aba01411008c2fd1))
+* **deps:** update dependency prosemirror-state to v1.4.2 ([a97c740](https://github.com/p3ol/oak/commit/a97c74029869e59a960e523b7861ddf1fc9fcd1e))
+* **deps:** update dependency prosemirror-view to v1.28.3 ([94b67ef](https://github.com/p3ol/oak/commit/94b67eff1c237e8e5854843dd09fe5c3b71a4570))
+* **deps:** update dependency prosemirror-view to v1.29.0 ([c4b5139](https://github.com/p3ol/oak/commit/c4b5139ace197196ecedd4afbeb0557e85d2838f))
+* **deps:** update dependency prosemirror-view to v1.29.1 ([6c1c9ad](https://github.com/p3ol/oak/commit/6c1c9add6a3da8395bc82ca538dc91d473f0cf82))
+* **deps:** update dependency slate to v0.84.0 ([4d86954](https://github.com/p3ol/oak/commit/4d86954062223d7d8ef9556d02ac456b1c9aee38))
+* **deps:** update dependency slate to v0.85.0 ([ec181b8](https://github.com/p3ol/oak/commit/ec181b88cb2c37365363cd7d5d9fbad84f564c6b))
+* **deps:** update dependency slate-history to v0.85.0 ([c10aa26](https://github.com/p3ol/oak/commit/c10aa26b298e72d58c1ae938d974f36195848099))
+* **deps:** update dependency slate-react to v0.83.1 ([ed9cc5f](https://github.com/p3ol/oak/commit/ed9cc5f3a766b2253e637faa7a61b990d13dc0bc))
+* **deps:** update dependency slate-react to v0.83.2 ([4f845e9](https://github.com/p3ol/oak/commit/4f845e9c2232d870d13d43168b19b2403376e6af))
+* **deps:** update poool junipero monorepo ([b8546c0](https://github.com/p3ol/oak/commit/b8546c0d348a8b847e4995efe17649e27fb40cd3))
+* **oak:** editable image field width ([ee209e3](https://github.com/p3ol/oak/commit/ee209e33fff016e2f6efd9dd8cc55533f4c901c3))
+* **translations:** repair FR translation for the foldable see more position ([e5e1137](https://github.com/p3ol/oak/commit/e5e1137c78ee4e180b3965de1ed8942361d01151))
+
+
+
+## [1.3.1](https://github.com/p3ol/oak/compare/v1.3.0...v1.3.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.25.3 ([0f2b5b4](https://github.com/p3ol/oak/commit/0f2b5b4c905c46d85986737f43f521a1b703f520))
+* **deps:** update dependency prosemirror-view to v1.28.1 ([668a97e](https://github.com/p3ol/oak/commit/668a97eb9f1d5bea89dfb6ae62df0f9fb6e84f39))
+* **deps:** update dependency prosemirror-view to v1.28.2 ([6d7fbcd](https://github.com/p3ol/oak/commit/6d7fbcd23455190c2d30368ee4a940bec1525c16))
+* **oak-react:** add a setOptions method to update options ([629e4b1](https://github.com/p3ol/oak/commit/629e4b1e3a5776701df7755cbb49a025bb9e2a82))
+* **oak-react:** fix typo problem ([f6f294a](https://github.com/p3ol/oak/commit/f6f294ac760b28c78789ebc8d8664dbae2dbe3e4))
 
 
 
