@@ -24,8 +24,10 @@ export const basicConfig = () => {
       content: [
         {
           type: 'text',
-          content: 'This is some fancy text ' +
-          '<span style="color:rgb(195, 63, 63);">content</span>',
+          content:
+          '<span style="font-weight:bold;' +
+          'font-size:40px;color:#ffffff;">Meilleure offre</span>' +
+          '</div>',
           settings: {},
           id: '81d6c270-062c-4a89-979e-a58b3c405e38',
         },

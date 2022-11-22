@@ -97,7 +97,8 @@ export const marks = {
     toDOM: () => ['span', { style: 'font-style: italic' }, 0],
   },
   strong: {
-    parseDOM: [{ tag: 'strong' },
+    parseDOM: [
+      { tag: 'strong' },
       {
         tag: 'b',
         getAttrs: node => node.style.fontWeight !== 'normal' && null,
@@ -114,9 +115,9 @@ export const marks = {
       },
     },
     parseDOM: [{
-      tag: 'span',
-      getAttrs: node => {
-        return { color: node.style.color };
+      style: 'color',
+      getAttrs: color => {
+        return { color };
       },
     }],
     toDOM: e => {
