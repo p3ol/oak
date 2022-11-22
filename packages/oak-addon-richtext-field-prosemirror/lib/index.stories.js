@@ -7,7 +7,8 @@ export default { title: 'oak-addon-richtext-field-prosemirror' };
 
 export const classicEditor = () => {
   const [value, setValue] = useState(
-    'This is a <strong>fancy</strong> text<br />with a line break'
+    '<span style="text-decoration: underline; font-weight:bold;' +
+    'font-size:40px;color:#FF0000;">Meilleure offre</span>'
   );
 
   const onChange = ({ value }) => {
@@ -18,6 +19,7 @@ export const classicEditor = () => {
     <Editor
       value={value}
       onChange={onChange}
+      options={{ debug: true }}
     />
   );
 };
@@ -29,7 +31,7 @@ export const titleEditor = () => {
   const [headingLevel, setHeadingLevel] = useState('h1');
   const options = Array.from(
     { length: 6 },
-    (v, k) => ({ value: `h${k + 1}`, title: `heading ${k + 1}` })
+    (_, k) => ({ value: `h${k + 1}`, title: `heading ${k + 1}` })
   );
 
   const onChange = ({ value }) => {
