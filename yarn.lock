@@ -12303,7 +12303,14 @@ prosemirror-keymap@1.2.0:
     prosemirror-state "^1.0.0"
     w3c-keyname "^2.2.0"
 
-prosemirror-model@1.18.2, prosemirror-model@^1.0.0, prosemirror-model@^1.16.0, prosemirror-model@^1.2.0:
+prosemirror-model@1.18.3:
+  version "1.18.3"
+  resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.18.3.tgz#d1026a78cff928fd600e90d87cf7d162e0a4e3fd"
+  integrity sha512-yUVejauEY3F1r7PDy4UJKEGeIU+KFc71JQl5sNvG66CLVdKXRjhWpBW6KMeduGsmGOsw85f6EGrs6QxIKOVILA==
+  dependencies:
+    orderedmap "^2.0.0"
+
+prosemirror-model@^1.0.0, prosemirror-model@^1.16.0, prosemirror-model@^1.2.0:
   version "1.18.2"
   resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.18.2.tgz#a85c2dbf66ccc114ab35d8dac39228ed294b9b7a"
   integrity sha512-uOQorJr20qVvqp2hs2RdWtWoidQxJ1ceE11bSmkf57XS989mdg1zKPJIp5HOHfY8/KjXPn3cLZqUYYwRrfBBPw==
