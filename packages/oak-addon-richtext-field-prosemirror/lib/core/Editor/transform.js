@@ -102,14 +102,18 @@ export const removeActiveMark = markType =>
     dispatch(tr.scrollIntoView());
   };
 
-export const updateActiveLink = (state, attrs = {}) => {
-  const { $cursor } = state.selection;
+export const updateActiveLink = (attrs = {}) => {
+  return (state, dispatch) => {
+    const tr = state.tr;
+    const { $cursor } = state.selection;
+    const activeLink = schema.marks.link.isInSet(
+      state.storedMarks || $cursor.marks()
+    );
 
-  const activeLink = schema.marks.link.isInSet(
-    state.storedMarks || $cursor.marks()
-  );
+    if (activeLink) {
+      activeLink.attrs = attrs;
+    }
 
-  if (activeLink) {
-    activeLink.attrs = attrs;
-  }
+    dispatch(tr.scrollIntoView());
+  };
 };
