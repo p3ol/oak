@@ -1,5 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 import Editor from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('<Prosemirror Editor />', () => {
   it('should render', async () => {
@@ -40,5 +41,35 @@ describe('<Prosemirror Editor />', () => {
     expect(
       container.querySelectorAll('.ProseMirror br').length
     ).toBeGreaterThan(0);
+  });
+
+  describe('with link', () => {
+    it('should add new link', async () => {
+      const user = userEvent.setup();
+      const content =
+      '<span>click me</span>';
+      const { container, debug } = render(
+        <div><Editor value={content} onChange={() => {}} /></div>);
+      await waitFor(
+        () => expect(container.querySelector('.oak-prosemirror')).toBeDefined()
+      );
+      const mainDiv = container.querySelector('.ProseMirror');
+      const startNode = mainDiv.firstChild.firstChild;
+      user.dblClick(container.querySelector('.ProseMirror > div'));
+      const range = document.createRange();
+      range.setStart(startNode, 2);
+      range.setEnd(startNode, 5);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      await user.click(document.querySelector('.oak-underline'));
+      await user.click(document.querySelector('.oak-underline'));
+      await waitFor(
+        () => expect(
+          document.querySelector('[style*="underline"]')
+        ).toBeTruthy()
+      );
+      debug();
+    });
   });
 });
