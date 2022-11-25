@@ -10,7 +10,7 @@ import { SIZES } from './utils';
 import ProseMirror from '../ProseMirror';
 import Toolbar from './Toolbar';
 
-export default ({ value, onChange, element }) => {
+export default ({ value, onChange, element, options = {} }) => {
   const viewRef = useRef();
   const [size, setSize] = useState(SIZES.text);
   const [state, setState] = useProseMirror({
@@ -99,6 +99,9 @@ export default ({ value, onChange, element }) => {
         onChange={onChange_}
         style={{ fontSize: getDefaultSize() }}
       />
+      {options.debug && (
+        <pre>{JSON.stringify(state)}</pre>
+      )}
     </div>
   );
 };

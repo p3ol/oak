@@ -1,0 +1,76 @@
+@use "colors" as colors
+
+.oak-editable
+  min-width: 600px
+  width: 600px
+  max-width: 800px
+  background: colors.$white
+  border-radius: 3px
+  z-index: 200
+  box-shadow: 0 7px 30px 0 colors.$hawkes-blue
+
+  .oak-editable-buttons
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    padding: 20px
+
+    .junipero.button
+      margin-left: 20px
+
+    a
+      color: colors.$woodsmoke
+      text-decoration: none
+
+      &:hover
+        color: var(--oak-active-color)
+
+  .oak-title
+    width: 100%
+    height: 25px
+    background-color: var(--oak-active-color)
+    display: flex
+    align-items: center
+    border-radius: 3px 3px 0 0
+    color: colors.$white
+    padding: 0 20px
+
+  .oak-form
+    .oak-field
+      margin-bottom: 20px
+
+      &:last-child
+        margin-bottom: 0
+
+      label
+        margin-bottom: 5px
+
+        &:not(.toggle)
+          display: block
+
+      .junipero.field:not(.toggle)
+        width: 100%
+        min-width: 0
+        display: block
+
+      .oak-fields
+        display: flex
+        flex-wrap: wrap
+        margin: -5px
+
+        .oak-field
+          width: 25%
+          flex: 0 0 25%
+          padding: 5px
+          margin: 0
+
+          .oak-field-label
+            font-size: 13px
+            margin-top: 6px
+
+  .junipero.button
+    cursor: pointer
+
+  .junipero.dropdown-menu .menu-inner
+    max-height: 300px
+    overflow: auto

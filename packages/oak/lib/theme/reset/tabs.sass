@@ -1,0 +1,31 @@
+@use "colors" as colors
+
+.oak
+  .junipero.tabs
+    --main-color: var(--oak-main-color)
+    --text-color: var(--oak-text-color)
+
+    .titles
+      background: colors.$link-water
+      border: none
+
+      .title
+        &, &:first-child, &:last-child
+          padding: 0
+          margin: 0
+
+          &:after
+            display: none
+
+        a
+          padding: 10px 20px
+          color: var(--text-color)
+
+          &:after
+            display: none
+
+        &.active
+          background: colors.$white
+
+          a
+            color: var(--text-color)

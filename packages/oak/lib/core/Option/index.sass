@@ -1,0 +1,27 @@
+@use "colors" as colors
+
+a.oak-option
+  color: colors.$white
+  flex: 0 1 auto
+  background: var(--oak-main-color)
+  display: block
+  height: 25px
+  line-height: 25px
+  min-width: 25px
+  text-align: center
+  text-decoration: none
+
+  &:hover
+    color: colors.$white
+
+  &:hover,
+  &.oak-opened
+    background: var(--oak-active-color)
+
+  &.oak-light
+    background-color: transparent
+    color: var(--oak-main-color)
+
+  &.oak-duplicate
+    i.oak-icons
+      font-size: 16px

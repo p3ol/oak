@@ -20,7 +20,7 @@ module.exports = {
     };
 
     config.module.rules.push({
-      test: /\.styl$/,
+      test: /\.sass$/,
       use: [
         'style-loader',
         'css-loader',
@@ -33,7 +33,29 @@ module.exports = {
             },
           },
         },
-        'stylus-loader',
+        'resolve-url-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+            sassOptions: {
+              includePaths: [
+                path.resolve('./node_modules'),
+                path.resolve('./packages/oak/node_modules'),
+                path.resolve('./packages/oak/lib/theme'),
+                path.resolve(
+                  './packages/oak-addon-basic-components/node_modules'
+                ),
+                path.resolve(
+                  './packages/oak-addon-richtext-field/node_modules'
+                ),
+                path.resolve(
+                  './packages/oak-addon-richtext-field-prosemirror/node_modules'
+                ),
+              ],
+            },
+          },
+        },
       ],
     });
 

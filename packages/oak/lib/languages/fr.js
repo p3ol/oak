@@ -81,7 +81,7 @@ export default {
             enabled: 'Activé',
             disabled: 'Désactivé',
           },
-          seeMorePlacement: {
+          seeMorePosition: {
             title: 'Placement du voir plus',
             before: 'Avant',
             after: 'Après',
