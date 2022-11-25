@@ -43,7 +43,6 @@ interface BuilderProps extends ComponentPropsWithoutRef<any> {
   onImageUpload?: (event: any) => { url: string; name?: string };
   className?: String;
   ref?: MutableRefObject<BuilderRef>;
-  content?: Array<Element>;
 }
 declare function Builder(props: BuilderProps): JSX.Element;
 export { Builder };

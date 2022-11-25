@@ -55,7 +55,6 @@ declare interface BaseElement {
 export declare type Element =
   | BaseElement
   | EmptySpaceElement
-  | ColElement
   | RowElement
   | TextElement
   | ButtonElement
