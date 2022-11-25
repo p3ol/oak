@@ -66,7 +66,7 @@ export default ({ value, onChange, element, options = {} }) => {
     const { empty } = state.selection;
 
     if (empty) {
-      updateActiveLink(attr, viewRef)(state, tr => onChange_(state.apply(tr)));
+      updateActiveLink(attr)(state, tr => onChange_(state.apply(tr)));
     } else {
       removeActiveMark(schema.marks.link)(state, tr => {
         const transitionState = state.apply(tr);
