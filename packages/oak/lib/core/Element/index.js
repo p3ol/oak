@@ -1,5 +1,5 @@
 import { Fragment, useRef, useCallback } from 'react';
-import { classNames } from '@poool/junipero-utils';
+import { classNames } from '@junipero/react';
 import { v4 as uuid } from 'uuid';
 
 import { COMPONENT_DEFAULT } from '../../defaults';

@@ -1,4 +1,3 @@
-import { createPortal } from 'react-dom';
 import {
   Children,
   cloneElement,
@@ -8,7 +7,8 @@ import {
   useEffect,
   useImperativeHandle,
 } from 'react';
-import { mockState, classNames } from '@poool/junipero';
+import { createPortal } from 'react-dom';
+import { mockState, classNames } from '@junipero/react';
 import { usePopper } from 'react-popper';
 
 import { useBuilder, useOptions } from '../../hooks';

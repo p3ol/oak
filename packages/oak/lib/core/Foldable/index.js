@@ -1,5 +1,5 @@
-import { omit } from '@poool/junipero-utils';
 import { useRef } from 'react';
+import { omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import options from './index.options';

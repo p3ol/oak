@@ -9,13 +9,14 @@ import {
   Button,
   Tabs,
   Tab,
+  Label,
   mockState,
   cloneDeep,
   get,
   set,
   mergeDeep,
   omit,
-} from '@poool/junipero';
+} from '@junipero/react';
 
 import { useBuilder, useOptions, usePostMountEffect } from '../../hooks';
 import {
@@ -159,16 +160,16 @@ export default forwardRef(({
                 ?.map((field, i) => (
                   <div className="oak-field" key={i}>
                     { field.label && (
-                      <label><Text>{ field.label }</Text></label>
+                      <Label><Text>{ field.label }</Text></Label>
                     ) }
                     { field.fields ? (
                       <div className="oak-fields">
                         { field.fields.map((f, n) => (
                           <div className="oak-field" key={n}>
                             { f.label && (
-                              <label className="oak-field-label">
+                              <Label className="oak-field-label">
                                 <Text>{ f.label }</Text>
-                              </label>
+                              </Label>
                             ) }
                             <Field
                               field={f}

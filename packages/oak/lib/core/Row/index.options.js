@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { classNames } from '@poool/junipero-utils';
+import { classNames } from '@junipero/react';
 
 import Option from '../Option';
 import Draggable from '../Draggable';

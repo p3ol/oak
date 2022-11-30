@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
-import { Tooltip, classNames } from '@poool/junipero';
+import { Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Icon from '../Icon';

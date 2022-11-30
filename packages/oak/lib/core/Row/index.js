@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { classNames, omit } from '@poool/junipero-utils';
+import { classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';

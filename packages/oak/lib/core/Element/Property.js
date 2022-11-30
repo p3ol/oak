@@ -1,4 +1,4 @@
-import { get } from '@poool/junipero';
+import { get } from '@junipero/react';
 
 import { useElement } from '../../hooks';
 import Text from '../Text';

@@ -3,8 +3,8 @@ import {
   SelectField,
   ColorField,
   DateField,
-  ToggleField,
-} from '@poool/junipero';
+  Toggle,
+} from '@junipero/react';
 
 import CoreImageField from './core/CoreImageField';
 import Text from './core/Text';

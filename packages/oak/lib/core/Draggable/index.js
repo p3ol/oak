@@ -1,5 +1,5 @@
 import { Children, cloneElement, forwardRef, useState } from 'react';
-import { useTimeout, classNames } from '@poool/junipero';
+import { useTimeout, classNames } from '@junipero/react';
 
 export default forwardRef(({
   className,

@@ -1,4 +1,4 @@
-import { get } from '@poool/junipero-utils';
+import { get } from '@junipero/react';
 
 import { useBuilder, useOptions } from '../../hooks';
 
@@ -10,7 +10,7 @@ export default ({
   editableRef,
 }) => {
   const options = useOptions();
-  const { getOverrides } = useBuilder();
+  const { getOverrides, getText } = useBuilder();
   const renderer = getOverrides('component', element.type,
     { output: 'field', field });
 
@@ -34,5 +34,6 @@ export default ({
     options,
     editableRef,
     onChange,
+    t: getText,
   }) || null;
 };

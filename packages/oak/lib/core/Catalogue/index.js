@@ -10,7 +10,7 @@ import {
   classNames,
   mockState,
   useEventListener,
-} from '@poool/junipero';
+} from '@junipero/react';
 import { usePopper } from 'react-popper';
 
 import { useBuilder, useOptions } from '../../hooks';

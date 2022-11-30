@@ -6,7 +6,7 @@ import {
   useImperativeHandle,
   useRef,
 } from 'react';
-import { mockState, cloneDeep, get, mergeDeep } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get, mergeDeep } from '@junipero/react';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
