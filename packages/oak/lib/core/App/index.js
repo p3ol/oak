@@ -470,6 +470,10 @@ export default forwardRef(({ options, onReady }, ref) => {
   };
 
   const getText = (key, def) => {
+    if (typeof key === 'function') {
+      return key((k, d) => get(state.texts, k, d));
+    }
+
     if (typeof key !== 'string') return def;
 
     return get(state.texts, key, def);
