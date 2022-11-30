@@ -12,10 +12,12 @@ import Text from './core/Text';
 export const FIELD_TEXT = {
   type: 'text',
   deserialize: val => '' + val,
-  render: (props, { field } = {}) => (
+  render: (props, { field, t } = {}) => (
     <TextField
       { ...props }
-      placeholder={<Text>{ field.placeholder }</Text>}
+      { ...field.placeholder && {
+        placeholder: t(field.placeholder),
+      } }
       type={field.valueType || 'text'}
     />
   ),
@@ -24,12 +26,14 @@ export const FIELD_TEXT = {
 export const FIELD_TEXTAREA = {
   type: 'textarea',
   deserialize: val => '' + val,
-  render: (props, { field } = {}) => (
+  render: (props, { field, t } = {}) => (
     <TextField
       { ...props }
       tag="textarea"
       rows={props.rows || 5}
-      placeholder={<Text>{ field.placeholder }</Text>}
+      { ...field.placeholder && {
+        placeholder: t(field.placeholder),
+      } }
       type={field.valueType || 'text'}
     />
   ),
@@ -37,13 +41,14 @@ export const FIELD_TEXTAREA = {
 
 export const FIELD_SELECT = {
   type: 'select',
-  render: (props, { field } = {}) => (
+  render: (props, { field, t } = {}) => (
     <SelectField
       { ...props }
       options={field.options}
-      placeholder={<Text>{ field.placeholder }</Text>}
-      parseTitle={field.parseTitle ||
-        (o => o?.title ? <Text>{ o.title }</Text> : o)}
+      { ...field.placeholder && {
+        placeholder: t(field.placeholder),
+      } }
+      parseTitle={field.parseTitle || (o => o?.title ? t(o.title) : o)}
       parseValue={field.parseValue || (o => o?.value ?? o)}
     />
   ),
@@ -51,10 +56,12 @@ export const FIELD_SELECT = {
 
 export const FIELD_COLOR = {
   type: 'color',
-  render: (props, { field } = {}) => (
+  render: (props, { field, t } = {}) => (
     <ColorField
       { ...props }
-      placeholder={<Text>{ field.placeholder }</Text>}
+      { ...field.placeholder && {
+        placeholder: t(field.placeholder),
+      } }
     />
   ),
 };
@@ -68,10 +75,12 @@ export const FIELD_CORE_IMAGE = {
 
 export const FIELD_DATE = {
   type: 'date',
-  render: (props, { field } = {}) => (
+  render: (props, { field, t } = {}) => (
     <DateField
       { ...props }
-      placeholder={<Text>{ field.placeholder }</Text>}
+      { ...field.placeholder && {
+        placeholder: t(field.placeholder),
+      } }
     />
   ),
 };
@@ -79,7 +88,7 @@ export const FIELD_DATE = {
 export const FIELD_TOGGLE = {
   type: 'toggle',
   render: (props, { field } = {}) => (
-    <ToggleField
+    <Toggle
       { ...props }
       checkedLabel={<Text>{ field.checkedLabel }</Text>}
       uncheckedLabel={<Text>{ field.uncheckedLabel }</Text>}
