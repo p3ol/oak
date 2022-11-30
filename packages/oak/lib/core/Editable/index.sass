@@ -48,21 +48,33 @@
         &:not(.toggle)
           display: block
 
-      .junipero.field:not(.toggle)
+      .junipero.text-field,
+      .junipero.select-field,
+      .junipero.date-field,
+      .junipero.color-field
         width: 100%
         min-width: 0
-        display: block
+        display: flex
+
+        .inner, input
+          width: 100%
 
       .oak-fields
-        display: flex
-        flex-wrap: wrap
-        margin: -5px
+        display: grid
+        grid-template-columns: repeat(4,minmax(0,1fr))
+        gap: 10px
 
         .oak-field
-          width: 25%
-          flex: 0 0 25%
-          padding: 5px
-          margin: 0
+          .junipero.text-field,
+          .junipero.select-field,
+          .junipero.date-field,
+          .junipero.color-field
+            min-width: 0
+            display: flex
+            width: 100%
+
+            .inner, input
+              width: 100%
 
           .oak-field-label
             font-size: 13px

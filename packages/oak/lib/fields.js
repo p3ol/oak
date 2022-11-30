@@ -5,6 +5,7 @@ import {
   DateField,
   Toggle,
 } from '@junipero/react';
+import { slideInDownMenu } from '@junipero/transitions';
 
 import CoreImageField from './core/CoreImageField';
 import Text from './core/Text';
@@ -48,6 +49,7 @@ export const FIELD_SELECT = {
       { ...field.placeholder && {
         placeholder: t(field.placeholder),
       } }
+      animateMenu={slideInDownMenu}
       parseTitle={field.parseTitle || (o => o?.title ? t(o.title) : o)}
       parseValue={field.parseValue || (o => o?.value ?? o)}
     />

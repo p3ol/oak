@@ -41,6 +41,7 @@
     "core-js": "3.26.1",
     "preact": "10.11.3",
     "react-popper": "2.3.0",
+    "react-transition-group": "4.4.5",
     "uuid": "9.0.0"
   },
   "scripts": {
