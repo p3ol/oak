@@ -14,11 +14,10 @@ const defaultOutput = './dist';
 const name = 'oak';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['react', 'react-dom', 'react-popper'];
+const defaultExternals = ['react', 'react-dom'];
 const defaultGlobals = {
   react: 'React',
   'react-dom': 'ReactDOM',
-  'react-popper': 'ReactPopper',
 };
 
 const defaultPlugins = [
