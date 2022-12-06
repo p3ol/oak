@@ -129,7 +129,8 @@ describe('<Editable />', () => {
       expect(container.querySelector('.oak-opened')).toBeTruthy()
     ));
     expect(getByText('field title')).toBeTruthy();
-    fireEvent.click(container.querySelector('.oak-editable-buttons>a'));
+    fireEvent.click(container
+      .querySelector('.oak-editable-buttons>.button:first-child'));
     await waitFor(() => (
       expect(container.querySelector('.oak-opened')).toBeFalsy()
     ));
