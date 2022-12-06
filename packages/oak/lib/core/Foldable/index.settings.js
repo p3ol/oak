@@ -1,13 +1,10 @@
 export default {
   title: t => t('core.components.foldable.settings.title', 'Foldable options'),
-  popperSettings: {
+  floatingSettings: {
     placement: 'right-start',
-    modifiers: [{
-      name: 'offset',
-      options: {
-        offset: [0, 5],
-      },
-    }],
+    autoPlacement: {
+      alignment: 'start',
+    },
   },
   fields: [{
     type: 'select',

@@ -27,6 +27,9 @@
             display: none
 
         &.active
+          &::before, &::after
+            display: none
+
           a
             color: var(--text-color)
             background: colors.$white

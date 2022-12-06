@@ -22,6 +22,7 @@ export default ({
       ? onCustomChange.bind(null, field.key, renderer)
       : onChange.bind(null, field.key),
     value: get(element, field.key) ?? field.default,
+    required: field.required,
   };
 
   if (field.condition && !field.condition(element)) {
