@@ -46,12 +46,12 @@ export default forwardRef(({
     middleware: [
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
-        boundary: oakRef.current,
+        boundary: oakRef?.current,
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
-        boundary: oakRef.current,
+        boundary: oakRef?.current,
         allowedPlacements: ['bottom', 'top'],
         ...floatingSettings.autoPlacement || {},
       })] : []),
