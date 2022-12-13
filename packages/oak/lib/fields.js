@@ -44,6 +44,7 @@ export const FIELD_SELECT = {
   type: 'select',
   render: (props, { field, t } = {}) => (
     <SelectField
+      clearable={false}
       { ...props }
       options={field.options}
       { ...field.placeholder && {
