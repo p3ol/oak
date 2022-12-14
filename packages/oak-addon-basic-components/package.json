@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.6",
-    "@poool/junipero": "2.0.0-rc.23",
-    "@poool/junipero-utils": "2.0.0-rc.22",
+    "@junipero/react": "3.0.0-alpha.14",
+    "@junipero/theme": "3.0.0-alpha.13",
     "core-js": "3.26.1"
   },
   "scripts": {

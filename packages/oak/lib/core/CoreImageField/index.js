@@ -1,6 +1,5 @@
 import { useReducer, useEffect } from 'react';
-import { Spinner, classNames, mockState } from '@junipero/react';
-import { TouchableZone } from '@poool/junipero';
+import { TouchableZone, Spinner, classNames, mockState } from '@junipero/react';
 
 import { useOptions } from '../../hooks';
 
