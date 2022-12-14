@@ -18,6 +18,15 @@ export const basicConfig = () => {
   const [currentAddon, setCurrentAddon] = useState({});
 
   useEffect(() => {
+    init();
+  }, [currentAddon]);
+
+  const init = async () => {
+    if (oakRef.current) {
+      await oakRef.current?.destroy?.();
+      oakRef.current = null;
+    }
+
     const ref = render(containerRef.current, {
       debug: true,
       addons: [basicComponents, currentAddon],
@@ -45,11 +54,7 @@ export const basicConfig = () => {
     });
 
     oakRef.current = ref;
-
-    return () => {
-      ref?.destroy();
-    };
-  }, [currentAddon]);
+  };
 
   const setTexts = field => {
     oakRef.current?.setTexts(field.value);
