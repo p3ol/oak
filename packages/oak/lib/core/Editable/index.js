@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { mockState, classNames } from '@junipero/react';
+import { slideInDownMenu } from '@junipero/transitions';
 import {
   useFloating,
   useInteractions,
@@ -27,6 +28,7 @@ export default forwardRef(({
   children,
   element,
   component,
+  onToggle,
 }, ref) => {
   const { _settingsHolderRef, overrides, oakRef } = useBuilder();
   const options = useOptions();
@@ -74,30 +76,38 @@ export default forwardRef(({
 
   const open = () => {
     dispatch({ opened: true });
+    onToggle?.({ opened: true });
   };
 
   const close = () => {
     dispatch({ opened: false });
+    onToggle?.({ opened: false });
   };
 
   const toggle = () =>
     state.opened ? close() : open();
 
   const renderForm = () => (
-    <Form
-      element={element}
-      component={component}
+    <div
       style={{
         position: strategy,
         top: y ?? 0,
         left: x ?? 0,
       }}
-      placement={context.placement}
-      onSave={close}
-      onCancel={close}
+      data-placement={context.placement}
       ref={floating}
       {...getFloatingProps()}
-    />
+    >
+      { slideInDownMenu((
+        <Form
+          element={element}
+          component={component}
+          placement={context.placement}
+          onSave={close}
+          onCancel={close}
+        />
+      ), { opened: state.opened }) }
+    </div>
   );
 
   const child = Children.only(children);
@@ -114,14 +124,12 @@ export default forwardRef(({
           onClick: child.props.onClick,
         }),
       }) }
-      { state.opened
-        ? options.settingsContainer || _settingsHolderRef
-          ? createPortal(
-            renderForm(),
-            options.settingsContainer || _settingsHolderRef
-          )
-          : renderForm()
-        : null }
+      { options.settingsContainer || _settingsHolderRef
+        ? createPortal(
+          renderForm(),
+          options.settingsContainer || _settingsHolderRef
+        )
+        : renderForm()}
     </>
   );
 });

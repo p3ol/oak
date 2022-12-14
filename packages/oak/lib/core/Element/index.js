@@ -1,4 +1,4 @@
-import { Fragment, useRef, useCallback } from 'react';
+import { Fragment, useRef, useCallback, useState } from 'react';
 import { classNames } from '@junipero/react';
 import { v4 as uuid } from 'uuid';
 
@@ -22,6 +22,7 @@ const Element = ({
   const editableRef = useRef();
   const elementInnerRef = useRef();
   const builder = useBuilder();
+  const [editableOpened, setEditableOpened] = useState(false);
   const {
     getComponent,
     removeElement,
@@ -52,6 +53,10 @@ const Element = ({
   const onEdit_ = e => {
     e?.preventDefault();
     editableRef.current?.toggle();
+  };
+
+  const onEditableToggle_ = ({ opened }) => {
+    setEditableOpened(opened);
   };
 
   const onCopy_ = e => {
@@ -131,7 +136,9 @@ const Element = ({
               </div>
             ) }
 
-            <div className="oak-options">
+            <div
+              className={classNames('oak-options', { opened: editableOpened })}
+            >
               <Option
                 option={{ icon: 'clear' }}
                 className="oak-remove"
@@ -171,6 +178,7 @@ const Element = ({
                   element={element}
                   component={component}
                   ref={editableRef}
+                  onToggle={onEditableToggle_}
                 >
                   <Option
                     option={{ icon: 'edit' }}
