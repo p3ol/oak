@@ -16,7 +16,7 @@
     "serve": "./node_modules/.bin/start-storybook"
   },
   "devDependencies": {
-    "@babel/core": "7.20.5",
+    "@babel/core": "7.20.7",
     "@babel/eslint-parser": "7.19.1",
     "@babel/eslint-plugin": "7.19.1",
     "@babel/plugin-transform-runtime": "7.19.6",
