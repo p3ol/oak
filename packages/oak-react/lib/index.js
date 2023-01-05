@@ -1,6 +1,7 @@
 import {
   forwardRef,
   useEffect,
+  useLayoutEffect,
   useImperativeHandle,
   useRef,
 } from 'react';
@@ -21,9 +22,10 @@ const Builder_ = forwardRef(({
   const innerRef = useRef();
   const builderRef = useRef();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // In order to avoid react diffing inside our own render tree
-    const elmt = innerRef.current.querySelector('div');
+    const elmt = document.createElement('div');
+    innerRef.current.appendChild(elmt);
     const ref = render(elmt, {
       ...options,
       ...rest,
@@ -38,8 +40,9 @@ const Builder_ = forwardRef(({
 
     builderRef.current = ref;
 
-    return () => {
-      ref?.destroy();
+    return async () => {
+      await ref?.destroy();
+      elmt.remove();
     };
   }, []);
 
@@ -72,7 +75,6 @@ const Builder_ = forwardRef(({
       className={classNames('oak-react-wrapper', className)}
       { ...containerProps }
       ref={innerRef}
-      dangerouslySetInnerHTML={{ __html: '<div></div>' }}
     />
   );
 });
