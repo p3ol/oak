@@ -74,21 +74,14 @@ export default forwardRef(({
     close,
     toggle,
   }));
-  useTimeout(() => {
-    if (!state.visible) {
-      return;
-    }
 
+  useTimeout(() => {
     dispatch({ opened: true });
-  }, 1, [state.visible]);
+  }, 1, [state.visible], { enabled: state.visible });
 
   useTimeout(() => {
-    if (state.opened) {
-      return;
-    }
-
     dispatch({ visible: false });
-  }, 200, [state.opened]);
+  }, 100, [state.opened], { enabled: !state.opened });
 
   const open = () => {
     dispatch({ visible: true });
