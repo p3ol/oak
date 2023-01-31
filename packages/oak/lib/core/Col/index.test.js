@@ -1,13 +1,15 @@
 import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import { withBuilder } from '@tests-utils';
+import { act } from 'react-dom/test-utils';
 import Col from '.';
 
 describe('Col', () => {
   it('should render component', () => {
     const element = { type: 'col', content: [] };
-    const { container } = render(<Col element={element} />);
+    const { container, unmount } = render(<Col element={element} />);
     expect(container.querySelector('.oak-col')).toBeTruthy();
+    unmount();
   });
 
   it('should display just one catalog button when content is empty', () => {
@@ -27,7 +29,7 @@ describe('Col', () => {
       },
     ];
 
-    const { container } = render(withBuilder(
+    const { container, unmount } = render(withBuilder(
       <Col element={element} />,
       {
         components,
@@ -35,12 +37,13 @@ describe('Col', () => {
     ));
 
     expect(container.querySelectorAll('.oak-catalogue').length).toEqual(1);
+    unmount();
   });
 
   it('should display two catalog buttons when content is not empty', () => {
     const element = { type: 'col', content: [{}] };
 
-    const { container } = render(withBuilder(
+    const { container, unmount } = render(withBuilder(
       <Col element={element} />,
       {
         getComponent: () => jest.fn(),
@@ -48,22 +51,26 @@ describe('Col', () => {
     ));
 
     expect(container.querySelectorAll('.oak-catalogue').length).toEqual(2);
+    unmount();
   });
 
   it('should display as many component as in col content', () => {
     const element = { type: 'col', content: [{}, {}] };
 
-    const { container } = render(withBuilder(<Col element={element} />, {
+    const { container, unmount } =
+    render(withBuilder(<Col element={element} />, {
       getComponent: () => jest.fn(),
     }));
 
     expect(container.querySelectorAll('.oak-element').length).toEqual(2);
+    unmount();
   });
 
   it('should set differents ids to each component', () => {
     const element = { type: 'col', content: [{}, {}, {}] };
 
-    const { container } = render(withBuilder(<Col element={element} />, {
+    const { container, unmount } =
+    render(withBuilder(<Col element={element} />, {
       getComponent: () => jest.fn(),
     }));
 
@@ -73,39 +80,49 @@ describe('Col', () => {
     expect(elements[0].id).not.toEqual(elements[1].id);
     expect(elements[1].id).not.toEqual(elements[2].id);
     expect(elements[0].id).not.toEqual(elements[2].id);
+    unmount();
   });
 
   it('should display the col options panel', () => {
     const element = { type: 'col', content: [] };
 
-    const { container } = render(<Col element={element} />);
+    const { container, unmount } = render(<Col element={element} />);
 
     expect(container.querySelector('.oak-options')).toBeTruthy();
+    unmount();
   });
 
   it('should display oak edit panel after' +
   ' clicking on edit button', async () => {
     const element = { type: 'col', content: [] };
-    const { container } = render(withBuilder(<Col element={element} />, {
+    const { container, unmount } =
+    render(withBuilder(<Col element={element} />, {
       getComponent: () => jest.fn(),
       getOverrides: () => jest.fn(),
     }));
     expect(container.querySelector('.oak-editable')).toBeFalsy();
-    fireEvent.click(container.querySelector('.oak-options .oak-edit'));
-    await waitFor(() => (
-      expect(container.querySelector('.oak-editable')).toBeTruthy()
-    ));
+    await act(
+      () => fireEvent.click(document.querySelector('.oak-options .oak-edit'))
+    );
+    await waitFor(() => {
+
+      expect(document.querySelector('.oak-editable')).toBeTruthy();
+    });
+    unmount();
+
   });
 
   it('should call remove method after clicking on remove button', () => {
     const element = { type: 'col', content: [] };
     const removeMock = jest.fn();
-    const { container } = render(
+    const { container, unmount } = render(
       <Col onRemove={removeMock} element={element} />
     );
     expect(removeMock).not.toHaveBeenCalled();
     fireEvent.click(container.querySelector('.oak-options .oak-remove'));
     expect(removeMock).toHaveBeenCalled();
+
+    unmount();
   });
 
   it('should add element inside col when ' +
@@ -134,7 +151,7 @@ describe('Col', () => {
     ];
     const element = { type: 'col', content: [] };
 
-    const { container, getByText } = render(withBuilder(
+    const { container, getByText, unmount } = render(withBuilder(
       <Col element={element} />,
       {
         components,
@@ -151,5 +168,6 @@ describe('Col', () => {
       component,
       { parent: element.content, position: 'after' },
     );
+    unmount();
   });
 });
