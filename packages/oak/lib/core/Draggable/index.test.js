@@ -4,28 +4,31 @@ import Draggable from './index';
 
 describe('<Draggable />', () => {
   it('should render', () => {
-    const { container } = render(<Draggable><p>hello</p></Draggable>);
+    const { container, unmount } = render(<Draggable><p>hello</p></Draggable>);
     expect(container.innerHTML).toContain('hello');
+    unmount();
   });
 
   it('should add dragging className when dragStart', () => {
-    const { container } = render(<Draggable><p>hello</p></Draggable>);
+    const { container, unmount } = render(<Draggable><p>hello</p></Draggable>);
     fireEvent.dragStart(container.querySelector('p'));
     expect(container.querySelector('p').className).toContain('dragging');
+    unmount();
   });
 
   it('should add dragged classname right after drag has begun', async () => {
-    const { container } = render(<Draggable><p>hello</p></Draggable>);
+    const { container, unmount } = render(<Draggable><p>hello</p></Draggable>);
     fireEvent.dragStart(container.querySelector('p'));
     expect(container.querySelector('p').className).toContain('dragging');
     await waitFor(() => (
       expect(container.querySelector('p').className).toContain('dragged') &&
       expect(container.querySelector('p').className).not.toContain('dragging')
     ));
+    unmount();
   });
 
   it('should remove draggedClassname when drag is Over', async () => {
-    const { container } = render(<Draggable><p>hello</p></Draggable>);
+    const { container, unmount } = render(<Draggable><p>hello</p></Draggable>);
     fireEvent.dragStart(container.querySelector('p'));
     expect(container.querySelector('p').className).toContain('dragging');
     await waitFor(() => (
@@ -34,21 +37,23 @@ describe('<Draggable />', () => {
     ));
     fireEvent.dragEnd(container.querySelector('p'));
     expect(container.querySelector('p').className).not.toContain('dragged');
+    unmount();
   });
 
   it('should trigger onDragStart props when drag start', () => {
     const onDragStartMock = jest.fn();
-    const { container } = render(
+    const { container, unmount } = render(
       <Draggable onDragStart={onDragStartMock}><p>hello</p></Draggable>
     );
 
     fireEvent.dragStart(container.querySelector('p'));
     expect(onDragStartMock).toHaveBeenCalled();
+    unmount();
   });
 
   it('should trigger onDragEnd props when drag end', async () => {
     const onDragEndMock = jest.fn();
-    const { container } = render(
+    const { container, unmount } = render(
       <Draggable onDragEnd={onDragEndMock}><p>hello</p></Draggable>
     );
     fireEvent.dragStart(container.querySelector('p'));
@@ -58,29 +63,33 @@ describe('<Draggable />', () => {
     ));
     fireEvent.dragEnd(container.querySelector('p'));
     expect(onDragEndMock).toHaveBeenCalled();
+    unmount();
   });
 
   it('should trigger dragEvent on drag', () => {
     const onDragMock = jest.fn();
-    const { container } = render(
+    const { container, unmount } = render(
       <Draggable onDrag={onDragMock}><p>hello</p></Draggable>
     );
     fireEvent.drag(container.querySelector('p'));
     expect(onDragMock).toHaveBeenCalled();
+    unmount();
   });
 
   describe('when disabled', () => {
     it('should not add dragging className when dragStart', () => {
-      const { container } = render(
+      const { container, unmount } = render(
         <Draggable disabled={true}><p>hello</p></Draggable>
       );
       fireEvent.dragStart(container.querySelector('p'));
       expect(container.querySelector('p').className).not.toContain('dragging');
+
+      unmount();
     });
 
     it('should not trigger onDragStart props when drag start', () => {
       const onDragStartMock = jest.fn();
-      const { container } = render(
+      const { container, unmount } = render(
         <Draggable
           disabled={true}
           onDragStart={onDragStartMock}
@@ -91,15 +100,17 @@ describe('<Draggable />', () => {
 
       fireEvent.dragStart(container.querySelector('p'));
       expect(onDragStartMock).not.toHaveBeenCalled();
+      unmount();
     });
 
     it('should not trigger dragEvent on drag', () => {
       const onDragMock = jest.fn();
-      const { container } = render(
+      const { container, unmount } = render(
         <Draggable disabled={true} onDrag={onDragMock}><p>hello</p></Draggable>
       );
       fireEvent.drag(container.querySelector('p'));
       expect(onDragMock).not.toHaveBeenCalled();
+      unmount();
     });
   });
 });

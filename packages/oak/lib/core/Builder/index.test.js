@@ -4,24 +4,27 @@ import { withBuilder } from '@tests-utils';
 
 describe('Builder', () => {
   it('should render', () => {
-    const { container } = render(<Builder />);
+    const { container, unmount } = render(<Builder />);
     expect(container.querySelector('.oak-builder')).toBeTruthy();
     expect(container.querySelector('.oak-undo-redo')).toBeTruthy();
+    unmount();
   });
 
   it('should not display undo redo on builder if' +
   ' history button is disabled', () => {
-    const { container } = render(withBuilder(<Builder />, {
+    const { container, unmount } = render(withBuilder(<Builder />, {
       options: { historyButtonsEnabled: false },
     }));
     expect(container.querySelector('.oak-undo-redo')).toBeFalsy();
+    unmount();
   });
 
   it('should display debug mode if explicitly added in options', async () => {
-    const { container } = render(withBuilder(<Builder />, {
+    const { container, unmount } = render(withBuilder(<Builder />, {
       options: { debug: true },
     }));
     expect(container.querySelector('pre')).toBeTruthy();
+    unmount();
   });
 
   it('should call context\'s addElement method when ' +
@@ -48,7 +51,7 @@ describe('Builder', () => {
         },
       },
     ];
-    const { getByText, container } = render(withBuilder(<Builder />, {
+    const { getByText, container, unmount } = render(withBuilder(<Builder />, {
       addElement: addElementMock,
       components,
       getOverrides: () => ({}),
@@ -60,6 +63,8 @@ describe('Builder', () => {
 
     fireEvent.click(getByText('component 1'));
     expect(addElementMock).toHaveBeenCalledWith(component);
+
+    unmount();
   });
 
   it('should call undo and redo when clicking ' +
@@ -67,7 +72,7 @@ describe('Builder', () => {
     const undoMock = jest.fn();
     const redoMock = jest.fn();
 
-    const { container } = render(withBuilder(<Builder />, {
+    const { container, unmount } = render(withBuilder(<Builder />, {
       isRedoPossible: true,
       isUndoPossible: true,
       undo: undoMock,
@@ -87,6 +92,7 @@ describe('Builder', () => {
     expect(undoMock).toHaveBeenCalled();
     expect(redoMock).toHaveBeenCalled();
 
+    unmount();
   });
 
   it('should notcall undo and redo when clicking ' +
@@ -94,7 +100,7 @@ describe('Builder', () => {
     const undoMock = jest.fn();
     const redoMock = jest.fn();
 
-    const { container } = render(withBuilder(<Builder />, {
+    const { container, unmount } = render(withBuilder(<Builder />, {
       isRedoPossible: false,
       isUndoPossible: false,
       undo: undoMock,
@@ -112,11 +118,12 @@ describe('Builder', () => {
 
     expect(undoMock).not.toHaveBeenCalled();
     expect(redoMock).not.toHaveBeenCalled();
+    unmount();
   });
 
   it('should allow to copy/paste an element', async () => {
     const addElementMock = jest.fn();
-    const { container, queryByText } = render(withBuilder(
+    const { container, queryByText, unmount } = render(withBuilder(
       <Builder />,
       {
         getComponent: () => ({ type: 'text' }),
@@ -141,5 +148,6 @@ describe('Builder', () => {
     expect(addElementMock).toHaveBeenCalledWith({
       type: 'text', content: 'Pasted element',
     }, expect.anything());
+    unmount();
   });
 });

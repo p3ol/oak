@@ -5,7 +5,7 @@ import Foldable from '.';
 
 describe('<Foldable />', () => {
   it('should render', () => {
-    const { container } = render(withBuilder((
+    const { container, unmount } = render(withBuilder((
       <Foldable
         element={{
           content: [],
@@ -16,10 +16,11 @@ describe('<Foldable />', () => {
     )));
 
     expect(container.querySelector('.oak-foldable-content')).toBeTruthy();
+    unmount();
   });
 
   it('should render as many content as given on each section', () => {
-    const { container, rerender } = render(withBuilder(
+    const { container, rerender, unmount } = render(withBuilder(
       <Foldable
         element={{
           content: [
@@ -81,10 +82,11 @@ describe('<Foldable />', () => {
     expect(content.querySelectorAll('.oak-element').length).toEqual(0);
     expect(seeMore.querySelectorAll('.oak-element').length).toEqual(0);
     expect(seeLess.querySelectorAll('.oak-element').length).toEqual(4);
+    unmount();
   });
 
   it('should display no content if a section is empty', () => {
-    const { container } = render(withBuilder(
+    const { container, unmount } = render(withBuilder(
       <Foldable
         element={{
           content: [],
@@ -107,10 +109,11 @@ describe('<Foldable />', () => {
       .not.toBeUndefined();
     expect(seeLess.querySelector('.oak-foldable-content-empty'))
       .not.toBeUndefined();
+    unmount();
   });
 
   it('should display one catalog if content is empty and two if not', () => {
-    const { container, rerender } = render(withBuilder(
+    const { container, rerender, unmount } = render(withBuilder(
       <Foldable
         element={{
           content: [],
@@ -144,11 +147,12 @@ describe('<Foldable />', () => {
     expect(content.querySelectorAll('.oak-catalogue').length).toEqual(2);
     expect(seeMore.querySelectorAll('.oak-catalogue').length).toEqual(2);
     expect(seeLess.querySelectorAll('.oak-catalogue').length).toEqual(2);
+    unmount();
   });
 
   it('should remove the correct content', async () => {
     const mockRemoveElement = jest.fn();
-    const { container } = render(withBuilder(
+    const { container, unmount } = render(withBuilder(
       <Foldable
         element={{
           content: [
@@ -172,6 +176,7 @@ describe('<Foldable />', () => {
       expect(mockRemoveElement)
         .toHaveBeenCalledWith(contentToDelete, expect.any(Object))
     );
+    unmount();
   });
 
   it('should add the right element', async () => {
@@ -200,7 +205,7 @@ describe('<Foldable />', () => {
       seeLess: [],
     };
     const mockAddElement = jest.fn();
-    const { container, rerender } = render(withBuilder(
+    const { container, rerender, unmount } = render(withBuilder(
       <Foldable
         element={element}
       />
@@ -251,6 +256,7 @@ describe('<Foldable />', () => {
       content: [],
     }, { parent: element.content, position: 'after' }));
     expect(mockConstruct).toHaveBeenCalledTimes(2);
+    unmount();
   });
 
   it('should add content on the right section', async () => {
@@ -279,7 +285,7 @@ describe('<Foldable />', () => {
       seeLess: [{ type: 'title', content: [], id: 1 }],
     };
     const mockAddElement = jest.fn();
-    const { container } = render(withBuilder(
+    const { container, unmount } = render(withBuilder(
       <Foldable
         element={element}
       />
@@ -348,6 +354,6 @@ describe('<Foldable />', () => {
       settings: {},
       content: [],
     }, { parent: element.seeLess, position: 'before' }));
-
+    unmount();
   });
 });
