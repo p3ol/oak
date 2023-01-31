@@ -8,7 +8,7 @@ import {
   useImperativeHandle,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { mockState, classNames } from '@junipero/react';
+import { mockState, classNames, useTimeout } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import {
   useFloating,
@@ -34,6 +34,7 @@ export default forwardRef(({
   const options = useOptions();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
+    visible: false,
   });
   const floatingSettings = useMemo(() => (
     (typeof component?.settings?.floatingSettings === 'function'
@@ -73,9 +74,24 @@ export default forwardRef(({
     close,
     toggle,
   }));
+  useTimeout(() => {
+    if (!state.visible) {
+      return;
+    }
+
+    dispatch({ opened: true });
+  }, 1, [state.visible]);
+
+  useTimeout(() => {
+    if (state.opened) {
+      return;
+    }
+
+    dispatch({ visible: false });
+  }, 200, [state.opened]);
 
   const open = () => {
-    dispatch({ opened: true });
+    dispatch({ visible: true });
     onToggle?.({ opened: true });
   };
 
@@ -88,26 +104,28 @@ export default forwardRef(({
     state.opened ? close() : open();
 
   const renderForm = () => (
-    <div
-      style={{
-        position: strategy,
-        top: y ?? 0,
-        left: x ?? 0,
-      }}
-      data-placement={context.placement}
-      ref={floating}
-      {...getFloatingProps()}
-    >
-      { slideInDownMenu((
-        <Form
-          element={element}
-          component={component}
-          placement={context.placement}
-          onSave={close}
-          onCancel={close}
-        />
-      ), { opened: state.opened }) }
-    </div>
+    state.visible && (
+      <div
+        style={{
+          position: strategy,
+          top: y ?? 0,
+          left: x ?? 0,
+        }}
+        data-placement={context.placement}
+        ref={floating}
+        {...getFloatingProps()}
+      >
+        {slideInDownMenu((
+          <Form
+            element={element}
+            component={component}
+            placement={context.placement}
+            onSave={close}
+            onCancel={close}
+          />
+        ), { opened: state.opened }) }
+      </div>
+    )
   );
 
   const child = Children.only(children);
