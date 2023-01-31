@@ -48,7 +48,11 @@ describe('Catalogue', () => {
       { type: 'group', id: 'group4', name: 'group 4', components: [] },
       { type: 'group', id: 'other', name: 'Other group', components: [] },
     ];
-    const { container, queryByText, unmount } = render(withBuilder(<Catalogue />, {
+    const {
+      container,
+      queryByText,
+      unmount,
+    } = render(withBuilder(<Catalogue />, {
       options: {
         otherTabEnabled: true,
       },
@@ -74,7 +78,11 @@ describe('Catalogue', () => {
       { type: 'group', id: 'group4', name: 'group 4', components: [] },
       { type: 'group', id: 'other', name: 'Other group', components: [] },
     ];
-    const { container, queryByText, unmount } = render(withBuilder(<Catalogue />, {
+    const {
+      container,
+      queryByText,
+      unmount,
+    } = render(withBuilder(<Catalogue />, {
       options: {
         otherTabEnabled: false,
       },
@@ -121,7 +129,11 @@ describe('Catalogue', () => {
       { type: 'group', id: 'group3', name: 'group 3', components: [] },
       { type: 'group', id: 'group4', name: 'group 4', components: [] },
     ];
-    const { container, getByText, unmount } = render(withBuilder(<Catalogue />, {
+    const {
+      container,
+      getByText,
+      unmount,
+    } = render(withBuilder(<Catalogue />, {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
@@ -179,7 +191,11 @@ describe('Catalogue', () => {
       },
     ];
 
-    const { container, getByText, unmount } = render(withBuilder(<Catalogue />, {
+    const {
+      container,
+      getByText,
+      unmount,
+    } = render(withBuilder(<Catalogue />, {
       options: {
         otherTabEnabled: false,
       },

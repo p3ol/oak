@@ -149,6 +149,7 @@ describe('<Droppable />', () => {
       fireEvent(container.querySelector('p'), dragOverEvent);
       expect(container.querySelector('p').className)
         .not.toContain('drag-bottom');
+      unmount();
     });
 
     it('should not trigger onDragOver props event when drag over', () => {
