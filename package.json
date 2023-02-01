@@ -61,7 +61,7 @@
     "react-dom": "18.2.0",
     "react-popper": "2.3.0",
     "resolve-url-loader": "5.0.0",
-    "rollup": "3.8.1",
+    "rollup": "3.12.1",
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-terser": "7.0.2",
     "sass": "1.56.2",
