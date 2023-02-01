@@ -13581,10 +13581,10 @@ slate-react@0.88.2:
     scroll-into-view-if-needed "^2.2.20"
     tiny-invariant "1.0.6"
 
-slate@0.87.0:
-  version "0.87.0"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.87.0.tgz#ba68aef379918f7f6302d68fdacf561ab8e70178"
-  integrity sha512-m+IWERpdtb7Zna09MxHlUYIAoo4WVdxp2fSf7c+jSV9pDmJ4QvUTuHghX/TVrxtr+8BKGhyQCWIerZt32B1Ysg==
+slate@0.90.0:
+  version "0.90.0"
+  resolved "https://registry.yarnpkg.com/slate/-/slate-0.90.0.tgz#a21e5eae70171d435b30f9f50a92bddc3615143e"
+  integrity sha512-dv8idv0JjYyHiAJcVKf5yWKPDMTDi+PSZyfjsnquEI8VB5nmTVGjeJab06lc3o69O7aN05ROwO9/OY8mU1IUPA==
   dependencies:
     immer "^9.0.6"
     is-plain-object "^5.0.0"
