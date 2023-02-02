@@ -29,7 +29,7 @@
     "@babel/runtime-corejs3": "7.20.7",
     "@poool/junipero": "2.0.0-rc.23",
     "@poool/junipero-utils": "2.0.0-rc.22",
-    "core-js": "3.26.1"
+    "core-js": "3.27.2"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
