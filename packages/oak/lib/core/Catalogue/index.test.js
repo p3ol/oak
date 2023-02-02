@@ -4,16 +4,19 @@ import { withBuilder } from '@tests-utils';
 
 describe('Catalogue', () => {
   it('should render component', () => {
-    const { container } = render(withBuilder(<Catalogue />, {}));
+    const { container, unmount } = render(withBuilder(<Catalogue />, {}));
     expect(container.querySelector('.oak-catalogue')).toBeTruthy();
+
+    unmount();
   });
 
   it('should open catalog when clicking on "+"', async () => {
-    const { container } = render(<Catalogue />);
+    const { container, unmount } = render(<Catalogue />);
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
     await waitFor(() => (
       expect(container.querySelector('.oak-popover')).toBeTruthy()
     ));
+    unmount();
   });
 
   it('should display all builder\'s groups', async () => {
@@ -23,7 +26,7 @@ describe('Catalogue', () => {
       { type: 'group', id: 'group3', name: 'group 3', components: [] },
       { type: 'group', id: 'group4', name: 'group 4', components: [] },
     ];
-    const { container } = render(withBuilder(<Catalogue />, {
+    const { container, unmount } = render(withBuilder(<Catalogue />, {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
@@ -33,6 +36,7 @@ describe('Catalogue', () => {
     expect(container.querySelectorAll('.oak-groups .title').length).toBe(4);
     expect(container.querySelectorAll('.oak-groups .title')[0].textContent)
       .toBe(components[0].name);
+    unmount();
   });
 
   it('should  display "other" groups if ' +
@@ -44,7 +48,11 @@ describe('Catalogue', () => {
       { type: 'group', id: 'group4', name: 'group 4', components: [] },
       { type: 'group', id: 'other', name: 'Other group', components: [] },
     ];
-    const { container, queryByText } = render(withBuilder(<Catalogue />, {
+    const {
+      container,
+      queryByText,
+      unmount,
+    } = render(withBuilder(<Catalogue />, {
       options: {
         otherTabEnabled: true,
       },
@@ -58,6 +66,7 @@ describe('Catalogue', () => {
     expect(container.querySelectorAll('.oak-groups .title')[0].textContent)
       .toBe(components[0].name);
     expect(queryByText('Other group')).toBeTruthy();
+    unmount();
   });
 
   it('should not display "other" groups if ' +
@@ -69,7 +78,11 @@ describe('Catalogue', () => {
       { type: 'group', id: 'group4', name: 'group 4', components: [] },
       { type: 'group', id: 'other', name: 'Other group', components: [] },
     ];
-    const { container, queryByText } = render(withBuilder(<Catalogue />, {
+    const {
+      container,
+      queryByText,
+      unmount,
+    } = render(withBuilder(<Catalogue />, {
       options: {
         otherTabEnabled: false,
       },
@@ -83,6 +96,7 @@ describe('Catalogue', () => {
     expect(container.querySelectorAll('.oak-groups .title')[0].textContent)
       .toBe(components[0].name);
     expect(queryByText('Other group')).toBeFalsy();
+    unmount();
   });
 
   it('should activate first group tab by default', async () => {
@@ -92,7 +106,7 @@ describe('Catalogue', () => {
       { type: 'group', id: 'group3', name: 'group 3', components: [] },
       { type: 'group', id: 'group4', name: 'group 4', components: [] },
     ];
-    const { container } = render(withBuilder(<Catalogue />, {
+    const { container, unmount } = render(withBuilder(<Catalogue />, {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
@@ -105,6 +119,7 @@ describe('Catalogue', () => {
     expect(
       container.querySelectorAll('.oak-groups .title')[1].className
     ).not.toContain('active');
+    unmount();
   });
 
   it('should change actived group when clicking on a group', async () => {
@@ -114,7 +129,11 @@ describe('Catalogue', () => {
       { type: 'group', id: 'group3', name: 'group 3', components: [] },
       { type: 'group', id: 'group4', name: 'group 4', components: [] },
     ];
-    const { container, getByText } = render(withBuilder(<Catalogue />, {
+    const {
+      container,
+      getByText,
+      unmount,
+    } = render(withBuilder(<Catalogue />, {
       components,
     }));
     fireEvent.click(container.querySelector('.oak-catalogue .oak-handle'));
@@ -135,6 +154,7 @@ describe('Catalogue', () => {
     expect(
       container.querySelectorAll('.oak-groups .title')[1].className
     ).toContain('active');
+    unmount();
   });
 
   it('should display groups components', async () => {
@@ -171,7 +191,11 @@ describe('Catalogue', () => {
       },
     ];
 
-    const { container, getByText } = render(withBuilder(<Catalogue />, {
+    const {
+      container,
+      getByText,
+      unmount,
+    } = render(withBuilder(<Catalogue />, {
       options: {
         otherTabEnabled: false,
       },
@@ -186,6 +210,7 @@ describe('Catalogue', () => {
       container.querySelectorAll('.oak-components .oak-component').length
     ).toEqual(4);
     expect(getByText('component 1')).toBeTruthy();
+    unmount();
   });
 
   it('should not display components ' +
@@ -232,6 +257,7 @@ describe('Catalogue', () => {
       container,
       getByText,
       queryByText,
+      unmount,
     } = render(withBuilder(<Catalogue />, {
       options: {
         otherTabEnabled: false,
@@ -248,6 +274,7 @@ describe('Catalogue', () => {
     ).toEqual(2);
     expect(queryByText('component 1')).toBeFalsy();
     expect(getByText('component 3')).toBeTruthy();
+    unmount();
   });
 
   it('should change displayed components when changing group', async () => {
@@ -299,6 +326,7 @@ describe('Catalogue', () => {
       container,
       getByText,
       queryByText,
+      unmount,
     } = render(withBuilder(<Catalogue />, {
       options: {
         otherTabEnabled: false,
@@ -323,5 +351,6 @@ describe('Catalogue', () => {
 
     expect(getByText('component 1')).toBeTruthy();
     expect(queryByText('component 3')).toBeFalsy();
+    unmount();
   });
 });

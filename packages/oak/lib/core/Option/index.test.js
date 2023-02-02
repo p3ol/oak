@@ -4,17 +4,19 @@ import Option from '.';
 
 describe('<Option />', () => {
   it('should render', () => {
-    const { container } = render(<Option />);
+    const { container, unmount } = render(<Option />);
     expect(container.querySelector('.oak-option')).toBeTruthy();
+    unmount();
   });
 
   it('should add custom className to option icon', () => {
-    const { container } = render(
+    const { container, unmount } = render(
       <Option
         className="custom"
       />
     );
     expect(container.querySelector('.custom')).toBeTruthy();
+    unmount();
   });
 
   it('should set custom icon to option icon', () => {
@@ -24,7 +26,7 @@ describe('<Option />', () => {
 
   it('should trigger custom event on custom handler', () => {
     const customClickMock = jest.fn();
-    const { container } = render(
+    const { container, unmount } = render(
       <Option
         option={{ icon: 'custom' }}
         onClick={customClickMock}
@@ -32,5 +34,6 @@ describe('<Option />', () => {
     );
     fireEvent.click(container.querySelector('.oak-option'));
     expect(customClickMock).toHaveBeenCalled();
+    unmount();
   });
 });
