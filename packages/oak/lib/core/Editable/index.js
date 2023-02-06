@@ -28,10 +28,6 @@ export default forwardRef(({
     opened: false,
   });
 
-  useEffect(() => {
-    close();
-  }, [overrides]);
-
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
     ...((typeof component?.settings?.popperSettings === 'function'
       ? component?.settings?.popperSettings({ optionButtonElement: reference })
