@@ -4,7 +4,6 @@ import {
   forwardRef,
   useMemo,
   useReducer,
-  useEffect,
   useImperativeHandle,
 } from 'react';
 import { createPortal } from 'react-dom';
@@ -30,7 +29,7 @@ export default forwardRef(({
   component,
   onToggle,
 }, ref) => {
-  const { _settingsHolderRef, overrides, oakRef } = useBuilder();
+  const { _settingsHolderRef, oakRef } = useBuilder();
   const options = useOptions();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
@@ -64,10 +63,6 @@ export default forwardRef(({
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useClick(context),
   ]);
-
-  useEffect(() => {
-    close();
-  }, [overrides]);
 
   useImperativeHandle(ref, () => ({
     open,

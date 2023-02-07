@@ -28,7 +28,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.20.6",
+    "@babel/runtime-corejs3": "7.20.13",
     "@floating-ui/react-dom-interactions": "0.13.1",
     "@poool/junipero": "2.0.0-rc.23",
     "@poool/junipero-hooks": "2.0.0-rc.22",
@@ -36,7 +36,7 @@
     "@junipero/react": "3.0.0-alpha.14",
     "@junipero/theme": "3.0.0-alpha.13",
     "@junipero/transitions": "3.0.0-alpha.6",
-    "core-js": "3.26.1",
+    "core-js": "3.27.2",
     "preact": "10.11.3",
     "react-transition-group": "4.4.5",
     "uuid": "9.0.0"
