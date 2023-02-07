@@ -5,7 +5,6 @@ import {
   forwardRef,
   useReducer,
   useState,
-  useEffect,
   useImperativeHandle,
 } from 'react';
 import { mockState, classNames } from '@poool/junipero';
@@ -19,7 +18,7 @@ export default forwardRef(({
   element,
   component,
 }, ref) => {
-  const { _settingsHolderRef, overrides } = useBuilder();
+  const { _settingsHolderRef } = useBuilder();
   const options = useOptions();
   const [popper, setPopper] = useState();
   const [reference, setReference] = useState();
@@ -27,10 +26,6 @@ export default forwardRef(({
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
   });
-
-  useEffect(() => {
-    close();
-  }, [overrides]);
 
   const { styles: popperStyles, attributes } = usePopper(reference, popper, {
     ...((typeof component?.settings?.popperSettings === 'function'
