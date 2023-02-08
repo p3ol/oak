@@ -5,7 +5,7 @@ import {
   useImperativeHandle,
   useRef,
 } from 'react';
-import { classNames } from '@poool/junipero-utils';
+import { classNames } from '@junipero/core';
 import { useOptions, useBuilder, useElement, render } from '@poool/oak';
 
 export { useOptions, useBuilder, useElement };

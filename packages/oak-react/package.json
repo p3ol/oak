@@ -21,15 +21,13 @@
     "yarn": ">= 1"
   },
   "peerDependencies": {
-    "@poool/oak": "^2.0.0-alpha.0",
+    "@poool/oak": "^2.0.0-alpha.6",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
-    "@poool/junipero": "2.0.0-rc.23",
-    "@poool/junipero-hooks": "2.0.0-rc.22",
-    "@poool/junipero-utils": "2.0.0-rc.22",
+    "@junipero/core": "3.0.0-alpha.40",
     "core-js": "3.27.2"
   },
   "scripts": {
