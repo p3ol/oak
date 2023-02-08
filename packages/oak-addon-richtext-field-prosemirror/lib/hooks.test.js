@@ -1,7 +1,8 @@
 import { renderHook } from '@testing-library/react';
+import { DOMParser as proseDOMParser } from 'prosemirror-model';
+
 import { useProseMirror } from './hooks';
 import { schema } from './core/Editor/schema';
-import { DOMParser as proseDOMParser } from 'prosemirror-model';
 
 describe('useProsemirror', () => {
   it('should set the corect state', () => {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SelectField } from '@poool/junipero';
+import { SelectField } from '@junipero/react';
 
 import Editor from './core/Editor';
 

@@ -21,14 +21,14 @@
     "yarn": ">= 1"
   },
   "peerDependencies": {
-    "@poool/oak": "^2.0.0-alpha.0",
+    "@poool/oak": "^2.0.0-alpha.6",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
-    "@poool/junipero": "2.0.0-rc.23",
-    "@poool/junipero-utils": "2.0.0-rc.22",
+    "@junipero/react": "3.0.0-alpha.40",
+    "@junipero/theme": "3.0.0-alpha.41",
     "core-js": "3.27.2",
     "prosemirror-commands": "1.5.0",
     "prosemirror-keymap": "1.2.0",

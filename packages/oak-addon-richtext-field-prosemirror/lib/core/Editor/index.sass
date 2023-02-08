@@ -14,7 +14,6 @@
       color: blue
       text-decoration: underline
 
-
   .oak-toolbar
     background: var(--oak-text-editor-toolbar-color)
     border-radius: 4px 4px 0 0
@@ -69,21 +68,21 @@
       display: none
 
   .oak-color-field
-    .color-input
-      padding: 0px 10px
-
-      .junipero.dropdown-menu .menu-inner
+    & > .junipero.dropdown-menu
+      .menu-inner
+        padding: 0
+        background: transparent
         box-shadow: none
-        margin-bottom: 10px
-
-    .junipero.color-input .color-wheel .lightness
-      border-radius: 4px
-      margin-bottom: 5px
+        overflow: visible
 
   .oak-link-field
-    .oak-link-input.junipero.dropdown-menu
-      .menu-inner
-        padding: 10px
-      
-      .oak-link-url
-        margin-bottom: 10px
+    & > .junipero.dropdown-menu .menu-inner
+      padding: 10px
+      overflow: visible
+
+    .label
+      padding-top: 0
+
+    .oak-link-url
+      width: 100%
+      margin-bottom: 10px
