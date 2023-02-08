@@ -184,7 +184,7 @@ describe('<Toolbar />', () => {
     );
     fireEvent.click(getByText('format_color_text'));
     fireEvent.change(
-      container.querySelector('.color-input input'),
+      container.querySelector('.color-field input'),
       { target: { value: '#ff0000' } }
     );
     await waitFor(() => (

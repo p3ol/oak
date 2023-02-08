@@ -19,6 +19,9 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(uuid))',
   ],
+  setupFilesAfterEnv: [
+    path.resolve(__dirname, 'tests/config.js'),
+  ],
   coveragePathIgnorePatterns: [
     'node_modules',
     'dist',
