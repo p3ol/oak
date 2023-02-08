@@ -1112,14 +1112,6 @@
     pirates "^4.0.5"
     source-map-support "^0.5.16"
 
-"@babel/runtime-corejs3@7.19.1":
-  version "7.19.1"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.19.1.tgz#f0cbbe7edda7c4109cd253bb1dee99aba4594ad9"
-  integrity sha512-j2vJGnkopRzH+ykJ8h68wrHnEUmtK//E723jjixiAl/PPf6FhqY/vYRcMVlNydRKQjQsTsYEjpx+DZMIvnGk/g==
-  dependencies:
-    core-js-pure "^3.25.1"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime-corejs3@7.20.13":
   version "7.20.13"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.20.13.tgz#ad012857db412ab0b5ccf184b67be2cfcc2a1dcf"
@@ -1526,6 +1518,14 @@
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
   integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
+
+"@junipero/core@3.0.0-alpha.40":
+  version "3.0.0-alpha.40"
+  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.0.0-alpha.40.tgz#f4ea0219024ed8317ad886705a48f43e7ba867dd"
+  integrity sha512-N9pdvRfgKcnocYjyxX5KnOu/cPoSB+NnkIOHyCHlkGukElRI/H57r2tuGGBSHqR3kpNvg9NMVusFDrseI47HHA==
+  dependencies:
+    "@babel/runtime-corejs3" "7.20.13"
+    core-js "3.27.2"
 
 "@junipero/react@3.0.0-alpha.40":
   version "3.0.0-alpha.40"
@@ -2703,33 +2703,6 @@
   integrity sha512-8SJX/w1uwXFRMAD1+5hHrvdgq18iD33wNw03mqqkJTuGpIMb0NNSnSO39tl3v+r5wUTJdhEMW1MEDYCe6dRFJQ==
   dependencies:
     eslint-rule-composer "0.3.0"
-
-"@poool/junipero-hooks@2.0.0-rc.22", "@poool/junipero-hooks@^2.0.0-rc.22":
-  version "2.0.0-rc.22"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-hooks/-/junipero-hooks-2.0.0-rc.22.tgz#4c23c00b13f8e304d57ed258a5959d5f96b3bfb1"
-  integrity sha512-y3uFVqcYTKMnTD+CRKo6CQDVS0uXtdg7qU4GHhiv1ttt3jqdteEx0ERiGPqMBhK9kSh5/3GkOzBAyCkyD3fxQg==
-  dependencies:
-    "@babel/runtime-corejs3" "7.19.1"
-    core-js "3.25.5"
-
-"@poool/junipero-utils@2.0.0-rc.22", "@poool/junipero-utils@^2.0.0-rc.22":
-  version "2.0.0-rc.22"
-  resolved "https://registry.yarnpkg.com/@poool/junipero-utils/-/junipero-utils-2.0.0-rc.22.tgz#337fcbfd3c22031be28638fa79a661e3c84db413"
-  integrity sha512-vIiM59Av8P3AzoVIFiu53aTYkVyKN10NVQTcAZKkbzA/acIYuUvwi1hcdZLGfSDrHppn2lTBTwYUzBneWOe5EA==
-  dependencies:
-    "@babel/runtime-corejs3" "7.19.1"
-    core-js "3.25.5"
-
-"@poool/junipero@2.0.0-rc.23":
-  version "2.0.0-rc.23"
-  resolved "https://registry.yarnpkg.com/@poool/junipero/-/junipero-2.0.0-rc.23.tgz#e5fa116fb8d2e817d3807466977c6a0c057a09cb"
-  integrity sha512-oX9ygvhd1d7+1et8bO/2rBdL4U4C6rY7Kkdh2RdYrfTjC2cUROGsvOKC+TakH5jMcs3RIJvGVR1ZCZRgSjSo+w==
-  dependencies:
-    "@babel/runtime-corejs3" "7.19.1"
-    "@poool/junipero-hooks" "^2.0.0-rc.22"
-    "@poool/junipero-utils" "^2.0.0-rc.22"
-    core-js "3.25.5"
-    prop-types "15.8.1"
 
 "@popperjs/core@2.11.6":
   version "2.11.6"
@@ -6049,11 +6022,6 @@ core-js-pure@^3.23.3, core-js-pure@^3.25.1:
   version "3.27.2"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.27.2.tgz#47e9cc96c639eefc910da03c3ece26c5067c7553"
   integrity sha512-Cf2jqAbXgWH3VVzjyaaFkY1EBazxugUepGymDoeteyYr9ByX51kD2jdHZlsEF/xnJMyN3Prua7mQuzwMg6Zc9A==
-
-core-js@3.25.5:
-  version "3.25.5"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.25.5.tgz#e86f651a2ca8a0237a5f064c2fe56cef89646e27"
-  integrity sha512-nbm6eZSjm+ZuBQxCUPQKQCoUEfFOXjUZ8dTTyikyKaWrTYmAVbykQfwsKE5dBK88u3QCkCrzsx/PPlKfhsvgpw==
 
 core-js@3.27.2, core-js@^3.0.4, core-js@^3.6.5, core-js@^3.8.2:
   version "3.27.2"
@@ -12882,7 +12850,7 @@ regenerate@^1.4.2:
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
 
-regenerator-runtime@^0.13.11, regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7:
+regenerator-runtime@^0.13.11, regenerator-runtime@^0.13.7:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
   integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
