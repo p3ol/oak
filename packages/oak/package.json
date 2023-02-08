@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak",
-  "version": "1.4.1",
+  "version": "2.0.0-alpha.6",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -30,12 +30,12 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
     "@floating-ui/react-dom-interactions": "0.13.3",
-    "@poool/junipero": "2.0.0-rc.23",
-    "@poool/junipero-hooks": "2.0.0-rc.22",
-    "@poool/junipero-utils": "2.0.0-rc.22",
     "@junipero/react": "3.0.0-alpha.14",
     "@junipero/theme": "3.0.0-alpha.13",
     "@junipero/transitions": "3.0.0-alpha.6",
+    "@poool/junipero": "2.0.0-rc.23",
+    "@poool/junipero-hooks": "2.0.0-rc.22",
+    "@poool/junipero-utils": "2.0.0-rc.22",
     "core-js": "3.27.2",
     "preact": "10.11.3",
     "react-transition-group": "4.4.5",
