@@ -37,7 +37,9 @@ const defaultPlugins = [
     rootDir: path.resolve('../../'),
   }),
   commonjs(),
-  terser(),
+  terser({
+    mangle: false,
+  }),
 ];
 
 const getConfig = (format, {
