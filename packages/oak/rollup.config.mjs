@@ -5,7 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 // import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import autoprefixer from 'autoprefixer';
 import url from 'postcss-url';
 
