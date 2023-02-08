@@ -2751,10 +2751,10 @@
   resolved "https://registry.yarnpkg.com/@percy/logger/-/logger-1.14.0.tgz#9c6e72bd9a250db01297a004e5dca71e9dcb023a"
   integrity sha512-Bv9klBhjA44hTL/roAh8YBQdJ1Q+PzVpelEt1xk4oF51lbXKc+jlGXzS9xXpXm1qqZj+Kg+sqhCBT2X6X3ErTA==
 
-"@percy/storybook@4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@percy/storybook/-/storybook-4.3.4.tgz#37bd1802a3dde607afdfc17a85930c447149f938"
-  integrity sha512-PIGf6X+rnKJRZaUqMzATKC1zLN2wT8min8YEDU4fKFDhQlx0yTQhgOeiwbw2wmhbc5Ge0U5TqMBrlOuYxuPmvg==
+"@percy/storybook@4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@percy/storybook/-/storybook-4.3.5.tgz#e1cf22afb6bed99f0ebf8f8f3a4a95c1cbbcca0b"
+  integrity sha512-b8zZ933R0e+5rTTeAtDDGKpl39vVj57RiMg9QWxJtO07TdXx8AhnEqzIj7lmkKb+5cYD8onQ/UFAAOG8gQ87AA==
   dependencies:
     "@percy/cli-command" "^1.10.4"
     cross-spawn "^7.0.3"
