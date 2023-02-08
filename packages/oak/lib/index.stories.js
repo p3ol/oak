@@ -86,8 +86,8 @@ export const basicConfig = () => {
               title: 'French',
               value: mergeDeep(french, basicFrench, editorFrench) },
           ]}
-          parseTitle={o => o.title}
-          parseValue={o => o.value}
+          parseTitle={o => o?.title}
+          parseValue={o => o?.value}
           onChange={setTexts}
         />
         <SelectField
@@ -97,8 +97,8 @@ export const basicConfig = () => {
             { title: 'Default', value: 'default' },
             { title: 'Blue', value: 'blue' },
           ]}
-          parseTitle={o => o.title}
-          parseValue={o => o.value}
+          parseTitle={o => o?.title}
+          parseValue={o => o?.value}
           onChange={field => setTheme(field.value)}
         />
         <SelectField
@@ -109,8 +109,8 @@ export const basicConfig = () => {
             { title: 'Slate', value: richTextField },
             { title: 'Prose mirror', value: proseMirrorEditor },
           ]}
-          parseTitle={o => o.title}
-          parseValue={o => o.value}
+          parseTitle={o => o?.title}
+          parseValue={o => o?.value}
           onChange={field => setCurrentAddon(field.value)}
         />
       </div>
