@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
-import { mockState } from '@poool/junipero-utils';
+import { mockState } from '@junipero/react';
 import { createEditor, Editor } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, Slate, withReact } from 'slate-react';
