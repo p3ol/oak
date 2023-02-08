@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { mergeDeep, SelectField } from '@poool/junipero';
+import { SelectField, mergeDeep } from '@junipero/react';
 
 import { render } from './';
 import basicComponents, { localeFr as basicFrench }

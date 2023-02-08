@@ -29,16 +29,12 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
-    "@floating-ui/react-dom-interactions": "0.13.3",
-    "@junipero/react": "3.0.0-alpha.14",
-    "@junipero/theme": "3.0.0-alpha.13",
-    "@junipero/transitions": "3.0.0-alpha.6",
-    "@poool/junipero": "2.0.0-rc.23",
-    "@poool/junipero-hooks": "2.0.0-rc.22",
-    "@poool/junipero-utils": "2.0.0-rc.22",
+    "@floating-ui/react": "0.19.1",
+    "@junipero/react": "3.0.0-alpha.40",
+    "@junipero/theme": "3.0.0-alpha.37",
+    "@junipero/transitions": "3.0.0-alpha.40",
     "core-js": "3.27.2",
     "preact": "10.11.3",
-    "react-transition-group": "4.4.5",
     "uuid": "9.0.0"
   },
   "scripts": {

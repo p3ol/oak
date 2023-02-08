@@ -15,7 +15,7 @@ import {
   useClick,
   useDismiss,
   offset,
-} from '@floating-ui/react-dom-interactions';
+} from '@floating-ui/react';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Icon from '../Icon';

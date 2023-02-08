@@ -1,4 +1,4 @@
-import { get } from '@poool/junipero-utils';
+import { get } from '@junipero/react';
 
 import { AppContext } from '../lib/contexts';
 

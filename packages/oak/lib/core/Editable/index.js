@@ -18,7 +18,7 @@ import {
   shift,
   limitShift,
   autoPlacement,
-} from '@floating-ui/react-dom-interactions';
+} from '@floating-ui/react';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Form from './Form';
