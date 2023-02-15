@@ -71,49 +71,45 @@ export default forwardRef(({
   }));
 
   useTimeout(() => {
-    dispatch({ opened: true });
-  }, 1, [state.visible], { enabled: state.visible });
-
-  useTimeout(() => {
-    dispatch({ visible: false });
-  }, 100, [state.opened], { enabled: !state.opened });
+    dispatch({ opened: false });
+  }, 100, [state.visible, state.opened], {
+    enabled: !state.visible && state.opened,
+  });
 
   const open = () => {
-    dispatch({ visible: true });
+    dispatch({ opened: true, visible: true });
     onToggle?.({ opened: true });
   };
 
   const close = () => {
-    dispatch({ opened: false });
+    dispatch({ visible: false });
     onToggle?.({ opened: false });
   };
 
   const toggle = () =>
-    state.opened ? close() : open();
+    state.visible ? close() : open();
 
-  const renderForm = () => (
-    state.visible && (
-      <div
-        style={{
-          position: strategy,
-          top: y ?? 0,
-          left: x ?? 0,
-        }}
-        data-placement={context.placement}
-        ref={floating}
-        {...getFloatingProps()}
-      >
-        {slideInDownMenu((
-          <Form
-            element={element}
-            component={component}
-            placement={context.placement}
-            onSave={close}
-            onCancel={close}
-          />
-        ), { opened: state.opened }) }
-      </div>
-    )
+  const renderForm = () => state.opened && (
+    <div
+      style={{
+        position: strategy,
+        top: y ?? 0,
+        left: x ?? 0,
+      }}
+      data-placement={context.placement}
+      ref={floating}
+      {...getFloatingProps()}
+    >
+      { slideInDownMenu((
+        <Form
+          element={element}
+          component={component}
+          placement={context.placement}
+          onSave={close}
+          onCancel={close}
+        />
+      ), { opened: state.visible }) }
+    </div>
   );
 
   const child = Children.only(children);
