@@ -1527,20 +1527,20 @@
     "@babel/runtime-corejs3" "7.20.13"
     core-js "3.27.2"
 
-"@junipero/react@3.0.0-alpha.40":
-  version "3.0.0-alpha.40"
-  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-alpha.40.tgz#311747e144c68bc4fba61d39c7225ccdaa66fd28"
-  integrity sha512-tCue4hw8wFow+Dk9/Os3x0ZSJwQ26yBNaImW4bXIIjTTuUP39MjiJmM0xMVxhdW26tQLn312G5AqkG6T9LjvfA==
+"@junipero/react@3.0.0-alpha.45":
+  version "3.0.0-alpha.45"
+  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-alpha.45.tgz#9b5fe21ccf4c2a612eafefde0513af5b8a5480cf"
+  integrity sha512-jebD/5QhHXAK62TKeXHvCTsBNdZvlU+sBv1O9eC/wSaXIFs84CpWXmdaN2hr90ceHdiHoP19ad98amWzPaucNQ==
   dependencies:
     "@babel/runtime-corejs3" "7.20.13"
     "@floating-ui/react" "0.19.1"
     core-js "3.27.2"
     prop-types "15.8.1"
 
-"@junipero/theme@3.0.0-alpha.41":
-  version "3.0.0-alpha.41"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-alpha.41.tgz#ba263074c884c2d4a46b664375d7e4d8517cac11"
-  integrity sha512-c4Uwlh+ybOBThr4R/LDJwGncxrYMEblkhBjychFl1wac2ef+E9JCN8i7XkK2UPupl92aC+hTnLXl/6sIwyWv1Q==
+"@junipero/theme@3.0.0-alpha.42":
+  version "3.0.0-alpha.42"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-alpha.42.tgz#f3615cecdfc5fb8407a68187cbd1fccfd146a924"
+  integrity sha512-I6ZX9TUYjxw7Sah87JTjP+qzBNpknqyslsrIiOszQQlmiW5bqC97GrCq0C7ANqNm6ybxyLLpnBi3mID7cA8fKg==
 
 "@junipero/transitions@3.0.0-alpha.40":
   version "3.0.0-alpha.40"
