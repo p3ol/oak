@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
-    "@junipero/react": "3.0.0-alpha.45",
-    "@junipero/theme": "3.0.0-alpha.42",
+    "@junipero/react": "3.0.0-alpha.52",
+    "@junipero/theme": "3.0.0-alpha.50",
     "core-js": "3.27.2",
     "prosemirror-commands": "1.5.0",
     "prosemirror-keymap": "1.2.0",
