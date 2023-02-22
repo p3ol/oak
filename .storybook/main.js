@@ -7,6 +7,7 @@ module.exports = {
   ],
   addons: [
     '@storybook/addon-actions/register',
+    'storybook-dark-mode',
   ],
   core: {
     builder: 'webpack5',
