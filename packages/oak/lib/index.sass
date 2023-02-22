@@ -26,6 +26,7 @@
     --oak-floating-background-color: var(--junipero-seashell)
     --oak-error-color: var(--junipero-grapefruit)
     --oak-field-border-color: var(--junipero-mischka)
+    --oak-tooltip-border-color: transparent
 
 @import "./theme/fonts/oak-icons.sass"
 
@@ -48,3 +49,20 @@
 @import "./theme/reset/tooltips.sass"
 @import "./theme/reset/toggles.sass"
 @import "./theme/reset/touchablezones.sass"
+
+// Dark mode
+.dark .oak
+  *
+    --oak-background-main-color: var(--junipero-dark-velvet-disabled)
+    --oak-shadow-color: transparent
+    --oak-background-color: var(--junipero-gondola)
+    --oak-inner-background-color: var(--junipero-onyx)
+    --oak-foreground-color: var(--junipero-onyx)
+    --oak-interaction-color: var(--junipero-dark-velvet-foreground)
+    --oak-text-color: var(--junipero-onyx)
+    --oak-reverse-text-color: var(--junipero-seashell)
+    --oak-alternate-text-color: var(--junipero-nevada)
+    --oak-floating-background-color: var(--junipero-gondola)
+    --oak-error-color: var(--junipero-grapefruit)
+    --oak-field-border-color: var(--junipero-dark-velvet-background)
+    --oak-tooltip-border-color: var(--junipero-dark-velvet-background)
