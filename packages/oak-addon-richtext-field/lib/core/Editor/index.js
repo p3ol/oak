@@ -31,6 +31,7 @@ export default ({
   value,
   onChange,
   element,
+  options = {},
 }) => {
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -74,118 +75,126 @@ export default ({
   };
 
   return (
-    <Slate
-      editor={editor}
-      value={state.value}
-      onChange={onChange_}
-    >
-      <div className="oak-text-editor oak-slate">
-        <div className="oak-toolbar">
-          <MarkButton
-            format="bold"
-            icon="format_bold"
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.bold"
-                default="Bold"
-              />
-            )}
-          />
-          <MarkButton
-            format="italic"
-            icon="format_italic"
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.italic"
-                default="Italic"
-              />
-            )}
-          />
-          <MarkButton
-            format="underline"
-            icon="format_underlined"
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.underline"
-                default="Underline"
-              />
-            )}
-          />
-          <LinkButton />
-          <ColorButton />
-          <SizeButton
-            icon="horizontal_rule"
-            increase={false}
-            currentSize={getTextSize()}
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.decrease"
-                default="Decrease size"
-              />
-            )}
-          />
-          <span className="oak-text-size">{ getTextSize() }</span>
-          <SizeButton
-            icon="add"
-            currentSize={getTextSize()}
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.increase"
-                default="Increase size"
-              />
-            )}
-          />
-          <BlockButton
-            format="text-left"
-            icon="format_align_left"
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.left"
-                default="Align left"
-              />
-            )}
-          />
-          <BlockButton
-            format="text-center"
-            icon="format_align_center"
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.center"
-                default="Align center"
-              />
-            )}
-          />
-          <BlockButton
-            format="text-right"
-            icon="format_align_right"
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.right"
-                default="Align right"
-              />
-            )}
-          />
-          <BlockButton
-            format="text-justify"
-            icon="format_align_justify"
-            tooltipText={(
-              <Text
-                name="addons.richtextField.fields.editor.justify"
-                default="Justify"
-              />
-            )}
+    <>
+      <Slate
+        editor={editor}
+        value={state.value}
+        onChange={onChange_}
+      >
+        <div className="oak-text-editor oak-slate">
+          <div className="oak-toolbar">
+            <MarkButton
+              format="bold"
+              icon="format_bold"
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.bold"
+                  default="Bold"
+                />
+              )}
+            />
+            <MarkButton
+              format="italic"
+              icon="format_italic"
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.italic"
+                  default="Italic"
+                />
+              )}
+            />
+            <MarkButton
+              format="underline"
+              icon="format_underlined"
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.underline"
+                  default="Underline"
+                />
+              )}
+            />
+            <LinkButton />
+            <ColorButton />
+            <SizeButton
+              icon="horizontal_rule"
+              increase={false}
+              currentSize={getTextSize()}
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.decrease"
+                  default="Decrease size"
+                />
+              )}
+            />
+            <span className="oak-text-size">{ getTextSize() }</span>
+            <SizeButton
+              icon="add"
+              currentSize={getTextSize()}
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.increase"
+                  default="Increase size"
+                />
+              )}
+            />
+            <BlockButton
+              format="text-left"
+              icon="format_align_left"
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.left"
+                  default="Align left"
+                />
+              )}
+            />
+            <BlockButton
+              format="text-center"
+              icon="format_align_center"
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.center"
+                  default="Align center"
+                />
+              )}
+            />
+            <BlockButton
+              format="text-right"
+              icon="format_align_right"
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.right"
+                  default="Align right"
+                />
+              )}
+            />
+            <BlockButton
+              format="text-justify"
+              icon="format_align_justify"
+              tooltipText={(
+                <Text
+                  name="addons.richtextField.fields.editor.justify"
+                  default="Justify"
+                />
+              )}
+            />
+          </div>
+          <Editable
+            onDrop={e => e.preventDefault()}
+            renderElement={renderElement}
+            renderLeaf={renderLeaf}
+            spellCheck={false}
+            onKeyDown={onKeyDown}
+            className="oak-text-editable"
+            style={{ fontSize: getDefaultSize() }}
           />
         </div>
-        <Editable
-          onDrop={e => e.preventDefault()}
-          renderElement={renderElement}
-          renderLeaf={renderLeaf}
-          spellCheck={false}
-          onKeyDown={onKeyDown}
-          className="oak-text-editable"
-          style={{ fontSize: getDefaultSize() }}
-        />
-      </div>
-    </Slate>
+      </Slate>
+
+      { options.debug && (
+        <pre style={{ whiteSpace: 'pre-wrap' }}>
+          { JSON.stringify(state, null, 2) }
+        </pre>
+      ) }
+    </>
   );
 };
