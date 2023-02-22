@@ -38,9 +38,7 @@ const Row = ({
   };
 
   return (
-    <div
-      { ...omit(rest, ['builder']) }
-    >
+    <div { ...omit(rest, ['builder', 'component']) }>
       <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="oak-drop-zone oak-before" />
       </Droppable>
