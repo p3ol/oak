@@ -1,5 +1,5 @@
 import { Fragment, useRef, useCallback, useState } from 'react';
-import { classNames } from '@junipero/react';
+import { Draggable, Droppable, classNames } from '@junipero/react';
 import { v4 as uuid } from 'uuid';
 
 import { COMPONENT_DEFAULT } from '../../defaults';
@@ -7,8 +7,6 @@ import { ElementContext } from '../../contexts';
 import { useBuilder, useOptions } from '../../hooks';
 import { copyToClipboard } from '../../utils';
 import Option from '../Option';
-import Draggable from '../Draggable';
-import Droppable from '../Droppable';
 import Editable from '../Editable';
 import Icon from '../Icon';
 import Text from '../Text';

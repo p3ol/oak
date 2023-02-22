@@ -1,9 +1,8 @@
 import { v4 as uuid } from 'uuid';
-import { classNames, omit } from '@junipero/react';
+import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
-import Droppable from '../Droppable';
 import options from './index.options';
 import settings from './index.settings';
 
