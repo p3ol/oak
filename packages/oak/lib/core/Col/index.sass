@@ -9,6 +9,7 @@
   --option-hover-color: var(--oak-main-color)
   --drop-zone-color: var(--oak-interaction-color)
   --divider-background-color: var(--oak-interaction-color)
+  --divider-color: var(--oak-alternate-text-color)
   --inner-background-color: var(--oak-inner-background-color)
   --inner-border-color: var(--oak-interaction-color)
 
@@ -145,6 +146,12 @@
               background: transparent
               border: 1px solid var(--inner-border-color)
 
+            .oak-element.oak-foldable .oak-inner
+              border: 1px solid var(--inner-border-color)
+
+              .oak-foldable-section-content
+                background: var(--background-color)
+
             .oak-element:not(.oak-row) .oak-inner
               background: var(--inner-background-color)
 
@@ -176,7 +183,7 @@
       width: 15px
       height: 50px
       background: var(--divider-background-color)
-      color: var(--oak-alternate-text-color)
+      color: var(--divider-color)
       border-radius: 0 2px 2px 0
 
       &:hover
