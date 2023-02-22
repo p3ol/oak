@@ -1537,10 +1537,10 @@
     core-js "3.27.2"
     prop-types "15.8.1"
 
-"@junipero/theme@3.0.0-alpha.50":
-  version "3.0.0-alpha.50"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-alpha.50.tgz#9fd931ea5aa638ebb4fd88bdfae27e4c90ee2c3f"
-  integrity sha512-dQodghJ0AqijTEzthG0is6ACCvl/8Aog52M21GT5ZAFvYwWPV0xd0k+9PZ9B+kdpG3d6P6GuI6l4yrTdMCbkLQ==
+"@junipero/theme@3.0.0-alpha.53":
+  version "3.0.0-alpha.53"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-alpha.53.tgz#06cb22f22d6a87a2f2d037703f5b1d1bf8b8762d"
+  integrity sha512-yO4XNGsouKQ/tb7EzMqC4aefBMSD1v3u8+BAqPy2Jks1+oYfJsPvE7Dk72z6fW33Evm4tCa1UV4pqtZIgPzp7A==
 
 "@junipero/transitions@3.0.0-alpha.40":
   version "3.0.0-alpha.40"
