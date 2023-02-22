@@ -1,19 +1,6 @@
-@use "sass:color"
-@use "colors" as colors
-
 .oak
   font-family: 'Open Sans', Helvetiva, Arial, sans-serif
   font-size: 16px
 
   *
     box-sizing: border-box
-
-  --oak-main-color: #{colors.$deep-sea-green}
-  --oak-darker-main-color: #{color.adjust(colors.$deep-sea-green, $red: - 20, $green: - 20, $blue: - 20)}
-  --oak-lighter-main-color: #{color.adjust(colors.$deep-sea-green, $red: + 20, $green: + 20, $blue: + 20)}
-  --oak-shadow-color: #{color.adjust(colors.$deep-sea-green, $alpha: - 0.5)}
-  --oak-active-color: #{colors.$tiber}
-  --oak-text-color: #{colors.$woodsmoke}
-  --oak-text-editor-color: #{colors.$black-squeeze}
-  --oak-text-editor-toolbar-color: #{colors.$catskill-white}
-  --oak-list-item-background: #{colors.$link-water}

@@ -47,9 +47,6 @@ export default ({ className, onChange, state, active = false }) => {
               className={classNames(
                 'oak-toolbar-button',
                 'oak-color-button',
-                {
-                  'oak-active': active,
-                },
                 className,
               )}
             >

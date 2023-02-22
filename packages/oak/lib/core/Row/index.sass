@@ -5,6 +5,9 @@ $alignments: flex-start, center, flex-end, space-between, space-around
 $directions: row, row-reverse, column, column-reverse
 
 .oak-row
+  --drop-zone-color: var(--oak-interaction-color)
+  --gap: #{vars.$gutters}
+
   display: flex
   flex-wrap: wrap
   flex-direction: row
@@ -25,7 +28,7 @@ $directions: row, row-reverse, column, column-reverse
       left: 0
       height: 5px
       border-radius: 2px
-      background: colors.$catskill-white
+      background: var(--drop-zone-color)
       opacity: 0
       position: absolute
 
@@ -74,14 +77,14 @@ $directions: row, row-reverse, column, column-reverse
         cursor: grab
 
         &:active
-          cursor: gragging
+          cursor: grabbing
 
   .oak-row-content
     display: flex
     flex-direction: row
     flex-wrap: wrap
-    margin: -(#{vars.$half-gutter})
-    width: calc(100% + #{vars.$gutters})
+    width: 100%
+    gap: var(--gap)
 
     @each $alignment in $alignments
       &.oak-align
@@ -99,6 +102,3 @@ $directions: row, row-reverse, column, column-reverse
 
           > .oak-col
             width: 100%
-
-    > .oak-col
-      padding: vars.$half-gutter

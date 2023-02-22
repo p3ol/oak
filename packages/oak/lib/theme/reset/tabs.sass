@@ -2,11 +2,13 @@
 
 .oak
   .junipero.tabs
+    --active-color: var(--oak-floating-background-color)
+    --background-color: var(--oak-background-main-color)
     --main-color: var(--oak-main-color)
     --text-color: var(--oak-text-color)
 
     .titles
-      background: colors.$link-water
+      background: var(--background-color)
       border: none
       margin: 0
 
@@ -32,7 +34,7 @@
 
           a
             color: var(--text-color)
-            background: colors.$white
+            background: var(--active-color)
 
             &:after
               display: none
