@@ -12,7 +12,7 @@ import { Text } from '@poool/oak';
 import { schema } from '../schema';
 import { getActiveAttrs } from '../utils';
 
-export default ({ className, onChange, state, active = false }) => {
+export default ({ className, onChange, state }) => {
   const colorFieldRef = useRef();
   const [color, setColor] = useState('#000000');
 
