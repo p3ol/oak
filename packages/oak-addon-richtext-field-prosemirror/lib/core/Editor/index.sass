@@ -4,6 +4,7 @@
   --background-color: var(--oak-inner-background-color)
   --toolbar-background-color: var(--oak-field-border-color)
   --border-color: var(--oak-field-border-color)
+  --toolbar-icon-background-color: var(--oak-alternate-text-color)
   --toolbar-icon-color: var(--oak-alternate-text-color)
 
   background: var(--background-color)
@@ -37,7 +38,7 @@
       padding: 2px
 
       &:hover, &.oak-active
-        background: var(--toolbar-icon-color)
+        background: var(--toolbar-icon-background-color)
 
         .oak-icons
           color: var(--oak-reverse-text-color)
@@ -65,6 +66,7 @@
     .oak-text-size
       font-size: 14px
       margin: 0 10px
+      color: var(--toolbar-icon-color)
   
   .junipero.tooltip
     z-index: 1
@@ -79,8 +81,8 @@
     & > .junipero.dropdown-menu
       .menu-inner
         padding: 0
-        background: transparent
-        box-shadow: none
+        background: var(--oak-inner-background-color)
+        box-shadow: 0 0 0 2px var(--oak-field-border-color)
         overflow: visible
 
   .oak-link-field
