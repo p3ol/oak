@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { builderSpies } from '@mocks/@poool/oak';
+import { builderSpies } from '@poool/oak';
 import Text from '.';
 
 describe('<Text />', () => {

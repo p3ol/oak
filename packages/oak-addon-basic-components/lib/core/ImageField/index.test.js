@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 
-import { elementSpies, optionsSpies } from '@mocks/@poool/oak';
+import { elementSpies, optionsSpies } from '@poool/oak';
 import ImageField from '.';
 
 describe('<ImageField />', () => {

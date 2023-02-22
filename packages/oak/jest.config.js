@@ -5,7 +5,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   clearMocks: true,
   resetMocks: true,
-  rootDir: path.resolve(),
+  rootDir: path.resolve(__dirname),
   moduleNameMapper: {
     '^@tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
   },
@@ -23,7 +23,7 @@ module.exports = {
     '/node_modules/(?!(uuid))',
   ],
   setupFilesAfterEnv: [
-    './packages/oak/tests/env.js',
+    './tests/env.js',
   ],
-  snapshotResolver: '<rootDir>/.ci/config/snapshot-resolver.js',
+  snapshotResolver: path.resolve('.ci/config/snapshot-resolver.js'),
 };
