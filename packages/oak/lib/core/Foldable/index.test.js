@@ -124,7 +124,7 @@ describe('<Foldable />', () => {
     fireEvent.click(content.querySelectorAll('.oak-remove')[2]);
     await waitFor(() => {
       expect(mockRemoveElement)
-        .toHaveBeenCalledWith(contentToDelete, expect.any(Object))
+        .toHaveBeenCalledWith(contentToDelete, expect.any(Object));
     });
 
     unmount();
