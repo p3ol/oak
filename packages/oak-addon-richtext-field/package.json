@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
-    "@junipero/react": "3.0.0-alpha.52",
-    "@junipero/theme": "3.0.0-alpha.50",
+    "@junipero/react": "3.0.0-alpha.54",
+    "@junipero/theme": "3.0.0-alpha.54",
     "core-js": "3.27.2",
     "is-hotkey": "0.2.0",
     "slate": "0.90.0",
