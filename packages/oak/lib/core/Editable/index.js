@@ -7,7 +7,7 @@ import {
   useImperativeHandle,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { mockState, classNames, useTimeout } from '@junipero/react';
+import { mockState, classNames } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import {
   useFloating,
@@ -70,26 +70,24 @@ export default forwardRef(({
     toggle,
   }));
 
-  useTimeout(() => {
-    dispatch({ opened: false });
-  }, 100, [state.visible, state.opened], {
-    enabled: !state.visible && state.opened,
-  });
-
   const open = () => {
     dispatch({ opened: true, visible: true });
     onToggle?.({ opened: true });
   };
 
   const close = () => {
-    dispatch({ visible: false });
+    dispatch({ opened: false });
     onToggle?.({ opened: false });
   };
 
   const toggle = () =>
-    state.visible ? close() : open();
+    state.opened ? close() : open();
 
-  const renderForm = () => state.opened && (
+  const onAnimationExit = () => {
+    dispatch({ visible: false });
+  };
+
+  const renderForm = () => state.visible && (
     <div
       style={{
         position: strategy,
@@ -108,7 +106,7 @@ export default forwardRef(({
           onSave={close}
           onCancel={close}
         />
-      ), { opened: state.visible }) }
+      ), { opened: state.opened, onExited: onAnimationExit }) }
     </div>
   );
 
