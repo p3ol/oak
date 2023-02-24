@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak-addon-richtext-field",
-  "version": "2.0.0-alpha.9",
+  "version": "2.0.0-alpha.10",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-addon-richtext-field.cjs.js",
   "jsnext:main": "dist/esm/index.js",
