@@ -10,4 +10,6 @@ export default {
   }],
 };
 
+export { Editor };
+
 export { default as localeFr } from './languages/fr';
