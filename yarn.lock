@@ -1120,6 +1120,14 @@
     core-js-pure "^3.25.1"
     regenerator-runtime "^0.13.11"
 
+"@babel/runtime-corejs3@7.21.0":
+  version "7.21.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.21.0.tgz#6e4939d9d9789ff63e2dc58e88f13a3913a24eba"
+  integrity sha512-TDD4UJzos3JJtM+tHX+w2Uc+KWj7GV+VKKFdMVd2Rx8sdA19hcc3P3AHFYd5LVOw+pYuSd5lICC3gm52B6Rwxw==
+  dependencies:
+    core-js-pure "^3.25.1"
+    regenerator-runtime "^0.13.11"
+
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.17.8", "@babel/runtime@^7.5.0", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.20.13"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.13.tgz#7055ab8a7cff2b8f6058bf6ae45ff84ad2aded4b"
@@ -1201,12 +1209,24 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.2.0.tgz#ae7ae7923d41f3d84cb2fd88740a89436610bbec"
   integrity sha512-GHUXPEhMEmTpnpIfesFA2KAoMJPb1SPQw964tToQwt+BbGXdhqTCWT1rOb0VURGylsxsYxiGMnseJ3IlclVpVA==
 
+"@floating-ui/core@^1.2.3":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.2.4.tgz#89e6311b021190c9e121fcf20306e76ac66e4066"
+  integrity sha512-SQOeVbMwb1di+mVWWJLpsUTToKfqVNioXys011beCAhyOIFtS+GQoW4EQSneuxzmQKddExDwQ+X0hLl4lJJaSQ==
+
 "@floating-ui/dom@^1.1.1":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.2.0.tgz#a60212069cc58961c478037c30eba4b191c75316"
   integrity sha512-QXzg57o1cjLz3cGETzKXjI3kx1xyS49DW9l7kV2jw2c8Yftd434t2hllX0sVGn2Q8MtcW/4pNm8bfE1/4n6mng==
   dependencies:
     "@floating-ui/core" "^1.2.0"
+
+"@floating-ui/dom@^1.2.1":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.2.4.tgz#e2eb2674f57fc182c425587e48ea43e336f4b8f8"
+  integrity sha512-4+k+BLhtWj+peCU60gp0+rHeR8+Ohqx6kjJf/lHMnJ8JD5Qj6jytcq1+SZzRwD7rvHKRhR7TDiWWddrNrfwQLg==
+  dependencies:
+    "@floating-ui/core" "^1.2.3"
 
 "@floating-ui/react-dom@^1.2.2":
   version "1.2.2"
@@ -1215,12 +1235,28 @@
   dependencies:
     "@floating-ui/dom" "^1.1.1"
 
+"@floating-ui/react-dom@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-1.3.0.tgz#4d35d416eb19811c2b0e9271100a6aa18c1579b3"
+  integrity sha512-htwHm67Ji5E/pROEAr7f8IKFShuiCKHwUC/UY4vC3I5jiSvGFAYnSYiZO5MlGmads+QqvUkR9ANHEguGrDv72g==
+  dependencies:
+    "@floating-ui/dom" "^1.2.1"
+
 "@floating-ui/react@0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.19.1.tgz#bcaeaf3856dfeea388816f7e66750cab26208376"
   integrity sha512-h7hr53rLp+VVvWvbu0dOBvGsLeeZwn1DTLIllIaLYjGWw20YhAgEqegHU+nc7BJ30ttxq4Sq6hqARm0ne6chXQ==
   dependencies:
     "@floating-ui/react-dom" "^1.2.2"
+    aria-hidden "^1.1.3"
+    tabbable "^6.0.1"
+
+"@floating-ui/react@0.20.1":
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.20.1.tgz#20f23cb5615f5beefa6e2ac4d7630a56ccdf7131"
+  integrity sha512-JHTHJ+/YsIxNFH8uJDFa5OyI6dSUZcle6wAFe0zRTjgWD+rkACfBBoJtx2itTtn7C4a7xAz4jgxdEQcMel194g==
+  dependencies:
+    "@floating-ui/react-dom" "^1.3.0"
     aria-hidden "^1.1.3"
     tabbable "^6.0.1"
 
@@ -1519,36 +1555,36 @@
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
   integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
 
-"@junipero/core@3.0.0-alpha.40":
-  version "3.0.0-alpha.40"
-  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.0.0-alpha.40.tgz#f4ea0219024ed8317ad886705a48f43e7ba867dd"
-  integrity sha512-N9pdvRfgKcnocYjyxX5KnOu/cPoSB+NnkIOHyCHlkGukElRI/H57r2tuGGBSHqR3kpNvg9NMVusFDrseI47HHA==
+"@junipero/core@3.0.0-beta.6":
+  version "3.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.0.0-beta.6.tgz#5d9740fcfa676c2778779d9589834ff61e2e085a"
+  integrity sha512-ggOkVJoDnTwr9WlqnvVbJVVTYIZVQ+xvyYiVm329HK3Jz2CzgZffhISpQ8jIccrOBZYzEV3+/8ICZJ7deFeIkQ==
   dependencies:
-    "@babel/runtime-corejs3" "7.20.13"
-    core-js "3.27.2"
+    "@babel/runtime-corejs3" "7.21.0"
+    core-js "3.29.0"
 
-"@junipero/react@3.0.0-alpha.55":
-  version "3.0.0-alpha.55"
-  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-alpha.55.tgz#6334a08ce0c743d9cea317d9e07b14bf9a4265bc"
-  integrity sha512-bctlm7od6YDyEOXyt2tIIB2QSnwhbN1pBYrNX8DK3T2BSDdTMARfX65Anb4MmTG8G9WhECrGPOeLrZbyycA5og==
+"@junipero/react@3.0.0-beta.6":
+  version "3.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-beta.6.tgz#0e5f35c82123074a8a0137e77a087682de96af0d"
+  integrity sha512-ewpqBQchY+owxNGHvdDStZl8flAg9vzYfQkRKyf3Z63YlOEPKNaenP7f5Bygnl1R8sG7QnAn3zLHuSqbpPbIqQ==
   dependencies:
-    "@babel/runtime-corejs3" "7.20.13"
-    "@floating-ui/react" "0.19.1"
-    core-js "3.27.2"
+    "@babel/runtime-corejs3" "7.21.0"
+    "@floating-ui/react" "0.20.1"
+    core-js "3.29.0"
     prop-types "15.8.1"
 
-"@junipero/theme@3.0.0-alpha.55":
-  version "3.0.0-alpha.55"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-alpha.55.tgz#be65fcd8f6a4e0f154e173fe8ab33bd1e7ea8d95"
-  integrity sha512-NTsJaS9YyxEbq34Q3rb1wGAIIKzYv4OYSp6OuJ9uxlpsAd10YtC7EIctprf0izR/Z1Yrj/0xLM+eicII+QlgrQ==
+"@junipero/theme@3.0.0-beta.6":
+  version "3.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-beta.6.tgz#425c50742aa7467664cbb708dfbf2eb94c40be87"
+  integrity sha512-rl1OeoAqZGlnIJrFsMEIiB0dOrTvuSTZfrSeraRPu7S9x47/ef/am9gnDVEt99DkV3rCZZrkeXqP0qLbZtAAiA==
 
-"@junipero/transitions@3.0.0-alpha.40":
-  version "3.0.0-alpha.40"
-  resolved "https://registry.yarnpkg.com/@junipero/transitions/-/transitions-3.0.0-alpha.40.tgz#08fa0588b0dfeed34620a8c7f83388eeaa059b95"
-  integrity sha512-rywMpk+A5qUlHnrQfSy3aL4urUT3pu9pdkYpeqnqhEznpOKujRPyGAeEpoWTs9MzKEMgQH/yE8V6PJfLhmK2ww==
+"@junipero/transitions@3.0.0-beta.0":
+  version "3.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@junipero/transitions/-/transitions-3.0.0-beta.0.tgz#e24969cd07479d48a40dde7272e45d5c1893e821"
+  integrity sha512-ijcVaaLAk6LOVdQE/iVHq1i498p4bn5C9q6gxcA5z9S9RzBMKgAy/KN8T35x2bDyP7YHQAalkkD491r3GMmjJQ==
   dependencies:
-    "@babel/runtime-corejs3" "7.20.13"
-    core-js "3.27.2"
+    "@babel/runtime-corejs3" "7.21.0"
+    core-js "3.29.0"
 
 "@lerna/add@6.4.1":
   version "6.4.1"
@@ -6032,6 +6068,11 @@ core-js@3.27.2, core-js@^3.0.4, core-js@^3.6.5, core-js@^3.8.2:
   version "3.27.2"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.27.2.tgz#85b35453a424abdcacb97474797815f4d62ebbf7"
   integrity sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==
+
+core-js@3.29.0:
+  version "3.29.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.29.0.tgz#0273e142b67761058bcde5615c503c7406b572d6"
+  integrity sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==
 
 core-util-is@~1.0.0:
   version "1.0.3"
