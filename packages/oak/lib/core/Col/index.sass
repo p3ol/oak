@@ -130,9 +130,6 @@
         .oak-col-wrapper
           background: var(--inner-background-color)
 
-          .oak-foldable-section-content-empty
-            background: var(--background-color)
-
           .oak-foldable-section-content
             background: var(--inner-background-color)
 
@@ -155,7 +152,7 @@
             .oak-element:not(.oak-row) .oak-inner
               background: var(--inner-background-color)
 
-      .oak-element
+      .oak-element:not(.oak-row):not(.oak-foldable)
         .oak-inner
           background: var(--element-background-color)
           margin-top: 20px
