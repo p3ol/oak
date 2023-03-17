@@ -20,9 +20,7 @@ export const useBuilder = () => {
   };
 };
 
-export const useElement = () => {
-  return useContext(ElementContext);
-};
+export const useElement = () => useContext(ElementContext);
 
 export const usePostMountEffect = (cb, changes = []) => {
   const [mounted, setMounted] = useState(false);

@@ -2,30 +2,46 @@
 
 .oak
   .junipero.tabs
+    --active-color: var(--oak-floating-background-color)
+    --background-color: var(--oak-background-main-color)
     --main-color: var(--oak-main-color)
     --text-color: var(--oak-text-color)
 
     .titles
-      background: colors.$link-water
+      background: var(--background-color)
       border: none
+      margin: 0
 
       .title
         &, &:first-child, &:last-child
           padding: 0
           margin: 0
 
-          &:after
+          &:before, &:after
             display: none
 
         a
           padding: 10px 20px
           color: var(--text-color)
+          border-radius: 0
 
           &:after
             display: none
 
         &.active
-          background: colors.$white
+          &::before, &::after
+            display: none
 
           a
             color: var(--text-color)
+            background: var(--active-color)
+
+            &:after
+              display: none
+
+    & > .content
+      padding: 20px
+
+// Dark mode
+.dark .oak .junipero.tabs
+  --text-color: var(--oak-reverse-text-color)

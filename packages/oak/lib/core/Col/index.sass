@@ -3,6 +3,16 @@
 @use "colors" as colors
 
 .oak-col
+  --background-color: var(--oak-background-color)
+  --element-background-color: var(--oak-foreground-color)
+  --option-color: var(--oak-alternate-text-color)
+  --option-hover-color: var(--oak-main-color)
+  --drop-zone-color: var(--oak-interaction-color)
+  --divider-background-color: var(--oak-interaction-color)
+  --divider-color: var(--oak-alternate-text-color)
+  --inner-background-color: var(--oak-inner-background-color)
+  --inner-border-color: var(--oak-interaction-color)
+
   flex: 1 0 0
   position: relative
 
@@ -14,7 +24,7 @@
     border-radius: 0 5px 5px 5px
 
   .oak-col-wrapper
-    background: colors.$link-water
+    background: var(--background-color)
     display: flex
     flex-wrap: wrap
     flex-direction: row
@@ -22,6 +32,7 @@
     border-radius: 5px
     width: 100%
     min-height: 150px
+    gap: 20px
 
     & > .oak-options
       visibility: visible
@@ -33,17 +44,17 @@
 
       & > .oak-option
         background: transparent
-        color: colors.$shuttle-gray
+        color: var(--option-color)
         margin-left: 2px
         border-radius: 3px
 
         &:hover
-          color: var(--oak-active-color)
+          color: var(--option-hover-color)
 
         &.oak-opened
           &, &:hover
-            background: var(--oak-active-color)
-            color: colors.$white
+            background: var(--option-hover-color)
+            color: var(--oak-reverse-text-color)
             border-radius: 3px
 
         i
@@ -91,7 +102,7 @@
 
     &.drag-enter
       .oak-catalogue
-        background: colors.$catskill-white
+        background: var(--drop-zone-color)
         border-radius: 5px
 
         .oak-handle
@@ -101,11 +112,8 @@
       .oak-element
         margin-bottom: 0
 
-      .oak-foldable
-        background: colors.$white
-
-        .oak-foldable-content
-          background: colors.$link-water
+      .oak-foldable-section-content
+        background: var(--background-color)
 
       .oak-element.oak-row
         margin-top: 40px
@@ -113,41 +121,43 @@
 
       .oak-element.oak-row, .oak-element.oak-foldable
         &:first-child
-          margin-top: 20px
+          margin-top: 40px
 
         &, &:first-child
           & > .oak-inner
             margin-top: 0
-            background: transparent
 
         .oak-col-wrapper
-          background: colors.$white
+          background: var(--inner-background-color)
 
-          .oak-foldable
-            background: colors.$link-water
-
-            .oak-foldable-content
-              background: colors.$white
+          .oak-foldable-section-content
+            background: var(--inner-background-color)
 
           .oak-element:not(.oak-row) .oak-inner
-            background: colors.$link-water
+            background: var(--background-color)
 
           .oak-col-wrapper
-            background: colors.$link-water
+            background: var(--background-color)
 
             .oak-col-wrapper
               background: transparent
-              border: 1px solid colors.$hawkes-blue
+              border: 1px solid var(--inner-border-color)
+
+            .oak-element.oak-foldable .oak-inner
+              border: 1px solid var(--inner-border-color)
+
+              .oak-foldable-section-content
+                background: var(--background-color)
 
             .oak-element:not(.oak-row) .oak-inner
-              background: colors.$white
+              background: var(--inner-background-color)
 
-      .oak-element
+      .oak-element:not(.oak-row):not(.oak-foldable)
         .oak-inner
-          background: colors.$white
+          background: var(--element-background-color)
           margin-top: 20px
 
-        &:first-child
+        &:not(.oak-row):not(.oak-foldable):first-child
           .oak-inner
             margin-top: 10px
 
@@ -158,17 +168,9 @@
     flex-wrap: wrap
     align-items: center
 
-    &.oak-prepend
-      justify-content: flex-start
-
-      a
-        margin-right: 20px
-
     &.oak-append
-      justify-content: flex-end
-
       a
-        margin-left: 20px
+        border-radius: 2px 0 0 2px
 
     a
       display: flex
@@ -177,11 +179,17 @@
       justify-content: center
       width: 15px
       height: 50px
-      background: colors.$catskill-white
-      color: colors.$shuttle-gray
+      background: var(--divider-background-color)
+      color: var(--divider-color)
+      border-radius: 0 2px 2px 0
 
       &:hover
-        background: color.adjust(colors.$catskill-white, $red: -10, $green: -10, $blue: -10)
+        background: var(--oak-main-color)
+        color: var(--oak-reverse-text-color)
 
       & i
         font-size: 15px
+
+// Dark mode
+.dark .oak-col
+  --divider-color: var(--oak-reverse-text-color)

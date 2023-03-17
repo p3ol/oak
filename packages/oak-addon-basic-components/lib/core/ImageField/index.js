@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from 'react';
-import { TouchableZone, Loader, classNames, mockState } from '@poool/junipero';
+import { TouchableZone, Spinner, classNames, mockState } from '@junipero/react';
 import { Text, useOptions, useElement } from '@poool/oak';
 
 export default ({
@@ -122,7 +122,7 @@ export default ({
       ) : (
         <TouchableZone disabled={state.loading} onClick={onOpenFileDialog}>
           { state.loading ? (
-            <Loader />
+            <Spinner />
           ) : (
             <>
               <i className="oak-icons">add</i>

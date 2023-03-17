@@ -1,9 +1,13 @@
 @use "colors" as colors
 
 a.oak-option
-  color: colors.$white
+  --option-background-color: var(--oak-main-color)
+  --option-hover-background-color: var(--oak-darker-main-color)
+  --option-text-color: var(--oak-reverse-text-color)
+
   flex: 0 1 auto
-  background: var(--oak-main-color)
+  color: var(--option-text-color)
+  background: var(--option-background-color)
   display: block
   height: 25px
   line-height: 25px
@@ -11,16 +15,9 @@ a.oak-option
   text-align: center
   text-decoration: none
 
-  &:hover
-    color: colors.$white
-
   &:hover,
   &.oak-opened
-    background: var(--oak-active-color)
-
-  &.oak-light
-    background-color: transparent
-    color: var(--oak-main-color)
+    background: var(--option-hover-background-color)
 
   &.oak-duplicate
     i.oak-icons

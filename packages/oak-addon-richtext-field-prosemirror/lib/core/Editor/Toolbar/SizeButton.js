@@ -1,4 +1,4 @@
-import { Tooltip, classNames } from '@poool/junipero';
+import { Tooltip, classNames } from '@junipero/react';
 
 export default ({
   increasing = false,

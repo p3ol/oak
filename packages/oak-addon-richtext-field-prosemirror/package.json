@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak-addon-richtext-field-prosemirror",
-  "version": "1.4.1",
+  "version": "2.0.0-alpha.10",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-addon-richtext-field-prosemirror.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -17,25 +17,25 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">= 12",
+    "node": ">= 14",
     "yarn": ">= 1"
   },
   "peerDependencies": {
-    "@poool/oak": "^1.0.0-rc.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "@poool/oak": "^2.0.0-alpha.6",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
-    "@poool/junipero": "2.0.0-rc.23",
-    "@poool/junipero-utils": "2.0.0-rc.22",
+    "@junipero/react": "3.0.0-beta.6",
+    "@junipero/theme": "3.0.0-beta.6",
     "core-js": "3.27.2",
     "prosemirror-commands": "1.5.0",
     "prosemirror-keymap": "1.2.1",
-    "prosemirror-model": "1.18.3",
-    "prosemirror-schema-basic": "1.2.0",
+    "prosemirror-model": "1.19.0",
+    "prosemirror-schema-basic": "1.2.1",
     "prosemirror-state": "1.4.2",
-    "prosemirror-view": "1.29.1"
+    "prosemirror-view": "1.30.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

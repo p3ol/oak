@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@tests-utils": [
+        "./packages/oak/tests/utils.js"
+      ]
+    }
+  }
+}

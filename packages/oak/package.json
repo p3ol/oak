@@ -1,6 +1,6 @@
 {
   "name": "@poool/oak",
-  "version": "1.4.1",
+  "version": "2.0.0-alpha.10",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -20,24 +20,21 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">= 12",
+    "node": ">= 14",
     "yarn": ">= 1"
   },
   "peerDependencies": {
-    "@popperjs/core": "^2.9.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
-    "react-popper": "^2.2.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.20.13",
-    "@poool/junipero": "2.0.0-rc.23",
-    "@poool/junipero-hooks": "2.0.0-rc.22",
-    "@poool/junipero-utils": "2.0.0-rc.22",
-    "@popperjs/core": "2.11.6",
+    "@floating-ui/react": "0.19.1",
+    "@junipero/react": "3.0.0-beta.6",
+    "@junipero/theme": "3.0.0-beta.6",
+    "@junipero/transitions": "3.0.0-beta.0",
     "core-js": "3.27.2",
     "preact": "10.11.3",
-    "react-popper": "2.3.0",
     "uuid": "9.0.0"
   },
   "scripts": {

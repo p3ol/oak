@@ -1,8 +1,10 @@
 @use "colors" as colors
 
 .oak-foldable
-  border: 2px solid colors.$white
-  background: colors.$link-water
+  --background-color: var(--oak-background-color)
+  --inner-background-color: var(--oak-inner-background-color)
+  --drop-zone-color: var(--oak-interaction-color)
+
   display: flex
   flex-wrap: wrap
   flex-direction: row
@@ -10,32 +12,66 @@
   margin-top: 30px
   margin-bottom: 20px
   width: 100%
-  border-radius: 3px
 
-  &:first-child
-    &.oak-foldable-section-title
-      margin-top: 30px
+  .oak-inner
+    border-radius: 0 5px 5px 5px
 
-  .oak-foldable-section-title
-    color: colors.$slate-gray
-    margin-left: 20px
+  .oak-drop-zone
+    position: absolute
+    left: 0
+    width: 100%
+    z-index: 1
+
+    &:after
+      content: ''
+      width: 100%
+      left: 0
+      height: 5px
+      border-radius: 2px
+      background: var(--drop-zone-color)
+      opacity: 0
+      position: absolute
+
+    &.oak-before
+      top: -35px
+      height: 35px
+
+    &.oak-after
+      top: 100%
+      height: 20px
+
+      &:after
+        top: 8px
+
+    &.drag-enter
+      &:after
+        opacity: 1
 
   .oak-foldable-content
-    margin: 5px 20px 30px 20px
+    padding: 10px
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+  .oak-foldable-section-title
+    color: var(--oak-alternate-text-color)
+
+  .oak-foldable-section-content
     padding: 20px
-    background: colors.$white
+    background: var(--inner-background-color)
     display: flex
     flex-direction: column
     align-items: center
-    min-height:200px
+    min-height: 100px
     height: fit-content
-    
+    border-radius: 5px
+
     & :nth-child(2)
       &.oak-element
         margin-top: 20px
 
     &.drag-enter .oak-foldable-content-empty
-      background: colors.$catskill-white
+      background: var(--drop-zone-color)
       border-radius: 5px
 
       .oak-handle
@@ -48,12 +84,12 @@
       .oak-handle-inner i
         font-size: 20px 
 
-    .oak-foldable-content-empty
+    .oak-foldable-section-content-empty
       width: 100%
       display: flex
       justify-content: center
       align-items: center
-      min-height: 150px
+      min-height: 80px
 
       .oak-handle 
         width: 40px
@@ -63,8 +99,6 @@
           font-size: 30px
 
     .oak-element
-      margin-left: 20px
-      margin-right: 20px
       width: 100%
 
       &.oak-row

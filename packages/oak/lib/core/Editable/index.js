@@ -1,14 +1,24 @@
-import { createPortal } from 'react-dom';
 import {
   Children,
   cloneElement,
   forwardRef,
+  useMemo,
   useReducer,
-  useState,
   useImperativeHandle,
 } from 'react';
-import { mockState, classNames } from '@poool/junipero';
-import { usePopper } from 'react-popper';
+import { createPortal } from 'react-dom';
+import { mockState, classNames } from '@junipero/react';
+import { slideInDownMenu } from '@junipero/transitions';
+import {
+  useFloating,
+  useInteractions,
+  useClick,
+  offset,
+  autoUpdate,
+  shift,
+  limitShift,
+  autoPlacement,
+} from '@floating-ui/react';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Form from './Form';
@@ -17,35 +27,42 @@ export default forwardRef(({
   children,
   element,
   component,
+  onToggle,
 }, ref) => {
   const { _settingsHolderRef, oakRef } = useBuilder();
   const options = useOptions();
-  const [popper, setPopper] = useState();
-  const [reference, setReference] = useState();
-
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
+    visible: false,
   });
-
-  const { styles: popperStyles, attributes } = usePopper(reference, popper, {
-    ...((typeof component?.settings?.popperSettings === 'function'
-      ? component?.settings?.popperSettings({ optionButtonElement: reference })
-      : component?.settings?.popperSettings
-    ) || {
-      modifiers: [{
-        name: 'preventOverflow',
-        enabled: true,
-        options: {
-          boundary: oakRef?.current,
-        },
-      }, {
-        name: 'offset',
-        options: {
-          offset: [0, 5],
-        },
-      }],
-    }),
+  const floatingSettings = useMemo(() => (
+    (typeof component?.settings?.floatingSettings === 'function'
+      ? component.settings.floatingSettings({ optionButtonElement: reference })
+      : component?.settings?.floatingSettings) || {}
+  ), [component]);
+  const { x, y, reference, floating, strategy, context } = useFloating({
+    open: state.opened,
+    onOpenChange: o => o ? open() : close(),
+    whileElementsMounted: autoUpdate,
+    placement: floatingSettings.placement || 'bottom',
+    middleware: [
+      offset(5),
+      ...(floatingSettings?.shift?.enabled !== false ? [shift({
+        boundary: oakRef?.current,
+        limiter: limitShift(),
+        ...floatingSettings.shift || {},
+      })] : []),
+      ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
+        boundary: oakRef?.current,
+        allowedPlacements: ['bottom', 'top'],
+        ...floatingSettings.autoPlacement || {},
+      })] : []),
+      ...floatingSettings.middleware || [],
+    ],
   });
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    useClick(context),
+  ]);
 
   useImperativeHandle(ref, () => ({
     open,
@@ -54,46 +71,65 @@ export default forwardRef(({
   }));
 
   const open = () => {
-    dispatch({ opened: true });
+    dispatch({ opened: true, visible: true });
+    onToggle?.({ opened: true });
   };
 
   const close = () => {
     dispatch({ opened: false });
+    onToggle?.({ opened: false });
   };
 
   const toggle = () =>
     state.opened ? close() : open();
 
-  const renderForm = () => (
-    <Form
-      ref={setPopper}
-      popper={popper}
-      element={element}
-      component={component}
-      styles={popperStyles}
-      attributes={attributes}
-      onSave={close}
-      onCancel={close}
-    />
+  const onAnimationExit = () => {
+    dispatch({ visible: false });
+  };
+
+  const renderForm = () => state.visible && (
+    <div
+      style={{
+        position: strategy,
+        top: y ?? 0,
+        left: x ?? 0,
+      }}
+      data-placement={context.placement}
+      ref={floating}
+      {...getFloatingProps()}
+    >
+      { slideInDownMenu((
+        <Form
+          element={element}
+          component={component}
+          placement={context.placement}
+          onSave={close}
+          onCancel={close}
+        />
+      ), { opened: state.opened, onExited: onAnimationExit }) }
+    </div>
   );
+
+  const child = Children.only(children);
 
   return (
     <>
-      { children && cloneElement(Children.only(children), {
-        ref: r => { setReference(r?.isOak ? r.innerRef.current : r); },
+      { child && cloneElement(child, {
+        ref: r => { reference(r?.isOak ? r.innerRef.current : r); },
         className: classNames(
-          Children.only(children).props.className,
+          child.props.className,
           { 'oak-opened': state.opened }
         ),
+        ...getReferenceProps({
+          onClick: child.props.onClick,
+        }),
       }) }
-      { state.opened
-        ? options.settingsContainer || _settingsHolderRef
-          ? createPortal(
-            renderForm(),
-            options.settingsContainer || _settingsHolderRef
-          )
-          : renderForm()
-        : null }
+      { options.settingsContainer || _settingsHolderRef
+        ? createPortal(
+          renderForm(),
+          options.settingsContainer || _settingsHolderRef
+        )
+        : renderForm()}
     </>
   );
 });

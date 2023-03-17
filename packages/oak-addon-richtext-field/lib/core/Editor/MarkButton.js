@@ -1,6 +1,5 @@
 import { useSlate } from 'slate-react';
-import { Tooltip } from '@poool/junipero';
-import { classNames } from '@poool/junipero-utils';
+import { Tooltip, classNames } from '@junipero/react';
 
 import { isMarkActive, toggleMark } from './editor';
 

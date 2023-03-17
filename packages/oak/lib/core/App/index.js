@@ -6,7 +6,7 @@ import {
   useImperativeHandle,
   useRef,
 } from 'react';
-import { mockState, cloneDeep, get, mergeDeep } from '@poool/junipero-utils';
+import { mockState, cloneDeep, get, mergeDeep } from '@junipero/react';
 import { v4 as uuid } from 'uuid';
 
 import { AppContext } from '../../contexts';
@@ -470,6 +470,10 @@ export default forwardRef(({ options, onReady }, ref) => {
   };
 
   const getText = (key, def) => {
+    if (typeof key === 'function') {
+      return key((k, d) => get(state.texts, k, d));
+    }
+
     if (typeof key !== 'string') return def;
 
     return get(state.texts, key, def);

@@ -25,4 +25,5 @@ module.exports = {
   setupFilesAfterEnv: [
     './tests/env.js',
   ],
+  snapshotResolver: path.resolve('.ci/config/snapshot-resolver.js'),
 };

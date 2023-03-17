@@ -6,7 +6,7 @@ import commonjs from '@rollup/plugin-commonjs';
 // import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
@@ -37,7 +37,9 @@ const defaultPlugins = [
     rootDir: path.resolve('../../'),
   }),
   commonjs(),
-  terser(),
+  terser({
+    mangle: false,
+  }),
 ];
 
 const getConfig = (format, {

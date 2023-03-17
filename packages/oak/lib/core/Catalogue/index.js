@@ -2,66 +2,53 @@ import {
   forwardRef,
   useImperativeHandle,
   useReducer,
-  useState,
 } from 'react';
 import {
   Tabs,
   Tab,
   classNames,
   mockState,
-  useEventListener,
-} from '@poool/junipero';
-import { usePopper } from 'react-popper';
+} from '@junipero/react';
+import {
+  useFloating,
+  useInteractions,
+  useClick,
+  useDismiss,
+  offset,
+} from '@floating-ui/react';
 
 import { useBuilder, useOptions } from '../../hooks';
 import Icon from '../Icon';
 import Text from '../Text';
 
-export default forwardRef(({
-  globalEventsTarget = global,
+const Catalogue = forwardRef(({
   placement = 'bottom',
-  popperOptions = {},
   onToggle = () => {},
   onAppend = () => {},
   onPaste = () => {},
 }, ref) => {
-  const { components = [], getComponent, oakRef } = useBuilder();
+  const { components = [], getComponent } = useBuilder();
   const { otherTabEnabled } = useOptions();
-  const [popper, setPopper] = useState();
-  const [reference, setReference] = useState();
-  const [arrow, setArrow] = useState();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
     clipboard: null,
   });
-  const { styles: popperStyles, attributes } = usePopper(reference, popper, {
-    placement,
-    modifiers: [
-      ...(popperOptions.modifiers || []),
-      {
-        name: 'preventOverflow',
-        enabled: true,
-        options: {
-          boundary: oakRef?.current,
-        },
-      },
-      { name: 'arrow', options: { element: arrow } },
-      {
-        name: 'offset',
-        options: {
-          offset: [arrow && /-(start|end)/.test(placement) ? -5 : 0, 16],
-        },
-      },
+  const { x, y, reference, floating, strategy, context } = useFloating({
+    open: state.opened,
+    onOpenChange: o => o ? open() : close(),
+    middleware: [
+      offset(16),
     ],
   });
-
-  useEventListener('click', e => {
-    onClickOutside_(e);
-  }, globalEventsTarget);
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    useClick(context),
+    useDismiss(context),
+  ]);
 
   useImperativeHandle(ref, () => ({
     open,
     close,
+    toggle,
     opened: state.opened,
   }));
 
@@ -100,21 +87,6 @@ export default forwardRef(({
       close();
     } else {
       open();
-    }
-  };
-
-  const onClickOutside_ = e => {
-    if (!popper || !reference) {
-      return;
-    }
-
-    if (
-      !reference.contains(e.target) &&
-      reference !== e.target &&
-      !popper.contains(e.target) &&
-      popper !== e.target
-    ) {
-      close();
     }
   };
 
@@ -178,22 +150,25 @@ export default forwardRef(({
       )}
     >
       <a
-        ref={setReference}
+        ref={reference}
         className="oak-handle"
-        onClick={toggle}
         draggable={false}
-        href="#"
+        { ...getReferenceProps() }
       >
         <span className="oak-handle-inner"><Icon>add</Icon></span>
       </a>
 
       { state.opened && (
         <div
-          ref={setPopper}
-          style={popperStyles.popper}
+          ref={floating}
           className="oak-popover"
-          {...attributes.popper}
+          style={{
+            position: strategy,
+            top: y ?? 0,
+            left: x ?? 0,
+          }}
           data-placement={placement}
+          { ...getFloatingProps() }
         >
           <div className="oak-groups">
             <Tabs>
@@ -216,13 +191,10 @@ export default forwardRef(({
               </a>
             ) }
           </div>
-          <div
-            ref={setArrow}
-            style={popperStyles.arrow}
-            className="oak-arrow"
-          />
         </div>
       ) }
     </div>
   );
 });
+
+export default Catalogue;

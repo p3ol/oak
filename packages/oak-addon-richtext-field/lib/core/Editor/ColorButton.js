@@ -7,8 +7,8 @@ import {
   DropdownMenu,
   DropdownToggle,
   Tooltip,
-} from '@poool/junipero';
-import { classNames } from '@poool/junipero-utils';
+  classNames,
+} from '@junipero/react';
 import { Text } from '@poool/oak';
 
 import { toggleMark } from './editor';
@@ -37,7 +37,8 @@ export default ({ className }) => {
     toggleMark(editor, 'color', field.value);
   };
 
-  const onClick = () => {
+  const onClick = e => {
+    e.preventDefault();
     colorFieldRef.current?.dropdownRef.current?.open();
     const selectedColor = getSelectedColor();
     setColor(selectedColor);
@@ -47,28 +48,30 @@ export default ({ className }) => {
 
   return (
     <Dropdown className="oak-color-field">
-      <DropdownToggle tag="span">
-        <Tooltip text={(
-          <Text
-            name="addons.richtextField.fields.editor.color"
-            default="Color"
-          />
-        )}
-        >
-          <a
-            href="#"
-            onClick={onClick}
-            className={classNames(
-              'oak-toolbar-button',
-              'oak-color-button',
-              className,
-            )}
+      <DropdownToggle>
+        <span>
+          <Tooltip text={(
+            <Text
+              name="addons.richtextField.fields.editor.color"
+              default="Color"
+            />
+          )}
           >
-            <i className="oak-icons" style={{ color: getSelectedColor() }}>
-              format_color_text
-            </i>
-          </a>
-        </Tooltip>
+            <a
+              href="#"
+              onClick={onClick}
+              className={classNames(
+                'oak-toolbar-button',
+                'oak-color-button',
+                className,
+              )}
+            >
+              <i className="oak-icons" style={{ color: getSelectedColor() }}>
+                format_color_text
+              </i>
+            </a>
+          </Tooltip>
+        </span>
       </DropdownToggle>
       <DropdownMenu>
         <ColorField
@@ -77,15 +80,6 @@ export default ({ className }) => {
           onChange={onChange}
           opened={true}
           trigger="manual"
-          popperOptions={{
-            strategy: 'relative',
-            modifiers: [{
-              name: 'offset',
-              options: {
-                offset: [0, -20],
-              },
-            }],
-          }}
         />
       </DropdownMenu>
     </Dropdown>

@@ -9,13 +9,16 @@ import {
   Button,
   Tabs,
   Tab,
+  Label,
+  FieldControl,
   mockState,
   cloneDeep,
   get,
   set,
   mergeDeep,
   omit,
-} from '@poool/junipero';
+  classNames,
+} from '@junipero/react';
 
 import { useBuilder, useOptions, usePostMountEffect } from '../../hooks';
 import {
@@ -26,20 +29,16 @@ import {
 import Text from '../Text';
 import Field from './Field';
 
-export default forwardRef(({
+const Form = forwardRef(({
+  placement,
   element,
   component,
-  styles,
-  attributes,
-  popper,
+  className,
   onSave,
   onCancel,
+  ...rest
 }, ref) => {
-  const {
-    setElement,
-    overrides,
-    getOverrides,
-  } = useBuilder();
+  const { setElement, overrides, getOverrides } = useBuilder();
   const options = useOptions();
   const tabs = useMemo(() => [
     mergeDeep(
@@ -127,8 +126,7 @@ export default forwardRef(({
     onSave();
   };
 
-  const onCancel_ = e => {
-    e.preventDefault();
+  const onCancel_ = () => {
     dispatch({ element: deserialize(cloneDeep(element)) });
     onCancel();
   };
@@ -136,9 +134,9 @@ export default forwardRef(({
   return (
     <div
       ref={ref}
-      style={styles.popper}
-      {...attributes.popper}
-      className="oak-editable"
+      className={classNames('oak-editable', className)}
+      data-placement={placement}
+      {...rest}
     >
       <div className="oak-title">
         { component.settings?.title ? (
@@ -158,37 +156,41 @@ export default forwardRef(({
                 ?.filter(f => !f.condition || f.condition(state.element))
                 ?.map((field, i) => (
                   <div className="oak-field" key={i}>
-                    { field.label && (
-                      <label><Text>{ field.label }</Text></label>
-                    ) }
-                    { field.fields ? (
-                      <div className="oak-fields">
-                        { field.fields.map((f, n) => (
-                          <div className="oak-field" key={n}>
-                            { f.label && (
-                              <label className="oak-field-label">
-                                <Text>{ f.label }</Text>
-                              </label>
-                            ) }
-                            <Field
-                              field={f}
-                              editableRef={popper}
-                              element={state.element}
-                              onChange={onSettingChange_}
-                              onCustomChange={onSettingCustomChange_}
-                            />
-                          </div>
-                        )) }
-                      </div>
-                    ) : (
-                      <Field
-                        field={field}
-                        editableRef={popper}
-                        element={state.element}
-                        onChange={onSettingChange_}
-                        onCustomChange={onSettingCustomChange_}
-                      />
-                    ) }
+                    <FieldControl>
+                      { field.label && (
+                        <Label><Text>{ field.label }</Text></Label>
+                      ) }
+                      { field.fields ? (
+                        <div className="oak-fields">
+                          { field.fields.map((f, n) => (
+                            <div className="oak-field" key={n}>
+                              <FieldControl>
+                                { f.label && (
+                                  <Label className="oak-field-label">
+                                    <Text>{ f.label }</Text>
+                                  </Label>
+                                ) }
+                                <Field
+                                  field={f}
+                                  editableRef={ref}
+                                  element={state.element}
+                                  onChange={onSettingChange_}
+                                  onCustomChange={onSettingCustomChange_}
+                                />
+                              </FieldControl>
+                            </div>
+                          )) }
+                        </div>
+                      ) : (
+                        <Field
+                          field={field}
+                          editableRef={ref}
+                          element={state.element}
+                          onChange={onSettingChange_}
+                          onCustomChange={onSettingCustomChange_}
+                        />
+                      ) }
+                    </FieldControl>
                   </div>
                 )) }
               { tab?.renderForm?.({
@@ -200,10 +202,10 @@ export default forwardRef(({
           )) }
         </Tabs>
         <div className="oak-editable-buttons">
-          <a href="#" onClick={onCancel_}>
+          <Button type="button" className="subtle" onClick={onCancel_}>
             <Text default="Cancel" name="core.settings.cancel" />
-          </a>
-          <Button className="primary" onClick={onSave_}>
+          </Button>
+          <Button type="button" className="primary" onClick={onSave_}>
             <Text default="Save" name="core.settings.save" />
           </Button>
         </div>
@@ -211,3 +213,5 @@ export default forwardRef(({
     </div>
   );
 });
+
+export default Form;

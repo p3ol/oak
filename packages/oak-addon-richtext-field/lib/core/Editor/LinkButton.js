@@ -3,15 +3,16 @@ import { useSlate } from 'slate-react';
 import { Editor, Element, Transforms, Range } from 'slate';
 import {
   TextField,
-  ToggleField,
+  Toggle,
   Dropdown,
   DropdownMenu,
   DropdownToggle,
   Tooltip,
+  Label,
   classNames,
   mockState,
   exists,
-} from '@poool/junipero';
+} from '@junipero/react';
 import { Text } from '@poool/oak';
 
 import { isBlockActive, toggleLink } from './editor';
@@ -79,7 +80,9 @@ export default ({ className }) => {
     toggleLink(editor, { url, target });
   };
 
-  const onClick = () => {
+  const onClick = e => {
+    e.preventDefault();
+
     let link = '';
     let target = '';
 
@@ -101,61 +104,56 @@ export default ({ className }) => {
 
   return (
     <Dropdown className="oak-link-field">
-      <DropdownToggle tag="span">
-        <Tooltip text={(
-          <Text
-            name="addons.richtextField.fields.editor.link"
-            default="Link"
-          />
-        )}
-        >
-          <a
-            href="#"
-            onClick={onClick}
-            className={classNames(
-              'oak-toolbar-button',
-              'oak-link-button',
-              {
-                'oak-active': isBlockActive(editor, 'link'),
-              },
-              className,
-            )}
-          >
-            <i className="oak-icons">
-              link
-            </i>
-          </a>
-        </Tooltip>
-      </DropdownToggle>
-      <DropdownMenu className="oak-link-input">
-        <TextField
-          placeholder={(
+      <DropdownToggle>
+        <span>
+          <Tooltip text={(
             <Text
               name="addons.richtextField.fields.editor.link"
               default="Link"
             />
           )}
+          >
+            <a
+              href="#"
+              onClick={onClick}
+              className={classNames(
+                'oak-toolbar-button',
+                'oak-link-button',
+                {
+                  'oak-active': isBlockActive(editor, 'link'),
+                },
+                className,
+              )}
+            >
+              <i className="oak-icons">
+                link
+              </i>
+            </a>
+          </Tooltip>
+        </span>
+      </DropdownToggle>
+      <DropdownMenu className="oak-link-input">
+        <Label>
+          <Text
+            name="addons.richtextField.fields.editor.link"
+            default="Link"
+          />
+        </Label>
+        <TextField
           value={state.link}
           onChange={onChange.bind(null, 'link')}
           className="oak-link-url"
         />
-        <ToggleField
-          checkedLabel={(
-            <Text
-              name="addons.richtextField.fields.editor.blank"
-              default="Open in a new window"
-            />
-          )}
-          uncheckedLabel={(
-            <Text
-              name="addons.richtextField.fields.editor.blank"
-              default="Open in a new window"
-            />
-          )}
+        <Toggle
           checked={state.target === '_blank'}
           onChange={onChange.bind(null, 'target')}
           value="_blank"
-        />
+        >
+          <Text
+            name="addons.richtextField.fields.editor.blank"
+            default="Open in a new window"
+          />
+        </Toggle>
       </DropdownMenu>
     </Dropdown>
   );

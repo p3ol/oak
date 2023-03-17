@@ -83,25 +83,30 @@ export default ({ value, onChange, element, options = {} }) => {
   };
 
   return (
-    <div className="oak-text-editor oak-prosemirror">
-      <Toolbar
-        state={state}
-        onToggleBlock={onToggleBlock}
-        onToggleMark={onToggleMark}
-        onToggleLink={onToggleLink}
-        defaultSize={size}
-        dispatch={tr => onChange_(state.apply(tr))}
-      />
-      <ProseMirror
-        className="oak-text-editable"
-        ref={viewRef}
-        state={state}
-        onChange={onChange_}
-        style={{ fontSize: getDefaultSize() }}
-      />
-      {options.debug && (
-        <pre>{JSON.stringify(state)}</pre>
-      )}
-    </div>
+    <>
+      <div className="oak-text-editor oak-prosemirror">
+        <Toolbar
+          state={state}
+          onToggleBlock={onToggleBlock}
+          onToggleMark={onToggleMark}
+          onToggleLink={onToggleLink}
+          defaultSize={size}
+          dispatch={tr => onChange_(state.apply(tr))}
+        />
+        <ProseMirror
+          className="oak-text-editable"
+          ref={viewRef}
+          state={state}
+          onChange={onChange_}
+          style={{ fontSize: getDefaultSize() }}
+        />
+      </div>
+
+      { options.debug && (
+        <pre style={{ whiteSpace: 'pre-wrap' }}>
+          { JSON.stringify(state, null, 2) }
+        </pre>
+      ) }
+    </>
   );
 };

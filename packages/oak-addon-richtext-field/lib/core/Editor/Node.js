@@ -1,4 +1,4 @@
-import { exists } from '@poool/junipero-utils';
+import { exists } from '@junipero/react';
 
 import TextNode from './TextNode';
 

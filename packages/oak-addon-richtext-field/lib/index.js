@@ -22,6 +22,6 @@ export const renderContent = element => typeof element.content === 'string' ? (
   <Node { ...c } key={i} />
 ));
 
-export { serialize, deserialize };
+export { Editor, Node, serialize, deserialize };
 
 export { default as localeFr } from './languages/fr';

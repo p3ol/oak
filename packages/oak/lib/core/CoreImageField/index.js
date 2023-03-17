@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from 'react';
-import { TouchableZone, Loader, classNames, mockState } from '@poool/junipero';
+import { TouchableZone, Spinner, classNames, mockState } from '@junipero/react';
 
 import { useOptions } from '../../hooks';
 
@@ -84,7 +84,7 @@ export default ({
       }}
     >
       { state.loading ? (
-        <Loader />
+        <Spinner />
       ) : !state.value ? (
         <i className="oak-icons">add</i>
       ) : (

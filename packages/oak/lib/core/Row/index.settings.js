@@ -1,13 +1,13 @@
 export default {
   title: t => t('core.components.row.settings.title', 'Row options'),
-  popperSettings: {
+  floatingSettings: {
     placement: 'right-start',
-    modifiers: [{
-      name: 'offset',
-      options: {
-        offset: [0, 5],
-      },
-    }],
+    shift: {
+      enabled: false,
+    },
+    autoPlacement: {
+      alignment: 'start',
+    },
   },
   fields: [{
     type: 'select',

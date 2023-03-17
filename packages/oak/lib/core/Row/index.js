@@ -1,9 +1,8 @@
 import { v4 as uuid } from 'uuid';
-import { classNames, omit } from '@poool/junipero-utils';
+import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
-import Droppable from '../Droppable';
 import options from './index.options';
 import settings from './index.settings';
 
@@ -39,9 +38,7 @@ const Row = ({
   };
 
   return (
-    <div
-      { ...omit(rest, ['builder']) }
-    >
+    <div { ...omit(rest, ['builder', 'component']) }>
       <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="oak-drop-zone oak-before" />
       </Droppable>

@@ -6,13 +6,13 @@ import {
   DropdownToggle,
   Tooltip,
   classNames,
-} from '@poool/junipero';
+} from '@junipero/react';
 import { Text } from '@poool/oak';
 
 import { schema } from '../schema';
 import { getActiveAttrs } from '../utils';
 
-export default ({ className, onChange, state, active = false }) => {
+export default ({ className, onChange, state }) => {
   const colorFieldRef = useRef();
   const [color, setColor] = useState('#000000');
 
@@ -32,34 +32,33 @@ export default ({ className, onChange, state, active = false }) => {
 
   return (
     <Dropdown className="oak-color-field">
-      <DropdownToggle tag="span">
-        <Tooltip text={(
-          <Text
-            name="addons.richtextField.fields.editor.color"
-            default="Color"
-          />
-        )}
-        >
-          <a
-            href="#"
-            onClick={onClick}
-            className={classNames(
-              'oak-toolbar-button',
-              'oak-color-button',
-              {
-                'oak-active': active,
-              },
-              className,
-            )}
+      <DropdownToggle>
+        <span>
+          <Tooltip text={(
+            <Text
+              name="addons.richtextField.fields.editor.color"
+              default="Color"
+            />
+          )}
           >
-            <i className="oak-icons" style={{
-              color: getSelectedColor(),
-            }}
+            <a
+              href="#"
+              onClick={onClick}
+              className={classNames(
+                'oak-toolbar-button',
+                'oak-color-button',
+                className,
+              )}
             >
-              format_color_text
-            </i>
-          </a>
-        </Tooltip>
+              <i className="oak-icons" style={{
+                color: getSelectedColor(),
+              }}
+              >
+                format_color_text
+              </i>
+            </a>
+          </Tooltip>
+        </span>
       </DropdownToggle>
       <DropdownMenu>
         <ColorField
@@ -68,15 +67,6 @@ export default ({ className, onChange, state, active = false }) => {
           value={color}
           opened={true}
           trigger="manual"
-          popperOptions={{
-            strategy: 'relative',
-            modifiers: [{
-              name: 'offset',
-              options: {
-                offset: [0, -20],
-              },
-            }],
-          }}
         />
       </DropdownMenu>
     </Dropdown>

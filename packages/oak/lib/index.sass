@@ -1,18 +1,32 @@
-@import "@poool/junipero/dist/css/fonts.min"
-
 .oak
-  @import "@poool/junipero/dist/css/index.min"
-  @import "@poool/junipero/dist/css/BaseField.min"
-  @import "@poool/junipero/dist/css/TextField.min"
-  @import "@poool/junipero/dist/css/ToggleField.min"
-  @import "@poool/junipero/dist/css/DateField.min"
-  @import "@poool/junipero/dist/css/Dropdown.min"
-  @import "@poool/junipero/dist/css/DropdownToggle.min"
-  @import "@poool/junipero/dist/css/DropdownMenu.min"
-  @import "@poool/junipero/dist/css/DropdownItem.min"
-  @import "@poool/junipero/dist/css/SelectField.min"
-  @import "@poool/junipero/dist/css/Button.min"
-  @import "@poool/junipero/dist/css/Tabs.min"
+  @import "@junipero/theme/dist/css/reset.min"
+  @import "@junipero/theme/dist/css/transitions.min"
+  @import "@junipero/theme/dist/css/TextField.min"
+  @import "@junipero/theme/dist/css/Toggle.min"
+  @import "@junipero/theme/dist/css/DateField.min"
+  @import "@junipero/theme/dist/css/Dropdown.min"
+  @import "@junipero/theme/dist/css/SelectField.min"
+  @import "@junipero/theme/dist/css/Button.min"
+  @import "@junipero/theme/dist/css/Tabs.min"
+  @import "@junipero/theme/dist/css/ColorField.min"
+
+  *
+    --oak-main-color: var(--junipero-velvet)
+    --oak-darker-main-color: var(--junipero-velvet-active)
+    --oak-lighter-main-color: var(--junipero-velvet-hover)
+    --oak-background-main-color: var(--junipero-velvet-background)
+    --oak-shadow-color: var(--junipero-shadow)
+    --oak-background-color: var(--junipero-concrete)
+    --oak-inner-background-color: var(--junipero-seashell)
+    --oak-foreground-color: var(--junipero-alabaster)
+    --oak-interaction-color: var(--junipero-mischka)
+    --oak-text-color: var(--junipero-onyx)
+    --oak-reverse-text-color: var(--junipero-seashell)
+    --oak-alternate-text-color: var(--junipero-slate)
+    --oak-floating-background-color: var(--junipero-seashell)
+    --oak-error-color: var(--junipero-grapefruit)
+    --oak-field-border-color: var(--junipero-mischka)
+    --oak-tooltip-border-color: transparent
 
 @import "./theme/fonts/oak-icons.sass"
 
@@ -33,3 +47,32 @@
 @import "./theme/reset/dropdowns.sass"
 @import "./theme/reset/buttons.sass"
 @import "./theme/reset/tooltips.sass"
+@import "./theme/reset/toggles.sass"
+@import "./theme/reset/touchablezones.sass"
+
+// Dark mode
+.dark .oak
+  *
+    --oak-background-main-color: var(--junipero-dark-velvet-disabled)
+    --oak-shadow-color: transparent
+    --oak-background-color: var(--junipero-gondola)
+    --oak-inner-background-color: var(--junipero-onyx)
+    --oak-foreground-color: var(--junipero-onyx)
+    --oak-interaction-color: var(--junipero-dark-velvet-foreground)
+    --oak-text-color: var(--junipero-onyx)
+    --oak-reverse-text-color: var(--junipero-seashell)
+    --oak-alternate-text-color: var(--junipero-nevada)
+    --oak-floating-background-color: var(--junipero-gondola)
+    --oak-error-color: var(--junipero-grapefruit)
+    --oak-field-border-color: var(--junipero-dark-velvet-background)
+    --oak-tooltip-border-color: var(--junipero-dark-velvet-background)
+
+  @import "@junipero/theme/dist/css/reset.dark.min"
+  @import "@junipero/theme/dist/css/TextField.dark.min"
+  @import "@junipero/theme/dist/css/Toggle.dark.min"
+  @import "@junipero/theme/dist/css/DateField.dark.min"
+  @import "@junipero/theme/dist/css/Dropdown.dark.min"
+  @import "@junipero/theme/dist/css/SelectField.dark.min"
+  @import "@junipero/theme/dist/css/Button.dark.min"
+  @import "@junipero/theme/dist/css/Tabs.dark.min"
+  @import "@junipero/theme/dist/css/ColorField.dark.min"

@@ -1,5 +1,5 @@
 import { useReducer, useRef } from 'react';
-import { mockState } from '@poool/junipero-utils';
+import { mockState } from '@junipero/core';
 import { action } from '@storybook/addon-actions';
 
 import { Builder } from './index';

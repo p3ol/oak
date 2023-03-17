@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
-import { Tooltip, classNames } from '@poool/junipero';
+import { Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Icon from '../Icon';
@@ -23,14 +23,8 @@ export default forwardRef(({
     tooltipRef,
   }), [innerRef.current]);
 
-  const popperOptions = useMemo(() => ({
-    modifiers: [{
-      name: 'preventOverflow',
-      enabled: true,
-      options: {
-        boundary: oakRef?.current,
-      },
-    }],
+  const floatingOptions = useMemo(() => ({
+    boundary: oakRef?.current,
   }), []);
 
   const onClick_ = e => {
@@ -42,7 +36,6 @@ export default forwardRef(({
     <a
       { ...props }
       onClick={onClick_}
-      ref={innerRef}
       href="#"
       draggable={draggable ?? false}
       className={classNames('oak-option', className)}
@@ -61,9 +54,9 @@ export default forwardRef(({
       container={oakRef?.current || '.oak'}
       ref={r => {
         tooltipRef.current = r;
-        innerRef.current = r?.innerRef?.current;
+        innerRef.current = r?.handleRef?.current;
       }}
-      popperOptions={popperOptions}
+      floatingOptions={floatingOptions}
       text={name}
     >
       { inner }

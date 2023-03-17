@@ -1,7 +1,14 @@
 @use "colors" as colors
 
 .oak-prosemirror.oak-text-editor
-  background: var(--oak-text-editor-color)
+  --background-color: var(--oak-inner-background-color)
+  --toolbar-background-color: var(--oak-field-border-color)
+  --border-color: var(--oak-field-border-color)
+  --toolbar-icon-background-color: var(--oak-alternate-text-color)
+  --toolbar-icon-color: var(--oak-alternate-text-color)
+
+  background: var(--background-color)
+  box-shadow: 0 0 0 2px var(--border-color)
   border-radius: 4px
   width: 100%
 
@@ -14,26 +21,27 @@
       color: blue
       text-decoration: underline
 
-
   .oak-toolbar
-    background: var(--oak-text-editor-toolbar-color)
+    background: var(--toolbar-background-color)
     border-radius: 4px 4px 0 0
     padding: 4px 5px
     display: flex
-    align-items: center
+    align-items: stretch
+    gap: 5px
 
     a.oak-toolbar-button
       border-radius: 2px
       display: flex
-      margin-right: 5px
       align-items: center
       justify-content: center
       text-decoration: none
       padding: 2px
 
-      &.oak-active
+      &:hover, &.oak-active
+        background: var(--toolbar-icon-background-color)
+
         .oak-icons
-          color: var(--text-color)
+          color: var(--oak-reverse-text-color)
 
       &.oak-underline
         .oak-icons
@@ -52,12 +60,13 @@
         margin-left: 20px
 
     .oak-icons
-      color: colors.$shuttle-gray
+      color: var(--toolbar-icon-color)
       font-size: 20px
 
     .oak-text-size
       font-size: 14px
       margin: 0 10px
+      color: var(--toolbar-icon-color)
   
   .junipero.tooltip
     z-index: 1
@@ -69,21 +78,26 @@
       display: none
 
   .oak-color-field
-    .color-input
-      padding: 0px 10px
-
-      .junipero.dropdown-menu .menu-inner
-        box-shadow: none
-        margin-bottom: 10px
-
-    .junipero.color-input .color-wheel .lightness
-      border-radius: 4px
-      margin-bottom: 5px
+    & > .junipero.dropdown-menu
+      .menu-inner
+        padding: 0
+        background: var(--oak-inner-background-color)
+        box-shadow: 0 0 0 2px var(--oak-field-border-color)
+        overflow: visible
 
   .oak-link-field
-    .oak-link-input.junipero.dropdown-menu
-      .menu-inner
-        padding: 10px
-      
-      .oak-link-url
-        margin-bottom: 10px
+    & > .junipero.dropdown-menu .menu-inner
+      padding: 10px
+      overflow: visible
+
+    .label
+      padding-top: 0
+
+    .oak-link-url
+      width: 100%
+      margin-bottom: 10px
+
+// Dark mode
+.dark .oak-prosemirror.oak-text-editor
+  --toolbar-icon-background-color: var(--junipero-dark-velvet-disabled)
+  --toolbar-icon-color: var(--junipero-seashell)

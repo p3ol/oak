@@ -1,11 +1,10 @@
 import { useRef } from 'react';
-import { Tooltip, classNames } from '@poool/junipero';
+import { Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Catalogue from '../Catalogue';
 import Option from '../Option';
 import Element from '../Element';
-import Droppable from '../Droppable';
 import Editable from '../Editable';
 import settings from './index.settings';
 import Icon from '../Icon';

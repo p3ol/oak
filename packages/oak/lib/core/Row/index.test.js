@@ -5,7 +5,7 @@ import Row from '.';
 
 describe('<Row />', () => {
   it('should render', () => {
-    const { container } = render(
+    const { container, unmount } = render(
       <Row
         element={{
           cols: [],
@@ -13,6 +13,7 @@ describe('<Row />', () => {
       />
     );
     expect(container.querySelector('.oak-row-content')).toBeTruthy();
+    unmount();
   });
 
   it('should render as many cols as specified', () => {
@@ -32,7 +33,7 @@ describe('<Row />', () => {
   });
 
   it('should add correct flex direction className', () => {
-    const { container } = render(
+    const { container, unmount } = render(
       <Row
         element={{
           cols: [],
@@ -44,10 +45,11 @@ describe('<Row />', () => {
     );
     expect(container.querySelector('.oak-direction-mock-direction'))
       .toBeTruthy();
+    unmount();
   });
 
   it('should add correct align items className', () => {
-    const { container } = render(
+    const { container, unmount } = render(
       <Row
         element={{
           cols: [],
@@ -59,10 +61,11 @@ describe('<Row />', () => {
     );
     expect(container.querySelector('.oak-align-mock-align'))
       .toBeTruthy();
+    unmount();
   });
 
   it('should add correct justify content className', () => {
-    const { container } = render(
+    const { container, unmount } = render(
       <Row
         element={{
           cols: [],
@@ -74,11 +77,12 @@ describe('<Row />', () => {
     );
     expect(container.querySelector('.oak-justify-mock-justify'))
       .toBeTruthy();
+    unmount();
   });
 
   it('should splice element cols when removing a col', async () => {
     const mockSetElement = jest.fn();
-    const { container } = render(withBuilder((
+    const { container, unmount } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -101,12 +105,13 @@ describe('<Row />', () => {
     }, {
       cols: colsAfter,
     }));
+    unmount();
   });
 
   it('should remove the correct col', async () => {
     const mockSetElement = jest.fn();
 
-    const { container, rerender } = render(withBuilder((
+    const { container, rerender, unmount } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -210,11 +215,12 @@ describe('<Row />', () => {
     }, {
       cols: colsAfter,
     }));
+    unmount();
   });
 
   it('should add col on divide', async () => {
     const mockSetElement = jest.fn();
-    const { container } = render(withBuilder((
+    const { container, unmount } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -229,12 +235,13 @@ describe('<Row />', () => {
 
     fireEvent.click(container.querySelector('.oak-divider>a'));
     await waitFor(() => expect(mockSetElement).toHaveBeenCalled());
+    unmount();
   });
 
   it('should add col before selected col if ' +
     'left button is clicked', async () => {
     const mockSetElement = jest.fn();
-    const { container } = render(withBuilder((
+    const { container, unmount } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -262,12 +269,13 @@ describe('<Row />', () => {
     }, {
       cols: colsAfter,
     }));
+    unmount();
   });
 
   it('should add col after selected col if ' +
     'right button is clicked', async () => {
     const mockSetElement = jest.fn();
-    const { container } = render(withBuilder((
+    const { container, unmount } = render(withBuilder((
       <Row
         element={{
           cols: [
@@ -296,6 +304,7 @@ describe('<Row />', () => {
     }, {
       cols: colsAfter,
     }));
+    unmount();
   });
 
   afterEach(() => {

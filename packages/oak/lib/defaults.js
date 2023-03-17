@@ -1,4 +1,4 @@
-import { classNames } from '@poool/junipero-utils';
+import { classNames } from '@junipero/react';
 
 export const COMPONENT_DEFAULT = {
   id: 'unknown',

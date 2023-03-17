@@ -22,14 +22,12 @@ const responsive = [
 
 export default {
   title: t => t('core.components.col.settings.title', 'Col options'),
-  popperSettings: {
+  floatingSettings: {
     placement: 'bottom-end',
-    modifiers: [{
-      name: 'offset',
-      options: {
-        offset: [0, 5],
-      },
-    }],
+    autoPlacement: {
+      alignment: 'end',
+      allowedPlacements: ['bottom-end', 'top-end'],
+    },
   },
   fields: [{
     type: 'select',

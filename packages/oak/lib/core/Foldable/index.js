@@ -1,22 +1,21 @@
-import { omit } from '@poool/junipero-utils';
 import { useRef } from 'react';
+import { Droppable, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
+import Text from '../Text';
+import Section from './Section';
 import options from './index.options';
 import settings from './index.settings';
-import Catalogue from '../Catalogue';
-import Droppable from '../Droppable';
-import Element from '../Element';
-import Text from '../Text';
 
 const Foldable = ({
   element,
+  parent,
   ...rest
 }) => {
   const { moveElement, addElement, getText } = useBuilder();
   const appendCatalogueRef = useRef();
 
-  const onAppend_ = (parent, position, component) => {
+  const onAppend = (parent, position, component) => {
     const elmt = component.construct?.() || {};
     addElement?.({
       ...elmt,
@@ -39,135 +38,55 @@ const Foldable = ({
     moveElement(data, element, { parent, position: 'before' });
   };
 
+  const onParentDropElement = (position, data) => {
+    moveElement(data, element, { parent, position });
+  };
+
   return (
-    <div
-      { ...omit(rest, ['builder']) }
-    >
-      <div className="oak-foldable-section-title">
-        <Text
-          name="core.components.foldable.sectionsTitle.seeMore"
-          default="Label when collapsed"
-        />
-      </div>
-      <Droppable
-        disabled={element.seeMore.length > 0}
-        onDrop={onDropElement.bind(null, element.seeMore)}
-      >
-        <div className="oak-foldable-content">
-          { element?.seeMore.length ? (
-            <>
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.seeMore, 'before')}
-                onPaste={onPaste.bind(null, element.seeMore, 'before')}
-              />
-              { element?.seeMore?.map(elt => (
-                <Element
-                  key={elt.id}
-                  element={elt}
-                  parent={element.seeMore}
-                />
-              ))}
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.seeMore, 'after')}
-                onPaste={onPaste.bind(null, element.seeMore, 'after')}
-              />
-            </>
-          ) : (
-            <div className="oak-foldable-content-empty">
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.seeMore, 'after')}
-                onPaste={onPaste.bind(null, element.seeMore, 'after')}
-              />
-            </div>
-          )}
-        </div>
+    <div { ...omit(rest, ['builder', 'component']) }>
+      <Droppable onDrop={onParentDropElement.bind(null, 'before')}>
+        <div className="oak-drop-zone oak-before" />
       </Droppable>
-      <div className="oak-foldable-section-title">
-        <Text
-          name="core.components.foldable.sectionsTitle.seeLess"
-          default="Label when expanded"
+      <div className="oak-foldable-content">
+        <Section
+          title={(
+            <Text
+              name="core.components.foldable.sectionsTitle.seeMore"
+              default="Label when collapsed"
+            />
+          )}
+          content={element.seeMore}
+          onDropElement={onDropElement.bind(null, element.seeMore)}
+          onAppend={onAppend.bind(null, element.seeMore)}
+          onPaste={onPaste.bind(null, element.seeMore)}
+        />
+        <Section
+          title={(
+            <Text
+              name="core.components.foldable.sectionsTitle.seeLess"
+              default="Label when expanded"
+            />
+          )}
+          content={element.seeLess}
+          onDropElement={onDropElement.bind(null, element.seeLess)}
+          onAppend={onAppend.bind(null, element.seeLess)}
+          onPaste={onPaste.bind(null, element.seeLess)}
+        />
+        <Section
+          title={(
+            <Text
+              name="core.components.foldable.sectionsTitle.content"
+              default="Content"
+            />
+          )}
+          content={element.content}
+          onDropElement={onDropElement.bind(null, element.content)}
+          onAppend={onAppend.bind(null, element.content)}
+          onPaste={onPaste.bind(null, element.content)}
         />
       </div>
-      <Droppable
-        disabled={element.seeLess.length > 0}
-        onDrop={onDropElement.bind(null, element.seeLess)}
-      >
-        <div className="oak-foldable-content">
-          { element?.seeLess.length ? (
-            <>
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.seeLess, 'before')}
-                onPaste={onPaste.bind(null, element.seeLess, 'before')}
-              />
-              { element?.seeLess?.map(elt => (
-                <Element
-                  key={elt.id}
-                  element={elt}
-                  parent={element.seeLess}
-                />
-              ))}
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.seeLess, 'after')}
-                onPaste={onPaste.bind(null, element.seeLess, 'after')}
-              />
-            </>
-          ) : (
-            <div className="oak-foldable-content-empty">
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.seeLess, 'after')}
-                onPaste={onPaste.bind(null, element.seeLess, 'after')}
-              />
-            </div>
-          )}
-        </div>
-      </Droppable>
-      <div className="oak-foldable-section-title">
-        <Text
-          name="core.components.foldable.sectionsTitle.content"
-          default="Content"
-        />
-      </div>
-      <Droppable
-        disabled={element.content.length > 0}
-        onDrop={onDropElement.bind(null, element.content)}
-      >
-        <div className="oak-foldable-content">
-          { element?.content.length ? (
-            <>
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.content, 'before')}
-                onPaste={onPaste.bind(null, element.content, 'before')}
-              />
-              {element?.content?.map(elt => (
-                <Element
-                  key={elt.id}
-                  element={elt}
-                  parent={element.content}
-                />
-              ))}
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.content, 'after')}
-                onPaste={onPaste.bind(null, element.content, 'after')}
-              />
-            </>
-          ) : (
-            <div className="oak-foldable-content-empty">
-              <Catalogue
-                ref={appendCatalogueRef}
-                onAppend={onAppend_.bind(null, element.content, 'after')}
-                onPaste={onPaste.bind(null, element.content, 'after')}
-              />
-            </div>
-          )}
-        </div>
+      <Droppable onDrop={onParentDropElement.bind(null, 'after')}>
+        <div className="oak-drop-zone oak-after" />
       </Droppable>
     </div>
   );
