@@ -1,0 +1,40 @@
+{
+  "name": "@oakjs/core",
+  "version": "2.0.0-alpha.10",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "main": "dist/oak-core.cjs.js",
+  "jsnext:main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "esnext": "src/index.js",
+  "unpkg": "dist/oak-core.min.js",
+  "cdn": "dist/oak-core.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/core"
+  },
+  "author": "Ugo Stephant <ugo@poool.fr>",
+  "contributors": [
+    "Maxime Da Silva <maximed@poool.fr>"
+  ],
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": "14 || 16 || 18",
+    "yarn": "1"
+  },
+  "dependencies": {
+    "@junipero/core": "3.0.0-beta.6",
+    "@babel/runtime-corejs3": "7.20.13",
+    "core-js": "3.27.2",
+    "uuid": "9.0.0"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && rollup -c",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

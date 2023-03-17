@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components should allow to add a new group and add components 1`] = `
+{
+  "defaultGroup": ComponentGroup {
+    "components": [],
+    "id": "other",
+    "name": undefined,
+    "type": "group",
+  },
+  "groups": [
+    ComponentGroup {
+      "components": [
+        Component {
+          "construct": undefined,
+          "duplicate": undefined,
+          "group": "test",
+          "id": "test",
+          "name": "",
+          "render": undefined,
+          "sanitize": undefined,
+          "type": "component",
+        },
+      ],
+      "id": "test",
+      "name": undefined,
+      "type": "group",
+    },
+  ],
+}
+`;
