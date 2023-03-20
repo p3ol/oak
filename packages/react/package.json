@@ -1,17 +1,17 @@
 {
-  "name": "@oakjs/core",
+  "name": "@oakjs/react",
   "version": "2.0.0-alpha.10",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/oak-core.cjs.js",
+  "main": "dist/oak.cjs.js",
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
-  "esnext": "lib/index.js",
-  "unpkg": "dist/oak-core.min.js",
-  "cdn": "dist/oak-core.min.js",
+  "esnext": "src/index.js",
+  "unpkg": "dist/oak.min.js",
+  "cdn": "dist/oak.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",
-    "directory": "packages/core"
+    "directory": "packages/oak"
   },
   "author": "Ugo Stephant <ugo@poool.fr>",
   "contributors": [
@@ -20,13 +20,21 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": "14 || 16 || 18",
-    "yarn": "1"
+    "node": ">= 14",
+    "yarn": ">= 1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@junipero/core": "3.0.0-beta.6",
     "@babel/runtime-corejs3": "7.20.13",
+    "@floating-ui/react": "0.19.1",
+    "@junipero/react": "3.0.0-beta.6",
+    "@junipero/theme": "3.0.0-beta.6",
+    "@junipero/transitions": "3.0.0-beta.0",
     "core-js": "3.27.2",
+    "preact": "10.11.3",
     "uuid": "9.0.0"
   },
   "scripts": {

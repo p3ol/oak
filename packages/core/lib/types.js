@@ -8,12 +8,20 @@ export class Component {
 
     this.type = 'component';
     this.id = props.id;
-    this.name = props.name || '';
     this.group = props.group;
     this.render = props.render;
     this.sanitize = props.sanitize;
     this.construct = props.construct;
     this.duplicate = props.duplicate;
+    this.icon = props.icon;
+    this.getContainers = props.getContainers;
+    this.name = props.name || '';
+    this.hasCustomInnerContent = props.hasCustomInnerContent || false;
+    this.isDraggable = props.isDraggable || false;
+    this.isDroppable = props.isDroppable || false;
+    this.editable = props.editable || false;
+    this.options = props.options || [];
+    this.settings = props.settings || [];
   }
 }
 

@@ -14,6 +14,7 @@ module.exports = {
   },
   webpackFinal: config => {
     config.resolve.alias = {
+      '@oakjs/core': path.resolve('./packages/core/lib'),
       '@poool/oak/lib': path.resolve('./packages/oak/lib'),
       '@poool/oak': path.resolve('./packages/oak/lib'),
       // 'react': 'preact/compat',
