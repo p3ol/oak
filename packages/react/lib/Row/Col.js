@@ -95,91 +95,106 @@ const Col = ({
     <div
       { ...rest }
       className={classNames(
-        'oak-col',
+        'column',
         {
-          ['oak-col-' + element.size]: element.size && element.size !== 'fluid',
+          'oak-flex-none': element.size === 'auto',
+          'oak-flex-1': !element.size || element.size === 'fluid',
+          [`oak-basis-${element.size}/12`]: Number.isInteger(element.size) &&
+            element.size > 0 &&
+            element.size <= 12,
         },
+        'oak-flex oak-items-center oak-gap-2 oak-py-4',
         className
       )}
     >
-      <div className="oak-col-wrapper">
-        <div className="oak-divider oak-prepend">
-          <Tooltip
-            placement="right"
-            container={rootRef?.current || '.oak'}
-            text={<Text name="core.tooltips.addColumn" default="Add column" />}
-          >
-            <a href="#" draggable={false} onClick={onPrependCol_}>
-              <Icon className="oak-append-icon">add</Icon>
-            </a>
-          </Tooltip>
-        </div>
-        <Droppable disabled={element.content.length > 0} onDrop={onDrop_}>
-          <div className="oak-col-inner">
-            { element.content.length > 0 && (
-              <Catalogue
-                ref={prependCatalogueRef}
-                onAppend={onPrepend_}
-                onPaste={onPasteBefore_}
-              />
-            ) }
+      <Tooltip
+        placement="right"
+        container={rootRef?.current || '.oak'}
+        className="secondary"
+        text={<Text name="core.tooltips.addColumn">Add column</Text>}
+      >
+        <a
+          className="divider prepend oak-flex oak-items-center"
+          href="#"
+          draggable={false}
+          onClick={onPrependCol_}
+        >
+          <Icon className="!oak-text-lg">add</Icon>
+        </a>
+      </Tooltip>
 
-            { element.content?.length > 0 && (
-              <div className="oak-col-content">
-                { element.content?.map((item, i) => (
-                  <Element
-                    key={item.id || i}
-                    index={i}
-                    parent={element.content}
-                    element={item}
-                  />
-                )) }
-              </div>
-            ) }
-
+      <Droppable disabled={element.content.length > 0} onDrop={onDrop_}>
+        <div
+          className="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
+        >
+          { element.content.length > 0 && (
             <Catalogue
-              ref={appendCatalogueRef}
-              onAppend={onAppend_}
-              onPaste={onPasteAfter_}
+              ref={prependCatalogueRef}
+              onAppend={onPrepend_}
+              onPaste={onPasteBefore_}
+              className="oak-flex oak-justify-center"
             />
-          </div>
-        </Droppable>
-        <div className="oak-divider oak-append">
-          <Tooltip
-            placement="left"
-            container={rootRef?.current || '.oak'}
-            text={<Text name="core.tooltips.addColumn" default="Add column" />}
-          >
-            <a href="#" draggable={false} onClick={onAppendCol_}>
-              <Icon className="oak-append-icon">add</Icon>
-            </a>
-          </Tooltip>
-        </div>
+          ) }
 
-        <div className="oak-options">
-          {/* <Editable
-            ref={editableRef}
-            element={element}
-            component={{ settings }}
-            container={settingsElementRef}
-          >
-            <Option
-              className="oak-edit"
-              option={{ icon: 'edit' }}
-              onClick={onEdit_}
-              name={<Text name="core.tooltips.edit" default="Edit" />}
-            />
-          </Editable>
+          { element.content?.length > 0 && (
+            <div className="col-content">
+              { element.content?.map((item, i) => (
+                <Element
+                  key={item.id || i}
+                  index={i}
+                  parent={element.content}
+                  element={item}
+                />
+              )) }
+            </div>
+          ) }
+
+          <Catalogue
+            ref={appendCatalogueRef}
+            onAppend={onAppend_}
+            onPaste={onPasteAfter_}
+            className="oak-flex oak-justify-center"
+          />
+        </div>
+      </Droppable>
+
+      <Tooltip
+        placement="left"
+        container={rootRef?.current || '.oak'}
+        className="secondary"
+        text={<Text name="core.tooltips.addColumn">Add column</Text>}
+      >
+        <a
+          className="divider append oak-flex oak-items-center"
+          href="#"
+          draggable={false}
+          onClick={onAppendCol_}
+        >
+          <Icon className="!oak-text-lg">add</Icon>
+        </a>
+      </Tooltip>
+
+      <div className="options">
+        {/* <Editable
+          ref={editableRef}
+          element={element}
+          component={{ settings }}
+          container={settingsElementRef}
+        >
           <Option
-            className="oak-remove"
-            option={{ icon: 'clear' }}
-            onClick={onRemove_}
-            name={<Text name="core.tooltips.remove" default="Remove" />}
-          /> */}
-        </div>
+            className="oak-edit"
+            option={{ icon: 'edit' }}
+            onClick={onEdit_}
+            name={<Text name="core.tooltips.edit" default="Edit" />}
+          />
+        </Editable>
+        <Option
+          className="oak-remove"
+          option={{ icon: 'clear' }}
+          onClick={onRemove_}
+          name={<Text name="core.tooltips.remove" default="Remove" />}
+        /> */}
       </div>
-
-      <div ref={settingsElementRef} />
     </div>
   );
 };

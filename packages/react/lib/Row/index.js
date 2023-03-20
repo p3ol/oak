@@ -62,11 +62,11 @@ const Row = ({
       </Droppable>
       <div
         className={classNames(
-          'oak-grid oak-grid-cols-12 oak-gap-2',
+          'row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2',
           element.settings?.flexDirection &&
-            'oak-direction-' + element.settings.flexDirection,
+            'oak-flex-' + element.settings.flexDirection,
           element.settings?.alignItems &&
-            'oak-align-' + element.settings.alignItems,
+            'oak-items-' + element.settings.alignItems,
           element.settings?.justifyContent &&
             'oak-justify-' + element.settings.justifyContent,
         )}

@@ -1,0 +1,47 @@
+.oak .element.type-row
+  --background-color: var(--oak-background-color)
+  --inner-background-color: var(--oak-inner-background-color)
+  --divider-background-color: var(--oak-interaction-color)
+  --divider-color: var(--oak-alternate-text-color)
+  --inner-border-color: var(--oak-interaction-color)
+
+  .column
+    border-radius: 10px
+    background: var(--background-color)
+    position: relative
+
+    .column
+      background: var(--inner-background-color)
+
+      .column
+        background: var(--background-color)
+
+        .column
+          background: var(--inner-background-color)
+
+          .column
+            background: transparent
+            border: 1px solid var(--inner-border-color)
+
+    a.divider
+      text-decoration: none
+      background: var(--divider-background-color)
+      height: 50px
+
+      &:hover
+        background: var(--oak-main-color)
+
+        .icon
+          color: var(--oak-reverse-text-color)
+
+      &.prepend
+        border-radius: 0 5px 5px 0
+
+      &.append
+        border-radius: 5px 0 0 5px
+
+      .icon
+        color: var(--divider-color)
+
+    .options
+      position: absolute

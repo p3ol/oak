@@ -5,6 +5,10 @@ module.exports = {
   content: [
     './packages/react/**/*.js',
   ],
+  safelist: [
+    { pattern: /flex-/ },
+    { pattern: /basis-(.+)\/12/ },
+  ],
   plugins: [
     junipero,
   ],

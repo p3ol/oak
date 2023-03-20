@@ -24,6 +24,7 @@ import Icon from '../Icon';
 import Text from '../Text';
 
 const Catalogue = forwardRef(({
+  className,
   placement = 'bottom',
   onToggle,
   onAppend,
@@ -110,6 +111,7 @@ const Catalogue = forwardRef(({
       className={classNames(
         'catalogue',
         { opened: state.opened },
+        className,
       )}
     >
       <a
