@@ -8,12 +8,14 @@ export default class Components extends Emitter {
   static COMPONENTS_GROUP_CORE = 'core';
   static COMPONENTS_GROUP_OTHER = 'other';
 
+  #builder = null;
   #groups = null;
   #defaultGroup = null; // Other tab
 
-  constructor () {
+  constructor ({ builder } = {}) {
     super();
 
+    this.#builder = builder;
     this.#groups = [];
     this.#defaultGroup = new ComponentGroup({
       type: 'group',
@@ -23,11 +25,11 @@ export default class Components extends Emitter {
   }
 
   hasGroup (id) {
-    return this.#groups.some(ComponentGroup.FIND_PREDICATE.bind(null, id));
+    return this.#groups.some(ComponentGroup.FIND_PREDICATE(id));
   }
 
   getGroup (id) {
-    return this.#groups.find(ComponentGroup.FIND_PREDICATE.bind(null, id));
+    return this.#groups.find(ComponentGroup.FIND_PREDICATE(id));
   }
 
   hasComponent (id, { groupId } = {}) {
@@ -37,7 +39,7 @@ export default class Components extends Emitter {
     }
 
     for (const group of this.#groups) {
-      if (group.components.some(Component.FIND_PREDICATE.bind(null, id))) {
+      if (group.components.some(Component.FIND_PREDICATE(id))) {
         return true;
       }
     }
@@ -49,20 +51,18 @@ export default class Components extends Emitter {
   getComponent (id, { groupId } = {}) {
     if (groupId) {
       return this.getGroup(groupId)?.components
-        .find(Component.FIND_PREDICATE.bind(null, id));
+        ?.find(Component.FIND_PREDICATE(id));
     }
 
     for (const group of this.#groups) {
-      const component = group.components
-        .find(Component.FIND_PREDICATE.bind(null, id));
+      const component = group.components.find(Component.FIND_PREDICATE(id));
 
       if (component) {
         return component;
       }
     }
 
-    return this.#defaultGroup.components
-      .find(Component.FIND_PREDICATE.bind(null, id));
+    return this.#defaultGroup.components.find(Component.FIND_PREDICATE(id));
   }
 
   append (component) {
@@ -81,7 +81,7 @@ export default class Components extends Emitter {
       component.type === Components.TYPE_GROUP &&
       !this.hasGroup(component.id)
     ) {
-      component = new ComponentGroup(component);
+      component = new ComponentGroup(component, { builder: this.#builder });
       component.components = component.components || [];
 
       this.#groups[mutateMethod](component);
@@ -90,7 +90,7 @@ export default class Components extends Emitter {
       return;
     }
 
-    component = new Component(component);
+    component = new Component(component, { builder: this.#builder });
 
     // If component has a group provided, we try to add it to the group
     if (

@@ -1,6 +1,6 @@
 import { Droppable, classNames, omit } from '@junipero/react';
 
-import { useBuilder } from '../../hooks';
+import { useBuilder } from '../hooks';
 import Col from './Col';
 import options from './index.options';
 import settings from './index.settings';
@@ -8,11 +8,21 @@ import settings from './index.settings';
 const Row = ({
   element,
   parent,
+  className,
   ...rest
 }) => {
-  const builder = useBuilder();
+  const { builder } = useBuilder();
 
   const onDivide = (index, isBefore) => {
+    if (!element.cols || element.cols.length <= 0) {
+      element.cols = [{
+        content: [],
+        id: builder.generateId(),
+        style: {},
+        type: 'col',
+      }];
+    }
+
     element.cols.splice(isBefore ? index : index + 1, 0, {
       content: [],
       id: builder.generateId(),
@@ -24,11 +34,14 @@ const Row = ({
   };
 
   const onRemoveCol = index => {
-    element.cols.splice(index, 1);
-    builder.setElement(element, { cols: element.cols });
+    if (element.cols?.length > 0) {
+      element.cols.splice(index, 1);
+    }
 
-    if (element.cols.length <= 0) {
+    if (element.cols?.length <= 0) {
       builder.removeElement(element, { parent });
+    } else {
+      builder.setElement(element, { cols: element.cols });
     }
   };
 
@@ -37,13 +50,19 @@ const Row = ({
   };
 
   return (
-    <div { ...omit(rest, ['builder', 'component']) }>
+    <div
+      { ...omit(rest, ['builder', 'component']) }
+      className={classNames(
+        'wrapper',
+        className,
+      )}
+    >
       <Droppable onDrop={onDropElement.bind(null, 'before')}>
-        <div className="oak-drop-zone oak-before" />
+        <div className="drop-zone before" />
       </Droppable>
       <div
         className={classNames(
-          'oak-row-content',
+          'oak-grid oak-grid-cols-12 oak-gap-2',
           element.settings?.flexDirection &&
             'oak-direction-' + element.settings.flexDirection,
           element.settings?.alignItems &&

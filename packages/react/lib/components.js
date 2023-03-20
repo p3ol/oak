@@ -7,7 +7,7 @@ export const COMPONENT_ROW = {
   name: t => t('core.components.row.name', 'Row'),
   type: 'component',
   render: Row,
-  icon: 'view_column',
+  icon: 'row',
   draggable: false,
   droppable: false,
   hasCustomInnerContent: true,
@@ -15,7 +15,16 @@ export const COMPONENT_ROW = {
   options: Row.options,
   settings: Row.settings,
   getContainers: element => [element.cols],
-  construct: ({ getId } = {}) => ({
+  sanitize: ({ builder } = {}, element) => ({
+    ...element,
+    cols: !element.cols || !element.cols.length ? [{
+      type: 'col',
+      content: [],
+      id: builder.generateId(),
+      style: {},
+    }] : element.cols,
+  }),
+  construct: ({ builder } = {}) => ({
     type: 'row',
     settings: {
       alignItems: 'flex-start',
@@ -23,7 +32,7 @@ export const COMPONENT_ROW = {
     cols: [{
       type: 'col',
       content: [],
-      id: getId(),
+      id: builder.generateId(),
       style: {},
     }],
   }),
@@ -66,15 +75,15 @@ export const COMPONENT_ROW = {
 //   }),
 // };
 
-// export const GROUP_CORE = {
-//   id: 'core',
-//   name: t => t('core.groups.core.title', 'Core components'),
-//   type: 'group',
-//   components: [
-//     COMPONENT_ROW,
-//     COMPONENT_EMPTY_SPACE,
-//   ],
-// };
+export const GROUP_CORE = {
+  id: 'core',
+  name: t => t('core.groups.core.title', 'Core components'),
+  type: 'group',
+  components: [
+    COMPONENT_ROW,
+    // COMPONENT_EMPTY_SPACE,
+  ],
+};
 
 // export const GROUP_OTHER = {
 //   id: 'other',

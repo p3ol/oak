@@ -1,5 +1,6 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
+const tailwindcss = require('tailwindcss');
 
 module.exports = {
   stories: [
@@ -31,7 +32,12 @@ module.exports = {
           options: {
             postcssOptions: {
               sourceMap: true,
-              plugins: [autoprefixer],
+              plugins: [
+                [tailwindcss, {
+                  config: path.resolve('../tailwind.config.js'),
+                }],
+                autoprefixer
+              ],
             },
           },
         },

@@ -19,19 +19,19 @@ export default class Store extends Emitter {
     this.emit('content.update', this.#content);
   }
 
-  sanitize (element) {
-    if (!element.id) {
+  sanitize (element, opts = {}) {
+    if (!element.id || opts.resetIds) {
       element.id = this.#builder.generateId();
     }
 
     const component = this.#builder.getComponent(element.type);
     const override = this.#builder.getOverride('component', element.type);
 
-    // const deserialize = overrides?.deserialize || component?.deserialize;
+    const deserialize = override?.deserialize || component?.deserialize;
+    element = deserialize?.(element) || element;
 
-    // if (deserialize) {
-    //   Object.assign(elmt, deserialize(elmt));
-    // }
+    const customSanitize = override?.sanitize || component?.sanitize;
+    element = customSanitize?.(element) || element;
 
     const containers = override?.getContainers?.(element) ||
       component?.getContainers?.(element) ||
@@ -39,7 +39,7 @@ export default class Store extends Emitter {
 
     containers.forEach(container => {
       if (Array.isArray(container)) {
-        container.forEach(elmt => this.sanitize(elmt));
+        container.forEach(elmt => this.sanitize(elmt, opts));
       }
     });
 
@@ -49,8 +49,10 @@ export default class Store extends Emitter {
   addElement (element, {
     parent = this.#content,
     position = 'after',
+    ...opts
   } = {}) {
-    element = this.sanitize(element);
+    this.#builder.logger.log('Adding element:', element, { parent, position });
+    element = this.sanitize(element, opts);
 
     switch (position) {
       case 'before':

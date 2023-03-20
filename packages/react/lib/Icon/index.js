@@ -3,7 +3,7 @@ import { classNames } from '@junipero/react';
 const Icon = ({ className, children, ...rest }) =>
   typeof children === 'function' ? children() : (
     <i
-      className={classNames('oak-icons', className)}
+      className={classNames('icon junipero-icons', className)}
       children={children}
       { ...rest }
     />

@@ -1,0 +1,95 @@
+.oak .catalogue
+  --handle-color: var(--oak-alternate-text-color)
+  --handle-hover-color: var(--oak-reverse-text-color)
+  --handle-background-color: var(--oak-background-color)
+  --handle-hover-background-color: var(--oak-lighter-main-color)
+  --handle-open-background-color: var(--oak-main-color)
+  --popover-background-color: var(--oak-floating-background-color)
+  --popover-border-color: var(--oak-field-border-color)
+  --component-background-color: var(--oak-background-color)
+  --component-text-color: var(--oak-text-color)
+  --clipboard-background-color: var(--oak-background-color)
+  --clipboard-text-color: var(--oak-text-color)
+
+  &.opened
+    .handle
+      transform: rotate(45deg)
+      background: var(--handle-open-background-color)
+
+      .icon
+        color: var(--handle-hover-color)
+
+  .handle
+    width: 40px
+    height: 40px
+    background: var(--handle-background-color)
+    border-radius: 50%
+    cursor: pointer
+    transition: transform .1s ease-in-out
+    text-decoration: none
+    transform: none
+
+    .icon
+      color: var(--handle-color)
+
+    &:hover
+      background: var(--handle-hover-background-color)
+
+      .icon
+        color: var(--handle-hover-color)
+
+  .menu
+    background: var(--popover-background-color)
+    border-radius: 5px
+    width: 400px
+    min-height: 100px
+    text-align: left
+    box-shadow: 0 0 0 2px var(--popover-border-color)
+    z-index: 50
+
+  .junipero.tabs
+    .titles
+      border-radius: 5px 5px 0 0
+      overflow: hidden
+
+  .groups
+    a.component
+      background: var(--component-background-color)
+      border-radius: 4px
+      color: var(--component-text-color)
+      text-decoration: none
+
+      &:hover
+        background: var(--oak-main-color)
+        color: var(--oak-reverse-text-color)
+
+        .icon
+          color: var(--oak-reverse-text-color)
+
+      .icon
+        color: var(--oak-main-color)
+
+      .name
+        white-space: nowrap
+        text-overflow: ellipsis
+        overflow: hidden
+
+  .clipboard
+    display: flex
+    align-items: center
+    justify-content: center
+    background: var(--clipboard-background-color)
+    padding: 10px 0
+    border-radius: 0 0 5px 5px
+    color: var(--clipboard-text-color)
+    cursor: pointer
+
+    &:hover
+      background: var(--oak-main-color)
+      color: var(--oak-reverse-text-color)
+
+      .icon
+        color: var(--oak-reverse-text-color)
+
+    .icon
+      color: var(--oak-main-color)
