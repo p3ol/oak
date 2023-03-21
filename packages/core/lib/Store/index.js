@@ -95,7 +95,7 @@ export default class Store extends Emitter {
       !element.id ||
       !sibling.id ||
       this.isElement(element, sibling) ||
-      this.contains(sibling, { parent: element.content })
+      this.contains(sibling, { parent: element })
     ) {
       return;
     }
@@ -172,6 +172,13 @@ export default class Store extends Emitter {
   }
 
   contains (element, { parent = this.#content } = {}) {
+    // Force parent to be an array to be able to loop over it
+    // -----
+    // In some cases (Store.moveElement for example), parent cannot be
+    // `element.content` because it would prevent rows (with `element.cols`)
+    // or other container-based elements from being checked by `contains`
+    parent = [].concat(parent);
+
     for (const e of parent) {
       if (this.isElement(e, element)) {
         return true;
