@@ -1,4 +1,5 @@
 import Row from './Row';
+import Col from './Col';
 // import Foldable from './core/Foldable';
 // import EmptySpace from './core/EmptySpace';
 
@@ -17,25 +18,33 @@ export const COMPONENT_ROW = {
   getContainers: element => [element.cols],
   sanitize: ({ builder } = {}, element) => ({
     ...element,
-    cols: !element.cols || !element.cols.length ? [{
-      type: 'col',
-      content: [],
-      id: builder.generateId(),
-      style: {},
-    }] : element.cols,
+    cols: !element.cols || !element.cols.length
+      ? [COMPONENT_COL.construct({ builder })]
+      : element.cols,
   }),
   construct: ({ builder } = {}) => ({
     type: 'row',
     settings: {
       alignItems: 'flex-start',
     },
-    cols: [{
-      type: 'col',
-      content: [],
-      id: builder.generateId(),
-      style: {},
-    }],
+    cols: [COMPONENT_COL.construct({ builder })],
   }),
+};
+
+const COMPONENT_COL = {
+  id: 'col',
+  type: 'component',
+  draggable: false,
+  droppable: false,
+  construct: ({ builder } = {}) => ({
+    type: 'col',
+    content: [],
+    id: builder.generateId(),
+    style: {},
+  }),
+  editable: true,
+  usable: false,
+  settings: Col.settings,
 };
 
 // export const COMPONENT_FOLDABLE = {
@@ -81,6 +90,7 @@ export const GROUP_CORE = {
   type: 'group',
   components: [
     COMPONENT_ROW,
+    COMPONENT_COL,
     // COMPONENT_EMPTY_SPACE,
   ],
 };

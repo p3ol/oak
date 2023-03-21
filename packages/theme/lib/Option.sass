@@ -1,0 +1,24 @@
+.oak .element .options .option
+  --option-background-color: var(--oak-main-color)
+  --option-hover-background-color: var(--oak-darker-main-color)
+  --option-text-color: var(--oak-reverse-text-color)
+
+  min-width: 25px
+  height: 25px
+  line-height: 25px
+  background: var(--option-background-color)
+  text-align: center
+  text-decoration: none
+
+  &:first-child
+    border-radius: 5px 0 0 5px
+
+  &:last-child
+    border-radius: 0 5px 5px 0
+
+  .icon
+    color: var(--option-text-color)
+
+  &.opened,
+  &:hover
+    background: var(--option-hover-background-color)

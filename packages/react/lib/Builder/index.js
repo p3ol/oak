@@ -10,6 +10,7 @@ import Catalogue from '../Catalogue';
 const Builder = forwardRef(({ className, value, addons, ...opts }, ref) => {
   const innerRef = useRef();
   const catalogueRef = useRef();
+  const floatingsRef = useRef();
   const { builder, content } = useRootBuilder({
     content: value,
     addons: [
@@ -30,6 +31,7 @@ const Builder = forwardRef(({ className, value, addons, ...opts }, ref) => {
     builder,
     content,
     rootRef: innerRef,
+    floatingsRef,
   }), [builder, content]);
 
   const onAppend = component => {
@@ -65,25 +67,28 @@ const Builder = forwardRef(({ className, value, addons, ...opts }, ref) => {
         ref={innerRef}
         className={classNames(
           'oak builder',
-          'oak-flex oak-flex-col oak-gap-4',
           className
         )}
       >
-        { content?.map((element, i) => (
-          <Element
-            key={element.id || i}
-            index={i}
-            element={element}
-          />
-        )) }
+        <div className="elements oak-flex oak-flex-col oak-gap-4">
+          { content?.map((element, i) => (
+            <Element
+              key={element.id || i}
+              index={i}
+              element={element}
+            />
+          )) }
 
-        <div className="add-element oak-flex oak-justify-center">
-          <Catalogue
-            ref={catalogueRef}
-            onAppend={onAppend}
-            onPaste={onPaste}
-          />
+          <div className="add-element oak-flex oak-justify-center">
+            <Catalogue
+              ref={catalogueRef}
+              onAppend={onAppend}
+              onPaste={onPaste}
+            />
+          </div>
         </div>
+
+        <div className="floatings" ref={floatingsRef} />
       </div>
     </BuilderContext.Provider>
   );

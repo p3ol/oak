@@ -1,44 +1,56 @@
-.oak .catalogue
-  --handle-color: var(--oak-alternate-text-color)
-  --handle-hover-color: var(--oak-reverse-text-color)
-  --handle-background-color: var(--oak-background-color)
-  --handle-hover-background-color: var(--oak-lighter-main-color)
-  --handle-open-background-color: var(--oak-main-color)
-  --popover-background-color: var(--oak-floating-background-color)
-  --popover-border-color: var(--oak-field-border-color)
-  --component-background-color: var(--oak-background-color)
-  --component-text-color: var(--oak-text-color)
-  --clipboard-background-color: var(--oak-background-color)
-  --clipboard-text-color: var(--oak-text-color)
+.oak
+  .catalogue, .catalogue-menu
+    --handle-color: var(--oak-alternate-text-color)
+    --handle-hover-color: var(--oak-reverse-text-color)
+    --handle-background-color: var(--oak-background-color)
+    --handle-hover-background-color: var(--oak-lighter-main-color)
+    --handle-open-background-color: var(--oak-main-color)
+    --popover-background-color: var(--oak-floating-background-color)
+    --popover-border-color: var(--oak-field-border-color)
+    --component-background-color: var(--oak-background-color)
+    --component-text-color: var(--oak-text-color)
+    --clipboard-background-color: var(--oak-background-color)
+    --clipboard-text-color: var(--oak-text-color)
 
-  &.opened
+  .catalogue
+    &.small
+      .handle
+        width: 20px
+        height: 20px
+        background: var(--handle-background-color)
+
+        .icon
+          font-size: 15px
+
+    &.opened
+      .handle
+        transform: rotate(45deg)
+        background: var(--handle-open-background-color)
+
+        .icon
+          color: var(--handle-hover-color)
+
     .handle
-      transform: rotate(45deg)
-      background: var(--handle-open-background-color)
+      width: 40px
+      height: 40px
+      background: var(--handle-background-color)
+      border-radius: 50%
+      cursor: pointer
+      transition: transform .1s ease-in-out
+      text-decoration: none
+      transform: none
 
       .icon
-        color: var(--handle-hover-color)
+        color: var(--handle-color)
+        font-size: 30px
 
-  .handle
-    width: 40px
-    height: 40px
-    background: var(--handle-background-color)
-    border-radius: 50%
-    cursor: pointer
-    transition: transform .1s ease-in-out
-    text-decoration: none
-    transform: none
+      &:hover
+        background: var(--handle-hover-background-color)
 
-    .icon
-      color: var(--handle-color)
+        .icon
+          color: var(--handle-hover-color)
 
-    &:hover
-      background: var(--handle-hover-background-color)
-
-      .icon
-        color: var(--handle-hover-color)
-
-  .menu
+  .catalogue-menu
     background: var(--popover-background-color)
     border-radius: 5px
     width: 400px

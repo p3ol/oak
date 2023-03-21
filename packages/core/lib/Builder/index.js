@@ -99,6 +99,10 @@ export default class Builder extends Emitter {
     this.#store.moveElement(element, sibling, options);
   }
 
+  duplicateElement (element, options) {
+    this.#store.duplicateElement(element, options);
+  }
+
   generateId () {
     return uuid();
   }

@@ -1,5 +1,3 @@
-// import { DRAG_OPTION } from '../../options';
+import { DRAG_OPTION } from '../options';
 
-// export default [DRAG_OPTION];
-
-export default [];
+export default [DRAG_OPTION];

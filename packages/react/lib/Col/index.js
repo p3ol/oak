@@ -3,10 +3,9 @@ import { Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../hooks';
 import Catalogue from '../Catalogue';
-// import Option from '../Option';
+import Option from '../Option';
 import Element from '../Element';
-// import Editable from '../Editable';
-// import settings from './index.settings';
+import Editable from '../Editable';
 import Icon from '../Icon';
 import Text from '../Text';
 
@@ -21,8 +20,7 @@ const Col = ({
   const editableRef = useRef();
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
-  const settingsElementRef = useRef();
-  const { builder, rootRef } = useBuilder();
+  const { builder, rootRef, floatingsRef } = useBuilder();
 
   const onPrependCol_ = e => {
     e.preventDefault();
@@ -91,6 +89,8 @@ const Col = ({
     });
   };
 
+  const component = builder.getComponent?.(element.type);
+
   return (
     <div
       { ...rest }
@@ -103,7 +103,7 @@ const Col = ({
             element.size > 0 &&
             element.size <= 12,
         },
-        'oak-flex oak-items-center oak-gap-2 oak-py-4',
+        'oak-flex oak-items-center oak-gap-2 oak-py-8',
         className
       )}
     >
@@ -132,12 +132,12 @@ const Col = ({
               ref={prependCatalogueRef}
               onAppend={onPrepend_}
               onPaste={onPasteBefore_}
-              className="oak-flex oak-justify-center"
+              className="oak-flex oak-justify-center small"
             />
           ) }
 
           { element.content?.length > 0 && (
-            <div className="col-content">
+            <div className="col-content oak-flex oak-flex-col oak-gap-4">
               { element.content?.map((item, i) => (
                 <Element
                   key={item.id || i}
@@ -153,7 +153,10 @@ const Col = ({
             ref={appendCatalogueRef}
             onAppend={onAppend_}
             onPaste={onPasteAfter_}
-            className="oak-flex oak-justify-center"
+            className={classNames(
+              'oak-flex oak-justify-center',
+              { small: element.content?.length > 0 }
+            )}
           />
         </div>
       </Droppable>
@@ -174,26 +177,26 @@ const Col = ({
         </a>
       </Tooltip>
 
-      <div className="options">
-        {/* <Editable
+      <div className="options oak-flex oak-items-center oak-gap-1">
+        <Editable
           ref={editableRef}
           element={element}
-          component={{ settings }}
-          container={settingsElementRef}
+          component={component}
+          container={floatingsRef.current}
         >
           <Option
-            className="oak-edit"
-            option={{ icon: 'edit' }}
+            className="edit"
+            option={{ icon: 'pen' }}
             onClick={onEdit_}
             name={<Text name="core.tooltips.edit" default="Edit" />}
           />
         </Editable>
         <Option
-          className="oak-remove"
-          option={{ icon: 'clear' }}
+          className="remove"
+          option={{ icon: 'close' }}
           onClick={onRemove_}
           name={<Text name="core.tooltips.remove" default="Remove" />}
-        /> */}
+        />
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import { cloneDeep } from '@junipero/core';
+
 import Emitter from '../Emitter';
 
 export default class Store extends Emitter {
@@ -8,6 +10,10 @@ export default class Store extends Emitter {
     super();
 
     this.#builder = builder;
+  }
+
+  isElement (element, sibling) {
+    return element && sibling && element.id === sibling.id;
   }
 
   get () {
@@ -89,7 +95,7 @@ export default class Store extends Emitter {
       !element.id ||
       !sibling.id ||
       this.isElement(element, sibling) ||
-      this.contains(sibling, { parent: element })
+      this.contains(sibling, { parent: element.content })
     ) {
       return;
     }
@@ -109,6 +115,25 @@ export default class Store extends Emitter {
     this.emit('content.update', this.#content);
   }
 
+  duplicateElement (elmt, { parent = this.#content } = {}) {
+    let newElmt = this.sanitize(cloneDeep(elmt), { resetIds: true });
+    const component = this.#builder.getComponent(elmt.type);
+    const override = this.#builder.getOverride('component', elmt.type);
+    const duplicate = override?.duplicate || component?.duplicate;
+
+    if (typeof duplicate === 'function') {
+      newElmt = duplicate(newElmt);
+    }
+
+    parent.splice(
+      parent.findIndex(e => e.id === elmt.id) + 1,
+      0,
+      newElmt
+    );
+
+    this.emit('content.update', this.#content);
+  }
+
   findNearestParent (element, { parent = this.#content } = {}) {
     // First check if element in inside direct parent to avoid trying to
     // find every component & override for every nested level
@@ -123,8 +148,8 @@ export default class Store extends Emitter {
     // the getContainers component method to return the nested columns
     // (using the cols property)
     for (const e of parent) {
-      const component = this.#builder.getComponent(element.type);
-      const override = this.#builder.getOverride('component', element.type);
+      const component = this.#builder.getComponent(e.type);
+      const override = this.#builder.getOverride('component', e.type);
 
       const containers = override?.getContainers?.(e) ||
         component?.getContainers?.(e) ||
@@ -154,8 +179,8 @@ export default class Store extends Emitter {
     }
 
     for (const e of parent) {
-      const component = this.#builder.getComponent(element.type);
-      const override = this.#builder.getOverride('component', element.type);
+      const component = this.#builder.getComponent(e.type);
+      const override = this.#builder.getOverride('component', e.type);
 
       const containers = override?.getContainers?.(e) ||
         component?.getContainers?.(e) ||

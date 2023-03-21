@@ -4,11 +4,13 @@ import {
   useReducer,
   useRef,
 } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Tabs,
   Tab,
   classNames,
   mockState,
+  ensureNode,
 } from '@junipero/react';
 import {
   useFloating,
@@ -31,7 +33,7 @@ const Catalogue = forwardRef(({
   onPaste,
 }, ref) => {
   const innerRef = useRef();
-  const { builder, rootRef } = useBuilder();
+  const { builder, rootRef, floatingsRef } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
     clipboard: null,
@@ -123,13 +125,13 @@ const Catalogue = forwardRef(({
         draggable={false}
         { ...getReferenceProps() }
       >
-        <i className="icon junipero-icons !oak-text-3xl">add</i>
+        <Icon>add</Icon>
       </a>
 
-      { state.opened && (
+      { state.opened && createPortal((
         <div
           ref={floating}
-          className="menu"
+          className="catalogue-menu"
           style={{
             position: strategy,
             top: y ?? 0,
@@ -140,33 +142,34 @@ const Catalogue = forwardRef(({
         >
           <div className="groups">
             <Tabs>
-              { groups.map(group => (
+              { groups.map(group => group.usable !== false && (
                 <Tab key={group.id} title={<Text>{ group.name }</Text>}>
                   <div className="group oak-grid oak-grid-cols-2 oak-gap-2">
-                    { group.components.map(component => (
-                      <a
-                        key={component.id}
-                        href="#"
-                        draggable={false}
-                        onClick={onAppend_.bind(null, component)}
-                        className={classNames(
-                          'component',
-                          'component-' + component.id,
-                          'oak-flex oak-items-center oak-px-2 oak-py-1',
-                          'oak-gap-2'
-                        )}
-                      >
-                        <Icon
-                          className="!oak-text-3xl"
-                          children={typeof component.icon === 'function'
-                            ? component.icon.bind(null, component)
-                            : component.icon}
-                        />
-                        <span className="name">
-                          <Text>{ component.name }</Text>
-                        </span>
-                      </a>
-                    )) }
+                    { group.components.map(component =>
+                      component.usable !== false ? (
+                        <a
+                          key={component.id}
+                          href="#"
+                          draggable={false}
+                          onClick={onAppend_.bind(null, component)}
+                          className={classNames(
+                            'component',
+                            'component-' + component.id,
+                            'oak-flex oak-items-center oak-px-2 oak-py-1',
+                            'oak-gap-2'
+                          )}
+                        >
+                          <Icon
+                            className="!oak-text-3xl"
+                            children={typeof component.icon === 'function'
+                              ? component.icon.bind(null, component)
+                              : component.icon}
+                          />
+                          <span className="name">
+                            <Text>{ component.name }</Text>
+                          </span>
+                        </a>
+                      ) : null) }
                   </div>
                 </Tab>
               )) }
@@ -188,7 +191,7 @@ const Catalogue = forwardRef(({
             ) }
           </div>
         </div>
-      ) }
+      ), ensureNode(floatingsRef?.current)) }
     </div>
   );
 });

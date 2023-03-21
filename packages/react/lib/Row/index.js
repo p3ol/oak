@@ -1,7 +1,7 @@
 import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../hooks';
-import Col from './Col';
+import Col from '../Col';
 import options from './index.options';
 import settings from './index.settings';
 
@@ -82,7 +82,7 @@ const Row = ({
         )) }
       </div>
       <Droppable onDrop={onDropElement.bind(null, 'after')}>
-        <div className="oak-drop-zone oak-after" />
+        <div className="drop-zone after" />
       </Droppable>
     </div>
   );
