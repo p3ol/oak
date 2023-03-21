@@ -103,7 +103,7 @@ const Col = ({
             element.size > 0 &&
             element.size <= 12,
         },
-        'oak-flex oak-items-center oak-gap-2 oak-py-8',
+        'oak-flex oak-items-center oak-gap-2 oak-py-2',
         className
       )}
     >

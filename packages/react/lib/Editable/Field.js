@@ -18,7 +18,7 @@ const Field = ({
     id: field.id,
     name: field.name,
     disabled: field.disabled,
-    onChange: renderer.onChange
+    onChange: renderer?.onChange
       ? onCustomChange.bind(null, field.key, renderer)
       : onChange.bind(null, field.key),
     value: get(element, field.key) ?? field.default,
@@ -29,7 +29,7 @@ const Field = ({
     return null;
   }
 
-  return renderer.render?.(commonProps, {
+  return renderer?.render?.(commonProps, {
     field,
     element,
     // options,

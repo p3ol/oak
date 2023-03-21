@@ -65,8 +65,9 @@ const Row = ({
           'row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2',
           element.settings?.flexDirection &&
             'oak-flex-' + element.settings.flexDirection,
-          element.settings?.alignItems &&
-            'oak-items-' + element.settings.alignItems,
+          element.settings?.alignItems
+            ? 'oak-items-' + element.settings.alignItems
+            : 'oak-items-start',
           element.settings?.justifyContent &&
             'oak-justify-' + element.settings.justifyContent,
         )}

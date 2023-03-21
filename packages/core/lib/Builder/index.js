@@ -11,7 +11,6 @@ import Logger from '../Logger';
 
 export default class Builder extends Emitter {
   #components = null;
-  #logger = null;
   #fields = null;
   #overrides = null;
   #texts = null;

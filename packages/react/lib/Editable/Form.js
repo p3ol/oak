@@ -13,7 +13,7 @@ import {
   FieldControl,
   mockState,
   cloneDeep,
-  get,
+  // get,
   set,
   mergeDeep,
   omit,
@@ -36,6 +36,7 @@ const Form = forwardRef(({
 }, ref) => {
   const { builder } = useBuilder();
   // const options = useOptions();
+  const overrides = builder.getOverride('component', element.type);
   const tabs = useMemo(() => [
     mergeDeep(
       {},
@@ -78,29 +79,35 @@ const Form = forwardRef(({
       ?.sort((a, b) => (b.priority || 0) - (a.priority || 0))
   ), [tabs/*, overrides*/]);
 
-  const getFieldKeyTypes = useCallback(() => (
-    getFields().map(f => [f.key, f.type]).filter(f => f[0])
-  ), [getFields]);
+  // const getFieldKeyTypes = useCallback(() => (
+  //   getFields().map(f => [f.key, f.type]).filter(f => f[0])
+  // ), [getFields]);
 
-  const normalizeElement = (elmt, method) =>
-    getFieldKeyTypes().reduce((e, [key, type]) => {
-      const field = builder.getOverride('component', element.type, {
-        output: 'field', field: { key, type },
-      });
-      const value = get(e, key);
+  // const normalizeElement = (elmt, method) =>
+  //   getFieldKeyTypes().reduce((e, [key, type]) => {
+  //     const field = builder.getOverride('component', element.type, {
+  //       output: 'field', field: { key, type },
+  //     });
+  //     const value = get(e, key);
 
-      if (typeof field[method] === 'function' && value) {
-        set(e, key, field[method](value));
-      }
+  //     if (typeof field[method] === 'function' && value) {
+  //       set(e, key, field[method](value));
+  //     }
 
-      return e;
-    }, cloneDeep(elmt));
+  //     return e;
+  //   }, cloneDeep(elmt));
 
-  const deserialize = elmt =>
-    normalizeElement(elmt, 'deserialize');
+  const deserialize = element => {
+    const d = overrides?.deserialize || component.deserialize;
 
-  const serialize = elmt =>
-    normalizeElement(elmt, 'serialize');
+    return d ? d(element) : element;
+  };
+
+  const serialize = element => {
+    const s = overrides?.serialize || component.serialize;
+
+    return s ? s(element) : element;
+  };
 
   const onUpdate_ = elmt => {
     dispatch({ element: elmt });
