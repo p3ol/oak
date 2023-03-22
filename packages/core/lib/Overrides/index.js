@@ -37,17 +37,26 @@ export default class Overrides extends Emitter {
       case 'component':
         switch (output) {
           case 'field': {
-            const field_ = override?.fields
+            const newComponentField = override?.fields
               .find(f => f.key === field?.key);
 
             return Object.assign({},
-              this.#builder.getField(field_?.type || field?.type),
-              this.#builder.getOverride('field', field_?.type || field?.type));
+              this.#builder.getField(newComponentField?.type || field?.type),
+              this.#builder
+                .getOverride('field', newComponentField?.type || field?.type));
           }
           default:
             return override;
         }
     }
+  }
+
+  merge (overrides) {
+    return overrides.reduce((res, override) => {
+      Object.assign(res, override);
+
+      return res;
+    }, {});
   }
 
   all () {

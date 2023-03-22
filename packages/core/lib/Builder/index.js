@@ -70,8 +70,16 @@ export default class Builder extends Emitter {
     return this.#components.getComponent(type);
   }
 
+  getField (type) {
+    return this.#fields.get(type);
+  }
+
   getOverride (type, target) {
     return this.#overrides.get(type, target);
+  }
+
+  mergeOverrides (overrides) {
+    return this.#overrides.merge(overrides);
   }
 
   getContent () {

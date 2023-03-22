@@ -5,9 +5,10 @@ import {
   useMemo,
   useReducer,
   useImperativeHandle,
+  useRef,
 } from 'react';
-// import { createPortal } from 'react-dom';
-import { mockState, classNames } from '@junipero/react';
+import { createPortal } from 'react-dom';
+import { mockState, classNames, ensureNode } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import {
   useFloating,
@@ -29,7 +30,8 @@ const Editable = forwardRef(({
   component,
   onToggle,
 }, ref) => {
-  const { rootRef } = useBuilder();
+  const innerRef = useRef();
+  const { rootRef, floatingsRef } = useBuilder();
   // const options = useOptions();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
@@ -49,11 +51,13 @@ const Editable = forwardRef(({
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
         boundary: rootRef?.current,
+        rootBoundary: rootRef?.current,
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
         boundary: rootRef?.current,
+        rootBoundary: rootRef?.current,
         allowedPlacements: ['bottom', 'top'],
         ...floatingSettings.autoPlacement || {},
       })] : []),
@@ -68,6 +72,8 @@ const Editable = forwardRef(({
     open,
     close,
     toggle,
+    isOak: true,
+    innerRef,
   }));
 
   const open = () => {
@@ -87,29 +93,6 @@ const Editable = forwardRef(({
     dispatch({ visible: false });
   };
 
-  const renderForm = () => state.visible && (
-    <div
-      style={{
-        position: strategy,
-        top: y ?? 0,
-        left: x ?? 0,
-      }}
-      data-placement={context.placement}
-      ref={floating}
-      {...getFloatingProps()}
-    >
-      { slideInDownMenu((
-        <Form
-          element={element}
-          component={component}
-          placement={context.placement}
-          onSave={close}
-          onCancel={close}
-        />
-      ), { opened: state.opened, onExited: onAnimationExit }) }
-    </div>
-  );
-
   const child = Children.only(children);
 
   return (
@@ -118,19 +101,39 @@ const Editable = forwardRef(({
         ref: r => { reference(r?.isOak ? r.innerRef.current : r); },
         className: classNames(
           child.props.className,
-          { 'oak-opened': state.opened }
+          { opened: state.opened }
         ),
         ...getReferenceProps({
           onClick: child.props.onClick,
         }),
       }) }
-      {/* { options.settingsContainer || _settingsHolderRef
-        ? createPortal(
-          renderForm(),
-          options.settingsContainer || _settingsHolderRef
-        )
-        : renderForm()} */}
-      { renderForm() }
+      { state.visible && createPortal((
+        <div
+          className="editable"
+          style={{
+            position: strategy,
+            top: y ?? 0,
+            left: x ?? 0,
+          }}
+          data-placement={context.placement}
+          ref={ref => {
+            floating(ref?.isOak ? ref?.innerRef.current : ref);
+            innerRef.current = ref;
+          }}
+          {...getFloatingProps()}
+        >
+          { slideInDownMenu((
+            <Form
+              element={element}
+              component={component}
+              placement={context.placement}
+              onSave={close}
+              onCancel={close}
+              editableRef={innerRef}
+            />
+          ), { opened: state.opened, onExited: onAnimationExit }) }
+        </div>
+      ), ensureNode(floatingsRef.current)) }
     </>
   );
 });

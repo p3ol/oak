@@ -1,41 +1,55 @@
+import { useMemo } from 'react';
 import { get } from '@junipero/react';
 
 import { useBuilder } from '../hooks';
 
 const Field = ({
-  field,
+  setting,
   element,
   onChange,
   onCustomChange,
   editableRef,
 }) => {
   // const options = useOptions();
-  const { builder } = useBuilder();
-  const renderer = builder.getOverride('component', element.type,
-    { output: 'field', field });
+  const { builder, floatingsRef } = useBuilder();
+  const field = useMemo(() => (
+    builder.getField(setting?.type)
+  ), [setting]);
 
-  const commonProps = {
-    id: field.id,
-    name: field.name,
-    disabled: field.disabled,
-    onChange: renderer?.onChange
-      ? onCustomChange.bind(null, field.key, renderer)
-      : onChange.bind(null, field.key),
-    value: get(element, field.key) ?? field.default,
-    required: field.required,
+  const overrides = useMemo(() => (
+    builder.mergeOverrides([
+      builder.getOverride('component', element.type, {
+        output: 'field', field,
+      }),
+      builder.getOverride('field', field?.type),
+    ])
+  ), [element, field]);
+
+  const fieldProps = {
+    id: setting.id,
+    name: setting.name,
+    disabled: setting.disabled,
+    value: get(element, setting.key) ?? setting.default,
+    required: setting.required,
+    onChange: overrides?.onChange
+      ? onCustomChange.bind(null, setting.key, overrides)
+      : onChange.bind(null, setting.key),
   };
 
-  if (field.condition && !field.condition(element)) {
+  if (setting.condition && !setting.condition(element)) {
     return null;
   }
 
-  return renderer?.render?.(commonProps, {
+  return (overrides?.render || field?.render)?.(fieldProps, {
+    onChange: onChange.bind(null, setting.key),
     field,
+    setting,
+    overrides,
     element,
     // options,
     editableRef,
-    onChange,
-    t: builder.getText,
+    floatingsRef,
+    t: builder.getText.bind(builder),
   }) || null;
 };
 

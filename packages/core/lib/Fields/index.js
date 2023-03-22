@@ -5,18 +5,18 @@ export default class Fields extends Emitter {
   #fields = [];
 
   has (type) {
-    return this.#fields.some(Field.FIND_PREDICATE.bind(null, type));
+    return this.#fields.some(Field.FIND_PREDICATE(type));
   }
 
   get (type) {
-    return this.#fields.find(Field.FIND_PREDICATE.bind(null, type));
+    return this.#fields.find(Field.FIND_PREDICATE(type));
   }
 
   add (field) {
     field = new Field(field);
 
     const found = this.#fields
-      .findIndex(Field.FIND_PREDICATE.bind(null, field.type));
+      .findIndex(Field.FIND_PREDICATE(field.type));
 
     if (found > -1) {
       this.#fields[found] = field;
@@ -29,7 +29,7 @@ export default class Fields extends Emitter {
 
   remove (type) {
     const index = this.#fields
-      .findIndex(Field.FIND_PREDICATE.bind(null, type));
+      .findIndex(Field.FIND_PREDICATE(type));
 
     if (index > -1) {
       const field = this.#fields[index];

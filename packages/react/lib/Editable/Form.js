@@ -1,7 +1,5 @@
 import {
-  forwardRef,
   useReducer,
-  useEffect,
   useMemo,
   useCallback,
 } from 'react';
@@ -25,18 +23,22 @@ import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Field from './Field';
 
-const Form = forwardRef(({
+const Form = ({
   placement,
   element,
   component,
   className,
   onSave,
   onCancel,
+  editableRef,
   ...rest
-}, ref) => {
+}) => {
   const { builder } = useBuilder();
   // const options = useOptions();
   const overrides = builder.getOverride('component', element.type);
+  const deserialize = overrides?.deserialize || component?.deserialize ||
+    (e => e);
+
   const tabs = useMemo(() => [
     mergeDeep(
       {},
@@ -63,12 +65,12 @@ const Form = forwardRef(({
   ], [/*overrides*/]);
 
   const [state, dispatch] = useReducer(mockState, {
-    element: {},
+    element: deserialize(cloneDeep(element)),
   });
 
-  useEffect(() => {
-    dispatch({ element: deserialize(cloneDeep(element)) });
-  }, [element]);
+  // useEffect(() => {
+  //   dispatch({ element: deserialize(cloneDeep(element)) });
+  // }, [element]);
 
   // usePostMountEffect(() => {
   //   dispatch({ element: deserialize(state.element) });
@@ -96,12 +98,6 @@ const Form = forwardRef(({
 
   //     return e;
   //   }, cloneDeep(elmt));
-
-  const deserialize = element => {
-    const d = overrides?.deserialize || component.deserialize;
-
-    return d ? d(element) : element;
-  };
 
   const serialize = element => {
     const s = overrides?.serialize || component.serialize;
@@ -136,45 +132,48 @@ const Form = forwardRef(({
 
   return (
     <div
-      ref={ref}
-      className={classNames('editable', className)}
+      className={classNames('form', className)}
       data-placement={placement}
-      {...rest}
+      { ...rest }
     >
-      <div className="title">
+      <div className="form-title junipero oak-flex oak-py-2 oak-px-5">
         { component.settings?.title ? (
           <Text>{ component.settings?.title }</Text>
         ) : (
-          <Text
-            name="core.components.default.settings.title"
-          />
+          <Text name="core.components.default.settings.title">
+            Element options
+          </Text>
         ) }
       </div>
-      <div className="form">
-        <Tabs>
-          { tabs.map((tab, t) => (
-            <Tab key={t} title={<Text>{ tab.title }</Text>}>
+      <Tabs>
+        { tabs.map((tab, t) => (
+          <Tab key={t} title={<Text>{ tab.title }</Text>}>
+            <div className="fields oak-flex oak-flex-col oak-gap-4">
               { getFields(tab)
                 ?.filter(f => !f.condition || f.condition(state.element))
                 ?.map((field, i) => (
-                  <div className="oak-field" key={i}>
+                  <div className="field" key={i}>
                     <FieldControl>
                       { field.label && (
                         <Label><Text>{ field.label }</Text></Label>
                       ) }
                       { field.fields ? (
-                        <div className="oak-fields">
+                        <div
+                          className={classNames(
+                            'sub-fields oak-grid oak-grid-cols-4 oak-gap-2',
+                          )}
+                        >
                           { field.fields.map((f, n) => (
-                            <div className="oak-field" key={n}>
+                            <div className="field" key={n}>
                               <FieldControl>
                                 { f.label && (
-                                  <Label className="oak-field-label">
+                                  <Label className="field-label">
                                     <Text>{ f.label }</Text>
                                   </Label>
                                 ) }
                                 <Field
-                                  field={f}
-                                  editableRef={ref}
+                                  setting={f}
+                                  editableRef={editableRef}
                                   element={state.element}
                                   onChange={onSettingChange_}
                                   onCustomChange={onSettingCustomChange_}
@@ -185,8 +184,8 @@ const Form = forwardRef(({
                         </div>
                       ) : (
                         <Field
-                          field={field}
-                          editableRef={ref}
+                          setting={field}
+                          editableRef={editableRef}
                           element={state.element}
                           onChange={onSettingChange_}
                           onCustomChange={onSettingCustomChange_}
@@ -200,21 +199,25 @@ const Form = forwardRef(({
                 component,
                 update: onUpdate_,
               }) }
-            </Tab>
-          )) }
-        </Tabs>
-        <div className="oak-editable-buttons">
-          <Button type="button" className="subtle" onClick={onCancel_}>
-            <Text default="Cancel" name="core.settings.cancel" />
-          </Button>
-          <Button type="button" className="primary" onClick={onSave_}>
-            <Text default="Save" name="core.settings.save" />
-          </Button>
-        </div>
+            </div>
+          </Tab>
+        )) }
+      </Tabs>
+      <div
+        className={classNames(
+          'buttons oak-flex oak-items-center oak-justify-end oak-gap-2 oak-p-5',
+        )}
+      >
+        <Button type="button" className="subtle" onClick={onCancel_}>
+          <Text name="core.settings.cancel">Cancel</Text>
+        </Button>
+        <Button type="button" className="primary" onClick={onSave_}>
+          <Text name="core.settings.save">Save</Text>
+        </Button>
       </div>
     </div>
   );
-});
+};
 
 Form.displayName = 'Form';
 

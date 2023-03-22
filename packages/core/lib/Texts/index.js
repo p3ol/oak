@@ -1,3 +1,5 @@
+import { get } from '@junipero/core';
+
 import Emitter from '../Emitter';
 
 export default class Texts extends Emitter {
@@ -5,6 +7,12 @@ export default class Texts extends Emitter {
 
   get (key, def) {
     // TODO: add real texts support
-    return this.#texts[key] || def;
+    if (typeof key === 'function') {
+      return key((k, d) => get(this.#texts, k, d));
+    }
+
+    if (typeof key !== 'string') return def ?? key;
+
+    return get(this.#texts, key, def ?? key);
   }
 }

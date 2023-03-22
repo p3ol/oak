@@ -8,6 +8,7 @@ import Element from '../Element';
 import Editable from '../Editable';
 import Icon from '../Icon';
 import Text from '../Text';
+import settings from './index.settings';
 
 const Col = ({
   element,
@@ -201,5 +202,8 @@ const Col = ({
     </div>
   );
 };
+
+Col.displayName = 'Col';
+Col.settings = settings;
 
 export default Col;

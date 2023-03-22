@@ -1,0 +1,46 @@
+.oak .editable
+  --background-color: var(--oak-floating-background-color)
+  --border-color: var(--oak-field-border-color)
+
+  min-width: 600px
+  width: 600px
+  max-width: 800px
+  background: var(--background-color)
+  border-radius: 5px
+  z-index: 20
+  position: relative
+  box-shadow: 0 0 0 2px var(--border-color)
+
+  .form-title
+    background-color: var(--oak-main-color)
+    border-radius: 5px 5px 0 0
+    color: var(--oak-reverse-text-color)
+
+  .form
+    .junipero.tabs
+      .content
+        padding-top: 10px
+
+    .field
+      .junipero.text-field,
+      .junipero.select-field,
+      .junipero.date-field,
+      .junipero.color-field
+        width: 100%
+        min-width: 0
+        display: flex
+
+        .inner, input
+          width: 100%
+          min-width: 0
+
+      .sub-fields
+        .field-label
+          font-size: 13px
+
+  .junipero.button
+    cursor: pointer
+
+  .junipero.dropdown-menu .menu-inner
+    max-height: 300px
+    overflow: auto

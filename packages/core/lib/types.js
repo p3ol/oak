@@ -65,11 +65,6 @@ export class Field {
     }
 
     this.type = props.type;
-    this.key = props.key;
-    this.placeholder = props.placeholder;
-    this.default = props.default;
-    this.options = props.options;
-    this.label = props.label;
     this.render = props.render;
   }
 }
@@ -160,7 +155,7 @@ export class ComponentSetting {
         placeholder: t =>
           t('core.styling.background.size.title', 'Background size'),
         options: [{
-          title: t => t('core.styling.background.size.default', 'By default'),
+          title: t => t('core.styling.background.size.default', 'Default'),
           value: 'default',
         }, {
           title: t => t('core.styling.background.size.cover', 'Fill'),
@@ -334,6 +329,24 @@ export class ComponentSetting {
     this.title = props.title;
     this.label = props.label;
     this.floatingSettings = props.floatingSettings;
-    this.fields = (props.fields || []).map(f => new Field(f));
+    this.fields = (props.fields || []).map(f => new ComponentSettingField(f));
+  }
+}
+
+export class ComponentSettingField {
+  static FIND_PREDICATE = type => f => f.type === type;
+
+  constructor (props) {
+    if (!props.type) {
+      throw new Error('ComponentSettingField must have a type');
+    }
+
+    this.type = props.type;
+    this.key = props.key;
+    this.placeholder = props.placeholder;
+    this.default = props.default;
+    this.options = props.options;
+    this.label = props.label;
+    this.valueType = props.valueType;
   }
 }
