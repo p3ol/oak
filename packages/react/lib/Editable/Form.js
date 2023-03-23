@@ -130,6 +130,9 @@ const Form = ({
     onCancel();
   };
 
+  const hasSubfields = setting =>
+    Array.isArray(setting.fields) && setting.fields.length > 0;
+
   return (
     <div
       className={classNames('form', className)}
@@ -157,7 +160,7 @@ const Form = ({
                       { field.label && (
                         <Label><Text>{ field.label }</Text></Label>
                       ) }
-                      { field.fields ? (
+                      { hasSubfields(field) ? (
                         <div
                           className={classNames(
                             'sub-fields oak-grid oak-grid-cols-4 oak-gap-2',

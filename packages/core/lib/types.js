@@ -23,10 +23,10 @@ export class Component {
     this.getContainers = props.getContainers;
     this.name = props.name || '';
     this.hasCustomInnerContent = props.hasCustomInnerContent ?? false;
-    this.draggable = props.draggable ?? false;
-    this.droppable = props.droppable ?? false;
+    this.draggable = props.draggable ?? true;
+    this.droppable = props.droppable ?? true;
     this.usable = props.usable ?? true;
-    this.editable = props.editable ?? false;
+    this.editable = props.editable ?? true;
     this.options = (props.options || []).map(o => new ComponentOption(o));
     this.settings = new ComponentSetting(props.settings || {});
   }
@@ -326,6 +326,7 @@ export class ComponentSetting {
     this.title = props.title;
     this.label = props.label;
     this.floatingSettings = props.floatingSettings;
+    this.condition = props.condition;
     this.fields = (props.fields || []).map(f => new ComponentSettingField(f));
   }
 }
@@ -346,6 +347,7 @@ export class ComponentSettingField {
     this.label = props.label;
     this.displayable = props.displayable;
     this.valueType = props.valueType;
+    this.condition = props.condition;
     this.fields = (props.fields || []).map(f => new ComponentSettingField(f));
     this.props = props.props;
   }
