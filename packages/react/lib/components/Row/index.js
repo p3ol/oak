@@ -2,8 +2,6 @@ import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
-import options from './index.options';
-import settings from './index.settings';
 
 const Row = ({
   element,
@@ -88,8 +86,5 @@ const Row = ({
     </div>
   );
 };
-
-Row.options = options;
-Row.settings = settings;
 
 export default Row;
