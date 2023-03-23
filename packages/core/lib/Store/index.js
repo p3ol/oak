@@ -21,17 +21,31 @@ export default class Store extends Emitter {
   }
 
   set (content) {
-    this.#content = content.map(e => this.sanitize(e));
+    this.#content = content
+      .map(e => this.sanitize(e, { withDefaults: true }));
     this.emit('content.update', this.#content);
   }
 
-  sanitize (element, { component: c, override: o, ...opts } = {}) {
+  sanitize (element, {
+    component: c,
+    override: o,
+    ...opts
+  } = {}) {
     if (!element.id || opts.resetIds) {
       element.id = this.#builder.generateId();
     }
 
     const component = c || this.#builder.getComponent(element.type);
     const override = o || this.#builder.getOverride('component', element.type);
+
+    if (opts.withDefaults) {
+      element = {
+        ...(override?.construct || component?.construct)?.({
+          builder: this.#builder,
+        }) || {},
+        ...element,
+      };
+    }
 
     const deserialize = override?.deserialize || component?.deserialize;
     element = deserialize?.(element, { builder: this.#builder }) || element;
@@ -45,19 +59,29 @@ export default class Store extends Emitter {
 
     containers.forEach(container => {
       if (Array.isArray(container)) {
-        container.forEach(elmt => this.sanitize(elmt, opts));
+        container.forEach((elmt, i) => {
+          container[i] = this.sanitize(elmt, opts);
+        });
       }
     });
 
     return element;
   }
 
-  createElement (type, { component: c, override: o, ...opts } = {}) {
+  createElement (type, {
+    component: c,
+    override: o,
+    baseElement,
+    ...opts
+  } = {}) {
     const component = c || this.#builder.getComponent(type);
     const override = o || this.#builder.getOverride('component', component.id);
-    const baseElement = component.construct?.({
-      builder: this.#builder,
-    }) || {};
+    baseElement = {
+      ...baseElement,
+      ...component.construct?.({
+        builder: this.#builder,
+      }) || {},
+    };
     const elementWithContent = {
       ...baseElement,
       content: typeof baseElement.content === 'function'

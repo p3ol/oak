@@ -309,10 +309,8 @@ export const emptySpaceComponent = (...props) => ({
   editable: true,
   construct: () => ({
     type: 'empty-space',
-    styles: {},
     settings: {
       height: '32px',
-      className: '',
     },
   }),
   ...props,
@@ -351,7 +349,6 @@ export const titleComponent = (...props) => ({
     content: builder
       .getText('core.components.title.default', 'This is a title'),
     headingLevel: 'h1',
-    settings: {},
   }),
   ...props,
 });
@@ -379,7 +376,6 @@ export const textComponent = (...props) => ({
       'core.components.text.default',
       'This is some fancy text content'
     ),
-    settings: {},
   }),
   ...props,
 });
@@ -485,7 +481,6 @@ export const imageComponent = (...props) => ({
     type: 'image',
     url: '',
     name: '',
-    settings: {},
   }),
   ...props,
 });
