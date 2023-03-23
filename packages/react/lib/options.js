@@ -4,7 +4,7 @@ import { Draggable, classNames } from '@junipero/react';
 import Option from './Option';
 import Text from './Text';
 
-export const DRAG_OPTION = {
+export const dragOption = {
   render: ({ element, elementInnerRef, editableRef, className }) => {
     const optionRef = useRef();
     const [hasTooltip, setHasTooltip] = useState(true);

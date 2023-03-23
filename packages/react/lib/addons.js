@@ -8,6 +8,7 @@ import {
 import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
 
+import { dragOption } from './options';
 import ImageField from './fields/ImageField';
 import Col from './components/Col';
 import EmptySpace from './components/EmptySpace';
@@ -121,6 +122,7 @@ export const toggleField = (...props) => ({
 export const rowComponent = (...props) => ({
   ...coreAddons.rowComponent(),
   render: Row,
+  options: [dragOption],
   ...props,
 });
 
