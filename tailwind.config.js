@@ -1,4 +1,5 @@
 const junipero = require('@junipero/tailwind-plugin');
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   prefix: 'oak-',
@@ -11,5 +12,15 @@ module.exports = {
   ],
   plugins: [
     junipero,
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        '.items-flex-start': {
+          'align-items': 'flex-start',
+        },
+        '.items-flex-end': {
+          'align-items': 'flex-end',
+        },
+      });
+    }),
   ],
 };
