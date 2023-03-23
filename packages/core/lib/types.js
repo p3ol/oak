@@ -146,7 +146,10 @@ export class ComponentSetting {
       label: t => t('core.styling.background.image.title', 'Background image'),
       fields: [{
         key: 'styles.backgroundImage',
-        type: 'core-image',
+        type: 'image',
+        props: {
+          iconOnly: true,
+        },
       }, {
         label: t => t('core.styling.background.size.title', 'Size'),
         key: 'styles.backgroundSize',
@@ -348,5 +351,6 @@ export class ComponentSettingField {
     this.options = props.options;
     this.label = props.label;
     this.valueType = props.valueType;
+    this.props = props.props;
   }
 }

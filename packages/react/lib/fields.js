@@ -7,7 +7,7 @@ import {
 } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 
-// import CoreImageField from './core/CoreImageField';
+import ImageField from './ImageField';
 import Text from './Text';
 
 export const FIELD_TEXT = {
@@ -70,12 +70,15 @@ export const FIELD_COLOR = {
   ),
 };
 
-// export const FIELD_CORE_IMAGE = {
-//   type: 'core-image',
-//   render: props => (
-//     <CoreImageField { ...props } />
-//   ),
-// };
+export const FIELD_IMAGE = {
+  type: 'image',
+  render: (fieldProps, { setting }) => (
+    <ImageField
+      { ...fieldProps }
+      iconOnly={setting?.props?.iconOnly}
+    />
+  ),
+};
 
 export const FIELD_DATE = {
   type: 'date',
@@ -104,5 +107,5 @@ export const FIELD_TOGGLE = {
 
 export const BASE_FIELDTYPES = [
   FIELD_TEXT, FIELD_TEXTAREA, FIELD_SELECT, FIELD_COLOR,
-  FIELD_DATE, FIELD_TOGGLE,
+  FIELD_DATE, FIELD_TOGGLE, FIELD_IMAGE,
 ];

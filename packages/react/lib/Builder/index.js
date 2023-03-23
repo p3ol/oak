@@ -8,7 +8,13 @@ import { useRootBuilder } from '../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
 
-const Builder = forwardRef(({ className, value, addons, ...opts }, ref) => {
+const Builder = forwardRef(({
+  className,
+  value,
+  addons,
+  onImageUpload,
+  ...opts
+}, ref) => {
   const innerRef = useRef();
   const catalogueRef = useRef();
   const floatingsRef = useRef();
@@ -34,9 +40,10 @@ const Builder = forwardRef(({ className, value, addons, ...opts }, ref) => {
   const getContext = useCallback(() => ({
     builder,
     content,
+    onImageUpload,
     rootRef: innerRef,
     floatingsRef,
-  }), [builder, content]);
+  }), [builder, content, onImageUpload]);
 
   const onAppend = component => {
     catalogueRef.current?.close();
