@@ -26,7 +26,7 @@ export default {
     default: '',
     displayable: true,
     label: t => t(prefix + '.url.title', 'URL link'),
-    condition: element => element.action === 'link',
+    condition: element => !element.action || element.action === 'link',
   }, {
     type: 'text',
     key: 'event',

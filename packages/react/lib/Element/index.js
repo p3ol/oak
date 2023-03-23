@@ -1,5 +1,5 @@
 import { Fragment, useMemo, useRef, useState } from 'react';
-import { Draggable, Droppable, classNames } from '@junipero/react';
+import { Draggable, Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { copyToClipboard } from '../utils';
 import { useBuilder } from '../hooks';
@@ -16,6 +16,9 @@ const Element = ({ element, parent, className }) => {
   const [editableOpened, setEditableOpened] = useState(false);
   const component = useMemo(() => (
     builder.getComponent(element?.type)
+  ), [element?.type]);
+  const override = useMemo(() => (
+    builder.getOverride('component', element?.type)
   ), [element?.type]);
 
   const onDelete_ = e => {
@@ -46,7 +49,14 @@ const Element = ({ element, parent, className }) => {
     copyToClipboard(JSON.stringify(element));
   };
 
-  const rendered = component?.render?.({
+  const onPrintDebug = e => {
+    e?.preventDefault();
+    // eslint-disable-next-line no-console
+    console.log('Component', component, '\nElement', element,
+      '\nOverride', override, '\nParent', parent);
+  };
+
+  const rendered = (override?.render || component?.render)?.({
     element,
     component,
     parent,
@@ -55,7 +65,9 @@ const Element = ({ element, parent, className }) => {
   }) || null;
 
   const displayableSettings = useMemo(() => (
-    builder.getComponentDisplayableSettings(component)
+    builder
+      .getComponentDisplayableSettings(component)
+      .filter(s => !s.condition || s.condition(element))
   ), [component]);
 
   return (
@@ -85,15 +97,18 @@ const Element = ({ element, parent, className }) => {
               />
               <div
                 className={classNames(
-                  'element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2'
+                  'element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2',
+                  'oak-justify-between'
                 )}
               >
                 <h6 className="junipero oak-m-0">
                   <Text>{ component?.name }</Text>
                 </h6>
-                <div className="element-content oak-flex-auto">
-                  { rendered }
-                </div>
+                { element.content && (
+                  <div className="element-content oak-flex-auto">
+                    { rendered }
+                  </div>
+                ) }
                 { displayableSettings.length > 0 && (
                   <div
                     className="props junipero extra !oak-text-slate oak-italic"
@@ -181,6 +196,13 @@ const Element = ({ element, parent, className }) => {
               </Editable>
             ) }
           </div>
+          { builder.options.debug && (
+            <Tooltip text="Print debug in console" placement="left">
+              <span className="debug oak-cursor-pointer" onClick={onPrintDebug}>
+                <Icon className="!oak-text-sm !oak-text-slate">settings</Icon>
+              </span>
+            </Tooltip>
+          ) }
         </div>
       </Draggable>
     </Droppable>

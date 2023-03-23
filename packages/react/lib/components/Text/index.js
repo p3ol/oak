@@ -1,4 +1,13 @@
-const Text = () => null;
+import { classNames } from '@junipero/react';
+
+import { sanitizeHTML } from '../../utils';
+
+const Text = ({ element, className }) => (
+  <div
+    className={classNames('junipero', className)}
+    dangerouslySetInnerHTML={{ __html: sanitizeHTML(element.content) }}
+  />
+);
 
 Text.displayName = 'TextComponent';
 

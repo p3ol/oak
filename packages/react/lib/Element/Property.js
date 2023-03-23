@@ -7,9 +7,7 @@ const Property = ({
   element,
   field,
 }) => {
-  const value = useMemo(() => (
-    get(element, field.key, field.default)
-  ), [element, field]);
+  const value = get(element, field.key, field.default);
   const option = useMemo(() => (
     field.options
       ? field.options.find(o => o.value === value || o === value)
