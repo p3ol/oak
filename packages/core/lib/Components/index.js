@@ -118,7 +118,7 @@ export default class Components extends Emitter {
 
   remove (id) {
     const groupIndex = this.#groups
-      .findIndex(ComponentGroup.FIND_PREDICATE.bind(null, id));
+      .findIndex(ComponentGroup.FIND_PREDICATE(id));
 
     if (groupIndex !== -1) {
       const group = this.#groups[groupIndex];
@@ -130,7 +130,7 @@ export default class Components extends Emitter {
 
     for (const group of this.#groups) {
       const index = group.components
-        .findIndex(Component.FIND_PREDICATE.bind(null, id));
+        .findIndex(Component.FIND_PREDICATE(id));
 
       if (index !== -1) {
         const component = group.components[index];
@@ -142,7 +142,7 @@ export default class Components extends Emitter {
     }
 
     const index = this.#defaultGroup.components
-      .findIndex(Component.FIND_PREDICATE.bind(null, id));
+      .findIndex(Component.FIND_PREDICATE(id));
 
     if (index !== -1) {
       const component = this.#defaultGroup.components[index];
