@@ -160,7 +160,7 @@ const Catalogue = forwardRef(({
                           )}
                         >
                           <Icon
-                            className="!oak-text-3xl"
+                            className="!oak-text-2xl"
                             children={typeof component.icon === 'function'
                               ? component.icon.bind(null, component)
                               : component.icon}
@@ -179,11 +179,11 @@ const Catalogue = forwardRef(({
               <a
                 onClick={onPaste?.bind(null, state.clipboard)}
                 className={classNames(
-                  'clipboard oak-flex oak-items-center oak-px-2 oak-py-1',
-                  'oak-gap-2',
+                  'clipboard junipero oak-flex oak-items-center oak-px-2',
+                  'oak-py-1 oak-gap-2',
                 )}
               >
-                <Icon>content_paste</Icon>
+                <Icon>appearences</Icon>
                 <Text name="core.pasteFromClipboard">
                   Paste from clipboard
                 </Text>
