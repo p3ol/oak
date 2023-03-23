@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Draggable, classNames } from '@junipero/react';
 
 import Option from './Option';
@@ -7,9 +7,11 @@ import Text from './Text';
 export const DRAG_OPTION = {
   render: ({ element, elementInnerRef, editableRef, className }) => {
     const optionRef = useRef();
+    const [hasTooltip, setHasTooltip] = useState(true);
 
-    const onDrag = e => {
-      optionRef.current?.tooltipRef?.current?.close();
+    const onBeforeDragStart = e => {
+      setHasTooltip(false);
+      // optionRef.current?.tooltipRef?.current?.close();
 
       // Elements with the DRAG_OPTION (like row) are not directly draggable,
       // so they don't benefit from junipero's Draggable classes
@@ -27,8 +29,13 @@ export const DRAG_OPTION = {
       elementInnerRef.current.className = beforeClassName;
     };
 
+    const onDragEnd = () => {
+      setHasTooltip(true);
+    };
+
     const onMouseDown = () => {
       editableRef.current?.forceClose();
+      setHasTooltip(false);
     };
 
     const onClick = e => {
@@ -38,7 +45,8 @@ export const DRAG_OPTION = {
     return (
       <Draggable
         ref={optionRef}
-        onBeforeDragStart={onDrag}
+        onBeforeDragStart={onBeforeDragStart}
+        onDragEnd={onDragEnd}
         data={element}
       >
         <Option
@@ -47,6 +55,7 @@ export const DRAG_OPTION = {
           option={{ icon: 'pause' }}
           className={classNames(className, 'oak-drag-handle')}
           name={<Text name="core.tooltips.move" default="Move" />}
+          tooltipProps={{ disabled: !hasTooltip }}
         />
       </Draggable>
     );

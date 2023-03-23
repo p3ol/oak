@@ -11,9 +11,10 @@ const Option = forwardRef(({
   draggable,
   name,
   onClick,
+  tooltipProps,
   ...props
 }, ref) => {
-  const { rootRef } = useBuilder();
+  const { rootRef, floatingsRef } = useBuilder();
   const innerRef = useRef();
   const tooltipRef = useRef();
 
@@ -25,6 +26,7 @@ const Option = forwardRef(({
 
   const floatingOptions = useMemo(() => ({
     boundary: rootRef?.current,
+    rootBoundary: rootRef?.current,
   }), []);
 
   const onClick_ = e => {
@@ -55,13 +57,14 @@ const Option = forwardRef(({
 
   return name ? (
     <Tooltip
-      container={rootRef?.current || '.oak'}
+      container={floatingsRef.current || '.oak'}
       ref={r => {
         tooltipRef.current = r;
         innerRef.current = r?.handleRef?.current;
       }}
       floatingOptions={floatingOptions}
       text={name}
+      { ...tooltipProps }
     >
       { inner }
     </Tooltip>
