@@ -45,24 +45,20 @@ const Col = ({
 
   const onPrepend_ = component => {
     prependCatalogueRef.current?.close();
-
-    const elmt = component.construct?.() || {};
-    builder.addElement?.({
-      ...elmt,
-      content: typeof elmt.content === 'function'
-        ? elmt.content(builder.getText) : elmt.content,
-    }, { parent: element.content, position: 'before' });
+    builder.addElement?.({}, {
+      parent: element.content,
+      position: 'before',
+      component,
+    });
   };
 
   const onAppend_ = component => {
     appendCatalogueRef.current?.close();
-
-    const elmt = component.construct?.() || {};
-    builder.addElement?.({
-      ...elmt,
-      content: typeof elmt.content === 'function'
-        ? elmt.content(builder.getText) : elmt.content,
-    }, { parent: element.content, position: 'after' });
+    builder.addElement?.({}, {
+      parent: element.content,
+      position: 'after',
+      component,
+    });
   };
 
   const onDrop_ = data => {

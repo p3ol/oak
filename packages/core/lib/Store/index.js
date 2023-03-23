@@ -25,13 +25,13 @@ export default class Store extends Emitter {
     this.emit('content.update', this.#content);
   }
 
-  sanitize (element, opts = {}) {
+  sanitize (element, { component: c, override: o, ...opts } = {}) {
     if (!element.id || opts.resetIds) {
       element.id = this.#builder.generateId();
     }
 
-    const component = this.#builder.getComponent(element.type);
-    const override = this.#builder.getOverride('component', element.type);
+    const component = c || this.#builder.getComponent(element.type);
+    const override = o || this.#builder.getOverride('component', element.type);
 
     const deserialize = override?.deserialize || component?.deserialize;
     element = deserialize?.(element) || element;
@@ -55,9 +55,28 @@ export default class Store extends Emitter {
   addElement (element, {
     parent = this.#content,
     position = 'after',
+    component,
     ...opts
   } = {}) {
     this.#builder.logger.log('Adding element:', element, { parent, position });
+
+    // If component is provided, we construct the element from it
+    if (component) {
+      const override = this.#builder.getOverride('component', component.id);
+      const baseElement = component.construct?.() || {};
+      const elementWithContent = {
+        ...baseElement,
+        content: typeof baseElement.content === 'function'
+          ? baseElement.content(this.#builder.getText.bind(this.#builder))
+          : baseElement.content,
+      };
+
+      element = {
+        ...elementWithContent,
+        ...(override?.construct?.(elementWithContent) || {}),
+      };
+    }
+
     element = this.sanitize(element, opts);
 
     switch (position) {

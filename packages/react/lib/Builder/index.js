@@ -40,24 +40,7 @@ const Builder = forwardRef(({ className, value, addons, ...opts }, ref) => {
 
   const onAppend = component => {
     catalogueRef.current?.close();
-    const element = component.construct?.() || {};
-    const override = builder.getOverride('component', element.type);
-
-    const elementWithContent = {
-      ...element,
-      content: typeof element.content === 'function'
-        ? element.content(/*getText*/) : element.content,
-    };
-
-    builder.addElement({
-      ...elementWithContent,
-      ...(
-        override?.construct &&
-        typeof override.construct === 'function'
-          ? override.construct(elementWithContent)
-          : {}
-      ),
-    });
+    builder.addElement({}, { component });
   };
 
   const onPaste = element => {
