@@ -344,7 +344,9 @@ export class ComponentSettingField {
     this.default = props.default;
     this.options = props.options;
     this.label = props.label;
+    this.displayable = props.displayable;
     this.valueType = props.valueType;
+    this.fields = (props.fields || []).map(f => new ComponentSettingField(f));
     this.props = props.props;
   }
 }

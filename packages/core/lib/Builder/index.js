@@ -70,6 +70,10 @@ export default class Builder extends Emitter {
     return this.#components.getComponent(type);
   }
 
+  getComponentDisplayableSettings (component) {
+    return this.#components.getDisplayableSettings(component.settings);
+  }
+
   getField (type) {
     return this.#fields.get(type);
   }

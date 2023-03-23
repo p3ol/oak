@@ -158,6 +158,28 @@ export default class Components extends Emitter {
     };
   }
 
+  getDisplayableSettings (settings) {
+    const displayable = [];
+
+    for (const setting of settings.fields) {
+      if (Array.isArray(setting.fields)) {
+        displayable.push(...this.getDisplayableSettings(setting));
+      }
+
+      if (
+        setting.displayable === true ||
+        (
+          typeof setting.displayable === 'function' &&
+          setting.displayable({ builder: this.#builder })
+        )
+      ) {
+        displayable.push(setting);
+      }
+    }
+
+    return displayable;
+  }
+
   toJSON () {
     return this.all();
   }

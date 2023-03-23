@@ -7,6 +7,7 @@ import Icon from '../Icon';
 import Text from '../Text';
 import Option from '../Option';
 import Editable from '../Editable';
+import Property from './Property';
 
 const Element = ({ element, parent, className }) => {
   const { builder } = useBuilder();
@@ -53,6 +54,10 @@ const Element = ({ element, parent, className }) => {
     className: element.className,
   }) || null;
 
+  const displayableSettings = useMemo(() => (
+    builder.getComponentDisplayableSettings(component)
+  ), [component]);
+
   return (
     <Droppable
       ref={innerRef}
@@ -72,19 +77,37 @@ const Element = ({ element, parent, className }) => {
           )}
         >
           { component?.hasCustomInnerContent ? rendered : component ? (
-            <div className="inner oak-flex oak-gap-2 oak-p-4">
+            <div className="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch">
               <Icon
                 children={typeof component?.icon === 'function'
                   ? component.icon.bind(null, component)
                   : component?.icon}
               />
-              <div className="element-info">
-                <h6 className="junipero oak-m-0 oak-mb-2">
+              <div
+                className={classNames(
+                  'element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2'
+                )}
+              >
+                <h6 className="junipero oak-m-0">
                   <Text>{ component?.name }</Text>
                 </h6>
-                <div className="element-content">
+                <div className="element-content oak-flex-auto">
                   { rendered }
                 </div>
+                { displayableSettings.length > 0 && (
+                  <div
+                    className="props junipero extra !oak-text-slate oak-italic"
+                  >
+                    { displayableSettings.map((setting, i) => (
+                      <Fragment key={setting.key || i}>
+                        <Property field={setting} element={element} />
+                        { i < displayableSettings.length - 1 && (
+                          <Text name="core.propertySeparator" default=", " />
+                        ) }
+                      </Fragment>
+                    )) }
+                  </div>
+                ) }
               </div>
             </div>
           ) : (
