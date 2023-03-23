@@ -1,8 +1,6 @@
 import { forwardRef, useCallback, useRef, useImperativeHandle } from 'react';
 import { classNames } from '@junipero/react';
 
-import { GROUP_CORE } from '../components';
-import { BASE_FIELDTYPES } from '../fields';
 import { BuilderContext } from '../contexts';
 import { useRootBuilder } from '../hooks';
 import Element from '../Element';
@@ -12,6 +10,7 @@ const Builder = forwardRef(({
   className,
   value,
   addons,
+  rootBoundary,
   onImageUpload,
   ...opts
 }, ref) => {
@@ -20,13 +19,7 @@ const Builder = forwardRef(({
   const floatingsRef = useRef();
   const { builder, content } = useRootBuilder({
     content: value,
-    addons: [
-      {
-        components: [GROUP_CORE],
-        fields: BASE_FIELDTYPES,
-      },
-      ...(addons || []),
-    ],
+    addons,
     ...opts,
   });
 
@@ -40,10 +33,12 @@ const Builder = forwardRef(({
   const getContext = useCallback(() => ({
     builder,
     content,
+    rootBoundary: rootBoundary.current
+      ? rootBoundary : { current: rootBoundary },
     onImageUpload,
     rootRef: innerRef,
     floatingsRef,
-  }), [builder, content, onImageUpload]);
+  }), [builder, content, rootBoundary, onImageUpload]);
 
   const onAppend = component => {
     catalogueRef.current?.close();

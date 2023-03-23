@@ -1,9 +1,9 @@
 import { useReducer } from 'react';
 import { TouchableZone, Spinner, classNames, mockState } from '@junipero/react';
 
-import { useBuilder } from '../hooks';
-import Text from '../Text';
-import Icon from '../Icon';
+import { useBuilder } from '../../hooks';
+import Text from '../../Text';
+import Icon from '../../Icon';
 
 const ImageField = ({
   className,

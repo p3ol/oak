@@ -1,4 +1,5 @@
 import Builder from './Builder';
+import { baseAddon } from './addons';
 
 export default { title: 'React/Builder' };
 
@@ -8,5 +9,10 @@ const baseContent = [
 ];
 
 export const basic = () => (
-  <Builder value={baseContent} options={{ debug: true }} />
+  <Builder
+    addons={[baseAddon()]}
+    value={baseContent}
+    rootBoundary={document.documentElement}
+    options={{ debug: true }}
+  />
 );

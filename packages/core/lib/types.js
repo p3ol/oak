@@ -7,20 +7,17 @@ export class BuilderOptions {
 export class Component {
   static FIND_PREDICATE = id => c => c.id === id;
 
-  #builder = null;
-
-  constructor (props, { builder } = {}) {
+  constructor (props) {
     if (!props.id) {
       throw new Error('Component must have an id');
     }
 
-    this.#builder = builder;
     this.type = 'component';
     this.id = props.id;
     this.group = props.group;
     this.render = props.render;
-    this.sanitize = props.sanitize?.bind(this, { builder: this.#builder });
-    this.construct = props.construct?.bind(this, { builder: this.#builder });
+    this.sanitize = props.sanitize;
+    this.construct = props.construct;
     this.duplicate = props.duplicate;
     this.icon = props.icon;
     this.getContainers = props.getContainers;
@@ -38,20 +35,17 @@ export class Component {
 export class ComponentGroup {
   static FIND_PREDICATE = id => g => g.id === id;
 
-  #builder = null;
-
-  constructor (props, { builder } = {}) {
+  constructor (props) {
     if (!props.id) {
       throw new Error('Component Group must have an id');
     }
 
-    this.#builder = builder;
     this.type = 'group';
     this.id = props.id;
     this.name = props.name;
     this.usable = props.usable ?? true;
     this.components = (props.components || []).map(c =>
-      c instanceof Component ? c : new Component(c, { builder })
+      c instanceof Component ? c : new Component(c)
     );
   }
 }
@@ -70,13 +64,13 @@ export class Field {
 }
 
 export class ComponentOverride {
-  constructor (props, { builder } = {}) {
+  constructor (props) {
     this.type = 'component';
     this.targets = props.targets || [];
     this.fields = props.fields || [];
     this.render = props.render;
     this.sanitize = props.sanitize;
-    this.construct = props.construct?.bind(this, { builder });
+    this.construct = props.construct;
     this.duplicate = props.duplicate;
   }
 }

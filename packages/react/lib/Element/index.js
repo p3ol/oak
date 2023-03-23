@@ -66,7 +66,7 @@ const Element = ({ element, parent, className }) => {
         <div
           data-element-id={element.id}
           className={classNames(
-            'oak element',
+            'oak element oak-flex-none',
             'type-' + (component?.id || 'unknown'),
             className
           )}
@@ -74,15 +74,14 @@ const Element = ({ element, parent, className }) => {
           { component?.hasCustomInnerContent ? rendered : component ? (
             <div className="inner oak-flex oak-gap-2 oak-p-4">
               <Icon
-                className="!oak-text-3xl"
                 children={typeof component?.icon === 'function'
                   ? component.icon.bind(null, component)
                   : component?.icon}
               />
               <div className="element-info">
-                <div className="junipero !oak-text-3xl oak-bold">
+                <h6 className="junipero oak-m-0 oak-mb-2">
                   <Text>{ component?.name }</Text>
-                </div>
+                </h6>
                 <div className="element-content">
                   { rendered }
                 </div>

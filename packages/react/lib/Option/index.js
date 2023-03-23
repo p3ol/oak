@@ -14,7 +14,7 @@ const Option = forwardRef(({
   tooltipProps,
   ...props
 }, ref) => {
-  const { rootRef, floatingsRef } = useBuilder();
+  const { rootRef, rootBoundary, floatingsRef } = useBuilder();
   const innerRef = useRef();
   const tooltipRef = useRef();
 
@@ -25,8 +25,8 @@ const Option = forwardRef(({
   }), [innerRef.current]);
 
   const floatingOptions = useMemo(() => ({
-    boundary: rootRef?.current,
-    rootBoundary: rootRef?.current,
+    boundary: rootBoundary?.current || rootRef?.current,
+    rootBoundary: rootBoundary?.current || rootRef?.current,
   }), []);
 
   const onClick_ = e => {

@@ -81,7 +81,7 @@ export default class Components extends Emitter {
       component.type === Components.TYPE_GROUP &&
       !this.hasGroup(component.id)
     ) {
-      component = new ComponentGroup(component, { builder: this.#builder });
+      component = new ComponentGroup(component);
       component.components = component.components || [];
 
       this.#groups[mutateMethod](component);
@@ -90,7 +90,7 @@ export default class Components extends Emitter {
       return;
     }
 
-    component = new Component(component, { builder: this.#builder });
+    component = new Component(component);
 
     // If component has a group provided, we try to add it to the group
     if (

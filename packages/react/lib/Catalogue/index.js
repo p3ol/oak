@@ -33,7 +33,7 @@ const Catalogue = forwardRef(({
   onPaste,
 }, ref) => {
   const innerRef = useRef();
-  const { builder, rootRef, floatingsRef } = useBuilder();
+  const { builder, rootRef, rootBoundary, floatingsRef } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
     clipboard: null,
@@ -44,7 +44,7 @@ const Catalogue = forwardRef(({
     middleware: [
       offset(16),
       shift({
-        rootBoundary: rootRef?.current,
+        rootBoundary: rootBoundary?.current || rootRef?.current,
       }),
     ],
   });

@@ -10,3 +10,5 @@ export {
   Field,
   FieldOverride,
 } from './types';
+
+export * from './addons';

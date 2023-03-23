@@ -1,6 +1,6 @@
 import { Droppable, classNames, omit } from '@junipero/react';
 
-import { useBuilder } from '../hooks';
+import { useBuilder } from '../../hooks';
 import Col from '../Col';
 import options from './index.options';
 import settings from './index.settings';

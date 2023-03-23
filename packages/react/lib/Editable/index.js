@@ -31,7 +31,7 @@ const Editable = forwardRef(({
   onToggle,
 }, ref) => {
   const innerRef = useRef();
-  const { rootRef, floatingsRef } = useBuilder();
+  const { rootRef, rootBoundary, floatingsRef } = useBuilder();
   // const options = useOptions();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
@@ -50,14 +50,14 @@ const Editable = forwardRef(({
     middleware: [
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
-        boundary: rootRef?.current,
-        rootBoundary: rootRef?.current,
+        boundary: rootBoundary?.current || rootRef?.current,
+        rootBoundary: rootBoundary?.current || rootRef?.current,
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
-        boundary: rootRef?.current,
-        rootBoundary: rootRef?.current,
+        boundary: rootBoundary?.current || rootRef?.current,
+        rootBoundary: rootBoundary?.current || rootRef?.current,
         allowedPlacements: ['bottom', 'top'],
         ...floatingSettings.autoPlacement || {},
       })] : []),

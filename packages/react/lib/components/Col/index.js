@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import { Droppable, Tooltip, classNames } from '@junipero/react';
 
-import { useBuilder } from '../hooks';
-import Catalogue from '../Catalogue';
-import Option from '../Option';
-import Element from '../Element';
-import Editable from '../Editable';
-import Icon from '../Icon';
-import Text from '../Text';
+import { useBuilder } from '../../hooks';
+import Catalogue from '../../Catalogue';
+import Option from '../../Option';
+import Element from '../../Element';
+import Editable from '../../Editable';
+import Icon from '../../Icon';
+import Text from '../../Text';
 import settings from './index.settings';
 
 const Col = ({

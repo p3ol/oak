@@ -34,10 +34,10 @@ export default class Store extends Emitter {
     const override = o || this.#builder.getOverride('component', element.type);
 
     const deserialize = override?.deserialize || component?.deserialize;
-    element = deserialize?.(element) || element;
+    element = deserialize?.(element, { builder: this.#builder }) || element;
 
     const customSanitize = override?.sanitize || component?.sanitize;
-    element = customSanitize?.(element) || element;
+    element = customSanitize?.(element, { builder: this.#builder }) || element;
 
     const containers = override?.getContainers?.(element) ||
       component?.getContainers?.(element) ||
@@ -52,6 +52,30 @@ export default class Store extends Emitter {
     return element;
   }
 
+  createElement (type, { component: c, override: o, ...opts } = {}) {
+    const component = c || this.#builder.getComponent(type);
+    const override = o || this.#builder.getOverride('component', component.id);
+    const baseElement = component.construct?.({
+      builder: this.#builder,
+    }) || {};
+    const elementWithContent = {
+      ...baseElement,
+      content: typeof baseElement.content === 'function'
+        ? baseElement.content(this.#builder.getText.bind(this.#builder))
+        : baseElement.content,
+    };
+
+    const element = {
+      ...elementWithContent,
+      ...(override?.construct?.({
+        builder: this.#builder,
+        baseElement: elementWithContent,
+      }) || {}),
+    };
+
+    return this.sanitize(element, { component: c, override: o, ...opts });
+  }
+
   addElement (element, {
     parent = this.#content,
     position = 'after',
@@ -61,23 +85,10 @@ export default class Store extends Emitter {
     this.#builder.logger.log('Adding element:', element, { parent, position });
 
     // If component is provided, we construct the element from it
-    if (component) {
-      const override = this.#builder.getOverride('component', component.id);
-      const baseElement = component.construct?.() || {};
-      const elementWithContent = {
-        ...baseElement,
-        content: typeof baseElement.content === 'function'
-          ? baseElement.content(this.#builder.getText.bind(this.#builder))
-          : baseElement.content,
-      };
-
-      element = {
-        ...elementWithContent,
-        ...(override?.construct?.(elementWithContent) || {}),
-      };
-    }
-
-    element = this.sanitize(element, opts);
+    // Otherwise, we just sanitize it
+    element = component
+      ? this.createElement(component.id, { component, ...opts })
+      : this.sanitize(element, opts);
 
     switch (position) {
       case 'before':
