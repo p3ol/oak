@@ -151,7 +151,7 @@ const Col = ({
             onAppend={onAppend_}
             onPaste={onPasteAfter_}
             className={classNames(
-              'oak-flex oak-justify-center',
+              'oak-inline-flex oak-self-center',
               { small: element.content?.length > 0 }
             )}
           />

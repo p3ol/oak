@@ -35,10 +35,10 @@
 
     &.after
       top: 100%
-      height: 14px
+      height: 20px
 
       &::after
-        top: 5px
+        top: 6px
 
     &.drag-enter
       &::after
@@ -104,6 +104,10 @@
             border: 1px solid var(--inner-border-color)
 
     .col-inner
+      .catalogue
+        position: relative
+        z-index: 2
+
       &.drag-enter
         background: var(--drop-zone-color)
         border-radius: 5px
