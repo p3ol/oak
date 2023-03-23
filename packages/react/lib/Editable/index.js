@@ -71,6 +71,7 @@ const Editable = forwardRef(({
   useImperativeHandle(ref, () => ({
     open,
     close,
+    forceClose,
     toggle,
     isOak: true,
     innerRef,
@@ -84,6 +85,10 @@ const Editable = forwardRef(({
   const close = () => {
     dispatch({ opened: false });
     onToggle?.({ opened: false });
+  };
+
+  const forceClose = () => {
+    dispatch({ opened: false, visible: false });
   };
 
   const toggle = () =>

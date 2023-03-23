@@ -135,6 +135,7 @@ const Element = ({ element, parent, className }) => {
                   className: 'option',
                   element,
                   elementInnerRef: innerRef,
+                  editableRef,
                   parent,
                   component,
                   builder,
