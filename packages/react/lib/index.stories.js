@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
 import Builder from './Builder';
@@ -74,6 +74,62 @@ export const uncontrolled = () => {
         addons={[baseAddon()]}
         rootBoundary={document.documentElement}
         options={{ debug: true }}
+        onChange={action('change')}
+        ref={builderRef}
+      />
+    </div>
+  );
+};
+
+export const withCustomTexts = () => (
+  <div>
+    <div>&quot;Paste from clipboard&quot; should be in french</div>
+    <Builder
+      addons={[baseAddon(), {
+        texts: [{ id: 'fr', texts: {
+          core: {
+            pasteFromClipboard: 'Coller depuis le presse-papier',
+          },
+        } }],
+      }]}
+      value={baseContent}
+      rootBoundary={document.documentElement}
+      options={{ debug: true }}
+      onChange={action('change')}
+    />
+  </div>
+);
+
+export const withMultipleLanguages = () => {
+  const builderRef = useRef();
+  const [locale, setLocale] = useState('en');
+
+  useEffect(() => {
+    builderRef.current?.builder.setActiveTextSheet(locale);
+  }, [locale]);
+
+  const texts = [
+    { id: 'fr', texts: {
+      core: { pasteFromClipboard: 'Coller depuis le presse-papier' },
+    } },
+    { id: 'es', texts: {
+      core: { pasteFromClipboard: 'Pegar desde el portapapeles' },
+    } },
+  ];
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => setLocale('en')}>English</button>
+        <button onClick={() => setLocale('fr')}>French</button>
+        <button onClick={() => setLocale('es')}>Spanish</button>
+      </div>
+      <div>&quot;Paste from clipboard&quot; should be in {locale}</div>
+      <Builder
+        addons={[baseAddon(), { texts }]}
+        value={baseContent}
+        rootBoundary={document.documentElement}
+        options={{ debug: true, locale }}
         onChange={action('change')}
         ref={builderRef}
       />

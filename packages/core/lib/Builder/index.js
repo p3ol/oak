@@ -28,17 +28,12 @@ export default class Builder extends Emitter {
     this.#store = new Store({ builder: this });
     this.#texts = new Texts({ builder: this });
 
-    addons?.forEach(addon => {
-      this.logger.log('Initializing builder with addon:', addon);
-
-      addon.fields?.forEach(field => {
-        this.#fields.add(field);
+    if (Array.isArray(addons)) {
+      addons.forEach(addon => {
+        this.logger.log('Initializing builder with addon:', addon);
+        this.addAddon(addon);
       });
-
-      addon.components?.forEach(component => {
-        this.#components.add(component);
-      });
-    });
+    }
 
     if (content) {
       this.logger.log('Initializing builder with content:', content);
@@ -63,14 +58,21 @@ export default class Builder extends Emitter {
   setAddons (addons) {
     addons?.forEach(addon => {
       this.logger.log('Updating builder addon:', addon);
+      this.addAddon(addon);
+    });
+  }
 
-      addon.fields?.forEach(field => {
-        this.#fields.add(field);
-      });
+  addAddon (addon) {
+    addon.fields?.forEach(field => {
+      this.#fields.add(field);
+    });
 
-      addon.components?.forEach(component => {
-        this.#components.add(component);
-      });
+    addon.components?.forEach(component => {
+      this.#components.add(component);
+    });
+
+    addon.texts?.forEach(sheet => {
+      this.#texts.addSheet(sheet);
     });
   }
 
@@ -144,7 +146,23 @@ export default class Builder extends Emitter {
     return uuid();
   }
 
+  getTextSheet (id) {
+    return this.#texts.getSheet(id);
+  }
+
   getText (key, def) {
     return this.#texts.get(key, def);
+  }
+
+  setText (key, value) {
+    this.#texts.set(key, value);
+  }
+
+  getActiveTextSheet () {
+    return this.#texts.getActiveSheet();
+  }
+
+  setActiveTextSheet (id) {
+    this.#texts.setActiveSheet(id);
   }
 }

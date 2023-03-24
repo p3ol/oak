@@ -11,4 +11,8 @@ export default class Logger {
       console.log('[oak]', ...args);
     }
   }
+
+  warn (...args) {
+    console.warn('[oak]', ...args);
+  }
 }

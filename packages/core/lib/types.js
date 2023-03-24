@@ -352,3 +352,16 @@ export class ComponentSettingField {
     this.props = props.props;
   }
 }
+
+export class TextsSheet {
+  static FIND_PREDICATE = id => s => s.id === id;
+
+  constructor (props) {
+    if (!props.type) {
+      throw new Error('TextSheep must have an id');
+    }
+
+    this.id = props.id;
+    this.texts = props.texts || {};
+  }
+}

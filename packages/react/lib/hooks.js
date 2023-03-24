@@ -13,6 +13,7 @@ export const useRootBuilder = opts => {
   ), []);
   const [state, dispatch] = useReducer(mockState, {
     content: builder.getContent(),
+    activeTextSheet: opts?.activeTextSheet,
   });
 
   useEffectAfterMount(() => {
@@ -31,6 +32,12 @@ export const useRootBuilder = opts => {
             .log('[react] Receiving content from builder:', content);
           dispatch({ content });
           opts.onChange?.(content);
+          break;
+        }
+        // Triggers a rerender when the active text sheet changes
+        case 'sheets.setActive': {
+          const [activeTextSheet] = args;
+          dispatch({ activeTextSheet });
           break;
         }
       }
