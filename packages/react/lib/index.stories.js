@@ -16,6 +16,7 @@ const baseContent = [
     ] },
   ] },
   { type: 'image', url: 'https://avatars.githubusercontent.com/u/20414672' },
+  { type: 'foldable' },
 ];
 
 export const basic = () => (

@@ -569,6 +569,63 @@ export const buttonComponent = (...props) => ({
   ...props,
 });
 
+export const foldableComponent = (...props) => ({
+  id: 'foldable',
+  name: t => t('core.components.foldable.name', 'Foldable'),
+  type: 'component',
+  render: () => null,
+  icon: 'foldable',
+  editable: true,
+  hasCustomInnerContent: true,
+  draggable: false,
+  droppable: false,
+  getContainers: element =>
+    [element.content, element.seeMore, element.seeLess],
+  settings: {
+    title: t => t(
+      'core.components.foldable.settings.title', 'Foldable options'),
+    floatingSettings: {
+      placement: 'right-start',
+      autoPlacement: {
+        alignment: 'start',
+      },
+    },
+    fields: [{
+      type: 'select',
+      key: 'settings.seeMorePosition',
+      default: 'after',
+      displayable: true,
+      label: t => t(
+        'core.components.foldable.settings.seeMorePosition.title',
+        'See more placement'
+      ),
+      options: [{
+        title: t => t(
+          'core.components.foldable.settings.seeMorePosition.before',
+          'Before'
+        ),
+        value: 'before',
+      }, {
+        title: t => t(
+          'core.components.foldable.settings.seeMorePosition.after',
+          'After'
+        ),
+        value: 'after',
+      }],
+    }],
+  },
+  construct: () => ({
+    type: 'foldable',
+    settings: {
+      seeMorePosition: 'after',
+    },
+    content: [],
+    seeMore: [],
+    seeLess: [],
+  }),
+  ...props,
+});
+
 export const baseFields = () => [
   textField(),
   textareaField(),
@@ -587,6 +644,7 @@ export const baseComponents = () => [
   textComponent(),
   imageComponent(),
   buttonComponent(),
+  foldableComponent(),
 ];
 
 export const coreComponentsGroup = (...props) => ({

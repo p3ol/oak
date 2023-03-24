@@ -15,9 +15,10 @@ import EmptySpace from './components/EmptySpace';
 import Row from './components/Row';
 import Title from './components/Title';
 import TextComponent from './components/Text';
-import Text from './Text';
 import Image from './components/Image';
 import Button from './components/Button';
+import Foldable from './components/Foldable';
+import Text from './Text';
 
 export const textField = (...props) => ({
   ...coreAddons.textField(),
@@ -162,6 +163,13 @@ export const buttonComponent = (...props) => ({
   ...props,
 });
 
+export const foldableComponent = (...props) => ({
+  ...coreAddons.foldableComponent(),
+  options: [dragOption],
+  render: Foldable,
+  ...props,
+});
+
 export const baseFields = () => [
   textField(),
   textareaField(),
@@ -180,6 +188,7 @@ export const baseComponents = () => [
   textComponent(),
   imageComponent(),
   buttonComponent(),
+  foldableComponent(),
 ];
 
 export const coreComponentsGroup = () => ({
