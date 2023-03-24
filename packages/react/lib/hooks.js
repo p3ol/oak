@@ -20,6 +20,7 @@ export const useRootBuilder = opts => {
           builder.logger
             .log('[react] Receiving content from builder:', content);
           dispatch({ content });
+          opts.onChange?.({ value: content });
           break;
         }
       }

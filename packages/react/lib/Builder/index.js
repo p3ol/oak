@@ -11,6 +11,7 @@ const Builder = forwardRef(({
   value,
   addons,
   rootBoundary,
+  onChange,
   onImageUpload,
   ...opts
 }, ref) => {
@@ -20,6 +21,7 @@ const Builder = forwardRef(({
   const { builder, content } = useRootBuilder({
     content: value,
     addons,
+    onChange,
     ...opts,
   });
 
