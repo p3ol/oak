@@ -104,8 +104,8 @@ export default class Builder extends Emitter {
     return this.#store.get();
   }
 
-  setContent (content) {
-    this.#store.set(content);
+  setContent (content, opts) {
+    this.#store.set(content, opts);
   }
 
   createElement (type, options) {

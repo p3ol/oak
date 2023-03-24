@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
 import Builder from './Builder';
@@ -26,3 +27,56 @@ export const basic = () => (
     onChange={action('change')}
   />
 );
+
+export const controlled = () => {
+  const [value, setValue] = useState(baseContent);
+
+  const addElement = () => {
+    setValue(v => [
+      ...v,
+      { type: 'text', content: 'This is a text added manually' },
+    ]);
+  };
+
+  return (
+    <div>
+      <div>
+        <button onClick={addElement}>Add element</button>
+      </div>
+      <Builder
+        addons={[baseAddon()]}
+        value={value}
+        rootBoundary={document.documentElement}
+        options={{ debug: true }}
+        onChange={setValue}
+      />
+    </div>
+  );
+};
+
+export const uncontrolled = () => {
+  const builderRef = useRef();
+
+  const addElement = () => {
+    builderRef.current?.builder.addElement({
+      type: 'text',
+      content: 'This is a text added manually',
+    });
+  };
+
+  return (
+    <div>
+      <div>
+        <button onClick={addElement}>Add element</button>
+      </div>
+      <Builder
+        defaultValue={baseContent}
+        addons={[baseAddon()]}
+        rootBoundary={document.documentElement}
+        options={{ debug: true }}
+        onChange={action('change')}
+        ref={builderRef}
+      />
+    </div>
+  );
+};

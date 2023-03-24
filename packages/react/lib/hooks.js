@@ -1,16 +1,26 @@
 import { useContext, useEffect, useMemo, useReducer } from 'react';
 import { Builder } from '@oakjs/core';
-import { mockState } from '@junipero/react';
+import { mockState, useEffectAfterMount } from '@junipero/react';
 
 import { BuilderContext } from './contexts';
 
 export const useRootBuilder = opts => {
   const builder = useMemo(() => (
-    new Builder(opts)
+    new Builder({
+      ...opts,
+      content: opts?.defaultContent || opts?.content,
+    })
   ), []);
   const [state, dispatch] = useReducer(mockState, {
     content: builder.getContent(),
   });
+
+  useEffectAfterMount(() => {
+    builder.logger
+      .log('[react] Value prop changed:', opts?.content);
+    builder.setContent(opts?.content, { emit: false });
+    dispatch({ content: builder.getContent() });
+  }, [opts?.content]);
 
   useEffect(() => {
     const unsubscribe = builder.subscribe((eventName, ...args) => {
@@ -20,7 +30,7 @@ export const useRootBuilder = opts => {
           builder.logger
             .log('[react] Receiving content from builder:', content);
           dispatch({ content });
-          opts.onChange?.({ value: content });
+          opts.onChange?.(content);
           break;
         }
       }
@@ -30,7 +40,7 @@ export const useRootBuilder = opts => {
       builder.logger.log('[react] Destroying builder instance');
       unsubscribe();
     };
-  }, []);
+  }, [builder]);
 
   return {
     builder,

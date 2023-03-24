@@ -8,6 +8,7 @@ import Catalogue from '../Catalogue';
 
 const Builder = forwardRef(({
   className,
+  defaultValue,
   value,
   addons,
   rootBoundary,
@@ -20,6 +21,7 @@ const Builder = forwardRef(({
   const floatingsRef = useRef();
   const { builder, content } = useRootBuilder({
     content: value,
+    defaultContent: defaultValue,
     addons,
     onChange,
     ...opts,

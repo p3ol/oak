@@ -20,10 +20,10 @@ export default class Store extends Emitter {
     return this.#content;
   }
 
-  set (content) {
-    this.#content = content
+  set (content, { emit = true } = {}) {
+    this.#content = (Array.isArray(content) ? content : [])
       .map(e => this.sanitize(e, { withDefaults: true }));
-    this.emit('content.update', this.#content);
+    emit && this.emit('content.update', this.#content);
   }
 
   sanitize (element, {
