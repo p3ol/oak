@@ -47,6 +47,11 @@ const Builder = forwardRef(({
     builder.addElement({}, { component });
   };
 
+  const onPrepend = component => {
+    catalogueRef.current?.close();
+    builder.addElement({}, { component, position: 'before' });
+  };
+
   const onPaste = element => {
     catalogueRef.current?.close();
     builder.addElement(element, { resetIds: true });
@@ -62,6 +67,16 @@ const Builder = forwardRef(({
         )}
       >
         <div className="elements oak-flex oak-flex-col oak-gap-4">
+          { content?.length > 0 && (
+            <div className="add-element oak-flex oak-justify-center">
+              <Catalogue
+                ref={catalogueRef}
+                onAppend={onPrepend}
+                onPaste={onPaste}
+              />
+            </div>
+          ) }
+
           { content?.map((element, i) => (
             <Element
               key={element.id || i}

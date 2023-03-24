@@ -1,3 +1,5 @@
+import { action } from '@storybook/addon-actions';
+
 import Builder from './Builder';
 import { baseAddon } from './addons';
 
@@ -21,5 +23,6 @@ export const basic = () => (
     value={baseContent}
     rootBoundary={document.documentElement}
     options={{ debug: true }}
+    onChange={action('change')}
   />
 );
