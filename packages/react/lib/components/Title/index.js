@@ -17,7 +17,11 @@ const Title = ({ element, className }) => {
 
   return (
     <Tag
-      className={classNames('junipero oak-m-0', sizes[Tag], className)}
+      className={classNames(
+        'junipero oak-m-0 sanitize-html',
+        sizes[Tag],
+        className
+      )}
       dangerouslySetInnerHTML={{ __html: sanitizeHTML(element.content) }}
     />
   );

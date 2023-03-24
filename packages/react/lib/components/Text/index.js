@@ -4,7 +4,7 @@ import { sanitizeHTML } from '../../utils';
 
 const Text = ({ element, className }) => !element.content ? null : (
   <div
-    className={classNames('junipero', className)}
+    className={classNames('junipero sanitize-html', className)}
     dangerouslySetInnerHTML={{ __html: sanitizeHTML(element.content) }}
   />
 );
