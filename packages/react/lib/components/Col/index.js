@@ -128,7 +128,7 @@ const Col = ({
               ref={prependCatalogueRef}
               onAppend={onPrepend_}
               onPaste={onPasteBefore_}
-              className="oak-flex oak-justify-center small"
+              className="oak-inline-flex oak-self-center small"
             />
           ) }
 
