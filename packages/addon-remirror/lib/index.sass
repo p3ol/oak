@@ -1,0 +1,30 @@
+.oak .remirror-field
+  --main-color: var(--junipero-velvet)
+  --border-color: var(--junipero-mischka)
+  --placeholder-color: var(--junipero-slate)
+  --invalid-color: var(--junipero-grapefruit)
+  --background-color: var(--junipero-seashell)
+
+  .menu
+    border-radius: 4px 4px 0 0
+    box-shadow: 0 0 0 2px var(--border-color)
+    background: var(--border-color)
+
+  .remirror-editor.ProseMirror
+    appearance: none
+    display: block
+    padding: 10px
+    border: none
+    border-radius: 0 0 4px 4px
+    flex: 1
+    box-shadow: 0 0 0 2px var(--border-color)
+    transition: box-shadow .2s ease-in-out
+    background: var(--background-color)
+    min-height: 150px
+
+    p
+      &:first-child
+        margin-top: 0
+
+      &:last-child
+        margin-bottom: 0
