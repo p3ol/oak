@@ -111,7 +111,7 @@ const Element = ({ element, parent, className }) => {
                 ) }
                 { displayableSettings.length > 0 && (
                   <div
-                    className="props junipero extra !oak-text-slate oak-italic"
+                    className="props junipero extra !oak-text-slate"
                   >
                     { displayableSettings.map((setting, i) => (
                       <Fragment key={setting.key || i}>
@@ -197,7 +197,11 @@ const Element = ({ element, parent, className }) => {
             ) }
           </div>
           { builder.options.debug && (
-            <Tooltip text="Print debug in console" placement="left">
+            <Tooltip
+              className="extra"
+              text="Print debug in console"
+              placement="left"
+            >
               <span className="debug oak-cursor-pointer" onClick={onPrintDebug}>
                 <Icon className="!oak-text-sm !oak-text-slate">settings</Icon>
               </span>
