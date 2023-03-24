@@ -1,4 +1,4 @@
-import { cloneDeep } from '@junipero/core';
+import { get, set, cloneDeep } from '@junipero/core';
 
 import Emitter from '../Emitter';
 
@@ -257,5 +257,42 @@ export default class Store extends Emitter {
     }
 
     return false;
+  }
+
+  // This allows 4 signatures:
+  // (element, 'settings.size')
+  // (element, { from: 'size', to: 'settings.size' })
+  // (element, [{ from: 'size', to: 'settings.size' }])
+  // (element, ['settings.size', 'settings.url'])
+  getElementSettings (element, key, def) {
+    if (Array.isArray(key)) {
+      return key.reduce((res, k) => {
+        res[k?.to || k] = get(element, k?.from || k, k?.default ?? def);
+
+        return res;
+      }, {});
+    } else {
+      return get(element, key?.from || key, key?.default ?? def);
+    }
+  }
+
+  // This allows 4 signatures:
+  // (element, 'settings.size', 20)
+  // (element, { from: 'size', to: 'settings.size' }, { size: 20 })
+  // (element, [{ from: 'size', to: 'settings.size' }], { size: 20 })
+  // (element, ['size', 'url'], { size: 20, url: '...' })
+  setElementSettings (element, key, value) {
+    if (Array.isArray(key)) {
+      key.forEach(k =>
+        set(element, k.to || k, get(value, k.from || k, k.default)));
+    } else {
+      set(
+        element,
+        key?.to || key,
+        key?.from ? get(value, key.from, key?.default) : value ?? key?.default
+      );
+    }
+
+    return element;
   }
 }

@@ -11,8 +11,6 @@ import {
   FieldControl,
   mockState,
   cloneDeep,
-  // get,
-  set,
   mergeDeep,
   omit,
   classNames,
@@ -110,7 +108,8 @@ const Form = ({
   };
 
   const onSettingChange_ = (name, field) => {
-    set(state.element, name, field.checked ?? field.value);
+    builder.setElementSettings(state.element, name,
+      field.checked ?? field.value);
     dispatch({ element: state.element });
   };
 

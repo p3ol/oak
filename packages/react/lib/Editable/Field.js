@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { get } from '@junipero/react';
 
 import { useBuilder } from '../hooks';
 
@@ -29,7 +28,7 @@ const Field = ({
     id: setting.id,
     name: setting.name,
     disabled: setting.disabled,
-    value: get(element, setting.key) ?? setting.default,
+    value: builder.getElementSettings(element, setting.key, setting.default),
     required: setting.required,
     onChange: overrides?.onChange
       ? onCustomChange.bind(null, setting.key, overrides)

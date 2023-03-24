@@ -118,6 +118,14 @@ export default class Builder extends Emitter {
     this.#store.duplicateElement(element, options);
   }
 
+  getElementSettings (element, key, def) {
+    return this.#store.getElementSettings(element, key, def);
+  }
+
+  setElementSettings (element, key, value) {
+    this.#store.setElementSettings(element, key, value);
+  }
+
   generateId () {
     return uuid();
   }
