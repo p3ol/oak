@@ -1,5 +1,14 @@
-const Button = () => null;
+import { Button, classNames } from '@junipero/react';
 
-Button.displayName = 'Button';
+import { sanitizeHTML } from '../../utils';
 
-export default Button;
+const Button_ = ({ element, className }) => !element.content ? null : (
+  <Button
+    className={classNames('primary !oak-pointer-events-none', className)}
+    dangerouslySetInnerHTML={{ __html: sanitizeHTML(element.content) }}
+  />
+);
+
+Button_.displayName = 'Button';
+
+export default Button_;
