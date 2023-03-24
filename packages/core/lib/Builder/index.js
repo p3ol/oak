@@ -87,6 +87,10 @@ export default class Builder extends Emitter {
   }
 
   getComponentDisplayableSettings (component) {
+    if (!component) {
+      return [];
+    }
+
     return this.#components.getDisplayableSettings(component.settings);
   }
 
