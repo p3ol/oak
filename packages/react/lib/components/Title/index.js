@@ -13,6 +13,8 @@ const Title = ({ element, className }) => {
     h6: '!oak-text-md',
   };
 
+  if (!element.content) return null;
+
   return (
     <Tag
       className={classNames('junipero oak-m-0', sizes[Tag], className)}

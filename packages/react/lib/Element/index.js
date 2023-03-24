@@ -104,7 +104,7 @@ const Element = ({ element, parent, className }) => {
                 <h6 className="junipero oak-m-0">
                   <Text>{ component?.name }</Text>
                 </h6>
-                { element.content && (
+                { rendered && (
                   <div className="element-content oak-flex-auto">
                     { rendered }
                   </div>
