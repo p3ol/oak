@@ -60,6 +60,20 @@ export default class Builder extends Emitter {
     };
   }
 
+  setAddons (addons) {
+    addons?.forEach(addon => {
+      this.logger.log('Updating builder addon:', addon);
+
+      addon.fields?.forEach(field => {
+        this.#fields.add(field);
+      });
+
+      addon.components?.forEach(component => {
+        this.#components.add(component);
+      });
+    });
+  }
+
   getAvailableComponents () {
     const { groups, defaultGroup } = this.#components.all();
 

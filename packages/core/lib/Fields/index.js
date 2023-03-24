@@ -3,6 +3,13 @@ import Emitter from '../Emitter';
 
 export default class Fields extends Emitter {
   #fields = [];
+  #builder = null;
+
+  constructor ({ builder } = {}) {
+    super();
+
+    this.#builder = builder;
+  }
 
   has (type) {
     return this.#fields.some(Field.FIND_PREDICATE(type));
@@ -15,16 +22,22 @@ export default class Fields extends Emitter {
   add (field) {
     field = new Field(field);
 
-    const found = this.#fields
-      .findIndex(Field.FIND_PREDICATE(field.type));
+    const existing = this.get(field.type);
 
-    if (found > -1) {
-      this.#fields[found] = field;
+    if (existing) {
+      this.#builder.logger.log(
+        'Field definition already exists field, updating.',
+        'Old:', existing,
+        'New:', field,
+      );
+
+      const index = this.#fields.indexOf(existing);
+      this.#fields[index] = field;
+      this.emit('fields.update', this, field);
     } else {
       this.#fields.push(field);
+      this.emit('fields.add', this, field);
     }
-
-    this.emit('fields.add', this, field);
   }
 
   remove (type) {

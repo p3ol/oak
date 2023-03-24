@@ -92,27 +92,25 @@ export default class Components extends Emitter {
 
     component = new Component(component);
 
-    // If component has a group provided, we try to add it to the group
-    if (
-      component.group &&
-      this.hasGroup(component.group) &&
-      !this.hasComponent(component.id, { groupId: component.group })
-    ) {
-      const group = this.getGroup(component.group);
+    const group = component.group && this.hasGroup(component.group)
+      ? this.getGroup(component.group)
+      : this.#defaultGroup;
+
+    const existing = this.getComponent(component.id, { groupId: group.id });
+
+    if (existing) {
+      this.#builder.logger.log(
+        'Component already exists, updating definition.',
+        'Old:', existing,
+        'New:', component
+      );
+
+      const index = group.components.indexOf(existing);
+      group.components[index] = component;
+      this.emit('components.update', component, group);
+    } else {
       group.components[mutateMethod](component);
       this.emit('components.add', component, group);
-
-      return;
-    }
-
-    // Else we add the component to the default group
-    if (
-      !this.hasComponent(component.id, {
-        groupId: Components.COMPONENTS_GROUP_OTHER,
-      })
-    ) {
-      this.#defaultGroup.components[mutateMethod](component);
-      this.emit('components.add', component, this.#defaultGroup);
     }
   }
 
