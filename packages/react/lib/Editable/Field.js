@@ -16,12 +16,9 @@ const Field = ({
   ), [setting]);
 
   const overrides = useMemo(() => (
-    builder.mergeOverrides([
-      builder.getOverride('component', element.type, {
-        output: 'field', field,
-      }),
-      builder.getOverride('field', field?.type),
-    ])
+    builder.getOverride('component', element.type, {
+      output: 'field', field: setting,
+    })
   ), [element, field]);
 
   const fieldProps = {
@@ -33,6 +30,8 @@ const Field = ({
     onChange: overrides?.onChange
       ? onCustomChange.bind(null, setting.key, overrides)
       : onChange.bind(null, setting.key),
+    ...field?.props,
+    ...overrides?.props,
   };
 
   if (setting.condition && !setting.condition(element)) {

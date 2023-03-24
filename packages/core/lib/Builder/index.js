@@ -74,6 +74,10 @@ export default class Builder extends Emitter {
     addon.texts?.forEach(sheet => {
       this.#texts.addSheet(sheet);
     });
+
+    addon.overrides?.forEach(override => {
+      this.#overrides.add(override);
+    });
   }
 
   getAvailableComponents () {
@@ -98,8 +102,8 @@ export default class Builder extends Emitter {
     return this.#fields.get(type);
   }
 
-  getOverride (type, target) {
-    return this.#overrides.get(type, target);
+  getOverride (type, target, opts) {
+    return this.#overrides.get(type, target, opts);
   }
 
   mergeOverrides (overrides) {

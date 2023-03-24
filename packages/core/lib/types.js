@@ -60,6 +60,7 @@ export class Field {
 
     this.type = props.type;
     this.render = props.render;
+    this.props = props.props || {};
   }
 }
 
@@ -80,6 +81,7 @@ export class FieldOverride {
     this.type = 'field';
     this.targets = props.targets || [];
     this.render = props.render;
+    this.props = props.props || {};
   }
 }
 
