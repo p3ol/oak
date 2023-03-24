@@ -392,7 +392,7 @@ export const imageComponent = (...props) => ({
     title: t => t('core.components.image.settings.title', 'Image options'),
     fields: [{
       type: 'image',
-      key: 'url',
+      key: ['url', 'name'],
       default: '',
       label: t => t('core.components.image.settings.image.title', 'Image'),
     }, {
