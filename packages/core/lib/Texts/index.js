@@ -70,14 +70,14 @@ export default class Texts extends Emitter {
   }
 
   get (key, def) {
+    if (typeof key === 'function') {
+      return key(this.get.bind(this));
+    }
+
     const activeSheet = this.#sheets[this.#activeSheet];
 
     if (!activeSheet) {
       return def ?? key;
-    }
-
-    if (typeof key === 'function') {
-      return key(this.get.bind(this));
     }
 
     if (typeof key !== 'string') return def ?? key;
