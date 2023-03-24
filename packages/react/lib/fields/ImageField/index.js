@@ -88,7 +88,7 @@ const ImageField = ({
   return (
     <div
       className={classNames(
-        'image-field',
+        'image-field oak-flex oak-items-center oak-gap-4',
         {
           loading: state.loading,
           'icon-only': iconOnly,
@@ -103,9 +103,14 @@ const ImageField = ({
             style={{ backgroundImage: `url(${state.value.url})` }}
           />
           <div className="info">
-            <div className="name">{ getName() }</div>
+            <div className="name oak-truncate">{ getName() }</div>
             <div className="actions">
-              <a href="#" className="delete" onClick={onReset}>
+              <a
+                href="#"
+                className="delete oak-text-grapefruit"
+                draggable={false}
+                onClick={onReset}
+              >
                 <Text name="core.fields.image.del">
                   Delete
                 </Text>
@@ -122,12 +127,19 @@ const ImageField = ({
               backgroundImage: state.value?.url && `url(${state.value?.url})`,
             },
           }) }
+          className={classNames(
+            {
+              '!oak-w-full': !iconOnly,
+            },
+          )}
         >
           { state.loading ? (
             <Spinner />
           ) : !state.value?.url ? (
             <>
-              <Icon>add</Icon>
+              <Icon className={classNames({ '!oak-text-slate': !iconOnly })}>
+                add
+              </Icon>
               { !iconOnly && (
                 <span>
                   <Text name="core.fields.image.add">
