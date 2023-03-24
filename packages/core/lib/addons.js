@@ -403,6 +403,7 @@ export const imageComponent = (...props) => ({
         'Image size'
       ),
       default: 'auto',
+      displayable: true,
       options: [{
         title: t => t(
           'core.components.image.settings.image.size.auto',
@@ -425,6 +426,7 @@ export const imageComponent = (...props) => ({
     }, {
       type: 'text',
       key: 'settings.width',
+      displayable: true,
       condition: element =>
         element?.settings?.size === 'custom',
       label: t => t(
@@ -438,6 +440,7 @@ export const imageComponent = (...props) => ({
     }, {
       type: 'text',
       key: 'settings.height',
+      displayable: true,
       condition: element =>
         element?.settings?.size === 'custom',
       label: t => t(
@@ -451,6 +454,7 @@ export const imageComponent = (...props) => ({
     }, {
       type: 'select',
       key: 'settings.textAlign',
+      displayable: true,
       label: t => t(
         'core.components.image.settings.image.align.title',
         'Image alignment'
