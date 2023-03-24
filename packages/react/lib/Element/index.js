@@ -9,7 +9,7 @@ import Option from '../Option';
 import Editable from '../Editable';
 import Property from './Property';
 
-const Element = ({ element, parent, className }) => {
+const Element = ({ element, parent, className, depth = 0 }) => {
   const { builder } = useBuilder();
   const innerRef = useRef();
   const editableRef = useRef();
@@ -61,6 +61,7 @@ const Element = ({ element, parent, className }) => {
     component,
     parent,
     builder,
+    depth,
     className: element.className,
   }) || null;
 

@@ -8,12 +8,26 @@
 
   margin-top: 24px
 
+  .wrapper
+    &.even
+      & > .row-content > .column
+        background: var(--background-color)
+
+        & > .col-inner > .col-content > .element > .inner
+          background: var(--inner-background-color)
+
+    &.odd
+      & > .row-content > .column
+        background: var(--inner-background-color)
+
+        & > .col-inner > .col-content > .element > .inner
+          background: var(--background-color)
+
   .drop-zone
     position: absolute
     left: 0
     width: 100%
     z-index: 1
-    // background: rgba(255, 0, 0, 0.5)
 
     &::after
       content: ''
@@ -49,7 +63,6 @@
 
   .column
     border-radius: 10px
-    background: var(--background-color)
     position: relative
     z-index: 2
     min-height: 100px
@@ -77,31 +90,6 @@
 
         .icon
           color: var(--oak-text-color)
-
-    .element .inner
-      background: var(--inner-background-color)
-
-    .column
-      background: var(--inner-background-color)
-
-      .element .inner
-        background: var(--background-color)
-
-      .column
-        background: var(--background-color)
-
-        .element .inner
-          background: var(--inner-background-color)
-
-        .column
-          background: var(--inner-background-color)
-
-          .element .inner
-            background: var(--background-color)
-
-          .column, .element .inner
-            background: transparent
-            border: 1px solid var(--inner-border-color)
 
     .col-inner
       .catalogue

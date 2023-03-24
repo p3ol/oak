@@ -7,6 +7,7 @@ const Row = ({
   element,
   parent,
   className,
+  depth = 0,
   ...rest
 }) => {
   const { builder } = useBuilder();
@@ -52,6 +53,7 @@ const Row = ({
       { ...omit(rest, ['builder', 'component']) }
       className={classNames(
         'wrapper',
+        depth % 2 === 0 ? 'even' : 'odd',
         className,
       )}
     >
@@ -73,6 +75,7 @@ const Row = ({
         { element?.cols?.map((col, i) => (
           <Col
             key={i}
+            depth={depth}
             element={col}
             onPrepend={onDivide.bind(null, i, true)}
             onAppend={onDivide.bind(null, i, false)}

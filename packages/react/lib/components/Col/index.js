@@ -12,6 +12,7 @@ import Text from '../../Text';
 const Col = ({
   element,
   className,
+  depth = 0,
   onPrepend,
   onAppend,
   onRemove,
@@ -20,7 +21,7 @@ const Col = ({
   const editableRef = useRef();
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
-  const { builder, rootRef, floatingsRef } = useBuilder();
+  const { builder, floatingsRef } = useBuilder();
 
   const onPrependCol_ = e => {
     e.preventDefault();
@@ -105,7 +106,7 @@ const Col = ({
     >
       <Tooltip
         placement="right"
-        container={rootRef?.current || '.oak'}
+        container={floatingsRef?.current || '.oak'}
         className="secondary"
         text={<Text name="core.tooltips.addColumn">Add column</Text>}
       >
@@ -136,6 +137,7 @@ const Col = ({
             <div className="col-content oak-flex oak-flex-col oak-gap-4">
               { element.content?.map((item, i) => (
                 <Element
+                  depth={depth + 1}
                   key={item.id || i}
                   index={i}
                   parent={element.content}
@@ -159,7 +161,7 @@ const Col = ({
 
       <Tooltip
         placement="left"
-        container={rootRef?.current || '.oak'}
+        container={floatingsRef?.current || '.oak'}
         className="secondary"
         text={<Text name="core.tooltips.addColumn">Add column</Text>}
       >
