@@ -23,7 +23,7 @@ const Element = ({ element, parent, className, depth = 0 }) => {
 
   const onDelete_ = e => {
     e?.preventDefault();
-    builder.removeElement(element, { parent });
+    builder.removeElement(element.id, { parent });
   };
 
   const onDuplicate_ = e => {

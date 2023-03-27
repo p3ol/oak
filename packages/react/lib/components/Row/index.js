@@ -29,7 +29,7 @@ const Row = ({
       type: 'col',
     });
 
-    builder.setElement(element, { cols: element.cols });
+    builder.setElement(element.id, { cols: element.cols });
   };
 
   const onRemoveCol = index => {
@@ -38,9 +38,9 @@ const Row = ({
     }
 
     if (element.cols?.length <= 0) {
-      builder.removeElement(element, { parent });
+      builder.removeElement(element.id, { parent });
     } else {
-      builder.setElement(element, { cols: element.cols });
+      builder.setElement(element.id, { cols: element.cols });
     }
   };
 

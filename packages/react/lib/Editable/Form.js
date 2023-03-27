@@ -120,7 +120,7 @@ const Form = ({
   };
 
   const onSave_ = () => {
-    builder.setElement(element, serialize(state.element));
+    builder.setElement(element.id, serialize(state.element));
     onSave();
   };
 

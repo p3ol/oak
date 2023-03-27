@@ -1,3 +1,4 @@
+import { exists } from '@junipero/core';
 import { v4 as uuid } from 'uuid';
 
 import { BuilderOptions } from '../types';
@@ -16,7 +17,7 @@ export default class Builder extends Emitter {
   #texts = null;
   #store = null;
 
-  constructor ({ addons, content, options = {} }) {
+  constructor ({ addons, content, options = {} } = {}) {
     super();
 
     this.options = new BuilderOptions(options);
@@ -98,6 +99,10 @@ export default class Builder extends Emitter {
     return this.#components.getDisplayableSettings(component.settings);
   }
 
+  getAvailableFields () {
+    return this.#fields.all();
+  }
+
   getField (type) {
     return this.#fields.get(type);
   }
@@ -114,8 +119,8 @@ export default class Builder extends Emitter {
     return this.#store.get();
   }
 
-  setContent (content, opts) {
-    this.#store.set(content, opts);
+  setContent (content, options) {
+    this.#store.set(content, options);
   }
 
   createElement (type, options) {
@@ -126,12 +131,16 @@ export default class Builder extends Emitter {
     this.#store.addElement(element, options);
   }
 
-  removeElement (element, options) {
-    this.#store.removeElement(element, options);
+  getElement (id, options) {
+    return this.#store.getElement(id, options);
   }
 
-  setElement (element, newContent) {
-    this.#store.setElement(element, newContent);
+  removeElement (id, options) {
+    this.#store.removeElement(id, options);
+  }
+
+  setElement (id, updates, options) {
+    this.#store.setElement(id, updates, options);
   }
 
   moveElement (element, sibling, options) {
@@ -151,7 +160,9 @@ export default class Builder extends Emitter {
   }
 
   generateId () {
-    return uuid();
+    const customId = this.options.generateId?.();
+
+    return exists(customId) && customId !== '' ? customId : uuid();
   }
 
   getTextSheet (id) {

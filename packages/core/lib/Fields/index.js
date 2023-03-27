@@ -50,4 +50,8 @@ export default class Fields extends Emitter {
       this.emit('fields.remove', this, field);
     }
   }
+
+  all () {
+    return this.#fields;
+  }
 }

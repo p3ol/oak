@@ -1,4 +1,4 @@
-import { get, set, cloneDeep } from '@junipero/core';
+import { exists, get, set, cloneDeep } from '@junipero/core';
 
 import Emitter from '../Emitter';
 
@@ -12,8 +12,13 @@ export default class Store extends Emitter {
     this.#builder = builder;
   }
 
-  isElement (element, sibling) {
-    return element && sibling && element.id === sibling.id;
+  isIdValid (id) {
+    return exists(id) && id !== '';
+  }
+
+  isSameElement (elementId, siblingId) {
+    return this.isIdValid(elementId) && this.isIdValid(siblingId) &&
+      elementId === siblingId;
   }
 
   get () {
@@ -31,7 +36,7 @@ export default class Store extends Emitter {
     override: o,
     ...opts
   } = {}) {
-    if (!element.id || opts.resetIds) {
+    if (!this.isIdValid(element.id) || opts.resetIds) {
       element.id = this.#builder.generateId();
     }
 
@@ -124,55 +129,120 @@ export default class Store extends Emitter {
     }
 
     this.emit('content.update', this.#content);
+
+    return element;
   }
 
-  removeElement (element, { parent = this.#content } = {}) {
-    if (!element.id) {
+  getElement (id, { parent = this.#content, deep = false } = {}) {
+    if (!this.isIdValid(id)) {
       return;
     }
 
-    const index = parent.findIndex(elmt => this.isElement(elmt, element));
+    const found = parent.find(elmt => this.isSameElement(elmt?.id, id));
+
+    if (found) {
+      return found;
+    }
+
+    if (deep) {
+      for (const child of parent) {
+        const component = this.#builder.getComponent(child.type);
+        const override = this.#builder.getOverride('component', child.type);
+        const containers = override?.getContainers?.(child) ||
+          component?.getContainers?.(child) ||
+          [child.content];
+
+        for (const container of containers) {
+          const found = this.getElement(id, { parent: container, deep });
+
+          if (found) {
+            return found;
+          }
+        }
+      }
+    }
+  }
+
+  removeElement (id, { parent = this.#content, deep } = {}) {
+    if (!this.isIdValid(id)) {
+      return;
+    }
+
+    const index = parent.findIndex(elmt => this.isSameElement(elmt?.id, id));
 
     if (index > -1) {
       parent.splice(index, 1);
       this.emit('content.update', this.#content);
+
+      return true;
     }
+
+    if (deep) {
+      for (const child of parent) {
+        const component = this.#builder.getComponent(child.type);
+        const override = this.#builder.getOverride('component', child.type);
+        const containers = override?.getContainers?.(child) ||
+          component?.getContainers?.(child) ||
+          [child.content];
+
+        for (const container of containers) {
+          const removed = this.removeElement(id, { parent: container, deep });
+
+          if (removed) {
+            return true;
+          }
+        }
+      }
+    }
+
+    return false;
   }
 
-  setElement (element, newContent) {
+  setElement (id, newContent, { parent = this.#content, deep } = {}) {
+    if (!this.isIdValid(id)) {
+      return;
+    }
+
+    const element = this.getElement(id, { parent, deep });
     Object.assign(element, newContent);
     this.emit('content.update', this.#content);
+
+    return element;
   }
 
   moveElement (element, sibling, { parent = this.#content, position } = {}) {
     if (
-      !element.id ||
-      !sibling.id ||
-      this.isElement(element, sibling) ||
-      this.contains(sibling, { parent: element })
+      this.isSameElement(element?.id, sibling?.id) ||
+      this.contains(sibling.id, { parent: element })
     ) {
       return;
     }
 
-    const nearestParent = this.findNearestParent(element);
+    const nearestParent = this.findNearestParent(element.id);
     const childIndex = nearestParent
-      ?.findIndex(e => this.isElement(e, element));
-    nearestParent?.splice(childIndex, 1);
+      ?.findIndex(e => this.isSameElement(e?.id, element.id));
+    const [retrievedElement] = nearestParent?.splice(childIndex, 1) || [];
+
+    if (!retrievedElement) {
+      return;
+    }
 
     const newChildIndex = parent.indexOf(sibling);
     parent.splice(
       position === 'after' ? newChildIndex + 1 : newChildIndex,
       0,
-      element
+      retrievedElement
     );
 
     this.emit('content.update', this.#content);
+
+    return retrievedElement;
   }
 
-  duplicateElement (elmt, { parent = this.#content } = {}) {
-    let newElmt = this.sanitize(cloneDeep(elmt), { resetIds: true });
-    const component = this.#builder.getComponent(elmt.type);
-    const override = this.#builder.getOverride('component', elmt.type);
+  duplicateElement (element, { parent = this.#content } = {}) {
+    let newElmt = this.sanitize(cloneDeep(element), { resetIds: true });
+    const component = this.#builder.getComponent(element.type);
+    const override = this.#builder.getOverride('component', element.type);
     const duplicate = override?.duplicate || component?.duplicate;
 
     if (typeof duplicate === 'function') {
@@ -180,19 +250,21 @@ export default class Store extends Emitter {
     }
 
     parent.splice(
-      parent.findIndex(e => e.id === elmt.id) + 1,
+      parent.findIndex(e => this.isSameElement(e.id, element.id)) + 1,
       0,
       newElmt
     );
 
     this.emit('content.update', this.#content);
+
+    return newElmt;
   }
 
-  findNearestParent (element, { parent = this.#content } = {}) {
+  findNearestParent (id, { parent = this.#content } = {}) {
     // First check if element in inside direct parent to avoid trying to
     // find every component & override for every nested level
     for (const e of parent) {
-      if (this.isElement(e, element)) {
+      if (this.isSameElement(e.id, id)) {
         return parent;
       }
     }
@@ -211,7 +283,7 @@ export default class Store extends Emitter {
 
       for (const container of containers) {
         if (Array.isArray(container)) {
-          const nearest = this.findNearestParent(element, {
+          const nearest = this.findNearestParent(id, {
             parent: container,
           });
 
@@ -225,7 +297,7 @@ export default class Store extends Emitter {
     return null;
   }
 
-  contains (element, { parent = this.#content } = {}) {
+  contains (id, { parent = this.#content } = {}) {
     // Force parent to be an array to be able to loop over it
     // -----
     // In some cases (Store.moveElement for example), parent cannot be
@@ -234,7 +306,7 @@ export default class Store extends Emitter {
     parent = [].concat(parent);
 
     for (const e of parent) {
-      if (this.isElement(e, element)) {
+      if (this.isSameElement(e?.id, id)) {
         return true;
       }
     }
@@ -249,7 +321,7 @@ export default class Store extends Emitter {
 
       for (const container of containers) {
         if (Array.isArray(container)) {
-          if (this.contains(element, { parent: container })) {
+          if (this.contains(id, { parent: container })) {
             return true;
           }
         }

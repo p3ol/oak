@@ -1,6 +1,7 @@
 export class BuilderOptions {
   constructor (props) {
     this.debug = props.debug || false;
+    this.generateId = props.generateId;
   }
 }
 
