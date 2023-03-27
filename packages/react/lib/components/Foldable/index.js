@@ -31,7 +31,9 @@ const Foldable = ({
       </Droppable>
       <div className="sections oak-flex oak-flex-col oak-gap-4 oak-p-4">
         <div className="section">
-          <div className="title junipero secondary !oak-text-slate">
+          <div
+            className="title junipero secondary !oak-text-alternate-text-color"
+          >
             <Text name="core.components.foldable.sectionsTitle.seeMore">
               Label when collapsed
             </Text>
@@ -43,7 +45,9 @@ const Foldable = ({
           />
         </div>
         <div className="section">
-          <div className="title junipero secondary !oak-text-slate">
+          <div
+            className="title junipero secondary !oak-text-alternate-text-color"
+          >
             <Text name="core.components.foldable.sectionsTitle.seeLess">
               Label when expanded
             </Text>
@@ -55,7 +59,9 @@ const Foldable = ({
           />
         </div>
         <div className="section">
-          <div className="title junipero secondary !oak-text-slate">
+          <div
+            className="title junipero secondary !oak-text-alternate-text-color"
+          >
             <Text name="core.components.foldable.sectionsTitle.content">
               Content
             </Text>

@@ -88,7 +88,11 @@ const Menu = () => {
           { /* <Icon>minus</Icon> */ }
           <i className="oak-icons">horizontal_rule</i>
         </MenuButton>
-        <div className="junipero secondary !oak-text-slate">{ fontSize() }</div>
+        <div
+          className="junipero secondary !oak-text-alternate-text-color"
+        >
+          { fontSize() }
+        </div>
         <MenuButton
           enabled={increaseFontSize?.enabled}
           isActive={() => false}

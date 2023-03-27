@@ -107,7 +107,7 @@ const ImageField = ({
             <div className="actions">
               <a
                 href="#"
-                className="delete oak-text-grapefruit"
+                className="delete oak-text-error-color"
                 draggable={false}
                 onClick={onReset}
               >
@@ -137,7 +137,11 @@ const ImageField = ({
             <Spinner />
           ) : !state.value?.url ? (
             <>
-              <Icon className={classNames({ '!oak-text-slate': !iconOnly })}>
+              <Icon
+                className={classNames(
+                  { '!oak-text-alternate-text-color': !iconOnly }
+                )}
+              >
                 add
               </Icon>
               { !iconOnly && (

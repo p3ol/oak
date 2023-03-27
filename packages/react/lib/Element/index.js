@@ -112,7 +112,9 @@ const Element = ({ element, parent, className, depth = 0 }) => {
                 ) }
                 { displayableSettings.length > 0 && (
                   <div
-                    className="props junipero extra !oak-text-slate"
+                    className={classNames(
+                      'props junipero extra !oak-text-alternate-text-color',
+                    )}
                   >
                     { displayableSettings.map((setting, i) => (
                       <Fragment key={setting.key || i}>
@@ -204,7 +206,11 @@ const Element = ({ element, parent, className, depth = 0 }) => {
               placement="left"
             >
               <span className="debug oak-cursor-pointer" onClick={onPrintDebug}>
-                <Icon className="!oak-text-sm !oak-text-slate">settings</Icon>
+                <Icon
+                  className="!oak-text-sm !oak-text-alternate-text-color"
+                >
+                  settings
+                </Icon>
               </span>
             </Tooltip>
           ) }

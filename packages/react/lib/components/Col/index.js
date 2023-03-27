@@ -175,7 +175,7 @@ const Col = ({
         </a>
       </Tooltip>
 
-      <div className="options oak-flex oak-items-center oak-gap-1">
+      <div className="options oak-flex oak-items-center oak-gap-0.5">
         <Editable
           ref={editableRef}
           element={element}

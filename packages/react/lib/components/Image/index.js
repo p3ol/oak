@@ -22,7 +22,7 @@ const Image = ({
       )}
     >
       <div
-        className="preview oak-bg-slate"
+        className="preview oak-bg-inner-background-color"
         style={{
           backgroundImage: element.url ? `url('${element.url}')` : null,
         }}

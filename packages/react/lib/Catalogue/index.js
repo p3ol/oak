@@ -165,7 +165,7 @@ const Catalogue = forwardRef(({
                               ? component.icon.bind(null, component)
                               : component.icon}
                           />
-                          <span className="name">
+                          <span className="name junipero">
                             <Text>{ component.name }</Text>
                           </span>
                         </a>
