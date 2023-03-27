@@ -5,6 +5,7 @@ module.exports = {
   prefix: 'oak-',
   content: [
     './packages/react/**/*.js',
+    './packages/addon-*/**/*.js',
   ],
   safelist: [
     { pattern: /flex-/ },

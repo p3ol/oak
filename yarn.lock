@@ -1722,6 +1722,16 @@
     core-js "3.29.0"
     prop-types "15.8.1"
 
+"@junipero/react@3.0.0-beta.8":
+  version "3.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-beta.8.tgz#b054a9f222dc56285ef0fdf35dabb719a94c1ef5"
+  integrity sha512-8AZAJkKj3jAvFkfPvjQUiCwN+mwmhVu/xk/4Zw6OUqAz7HqCcM1TRtyiP9uAY3XiSSYLn4WSHYzGmiibVyg/ZA==
+  dependencies:
+    "@babel/runtime-corejs3" "7.21.0"
+    "@floating-ui/react" "0.20.1"
+    core-js "3.29.0"
+    prop-types "15.8.1"
+
 "@junipero/tailwind-plugin@3.0.0-beta.5":
   version "3.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.0.0-beta.5.tgz#963bd8aeb28df3d53e5095d198548d01bf27b1df"

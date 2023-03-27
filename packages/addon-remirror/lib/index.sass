@@ -1,14 +1,52 @@
 .oak .remirror-field
-  --main-color: var(--junipero-velvet)
-  --border-color: var(--junipero-mischka)
-  --placeholder-color: var(--junipero-slate)
-  --invalid-color: var(--junipero-grapefruit)
-  --background-color: var(--junipero-seashell)
+  --background-color: var(--oak-inner-background-color)
+  --border-color: var(--oak-field-border-color)
+  --toolbar-background-color: var(--oak-field-border-color)
+  --toolbar-icon-background-color: var(--oak-alternate-text-color)
+  --toolbar-icon-color: var(--oak-alternate-text-color)
 
   .menu
     border-radius: 4px 4px 0 0
     box-shadow: 0 0 0 2px var(--border-color)
     background: var(--border-color)
+    padding: 4px 5px
+
+    .menu-button
+      border-radius: 2px
+      text-decoration: none
+      padding: 2px
+      cursor: pointer
+
+      &:hover, &.active
+        background: var(--toolbar-icon-background-color)
+
+        .oak-icons
+          color: var(--oak-reverse-text-color)
+
+      .oak-icons
+        color: var(--toolbar-icon-color)
+        font-size: 20px
+
+      &.underline
+        .oak-icons
+          font-size: 18px
+
+      &.color-button
+        margin-right: 20px
+
+      &.size-button
+        margin-right: 0
+
+        i
+          font-size: 18px
+
+      &.text-left
+        margin-left: 20px
+
+    .link-field
+      & > .junipero.dropdown-menu .menu-inner
+        padding: 10px
+        overflow: visible
 
   .remirror-editor.ProseMirror
     appearance: none

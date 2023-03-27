@@ -24,6 +24,7 @@ const MenuButton = ({
         onClick={onClick_}
         className={classNames(
           'menu-button',
+          'oak-flex oak-items-center oak-justify-center',
           { active: isActive?.() },
           className,
         )}
