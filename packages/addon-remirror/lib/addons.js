@@ -25,7 +25,10 @@ export const basicExtensions = () => [
   new UnderlineExtension(),
   new LinkExtension(),
   new TextColorExtension(),
-  new FontSizeExtension(),
+  new FontSizeExtension({
+    defaultSize: '16px',
+    unit: 'px',
+  }),
   new NodeFormattingExtension(),
 ];
 

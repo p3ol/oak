@@ -37,7 +37,7 @@ const ColorButton = ({ children }) => {
   };
 
   return (
-    <Dropdown onToggle={onToggle} className="color-field oak-items-center">
+    <Dropdown onToggle={onToggle} className="text-color-field oak-items-center">
       <DropdownToggle>
         <span className="oak-inline-flex oak-items-center">
           <MenuButton
