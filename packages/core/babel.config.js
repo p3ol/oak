@@ -4,9 +4,6 @@ module.exports = {
       corejs: 3,
       useBuiltIns: 'usage',
     }],
-    ['@babel/react', {
-      runtime: 'automatic',
-    }],
   ],
   plugins: [
     ['@babel/transform-runtime', {
