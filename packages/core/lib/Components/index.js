@@ -1,4 +1,4 @@
-import { Component, ComponentGroup } from '../types';
+import { Component, ComponentsGroup } from '../types';
 import Emitter from '../Emitter';
 
 export default class Components extends Emitter {
@@ -17,7 +17,7 @@ export default class Components extends Emitter {
 
     this.#builder = builder;
     this.#groups = [];
-    this.#defaultGroup = new ComponentGroup({
+    this.#defaultGroup = new ComponentsGroup({
       type: 'group',
       id: Components.COMPONENTS_GROUP_OTHER,
       components: [],
@@ -25,11 +25,11 @@ export default class Components extends Emitter {
   }
 
   hasGroup (id) {
-    return this.#groups.some(ComponentGroup.FIND_PREDICATE(id));
+    return this.#groups.some(ComponentsGroup.FIND_PREDICATE(id));
   }
 
   getGroup (id) {
-    return this.#groups.find(ComponentGroup.FIND_PREDICATE(id));
+    return this.#groups.find(ComponentsGroup.FIND_PREDICATE(id));
   }
 
   hasComponent (id, { groupId } = {}) {
@@ -81,7 +81,7 @@ export default class Components extends Emitter {
       component.type === Components.TYPE_GROUP &&
       !this.hasGroup(component.id)
     ) {
-      component = new ComponentGroup(component);
+      component = new ComponentsGroup(component);
       component.components = component.components || [];
 
       this.#groups[mutateMethod](component);
@@ -116,7 +116,7 @@ export default class Components extends Emitter {
 
   remove (id) {
     const groupIndex = this.#groups
-      .findIndex(ComponentGroup.FIND_PREDICATE(id));
+      .findIndex(ComponentsGroup.FIND_PREDICATE(id));
 
     if (groupIndex !== -1) {
       const group = this.#groups[groupIndex];

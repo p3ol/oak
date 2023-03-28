@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fields should allow to manage fields: With custom field 1`] = `
+[
+  Field {
+    "props": {},
+    "render": undefined,
+    "type": "test",
+  },
+]
+`;
+
+exports[`Fields should allow to manage fields: Without custom field 1`] = `[]`;

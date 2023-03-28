@@ -4,6 +4,7 @@ import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
+import dts from 'rollup-plugin-dts';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
@@ -67,4 +68,9 @@ const getConfig = (format, {
 
 export default [
   ...formats.map(f => getConfig(f)),
+  {
+    input: './lib/index.d.ts',
+    output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
+    plugins: [dts()],
+  },
 ];

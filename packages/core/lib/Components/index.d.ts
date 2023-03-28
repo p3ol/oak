@@ -1,11 +1,14 @@
 import { Component, ComponentsGroup } from '../types';
+import { Builder } from '../Builder';
+import { Emitter } from '../Emitter';
 
-export declare class Components {
+export declare class Components extends Emitter {
   static TYPE_COMPONENT: string;
   static TYPE_GROUP: string;
-
   static COMPONENTS_GROUP_CORE: string;
   static COMPONENTS_GROUP_OTHER: string;
+
+  constructor(options?: { builder: Builder });
 
   hasGroup(id: string): boolean;
   getGroup(id: string): ComponentsGroup;

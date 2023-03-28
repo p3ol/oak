@@ -26,7 +26,7 @@ export default class Fields extends Emitter {
 
     if (existing) {
       this.#builder.logger.log(
-        'Field definition already exists field, updating.',
+        'Field definition already exists, updating.',
         'Old:', existing,
         'New:', field,
       );
@@ -38,6 +38,8 @@ export default class Fields extends Emitter {
       this.#fields.push(field);
       this.emit('fields.add', this, field);
     }
+
+    return field;
   }
 
   remove (type) {

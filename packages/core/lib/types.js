@@ -33,7 +33,7 @@ export class Component {
   }
 }
 
-export class ComponentGroup {
+export class ComponentsGroup {
   static FIND_PREDICATE = id => g => g.id === id;
 
   constructor (props) {
@@ -360,8 +360,8 @@ export class TextsSheet {
   static FIND_PREDICATE = id => s => s.id === id;
 
   constructor (props) {
-    if (!props.type) {
-      throw new Error('TextSheep must have an id');
+    if (!props.id) {
+      throw new Error('TextsSheet must have an id');
     }
 
     this.id = props.id;

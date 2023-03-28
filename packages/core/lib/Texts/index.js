@@ -19,6 +19,7 @@ export default class Texts extends Emitter {
   }
 
   addSheet (sheet) {
+    sheet = new TextsSheet(sheet);
     const existing = this.getSheet(sheet.id);
 
     if (existing) {
@@ -35,25 +36,32 @@ export default class Texts extends Emitter {
       this.#sheets.unshift(sheet);
       this.emit('sheets.add', sheet);
     }
+
+    return sheet;
   }
 
   setSheet (sheet) {
     const index = this.#sheets.findIndex(TextsSheet.FIND_PREDICATE(sheet.id));
 
     if (index !== -1) {
-      this.#sheets[index] = sheet;
+      this.#sheets[index] = new TextsSheet(sheet);
       this.emit('sheets.update', sheet);
     }
+
+    return sheet;
   }
 
   removeSheet (id) {
     const index = this.#sheets.findIndex(TextsSheet.FIND_PREDICATE(id));
 
     if (index !== -1) {
-      const sheet = this.#sheets[index];
-      this.#sheets.splice(index, 1);
+      const [sheet] = this.#sheets.splice(index, 1);
       this.emit('sheets.remove', sheet);
+
+      return true;
     }
+
+    return false;
   }
 
   getActiveSheet () {

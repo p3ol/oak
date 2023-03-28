@@ -17,7 +17,7 @@ const Field = ({
 
   const overrides = useMemo(() => (
     builder.getOverride('component', element.type, {
-      output: 'field', field: setting,
+      output: 'field', setting,
     })
   ), [element, field]);
 
