@@ -82,24 +82,33 @@ export const uncontrolled = () => {
   );
 };
 
-export const withCustomTexts = () => (
-  <div>
-    <div>&quot;Paste from clipboard&quot; should be in french</div>
-    <Builder
-      addons={[baseAddon(), {
-        texts: [{ id: 'fr', texts: {
-          core: {
-            pasteFromClipboard: 'Coller depuis le presse-papier',
-          },
-        } }],
-      }]}
-      value={baseContent}
-      rootBoundary={document.documentElement}
-      options={{ debug: true }}
-      onChange={action('change')}
-    />
-  </div>
-);
+export const withCustomTexts = () => {
+  const builderRef = useRef();
+
+  useEffect(() => {
+    builderRef.current?.builder.setActiveTextSheet('fr');
+  }, []);
+
+  return (
+    <div>
+      <div>&quot;Paste from clipboard&quot; should be in french</div>
+      <Builder
+        ref={builderRef}
+        addons={[baseAddon(), {
+          texts: [{ id: 'fr', texts: {
+            core: {
+              pasteFromClipboard: 'Coller depuis le presse-papier',
+            },
+          } }],
+        }]}
+        value={baseContent}
+        rootBoundary={document.documentElement}
+        options={{ debug: true }}
+        onChange={action('change')}
+      />
+    </div>
+  );
+};
 
 export const withMultipleLanguages = () => {
   const builderRef = useRef();
