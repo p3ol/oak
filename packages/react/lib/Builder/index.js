@@ -37,7 +37,7 @@ const Builder = forwardRef(({
   const getContext = useCallback(() => ({
     builder,
     content,
-    rootBoundary: rootBoundary.current
+    rootBoundary: rootBoundary?.current
       ? rootBoundary : { current: rootBoundary },
     onImageUpload,
     rootRef: innerRef,

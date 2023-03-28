@@ -1,12 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  displayName: 'oak',
+  displayName: '@oakjs/react',
   testEnvironment: 'jsdom',
   clearMocks: true,
   resetMocks: true,
   rootDir: path.resolve(__dirname),
   moduleNameMapper: {
+    '^@oakjs/core(.+)$': '<rootDir>/../core/lib$1',
     '^@tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
   },
   coveragePathIgnorePatterns: [

@@ -36,5 +36,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "exports": {
+    ".": "./dist/esm/index.js",
+    "./addons": "./dist/esm/addons.js"
   }
 }
