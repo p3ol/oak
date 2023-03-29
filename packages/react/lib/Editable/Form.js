@@ -97,12 +97,6 @@ const Form = ({
   //     return e;
   //   }, cloneDeep(elmt));
 
-  const serialize = element => {
-    const s = overrides?.serialize || component.serialize;
-
-    return s ? s(element) : element;
-  };
-
   const onUpdate_ = elmt => {
     dispatch({ element: elmt });
   };
@@ -120,7 +114,7 @@ const Form = ({
   };
 
   const onSave_ = () => {
-    builder.setElement(element.id, serialize(state.element));
+    builder.setElement(element.id, state.element || {}, { element });
     onSave();
   };
 

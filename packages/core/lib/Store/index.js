@@ -198,13 +198,26 @@ export default class Store extends Emitter {
     return false;
   }
 
-  setElement (id, newContent, { parent = this.#content, deep } = {}) {
+  setElement (id, newContent, {
+    element: e,
+    parent = this.#content,
+    deep,
+  } = {}) {
     if (!this.isIdValid(id)) {
       return;
     }
 
-    const element = this.getElement(id, { parent, deep });
-    Object.assign(element, newContent);
+    const element = e || this.getElement(id, { parent, deep });
+    const component = this.#builder.getComponent(element.type);
+    const override = this.#builder.getOverride('component', element.type);
+
+    const serialize = override?.serialize || component?.serialize;
+
+    Object.assign(
+      element,
+      serialize?.(newContent, { builder: this.#builder }) ||
+        newContent || {}
+    );
     this.emit('content.update', this.#content);
 
     return element;
