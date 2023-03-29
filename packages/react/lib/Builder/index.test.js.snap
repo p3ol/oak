@@ -46,7 +46,7 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
               class="group oak-grid oak-grid-cols-2 oak-gap-2"
             >
               <a
-                class="component component-row oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2"
+                class="component component-row oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
                 draggable="false"
                 href="#"
               >
@@ -56,29 +56,29 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
                   row
                 </i>
                 <span
-                  class="name junipero"
+                  class="name"
                 >
                   Row
                 </span>
               </a>
               <a
-                class="component component-empty-space oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2"
+                class="component component-empty-space oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
                   class="icon junipero-icons !oak-text-2xl"
                 >
-                  block
+                  blank_space
                 </i>
                 <span
-                  class="name junipero"
+                  class="name"
                 >
                   Blank space
                 </span>
               </a>
               <a
-                class="component component-title oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2"
+                class="component component-title oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
                 draggable="false"
                 href="#"
               >
@@ -88,13 +88,13 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
                   title
                 </i>
                 <span
-                  class="name junipero"
+                  class="name"
                 >
                   Title
                 </span>
               </a>
               <a
-                class="component component-text oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2"
+                class="component component-text oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
                 draggable="false"
                 href="#"
               >
@@ -104,13 +104,13 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
                   multiline
                 </i>
                 <span
-                  class="name junipero"
+                  class="name"
                 >
                   Text
                 </span>
               </a>
               <a
-                class="component component-image oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2"
+                class="component component-image oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
                 draggable="false"
                 href="#"
               >
@@ -120,29 +120,29 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
                   image
                 </i>
                 <span
-                  class="name junipero"
+                  class="name"
                 >
                   Image
                 </span>
               </a>
               <a
-                class="component component-button oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2"
+                class="component component-button oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
                   class="icon junipero-icons !oak-text-2xl"
                 >
-                  field_click
+                  button
                 </i>
                 <span
-                  class="name junipero"
+                  class="name"
                 >
                   Button
                 </span>
               </a>
               <a
-                class="component component-foldable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2"
+                class="component component-foldable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
                 draggable="false"
                 href="#"
               >
@@ -152,7 +152,7 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
                   foldable
                 </i>
                 <span
-                  class="name junipero"
+                  class="name"
                 >
                   Foldable
                 </span>
