@@ -8,6 +8,7 @@
   "esnext": "lib/index.js",
   "unpkg": "dist/oak-core.min.js",
   "cdn": "dist/oak-core.min.js",
+  "types": "dist/oak-core.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",

@@ -5,6 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import dts from 'rollup-plugin-dts';
+import alias from '@rollup/plugin-alias';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
@@ -12,19 +13,22 @@ const name = 'oak-react';
 const formats = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = [
-  'react', 'react-dom', '@oakjs/core', '@oakjs/core/addons',
+  'react', 'react-dom',
 ];
 const defaultGlobals = {
   react: 'React',
   'react-dom': 'ReactDOM',
-  '@oakjs/core': 'OakCore',
-  '@oakjs/core/addons': 'OakCoreAddons',
 };
 
 const defaultPlugins = [
   babel({
-    exclude: /node_modules/,
+    exclude: /node_modules\/(?!@oakjs)/,
     babelHelpers: 'runtime',
+  }),
+  alias({
+    entries: [
+      { find: '@oakjs/core', replacement: path.resolve('../core/lib') },
+    ],
   }),
   resolve({
     rootDir: path.resolve('../../'),
@@ -56,16 +60,10 @@ const getConfig = (format, {
     globals,
     ...(format === 'esm' ? {
       manualChunks: id => {
-        if (id.includes('node_modules')) {
-          return 'vendor';
-        } else if (/packages\/core\/lib/.test(id)) {
-          const info = path.parse(id);
-
-          if (/lib$/.test(info.dir)) {
-            return info.name;
-          } else {
-            return `${info.dir.split('lib/').pop()}/${info.name}`;
-          }
+        if (/packages\/core\/lib\/(\w+)\/index.js/.test(id)) {
+          return path.parse(id).dir.split('/').pop();
+        } else {
+          return id.includes('node_modules') ? 'vendor' : path.parse(id).name;
         }
       },
     } : {}),

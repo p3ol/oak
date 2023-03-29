@@ -50,16 +50,10 @@ const getConfig = (format, {
     globals,
     ...(format === 'esm' ? {
       manualChunks: id => {
-        if (id.includes('node_modules')) {
-          return 'vendor';
-        } else if (/packages\/oak\/lib/.test(id)) {
-          const info = path.parse(id);
-
-          if (/lib$/.test(info.dir)) {
-            return info.name;
-          } else {
-            return `${info.dir.split('lib/').pop()}/${info.name}`;
-          }
+        if (/packages\/core\/lib\/(\w+)\/index.js/.test(id)) {
+          return path.parse(id).dir.split('/').pop();
+        } else {
+          return id.includes('node_modules') ? 'vendor' : path.parse(id).name;
         }
       },
     } : {}),
