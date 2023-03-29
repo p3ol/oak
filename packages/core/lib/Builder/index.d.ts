@@ -54,5 +54,5 @@ export declare class Builder extends Emitter {
     component?: Component;
     parent?: Array<ElementObject>;
     position?: 'before' | 'after';
-  })
+  }): Element;
 }

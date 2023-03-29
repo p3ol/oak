@@ -23,7 +23,7 @@ export declare class Overrides extends Emitter {
    * If the override type is 'component' and the output is set to 'field',
    * the override will be returned as a field override object, potentially
    * using a component setting field as base.
-   * 
+   *
    * Example:
    * this.get('component', 'title', {
    *   output: 'field',
@@ -32,7 +32,7 @@ export declare class Overrides extends Emitter {
    *     type: 'textarea',
    *   }),
    * })
-   * 
+   *
    * Will result in:
    * {
    *   type: 'textarea',

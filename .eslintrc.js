@@ -25,6 +25,8 @@ module.exports = {
     rules: {
       // function params are considered as unused vars
       'no-unused-vars': 0,
+      'lines-between-class-members': 0,
+      'no-use-before-define': 0,
     },
   }],
 };
