@@ -1,4 +1,4 @@
-import { TextsSheet, TextsSheetObject, getTextCallback } from '../types';
+import { TextsSheet, TextsSheetObject, GetTextCallback } from '../types';
 import { Builder } from '../Builder';
 import { Emitter } from '../Emitter';
 
@@ -24,7 +24,7 @@ export declare class Texts extends Emitter {
   setActiveSheet(id: string): void;
 
   /** Retrieves a text from the current active sheet */
-  get(key: string | typeof getTextCallback, def?: any): any;
+  get(key: string | GetTextCallback, def?: any): any;
 
   /** Updates a text key in the current active sheet */
   set(key: string, value: any): void;
