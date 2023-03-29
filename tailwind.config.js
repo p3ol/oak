@@ -26,8 +26,6 @@ module.exports = {
   content: [
     './packages/react/**/*.js',
     './packages/addon-*/**/*.js',
-    '../react/**/*.js',
-    '../addon-*/**/*.js',
   ],
   safelist: [
     { pattern: /flex-/ },

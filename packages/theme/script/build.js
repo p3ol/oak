@@ -27,7 +27,7 @@ const compile = async ({ input, output }) => {
 
   const { css: prefixedCss } = await postcss([
     tailwindcss({
-      config: path.resolve('../../tailwind.config.js'),
+      config: path.resolve(__dirname, '../tailwind.config.js'),
     }),
     autoprefixer(),
   ]).process(css, {
