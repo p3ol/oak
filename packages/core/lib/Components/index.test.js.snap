@@ -2,29 +2,46 @@
 
 exports[`Components should allow to add a new group and add components 1`] = `
 {
-  "defaultGroup": ComponentGroup {
+  "defaultGroup": ComponentsGroup {
     "components": [],
     "id": "other",
     "name": undefined,
     "type": "group",
+    "usable": true,
   },
   "groups": [
-    ComponentGroup {
+    ComponentsGroup {
       "components": [
         Component {
           "construct": undefined,
+          "draggable": true,
+          "droppable": true,
           "duplicate": undefined,
+          "editable": true,
+          "getContainers": undefined,
           "group": "test",
+          "hasCustomInnerContent": false,
+          "icon": undefined,
           "id": "test",
           "name": "",
+          "options": [],
           "render": undefined,
           "sanitize": undefined,
+          "settings": ComponentSetting {
+            "condition": undefined,
+            "fields": [],
+            "floatingSettings": undefined,
+            "label": undefined,
+            "title": undefined,
+          },
           "type": "component",
+          "usable": true,
         },
       ],
       "id": "test",
       "name": undefined,
       "type": "group",
+      "usable": true,
     },
   ],
 }

@@ -91,8 +91,6 @@ exports[`Store .getElement() should allow to get an element: Shallow element 1`]
 }
 `;
 
-exports[`Store .getElementSettings() should allow to get the settings of an element: Default 1`] = `null`;
-
 exports[`Store .sanitize() should allow to sanitize an element: Add id & default props from component 1`] = `
 {
   "content": "This is a title",

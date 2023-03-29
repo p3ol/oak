@@ -3,7 +3,7 @@ import Logger from './index';
 
 /* eslint-disable no-console */
 describe('Logger', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     jest.spyOn(console, 'log').mockImplementation(() => {});
     jest.spyOn(console, 'warn').mockImplementation(() => {});
   });

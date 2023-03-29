@@ -3,6 +3,7 @@
 exports[`Overrides should allow to add overrides 1`] = `
 [
   FieldOverride {
+    "props": {},
     "render": undefined,
     "targets": [],
     "type": "field",
