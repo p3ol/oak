@@ -42,6 +42,7 @@
     "@storybook/theming": "6.5.16",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
+    "@typescript-eslint/parser": "5.57.0",
     "autoprefixer": "10.4.13",
     "babel-jest": "29.4.3",
     "babel-loader": "9.1.2",

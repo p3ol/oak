@@ -21,6 +21,7 @@ const compile = async ({ input, output }) => {
     sourceMapIncludeSources: true,
     loadPaths: [
       path.resolve('./lib/utils'),
+      path.resolve('../../node_modules'),
     ],
   });
 

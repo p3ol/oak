@@ -12,12 +12,18 @@ const defaultOutput = './dist';
 const name = 'oak-addon-remirror';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['@poool/oak', 'react', 'react-dom', 'react-popper'];
+const defaultExternals = [
+  'react', 'react-dom', '@oakjs/react', '@remirror/core',
+  '@remirror/pm', 'remirror', 'remirror/extensions',
+];
 const defaultGlobals = {
-  '@poool/oak': 'oak',
   react: 'React',
   'react-dom': 'ReactDOM',
-  'react-popper': 'ReactPopper',
+  '@oakjs/react': 'OakReact',
+  '@remirror/core': 'RemirrorCore',
+  '@remirror/pm': 'RemirrorPm',
+  remirror: 'Remirror',
+  'remirror/extensions': 'RemirrorExtensions',
 };
 
 const defaultPlugins = [
@@ -29,9 +35,7 @@ const defaultPlugins = [
     rootDir: path.resolve('../../'),
   }),
   commonjs(),
-  terser({
-    mangle: false,
-  }),
+  terser(),
 ];
 
 const getConfig = (format, {
@@ -83,7 +87,6 @@ export default [
             includePaths: [
               path.resolve('node_modules'),
               path.resolve('../../node_modules'),
-              path.resolve('../oak/lib/theme'),
             ],
           },
         },

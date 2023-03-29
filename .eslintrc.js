@@ -15,5 +15,16 @@ module.exports = {
     rules: {
       'import/order': OFF,
     },
+  }, {
+    files: ['packages/**/*.{ts,tsx}'],
+    parser: '@typescript-eslint/parser',
+    globals: {
+      JSX: 'readonly',
+      React: 'readonly',
+    },
+    rules: {
+      // function params are considered as unused vars
+      'no-unused-vars': 0,
+    },
   }],
 };

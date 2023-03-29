@@ -7,7 +7,7 @@ module.exports = {
   resetMocks: true,
   rootDir: path.resolve(__dirname),
   moduleNameMapper: {
-    '^@oakjs/core(.+)$': '<rootDir>/../core/lib$1',
+    '^@oakjs/core(.+)$': path.resolve('packages/core/lib$1'),
     '^@tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
   },
   coveragePathIgnorePatterns: [
@@ -24,7 +24,7 @@ module.exports = {
     '/node_modules/(?!(uuid))',
   ],
   setupFilesAfterEnv: [
-    './tests/env.js',
+    path.resolve('./.ci/config/env.js'),
   ],
   snapshotResolver: path.resolve('.ci/config/snapshot-resolver.js'),
 };

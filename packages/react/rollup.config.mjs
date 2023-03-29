@@ -3,21 +3,22 @@ import path from 'path';
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-// import alias from '@rollup/plugin-alias';
-import postcss from 'rollup-plugin-postcss';
 import terser from '@rollup/plugin-terser';
-import autoprefixer from 'autoprefixer';
-import url from 'postcss-url';
+import dts from 'rollup-plugin-dts';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
-const name = 'oak';
+const name = 'oak-react';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultExternals = ['react', 'react-dom'];
+const defaultExternals = [
+  'react', 'react-dom', '@oakjs/core', '@oakjs/core/addons',
+];
 const defaultGlobals = {
   react: 'React',
   'react-dom': 'ReactDOM',
+  '@oakjs/core': 'OakCore',
+  '@oakjs/core/addons': 'OakCoreAddons',
 };
 
 const defaultPlugins = [
@@ -25,12 +26,6 @@ const defaultPlugins = [
     exclude: /node_modules/,
     babelHelpers: 'runtime',
   }),
-  // alias({
-  //   entries: [
-  //     { find: 'react', replacement: 'preact/compat' },
-  //     { find: 'react-dom', replacement: 'preact/compat' },
-  //   ],
-  // }),
   resolve({
     rootDir: path.resolve('../../'),
   }),
@@ -63,7 +58,7 @@ const getConfig = (format, {
       manualChunks: id => {
         if (id.includes('node_modules')) {
           return 'vendor';
-        } else if (/packages\/oak\/lib/.test(id)) {
+        } else if (/packages\/core\/lib/.test(id)) {
           const info = path.parse(id);
 
           if (/lib$/.test(info.dir)) {
@@ -79,45 +74,20 @@ const getConfig = (format, {
 
 export default [
   ...formats.map(f => getConfig(f)),
-  {
-    input: './lib/index.sass',
-    plugins: [
-      postcss({
-        extensions: ['.sass'],
-        minimize: true,
-        inject: false,
-        extract: true,
-        sourceMap: true,
-        modules: false,
-        use: {
-          sass: {
-            includePaths: [
-              path.resolve('node_modules'),
-              path.resolve('../../node_modules'),
-              path.resolve('./lib/theme'),
-            ],
-          },
-        },
-        plugins: [
-          url({
-            url: 'copy',
-            useHash: true,
-            basePath: path.resolve('./lib/theme/fonts'),
-            assetsPath: path.resolve('./dist/assets'),
-          }),
-          autoprefixer({ env: process.env.BROWSERSLIST_ENV }),
-        ],
-      }),
+  getConfig('esm', {
+    output: './dist/no-junipero',
+    defaultExternals: [
+      ...defaultExternals,
+      '@junipero/react',
     ],
-    output: {
-      file: `${defaultOutput}/${name}.min.css`,
+    defaultGlobals: {
+      ...defaultGlobals,
+      '@junipero/react': 'JuniperoReact',
     },
-    onwarn: (warning, warn) => {
-      if (warning.code === 'FILE_NAME_CONFLICT') {
-        return;
-      }
-
-      warn(warning);
-    },
+  }),
+  {
+    input: './lib/index.d.ts',
+    output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
+    plugins: [dts()],
   },
 ];
