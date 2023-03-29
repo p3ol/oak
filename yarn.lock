@@ -1722,10 +1722,10 @@
   resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.0.0-beta.5.tgz#963bd8aeb28df3d53e5095d198548d01bf27b1df"
   integrity sha512-HJnrkW8waDBeumcO2jJ3wGJl4Lc7ckK2KtLxd8UZabpGeBBj+t2KRapFijTA2Aj/5u0RH0QgZW22fg16so+MJA==
 
-"@junipero/theme@3.0.0-beta.6":
-  version "3.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-beta.6.tgz#425c50742aa7467664cbb708dfbf2eb94c40be87"
-  integrity sha512-rl1OeoAqZGlnIJrFsMEIiB0dOrTvuSTZfrSeraRPu7S9x47/ef/am9gnDVEt99DkV3rCZZrkeXqP0qLbZtAAiA==
+"@junipero/theme@3.0.0-beta.9":
+  version "3.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-beta.9.tgz#d8c08232b7d39f71ae69ae5fd0059a2f405ad54d"
+  integrity sha512-WKc1MNBW5RCvgR7RHg9G197AV9y1zGAUwYvbdoj/ya1J5SlxlhhJfOtM2R3F+7a7HPw3a80w5YqD4BJjCWhvMw==
 
 "@junipero/transitions@3.0.0-beta.0":
   version "3.0.0-beta.0"

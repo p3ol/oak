@@ -156,7 +156,7 @@ const Catalogue = forwardRef(({
                             'component',
                             'component-' + component.id,
                             'oak-flex oak-items-center oak-px-2 oak-py-1',
-                            'oak-gap-2'
+                            'oak-gap-2 junipero'
                           )}
                         >
                           <Icon
@@ -165,7 +165,7 @@ const Catalogue = forwardRef(({
                               ? component.icon.bind(null, component)
                               : component.icon}
                           />
-                          <span className="name junipero">
+                          <span className="name">
                             <Text>{ component.name }</Text>
                           </span>
                         </a>

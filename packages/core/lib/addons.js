@@ -293,7 +293,7 @@ export const emptySpaceComponent = (...props) => ({
   name: t => t('core.components.emptySpace.name', 'Blank space'),
   type: 'component',
   render: () => null,
-  icon: 'block',
+  icon: 'blank_space',
   options: [],
   settings: {
     title: t =>
@@ -494,7 +494,7 @@ export const buttonComponent = (...props) => ({
   name: t => t('core.components.button.name', 'Button'),
   type: 'component',
   render: () => null,
-  icon: 'field_click',
+  icon: 'button',
   options: [],
   settings: {
     title: t => t('core.components.button.settings.title', 'Button options'),

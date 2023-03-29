@@ -4,7 +4,7 @@ import {
   useCommands,
   useHelpers,
 } from '@remirror/react';
-// import { Icon } from '@oakjs/react';
+import { Icon } from '@oakjs/react';
 
 import MenuButton from './MenuButton';
 import LinkButton from './LinkButton';
@@ -47,8 +47,7 @@ const Menu = () => {
         onClick={() => chain.toggleBold().focus().run()}
         className="bold"
       >
-        { /* <Icon>bold</Icon> */ }
-        <i className="oak-icons">format_bold</i>
+        <Icon>bold</Icon>
       </MenuButton>
       <MenuButton
         enabled={toggleItalic?.enabled}
@@ -57,8 +56,7 @@ const Menu = () => {
         onClick={() => chain.toggleItalic().focus().run()}
         className="italic"
       >
-        { /* <Icon>italic</Icon> */ }
-        <i className="oak-icons">format_italic</i>
+        <Icon>italic</Icon>
       </MenuButton>
       <MenuButton
         enabled={toggleUnderline?.enabled}
@@ -67,16 +65,13 @@ const Menu = () => {
         onClick={() => chain.toggleUnderline().focus().run()}
         className="underline"
       >
-        { /* <Icon>underline</Icon> */ }
-        <i className="oak-icons">format_underlined</i>
+        <Icon>underline</Icon>
       </MenuButton>
       <LinkButton>
-        { /* <Icon>link</Icon> */ }
-        <i className="oak-icons">link</i>
+        <Icon>url</Icon>
       </LinkButton>
       <ColorButton>
-        { /* <Icon>color</Icon> */ }
-        <i className="oak-icons">format_color_text</i>
+        <Icon>text_color</Icon>
       </ColorButton>
       <div className="oak-flex oak-items-center oak-gap-2 oak-px-1">
         <MenuButton
@@ -85,8 +80,7 @@ const Menu = () => {
           tooltipText="Decrease size"
           onClick={() => chain.decreaseFontSize().focus().run()}
         >
-          { /* <Icon>minus</Icon> */ }
-          <i className="oak-icons">horizontal_rule</i>
+          <Icon>minus</Icon>
         </MenuButton>
         <div
           className="junipero secondary !oak-text-alternate-text-color"
@@ -99,8 +93,7 @@ const Menu = () => {
           tooltipText="Increase size"
           onClick={() => chain.increaseFontSize().focus().run()}
         >
-          { /* <Icon>add</Icon> */ }
-          <i className="oak-icons">add</i>
+          <Icon>add</Icon>
         </MenuButton>
       </div>
       <MenuButton
@@ -109,8 +102,7 @@ const Menu = () => {
         tooltipText="Left align"
         onClick={() => chain.leftAlign().focus().run()}
       >
-        { /* <Icon>align_left</Icon> */ }
-        <i className="oak-icons">format_align_left</i>
+        <Icon>align_left</Icon>
       </MenuButton>
       <MenuButton
         enabled={centerAlign?.enabled}
@@ -118,8 +110,7 @@ const Menu = () => {
         tooltipText="Center align"
         onClick={() => chain.centerAlign().focus().run()}
       >
-        { /* <Icon>align_center</Icon> */ }
-        <i className="oak-icons">format_align_center</i>
+        <Icon>align_center</Icon>
       </MenuButton>
       <MenuButton
         enabled={rightAlign?.enabled}
@@ -127,8 +118,7 @@ const Menu = () => {
         tooltipText="Right align"
         onClick={() => chain.rightAlign().focus().run()}
       >
-        { /* <Icon>align_right</Icon> */ }
-        <i className="oak-icons">format_align_right</i>
+        <Icon>align_right</Icon>
       </MenuButton>
       <MenuButton
         enabled={justifyAlign?.enabled}
@@ -136,8 +126,7 @@ const Menu = () => {
         tooltipText="Justify"
         onClick={() => chain.justifyAlign().focus().run()}
       >
-        { /* <Icon>align_justify</Icon> */ }
-        <i className="oak-icons">format_align_justify</i>
+        <Icon>align_justify</Icon>
       </MenuButton>
     </div>
   );

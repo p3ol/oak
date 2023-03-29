@@ -24,6 +24,7 @@
     "@babel/preset-react": "7.18.6",
     "@junipero/core": "3.0.0-beta.6",
     "@junipero/tailwind-plugin": "3.0.0-beta.5",
+    "@junipero/theme": "3.0.0-beta.9",
     "@percy/storybook": "4.3.5",
     "@poool/eslint-config": "2.0.2",
     "@poool/eslint-config-react": "2.0.2",
