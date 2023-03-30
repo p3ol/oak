@@ -9,6 +9,7 @@ import Overrides from '../Overrides';
 import Store from '../Store';
 import Texts from '../Texts';
 import Logger from '../Logger';
+import { Settings } from '../Settings';
 
 export default class Builder extends Emitter {
   #components = null;
@@ -16,6 +17,7 @@ export default class Builder extends Emitter {
   #overrides = null;
   #texts = null;
   #store = null;
+  #settings = null;
 
   constructor ({ addons, content, options = {} } = {}) {
     super();
@@ -28,6 +30,7 @@ export default class Builder extends Emitter {
     this.#overrides = new Overrides({ builder: this });
     this.#store = new Store({ builder: this });
     this.#texts = new Texts({ builder: this });
+    this.#settings = new Settings({ builder: this });
 
     if (Array.isArray(addons)) {
       addons.forEach(addon => {
@@ -78,6 +81,10 @@ export default class Builder extends Emitter {
 
     addon.overrides?.forEach(override => {
       this.#overrides.add(override);
+    });
+
+    addon.settings?.forEach(setting => {
+      this.#settings.add(setting);
     });
   }
 
@@ -183,5 +190,9 @@ export default class Builder extends Emitter {
 
   setActiveTextSheet (id) {
     this.#texts.setActiveSheet(id);
+  }
+
+  getAvailableSettings () {
+    return this.#settings.all();
   }
 }

@@ -197,6 +197,7 @@ export const coreComponentsGroup = () => ({
 });
 
 export const baseAddon = () => ({
+  ...coreAddons.baseAddon(),
   components: [coreComponentsGroup()],
   fields: baseFields(),
 });

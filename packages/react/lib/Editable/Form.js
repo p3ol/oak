@@ -1,8 +1,4 @@
-import {
-  useReducer,
-  useMemo,
-  useCallback,
-} from 'react';
+import { useReducer } from 'react';
 import {
   Button,
   Tabs,
@@ -11,11 +7,8 @@ import {
   FieldControl,
   mockState,
   cloneDeep,
-  mergeDeep,
-  omit,
   classNames,
 } from '@junipero/react';
-import { ComponentSetting } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 import Text from '../Text';
@@ -32,70 +25,13 @@ const Form = ({
   ...rest
 }) => {
   const { builder } = useBuilder();
-  // const options = useOptions();
   const overrides = builder.getOverride('component', element.type);
   const deserialize = overrides?.deserialize || component?.deserialize ||
     (e => e);
 
-  const tabs = useMemo(() => [
-    mergeDeep(
-      {},
-      component.settings?.defaults?.settings !== false
-        ? cloneDeep(ComponentSetting.DEFAULT_SETTINGS) : {},
-      omit(component.settings || {}, ['defaults', 'styling', 'responsive']),
-      { title: t => t('core.settings.title', 'Settings') },
-      // omit(options.settings || {}, ['defaults', 'styling', 'responsive'])
-    ),
-    mergeDeep(
-      {},
-      component.settings?.defaults?.styling !== false
-        ? cloneDeep(ComponentSetting.DEFAULT_STYLES_SETTINGS) : {},
-      component.settings?.styling || {},
-      // options.settings?.styling || {},
-    ),
-    mergeDeep(
-      {},
-      component.settings?.defaults?.responsive !== false
-        ? cloneDeep(ComponentSetting.DEFAULT_RESPONSIVE_SETTINGS) : {},
-      component.settings?.responsive || {},
-      // options.settings?.responsive || {},
-    ),
-  ], [/*overrides*/]);
-
   const [state, dispatch] = useReducer(mockState, {
     element: deserialize(cloneDeep(element)),
   });
-
-  // useEffect(() => {
-  //   dispatch({ element: deserialize(cloneDeep(element)) });
-  // }, [element]);
-
-  // usePostMountEffect(() => {
-  //   dispatch({ element: deserialize(state.element) });
-  // }, [overrides]);
-
-  const getFields = useCallback(tab => (
-    (tab ? tab?.fields : tabs.map(t => t.fields).flat())
-      ?.sort((a, b) => (b.priority || 0) - (a.priority || 0))
-  ), [tabs/*, overrides*/]);
-
-  // const getFieldKeyTypes = useCallback(() => (
-  //   getFields().map(f => [f.key, f.type]).filter(f => f[0])
-  // ), [getFields]);
-
-  // const normalizeElement = (elmt, method) =>
-  //   getFieldKeyTypes().reduce((e, [key, type]) => {
-  //     const field = builder.getOverride('component', element.type, {
-  //       output: 'field', field: { key, type },
-  //     });
-  //     const value = get(e, key);
-
-  //     if (typeof field[method] === 'function' && value) {
-  //       set(e, key, field[method](value));
-  //     }
-
-  //     return e;
-  //   }, cloneDeep(elmt));
 
   const onUpdate_ = elmt => {
     dispatch({ element: elmt });
@@ -126,6 +62,8 @@ const Form = ({
   const hasSubfields = setting =>
     Array.isArray(setting.fields) && setting.fields.length > 0;
 
+  const tabs = builder.getAvailableSettings();
+
   return (
     <div
       className={classNames('form', className)}
@@ -142,62 +80,76 @@ const Form = ({
         ) }
       </div>
       <Tabs>
-        { tabs.map((tab, t) => (
-          <Tab key={t} title={<Text>{ tab.title }</Text>}>
-            <div className="fields oak-flex oak-flex-col oak-gap-4">
-              { getFields(tab)
-                ?.filter(f => !f.condition || f.condition(state.element))
-                ?.map((field, i) => (
-                  <div className="field" key={i}>
-                    <FieldControl>
-                      { field.label && (
-                        <Label><Text>{ field.label }</Text></Label>
-                      ) }
-                      { hasSubfields(field) ? (
-                        <div
-                          className={classNames(
-                            'sub-fields oak-grid oak-grid-cols-4 oak-gap-2',
-                          )}
-                        >
-                          { field.fields.map((f, n) => (
-                            <div className="field" key={n}>
-                              <FieldControl>
-                                { f.label && (
-                                  <Label className="field-label">
-                                    <Text>{ f.label }</Text>
-                                  </Label>
-                                ) }
-                                <Field
-                                  setting={f}
-                                  editableRef={editableRef}
-                                  element={state.element}
-                                  onChange={onSettingChange_}
-                                  onCustomChange={onSettingCustomChange_}
-                                />
-                              </FieldControl>
-                            </div>
-                          )) }
-                        </div>
-                      ) : (
-                        <Field
-                          setting={field}
-                          editableRef={editableRef}
-                          element={state.element}
-                          onChange={onSettingChange_}
-                          onCustomChange={onSettingCustomChange_}
-                        />
-                      ) }
-                    </FieldControl>
-                  </div>
-                )) }
-              { tab?.renderForm?.({
-                element: cloneDeep(state.element),
-                component,
-                update: onUpdate_,
-              }) }
-            </div>
-          </Tab>
-        )) }
+        { tabs
+          .concat(
+            (component.settings?.fields || []).filter(f => f.type === 'tab')
+          )
+          .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+          .filter(tab => tab.type === 'tab' &&
+            (!tab.condition || tab.condition(state.element)))
+          .map((tab, t) => (
+            <Tab key={tab.id || t} title={<Text>{ tab.title }</Text>}>
+              <div className="fields oak-flex oak-flex-col oak-gap-4">
+                { tab
+                  .fields
+                  .concat(
+                    (component.settings?.fields || [])
+                      .filter(field => (tab.id === 'general' && !field.tab) ||
+                        field.tab === tab.id)
+                  )
+                  .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+                  .filter(f => !f.condition || f.condition(state.element))
+                  .map((setting, i) => (
+                    <div className="field" key={i}>
+                      <FieldControl>
+                        { setting.label && (
+                          <Label><Text>{ setting.label }</Text></Label>
+                        ) }
+                        { hasSubfields(setting) ? (
+                          <div
+                            className={classNames(
+                              'sub-fields oak-grid oak-grid-cols-4 oak-gap-2',
+                            )}
+                          >
+                            { setting.fields.map((f, n) => (
+                              <div className="field" key={n}>
+                                <FieldControl>
+                                  { f.label && (
+                                    <Label className="field-label">
+                                      <Text>{ f.label }</Text>
+                                    </Label>
+                                  ) }
+                                  <Field
+                                    setting={f}
+                                    editableRef={editableRef}
+                                    element={state.element}
+                                    onChange={onSettingChange_}
+                                    onCustomChange={onSettingCustomChange_}
+                                  />
+                                </FieldControl>
+                              </div>
+                            )) }
+                          </div>
+                        ) : (
+                          <Field
+                            setting={setting}
+                            editableRef={editableRef}
+                            element={state.element}
+                            onChange={onSettingChange_}
+                            onCustomChange={onSettingCustomChange_}
+                          />
+                        ) }
+                      </FieldControl>
+                    </div>
+                  )) }
+                { tab?.renderForm?.({
+                  element: cloneDeep(state.element),
+                  component,
+                  update: onUpdate_,
+                }) }
+              </div>
+            </Tab>
+          )) }
       </Tabs>
       <div
         className={classNames(
