@@ -19,11 +19,9 @@ exports[`Builder should allow to add addons: Components 1`] = `
         "options": [],
         "render": undefined,
         "sanitize": undefined,
-        "settings": ComponentSetting {
-          "condition": undefined,
+        "settings": ComponentSettingsForm {
           "fields": [],
           "floatingSettings": undefined,
-          "label": undefined,
           "title": undefined,
         },
         "type": "component",
