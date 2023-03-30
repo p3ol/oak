@@ -1699,18 +1699,18 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@junipero/core@3.0.0-beta.6":
-  version "3.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.0.0-beta.6.tgz#5d9740fcfa676c2778779d9589834ff61e2e085a"
-  integrity sha512-ggOkVJoDnTwr9WlqnvVbJVVTYIZVQ+xvyYiVm329HK3Jz2CzgZffhISpQ8jIccrOBZYzEV3+/8ICZJ7deFeIkQ==
+"@junipero/core@3.0.0-beta.10":
+  version "3.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.0.0-beta.10.tgz#f6b30b27af1fb6191a4bad7dfbd168dea973ee95"
+  integrity sha512-jBmvANFU9817J1UqtipO+6FfxCZPDXSZ9lXAMmdgyx81iNQ6Ur/KgahIMhbPmZGiVHjcwodqEQqyKiV6Jn8Q4Q==
   dependencies:
     "@babel/runtime-corejs3" "7.21.0"
     core-js "3.29.0"
 
-"@junipero/react@3.0.0-beta.8":
-  version "3.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-beta.8.tgz#b054a9f222dc56285ef0fdf35dabb719a94c1ef5"
-  integrity sha512-8AZAJkKj3jAvFkfPvjQUiCwN+mwmhVu/xk/4Zw6OUqAz7HqCcM1TRtyiP9uAY3XiSSYLn4WSHYzGmiibVyg/ZA==
+"@junipero/react@3.0.0-beta.10":
+  version "3.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-beta.10.tgz#d1dc508b1e370f57a1682457274b50add4ad9f95"
+  integrity sha512-mCAPmFnaoJFoce3fjObqKnZFTT4BgKbUjZAWsl33j2576TymI2dIyxqzwAo2j4XAYEoKcY85BajWWmWMOpPWbg==
   dependencies:
     "@babel/runtime-corejs3" "7.21.0"
     "@floating-ui/react" "0.20.1"
@@ -1722,10 +1722,10 @@
   resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.0.0-beta.5.tgz#963bd8aeb28df3d53e5095d198548d01bf27b1df"
   integrity sha512-HJnrkW8waDBeumcO2jJ3wGJl4Lc7ckK2KtLxd8UZabpGeBBj+t2KRapFijTA2Aj/5u0RH0QgZW22fg16so+MJA==
 
-"@junipero/theme@3.0.0-beta.9":
-  version "3.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-beta.9.tgz#d8c08232b7d39f71ae69ae5fd0059a2f405ad54d"
-  integrity sha512-WKc1MNBW5RCvgR7RHg9G197AV9y1zGAUwYvbdoj/ya1J5SlxlhhJfOtM2R3F+7a7HPw3a80w5YqD4BJjCWhvMw==
+"@junipero/theme@3.0.0-beta.10":
+  version "3.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-beta.10.tgz#e115652f42eef29087a571acf5d2266b9f394d08"
+  integrity sha512-A5W1Izy3McDhGUt/ibcI0L962oTmJmjXSiBE6e3PuTktQhSPx5vp81oGKw6hJ7RoP7s55j2z3ergc6jl36vKMw==
 
 "@junipero/transitions@3.0.0-beta.0":
   version "3.0.0-beta.0"
