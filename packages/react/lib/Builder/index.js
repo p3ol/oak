@@ -30,6 +30,7 @@ const Builder = forwardRef(({
   useImperativeHandle(ref, () => ({
     builder,
     content,
+    isOak: true,
     catalogueRef,
     innerRef,
   }));

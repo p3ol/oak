@@ -41,6 +41,8 @@ export const useRootBuilder = opts => {
           break;
         }
       }
+
+      opts?.onEvent?.(eventName, ...args);
     });
 
     return () => {
