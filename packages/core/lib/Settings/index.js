@@ -110,7 +110,7 @@ export class Settings extends Emitter {
       this.#tabs.splice(tabIndex, 1);
       this.emit('tabs.remove', tab);
 
-      return;
+      return true;
     }
 
     for (const tab of this.#tabs) {
@@ -122,9 +122,11 @@ export class Settings extends Emitter {
         tab.fields.splice(index, 1);
         this.emit('settings.remove', setting);
 
-        return;
+        return true;
       }
     }
+
+    return false;
   }
 
   all () {

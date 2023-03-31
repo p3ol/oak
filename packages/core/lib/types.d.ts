@@ -13,13 +13,18 @@ export declare class BuilderOptions {
   generateId: () => string | number;
 }
 
+export declare interface ComponentOptionObject {
+  icon: any;
+  render: () => any;
+}
+
 export declare class ComponentOption {
   constructor(props: object);
   icon: any;
   render: () => any;
 }
 
-export declare interface ComponentSettingFieldKeyTuple {
+export declare interface ComponentSettingsFieldKeyTuple {
   from: string;
   to: string;
   default: any;
@@ -76,52 +81,72 @@ export declare class FieldOverride {
   render: () => any;
 }
 
-export declare interface ComponentSettingFieldObject {
+export declare interface ComponentSettingsFieldObject {
   type: string;
   label: string | GetTextCallback;
-  key: string | Array<string> | Array<ComponentSettingFieldKeyTuple>;
+  key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>;
   placeholder?: string;
   default?: any;
   displayable?: boolean;
   valueType?: string;
-  fields?: Array<ComponentSettingFieldObject>;
+  fields?: Array<ComponentSettingsFieldObject>;
   props?: object;
-  condition?: (element: Element) => boolean;
+  condition?: (element: Element | ElementObject) => boolean;
 }
 
-export declare class ComponentSettingField {
+export declare class ComponentSettingsField {
   static FIND_PREDICATE(type: string):
-    (field: ComponentSettingField) => boolean;
+    (field: ComponentSettingsField) => boolean;
 
   constructor(props: object);
   type: string;
-  key: string | Array<string> | Array<ComponentSettingFieldKeyTuple>;
+  key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>;
   placeholder: string;
   default: any;
-  label: string;
+  label: string | GetTextCallback;
   displayable: boolean;
   valueType: string;
-  fields: Array<ComponentSettingField>;
+  fields: Array<ComponentSettingsField>;
   props: object;
-  condition: (element: Element) => boolean;
+  condition: (element: Element | ElementObject) => boolean;
 }
 
-export declare interface ComponentSettingGroupObject {
-  title: string | GetTextCallback;
-  fields: Array<ComponentSettingFieldObject>;
+export declare interface ComponentSettingsTabObject {
+  id: string;
+  priority?: number;
+  title?: string | GetTextCallback;
+  condition?: (element: Element | ElementObject) => boolean;
+  fields?: Array<ComponentSettingsField | ComponentSettingsFieldObject>;
 }
 
-export declare class ComponentSetting {
-  static DEFAULT_SETTINGS: ComponentSettingGroupObject;
-  static DEFAULT_STYLES_SETTINGS: ComponentSettingGroupObject;
-  static DEFAULT_RESPONSIVE_SETTINGS: ComponentSettingGroupObject;
+export declare class ComponentSettingsTab {
+  static FIND_PREDICATE(id: string): (tab: ComponentSettingsTab) => boolean;
 
   constructor(props: object);
-  title: string;
-  label: string;
-  floatingSettings: object;
-  fields: Array<ComponentSettingField>;
-  condition: () => boolean;
+  type: string;
+  id: string;
+  priority: number;
+  title: string | GetTextCallback;
+  condition: (element: Element) => boolean;
+  fields: Array<ComponentSettingsField>;
+}
+
+export declare class ComponentSettingsFormObject {
+  title: string | GetTextCallback;
+  floatingSettings?: object;
+  fields?: Array<
+    ComponentSettingsTab |
+    ComponentSettingsTabObject |
+    ComponentSettingsField |
+    ComponentSettingsFieldObject
+  >;
+}
+
+export declare class ComponentSettingsForm {
+  constructor(props: object);
+  title?: string | GetTextCallback;
+  floatingSettings?: object;
+  fields?: Array<ComponentSettingsTab | ComponentSettingsField>;
 }
 
 export declare interface ComponentObject {
@@ -135,8 +160,8 @@ export declare interface ComponentObject {
   droppable?: boolean;
   usable?: boolean;
   editable?: boolean;
-  options?: Array<ComponentOption>;
-  settings?: ComponentSetting;
+  options?: Array<ComponentOption | ComponentOptionObject>;
+  settings?: ComponentSettingsForm | ComponentSettingsFormObject;
   render?: () => any;
   sanitize?: () => any;
   construct?: () => any;
@@ -159,7 +184,7 @@ export declare class Component {
   usable: boolean;
   editable: boolean;
   options: Array<ComponentOption>;
-  settings: ComponentSetting;
+  settings: ComponentSettingsForm;
   render: () => any;
   sanitize: () => any;
   construct: () => any;
@@ -202,5 +227,16 @@ export declare interface AddonObject {
   components?: Array<Component | ComponentObject>;
   fields?: Array<Field | FieldObject>;
   texts?: Array<TextsSheet | TextsSheetObject>;
-  overrides?: Array<ComponentOverride | FieldOverride>;
+  overrides?: Array<
+    ComponentOverride |
+    ComponentOverrideObject |
+    FieldOverride |
+    FieldOverrideObject
+  >;
+  settings?: Array<
+    ComponentSettingsTab |
+    ComponentSettingsTabObject |
+    ComponentSettingsField |
+    ComponentSettingsFieldObject
+  >;
 }

@@ -11,6 +11,7 @@ export {
   StoreFindDeepOptions,
 } from './Store';
 export { Texts } from './Texts';
+export { Settings } from './Settings';
 
 export * from './addons';
 export * from './types';

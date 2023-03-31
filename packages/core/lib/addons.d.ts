@@ -1,6 +1,7 @@
 import {
   AddonObject,
   ComponentObject,
+  ComponentSettingsTabObject,
   ComponentsGroupObject,
   FieldObject,
 } from './types';
@@ -22,8 +23,12 @@ export function imageComponent(...props: any[]): ComponentObject;
 export function buttonComponent(...props: any[]): ComponentObject;
 export function foldableComponent(...props: any[]): ComponentObject;
 
+export function stylingSettings(...props: any[]): ComponentSettingsTabObject;
+export function responsiveSettings(...props: any[]): ComponentSettingsTabObject;
+
 export function baseFields(): Array<FieldObject>;
 export function baseComponents(): Array<ComponentObject>;
+export function baseSettings(): Array<ComponentSettingsTabObject>;
 
 export function coreComponentsGroup(...props: any[]): ComponentsGroupObject;
 
