@@ -1,7 +1,7 @@
 import {
   Component,
   ComponentOverride,
-  ComponentSettingFieldKeyTuple,
+  ComponentSettingsFieldKeyTuple,
   ElementId,
   ElementObject,
 } from '../types';
@@ -103,14 +103,14 @@ export declare class Store extends Emitter {
   /** Retrieves the setting value of an element */
   getElementSettings(
     element: ElementObject,
-    key: string | Array<string> | Array<ComponentSettingFieldKeyTuple>,
+    key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>,
     def?: any
   ): any;
 
   /** Sets the setting value of an element */
   setElementSettings(
     element: ElementObject,
-    key: string | Array<string> | Array<ComponentSettingFieldKeyTuple>,
+    key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>,
     value: any
   ): void;
 }

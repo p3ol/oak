@@ -1,7 +1,7 @@
 import {
   ComponentOverride,
   ComponentOverrideObject,
-  ComponentSettingField,
+  ComponentSettingsField,
   Field,
   FieldOverride,
   FieldOverrideObject,
@@ -41,7 +41,7 @@ export declare class Overrides extends Emitter {
    * */
   get(type: 'component' | 'field', target: string, options?: {
     output?: 'field',
-    setting?: ComponentSettingField,
+    setting?: ComponentSettingsField,
   }): ComponentOverride | FieldOverrideObject;
 
   /** Merges overrides into a single non-typed object */
