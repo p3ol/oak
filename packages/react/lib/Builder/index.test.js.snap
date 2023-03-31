@@ -399,7 +399,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
         draggable="true"
       >
         <div
-          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch"
+          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
         >
           <i
             class="icon junipero-icons"
@@ -528,7 +528,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
                     draggable="true"
                   >
                     <div
-                      class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch"
+                      class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch odd"
                     >
                       <i
                         class="icon junipero-icons"
@@ -856,7 +856,7 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
               draggable="true"
             >
               <div
-                class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch"
+                class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch odd"
               >
                 <i
                   class="icon junipero-icons"
@@ -1109,7 +1109,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
           draggable="true"
         >
           <div
-            class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch"
+            class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
           >
             <i
               class="icon junipero-icons"
@@ -1303,7 +1303,7 @@ exports[`<Builder /> should render: Base content 1`] = `
         draggable="true"
       >
         <div
-          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch"
+          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
         >
           <i
             class="icon junipero-icons"
@@ -1403,7 +1403,7 @@ exports[`<Builder /> should render: Base content 1`] = `
         draggable="true"
       >
         <div
-          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch"
+          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
         >
           <i
             class="icon junipero-icons"

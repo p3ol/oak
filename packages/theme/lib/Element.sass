@@ -1,5 +1,6 @@
 .oak .element
   --background-color: var(--oak-background-color)
+  --inner-background-color: var(--oak-inner-background-color)
   --drop-zone-color: var(--oak-interaction-color)
   --text-color: var(--oak-text-color)
   --icon-color: var(--oak-main-color)
@@ -59,10 +60,15 @@
         display: none
 
   .inner
-    background: var(--background-color)
     min-height: 50px
     border-radius: 10px
     color: var(--text-color)
+
+    &.even
+      background: var(--background-color)
+
+    &.odd
+      background: var(--inner-background-color)
 
     & > .icon
       color: var(--icon-color)

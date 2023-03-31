@@ -90,7 +90,12 @@ const Element = ({ element, parent, className, depth = 0 }) => {
           )}
         >
           { component?.hasCustomInnerContent ? rendered : component ? (
-            <div className="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch">
+            <div
+              className={classNames(
+                'inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch',
+                depth % 2 === 0 ? 'even' : 'odd',
+              )}
+            >
               <Icon
                 children={typeof component?.icon === 'function'
                   ? component.icon.bind(null, component)

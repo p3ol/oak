@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { Droppable, classNames } from '@junipero/react';
 
-import { useBuilder } from '../../hooks';
-import Element from '../../Element';
-import Catalogue from '../../Catalogue';
+import { useBuilder } from '../hooks';
+import Element from '../Element';
+import Catalogue from '../Catalogue';
 
 const Container = ({
   element,
@@ -61,8 +61,11 @@ const Container = ({
     <Droppable disabled={content.length > 0} onDrop={onDrop}>
       <div
         className={classNames(
-          'foldable-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-p-4'
+          'container oak-flex-auto oak-flex oak-flex-col oak-gap-2',
+          'oak-p-4',
+          depth % 2 === 0 ? 'even' : 'odd',
         )}
+        data-depth={depth}
       >
         { content.length > 0 && (
           <Catalogue
@@ -74,7 +77,7 @@ const Container = ({
         ) }
 
         { content.length > 0 && (
-          <div className="foldable-content oak-flex oak-flex-col oak-gap-4">
+          <div className="content oak-flex oak-flex-col oak-gap-4">
             { content.map((elt, i) => (
               <Element
                 depth={depth + 1}

@@ -9,21 +9,9 @@
       & > .sections
         background: var(--background-color)
 
-        & > .section > .foldable-inner
-          background: var(--inner-background-color)
-
-          & > .foldable-content > .element > .inner
-            background: var(--background-color)
-
     &.odd
       & > .sections
         background: var(--inner-background-color)
-
-        & > .section > .foldable-inner
-          background: var(--background-color)
-
-          & > .foldable-content > .element > .inner
-            background: var(--inner-background-color)
 
   .drop-zone
     position: absolute
@@ -63,18 +51,18 @@
   .wrapper > .sections
     border-radius: 0 10px 10px 10px
 
-    & > .section > .foldable-inner
-      border-radius: 10px
+    // & > .section > .container
+    //   border-radius: 10px
 
-      &.drag-enter
-        background: var(--drop-zone-color)
+    //   &.drag-enter
+    //     background: var(--drop-zone-color)
 
-        .catalogue
-          background: var(--drop-zone-color)
-          border-radius: 5px
+    //     .catalogue
+    //       background: var(--drop-zone-color)
+    //       border-radius: 5px
 
-          .handle
-            visibility: hidden
+    //       .handle
+    //         visibility: hidden
 
   & > .options
     position: absolute

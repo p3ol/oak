@@ -2,7 +2,7 @@ import { Droppable, omit, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Text from '../../Text';
-import Container from './Container';
+import Container from '../../Container';
 
 const Foldable = ({
   element,
@@ -25,6 +25,7 @@ const Foldable = ({
         depth % 2 === 0 ? 'even' : 'odd',
         className,
       )}
+      data-depth={depth}
     >
       <Droppable onDrop={onDropElement.bind(null, 'before')}>
         <div className="drop-zone before" />
