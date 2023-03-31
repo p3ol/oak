@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  displayName: '@oakjs/react',
+  displayName: 'react',
   testEnvironment: 'jsdom',
   clearMocks: true,
   resetMocks: true,
