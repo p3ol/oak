@@ -22,4 +22,5 @@ export {
   useLogger,
 } from './hooks';
 
+export * from './options';
 export * from './addons';

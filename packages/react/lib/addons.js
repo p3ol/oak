@@ -123,7 +123,7 @@ export const toggleField = (...props) => ({
 export const rowComponent = (...props) => ({
   ...coreAddons.rowComponent(),
   render: Row,
-  options: [dragOption],
+  options: [dragOption()],
   ...props,
 });
 
@@ -165,7 +165,7 @@ export const buttonComponent = (...props) => ({
 
 export const foldableComponent = (...props) => ({
   ...coreAddons.foldableComponent(),
-  options: [dragOption],
+  options: [dragOption()],
   render: Foldable,
   ...props,
 });
