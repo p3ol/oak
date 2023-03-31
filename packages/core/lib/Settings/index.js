@@ -1,7 +1,7 @@
 import { ComponentSettingsTab, ComponentSettingsField } from '../types';
 import Emitter from '../Emitter';
 
-export class Settings extends Emitter {
+export default class Settings extends Emitter {
   static TYPE_TAB = 'tab';
   static TYPE_SETTING = 'setting';
 
@@ -94,10 +94,10 @@ export class Settings extends Emitter {
 
       const index = tab.fields.indexOf(existing);
       tab.fields[index] = setting;
-      this.emit('settings.update', setting);
+      this.emit('settings.update', setting, tab);
     } else {
       tab.fields.push(setting);
-      this.emit('settings.add', setting);
+      this.emit('settings.add', setting, tab);
     }
   }
 
@@ -131,5 +131,9 @@ export class Settings extends Emitter {
 
   all () {
     return this.#tabs;
+  }
+
+  toJSON () {
+    return this.all();
   }
 }

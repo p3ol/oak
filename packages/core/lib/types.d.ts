@@ -83,8 +83,10 @@ export declare class FieldOverride {
 
 export declare interface ComponentSettingsFieldObject {
   type: string;
-  label: string | GetTextCallback;
   key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>;
+  tab?: string;
+  id?: string;
+  label?: string | GetTextCallback;
   placeholder?: string;
   default?: any;
   displayable?: boolean;
@@ -100,6 +102,8 @@ export declare class ComponentSettingsField {
 
   constructor(props: object);
   type: string;
+  tab: string;
+  id: string;
   key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>;
   placeholder: string;
   default: any;

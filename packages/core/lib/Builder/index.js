@@ -9,7 +9,7 @@ import Overrides from '../Overrides';
 import Store from '../Store';
 import Texts from '../Texts';
 import Logger from '../Logger';
-import { Settings } from '../Settings';
+import Settings from '../Settings';
 
 export default class Builder extends Emitter {
   #components = null;

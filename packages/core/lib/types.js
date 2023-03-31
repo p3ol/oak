@@ -125,7 +125,7 @@ export class ComponentSettingsTab {
 }
 
 export class ComponentSettingsField {
-  static FIND_PREDICATE = type => f => f.type === type;
+  static FIND_PREDICATE = id => f => f.id === id || f.key === id;
 
   constructor (props) {
     if (!props.fields && !props.type) {
@@ -134,6 +134,7 @@ export class ComponentSettingsField {
     }
 
     this.type = props.type;
+    this.tab = props.tab;
     this.key = props.key;
     this.placeholder = props.placeholder;
     this.default = props.default;
