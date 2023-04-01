@@ -1,10 +1,12 @@
 import { forwardRef, useCallback, useRef, useImperativeHandle } from 'react';
-import { classNames } from '@junipero/react';
+import { createPortal } from 'react-dom/client';
+import { Button, classNames, ensureNode } from '@junipero/react';
 
 import { BuilderContext } from '../contexts';
 import { useRootBuilder } from '../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
+import Icon from '../Icon';
 
 const Builder = forwardRef(({
   className,
@@ -14,12 +16,17 @@ const Builder = forwardRef(({
   rootBoundary,
   onChange,
   onImageUpload,
+  topHistoryButtonsContainer,
+  bottomHistoryButtonsContainer,
+  historyEnabled = true,
+  topHistoryButtonsEnabled = true,
+  bottomHistoryButtonsEnabled = true,
   ...opts
 }, ref) => {
   const innerRef = useRef();
   const catalogueRef = useRef();
   const floatingsRef = useRef();
-  const { builder, content } = useRootBuilder({
+  const { builder, content, canUndo, canRedo } = useRootBuilder({
     content: value,
     defaultContent: defaultValue,
     addons,
@@ -60,6 +67,17 @@ const Builder = forwardRef(({
     builder.addElement(element, { resetIds: true });
   };
 
+  const historyButtons = (
+    <div className="oak-flex oak-gap-2">
+      <Button onClick={builder.undo.bind(builder)} disabled={!canUndo}>
+        <Icon>undo</Icon>
+      </Button>
+      <Button onClick={builder.redo.bind(builder)} disabled={!canRedo}>
+        <Icon>redo</Icon>
+      </Button>
+    </div>
+  );
+
   return (
     <BuilderContext.Provider value={getContext()}>
       <div
@@ -69,6 +87,12 @@ const Builder = forwardRef(({
           className
         )}
       >
+        { historyEnabled && topHistoryButtonsEnabled && (
+          topHistoryButtonsContainer
+            ? createPortal(historyButtons,
+              ensureNode(topHistoryButtonsContainer))
+            : historyButtons
+        ) }
         <div className="elements oak-flex oak-flex-col oak-gap-4">
           { content?.length > 0 && (
             <div className="add-element oak-flex oak-justify-center">
@@ -96,6 +120,12 @@ const Builder = forwardRef(({
             />
           </div>
         </div>
+        { historyEnabled && bottomHistoryButtonsEnabled && (
+          bottomHistoryButtonsContainer
+            ? createPortal(historyButtons,
+              ensureNode(bottomHistoryButtonsContainer))
+            : historyButtons
+        ) }
 
         <div className="floatings" ref={floatingsRef} />
       </div>

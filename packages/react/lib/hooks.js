@@ -14,6 +14,8 @@ export const useRootBuilder = opts => {
   const [state, dispatch] = useReducer(mockState, {
     content: builder.getContent(),
     activeTextSheet: opts?.activeTextSheet,
+    canUndo: false,
+    canRedo: false,
   });
 
   useEffectAfterMount(() => {
@@ -25,12 +27,18 @@ export const useRootBuilder = opts => {
 
   useEffect(() => {
     const unsubscribe = builder.subscribe((eventName, ...args) => {
+      builder.logger.log('[react]', 'Event:', eventName, ...args);
+
       switch (eventName) {
         case 'content.update': {
           const [content] = args;
           builder.logger
-            .log('[react] Receiving content from builder:', content);
-          dispatch({ content });
+            .log('[react] Receiving content from builder:', content, builder.canUndo(), builder.canRedo());
+          dispatch({
+            content,
+            canUndo: builder.canUndo(),
+            canRedo: builder.canRedo(),
+          });
           opts.onChange?.(content);
           break;
         }
@@ -39,6 +47,11 @@ export const useRootBuilder = opts => {
           const [activeTextSheet] = args;
           dispatch({ activeTextSheet });
           break;
+        }
+        case 'history.undo':
+        case 'history.redo':
+        case 'history.commit': {
+          console.log('history', ...args);
         }
       }
 
@@ -51,10 +64,7 @@ export const useRootBuilder = opts => {
     };
   }, [builder]);
 
-  return {
-    builder,
-    content: state.content,
-  };
+  return { builder, ...state };
 };
 
 export const useBuilder = () => useContext(BuilderContext);

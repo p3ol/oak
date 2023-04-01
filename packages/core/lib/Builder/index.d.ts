@@ -55,4 +55,8 @@ export declare class Builder extends Emitter {
     parent?: Array<ElementObject>;
     position?: 'before' | 'after';
   }): Element;
+  canUndo(): boolean;
+  canRedo(): boolean;
+  undo(): void;
+  redo(): void;
 }

@@ -113,4 +113,16 @@ export declare class Store extends Emitter {
     key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>,
     value: any
   ): void;
+
+  /** Commit changes into history */
+  commit(): void;
+
+  /** Undo the last change */
+  undo(): void;
+
+  /** Redo the last change */
+  redo(): void;
+
+  canUndo(): boolean;
+  canRedo(): boolean;
 }

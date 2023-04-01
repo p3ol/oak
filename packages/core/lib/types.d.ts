@@ -10,6 +10,7 @@ export declare interface ElementObject {
 
 export declare class BuilderOptions {
   debug: boolean;
+  historyLimit: number;
   generateId: () => string | number;
 }
 

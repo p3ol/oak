@@ -166,6 +166,22 @@ export default class Builder extends Emitter {
     this.#store.setElementSettings(element, key, value);
   }
 
+  undo () {
+    this.#store.undo();
+  }
+
+  redo () {
+    this.#store.redo();
+  }
+
+  canUndo () {
+    return this.#store.canUndo();
+  }
+
+  canRedo () {
+    return this.#store.canRedo();
+  }
+
   generateId () {
     const customId = this.options.generateId?.();
 

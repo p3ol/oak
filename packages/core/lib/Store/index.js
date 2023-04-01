@@ -4,6 +4,8 @@ import Emitter from '../Emitter';
 
 export default class Store extends Emitter {
   #content = [];
+  #history = [];
+  #historyIndex = 0;
   #builder = null;
 
   constructor ({ builder }) {
@@ -28,7 +30,9 @@ export default class Store extends Emitter {
   set (content, { emit = true } = {}) {
     this.#content = (Array.isArray(content) ? content : [])
       .map(e => this.sanitize(e, { withDefaults: true }));
+
     emit && this.emit('content.update', this.#content);
+    this.commit();
   }
 
   sanitize (element, {
@@ -128,6 +132,7 @@ export default class Store extends Emitter {
         break;
     }
 
+    this.commit();
     this.emit('content.update', this.#content);
 
     return element;
@@ -172,6 +177,7 @@ export default class Store extends Emitter {
 
     if (index > -1) {
       parent.splice(index, 1);
+      this.commit();
       this.emit('content.update', this.#content);
 
       return true;
@@ -218,6 +224,8 @@ export default class Store extends Emitter {
       serialize?.(newContent, { builder: this.#builder }) ||
         newContent || {}
     );
+
+    this.commit();
     this.emit('content.update', this.#content);
 
     return element;
@@ -247,6 +255,7 @@ export default class Store extends Emitter {
       retrievedElement
     );
 
+    this.commit();
     this.emit('content.update', this.#content);
 
     return retrievedElement;
@@ -268,6 +277,7 @@ export default class Store extends Emitter {
       newElmt
     );
 
+    this.commit();
     this.emit('content.update', this.#content);
 
     return newElmt;
@@ -379,5 +389,46 @@ export default class Store extends Emitter {
     }
 
     return element;
+  }
+
+  commit () {
+    if (this.#historyIndex > 0) {
+      this.#history = this.#history.slice(this.#historyIndex);
+    }
+
+    this.#historyIndex = 0;
+    this.#history.unshift(cloneDeep(this.#content));
+    this.#history = this.#history.slice(0, this.#builder.options.historyLimit);
+    this.emit('history.commit', this.#history, this.#historyIndex);
+  }
+
+  canUndo () {
+    return this.#historyIndex < this.#history.length - 1;
+  }
+
+  canRedo () {
+    return this.#historyIndex > 0;
+  }
+
+  undo () {
+    if (!this.canUndo()) {
+      return;
+    }
+
+    this.#historyIndex++;
+    this.#content = cloneDeep(this.#history[this.#historyIndex]);
+    this.emit('history.undo', this.#history, this.#historyIndex);
+    this.emit('content.update', this.#content);
+  }
+
+  redo () {
+    if (!this.canRedo()) {
+      return;
+    }
+
+    this.#historyIndex--;
+    this.#content = cloneDeep(this.#history[this.#historyIndex]);
+    this.emit('history.redo', this.#history, this.#historyIndex);
+    this.emit('content.update', this.#content);
   }
 }
