@@ -33,7 +33,7 @@ export const useRootBuilder = opts => {
         case 'content.update': {
           const [content] = args;
           builder.logger
-            .log('[react] Receiving content from builder:', content, builder.canUndo(), builder.canRedo());
+            .log('[react] Receiving content from builder:', content);
           dispatch({
             content,
             canUndo: builder.canUndo(),
