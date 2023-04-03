@@ -175,27 +175,29 @@ const Col = ({
         </a>
       </Tooltip>
 
-      <div className="options oak-flex oak-items-center oak-gap-0.5">
-        <Editable
-          ref={editableRef}
-          element={element}
-          component={component}
-          container={floatingsRef.current}
-        >
+      { component && (
+        <div className="options oak-flex oak-items-center oak-gap-0.5">
+          <Editable
+            ref={editableRef}
+            element={element}
+            component={component}
+            container={floatingsRef.current}
+          >
+            <Option
+              className="edit"
+              option={{ icon: 'pen' }}
+              onClick={onEdit_}
+              name={<Text name="core.tooltips.edit" default="Edit" />}
+            />
+          </Editable>
           <Option
-            className="edit"
-            option={{ icon: 'pen' }}
-            onClick={onEdit_}
-            name={<Text name="core.tooltips.edit" default="Edit" />}
+            className="remove"
+            option={{ icon: 'close' }}
+            onClick={onRemove_}
+            name={<Text name="core.tooltips.remove" default="Remove" />}
           />
-        </Editable>
-        <Option
-          className="remove"
-          option={{ icon: 'close' }}
-          onClick={onRemove_}
-          name={<Text name="core.tooltips.remove" default="Remove" />}
-        />
-      </div>
+        </div>
+      ) }
     </div>
   );
 };

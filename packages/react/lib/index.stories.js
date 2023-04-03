@@ -8,7 +8,7 @@ export default { title: 'React/Builder' };
 
 const baseContent = [
   { type: 'row', cols: [
-    { content: [
+    { type: 'col', content: [
       { type: 'title', content: 'This is a title' },
       { type: 'text', content: 'This is a text' },
       { type: 'empty-space', settings: { height: '20px' } },
