@@ -433,7 +433,7 @@ export default class Store extends Emitter {
   }
 
   resetHistory () {
-    this.#history = [];
+    this.#history = [cloneDeep(this.#content)];
     this.#historyIndex = 0;
     this.emit('history.reset', this.#history, this.#historyIndex);
   }
