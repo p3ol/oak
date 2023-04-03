@@ -22,5 +22,6 @@ export {
   useLogger,
 } from './hooks';
 
+export * from './fields';
 export * from './options';
 export * from './addons';

@@ -8,13 +8,23 @@ import {
   AddonObject,
   Builder as CoreBuilder,
   BuilderOptions,
+  Element as CoreElement,
   ElementObject,
 } from '@oakjs/core';
 
-interface ImageUploadCallbackResult {
+export declare interface ImageUploadCallbackResult {
   url: string;
   name: string;
   [key: string]: any;
+}
+
+export declare interface BuilderContextValue {
+  builder: CoreBuilder;
+  content: Array<Element | ElementObject>;
+  rootBoundary: MutableRefObject<any> | Element | DocumentFragment;
+  onImageUpload?(event: FormEvent): Promise<ImageUploadCallbackResult>;
+  rootRef: MutableRefObject<any>;
+  floatingsRef: MutableRefObject<any>;
 }
 
 export declare type BuilderRef = {
@@ -25,7 +35,7 @@ export declare type BuilderRef = {
   innerRef: MutableRefObject<any>;
 };
 
-declare interface BuilderProps extends ComponentPropsWithRef<any> {
+export declare interface BuilderProps extends ComponentPropsWithRef<any> {
   className?: string;
   defaultValue?: Array<ElementObject>;
   value?: Array<ElementObject>;

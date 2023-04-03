@@ -48,11 +48,6 @@ export const useRootBuilder = opts => {
           dispatch({ activeTextSheet });
           break;
         }
-        case 'history.undo':
-        case 'history.redo':
-        case 'history.commit': {
-          console.log('history', ...args);
-        }
       }
 
       opts?.onEvent?.(eventName, ...args);

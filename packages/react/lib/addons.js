@@ -9,18 +9,20 @@ import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
 
 import { dragOption } from './options';
-import ImageField from './fields/ImageField';
-import Col from './components/Col';
-import EmptySpace from './components/EmptySpace';
-import Row from './components/Row';
-import Title from './components/Title';
-import TextComponent from './components/Text';
-import Image from './components/Image';
-import Button from './components/Button';
-import Foldable from './components/Foldable';
+import { ImageField } from './fields';
+import {
+  Button,
+  Col,
+  EmptySpace,
+  Foldable,
+  Image,
+  Row,
+  Text as TextComponent,
+  Title,
+} from './components';
 import Text from './Text';
 
-export const textField = (...props) => ({
+export const textField = props => ({
   ...coreAddons.textField(),
   render: (fieldProps, { setting, t } = {}) => (
     <TextField
@@ -34,7 +36,7 @@ export const textField = (...props) => ({
   ...props,
 });
 
-export const textareaField = (...props) => ({
+export const textareaField = props => ({
   ...coreAddons.textareaField(),
   render: (fieldProps, { setting, t } = {}) => (
     <TextField
@@ -50,7 +52,7 @@ export const textareaField = (...props) => ({
   ...props,
 });
 
-export const selectField = (...props) => ({
+export const selectField = props => ({
   ...coreAddons.selectField(),
   render: (fieldProps, { setting, editableRef, t } = {}) => (
     <SelectField
@@ -69,7 +71,7 @@ export const selectField = (...props) => ({
   ...props,
 });
 
-export const colorField = (...props) => ({
+export const colorField = props => ({
   ...coreAddons.colorField(),
   render: (fieldProps, { setting, t } = {}) => (
     <ColorField
@@ -82,7 +84,7 @@ export const colorField = (...props) => ({
   ...props,
 });
 
-export const imageField = (...props) => ({
+export const imageField = props => ({
   ...coreAddons.imageField(),
   render: (fieldProps, { setting }) => (
     <ImageField
@@ -93,7 +95,7 @@ export const imageField = (...props) => ({
   ...props,
 });
 
-export const dateField = (...props) => ({
+export const dateField = props => ({
   ...coreAddons.dateField(),
   render: (fieldProps, { setting, t } = {}) => (
     <DateField
@@ -106,7 +108,7 @@ export const dateField = (...props) => ({
   ...props,
 });
 
-export const toggleField = (...props) => ({
+export const toggleField = props => ({
   ...coreAddons.toggleField(),
   render: (fieldProps, { setting } = {}) => (
     <Toggle { ...fieldProps } checked={fieldProps.value}>
@@ -120,50 +122,50 @@ export const toggleField = (...props) => ({
   ...props,
 });
 
-export const rowComponent = (...props) => ({
+export const rowComponent = props => ({
   ...coreAddons.rowComponent(),
   render: Row,
   options: [dragOption()],
   ...props,
 });
 
-export const colComponent = (...props) => ({
+export const colComponent = props => ({
   ...coreAddons.colComponent(),
   render: Col,
   ...props,
 });
 
-export const emptySpaceComponent = (...props) => ({
+export const emptySpaceComponent = props => ({
   ...coreAddons.emptySpaceComponent(),
   render: EmptySpace,
   ...props,
 });
 
-export const titleComponent = (...props) => ({
+export const titleComponent = props => ({
   ...coreAddons.titleComponent(),
   render: Title,
   ...props,
 });
 
-export const textComponent = (...props) => ({
+export const textComponent = props => ({
   ...coreAddons.textComponent(),
   render: TextComponent,
   ...props,
 });
 
-export const imageComponent = (...props) => ({
+export const imageComponent = props => ({
   ...coreAddons.imageComponent(),
   render: Image,
   ...props,
 });
 
-export const buttonComponent = (...props) => ({
+export const buttonComponent = props => ({
   ...coreAddons.buttonComponent(),
   render: Button,
   ...props,
 });
 
-export const foldableComponent = (...props) => ({
+export const foldableComponent = props => ({
   ...coreAddons.foldableComponent(),
   options: [dragOption()],
   render: Foldable,
