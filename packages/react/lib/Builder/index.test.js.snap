@@ -1240,8 +1240,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         class="oak-flex oak-gap-2"
       >
         <button
-          class="junipero button disabled"
-          disabled=""
+          class="junipero button"
           type="button"
         >
           <i
@@ -1406,8 +1405,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         class="oak-flex oak-gap-2"
       >
         <button
-          class="junipero button disabled"
-          disabled=""
+          class="junipero button"
           type="button"
         >
           <i

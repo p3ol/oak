@@ -4,26 +4,42 @@ import { mockState, useEffectAfterMount } from '@junipero/react';
 
 import { BuilderContext } from './contexts';
 
-export const useRootBuilder = opts => {
+export const useRootBuilder = ({
+  activeTextSheet,
+  content,
+  defaultContent,
+  onChange,
+  onEvent,
+  ...opts
+}) => {
   const builder = useMemo(() => (
     new Builder({
       ...opts,
-      content: opts?.defaultContent || opts?.content,
+      content: defaultContent || content,
     })
   ), []);
   const [state, dispatch] = useReducer(mockState, {
     content: builder.getContent(),
-    activeTextSheet: opts?.activeTextSheet,
+    activeTextSheet,
     canUndo: false,
     canRedo: false,
   });
 
   useEffectAfterMount(() => {
+    if (content === builder.getContent()) {
+      return;
+    }
+
     builder.logger
-      .log('[react] Value prop changed:', opts?.content);
-    builder.setContent(opts?.content, { emit: false });
-    dispatch({ content: builder.getContent() });
-  }, [opts?.content]);
+      .log('[react] Value prop changed:', content);
+    builder.setContent(content, { emit: false, commit: false });
+
+    dispatch({
+      content: builder.getContent(),
+      canUndo: builder.canUndo(),
+      canRedo: builder.canRedo(),
+    });
+  }, [content]);
 
   useEffect(() => {
     const unsubscribe = builder.subscribe((eventName, ...args) => {
@@ -31,15 +47,15 @@ export const useRootBuilder = opts => {
 
       switch (eventName) {
         case 'content.update': {
-          const [content] = args;
+          const [content_] = args;
           builder.logger
-            .log('[react] Receiving content from builder:', content);
+            .log('[react] Receiving content from builder:', content_);
           dispatch({
-            content,
+            content: content_,
             canUndo: builder.canUndo(),
             canRedo: builder.canRedo(),
           });
-          opts.onChange?.(content);
+          onChange?.(content_);
           break;
         }
         // Triggers a rerender when the active text sheet changes
@@ -50,7 +66,7 @@ export const useRootBuilder = opts => {
         }
       }
 
-      opts?.onEvent?.(eventName, ...args);
+      onEvent?.(eventName, ...args);
     });
 
     return () => {
