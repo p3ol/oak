@@ -36,14 +36,19 @@ export declare type BuilderRef = {
 };
 
 export declare interface BuilderProps extends ComponentPropsWithRef<any> {
+  activeTextSheet?: string;
+  addons: Array<AddonObject>;
+  bottomHistoryButtonsContainer?: string | Element | DocumentFragment;
+  bottomHistoryButtonsEnabled?: boolean;
+  children?: ReactNode | JSX.Element;
   className?: string;
   defaultValue?: Array<ElementObject>;
-  value?: Array<ElementObject>;
-  addons: Array<AddonObject>;
-  rootBoundary?: string | Element | DocumentFragment;
-  children?: ReactNode | JSX.Element;
-  activeTextSheet?: string;
+  historyEnabled?: boolean;
   options?: BuilderOptions;
+  rootBoundary?: string | Element | DocumentFragment;
+  topHistoryButtonsContainer?: string | Element | DocumentFragment;
+  topHistoryButtonsEnabled?: boolean;
+  value?: Array<ElementObject>;
   [key: string]: any;
   onChange?(content: Array<ElementObject>): void;
   onImageUpload?(event: FormEvent): Promise<ImageUploadCallbackResult>;
