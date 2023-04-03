@@ -30,11 +30,19 @@ module.exports = {
   safelist: [
     { pattern: /flex-/ },
     { pattern: /basis-(.+)\/12/ },
+    { pattern: /items-/ },
+    { pattern: /justify-/ },
   ],
   plugins: [
     junipero,
     plugin(({ addUtilities }) => {
       addUtilities({
+        '.justify-space-around': {
+          'justify-content': 'space-around',
+        },
+        '.justify-space-between': {
+          'justify-content': 'space-between',
+        },
         '.items-flex-start': {
           'align-items': 'flex-start',
         },
