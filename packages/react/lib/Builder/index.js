@@ -1,12 +1,12 @@
 import { forwardRef, useCallback, useRef, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
-import { Button, classNames, ensureNode } from '@junipero/react';
+import { classNames, ensureNode } from '@junipero/react';
 
 import { BuilderContext } from '../contexts';
 import { useRootBuilder } from '../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
-import Icon from '../Icon';
+import HistoryButtons from './HistoryButtons';
 
 const Builder = forwardRef(({
   className,
@@ -68,14 +68,7 @@ const Builder = forwardRef(({
   };
 
   const historyButtons = (
-    <div className="oak-flex oak-gap-2">
-      <Button onClick={builder.undo.bind(builder)} disabled={!canUndo}>
-        <Icon>undo</Icon>
-      </Button>
-      <Button onClick={builder.redo.bind(builder)} disabled={!canRedo}>
-        <Icon>redo</Icon>
-      </Button>
-    </div>
+    <HistoryButtons canUndo={canUndo} canRedo={canRedo} />
   );
 
   return (

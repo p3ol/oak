@@ -177,6 +177,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -187,6 +188,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -390,6 +392,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -400,6 +403,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -425,6 +429,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
     >
       <button
         class="junipero button"
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -435,6 +440,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -836,6 +842,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
     >
       <button
         class="junipero button"
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -846,6 +853,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -872,6 +880,7 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -882,6 +891,7 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -918,6 +928,7 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -928,6 +939,7 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -1230,6 +1242,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         <button
           class="junipero button disabled"
           disabled=""
+          type="button"
         >
           <i
             class="icon junipero-icons"
@@ -1240,6 +1253,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         <button
           class="junipero button disabled"
           disabled=""
+          type="button"
         >
           <i
             class="icon junipero-icons"
@@ -1394,6 +1408,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         <button
           class="junipero button disabled"
           disabled=""
+          type="button"
         >
           <i
             class="icon junipero-icons"
@@ -1404,6 +1419,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         <button
           class="junipero button disabled"
           disabled=""
+          type="button"
         >
           <i
             class="icon junipero-icons"
@@ -1437,6 +1453,7 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
         <button
           class="junipero button disabled"
           disabled=""
+          type="button"
         >
           <i
             class="icon junipero-icons"
@@ -1447,6 +1464,7 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
         <button
           class="junipero button disabled"
           disabled=""
+          type="button"
         >
           <i
             class="icon junipero-icons"
@@ -1483,6 +1501,7 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
         <button
           class="junipero button disabled"
           disabled=""
+          type="button"
         >
           <i
             class="icon junipero-icons"
@@ -1493,6 +1512,7 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
         <button
           class="junipero button disabled"
           disabled=""
+          type="button"
         >
           <i
             class="icon junipero-icons"
@@ -1520,6 +1540,7 @@ exports[`<Builder /> should render: Base content 1`] = `
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -1530,6 +1551,7 @@ exports[`<Builder /> should render: Base content 1`] = `
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -1765,6 +1787,7 @@ exports[`<Builder /> should render: Base content 1`] = `
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
@@ -1775,6 +1798,7 @@ exports[`<Builder /> should render: Base content 1`] = `
       <button
         class="junipero button disabled"
         disabled=""
+        type="button"
       >
         <i
           class="icon junipero-icons"
