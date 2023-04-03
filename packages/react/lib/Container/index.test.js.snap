@@ -5,7 +5,7 @@ exports[`<Container /> should allow to prepend elements inside a container: With
   "content": [
     {
       "content": "This is some fancy text content",
-      "id": "187a59ff-7fd7-4ae9-b4a4-e4342bf69b0f",
+      "id": 0,
       "type": "text",
     },
     {
@@ -50,7 +50,7 @@ exports[`<Container /> should render: With element added 1`] = `
   "content": [
     {
       "content": "This is some fancy text content",
-      "id": "68a3791d-8895-4b8b-a70e-324c9d55d2ea",
+      "id": 0,
       "type": "text",
     },
   ],

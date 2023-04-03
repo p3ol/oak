@@ -60,7 +60,9 @@ describe('Builder', () => {
 
     builder.addElement({ type: 'text', content: 'This is a text' });
 
-    expect(listener).toHaveBeenCalledTimes(1);
+    // 1 -> content.update
+    // 2 -> history.commit
+    expect(listener).toHaveBeenCalledTimes(2);
   });
 
   it('should allow to add addons', () => {

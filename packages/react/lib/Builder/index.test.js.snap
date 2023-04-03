@@ -172,6 +172,30 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
     class="oak builder"
   >
     <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
       class="elements oak-flex oak-flex-col oak-gap-4"
     >
       <div
@@ -361,6 +385,30 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
       </div>
     </div>
     <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
       class="floatings"
     />
   </div>
@@ -372,6 +420,29 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
   <div
     class="oak builder"
   >
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
     <div
       class="elements oak-flex oak-flex-col oak-gap-4"
     >
@@ -761,6 +832,29 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
       </div>
     </div>
     <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
       class="floatings"
     />
   </div>
@@ -772,6 +866,30 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
   <div
     class="oak builder"
   >
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
     <div
       class="elements oak-flex oak-flex-col oak-gap-4"
     >
@@ -793,6 +911,30 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
           </a>
         </div>
       </div>
+    </div>
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
     </div>
     <div
       class="floatings"
@@ -1083,6 +1225,30 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
       class="oak builder"
     >
       <div
+        class="oak-flex oak-gap-2"
+      >
+        <button
+          class="junipero button disabled"
+          disabled=""
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            undo
+          </i>
+        </button>
+        <button
+          class="junipero button disabled"
+          disabled=""
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            redo
+          </i>
+        </button>
+      </div>
+      <div
         class="elements oak-flex oak-flex-col oak-gap-4"
       >
         <div
@@ -1223,6 +1389,30 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         </div>
       </div>
       <div
+        class="oak-flex oak-gap-2"
+      >
+        <button
+          class="junipero button disabled"
+          disabled=""
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            undo
+          </i>
+        </button>
+        <button
+          class="junipero button disabled"
+          disabled=""
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            redo
+          </i>
+        </button>
+      </div>
+      <div
         class="floatings"
       />
     </div>
@@ -1241,6 +1431,30 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
     <div
       class="oak builder"
     >
+      <div
+        class="oak-flex oak-gap-2"
+      >
+        <button
+          class="junipero button disabled"
+          disabled=""
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            undo
+          </i>
+        </button>
+        <button
+          class="junipero button disabled"
+          disabled=""
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            redo
+          </i>
+        </button>
+      </div>
       <div
         class="elements oak-flex oak-flex-col oak-gap-4"
       >
@@ -1264,6 +1478,30 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
         </div>
       </div>
       <div
+        class="oak-flex oak-gap-2"
+      >
+        <button
+          class="junipero button disabled"
+          disabled=""
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            undo
+          </i>
+        </button>
+        <button
+          class="junipero button disabled"
+          disabled=""
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            redo
+          </i>
+        </button>
+      </div>
+      <div
         class="floatings"
       />
     </div>
@@ -1276,6 +1514,30 @@ exports[`<Builder /> should render: Base content 1`] = `
   <div
     class="oak builder"
   >
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
     <div
       class="elements oak-flex oak-flex-col oak-gap-4"
     >
@@ -1496,6 +1758,30 @@ exports[`<Builder /> should render: Base content 1`] = `
           </a>
         </div>
       </div>
+    </div>
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
     </div>
     <div
       class="floatings"

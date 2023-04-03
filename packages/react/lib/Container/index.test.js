@@ -5,10 +5,19 @@ import { baseAddon } from '../addons';
 import Container from './index';
 
 describe('<Container />', () => {
+  const getOptions = props => {
+    let i = 0;
+
+    return {
+      generateId: () => i++,
+      ...props,
+    };
+  };
+
   it('should render', () => {
     const elmt = { id: '1', type: 'foldable', content: [] };
     const { container, unmount } = render(
-      <BuilderLite addons={[baseAddon()]}>
+      <BuilderLite options={getOptions()} addons={[baseAddon()]}>
         <Container
           element={elmt}
           content={elmt.content}
@@ -34,7 +43,7 @@ describe('<Container />', () => {
     ] };
 
     const { container, unmount } = render(
-      <BuilderLite addons={[baseAddon()]}>
+      <BuilderLite options={getOptions()} addons={[baseAddon()]}>
         <Container
           element={elmt}
           content={elmt.content}
