@@ -7,7 +7,8 @@ module.exports = {
   resetMocks: true,
   rootDir: path.resolve(__dirname),
   moduleNameMapper: {
-    '^@oakjs/core(.+)$': path.resolve('packages/core/lib$1'),
+    '^@oakjs/core$': path.resolve('./packages/core/lib'),
+    '^@oakjs/core(.+)$': path.resolve('./packages/core/lib$1'),
     '^@tests-utils$': path.resolve(__dirname, 'tests/utils.js'),
   },
   coveragePathIgnorePatterns: [
