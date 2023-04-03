@@ -1,5 +1,5 @@
 import { forwardRef, useCallback, useRef, useImperativeHandle } from 'react';
-import { createPortal } from 'react-dom/client';
+import { createPortal } from 'react-dom';
 import { Button, classNames, ensureNode } from '@junipero/react';
 
 import { BuilderContext } from '../contexts';
