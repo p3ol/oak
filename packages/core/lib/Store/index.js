@@ -431,4 +431,10 @@ export default class Store extends Emitter {
     this.emit('history.redo', this.#history, this.#historyIndex);
     this.emit('content.update', this.#content);
   }
+
+  resetHistory () {
+    this.#history = [];
+    this.#historyIndex = 0;
+    this.emit('history.reset', this.#history, this.#historyIndex);
+  }
 }

@@ -182,6 +182,10 @@ export default class Builder extends Emitter {
     return this.#store.canRedo();
   }
 
+  resetHistory () {
+    this.#store.resetHistory();
+  }
+
   generateId () {
     const customId = this.options.generateId?.();
 

@@ -32,7 +32,7 @@ export const useRootBuilder = ({
 
     builder.logger
       .log('[react] Value prop changed:', content);
-    builder.setContent(content, { emit: false, commit: false });
+    builder.setContent(content, { emit: false });
 
     dispatch({
       content: builder.getContent(),
@@ -62,6 +62,13 @@ export const useRootBuilder = ({
         case 'sheets.setActive': {
           const [activeTextSheet] = args;
           dispatch({ activeTextSheet });
+          break;
+        }
+        case 'history.reset': {
+          dispatch({
+            canUndo: builder.canUndo(),
+            canRedo: builder.canRedo(),
+          });
           break;
         }
       }

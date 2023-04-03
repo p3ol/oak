@@ -125,4 +125,5 @@ export declare class Store extends Emitter {
 
   canUndo(): boolean;
   canRedo(): boolean;
+  resetHistory(): void;
 }

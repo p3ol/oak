@@ -59,4 +59,5 @@ export declare class Builder extends Emitter {
   canRedo(): boolean;
   undo(): void;
   redo(): void;
+  resetHistory(): void;
 }
