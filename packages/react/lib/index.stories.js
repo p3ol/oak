@@ -151,7 +151,7 @@ export const withMultipleCustomSettings = () => (
   <Builder
     addons={[baseAddon(), {
       settings: [
-        { key: 'settings.foo', label: 'Foo', type: 'text' },
+        { key: 'settings.foo', label: 'Foo', type: 'text', displayable: true },
         { key: 'settings.bar', label: 'Bar', type: 'text' },
       ],
     }]}

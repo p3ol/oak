@@ -98,12 +98,12 @@ export default class Builder extends Emitter {
     return this.#components.getComponent(type);
   }
 
-  getComponentDisplayableSettings (component) {
-    if (!component) {
-      return [];
-    }
-
-    return this.#components.getDisplayableSettings(component.settings);
+  getComponentDisplayableSettings (element, { component }) {
+    return [
+      ...this.#components
+        .getDisplayableSettings?.(element, { component }) || [],
+      ...this.#settings.getDisplayable?.(element) || [],
+    ];
   }
 
   getAvailableFields () {

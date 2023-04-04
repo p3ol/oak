@@ -130,6 +130,30 @@ export default class Settings extends Emitter {
     return false;
   }
 
+  getDisplayable (element, { fields = this.#tabs } = {}) {
+    const displayable = [];
+
+    for (const setting of fields) {
+      if (Array.isArray(setting.fields)) {
+        displayable.push(...this.getDisplayable(element, {
+          fields: setting.fields,
+        }));
+      }
+
+      if (
+        setting.displayable === true ||
+        (
+          typeof setting.displayable === 'function' &&
+          setting.displayable({ element, builder: this.#builder })
+        )
+      ) {
+        displayable.push(setting);
+      }
+    }
+
+    return displayable;
+  }
+
   all () {
     return this.#tabs;
   }

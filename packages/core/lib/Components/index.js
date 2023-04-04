@@ -156,19 +156,31 @@ export default class Components extends Emitter {
     };
   }
 
-  getDisplayableSettings (settings) {
+  getDisplayableSettings (element, { fields, component } = {}) {
     const displayable = [];
 
-    for (const setting of settings.fields) {
+    if (!fields) {
+      component = component || this.getComponent(element.type);
+
+      if (!component?.settings || !component?.settings.fields) {
+        return displayable;
+      }
+
+      fields = component.settings.fields;
+    }
+
+    for (const setting of fields) {
       if (Array.isArray(setting.fields)) {
-        displayable.push(...this.getDisplayableSettings(setting));
+        displayable.push(...this.getDisplayableSettings(element, {
+          fields: setting.fields,
+        }));
       }
 
       if (
         setting.displayable === true ||
         (
           typeof setting.displayable === 'function' &&
-          setting.displayable({ builder: this.#builder })
+          setting.displayable({ element, builder: this.#builder })
         )
       ) {
         displayable.push(setting);
