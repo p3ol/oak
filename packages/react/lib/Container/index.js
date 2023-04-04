@@ -9,6 +9,7 @@ const Container = ({
   element,
   content = [],
   depth = 0,
+  className,
 }) => {
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
@@ -64,6 +65,7 @@ const Container = ({
           'container oak-flex-auto oak-flex oak-flex-col oak-gap-2',
           'oak-p-4',
           depth % 2 === 0 ? 'even' : 'odd',
+          className
         )}
         data-depth={depth}
       >
