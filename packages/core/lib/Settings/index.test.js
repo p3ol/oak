@@ -41,6 +41,9 @@ describe('Settings', () => {
     );
     expect(settings.getSetting('test')).toMatchObject(setting);
 
+    const anotherSetting = { key: 'foo', type: 'text', tab: 'test' };
+    settings.add(anotherSetting);
+
     expect(settings).toMatchSnapshot();
   });
 });

@@ -146,3 +146,18 @@ export const withMultipleLanguages = () => {
     </div>
   );
 };
+
+export const withMultipleCustomSettings = () => (
+  <Builder
+    addons={[baseAddon(), {
+      settings: [
+        { key: 'settings.foo', label: 'Foo', type: 'text' },
+        { key: 'settings.bar', label: 'Bar', type: 'text' },
+      ],
+    }]}
+    value={baseContent}
+    rootBoundary={document.documentElement}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);

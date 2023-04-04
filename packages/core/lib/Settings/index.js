@@ -83,7 +83,8 @@ export default class Settings extends Emitter {
         Settings.SETTINGS_TAB_GENERAL
       ));
 
-    const existing = this.getSetting(setting.id, { tabId: tab.id });
+    const existing = this
+      .getSetting(setting.id || setting.key, { tabId: tab.id });
 
     if (existing) {
       this.#builder.logger.log(
