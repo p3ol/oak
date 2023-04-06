@@ -20,11 +20,12 @@ export const useRootBuilder = ({
   ), []);
   const [state, dispatch] = useReducer(mockState, {
     content: builder.getContent(),
-    activeTextSheet,
+    activeTextSheet: null,
     canUndo: false,
     canRedo: false,
   });
 
+  // Allow to change the content from outside
   useEffectAfterMount(() => {
     if (content === builder.getContent()) {
       return;
@@ -43,8 +44,6 @@ export const useRootBuilder = ({
 
   useEffect(() => {
     const unsubscribe = builder.subscribe((eventName, ...args) => {
-      builder.logger.log('[react]', 'Event:', eventName, ...args);
-
       switch (eventName) {
         case 'content.update': {
           const [content_] = args;
@@ -61,6 +60,10 @@ export const useRootBuilder = ({
         // Triggers a rerender when the active text sheet changes
         case 'sheets.setActive': {
           const [activeTextSheet] = args;
+          builder.logger.log(
+            '[react] Receiving active texts sheet from builder:',
+            activeTextSheet
+          );
           dispatch({ activeTextSheet });
           break;
         }
@@ -81,6 +84,15 @@ export const useRootBuilder = ({
       unsubscribe();
     };
   }, [builder]);
+
+  // Allow to change the active text sheet from outside
+  useEffect(() => {
+    if (activeTextSheet === state.activeTextSheet) {
+      return;
+    }
+
+    builder.setActiveTextSheet(activeTextSheet);
+  }, [activeTextSheet]);
 
   return { builder, ...state };
 };

@@ -112,15 +112,18 @@ export const withCustomTexts = () => {
 
 export const withMultipleLanguages = () => {
   const builderRef = useRef();
-  const [locale, setLocale] = useState('en');
-
-  useEffect(() => {
-    builderRef.current?.builder.setActiveTextSheet(locale);
-  }, [locale]);
+  const [locale, setLocale] = useState('fr');
 
   const texts = [
     { id: 'fr', texts: {
-      core: { pasteFromClipboard: 'Coller depuis le presse-papier' },
+      core: {
+        pasteFromClipboard: 'Coller depuis le presse-papier',
+        components: {
+          title: {
+            name: 'Titre',
+          },
+        },
+      },
     } },
     { id: 'es', texts: {
       core: { pasteFromClipboard: 'Pegar desde el portapapeles' },
@@ -139,9 +142,10 @@ export const withMultipleLanguages = () => {
         addons={[baseAddon(), { texts }]}
         value={baseContent}
         rootBoundary={document.documentElement}
-        options={{ debug: true, locale }}
+        options={{ debug: true }}
         onChange={action('change')}
         ref={builderRef}
+        activeTextSheet={locale}
       />
     </div>
   );
