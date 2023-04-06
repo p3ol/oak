@@ -1,346 +1,229 @@
 <div align="center">
 
-<h1>🌳 oak</h1>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://cdn.junipero.design/images/oak-logo-light.svg" />
+  <img src="https://cdn.junipero.design/images/oak-logo.svg" height="50" />
+</picture>
+
+<br />
+<br />
 
 [![GitHub](https://img.shields.io/github/license/p3ol/oak.svg)](https://github.com/p3ol/oak)
-[![npm](https://img.shields.io/npm/v/@poool/oak.svg)](https://www.npmjs.com/package/@poool/oak)
+[![npm](https://img.shields.io/npm/v/@oakjs/react.svg)](https://www.npmjs.com/package/@oakjs/react)
 [![CI](https://github.com/p3ol/oak/actions/workflows/ci.yml/badge.svg)](https://github.com/p3ol/oak/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
 
-<br />
-<p>A page builder for the future of the internet</p>
+<p>A React renderer for the (hopefully one day) popular block-based builder.</p>
 
 </div>
 
-## Installation
+# Installation
 
-```bash
-yarn add @poool/oak
+```sh
+yarn add @oakjs/react @oakjs/theme
 ```
 
-## Usage
+# Usage
 
-```javascript
-import { render } from '@poool/oak';
+```jsx
+import { useState } from 'react';
+import { Builder, baseAddon } from '@oakjs/react';
 
-render(document.getElementById('app'), { /* options */ });
+import '@oakjs/theme/dist/oak.min.css';
+
+export default () => {
+  const [content, setContent] = useState([]);
+
+  return (
+    <Builder
+      addons={[baseAddon()]}
+      value={content}
+      onChange={setContent}
+    />
+  );
+};
 ```
 
-Don't forget to import styles, for example using `style-loader` and `webpack`:
+# Addons
 
-```javascript
-import '@poool/oak/dist/oak.min.css';
+Oak is by definition an empty shell, composed of addons.
+Using addons, you can add components, field definitions, settings, texts sheets, or even override some default settings or props.
+
+In order for you to start using oak with a solid base, we created the `baseAddon()`, which is composed of:
+
+Fields:
+- `textField()` -> A simple text field
+- `textareaField()` -> A simple textarea
+- `selectField()` -> A full-featured select field with deletable items & search
+- `colorField()` -> A text field with a color picker
+- `imageField()` -> An upload file button with image preview & file name
+- `dateField()` -> A date field with a beautiful calendar
+- `toggleField()` -> A fancy toogle like on iOS (because we love toggles)
+
+Components:
+- `rowComponent()` and `colComponent()` -> An almost complete 12-cols grid layout using flex
+- `emptySpaceComponent()` -> A special component to avoid using vertical paddings & margins everywhere
+- `titleComponent()` -> A simple component to display h1 to h6 headings
+- `textComponent()` -> An even more simple component to display, well, text
+- `imageComponent()` -> A component to display images with sizes presets
+- `buttonComponent()` -> A button/link component
+- `foldableComponent()` -> A component to display collapsed things like 
+
+and Settings:
+- `stylingSettings()` -> Allows to set paddings, margins, background image, colors & custom css class to an element
+- `responsiveSettings()` -> Allows to show/display an element for various screen sizes
+
+You can either import the addon itself with everything inside:
+
+```jsx
+import { Builder } from '@oakjs/react';
+import { baseAddon } from '@oakjs/react/addons';
+
+export default () => (
+  <Builder
+    addons={[baseAddon()]}
+  />
+);
 ```
 
-Or import them directly inside your own styles using `less`, `sass` or `stylus`:
+Or import everything manually (in case you need to disable something you don't plan to use):
 
-```css
-@import "@poool/oak/dist/oak.min.css";
-```
+```jsx
+import * as oakAddons from '@oakjs/react/addons';
 
-## Documentation
-
-### Options
-
-#### addons
-- Type: `Array`
-- Default: `[]`
-
-Adds a list of addons to add to the page builder. See [addons](#addons) for more information.
-
-#### content
-- Type: `Array`
-- Default: `[]`
-
-Default content to add to the builder on init.
-
-#### debug
-- Type: `Boolean`
-- Default: `false`
-
-Enable/disable debug output.
-
-#### events
-- Type: `Object`
-- Default: `{}`
-
-Event listeners to attach to the builder. See [events](#events) for more information.
-
-#### historyButtonsEnabled
-- Type: `Boolean`
-- Default: `true`
-
-Enable/disable undo/redo buttons.
-
-#### otherTabEnabled
-- Type: `Boolean`
-- Default: `true`
-
-Whether to display the `Other components` tab inside the builder's catalogue dropdown.
-
-#### overrides
-- Type: `Array`
-- Default: `[]`
-
-Defines a list of components to override. See [overrides](#overrides) for more information.
-
-#### settings
-- Type: `Object`
-- Default: `{}`
-
-Custom settings to add to the components' settings panel. See [settings](#settings) for more information.
-
-#### settingsContainer
-- Type: `Node`
-- Default: `null`
-
-Element in which to render the components' settings panel.
-
-#### texts
-- Type: `Object`
-- Default: `{}`
-
-Override texts used by the builder. See [texts](#texts) for more information.
-
-### Addons
-
-Creating addons allows you to add new components or field types to the builder.
-
-An addon is an object with the following format:
-```js
-{
-  components: [{
-    id: String,
-    name: String|Function,
-    type: String,
-    render: Function,
-    construct: Function,
-    icon?: String|Function,
-    options?: Object,
-    settings?: Object,
-    editable?: Boolean,
-    duplicate?: Function,
-  }],
-  fieldTypes: [{
-    type: String,
-    render: Function,
-    default?: Any,
-    serialize?: Function,
-    deserialize?: Function,
-  }]
-}
-```
-
-For example, if you need to add a new `quote` component & a new `enhancedtext` field type:
-
-```js
-import { render } from '@poool/oak';
-
-render(element, {
-  addons: [{
-    components: [{
-      id: 'quote',
-      name: translate => translate('customTexts.quote.title', 'Quote component'),
-      type: 'component',
-      render: ({ content, author }) =>
-        `<blockquote>${content}<cite>${author}</cite></blockquote>`,
-      construct: () => ({
-        type: 'quote',
-        content: '',
-        author: '',
-      }),
-      settings: {
-        title: translate => translate('customTexts.quote.settings.title',
-          'Quote options'),
-        fields: [{
-          key: 'content',
-          type: 'enhancedtext',
-          default: '',
-          displayable: true,
-        }, {
-          key: 'author',
-          type: 'text',
-          displayable: true,
-        }],
-      },
-    }],
-    fieldTypes: [{
-      type: 'enhancedtext',
-      default: '',
-      render: (baseProps, customProps) => (
-        <textarea { ...customProps } { ...baseProps } />
-      ),
-    }],
-  }],
-});
-```
-
-If you need to have a look at more complex examples, feel free to take a look at all the addons we have already created in the `packages` folder.
-
-### Events
-
-#### onChange
-- Arguments: `({ value: Array }: Object)`
-
-Example:
-```js
-import { render } from '@poool/oak';
-
-render(element, {
-  events: {
-    onChange: ({ value }) => console.log(value),
-  },
-});
-```
-
-Called everytime the builder's content changes.
-
-#### onImageUpload
-- Arguments: `(event: Event)`
-
-Called when an image is uploaded using the `image` field type. The event argument is the native file `input` event.
-
-Example:
-```js
-import { render } from '@poool/oak';
-
-render(element, {
-  events: {
-    onImageUpload: event => {
-      const reader = new FileReader();
-      const image = e.target.files[0];
-
-      return { url: reader.readAsDataURL(image), name: image.name };
-    },
-  },
-});
-```
-
-### Overrides
-
-While addons are great to add new components, you might have to override existing components and their behavior.
-That's where `overrides` comes in handy.
-
-There are currently only one type of override:
-- `components`: Allows to override the various fields of one or multiple existing component
-
-#### components
-
-A `component` override has the following format:
-```js
-{
-  type: 'component',
-  components: Array,
-  fields: Array,
-  construct?: Function,
-  duplicate?: Function,
-}
-```
-
-For example, if you want to override the `content` field for the `title`, `text` & `button` components and make it a `richtext` field instead of a basic `textarea` (and for the sake of this example, also add a unique ID on creation & duplication):
-
-```js
-import { render } from '@poool/oak';
-
-render(element, {
-  overrides: [{
-    type: 'component',
-    components: ['title', 'text', 'button'],
-    fields: [{
-      key: 'content',
-      type: 'richtext',
-    }],
-    construct: elmt => ({ ...elmt, id: uuid() }),
-    duplicate: elmt => ({ ...elmt, id: uuid() }),
-  }],
-});
-```
-
-### Settings
-
-You may also be able to override the various settings tabs for any component.
-Note: The settings are merged together and not replaced.
-
-Settings format:
-```js
-{
-  title?: String|Function,
-  fields: [{
-    key: String,
-    type: String,
-    default: Any,
-    displayable?: Boolean,
-    label?: String|Function,
-    condition?: Function,
-    options?: [{
-      title: String|Function,
-      value: Any,
-    }],
-  }],
-}
-```
-
-For example, if you want to add an `xxs` option to the Responsive settings tab:
-
-```js
-import { render } from '@poool/oak';
-
-render(element, {
-  settings: {
-    responsive: {
-      fields: [{
-        key: 'responsive.xxs',
-        type: 'select',
-        label: 'Extra-extra-small screens (your granny\'s phone)',
-        default: 'show',
-        options: [{
-          title: 'Visible',
-          value: 'show',
-        }, {
-          title: 'Hidden',
-          value: 'hide',
-        }],
+export default () => (
+  <Builder
+    addons={[{
+      fields: [
+        oakAddons.textField(),
+        oakAddons.textareaField(),
+        oakAddons.selectField(),
+        oakAddons.colorField(),
+        oakAddons.imageField(),
+        oakAddons.dateField(),
+        oakAddons.toggleField(),
+      ],
+      components: [{
+        id: 'core',
+        type: 'group',
+        name: t => t('core.components.core.title', 'Core components'),
+        components: [
+          oakAddons.rowComponent(),
+          oakAddons.colComponent(),
+          oakAddons.emptySpaceComponent(),
+          oakAddons.titleComponent(),
+          oakAddons.textComponent(),
+          oakAddons.imageComponent(),
+          oakAddons.buttonComponent(),
+          oakAddons.foldableComponent(),
+        ],
       }],
-    },
-  },
+      settings: [
+        oakAddons.stylingSettings(),
+        oakAddons.responsiveSettings(),
+      ],
+    }]}
+  />
+);
+```
+
+## Custom addons
+
+Creating an addon is as simple as using one:
+
+```jsx
+const myAddon = () => ({
+  fields: [{
+    id: 'my-field',
+    name: 'My Field',
+    render: ({ value, onChange }) => (
+      <input
+        type="email"
+        value={value}
+        onChange={e => onChange({ value: e.target.value })}
+      />
+    ),
+  }]
+  components: [{
+    id: 'my-component',
+    name: 'My Component',
+    construct: () => ({ content: 'This is my component' }),
+    render: ({ content }) => <div>{ content }</div>,
+  }],
 });
-})
+
+export default () => (
+  <Builder
+    addons={[myAddon()]}
+  />
+);
 ```
 
-### Texts
+For more information about addons and the various needed props for fields or components, see the [core addons documentation](../core/README.md#addons).
 
-Most of the core components & available official addons are already translated in english (default language) & french.
-If you need to override all the texts with your own language, it is mostly the same principle as for the settings.
+# Documentation
 
-For example, if you need to override the settings panel buttons texts:
+## `<Builder />`
 
-```js
-import { render } from '@poool/oak';
+### defaultValue
+- Type: `Array<ElementObject|Element>`
 
-render(element, {
-  texts: {
-    core: {
-      settings: {
-        cancel: 'Annuler',
-        save: 'Sauvegarder',
-      },
-    },
-  },
-});
-```
+Just like an uncontrolled react field, used to provide a default value to the builder.
 
-A full example text object is available inside the `core/languages/fr.js` folder of every package of this repository, including the core library itself.
+### value
+- Type: `Array<ElementObject|Element>`
 
-To use these translations, every `label`, `title` of `name` property inside components, fieldTypes, overrides & settings can either be a string (not translated), or a function, for which the first argument is a function called the `translate` function.
-This function is passed to each of these property for you to be able to provide the text key & the default value in your current language.
+Used with `onChange` to provide a controlled value to the builder.
 
-For example, if you need to add a translated label to one of your custom components' fields:
+### addons
+- Type: `Array<AddonObject>`
+- default: `[]`
 
-```js
-{
-  label: t => t('custom.myComponent.myField.label', 'My field'),
-}
-```
+An array of addons to use with the builder.
+
+### rootBoundary
+- Type: `string | Element | DocumentFragment`
+- default: `'.oak'`
+
+A reference element used by FloatingUI to determine the boundaries of everything that floats (tooltips, menus, ...)
+
+### historyEnabled
+- Type: `boolean`
+- default: `true`
+
+Whether or not to enable the history (undo/redo) feature.
+
+### topHistoryButtonsContainer
+- Type: `string | Element | DocumentFragment`
+
+An element used by `ReactDOM.createPortal` to render the top undo/redo buttons.
+
+### topHistoryButtonsEnabled
+- Type: `boolean`
+- default: `true`
+
+Whether or not to show the top undo/redo buttons.
+
+### bottomHistoryButtonsContainer
+- Type: `string | Element | DocumentFragment`
+
+An element used by `ReactDOM.createPortal` to render the bottom undo/redo buttons.
+
+### bottomHistoryButtonsEnabled
+- Type: `boolean`
+- default: `true`
+
+Whether or not to show the bottom undo/redo buttons.
+
+### onChange
+- Type: `function(value: Array<ElementObject|Element>): void`
+
+A callback function called when the builder value changes.
+
+### onImageUpload
+- Type: `function(event: FileEvent): Promise<{ url: string; name: string; [key: string]: any }>`
+
+A callback function called when an image should be uplodaded. It should return a promise that resolves with an object containing the image url, name and any other data you want to store in the image field.
 
 ## Contributing
 
