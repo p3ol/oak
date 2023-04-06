@@ -13,13 +13,14 @@ const name = 'oak-addon-remirror';
 const formats = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = [
-  'react', 'react-dom', '@oakjs/react', '@remirror/core',
+  'react', 'react-dom', '@oakjs/react', '@remirror/core', '@remirror/react',
   '@remirror/pm', 'remirror', 'remirror/extensions',
 ];
 const defaultGlobals = {
   react: 'React',
   'react-dom': 'ReactDOM',
   '@oakjs/react': 'OakReact',
+  '@remirror/react': 'RemirrorReact',
   '@remirror/core': 'RemirrorCore',
   '@remirror/pm': 'RemirrorPm',
   remirror: 'Remirror',
