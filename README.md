@@ -1,7 +1,11 @@
 <div align="center">
 
-<h1>🌳 oak</h1>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://cdn.junipero.design/images/oak-logo-light.svg" />
+  <img src="https://cdn.junipero.design/images/oak-logo.svg" height="50" />
+</picture>
 
+<br />
 <br />
 
 [![GitHub](https://img.shields.io/github/license/p3ol/oak.svg)](https://github.com/p3ol/oak)
@@ -9,17 +13,17 @@
 [![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
 
 <p>Modern, lightweight &amp; modulable page builder</p>
+
 </div>
 
 ## Packages
 
 | Name | Description | |
 | :-- | :-- | :-- |
-| `@poool/oak` | The famous page builder itself | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak) |
-| `@poool/oak-addon-basic-components` | A collection of basic yet useful oak components | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak-addon-basic-components) |
-| `@poool/oak-addon-richtext-field` | WYSIWYG text field using [Slate](https://github.com/ianstormtaylor/slate) | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak-addon-richtext-field) |
-| `@poool/oak-addon-richtext-field-prosemirror` | WYSIWYG text field using [ProseMirror](https://github.com/ProseMirror/prosemirror) | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak-addon-richtext-field-prosemirror) |
-| `@poool/oak-react` | A React wrapper around Oak | [documentation](https://github.com/p3ol/oak/blob/master/packages/oak-react) |
+| `@oakjs/core` | The core of the famous builder | [documentation](https://github.com/p3ol/oak/blob/master/packages/core) |
+| `@oakjs/react` | A render for React | [documentation](https://github.com/p3ol/oak/blob/master/packages/react) |
+| `@oakjs/theme` | Needed core theme files | [documentation](https://github.com/p3ol/oak/blob/master/packages/theme) |
+| `@oakjs/addon-remirror` | WYSIWYG text field for the React render using [Remirror](https://remirror.io/) | [documentation](https://github.com/p3ol/oak/blob/master/packages/addon-remirror) |
 
 ## Documentation
 
