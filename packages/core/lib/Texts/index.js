@@ -74,6 +74,9 @@ export default class Texts extends Emitter {
     if (index !== -1) {
       this.#activeSheet = index;
       this.emit('sheets.setActive', this.#sheets[index]);
+    } else {
+      this.#activeSheet = null;
+      this.emit('sheets.setActive', null);
     }
   }
 

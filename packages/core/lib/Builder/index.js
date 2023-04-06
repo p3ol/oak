@@ -49,9 +49,11 @@ export default class Builder extends Emitter {
     const subscriptions = [
       super.subscribe(callback),
       this.#store.subscribe(this.emit.bind(this)),
+      this.#texts.subscribe(this.emit.bind(this)),
       this.#components.subscribe(this.emit.bind(this)),
       this.#fields.subscribe(this.emit.bind(this)),
       this.#overrides.subscribe(this.emit.bind(this)),
+      this.#settings.subscribe(this.emit.bind(this)),
     ];
 
     return () => {
