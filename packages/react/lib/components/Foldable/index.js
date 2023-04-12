@@ -5,6 +5,8 @@ import Text from '../../Text';
 import Container from '../../Container';
 
 const Foldable = ({
+  component,
+  parentComponent,
   element,
   parent,
   className,
@@ -14,12 +16,16 @@ const Foldable = ({
   const { builder } = useBuilder();
 
   const onDropElement = (position, sibling) => {
+    if (parentComponent?.disallow?.includes?.(sibling.type)) {
+      return;
+    }
+
     builder.moveElement(sibling, element, { parent, position });
   };
 
   return (
     <div
-      { ...omit(rest, ['builder', 'component']) }
+      { ...omit(rest, ['builder']) }
       className={classNames(
         'wrapper',
         depth % 2 === 0 ? 'even' : 'odd',
@@ -43,6 +49,7 @@ const Foldable = ({
             depth={depth + 1}
             element={element}
             content={element.seeMore}
+            component={component}
           />
         </div>
         <div className="section">
@@ -57,6 +64,7 @@ const Foldable = ({
             depth={depth + 1}
             element={element}
             content={element.seeLess}
+            component={component}
           />
         </div>
         <div className="section">
@@ -71,6 +79,7 @@ const Foldable = ({
             depth={depth + 1}
             element={element}
             content={element.content}
+            component={component}
           />
         </div>
       </div>

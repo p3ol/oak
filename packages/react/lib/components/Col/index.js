@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
@@ -22,6 +22,9 @@ const Col = ({
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
   const { builder, floatingsRef } = useBuilder();
+  const component = useMemo(() => (
+    builder.getComponent?.(element.type)
+  ), [element.type]);
 
   const onPrependCol_ = e => {
     e.preventDefault();
@@ -62,6 +65,10 @@ const Col = ({
   };
 
   const onDrop_ = data => {
+    if (component?.disallow?.includes?.(data.type)) {
+      return;
+    }
+
     builder.moveElement?.(data, element, {
       parent: element.content,
       position: 'after',
@@ -85,8 +92,6 @@ const Col = ({
       resetIds: true,
     });
   };
-
-  const component = builder.getComponent?.(element.type);
 
   return (
     <div
@@ -126,6 +131,7 @@ const Col = ({
         >
           { element.content.length > 0 && (
             <Catalogue
+              component={component}
               ref={prependCatalogueRef}
               onAppend={onPrepend_}
               onPaste={onPasteBefore_}
@@ -142,6 +148,7 @@ const Col = ({
                   index={i}
                   parent={element.content}
                   element={item}
+                  parentComponent={component}
                 />
               )) }
             </div>
@@ -149,6 +156,7 @@ const Col = ({
 
           <Catalogue
             ref={appendCatalogueRef}
+            component={component}
             onAppend={onAppend_}
             onPaste={onPasteAfter_}
             className={classNames(

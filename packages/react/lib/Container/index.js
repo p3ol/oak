@@ -7,33 +7,38 @@ import Catalogue from '../Catalogue';
 
 const Container = ({
   element,
+  component,
+  className,
   content = [],
   depth = 0,
-  className,
 }) => {
   const prependCatalogueRef = useRef();
   const appendCatalogueRef = useRef();
   const { builder } = useBuilder();
 
-  const onPrepend = component => {
+  const onPrepend = c => {
     prependCatalogueRef.current?.close();
     builder.addElement?.({}, {
       parent: content,
       position: 'before',
-      component,
+      component: c,
     });
   };
 
-  const onAppend = component => {
+  const onAppend = c => {
     appendCatalogueRef.current?.close();
     builder.addElement?.({}, {
       parent: content,
       position: 'after',
-      component,
+      component: c,
     });
   };
 
   const onDrop = data => {
+    if (component?.disallow?.includes?.(data.type)) {
+      return;
+    }
+
     builder.moveElement?.(data, element, {
       parent: content,
       position: 'after',
@@ -72,6 +77,7 @@ const Container = ({
         { content.length > 0 && (
           <Catalogue
             ref={prependCatalogueRef}
+            component={component}
             onAppend={onPrepend}
             onPaste={onPasteBefore}
             className="oak-inline-flex oak-self-center small"
@@ -87,6 +93,7 @@ const Container = ({
                 index={i}
                 element={elt}
                 parent={content}
+                parentComponent={component}
               />
             )) }
           </div>
@@ -94,6 +101,7 @@ const Container = ({
 
         <Catalogue
           ref={appendCatalogueRef}
+          component={component}
           onAppend={onAppend}
           onPaste={onPasteAfter}
           className={classNames(

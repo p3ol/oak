@@ -6,6 +6,7 @@ import Col from '../Col';
 const Row = ({
   element,
   parent,
+  parentComponent,
   className,
   depth = 0,
   ...rest
@@ -45,6 +46,10 @@ const Row = ({
   };
 
   const onDropElement = (position, sibling) => {
+    if (parentComponent?.disallow?.includes?.(sibling.type)) {
+      return;
+    }
+
     builder.moveElement(sibling, element, { parent, position });
   };
 

@@ -26,6 +26,7 @@ import Icon from '../Icon';
 import Text from '../Text';
 
 const Catalogue = forwardRef(({
+  component,
   className,
   placement = 'bottom',
   onToggle,
@@ -145,31 +146,34 @@ const Catalogue = forwardRef(({
               { groups.map(group => group.usable !== false && (
                 <Tab key={group.id} title={<Text>{ group.name }</Text>}>
                   <div className="group oak-grid oak-grid-cols-2 oak-gap-2">
-                    { group.components.map(component =>
-                      component.usable !== false ? (
-                        <a
-                          key={component.id}
-                          href="#"
-                          draggable={false}
-                          onClick={onAppend_.bind(null, component)}
-                          className={classNames(
-                            'component',
-                            'component-' + component.id,
-                            'oak-flex oak-items-center oak-px-2 oak-py-1',
-                            'oak-gap-2 junipero'
-                          )}
-                        >
-                          <Icon
-                            className="!oak-text-2xl"
-                            children={typeof component.icon === 'function'
-                              ? component.icon.bind(null, component)
-                              : component.icon}
-                          />
-                          <span className="name">
-                            <Text>{ component.name }</Text>
-                          </span>
-                        </a>
-                      ) : null) }
+                    { group.components.filter(c =>
+                      c.usable !== false &&
+                      (!component || !component.disallow ||
+                        !component.disallow.includes(c.id))
+                    ).map(component => (
+                      <a
+                        key={component.id}
+                        href="#"
+                        draggable={false}
+                        onClick={onAppend_.bind(null, component)}
+                        className={classNames(
+                          'component',
+                          'component-' + component.id,
+                          'oak-flex oak-items-center oak-px-2 oak-py-1',
+                          'oak-gap-2 junipero'
+                        )}
+                      >
+                        <Icon
+                          className="!oak-text-2xl"
+                          children={typeof component.icon === 'function'
+                            ? component.icon.bind(null, component)
+                            : component.icon}
+                        />
+                        <span className="name">
+                          <Text>{ component.name }</Text>
+                        </span>
+                      </a>
+                    )) }
                   </div>
                 </Tab>
               )) }

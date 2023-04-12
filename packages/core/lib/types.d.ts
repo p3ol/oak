@@ -167,6 +167,7 @@ export declare interface ComponentObject {
   editable?: boolean;
   options?: Array<ComponentOption | ComponentOptionObject>;
   settings?: ComponentSettingsForm | ComponentSettingsFormObject;
+  disallow?: Array<string>;
   render?: () => any;
   sanitize?: () => any;
   construct?: () => any;
@@ -190,6 +191,7 @@ export declare class Component {
   editable: boolean;
   options: Array<ComponentOption>;
   settings: ComponentSettingsForm;
+  disallow: Array<string>;
   render: () => any;
   sanitize: () => any;
   construct: () => any;

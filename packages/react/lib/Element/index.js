@@ -9,7 +9,13 @@ import Option from '../Option';
 import Editable from '../Editable';
 import Property from './Property';
 
-const Element = ({ element, parent, className, depth = 0 }) => {
+const Element = ({
+  element,
+  parent,
+  parentComponent,
+  className,
+  depth = 0,
+}) => {
   const { builder } = useBuilder();
   const innerRef = useRef();
   const editableRef = useRef();
@@ -32,6 +38,10 @@ const Element = ({ element, parent, className, depth = 0 }) => {
   };
 
   const onDrop_ = (data, position) => {
+    if (parentComponent?.disallow?.includes?.(data.type)) {
+      return;
+    }
+
     builder.moveElement?.(data, element, { parent, position });
   };
 
@@ -59,6 +69,7 @@ const Element = ({ element, parent, className, depth = 0 }) => {
   const rendered = (override?.render || component?.render)?.({
     element,
     component,
+    parentComponent,
     parent,
     builder,
     depth,

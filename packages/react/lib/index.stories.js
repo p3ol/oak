@@ -165,3 +165,29 @@ export const withMultipleCustomSettings = () => (
     onChange={action('change')}
   />
 );
+
+export const disallowSomeChildren = () => {
+  const addon = baseAddon();
+
+  return (
+    <div>
+      <div>You should not be able to add a text inside a col</div>
+      <Builder
+        addons={[{
+          ...addon,
+          components: addon.components.map(c => c.id === 'core' ? {
+            ...c,
+            components: c.components.map(c_ => c_.id === 'col' ? {
+              ...c_,
+              disallow: ['text'],
+            } : c_),
+          } : c),
+        }]}
+        value={baseContent}
+        rootBoundary={document.documentElement}
+        options={{ debug: true }}
+        onChange={action('change')}
+      />
+    </div>
+  );
+};

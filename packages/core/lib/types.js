@@ -29,6 +29,7 @@ export class Component {
     this.droppable = props.droppable ?? true;
     this.usable = props.usable ?? true;
     this.editable = props.editable ?? true;
+    this.disallow = props.disallow || [];
     this.options = (props.options || []).map(o => new ComponentOption(o));
     this.settings = new ComponentSettingsForm(props.settings || {});
   }
