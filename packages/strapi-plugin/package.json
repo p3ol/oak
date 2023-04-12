@@ -18,6 +18,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
+  "scripts": {
+    "build": "true"
+  },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "37.0.1",
     "@ckeditor/ckeditor5-react": "6.0.0",
