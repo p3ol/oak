@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Icon } from '@strapi/design-system/Icon';
 import { Flex } from '@strapi/design-system/Flex';
 
-import OakIcon from './components/Icon';
+import OakIcon from './lib/Icon';
 
 const IconBox = styled(Flex)`
   background-color: #f0f0ff;

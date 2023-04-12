@@ -30,7 +30,9 @@
     "@oakjs/theme": "^3.0.0-alpha.13",
     "@remirror/pm": "2.0.4",
     "@remirror/react": "2.0.27",
-    "remirror": "2.0.26"
+    "@strapi/design-system": "1.6.6",
+    "remirror": "2.0.26",
+    "styled-components": "5.3.9"
   },
   "strapi": {
     "name": "oak",
