@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 import { ImageField as OakImageField } from '@oakjs/react';
 import { prefixFileUrlWithBackendUrl, useLibrary } from '@strapi/helper-plugin';
 
