@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import { createGlobalStyle } from 'styled-components'
 import { ImageField as OakImageField } from '@oakjs/react';
 import { prefixFileUrlWithBackendUrl, useLibrary } from '@strapi/helper-plugin';
+
+const GlobalStyling = createGlobalStyle`
+  body > [data-react-portal] > div {
+    z-index: 100;
+  }
+`;
 
 const ImageField = ({ value: valueProp, onChange }) => {
   const [value, setValue] = useState(valueProp);
@@ -24,6 +31,7 @@ const ImageField = ({ value: valueProp, onChange }) => {
 
   return (
     <>
+      <GlobalStyling />
       <OakImageField
         className="oak-w-full"
         value={value}
