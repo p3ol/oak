@@ -14,6 +14,7 @@ exports[`Components should allow to add a new group and add components 1`] = `
       "components": [
         Component {
           "construct": undefined,
+          "disallow": [],
           "draggable": true,
           "droppable": true,
           "duplicate": undefined,

@@ -6,6 +6,7 @@ exports[`Builder should allow to add addons: Components 1`] = `
     "components": [
       Component {
         "construct": undefined,
+        "disallow": [],
         "draggable": true,
         "droppable": true,
         "duplicate": undefined,
