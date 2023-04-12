@@ -101,9 +101,10 @@ const Col = ({
         {
           'oak-flex-none': element.size === 'auto',
           'oak-flex-1': !element.size || element.size === 'fluid',
+          'oak-basis-full': element.size === 12,
           [`oak-basis-${element.size}/12`]: Number.isInteger(element.size) &&
             element.size > 0 &&
-            element.size <= 12,
+            element.size < 12,
         },
         'oak-flex oak-items-center oak-gap-2 oak-py-2',
         className

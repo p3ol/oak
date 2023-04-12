@@ -30,6 +30,7 @@ module.exports = {
   safelist: [
     { pattern: /flex-/ },
     { pattern: /basis-(.+)\/12/ },
+    { pattern: /basis-full/ },
     { pattern: /items-/ },
     { pattern: /justify-/ },
   ],
