@@ -1,13 +1,15 @@
 import React, { useLayoutEffect } from 'react';
 import { Builder, baseAddon } from '@oakjs/react';
 import { remirrorFieldAddon } from '@oakjs/addon-remirror';
+import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
 import styles from '@oakjs/theme/dist/oak.min.css';
 import remirrorStyles from '@oakjs/addon-remirror/dist/oak-addon-remirror.min.css';
 
 import { addStyles } from '../utils';
 import ImageField from '../ImageField';
 
-const BuilderField = ({ name, value, onChange }) => {
+const BuilderField = ({ attribute, name, value, onChange }) => {
+  const { options } = attribute;
   const addon = baseAddon();
 
   useLayoutEffect(() => {
@@ -27,13 +29,13 @@ const BuilderField = ({ name, value, onChange }) => {
             <ImageField onChange={onChange} value={value} />
           ),
         } : f),
-      }, remirrorFieldAddon(), {
+      }, remirrorFieldAddon(), ckeditorFieldAddon(), {
         overrides: [{
           type: 'component',
           targets: ['title', 'text', 'button'],
           fields: [{
             key: 'content',
-            type: 'remirror',
+            type: options.editor || 'ckeditor',
           }],
         }],
       }]}

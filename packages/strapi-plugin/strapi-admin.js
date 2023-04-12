@@ -39,6 +39,39 @@ export default {
       components: {
         Input: () => import('./lib/BuilderField'),
       },
+      options: {
+        base: [{
+          intlLabel: {
+            id: 'oak.options.editor.label',
+            defaultMessage: 'Choose editor',
+          },
+          description: {
+            id: 'oak.options.editor.description',
+            defaultMessage: 'Select a text editor',
+          },
+          name: 'options.editor',
+          type: 'select',
+          options: [{
+            key: 'ckeditor',
+            value: 'ckeditor',
+            metadatas: {
+              intlLabel: {
+                id: 'oak.options.editor.ckeditor.label',
+                defaultMessage: 'CKEditor 5',
+              },
+            },
+          }, {
+            key: 'remirror',
+            value: 'remirror',
+            metadatas: {
+              intlLabel: {
+                id: 'oak.options.editor.remirror.label',
+                defaultMessage: 'Remirror',
+              },
+            },
+          }],
+        }],
+      },
     });
   },
 };

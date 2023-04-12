@@ -1,0 +1,46 @@
+{
+  "name": "@oakjs/addon-ckeditor5-react",
+  "version": "3.0.0-alpha.18",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "main": "dist/oak-addon-ckeditor-react.cjs.js",
+  "jsnext:main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "esnext": "src/index.js",
+  "unpkg": "dist/oak-addon-ckeditor-react.min.js",
+  "cdn": "dist/oak-addon-ckeditor-react.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/addon-ckeditor5-react"
+  },
+  "author": "Ugo Stephant <ugo@poool.fr>",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">= 14",
+    "yarn": ">= 1"
+  },
+  "peerDependencies": {
+    "@oakjs/react": "^3.0.0-alpha.1",
+    "@ckeditor/ckeditor5-react": "^6.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^37.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.20.13",
+    "core-js": "3.27.2"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && rollup -c",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./dist/esm/index.js",
+    "./addons": "./dist/esm/addons.js"
+  }
+}
