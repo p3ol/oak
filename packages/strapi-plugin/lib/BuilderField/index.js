@@ -19,7 +19,6 @@ const BuilderField = ({ attribute, name, value, onChange }) => {
 
   return (
     <Builder
-      options={{ debug: true }}
       rootBoundary={document.body}
       addons={[{
         ...addon,
