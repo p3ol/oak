@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { TouchableZone, Spinner, classNames, mockState } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
@@ -8,6 +8,7 @@ import Icon from '../../Icon';
 const ImageField = ({
   className,
   value,
+  onOpenDialog,
   onChange,
   iconOnly = false,
   accept = ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'],
@@ -21,11 +22,21 @@ const ImageField = ({
     loading: false,
   });
 
+  useEffect(() => {
+    if (value) {
+      dispatch({ value });
+    }
+  }, [value]);
+
   const onOpenFileDialog = e => {
     e.preventDefault();
 
     if (state.loading) {
       return;
+    }
+
+    if (onOpenDialog) {
+      return onOpenDialog();
     }
 
     const input = document.createElement('input');
