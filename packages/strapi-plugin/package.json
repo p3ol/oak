@@ -1,0 +1,38 @@
+{
+  "name": "@oakjs/strapi-plugin",
+  "version": "3.0.0-alpha.18",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/strapi-plugin"
+  },
+  "author": "Ugo Stephant <ugo@poool.fr>",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 14",
+    "yarn": ">= 1"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^4.4.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "@oakjs/addon-remirror": "3.0.0-alpha.18",
+    "@oakjs/react": "3.0.0-alpha.18",
+    "@oakjs/theme": "3.0.0-alpha.13",
+    "@remirror/pm": "2.0.4",
+    "@remirror/react": "2.0.27",
+    "remirror": "2.0.26"
+  },
+  "strapi": {
+    "name": "oak",
+    "description": "🌳 Modern, lightweight & modulable page builder",
+    "kind": "plugin",
+    "displayName": "Oak"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

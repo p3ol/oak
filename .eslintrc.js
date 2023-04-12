@@ -1,4 +1,5 @@
 const OFF = 0;
+const WARN = 1;
 
 module.exports = {
   extends: ['@poool/eslint-config-react'],
@@ -27,6 +28,12 @@ module.exports = {
       'no-unused-vars': 0,
       'lines-between-class-members': 0,
       'no-use-before-define': 0,
+    },
+  }, {
+    files: ['packages/strapi-plugin/**/*.js'],
+    rules: {
+      'no-unused-vars': [WARN, { varsIgnorePattern: 'React' }],
+      'max-len': [WARN, { code: 80, ignorePattern: '^import .*' }],
     },
   }],
 };
