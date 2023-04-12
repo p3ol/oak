@@ -7,6 +7,7 @@ export {
   DropdownMenu,
   DropdownToggle,
   Toggle,
+  TouchableZone,
   Label,
   classNames,
 } from '@junipero/react';
