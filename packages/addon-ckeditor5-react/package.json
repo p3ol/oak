@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/addon-ckeditor5-react",
-  "version": "3.0.0-alpha.18",
+  "version": "3.0.0-alpha.19",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-addon-ckeditor-react.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -21,9 +21,9 @@
     "yarn": ">= 1"
   },
   "peerDependencies": {
-    "@oakjs/react": "^3.0.0-alpha.1",
-    "@ckeditor/ckeditor5-react": "^6.0.0",
     "@ckeditor/ckeditor5-build-classic": "^37.0.0",
+    "@ckeditor/ckeditor5-react": "^6.0.0",
+    "@oakjs/react": "^3.0.0-alpha.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
