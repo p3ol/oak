@@ -1,46 +1,43 @@
 import React, { useState } from 'react';
-import { Icon, Text } from '@oakjs/react';
-import { TouchableZone } from '@junipero/react';
+import { ImageField as OakImageField } from '@oakjs/react';
 import { prefixFileUrlWithBackendUrl, useLibrary } from '@strapi/helper-plugin';
 
-const ImageField = ({ onChange }) => {
+const ImageField = ({ value: valueProp, onChange }) => {
+  const [value, setValue] = useState(valueProp);
   const [opened, setOpened] = useState(false);
   const { components } = useLibrary();
   const MediaLibraryDialog = components['media-library'];
 
-  const handleSelectAssets = files => {
+  const onSelectAssets = files => {
     const formattedFiles = files.map(f => ({
+      name: f.name,
       alt: f.alternativeText || f.name,
       url: prefixFileUrlWithBackendUrl(f.url),
       mime: f.mime,
     }));
 
-    onChange(formattedFiles);
-  };
-
-  const toggle = () => {
-    setOpened(o => !o);
+    const val = { url: formattedFiles[0].url, name: formattedFiles[0].name };
+    setValue(val);
+    setOpened(false);
+    onChange({ value: val });
   };
 
   return (
-    <div className="image-field oak-flex oak-items-center oak-gap-4">
-      <TouchableZone onClick={toggle} className="!oak-w-full">
-        <Icon className="!oak-text-alternate-text-color">add</Icon>
-        <span>
-          <Text name="core.fields.image.add">
-            Add image
-          </Text>
-        </span>
-      </TouchableZone>
+    <>
+      <OakImageField
+        className="oak-w-full"
+        value={value}
+        onOpenDialog={() => setOpened(true)}
+      />
       { opened && (
         <MediaLibraryDialog
           allowedTypes={['images']}
           multiple={false}
           onClose={() => setOpened(false)}
-          onSelectAssets={handleSelectAssets}
+          onSelectAssets={onSelectAssets}
         />
       ) }
-    </div>
+    </>
   );
 };
 
