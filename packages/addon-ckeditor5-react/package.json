@@ -21,7 +21,7 @@
     "yarn": ">= 1"
   },
   "peerDependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^37.0.0",
+    "@oakjs/ckeditor5-build-custom": "^3.0.0-alpha.21",
     "@ckeditor/ckeditor5-react": "^6.0.0",
     "@oakjs/react": "^3.0.0-alpha.1",
     "react": "^18.0.0",

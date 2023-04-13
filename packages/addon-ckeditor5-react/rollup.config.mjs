@@ -13,7 +13,7 @@ const name = 'oak-addon-ckeditor';
 const formats = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = [
-  'react', 'react-dom', '@oakjs/react', '@ckeditor/ckeditor5-build-classic',
+  'react', 'react-dom', '@oakjs/react', '@oakjs/ckeditor5-build-custom',
   '@ckeditor/ckeditor5-react',
 ];
 
@@ -22,7 +22,7 @@ const defaultGlobals = {
   'react-dom': 'ReactDOM',
   '@oakjs/react': 'OakReact',
   '@ckeditor/ckeditor5-react': 'CKEditorReact',
-  '@ckeditor/ckeditor5-build-classic': 'CKEditor',
+  '@oakjs/ckeditor5-build-custom': 'ClassicEditor',
 };
 
 const defaultPlugins = [
@@ -33,7 +33,10 @@ const defaultPlugins = [
   resolve({
     rootDir: path.resolve('../../'),
   }),
-  commonjs(),
+  commonjs({
+    include: /node_modules/,
+    requireReturnsDefault: 'auto',
+  }),
   terser(),
 ];
 

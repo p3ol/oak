@@ -1,17 +1,17 @@
 import { useCallback } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { classNames } from '@oakjs/react';
 
-const CKEditorField = ({ className, value, onChange }) => {
-  const onChange_ = useCallback((_, editor) => {
-    onChange({ value: editor.getData() });
+const CKEditorField = ({ className, editor, config, value, onChange }) => {
+  const onChange_ = useCallback((_, ed) => {
+    onChange({ value: ed.getData() });
   }, []);
 
   return (
     <div className={classNames('ckeditor-field', className)}>
       <CKEditor
-        editor={ClassicEditor}
+        editor={editor}
+        config={config}
         data={value}
         onChange={onChange_}
       />
