@@ -7,6 +7,7 @@ module.exports = {
     'react/prop-types': 0,
     'react/jsx-uses-react': 0,
     'react/react-in-jsx-scope': 0,
+    'max-len': [WARN, { code: 80, ignorePattern: '^import .*' }],
   },
   overrides: [{
     files: ['packages/**/*.test.js', 'packages/**/tests/**/*.js'],
@@ -33,7 +34,6 @@ module.exports = {
     files: ['packages/strapi-plugin/**/*.js'],
     rules: {
       'no-unused-vars': [WARN, { varsIgnorePattern: 'React' }],
-      'max-len': [WARN, { code: 80, ignorePattern: '^import .*' }],
     },
   }],
 };
