@@ -50,11 +50,15 @@ export declare class Builder extends Emitter {
     baseElement?: object;
     resetIds?: boolean;
   }): object;
-  addElement(element: object, options?: {
+  addElement(element: ElementObject, options?: {
     component?: Component;
     parent?: Array<ElementObject>;
     position?: 'before' | 'after';
   }): Element;
+  addElements(elements: Array<ElementObject>, options?: {
+    parent?: Array<ElementObject>;
+    position?: 'before' | 'after';
+  }): Array<ElementObject>;
   canUndo(): boolean;
   canRedo(): boolean;
   undo(): void;

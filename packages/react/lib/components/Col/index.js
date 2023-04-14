@@ -77,7 +77,7 @@ const Col = ({
 
   const onPasteBefore_ = elmt => {
     prependCatalogueRef.current?.close();
-    builder.addElement(elmt, {
+    builder.addElements([].concat(elmt || []), {
       parent: element.content,
       position: 'before',
       resetIds: true,
@@ -86,7 +86,7 @@ const Col = ({
 
   const onPasteAfter_ = elmt => {
     appendCatalogueRef.current?.close();
-    builder.addElement(elmt, {
+    builder.addElements([].concat(elmt || []), {
       parent: element.content,
       position: 'after',
       resetIds: true,

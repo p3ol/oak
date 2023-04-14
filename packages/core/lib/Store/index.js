@@ -138,6 +138,31 @@ export default class Store extends Emitter {
     return element;
   }
 
+  addElements (elements, {
+    parent = this.#content,
+    position = 'after',
+    ...opts
+  } = {}) {
+    this.#builder.logger
+      .log('Adding elements:', elements, { parent, position });
+
+    elements = elements.map(e => this.sanitize(e, opts));
+
+    switch (position) {
+      case 'before':
+        parent.unshift(...elements);
+        break;
+      case 'after':
+        parent.push(...elements);
+        break;
+    }
+
+    this.commit();
+    this.emit('content.update', this.#content);
+
+    return elements;
+  }
+
   getElement (id, { parent = this.#content, deep = false } = {}) {
     if (!this.isIdValid(id)) {
       return;

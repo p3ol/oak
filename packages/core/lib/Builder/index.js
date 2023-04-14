@@ -140,6 +140,10 @@ export default class Builder extends Emitter {
     this.#store.addElement(element, options);
   }
 
+  addElements (elements, options) {
+    this.#store.addElements(elements, options);
+  }
+
   getElement (id, options) {
     return this.#store.getElement(id, options);
   }

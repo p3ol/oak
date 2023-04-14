@@ -64,7 +64,7 @@ const Builder = forwardRef(({
 
   const onPaste = element => {
     catalogueRef.current?.close();
-    builder.addElement(element, { resetIds: true });
+    builder.addElements([].concat(element || []), { resetIds: true });
   };
 
   const historyButtons = (

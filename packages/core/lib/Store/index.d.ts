@@ -63,6 +63,11 @@ export declare class Store extends Emitter {
     position?: 'before' | 'after';
   } & StoreFindOptions & StoreSanitizeOptions>): ElementObject;
 
+  /** Adds multiple elements to the store */
+  addElements(elements: Array<ElementObject>, options?: Partial<{
+    position?: 'before' | 'after';
+  } & StoreFindOptions & StoreSanitizeOptions>): Array<ElementObject>;
+
   /** Finds an element in the store */
   getElement(id: ElementId, options?: StoreFindDeepOptions): ElementObject;
 

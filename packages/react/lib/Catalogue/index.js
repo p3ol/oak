@@ -78,7 +78,9 @@ const Catalogue = forwardRef(({
         await globalThis.navigator.clipboard.readText()
       );
 
-      if (builder.getComponent(element.type)) {
+      if (Array.isArray(element)) {
+        clipboard = element.filter(e => builder.getComponent(e.type));
+      } else if (builder.getComponent(element.type)) {
         clipboard = element;
       }
     } catch (e) {}
