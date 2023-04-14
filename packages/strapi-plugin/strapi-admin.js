@@ -13,6 +13,8 @@ const IconBox = styled(Flex)`
 
 export default {
   register (app) {
+    app.createHook('oak:addons:add');
+
     app.customFields.register({
       name: 'oak',
       pluginId: 'oak',

@@ -1,4 +1,5 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useMemo } from 'react';
+import { useStrapiApp } from '@strapi/helper-plugin';
 import { Builder, baseAddon, classNames } from '@oakjs/react';
 import { remirrorFieldAddon } from '@oakjs/addon-remirror';
 import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
@@ -9,9 +10,13 @@ import { addStyles } from '../utils';
 import ImageField from '../ImageField';
 
 const BuilderField = ({ attribute, name, value, onChange }) => {
+  const { runHookSeries } = useStrapiApp();
   const { options } = attribute;
   const addon = baseAddon();
   const theme = globalThis.localStorage?.getItem?.('STRAPI_THEME') || 'light';
+  const customAddons = useMemo(() => (
+    runHookSeries('oak:addons:add') || []
+  ), []);
 
   useLayoutEffect(() => {
     addStyles(styles, { id: 'oak-theme' });
@@ -39,7 +44,7 @@ const BuilderField = ({ attribute, name, value, onChange }) => {
               type: options.editor || 'ckeditor',
             }],
           }],
-        }]}
+        }, ...customAddons]}
         defaultValue={JSON.parse(value || '[]')}
         onChange={val =>
           onChange({ target: { name, value: JSON.stringify(val) } })
