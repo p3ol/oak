@@ -1,5 +1,6 @@
 const junipero = require('@junipero/tailwind-plugin');
 const plugin = require('tailwindcss/plugin');
+const { fromPairs } = require('@junipero/core');
 
 module.exports = {
   prefix: 'oak-',
@@ -36,7 +37,8 @@ module.exports = {
   ],
   plugins: [
     junipero,
-    plugin(({ addUtilities }) => {
+    plugin(({ addUtilities, theme, variants, e }) => {
+      // Handle old flexbox utilities
       addUtilities({
         '.justify-space-around': {
           'justify-content': 'space-around',
@@ -51,6 +53,27 @@ module.exports = {
           'align-items': 'flex-end',
         },
       });
+
+      // Set gap as a variable to be used in flex basis calculation
+      addUtilities({
+        ...fromPairs(Object.entries(theme('gap')).map(([k, v]) => [
+          `.gap-${k}`,
+          {
+            '--tw-gap': v,
+            gap: v,
+          },
+        ])),
+      }, variants('gap'));
+
+      // And overwrite flex basis minus the gap
+      addUtilities({
+        ...fromPairs(Object.entries(theme('flexBasis')).map(([k, v]) => [
+          `.basis-${e(k)}`,
+          {
+            'flex-basis': `calc(${v} - (var(--tw-gap) / 2))`,
+          },
+        ])),
+      }, variants('flexBasis'));
     }),
   ],
 };
