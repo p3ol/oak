@@ -233,7 +233,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
             class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
           >
             <div
-              class="column oak-flex-1 oak-flex oak-items-center oak-gap-2 oak-py-2"
+              class="column oak-flex-1 oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2"
             >
               <a
                 class="divider prepend oak-flex oak-items-center"
@@ -566,7 +566,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
             class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
           >
             <div
-              class="column oak-flex-1 oak-flex oak-items-center oak-gap-2 oak-py-2"
+              class="column oak-flex-1 oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2"
             >
               <a
                 class="divider prepend oak-flex oak-items-center"
@@ -971,7 +971,7 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
       class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
     >
       <div
-        class="column oak-flex-1 oak-flex oak-items-center oak-gap-2 oak-py-2"
+        class="column oak-flex-1 oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2"
       >
         <a
           class="divider prepend oak-flex oak-items-center"
