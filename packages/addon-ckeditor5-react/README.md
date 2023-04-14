@@ -20,14 +20,14 @@ An addon to use [CKEditor5](https://ckeditor.com) as an oak field for the React 
 # Installation
 
 ```sh
-yarn add @oakjs/addon-ckeditor5-react @ckeditor/ckeditor5-react @ckeditor/ckeditor5-build-classic
+yarn add @oakjs/addon-ckeditor5-react @ckeditor/ckeditor5-react @oakjs/ckeditor5-build-custom
 ```
 
 # Usage
 
 ```jsx
 import { Builder, baseAddon } from '@oakjs/react';
-import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5';
+import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
 
 import '@oakjs/theme/dist/oak.min.css';
 import '@oakjs/addon-ckeditor5/dist/oak-addon-ckeditor.min.css';
@@ -64,7 +64,7 @@ We can then either directly create component settings with the `ckeditor` field 
 
 ```jsx
 import { BuilderField, baseAddon } from '@oakjs/react';
-import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5';
+import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
 
 const myAddon = () => ({
   settings: [{
@@ -87,7 +87,7 @@ Or override existing component settings:
 
 ```jsx
 import { Builder, baseAddon } from '@oakjs/react';
-import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5';
+import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
 
 const myAddon = () => ({
   overrides: [{
@@ -103,6 +103,50 @@ const myAddon = () => ({
 export default () => (
   <Builder
     addons={[baseAddon(), ckeditorFieldAddon(), myAddon()]}
+    value={content}
+    onChange={setContent}
+  />
+);
+```
+
+## Custom Editor
+
+As the default ClassicEditor was a bit too narrow for our needs, we created our own custom editor based on the ClassicEditor and some additional plugins.
+If you don't need this, or want to use a custom-built editor, pass it as a prop to the `ckeditorFieldAddon()` function:
+
+```jsx
+import { Builder, baseAddon } from '@oakjs/react';
+import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
+
+import MyCustomEditor from './MyCustomEditor';
+
+export default () => (
+  <Builder
+    addons={[baseAddon(), ckeditorFieldAddon({ editor: MyCustomEditor })]}
+    value={content}
+    onChange={setContent}
+  />
+);
+```
+
+## Custom toolbars
+
+The same goes for the toolbars:
+
+```jsx
+import { Builder, baseAddon } from '@oakjs/react';
+import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
+
+export default () => (
+  <Builder
+    addons={[
+      baseAddon(),
+      ckeditorFieldAddon({
+        config: {
+          toolbar: ['heading', 'bold', 'italic'],
+        },
+      }),
+    ]}
     value={content}
     onChange={setContent}
   />
