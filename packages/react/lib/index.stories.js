@@ -166,6 +166,46 @@ export const withMultipleCustomSettings = () => (
   />
 );
 
+export const withMultipleCustomSettingsAndFields = () => (
+  <Builder
+    addons={[baseAddon(), {
+      fields: [{
+        type: 'weird-text',
+        render: ({ value, onChange }) => (
+          <input
+            type="text"
+            value={value}
+            onChange={e => onChange({ value: e.target.value })}
+          />
+        ),
+      }],
+      components: [{
+        id: 'weird-component',
+        name: 'Weird Component',
+        group: 'core',
+        construct: () => ({ type: 'weird-component', content: '' }),
+        render: ({ element }) => <div>{ element.content }</div>,
+      }],
+      settings: [{
+        key: 'settings.foo',
+        label: 'Foo',
+        type: 'weird-text',
+        displayable: true,
+        condition: e => e.type === 'weird-component',
+      }, {
+        key: 'settings.bar',
+        label: 'Bar',
+        type: 'weird-text',
+        condition: e => e.type === 'weird-component',
+      }],
+    }]}
+    value={baseContent}
+    rootBoundary={document.documentElement}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
 export const disallowSomeChildren = () => {
   const addon = baseAddon();
 
