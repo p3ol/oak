@@ -26,6 +26,7 @@ const BuilderField = ({ attribute, name, value, onChange }) => {
   return (
     <div className={classNames('oak-strapi', theme)}>
       <Builder
+        options={{ debug: options.debug }}
         rootBoundary={document.body}
         addons={[{
           ...addon,

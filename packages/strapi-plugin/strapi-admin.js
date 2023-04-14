@@ -73,6 +73,18 @@ export default {
             },
           }],
         }],
+        advanced: [{
+          intlLabel: {
+            id: 'oak.options.debug.label',
+            defaultMessage: 'Debug mode',
+          },
+          description: {
+            id: 'oak.options.debug.description',
+            defaultMessage: 'Enable debug mode',
+          },
+          name: 'options.debug',
+          type: 'checkbox',
+        }],
       },
     });
   },
