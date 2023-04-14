@@ -146,7 +146,12 @@ const Element = ({
               </div>
             </div>
           ) : (
-            <div className="inner oak-flex oak-gap-2 oak-p-4">
+            <div
+              className={classNames(
+                'inner oak-flex oak-gap-2 oak-p-4',
+                depth % 2 === 0 ? 'even' : 'odd'
+              )}
+            >
               <Icon>help_circle</Icon>
               <div className="element-info">
                 <h6 className="junipero oak-m-0 oak-mb-2">
