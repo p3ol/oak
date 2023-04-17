@@ -3,6 +3,7 @@ export {
   SelectField,
   DateField,
   ColorField,
+  Card,
   Dropdown,
   DropdownMenu,
   DropdownToggle,
