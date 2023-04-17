@@ -1523,7 +1523,7 @@
   dependencies:
     ckeditor5 "^37.0.1"
 
-"@ckeditor/ckeditor5-core@^37.0.1":
+"@ckeditor/ckeditor5-core@37.0.1", "@ckeditor/ckeditor5-core@^37.0.1":
   version "37.0.1"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-core/-/ckeditor5-core-37.0.1.tgz#8f7e6ff4a115a1cd7435c458317d717b5778f9d3"
   integrity sha512-xzcAG8aAzzHZbpwUNfpNfkSoEJcofugvMA+Qk4h9dQCNW2hEoacRmaxkWsiKoRyw6WOLGomiJQE2s3EfemEN1g==
@@ -1734,7 +1734,7 @@
     "@ckeditor/ckeditor5-utils" "^37.0.1"
     lodash-es "^4.17.15"
 
-"@ckeditor/ckeditor5-ui@^37.0.1":
+"@ckeditor/ckeditor5-ui@37.0.1", "@ckeditor/ckeditor5-ui@^37.0.1":
   version "37.0.1"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-ui/-/ckeditor5-ui-37.0.1.tgz#a43d0e9743cc5238ae41485a54c2f5da0e5741a0"
   integrity sha512-frtSAjwCO1o1XQeYkvXP5vZLGoYmttvXtjJZ0AMzhY0wqxuQsyGgrLrJU4hrIcLJOYYNA1ZHvTQ8fS2Qdk0b8A==
