@@ -15,7 +15,7 @@ const DisplayableSettings = ({ className, element, component }) => {
       .sort((a, b) => (b.priority || 0) - (a.priority || 0))
   ), [element, component]);
 
-  if (displayableSettings.length < 0) {
+  if (displayableSettings.length <= 0) {
     return null;
   }
 

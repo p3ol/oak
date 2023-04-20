@@ -630,7 +630,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
                           </h1>
                         </div>
                         <div
-                          class="props junipero extra !oak-text-alternate-text-color"
+                          class="displayable-settings junipero extra !oak-text-alternate-text-color"
                         >
                           <span
                             class="property"
@@ -1035,7 +1035,7 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
                     </h1>
                   </div>
                   <div
-                    class="props junipero extra !oak-text-alternate-text-color"
+                    class="displayable-settings junipero extra !oak-text-alternate-text-color"
                   >
                     <span
                       class="property"
@@ -1313,7 +1313,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
                 </h1>
               </div>
               <div
-                class="props junipero extra !oak-text-alternate-text-color"
+                class="displayable-settings junipero extra !oak-text-alternate-text-color"
               >
                 <span
                   class="property"
@@ -1610,7 +1610,7 @@ exports[`<Builder /> should render: Base content 1`] = `
               </h1>
             </div>
             <div
-              class="props junipero extra !oak-text-alternate-text-color"
+              class="displayable-settings junipero extra !oak-text-alternate-text-color"
             >
               <span
                 class="property"
