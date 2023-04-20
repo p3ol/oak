@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/theme",
-  "version": "3.0.0-alpha.24",
+  "version": "3.0.0-alpha.26",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak.min.css",
   "cdn": "dist/oak.min.css",
