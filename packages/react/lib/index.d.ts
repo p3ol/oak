@@ -39,6 +39,10 @@ export {
   default as ReactText,
   TextProps,
 } from './Text';
+export {
+  default as DisplayableSettings,
+  DisplayableSettingsProps,
+} from './DisplayableSettings';
 
 export * from './addons';
 export * from './components';

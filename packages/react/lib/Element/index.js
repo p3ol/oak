@@ -7,7 +7,7 @@ import Icon from '../Icon';
 import Text from '../Text';
 import Option from '../Option';
 import Editable from '../Editable';
-import Property from './Property';
+import DisplayableSettings from '../DisplayableSettings';
 
 const Element = ({
   element,
@@ -76,13 +76,6 @@ const Element = ({
     className: element.className,
   }) || null;
 
-  const displayableSettings = useMemo(() => (
-    builder
-      .getComponentDisplayableSettings(element, { component })
-      .filter(s => !s.condition || s.condition(element))
-      .sort((a, b) => (b.priority || 0) - (a.priority || 0))
-  ), [component]);
-
   return (
     <Droppable
       ref={innerRef}
@@ -127,22 +120,11 @@ const Element = ({
                     { rendered }
                   </div>
                 ) }
-                { displayableSettings.length > 0 && (
-                  <div
-                    className={classNames(
-                      'props junipero extra !oak-text-alternate-text-color',
-                    )}
-                  >
-                    { displayableSettings.map((setting, i) => (
-                      <Fragment key={setting.key || i}>
-                        <Property field={setting} element={element} />
-                        { i < displayableSettings.length - 1 && (
-                          <Text name="core.propertySeparator" default=", " />
-                        ) }
-                      </Fragment>
-                    )) }
-                  </div>
-                ) }
+
+                <DisplayableSettings
+                  element={element}
+                  component={component}
+                />
               </div>
             </div>
           ) : (
