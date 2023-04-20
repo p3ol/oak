@@ -45,8 +45,17 @@
     "access": "public"
   },
   "exports": {
-    ".": "./dist/esm/index.js",
-    "./addons": "./dist/esm/addons.js",
-    "./options": "./dist/esm/options.js"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/oak-react.cjs.js"
+    },
+    "./addons": {
+      "import": "./dist/esm/addons.js",
+      "require": "./dist/oak-react.cjs.js"
+    },
+    "./options": {
+      "import": "./dist/esm/options.js",
+      "require": "./dist/oak-react.cjs.js"
+    }
   }
 }
