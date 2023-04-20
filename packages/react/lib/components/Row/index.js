@@ -72,7 +72,8 @@ const Row = ({
             'oak-flex-' + element.settings.flexDirection,
           element.settings?.alignItems
             ? 'oak-items-' + element.settings.alignItems
-            : 'oak-items-start',
+            : /col/.test(element.settings?.flexDirection)
+              ? 'oak-items-stretch' : 'oak-items-start',
           element.settings?.justifyContent &&
             'oak-justify-' + element.settings.justifyContent,
         )}

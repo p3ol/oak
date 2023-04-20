@@ -52,6 +52,12 @@ module.exports = {
         '.items-flex-end': {
           'align-items': 'flex-end',
         },
+        '.flex-column': {
+          'flex-direction': 'column',
+        },
+        '.flex-column-reverse': {
+          'flex-direction': 'column-reverse',
+        },
       });
 
       // Set gap as a variable to be used in flex basis calculation
