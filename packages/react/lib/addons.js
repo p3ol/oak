@@ -86,10 +86,12 @@ export const colorField = props => ({
 
 export const imageField = props => ({
   ...coreAddons.imageField(),
-  render: (fieldProps, { setting }) => (
+  render: (fieldProps, { setting, element }) => (
     <ImageField
       { ...fieldProps }
       iconOnly={setting?.props?.iconOnly}
+      setting={setting}
+      element={element}
     />
   ),
   ...props,

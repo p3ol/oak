@@ -8,6 +8,8 @@ import Icon from '../../Icon';
 const ImageField = ({
   className,
   value,
+  element,
+  setting,
   onOpenDialog,
   onChange,
   iconOnly = false,
@@ -55,7 +57,7 @@ const ImageField = ({
     dispatch({ loading: true });
 
     if (onImageUpload) {
-      const result = await onImageUpload(e);
+      const result = await onImageUpload(e, { element, setting });
 
       if (result) {
         onUrlReady(result);

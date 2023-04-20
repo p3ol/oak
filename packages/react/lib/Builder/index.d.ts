@@ -10,6 +10,8 @@ import {
   BuilderOptions,
   Element as CoreElement,
   ElementObject,
+  ComponentSettingsField,
+  ComponentSettingsFieldObject,
 } from '@oakjs/core';
 
 export declare interface ImageUploadCallbackResult {
@@ -51,7 +53,10 @@ export declare interface BuilderProps extends ComponentPropsWithRef<any> {
   value?: Array<ElementObject>;
   [key: string]: any;
   onChange?(content: Array<ElementObject>): void;
-  onImageUpload?(event: FormEvent): Promise<ImageUploadCallbackResult>;
+  onImageUpload?(event: FormEvent, opts: {
+    element?: ElementObject | CoreElement;
+    setting?: ComponentSettingsFieldObject | ComponentSettingsField;
+  }): Promise<ImageUploadCallbackResult>;
   ref?: MutableRefObject<BuilderRef>;
 }
 
