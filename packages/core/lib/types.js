@@ -143,6 +143,7 @@ export class ComponentSettingsField {
     this.default = props.default;
     this.options = props.options;
     this.label = props.label;
+    this.description = props.description;
     this.displayable = props.displayable;
     this.valueType = props.valueType;
     this.condition = props.condition;

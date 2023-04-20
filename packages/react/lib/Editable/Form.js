@@ -4,6 +4,7 @@ import {
   Tabs,
   Tab,
   Label,
+  Abstract,
   FieldControl,
   mockState,
   cloneDeep,
@@ -138,6 +139,11 @@ const Form = ({
                             onChange={onSettingChange_}
                             onCustomChange={onSettingCustomChange_}
                           />
+                        ) }
+                        { setting.description && (
+                          <Abstract className="secondary">
+                            <Text>{ setting.description }</Text>
+                          </Abstract>
                         ) }
                       </FieldControl>
                     </div>

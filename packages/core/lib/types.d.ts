@@ -88,6 +88,7 @@ export declare interface ComponentSettingsFieldObject {
   tab?: string;
   id?: string;
   label?: string | GetTextCallback;
+  description?: string | GetTextCallback;
   placeholder?: string;
   default?: any;
   displayable?: boolean;
@@ -109,6 +110,7 @@ export declare class ComponentSettingsField {
   placeholder: string;
   default: any;
   label: string | GetTextCallback;
+  description: string | GetTextCallback;
   displayable: boolean;
   valueType: string;
   fields: Array<ComponentSettingsField>;
