@@ -54,7 +54,7 @@
     "jest-css-modules-transform": "4.4.2",
     "jest-environment-jsdom": "29.4.3",
     "jest-transform-stub": "2.0.0",
-    "lerna": "6.4.1",
+    "lerna": "6.6.1",
     "lerna-changelog": "2.2.0",
     "postcss": "8.4.21",
     "postcss-loader": "7.0.2",
