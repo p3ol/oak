@@ -34,7 +34,7 @@
     "@junipero/theme": "3.0.0-beta.6",
     "@junipero/transitions": "3.0.0-beta.0",
     "core-js": "3.27.2",
-    "preact": "10.11.3",
+    "preact": "10.13.2",
     "uuid": "9.0.0"
   },
   "scripts": {
