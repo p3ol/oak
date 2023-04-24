@@ -6,6 +6,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import terser from '@rollup/plugin-terser';
+import tailwindcss from 'tailwindcss';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
@@ -93,6 +94,7 @@ export default [
           },
         },
         plugins: [
+          tailwindcss({ config: path.resolve('../../tailwind.config.js') }),
           autoprefixer({ env: process.env.BROWSERSLIST_ENV }),
         ],
       }),
