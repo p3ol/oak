@@ -1,13 +1,17 @@
 import { createRoot } from 'react-dom/client';
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { createDropdown } from '@ckeditor/ckeditor5-ui';
-import { Card, ColorField } from '@oakjs/react';
+import FontColorCommand from '@ckeditor/ckeditor5-font/src/fontcolor/fontcolorcommand.js';
+import icon from '@ckeditor/ckeditor5-font/theme/icons/font-color.svg';
+
+import Field from './Field';
 
 export default class ColorPlugin extends Plugin {
   static pluginName = 'ColorPlugin';
 
   init () {
     this.defineSchema();
+    this.defineCommands();
     this.defineConversion();
     this.defineToolbar();
   }
@@ -15,6 +19,11 @@ export default class ColorPlugin extends Plugin {
   defineSchema () {
     const schema = this.editor.model.schema;
     schema.extend('$text', { allowAttributes: 'color' });
+  }
+
+  defineCommands () {
+    const editor = this.editor;
+    editor.commands.add('fontColor', new FontColorCommand(editor));
   }
 
   defineConversion () {
@@ -49,10 +58,14 @@ export default class ColorPlugin extends Plugin {
 
     editor.ui.componentFactory.add('fontColor', locale => {
       const dropdown = createDropdown(locale);
+      dropdown.set({
+        class: 'ck-font-color-dropdown',
+      });
+
       dropdown.buttonView.set({
         label: 'Color',
         tooltip: true,
-        withText: true,
+        icon,
       });
 
       let root;
@@ -60,12 +73,16 @@ export default class ColorPlugin extends Plugin {
         root = createRoot(dropdown.panelView.element);
       });
 
+      dropdown.buttonView.on('open', () => {
+        dropdown.buttonView.labelView.destroy();
+      });
+
       dropdown.on('change:isOpen', () => {
-        root.render((
-          <Card>
-            <ColorField opened={true} trigger="manual" />
-          </Card>
-        ));
+        const key = Math.random().toString(36).substring(7);
+
+        if (dropdown.isOpen) {
+          root.render(<Field key={key} editor={this.editor} />);
+        }
       });
 
       return dropdown;

@@ -18,6 +18,9 @@ module.exports = {
     libraryExport: 'default',
     library: 'ClassicEditor',
   },
+  externals: {
+    '@oakjs/react': 'OakReact',
+  },
   optimization: {
     minimizer: [
       new TerserWebpackPlugin({
@@ -40,6 +43,11 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.js/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
       {
         test: /\.svg$/,
         use: ['raw-loader'],

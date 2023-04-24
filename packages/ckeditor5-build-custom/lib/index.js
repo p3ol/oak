@@ -18,7 +18,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
 
-// import ColorPlugin from './ColorPlugin';
+import ColorPlugin from './ColorPlugin';
 
 class Editor extends ClassicEditor {
   static builtinPlugins = [
@@ -40,7 +40,7 @@ class Editor extends ClassicEditor {
     TableToolbar,
     TextTransformation,
     Underline,
-    // ColorPlugin,
+    ColorPlugin,
   ];
 
   static defaultConfig = {
