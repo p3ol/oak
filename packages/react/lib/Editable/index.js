@@ -31,8 +31,7 @@ const Editable = forwardRef(({
   onToggle,
 }, ref) => {
   const innerRef = useRef();
-  const { rootRef, rootBoundary, floatingsRef } = useBuilder();
-  // const options = useOptions();
+  const { rootBoundary, floatingsRef } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
     visible: false,
