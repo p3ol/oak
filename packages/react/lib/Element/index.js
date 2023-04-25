@@ -84,7 +84,7 @@ const Element = ({
     >
       <Draggable
         data={element}
-        disabled={component?.draggable === false}
+        disabled={component?.draggable === false || editableOpened}
       >
         <div
           data-element-id={element.id}
