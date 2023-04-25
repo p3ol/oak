@@ -23,7 +23,6 @@ export const basic = () => (
   <Builder
     addons={[baseAddon()]}
     value={baseContent}
-    rootBoundary={document.documentElement}
     options={{ debug: true }}
     onChange={action('change')}
   />
@@ -47,7 +46,6 @@ export const controlled = () => {
       <Builder
         addons={[baseAddon()]}
         value={value}
-        rootBoundary={document.documentElement}
         options={{ debug: true }}
         onChange={setValue}
       />
@@ -73,7 +71,6 @@ export const uncontrolled = () => {
       <Builder
         defaultValue={baseContent}
         addons={[baseAddon()]}
-        rootBoundary={document.documentElement}
         options={{ debug: true }}
         onChange={action('change')}
         ref={builderRef}
@@ -141,7 +138,6 @@ export const withMultipleLanguages = () => {
       <Builder
         addons={[baseAddon(), { texts }]}
         value={baseContent}
-        rootBoundary={document.documentElement}
         options={{ debug: true }}
         onChange={action('change')}
         ref={builderRef}
@@ -160,7 +156,6 @@ export const withMultipleCustomSettings = () => (
       ],
     }]}
     value={baseContent}
-    rootBoundary={document.documentElement}
     options={{ debug: true }}
     onChange={action('change')}
   />
@@ -200,7 +195,6 @@ export const withMultipleCustomSettingsAndFields = () => (
       }],
     }]}
     value={baseContent}
-    rootBoundary={document.documentElement}
     options={{ debug: true }}
     onChange={action('change')}
   />
@@ -224,7 +218,6 @@ export const disallowSomeChildren = () => {
           } : c),
         }]}
         value={baseContent}
-        rootBoundary={document.documentElement}
         options={{ debug: true }}
         onChange={action('change')}
       />

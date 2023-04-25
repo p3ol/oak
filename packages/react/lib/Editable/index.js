@@ -50,14 +50,12 @@ const Editable = forwardRef(({
     middleware: [
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
-        boundary: rootBoundary?.current || rootRef?.current,
-        rootBoundary: rootBoundary?.current || rootRef?.current,
+        rootBoundary: rootBoundary?.current || 'viewport',
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
-        boundary: rootBoundary?.current || rootRef?.current,
-        rootBoundary: rootBoundary?.current || rootRef?.current,
+        rootBoundary: rootBoundary?.current || 'viewport',
         allowedPlacements: ['bottom', 'top'],
         ...floatingSettings.autoPlacement || {},
       })] : []),
