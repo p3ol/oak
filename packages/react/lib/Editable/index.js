@@ -56,7 +56,7 @@ const Editable = forwardRef(({
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
         rootBoundary: rootBoundary?.current || 'viewport',
-        allowedPlacements: ['bottom', 'top'],
+        allowedPlacements: ['bottom'],
         ...floatingSettings.autoPlacement || {},
       })] : []),
       ...floatingSettings.middleware || [],

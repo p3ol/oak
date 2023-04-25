@@ -224,10 +224,10 @@ export const colComponent = (...props) => ({
   settings: {
     title: t => t('core.components.col.settings.title', 'Col options'),
     floatingSettings: {
-      placement: 'bottom-end',
+      placement: 'left-start',
+      shift: { enabled: false },
       autoPlacement: {
-        alignment: 'end',
-        allowedPlacements: ['bottom-end', 'top-end'],
+        allowedPlacements: ['left-start'],
       },
     },
     fields: [{
