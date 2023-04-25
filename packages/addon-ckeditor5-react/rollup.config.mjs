@@ -67,6 +67,8 @@ const getConfig = (format, {
       manualChunks: id => {
         if (id.includes('node_modules')) {
           return 'vendor';
+        } else {
+          return path.parse(id).name;
         }
       },
     } : {}),

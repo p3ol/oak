@@ -19,6 +19,8 @@ module.exports = {
     library: 'ClassicEditor',
   },
   externals: {
+    react: 'react',
+    'react-dom': 'react-dom',
     '@oakjs/react': '@oakjs/react',
   },
   optimization: {

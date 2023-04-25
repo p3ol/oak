@@ -2190,10 +2190,10 @@
     aria-hidden "^1.1.3"
     tabbable "^6.0.1"
 
-"@floating-ui/react@0.20.1":
-  version "0.20.1"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.20.1.tgz#20f23cb5615f5beefa6e2ac4d7630a56ccdf7131"
-  integrity sha512-JHTHJ+/YsIxNFH8uJDFa5OyI6dSUZcle6wAFe0zRTjgWD+rkACfBBoJtx2itTtn7C4a7xAz4jgxdEQcMel194g==
+"@floating-ui/react@0.23.1":
+  version "0.23.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.23.1.tgz#04da0621b042e02fdead26a7accd291f3134fc83"
+  integrity sha512-OCc2ViQOBUKOGcE9NLAbpyqB+8Zz92IKIhxgz7XAkynKkVzcVSKtkWOcgyvO4SAzB2OybgRwk3WdzdzDRdh2QQ==
   dependencies:
     "@floating-ui/react-dom" "^1.3.0"
     aria-hidden "^1.1.3"
@@ -2541,14 +2541,14 @@
     "@babel/runtime-corejs3" "7.21.0"
     core-js "3.29.0"
 
-"@junipero/react@3.0.0-beta.10":
-  version "3.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-beta.10.tgz#d1dc508b1e370f57a1682457274b50add4ad9f95"
-  integrity sha512-mCAPmFnaoJFoce3fjObqKnZFTT4BgKbUjZAWsl33j2576TymI2dIyxqzwAo2j4XAYEoKcY85BajWWmWMOpPWbg==
+"@junipero/react@3.0.0-beta.11":
+  version "3.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0-beta.11.tgz#cad5eeba2cd4a07564a4f4becd5c6debc973e527"
+  integrity sha512-a8fR7CLkhWiJO4l2Kc8vOkWvKFNuhwYH9J5IDg788K3aE95ETQ31bUFGBmHd0LRO4xLnclfVblPOBN09UHxnWA==
   dependencies:
     "@babel/runtime-corejs3" "7.21.0"
-    "@floating-ui/react" "0.20.1"
-    core-js "3.29.0"
+    "@floating-ui/react" "0.23.1"
+    core-js "3.30.1"
     prop-types "15.8.1"
 
 "@junipero/tailwind-plugin@3.0.0-beta.5":
@@ -2561,13 +2561,13 @@
   resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-beta.10.tgz#e115652f42eef29087a571acf5d2266b9f394d08"
   integrity sha512-A5W1Izy3McDhGUt/ibcI0L962oTmJmjXSiBE6e3PuTktQhSPx5vp81oGKw6hJ7RoP7s55j2z3ergc6jl36vKMw==
 
-"@junipero/transitions@3.0.0-beta.0":
-  version "3.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@junipero/transitions/-/transitions-3.0.0-beta.0.tgz#e24969cd07479d48a40dde7272e45d5c1893e821"
-  integrity sha512-ijcVaaLAk6LOVdQE/iVHq1i498p4bn5C9q6gxcA5z9S9RzBMKgAy/KN8T35x2bDyP7YHQAalkkD491r3GMmjJQ==
+"@junipero/transitions@3.0.0-beta.11":
+  version "3.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/@junipero/transitions/-/transitions-3.0.0-beta.11.tgz#77dd8bf49e7cfb837f68cf23474dfa77b8cc8cfd"
+  integrity sha512-9ZjZeWAUrQIEmw2w2d0t+3T3JdX4YKNYlgRifQvjB7+lXSTegEBRl7WEls80GAttJjsSg6b88CWGxlL4mAdMsQ==
   dependencies:
     "@babel/runtime-corejs3" "7.21.0"
-    core-js "3.29.0"
+    core-js "3.30.1"
 
 "@lerna/add@6.4.1":
   version "6.4.1"
@@ -7724,6 +7724,11 @@ core-js@3.29.0:
   version "3.29.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.29.0.tgz#0273e142b67761058bcde5615c503c7406b572d6"
   integrity sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==
+
+core-js@3.30.1:
+  version "3.30.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.30.1.tgz#fc9c5adcc541d8e9fa3e381179433cbf795628ba"
+  integrity sha512-ZNS5nbiSwDTq4hFosEDqm65izl2CWmLz0hARJMyNQBgkUZMIF51cQiMvIQKA6hvuaeWxQDP3hEedM1JZIgTldQ==
 
 core-util-is@~1.0.0:
   version "1.0.3"
