@@ -87,7 +87,6 @@ const Element = ({
         disabled={component?.draggable === false || editableOpened}
       >
         <div
-          data-element-id={element.id}
           className={classNames(
             'oak element oak-flex-none',
             'type-' + (component?.id || 'unknown'),

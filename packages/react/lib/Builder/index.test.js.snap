@@ -220,7 +220,6 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
       </div>
       <div
         class="oak element oak-flex-none type-row"
-        data-element-id="1"
         draggable="false"
       >
         <div
@@ -472,7 +471,6 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
       </div>
       <div
         class="oak element oak-flex-none type-text draggable"
-        data-element-id="3"
         draggable="true"
       >
         <div
@@ -553,7 +551,6 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
       </div>
       <div
         class="oak element oak-flex-none type-row"
-        data-element-id="1"
         draggable="false"
       >
         <div
@@ -601,7 +598,6 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
                 >
                   <div
                     class="oak element oak-flex-none type-title draggable"
-                    data-element-id="2"
                     draggable="true"
                   >
                     <div
@@ -958,7 +954,6 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
 exports[`<Builder /> should allow to add content from catalogue: Row with title 1`] = `
 <div
   class="oak element oak-flex-none type-row"
-  data-element-id="1"
   draggable="false"
 >
   <div
@@ -1006,7 +1001,6 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
           >
             <div
               class="oak element oak-flex-none type-title draggable"
-              data-element-id="2"
               draggable="true"
             >
               <div
@@ -1284,7 +1278,6 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         </div>
         <div
           class="oak element oak-flex-none type-title draggable"
-          data-element-id="0"
           draggable="true"
         >
           <div
@@ -1581,7 +1574,6 @@ exports[`<Builder /> should render: Base content 1`] = `
       </div>
       <div
         class="oak element oak-flex-none type-title draggable"
-        data-element-id="0"
         draggable="true"
       >
         <div
@@ -1681,7 +1673,6 @@ exports[`<Builder /> should render: Base content 1`] = `
       </div>
       <div
         class="oak element oak-flex-none type-text draggable"
-        data-element-id="1"
         draggable="true"
       >
         <div
