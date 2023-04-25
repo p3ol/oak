@@ -19,7 +19,7 @@ module.exports = {
     library: 'ClassicEditor',
   },
   externals: {
-    '@oakjs/react': 'OakReact',
+    '@oakjs/react': '@oakjs/react',
   },
   optimization: {
     minimizer: [
