@@ -195,7 +195,7 @@ const Element = ({
               >
                 <Option
                   option={{ icon: 'pen' }}
-                  className="oak-edit"
+                  className="edit"
                   onClick={onEdit_}
                   name={<Text name="core.tooltips.edit">Edit</Text>}
                 />

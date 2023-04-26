@@ -354,7 +354,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center oak-edit"
+            class="option oak-flex oak-items-center oak-justify-center edit"
             draggable="false"
             href="#"
           >
@@ -537,7 +537,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center oak-edit"
+            class="option oak-flex oak-items-center oak-justify-center edit"
             draggable="false"
             href="#"
           >
@@ -683,7 +683,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
                         </i>
                       </a>
                       <a
-                        class="option oak-flex oak-items-center oak-justify-center oak-edit"
+                        class="option oak-flex oak-items-center oak-justify-center edit"
                         draggable="false"
                         href="#"
                       >
@@ -802,7 +802,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center oak-edit"
+            class="option oak-flex oak-items-center oak-justify-center edit"
             draggable="false"
             href="#"
           >
@@ -1086,7 +1086,7 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
                   </i>
                 </a>
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center oak-edit"
+                  class="option oak-flex oak-items-center oak-justify-center edit"
                   draggable="false"
                   href="#"
                 >
@@ -1205,7 +1205,7 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
       </i>
     </a>
     <a
-      class="option oak-flex oak-items-center oak-justify-center oak-edit"
+      class="option oak-flex oak-items-center oak-justify-center edit"
       draggable="false"
       href="#"
     >
@@ -1363,7 +1363,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
               </i>
             </a>
             <a
-              class="option oak-flex oak-items-center oak-justify-center oak-edit"
+              class="option oak-flex oak-items-center oak-justify-center edit"
               draggable="false"
               href="#"
             >
@@ -1659,7 +1659,7 @@ exports[`<Builder /> should render: Base content 1`] = `
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center oak-edit"
+            class="option oak-flex oak-items-center oak-justify-center edit"
             draggable="false"
             href="#"
           >
@@ -1739,7 +1739,7 @@ exports[`<Builder /> should render: Base content 1`] = `
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center oak-edit"
+            class="option oak-flex oak-items-center oak-justify-center edit"
             draggable="false"
             href="#"
           >
