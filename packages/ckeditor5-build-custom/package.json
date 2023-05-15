@@ -8,6 +8,10 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": "16 || 18",
+    "yarn": "1"
+  },
   "peerDependencies": {
     "@oakjs/react": "^3.0.0-alpha.1",
     "react": "^18.0.0",

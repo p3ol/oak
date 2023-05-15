@@ -17,8 +17,8 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">= 14",
-    "yarn": ">= 1"
+    "node": "16 || 18",
+    "yarn": "1"
   },
   "peerDependencies": {
     "@ckeditor/ckeditor5-react": "^6.0.0",

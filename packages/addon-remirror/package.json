@@ -17,8 +17,8 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">= 14",
-    "yarn": ">= 1"
+    "node": "16 || 18",
+    "yarn": "1"
   },
   "peerDependencies": {
     "@oakjs/react": "^3.0.0-alpha.1",

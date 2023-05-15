@@ -10,8 +10,8 @@
   "author": "Ugo Stephant <ugo@poool.fr>",
   "license": "MIT",
   "engines": {
-    "node": ">= 14",
-    "yarn": ">= 1"
+    "node": "16 || 18",
+    "yarn": "1"
   },
   "peerDependencies": {
     "@strapi/strapi": "^4.4.0",
