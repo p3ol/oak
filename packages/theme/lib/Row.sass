@@ -1,0 +1,143 @@
+.oak .element.type-row
+  --drop-zone-color: var(--oak-interaction-color)
+  --background-color: var(--oak-background-color)
+  --inner-background-color: var(--oak-inner-background-color)
+  --divider-background-color: var(--oak-interaction-color)
+  --divider-color: var(--oak-alternate-text-color)
+  --inner-border-color: var(--oak-interaction-color)
+
+  margin-top: 24px
+
+  .wrapper
+    &.even
+      & > .row-content > .column
+        background: var(--background-color)
+
+    &.odd
+      & > .row-content > .column
+        background: var(--inner-background-color)
+
+  .drop-zone
+    position: absolute
+    left: 0
+    width: 100%
+    z-index: 1
+
+    &::after
+      content: ''
+      width: 100%
+      left: 0
+      height: 5px
+      border-radius: 2px
+      background: var(--drop-zone-color)
+      opacity: 0
+      position: absolute
+      pointer-events: none
+
+    &.before
+      bottom: 100%
+      height: 24px
+
+      &::after
+        top: -12px
+
+    &.after
+      top: 100%
+      height: 16px
+
+      &::after
+        top: 6px
+
+    &.drag-enter
+      &::after
+        opacity: 1
+
+  .row-content:first-child
+    border-radius: 0 10px 10px 10px
+
+  .column
+    border-radius: 10px
+    position: relative
+    z-index: 2
+    min-height: 120px
+
+    &:first-child
+      border-radius: 0 10px 10px 10px
+
+    & > .options
+      position: absolute
+      right: 5px
+      top: 5px
+      left: auto
+      visibility: visible
+      transform: none
+
+      .option
+        background: none
+        border-radius: 5px
+
+        &:hover, &.opened
+          background: var(--option-hover-background-color)
+
+          .icon
+            color: var(--option-text-color)
+
+        .icon
+          color: var(--oak-text-color)
+
+    .col-inner
+      .catalogue
+        position: relative
+        z-index: 2
+
+      &.drag-enter
+        background: var(--drop-zone-color)
+        border-radius: 5px
+
+        .catalogue
+          background: var(--drop-zone-color)
+          border-radius: 5px
+
+          .handle
+            visibility: hidden
+
+    a.divider
+      text-decoration: none
+      background: var(--divider-background-color)
+      height: 50px
+
+      &:hover
+        background: var(--oak-main-color)
+
+        .icon
+          color: var(--oak-reverse-text-color)
+
+      &.prepend
+        border-radius: 0 5px 5px 0
+
+      &.append
+        border-radius: 5px 0 0 5px
+
+      .icon
+        color: var(--divider-color)
+
+  & > .options
+    position: absolute
+    bottom: 100%
+    left: 0
+    visibility: visible
+    transform: none
+    top: auto
+    z-index: 3
+
+    .option
+      &:first-child
+        border-radius: 5px 0 0 0
+
+      &:last-child
+        border-radius: 0 5px 0 0
+
+  &.dragging
+    .drop-zone
+      display: none
+      height: 0

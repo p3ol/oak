@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings should allow to add a new tab and add settings to it 1`] = `
+[
+  ComponentSettingsTab {
+    "condition": undefined,
+    "fields": [],
+    "id": "general",
+    "priority": 0,
+    "title": [Function],
+    "type": "tab",
+  },
+  ComponentSettingsTab {
+    "condition": undefined,
+    "fields": [
+      ComponentSettingsField {
+        "condition": undefined,
+        "default": undefined,
+        "description": undefined,
+        "displayable": undefined,
+        "fields": [],
+        "id": undefined,
+        "key": "test",
+        "label": undefined,
+        "options": undefined,
+        "placeholder": undefined,
+        "priority": 0,
+        "props": undefined,
+        "tab": "test",
+        "type": "text",
+        "valueType": undefined,
+      },
+      ComponentSettingsField {
+        "condition": undefined,
+        "default": undefined,
+        "description": undefined,
+        "displayable": undefined,
+        "fields": [],
+        "id": undefined,
+        "key": "foo",
+        "label": undefined,
+        "options": undefined,
+        "placeholder": undefined,
+        "priority": 0,
+        "props": undefined,
+        "tab": "test",
+        "type": "text",
+        "valueType": undefined,
+      },
+    ],
+    "id": "test",
+    "priority": 0,
+    "title": undefined,
+    "type": "tab",
+  },
+]
+`;

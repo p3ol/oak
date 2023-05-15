@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overrides should allow to add overrides 1`] = `
+[
+  FieldOverride {
+    "props": {},
+    "render": undefined,
+    "targets": [],
+    "type": "field",
+  },
+  ComponentOverride {
+    "construct": undefined,
+    "duplicate": undefined,
+    "fields": [
+      {},
+    ],
+    "render": undefined,
+    "sanitize": undefined,
+    "targets": [
+      "foo",
+    ],
+    "type": "component",
+  },
+]
+`;
+
+exports[`Overrides should allow to get an override 1`] = `
+ComponentOverride {
+  "construct": undefined,
+  "duplicate": undefined,
+  "fields": [
+    {},
+  ],
+  "render": undefined,
+  "sanitize": undefined,
+  "targets": [
+    "foo",
+  ],
+  "type": "component",
+}
+`;

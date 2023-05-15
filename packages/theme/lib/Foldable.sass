@@ -1,0 +1,86 @@
+.oak .element.type-foldable
+  --background-color: var(--oak-background-color)
+  --inner-background-color: var(--oak-inner-background-color)
+
+  margin-top: 24px
+
+  .wrapper
+    &.even
+      & > .sections
+        background: var(--background-color)
+
+    &.odd
+      & > .sections
+        background: var(--inner-background-color)
+
+  .drop-zone
+    position: absolute
+    left: 0
+    width: 100%
+    z-index: 1
+
+    &::after
+      content: ''
+      width: 100%
+      left: 0
+      height: 5px
+      border-radius: 2px
+      background: var(--drop-zone-color)
+      opacity: 0
+      position: absolute
+      pointer-events: none
+
+    &.before
+      bottom: 100%
+      height: 24px
+
+      &::after
+        top: -12px
+
+    &.after
+      top: 100%
+      height: 16px
+
+      &::after
+        top: 6px
+
+    &.drag-enter
+      &::after
+        opacity: 1
+
+  .wrapper > .sections
+    border-radius: 0 10px 10px 10px
+
+    // & > .section > .container
+    //   border-radius: 10px
+
+    //   &.drag-enter
+    //     background: var(--drop-zone-color)
+
+    //     .catalogue
+    //       background: var(--drop-zone-color)
+    //       border-radius: 5px
+
+    //       .handle
+    //         visibility: hidden
+
+  & > .options
+    position: absolute
+    bottom: 100%
+    left: 0
+    visibility: visible
+    transform: none
+    top: auto
+    z-index: 3
+
+    .option
+      &:first-child
+        border-radius: 5px 0 0 0
+
+      &:last-child
+        border-radius: 0 5px 0 0
+
+  &.dragging
+    .drop-zone
+      display: none
+      height: 0

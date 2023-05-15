@@ -1,0 +1,26 @@
+{
+  "name": "@oakjs/theme",
+  "version": "3.0.0-alpha.38",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "main": "dist/oak.min.css",
+  "cdn": "dist/oak.min.css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/theme"
+  },
+  "author": "Ugo Stephant <ugo@poool.fr>",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": "16 || 18",
+    "yarn": "1"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && node script/build.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

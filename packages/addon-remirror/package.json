@@ -1,0 +1,44 @@
+{
+  "name": "@oakjs/addon-remirror",
+  "version": "3.0.0-alpha.33",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "main": "dist/oak-addon-remirror.cjs.js",
+  "jsnext:main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "esnext": "src/index.js",
+  "unpkg": "dist/oak-addon-remirror.min.js",
+  "cdn": "dist/oak-addon-remirror.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/addon-remirror"
+  },
+  "author": "Ugo Stephant <ugo@poool.fr>",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": "16 || 18",
+    "yarn": "1"
+  },
+  "peerDependencies": {
+    "@oakjs/react": "^3.0.0-alpha.1",
+    "@remirror/pm": "^2.0.0",
+    "@remirror/react": "^2.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "remirror": "^2.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.21.5",
+    "core-js": "3.30.2"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && rollup -c",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "b263a7b5481bfbe20d43c09bf829c501834399e4"
+}

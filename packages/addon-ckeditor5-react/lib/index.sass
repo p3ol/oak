@@ -1,0 +1,100 @@
+.ckeditor-field .ck.ck-editor
+  --border-color: var(--oak-field-border-color)
+  --background-color: var(--oak-floating-background-color)
+  --text-color: var(--oak-text-color)
+
+  --ck-border-radius: 4px
+  --ck-color-base-border: var(--oak-field-border-color)
+  --ck-color-focus-border: var(--oak-main-color)
+  --ck-color-button-on-color: var(--oak-main-color)
+  --ck-color-button-default-hover-background: var(--oak-background-main-color)
+  --ck-color-button-default-active-background: var(--oak-background-main-color)
+  --ck-color-button-on-background: var(--oak-background-main-color)
+  --ck-color-button-on-active-background: var(--oak-hover-main-color)
+  --ck-color-button-on-hover-background: var(--oak-hover-main-color)
+  --ck-color-list-button-hover-background: var(--oak-background-main-color)
+  --ck-color-focus-outer-shadow: var(--oak-background-main-color)
+  --ck-color-toolbar-border: var(--oak-field-border-color)
+  --ck-color-dropdown-panel-background: var(--oak-floating-background-color)
+  --ck-color-list-background: var(--oak-floating-background-color)
+  --ck-color-table-focused-cell-background: var(--oak-background-main-color)
+  --ck-color-text: var(--text-color)
+
+  /* Main editor */
+  .ck-editor__main
+    margin-top: 2px
+
+    & > .ck-editor__editable
+      border: none
+      box-shadow: 0 0 0 2px var(--border-color)
+      transition: box-shadow 0.2s ease-in-out
+      background: var(--background-color)
+      color: var(--text-color)
+
+      &.ck-focused
+        --border-color: var(--oak-main-color)
+
+  /* Toolbar */
+  .ck-toolbar
+    border: none
+    box-shadow: 0 0 0 2px var(--border-color)
+    padding-bottom: 0
+    background: var(--background-color)
+
+    .ck-button.ck-insert-table-dropdown-grid-box
+      --ck-border-radius: 2px
+
+    .ck-button:not(.ck-insert-table-dropdown-grid-box)
+      box-shadow: none
+      border: none
+      color: var(--text-color)
+
+      &, &.ck-dropdown__button
+        &:active, &:active:focus
+          box-shadow: none
+
+    .ck-dropdown
+      .ck-button
+        border-radius: var(--ck-border-radius) 
+
+      .ck-dropdown__panel
+        border: none
+        box-shadow: 0 0 0 2px var(--border-color)
+        border-radius: 4px
+        margin-top: 10px
+
+        .ck-toolbar
+          padding-bottom: 0
+          border-radius: 4px
+
+        .ck-list
+          padding: 10px 0
+          border-radius: 4px
+
+          .ck-list__item
+            .ck-button
+              padding: 5px 10px
+              border: none
+              border-radius: 0
+
+              &.ck-on, &:active
+                box-shadow: none
+                background: var(--oak-background-main-color)
+                color: var(--oak-main-color)
+
+              .ck-button__label
+                padding: 0
+
+      &.ck-font-color-dropdown
+        .ck-dropdown__panel
+          background: transparent
+          border: none
+          outline: none
+          box-shadow: none
+
+  .ck-oak-color-field
+    .junipero.color-field
+      width: 200px !important
+
+      .junipero.text-field
+        --main-color: var(--oak-field-border-color)

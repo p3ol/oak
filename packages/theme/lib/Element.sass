@@ -1,0 +1,105 @@
+.oak .element
+  --background-color: var(--oak-background-color)
+  --inner-background-color: var(--oak-inner-background-color)
+  --drop-zone-color: var(--oak-interaction-color)
+  --text-color: var(--oak-text-color)
+  --icon-color: var(--oak-main-color)
+
+  position: relative
+
+  &:hover
+    > .options
+      visibility: visible
+
+  &.draggable
+    cursor: move
+    cursor: grab
+
+    &:active
+      cursor: grabbing
+
+    &:before, &:after
+      content: ''
+      display: none
+      position: absolute
+      left: 0
+      width: 100%
+      height: 5px
+      border-radius: 2px
+      background: var(--drop-zone-color)
+
+    &:before
+      top: -10px
+
+    &:after
+      top: auto
+      bottom: -10px
+
+    &.drag-top
+      &:before
+        display: block
+
+    &.drag-bottom
+      &:after
+        display: block
+
+    &.dragging
+      background: transparent
+
+      .options
+        display: none
+
+    &.dragged
+      background: var(--drop-zone-color)
+      border-radius: 5px
+
+      .inner
+        opacity: 0
+
+      .options
+        display: none
+
+  .inner
+    min-height: 50px
+    border-radius: 10px
+    color: var(--text-color)
+
+    &.even
+      background: var(--background-color)
+
+    &.odd
+      background: var(--inner-background-color)
+
+    & > .icon
+      color: var(--icon-color)
+
+    .sanitize-html
+      a
+        color: blue
+        text-decoration: underline
+
+      p
+        &:first-child
+          margin-top: 0
+
+        &:last-child
+          margin-bottom: 0
+
+  .options
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate3d(-50%, -50%, 0)
+    visibility: hidden
+    align-items: center
+    width: auto
+    display: flex
+
+    &.opened
+      visibility: visible
+
+  .debug
+    position: absolute
+    bottom: 5px
+    right: 5px
+    z-index: 10

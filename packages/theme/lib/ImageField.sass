@@ -1,0 +1,34 @@
+.oak .image-field
+  --remove-hover-background-color: var(--junipero-backdrop)
+
+  &.icon-only
+    height: 100%
+
+    .junipero.touchable-zone
+      height: 100%
+      width: auto
+      min-width: 70px
+      min-height: 70px
+      aspect-ratio: 1/1
+      background-size: cover
+      background-position: center
+      background-repeat: no-repeat
+      position: relative
+
+      &:hover
+        .remove
+          opacity: 1
+
+      .remove
+        opacity: 0
+        width: 100%
+        height: 100%
+        background: var(--remove-hover-background-color)
+
+  .junipero.touchable-zone
+    height: 70px
+
+  .preview
+    width: 70px
+    height: 70px
+    border-radius: 5px
