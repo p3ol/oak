@@ -30,7 +30,7 @@
     "@junipero/react": "3.0.0",
     "@junipero/theme": "3.0.0-beta.11",
     "core-js": "3.30.1",
-    "prosemirror-commands": "1.5.0",
+    "prosemirror-commands": "1.5.1",
     "prosemirror-keymap": "1.2.1",
     "prosemirror-model": "1.19.0",
     "prosemirror-schema-basic": "1.2.1",
