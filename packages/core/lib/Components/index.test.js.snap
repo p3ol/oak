@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components should allow to add a new group and add components 1`] = `
+{
+  "defaultGroup": ComponentsGroup {
+    "components": [],
+    "id": "other",
+    "name": undefined,
+    "type": "group",
+    "usable": true,
+  },
+  "groups": [
+    ComponentsGroup {
+      "components": [
+        Component {
+          "construct": undefined,
+          "disallow": [],
+          "draggable": true,
+          "droppable": true,
+          "duplicate": undefined,
+          "editable": true,
+          "getContainers": undefined,
+          "group": "test",
+          "hasCustomInnerContent": false,
+          "icon": undefined,
+          "id": "test",
+          "name": "",
+          "options": [],
+          "render": undefined,
+          "sanitize": undefined,
+          "settings": ComponentSettingsForm {
+            "fields": [],
+            "floatingSettings": undefined,
+            "title": undefined,
+          },
+          "type": "component",
+          "usable": true,
+        },
+      ],
+      "id": "test",
+      "name": undefined,
+      "type": "group",
+      "usable": true,
+    },
+  ],
+}
+`;

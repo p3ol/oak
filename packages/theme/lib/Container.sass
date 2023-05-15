@@ -1,0 +1,21 @@
+.container
+  --background-color: var(--oak-background-color)
+  --inner-background-color: var(--oak-inner-background-color)
+
+  border-radius: 10px
+
+  &.even
+    background: var(--background-color)
+
+  &.odd
+    background: var(--inner-background-color)
+
+  &.drag-enter
+    background: var(--drop-zone-color)
+
+    .catalogue
+      background: var(--drop-zone-color)
+      border-radius: 5px
+
+      .handle
+        visibility: hidden

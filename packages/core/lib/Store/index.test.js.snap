@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Store .createElement() should allow to create an element: Title 1`] = `
+{
+  "content": "This is a title",
+  "headingLevel": "h1",
+  "id": 0,
+  "type": "title",
+}
+`;
+
+exports[`Store .createElement() should allow to create an element: Title with custom construct 1`] = `
+{
+  "content": "This is a great title",
+  "headingLevel": "h1",
+  "id": 1,
+  "type": "title",
+}
+`;
+
+exports[`Store .findNearestParent() should allow to find the nearest parent of an element: col.content 1`] = `
+[
+  {
+    "content": "This is another title",
+    "headingLevel": "h1",
+    "id": "my-title",
+    "type": "title",
+  },
+]
+`;
+
+exports[`Store .findNearestParent() should allow to find the nearest parent of an element: content 1`] = `
+[
+  {
+    "cols": [
+      {
+        "content": [
+          {
+            "content": "This is another title",
+            "headingLevel": "h1",
+            "id": "my-title",
+            "type": "title",
+          },
+        ],
+        "id": "my-col",
+        "style": {},
+        "type": "col",
+      },
+    ],
+    "id": "my-row",
+    "settings": {
+      "alignItems": "flex-start",
+    },
+    "type": "row",
+  },
+]
+`;
+
+exports[`Store .findNearestParent() should allow to find the nearest parent of an element: row.cols 1`] = `
+[
+  {
+    "content": [
+      {
+        "content": "This is another title",
+        "headingLevel": "h1",
+        "id": "my-title",
+        "type": "title",
+      },
+    ],
+    "id": "my-col",
+    "style": {},
+    "type": "col",
+  },
+]
+`;
+
+exports[`Store .getElement() should allow to get an element with custom containers: Deep element 1`] = `
+{
+  "content": "This is another title",
+  "headingLevel": "h1",
+  "id": "my-title",
+  "type": "title",
+}
+`;
+
+exports[`Store .getElement() should allow to get an element: Shallow element 1`] = `
+{
+  "content": "This is a title",
+  "id": 0,
+  "type": "title",
+}
+`;
+
+exports[`Store .sanitize() should allow to sanitize an element: Add id & default props from component 1`] = `
+{
+  "content": "This is a title",
+  "headingLevel": "h1",
+  "id": 1,
+  "type": "title",
+}
+`;
+
+exports[`Store .sanitize() should allow to sanitize an element: Add id 1`] = `
+{
+  "content": "This is a title",
+  "id": 0,
+  "type": "title",
+}
+`;
+
+exports[`Store .sanitize() should allow to sanitize an element: Allow custom sanitize on component or override level 1`] = `
+{
+  "content": "This is a title, a really great one",
+  "headingLevel": "h1",
+  "id": 2,
+  "type": "title",
+}
+`;
+
+exports[`Store .sanitize() should allow to sanitize elements with custom containers: Deeply sanitize 1`] = `
+{
+  "cols": [
+    {
+      "content": [
+        {
+          "content": "This is a title",
+          "headingLevel": "h1",
+          "id": 4,
+          "type": "title",
+        },
+      ],
+      "id": 2,
+      "style": {},
+      "type": "col",
+    },
+  ],
+  "id": 0,
+  "settings": {
+    "alignItems": "flex-start",
+  },
+  "type": "row",
+}
+`;
+
+exports[`Store should allow to manage a set of elements: Base content 1`] = `
+[
+  {
+    "content": "This is a title",
+    "id": 0,
+    "type": "title",
+  },
+  {
+    "content": "This is a text",
+    "id": 1,
+    "type": "text",
+  },
+]
+`;
+
+exports[`Store should allow to manage a set of elements: With button & title swapped 1`] = `
+[
+  {
+    "content": "This is a new button",
+    "id": 2,
+    "type": "button",
+  },
+  {
+    "content": "This is a title",
+    "id": 0,
+    "type": "title",
+  },
+]
+`;
+
+exports[`Store should allow to manage a set of elements: With button 1`] = `
+[
+  {
+    "content": "This is a title",
+    "id": 0,
+    "type": "title",
+  },
+  {
+    "content": "This is a button",
+    "id": 2,
+    "type": "button",
+  },
+]
+`;
+
+exports[`Store should allow to manage a set of elements: With button duplicated 1`] = `
+[
+  {
+    "content": "This is a new button",
+    "id": 2,
+    "type": "button",
+  },
+  {
+    "content": "This is a new button",
+    "id": 3,
+    "type": "button",
+  },
+  {
+    "content": "This is a title",
+    "id": 0,
+    "type": "title",
+  },
+]
+`;
+
+exports[`Store should allow to manage a set of elements: With button updated 1`] = `
+[
+  {
+    "content": "This is a title",
+    "id": 0,
+    "type": "title",
+  },
+  {
+    "content": "This is a new button",
+    "id": 2,
+    "type": "button",
+  },
+]
+`;
+
+exports[`Store should allow to manage a set of elements: Without text 1`] = `
+[
+  {
+    "content": "This is a title",
+    "id": 0,
+    "type": "title",
+  },
+]
+`;

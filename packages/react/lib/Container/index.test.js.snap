@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Container /> should allow to prepend elements inside a container: With element added before 1`] = `
+{
+  "content": [
+    {
+      "content": "This is some fancy text content",
+      "id": 0,
+      "type": "text",
+    },
+    {
+      "content": "This is a text",
+      "id": "2",
+      "type": "text",
+    },
+  ],
+  "id": "1",
+  "type": "foldable",
+}
+`;
+
+exports[`<Container /> should render 1`] = `
+<div>
+  <div>
+    <div
+      class="container oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-p-4 even"
+      data-depth="0"
+    >
+      <div
+        class="catalogue oak-inline-flex oak-self-center"
+      >
+        <a
+          class="handle oak-inline-flex oak-items-center oak-justify-center"
+          draggable="false"
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            add
+          </i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Container /> should render: With element added 1`] = `
+{
+  "content": [
+    {
+      "content": "This is some fancy text content",
+      "id": 0,
+      "type": "text",
+    },
+  ],
+  "id": "1",
+  "type": "foldable",
+}
+`;

@@ -1,0 +1,61 @@
+{
+  "name": "@oakjs/react",
+  "version": "3.0.0-alpha.40",
+  "description": "🌳 Modern, lightweight & modulable page builder",
+  "main": "dist/oak-react.cjs.js",
+  "jsnext:main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "esnext": "src/index.js",
+  "unpkg": "dist/oak-react.min.js",
+  "cdn": "dist/oak-react.min.js",
+  "types": "dist/oak-react.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p3ol/oak.git",
+    "directory": "packages/oak"
+  },
+  "author": "Ugo Stephant <ugo@poool.fr>",
+  "contributors": [
+    "Maxime Da Silva <maximed@poool.fr>"
+  ],
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": "16 || 18",
+    "yarn": "1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.21.5",
+    "@floating-ui/react": "0.24.1",
+    "@junipero/react": "3.0.0",
+    "@junipero/transitions": "3.0.0",
+    "core-js": "3.30.2",
+    "uuid": "9.0.0"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && rollup -c",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/oak-react.cjs.js"
+    },
+    "./addons": {
+      "import": "./dist/esm/addons.js",
+      "require": "./dist/oak-react.cjs.js"
+    },
+    "./options": {
+      "import": "./dist/esm/options.js",
+      "require": "./dist/oak-react.cjs.js"
+    }
+  }
+}

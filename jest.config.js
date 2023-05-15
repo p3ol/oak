@@ -13,8 +13,10 @@ module.exports = {
     '!**/*{schema,components,defaults,fields}.js',
   ],
   projects: [
-    '<rootDir>/packages/oak/jest.config.js',
-    '<rootDir>/packages/oak-addon-basic-components/jest.config.js',
-    '<rootDir>/packages/oak-addon-richtext-field-prosemirror/jest.config.js',
+    '<rootDir>/packages/core/jest.config.js',
+    '<rootDir>/packages/react/jest.config.js',
+    // '<rootDir>/packages/oak/jest.config.js',
+    // '<rootDir>/packages/oak-addon-basic-components/jest.config.js',
+    // '<rootDir>/packages/oak-addon-richtext-field-prosemirror/jest.config.js',
   ],
 };

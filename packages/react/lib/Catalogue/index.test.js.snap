@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Catalogue /> should allow to add elements to the builder: Closed 1`] = `
+<div>
+  <div>
+    <div
+      class="catalogue"
+    >
+      <a
+        class="handle oak-inline-flex oak-items-center oak-justify-center"
+        draggable="false"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          add
+        </i>
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Catalogue /> should allow to add elements to the builder: Opened 1`] = `
+<div>
+  <div>
+    <div
+      class="catalogue opened"
+    >
+      <a
+        class="handle oak-inline-flex oak-items-center oak-justify-center"
+        draggable="false"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          add
+        </i>
+      </a>
+    </div>
+    <div
+      class="catalogue-menu"
+      data-placement="bottom"
+      style="position: absolute; top: 0px; left: 0px;"
+      tabindex="-1"
+    >
+      <div
+        class="groups"
+      >
+        <div
+          class="junipero tabs"
+        >
+          <ul
+            class="titles"
+          >
+            <li
+              class="title active"
+            >
+              <a
+                href="#"
+              />
+            </li>
+          </ul>
+          <div
+            class="content"
+          >
+            <div
+              class="tab"
+            >
+              <div
+                class="group oak-grid oak-grid-cols-2 oak-gap-2"
+              >
+                <a
+                  class="component component-test oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                  draggable="false"
+                  href="#"
+                >
+                  <i
+                    class="icon junipero-icons !oak-text-2xl"
+                  />
+                  <span
+                    class="name"
+                  >
+                    Test component
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

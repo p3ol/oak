@@ -1,0 +1,73 @@
+.oak .remirror-field
+  --background-color: var(--oak-inner-background-color)
+  --border-color: var(--oak-field-border-color)
+  --toolbar-background-color: var(--oak-field-border-color)
+  --toolbar-icon-background-color: var(--oak-alternate-text-color)
+  --toolbar-icon-color: var(--oak-alternate-text-color)
+
+  .menu
+    border-radius: 4px 4px 0 0
+    box-shadow: 0 0 0 2px var(--border-color)
+    background: var(--border-color)
+    padding: 4px 5px
+
+    .menu-button
+      border-radius: 2px
+      text-decoration: none
+      padding: 2px
+      cursor: pointer
+
+      &:hover, &.active
+        background: var(--toolbar-icon-background-color)
+
+        .icon
+          color: var(--oak-reverse-text-color)
+
+      .icon
+        color: var(--toolbar-icon-color)
+        font-size: 20px
+
+      &.underline
+        .icon
+          font-size: 18px
+
+      &.size-button
+        margin-right: 0
+
+        i
+          font-size: 18px
+
+      &.text-left
+        margin-left: 20px
+
+    .link-field
+      & > .junipero.dropdown-menu .menu-inner
+        padding: 10px
+        overflow: visible
+
+    .text-color-field
+      & > .junipero.dropdown-menu > .menu-inner
+        padding: 0
+        background: none
+        box-shadow: none
+        overflow: visible
+
+  .remirror-editor.ProseMirror
+    appearance: none
+    display: block
+    padding: 10px
+    border: none
+    border-radius: 0 0 4px 4px
+    flex: 1
+    box-shadow: 0 0 0 2px var(--border-color)
+    transition: box-shadow .2s ease-in-out
+    background: var(--background-color)
+    min-height: 150px
+    font-size: 16px
+
+    p
+      &:first-child
+        margin-top: 0
+
+      &:last-child
+        margin-bottom: 0
