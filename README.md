@@ -21,8 +21,10 @@
 | Name | Description | |
 | :-- | :-- | :-- |
 | `@oakjs/react` | A render for React | [documentation](https://github.com/p3ol/oak/blob/master/packages/react) |
-| `@oakjs/theme` | Needed core theme files | [documentation](https://github.com/p3ol/oak/blob/master/packages/theme) |
-| `@oakjs/addon-remirror` | WYSIWYG text field for the React render using [Remirror](https://remirror.io/) | [documentation](https://github.com/p3ol/oak/blob/master/packages/addon-remirror) |
+| `@oakjs/theme` | A base theme for Oak | [documentation](https://github.com/p3ol/oak/blob/master/packages/theme) |
+| `@oakjs/addon-remirror` | WYSIWYG text field for the React renderer using [Remirror](https://remirror.io/) | [documentation](https://github.com/p3ol/oak/blob/master/packages/addon-remirror) |
+| `@oakjs/addon-ckeditor5-react` | WYSIWYG text field for the React renderer using [CKEditor 5](https://ckeditor.com/ckeditor-5/) | [documentation](https://github.com/p3ol/oak/blob/master/packages/addon-ckeditor5-react) |
+| `@oakjs/strapi-plugin` | A plugin to add a custom Oak field to [Strapi](https://strapi.io/) | [documentation](https://github.com/p3ol/oak/blob/master/packages/strapi-plugin) |
 | `@oakjs/core` | The core of the famous builder | [documentation](https://github.com/p3ol/oak/blob/master/packages/core) |
 
 # Documentation
