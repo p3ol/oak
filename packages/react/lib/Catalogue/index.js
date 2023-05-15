@@ -39,7 +39,7 @@ const Catalogue = forwardRef(({
     opened: false,
     clipboard: null,
   });
-  const { x, y, reference, floating, strategy, context } = useFloating({
+  const { x, y, refs, strategy, context } = useFloating({
     open: state.opened,
     onOpenChange: o => o ? open() : close(),
     middleware: [
@@ -120,7 +120,7 @@ const Catalogue = forwardRef(({
       )}
     >
       <a
-        ref={reference}
+        ref={refs.setReference}
         className={classNames(
           'handle oak-inline-flex oak-items-center',
           'oak-justify-center',
@@ -133,7 +133,7 @@ const Catalogue = forwardRef(({
 
       { state.opened && createPortal((
         <div
-          ref={floating}
+          ref={refs.setFloating}
           className="catalogue-menu"
           style={{
             position: strategy,

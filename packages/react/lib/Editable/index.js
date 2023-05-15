@@ -38,10 +38,10 @@ const Editable = forwardRef(({
   });
   const floatingSettings = useMemo(() => (
     (typeof component?.settings?.floatingSettings === 'function'
-      ? component.settings.floatingSettings({ optionButtonElement: reference })
+      ? component.settings.floatingSettings()
       : component?.settings?.floatingSettings) || {}
   ), [component]);
-  const { x, y, reference, floating, strategy, context } = useFloating({
+  const { x, y, refs, strategy, context } = useFloating({
     open: state.opened,
     onOpenChange: o => o ? open() : close(),
     whileElementsMounted: autoUpdate,
@@ -100,7 +100,7 @@ const Editable = forwardRef(({
   return (
     <>
       { child && cloneElement(child, {
-        ref: r => { reference(r?.isOak ? r.innerRef.current : r); },
+        ref: r => { refs.setReference(r?.isOak ? r.innerRef.current : r); },
         className: classNames(
           child.props.className,
           { opened: state.opened }
@@ -119,7 +119,7 @@ const Editable = forwardRef(({
           }}
           data-placement={context.placement}
           ref={ref => {
-            floating(ref?.isOak ? ref?.innerRef.current : ref);
+            refs.setFloating(ref?.isOak ? ref?.innerRef.current : ref);
             innerRef.current = ref;
           }}
           {...getFloatingProps()}
