@@ -13,7 +13,8 @@
 [![CI](https://github.com/p3ol/oak/actions/workflows/ci.yml/badge.svg)](https://github.com/p3ol/oak/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
 
-<p>A React renderer for the (hopefully one day) popular block-based builder.</p>
+### @oakjs/react
+A React renderer for the (maybe) popular block-based builder
 
 </div>
 
@@ -76,8 +77,7 @@ and Settings:
 You can either import the addon itself with everything inside:
 
 ```jsx
-import { Builder } from '@oakjs/react';
-import { baseAddon } from '@oakjs/react/addons';
+import { Builder, baseAddon } from '@oakjs/react';
 
 export default () => (
   <Builder
@@ -89,6 +89,7 @@ export default () => (
 Or import everything manually (in case you need to disable something you don't plan to use):
 
 ```jsx
+import { Builder } from '@oakjs/react';
 import * as oakAddons from '@oakjs/react/addons';
 
 export default () => (
@@ -181,6 +182,12 @@ Used with `onChange` to provide a controlled value to the builder.
 
 An array of addons to use with the builder.
 
+### activeTextSheet
+- Type: `string`
+- default: `null`
+
+The id of the active text sheet.
+
 ### rootBoundary
 - Type: `string | Element | DocumentFragment`
 - default: `'.oak'`
@@ -225,13 +232,13 @@ A callback function called when the builder value changes.
 
 A callback function called when an image should be uplodaded. It should return a promise that resolves with an object containing the image url, name and any other data you want to store in the image field.
 
-## Contributing
+# Contributing
 
 [![](https://contrib.rocks/image?repo=p3ol/oak)](https://github.com/p3ol/oak/graphs/contributors)
 
 Please check the [CONTRIBUTING.md](https://github.com/p3ol/oak/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
 
 
-## License
+# License
 
 This software is licensed under [MIT](https://github.com/p3ol/oak/blob/master/LICENSE).

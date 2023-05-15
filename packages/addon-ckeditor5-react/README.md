@@ -9,11 +9,12 @@
 <br />
 
 [![GitHub](https://img.shields.io/github/license/p3ol/oak.svg)](https://github.com/p3ol/oak)
-[![npm](https://img.shields.io/npm/v/@oakjs/addon-remirror.svg)](https://www.npmjs.com/package/@oakjs/addon-remirror)
+[![npm](https://img.shields.io/npm/v/@oakjs/addon-ckeditor5-react.svg)](https://www.npmjs.com/package/@oakjs/addon-remirror)
 [![CI](https://github.com/p3ol/oak/actions/workflows/ci.yml/badge.svg)](https://github.com/p3ol/oak/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
 
-An addon to use [CKEditor5](https://ckeditor.com) as an oak field for the React renderer.</p>
+### @oakjs/addon-ckeditor5-react
+An addon to use [CKEditor5](https://ckeditor.com) as an oak field for the React renderer.
 
 </div>
 
@@ -111,7 +112,7 @@ export default () => (
 
 ## Custom Editor
 
-As the default ClassicEditor was a bit too narrow for our needs, we created our own custom editor based on the ClassicEditor and some additional plugins.
+As the default ClassicEditor was a bit too narrow for our needs, we created our own custom editor based on the ClassicEditor and some additional plugins, available [here](../packages/ckeditor5-build-custom).
 If you don't need this, or want to use a custom-built editor, pass it as a prop to the `ckeditorFieldAddon()` function:
 
 ```jsx
@@ -153,13 +154,13 @@ export default () => (
 );
 ```
 
-## Contributing
+# Contributing
 
 [![](https://contrib.rocks/image?repo=p3ol/oak)](https://github.com/p3ol/oak/graphs/contributors)
 
 Please check the [CONTRIBUTING.md](https://github.com/p3ol/oak/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
 
 
-## License
+# License
 
 This software is licensed under [MIT](https://github.com/p3ol/oak/blob/master/LICENSE).

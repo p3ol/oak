@@ -13,7 +13,8 @@
 [![CI](https://github.com/p3ol/oak/actions/workflows/ci.yml/badge.svg)](https://github.com/p3ol/oak/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
 
-An addon to use [Remirror]() as an oak field.</p>
+### @oakjs/addon-remirror
+An addon to use [Remirror](https://remirror.io/) as an oak field
 
 </div>
 
@@ -60,7 +61,7 @@ export default () => {
 
 The `remirrorFieldAddon()` addon adds a new field with the `remirror` type.
 
-We can then either directly create component settings with the `remirror` field type:
+You can then either directly create component settings with the `remirror` field type:
 
 ```jsx
 import { BuilderField, baseAddon } from '@oakjs/react';
@@ -109,13 +110,13 @@ export default () => (
 );
 ```
 
-## Contributing
+# Contributing
 
 [![](https://contrib.rocks/image?repo=p3ol/oak)](https://github.com/p3ol/oak/graphs/contributors)
 
 Please check the [CONTRIBUTING.md](https://github.com/p3ol/oak/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
 
 
-## License
+# License
 
 This software is licensed under [MIT](https://github.com/p3ol/oak/blob/master/LICENSE).

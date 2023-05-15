@@ -9,41 +9,34 @@
 <br />
 
 [![GitHub](https://img.shields.io/github/license/p3ol/oak.svg)](https://github.com/p3ol/oak)
-[![npm](https://img.shields.io/npm/v/@oakjs/theme.svg)](https://www.npmjs.com/package/@oakjs/theme)
+[![npm](https://img.shields.io/npm/v/@oakjs/ckeditor5-build-custom.svg)](https://www.npmjs.com/package/@oakjs/addon-remirror)
 [![CI](https://github.com/p3ol/oak/actions/workflows/ci.yml/badge.svg)](https://github.com/p3ol/oak/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
 
-### @oakjs/theme
-Theme base for Oak
+### @oakjs/ckeditor5-build-custom
+An custom [CKEditor5](https://ckeditor.com) build created using the [CKEditor5 online builder](https://ckeditor.com/ckeditor-5/online-builder/).
 
 </div>
+
+ℹ️ This package is probably not what you're looking for, unless you're building a custom CKEditor5 Editor and need help kickstarting the process with an existing custom build.
 
 # Installation
 
 ```sh
-yarn add @oakjs/theme
+yarn add @oakjs/ckeditor5-build-custom
 ```
 
 # Usage
 
-```javascript
-import '@oakjs/theme/dist/oak.min.css';
+Serve examples using Storybook:
+
+```sh
+yarn serve
 ```
 
-If you need to tree-shake some unneeded styles, you can import every component/utility manually instead:
+# Documentation
 
-```css
-@import "@oakjs/theme/dist/css/reset.min.css";
-@import "@oakjs/theme/dist/css/Builder.min.css";
-@import "@oakjs/theme/dist/css/Catalogue.min.css";
-@import "@oakjs/theme/dist/css/Editable.min.css";
-@import "@oakjs/theme/dist/css/Option.min.css";
-@import "@oakjs/theme/dist/css/Element.min.css";
-@import "@oakjs/theme/dist/css/Row.min.css";
-/* ...and so on */
-```
-
-The full list is available inside the `dist/css` folder.
+See [`lib/index.js`](./lib/index.js) for a full list of plugins and toolbars included in this build.
 
 # Contributing
 
