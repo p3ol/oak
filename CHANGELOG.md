@@ -1,3 +1,44 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [3.0.0](https://github.com/p3ol/oak/compare/v3.0.0-alpha.40...v3.0.0) (2023-05-15)
+
+
+### Bug Fixes
+
+* dedup dependencies ([0601a6d](https://github.com/p3ol/oak/commit/0601a6d9a41930f6fc49f47d7352a7ed3a45929e))
+* **deps:** update dependency @junipero/core to v3.0.0-experimental-transitions.3 ([5d6c14e](https://github.com/p3ol/oak/commit/5d6c14e544e7269095bf7fc06102f86843db5e61))
+* **deps:** update dependency @junipero/react to v3.0.0 ([a21f98c](https://github.com/p3ol/oak/commit/a21f98c53faf3befefff39faef403b8b8a37b6bb))
+* **deps:** update dependency styled-components to v5.3.10 ([1e84339](https://github.com/p3ol/oak/commit/1e84339d0de1d76cc8e7d37c9c372e0c0f948d76))
+* **react:** allow to paste multiple elements inside containers ([7efe183](https://github.com/p3ol/oak/commit/7efe183ad1cf57e8e1922110020591629294b727))
+* **theme:** fix tabs content padding overflowing dropdown menus ([70e6666](https://github.com/p3ol/oak/commit/70e6666651b10aeb0d5479a539b99e1748899cfb))
+* update floating ui ([7c1f08f](https://github.com/p3ol/oak/commit/7c1f08f91c14a6377c8d0a4d8fb9668f6a5fe57e))
+* update junipero to major ([8515b9f](https://github.com/p3ol/oak/commit/8515b9f397ab1572fc38ae62c607d87458e68c32))
+* upgrade various dependencies ([b70b8bf](https://github.com/p3ol/oak/commit/b70b8bfb968147fe8021c2075d9e5f1a9b54242e))
+
+
+
+## [2.0.1](https://github.com/p3ol/oak/compare/v2.0.0...v2.0.1) (2023-04-21)
+
+
+
+# [2.0.0](https://github.com/p3ol/oak/compare/v3.0.0-alpha.29...v2.0.0) (2023-04-21)
+
+
+### Bug Fixes
+
+* update various deps ([2fb85c7](https://github.com/p3ol/oak/commit/2fb85c7d50106b57c4eab32baeca4279f4084c98))
+
+
+
+# [2.0.0-alpha.11](https://github.com/p3ol/oak/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2023-03-17)
+
+
+
+
+
 # [](https://github.com/p3ol/oak/compare/v1.4.0...v) (2022-11-15)
 
 
@@ -1322,6 +1363,3 @@
 * use LayoutEffect instead of useEffect to trigger on first loading ([8500aca](https://github.com/p3ol/oak/commit/8500acaa5bdb57412cdadc5a9b9f3b01adcbe793))
 * **wysiwyg:** enable Aspen for title ([3d1908d](https://github.com/p3ol/oak/commit/3d1908dc39d6c4cbc98fc9d914d2b7ff1cc3d599))
 * **z-index:** finally fix the broken z-index, by placing popover on root of the dom, (translate3d was the fucker) ([9890900](https://github.com/p3ol/oak/commit/98909007f3788bc3269e66eb2792609e20477e60))
-
-
-
