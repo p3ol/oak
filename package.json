@@ -67,7 +67,7 @@
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.62.0",
     "sass-loader": "13.2.2",
-    "storybook-dark-mode": "2.0.6",
+    "storybook-dark-mode": "2.1.1",
     "style-loader": "3.3.2",
     "webpack": "5.80.0"
   },
