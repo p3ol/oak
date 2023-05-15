@@ -1918,10 +1918,10 @@
     core-js "3.30.2"
     prop-types "15.8.1"
 
-"@junipero/theme@3.0.0-beta.11":
-  version "3.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0-beta.11.tgz#5a0ecac0d906e5ab7bd486d36d9f479ee15ac659"
-  integrity sha512-XVihAislVJaXYVF1q3MhBueycrm2fCa3Sq6Bp1duAKRUERxc6Pp5J/1FH0776YlzXrmrKbO2/hg0NCjANaxa1w==
+"@junipero/theme@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0.tgz#7a946a2dddc235dfd008dffa55ef8aa742077ab7"
+  integrity sha512-+ze/eOqh4HO31HqVIuJya4aSAg2FxfCG3YhVjQy+wyZaKZoF963RhUbOiJLikPMh6rxysuwDalVt+9g6LK3blA==
 
 "@junipero/transitions@3.0.0-beta.11":
   version "3.0.0-beta.11"
