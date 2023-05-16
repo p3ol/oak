@@ -30,7 +30,7 @@ exports[`Builder should allow to add addons: Components 1`] = `
       },
     ],
     "id": "other",
-    "name": undefined,
+    "name": [Function],
     "type": "group",
     "usable": true,
   },

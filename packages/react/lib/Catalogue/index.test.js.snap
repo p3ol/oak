@@ -58,7 +58,9 @@ exports[`<Catalogue /> should allow to add elements to the builder: Opened 1`] =
             >
               <a
                 href="#"
-              />
+              >
+                Other
+              </a>
             </li>
           </ul>
           <div

@@ -5,7 +5,7 @@ exports[`Components should allow to add a new group and add components 1`] = `
   "defaultGroup": ComponentsGroup {
     "components": [],
     "id": "other",
-    "name": undefined,
+    "name": [Function],
     "type": "group",
     "usable": true,
   },

@@ -28,13 +28,6 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
               Core components
             </a>
           </li>
-          <li
-            class="title"
-          >
-            <a
-              href="#"
-            />
-          </li>
         </ul>
         <div
           class="content"

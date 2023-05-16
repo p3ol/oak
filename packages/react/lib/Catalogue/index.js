@@ -3,6 +3,7 @@ import {
   useImperativeHandle,
   useReducer,
   useRef,
+  useMemo,
 } from 'react';
 import { createPortal } from 'react-dom';
 import {
@@ -109,7 +110,20 @@ const Catalogue = forwardRef(({
     onAppend?.(component);
   };
 
-  const groups = builder.getAvailableComponents();
+  const availableGroups = builder.getAvailableComponents();
+  const groups = useMemo(() => (
+    availableGroups
+      .filter(g => g.usable !== false)
+      .map(g => ({
+        ...g,
+        components: g.components.filter(c =>
+          c.usable !== false &&
+          (!component || !component.disallow ||
+            !component.disallow.includes(c.id))
+        ),
+      }))
+      .filter(g => g.components.length)
+  ), [availableGroups]);
 
   return (
     <div
@@ -146,14 +160,10 @@ const Catalogue = forwardRef(({
         >
           <div className="groups">
             <Tabs>
-              { groups.map(group => group.usable !== false && (
+              { groups.map(group => (
                 <Tab key={group.id} title={<Text>{ group.name }</Text>}>
                   <div className="group oak-grid oak-grid-cols-2 oak-gap-2">
-                    { group.components.filter(c =>
-                      c.usable !== false &&
-                      (!component || !component.disallow ||
-                        !component.disallow.includes(c.id))
-                    ).map(component => (
+                    { group.components.map(component => (
                       <a
                         key={component.id}
                         href="#"
