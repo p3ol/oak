@@ -62,9 +62,9 @@ const Builder = forwardRef(({
     builder.addElement({}, { component, position: 'before' });
   };
 
-  const onPaste = element => {
+  const onPaste = (position, element) => {
     catalogueRef.current?.close();
-    builder.addElements([].concat(element || []), { resetIds: true });
+    builder.addElements([].concat(element || []), { resetIds: true, position });
   };
 
   const historyButtons = (
@@ -92,7 +92,7 @@ const Builder = forwardRef(({
               <Catalogue
                 ref={catalogueRef}
                 onAppend={onPrepend}
-                onPaste={onPaste}
+                onPaste={onPaste.bind(null, 'before')}
               />
             </div>
           ) }
@@ -109,7 +109,7 @@ const Builder = forwardRef(({
             <Catalogue
               ref={catalogueRef}
               onAppend={onAppend}
-              onPaste={onPaste}
+              onPaste={onPaste.bind(null, 'after')}
             />
           </div>
         </div>
