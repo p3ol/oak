@@ -17,6 +17,7 @@ import {
   offset,
   autoUpdate,
   shift,
+  flip,
   limitShift,
   autoPlacement,
 } from '@floating-ui/react';
@@ -49,14 +50,18 @@ const Editable = forwardRef(({
     middleware: [
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
-        rootBoundary: rootBoundary?.current || 'viewport',
+        boundary: rootBoundary?.current,
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
-        rootBoundary: rootBoundary?.current || 'viewport',
+        boundary: rootBoundary?.current,
         allowedPlacements: ['bottom'],
         ...floatingSettings.autoPlacement || {},
+      })] : []),
+      ...(floatingSettings?.flip?.enabled !== false ? [flip({
+        boundary: rootBoundary?.current,
+        ...floatingSettings.flip || {},
       })] : []),
       ...floatingSettings.middleware || [],
     ],

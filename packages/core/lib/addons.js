@@ -226,9 +226,7 @@ export const colComponent = (...props) => ({
     floatingSettings: {
       placement: 'left-start',
       shift: { enabled: false },
-      autoPlacement: {
-        allowedPlacements: ['left-start'],
-      },
+      autoPlacement: { enabled: false },
     },
     fields: [{
       type: 'select',
