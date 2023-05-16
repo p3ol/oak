@@ -12,6 +12,7 @@ import {
   mockState,
   ensureNode,
 } from '@junipero/react';
+import { slideInDownMenu } from '@junipero/transitions';
 import {
   useFloating,
   useInteractions,
@@ -131,7 +132,7 @@ const Catalogue = forwardRef(({
         <Icon>add</Icon>
       </a>
 
-      { state.opened && createPortal((
+      { floatingsRef?.current && createPortal(slideInDownMenu((
         <div
           ref={refs.setFloating}
           className="catalogue-menu"
@@ -197,7 +198,7 @@ const Catalogue = forwardRef(({
             ) }
           </div>
         </div>
-      ), ensureNode(floatingsRef?.current)) }
+      ), { opened: state.opened }), ensureNode(floatingsRef?.current)) }
     </div>
   );
 });
