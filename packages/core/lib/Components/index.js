@@ -20,6 +20,7 @@ export default class Components extends Emitter {
     this.#defaultGroup = new ComponentsGroup({
       type: 'group',
       id: Components.COMPONENTS_GROUP_OTHER,
+      name: t => t('core.components.other.title', 'Other'),
       components: [],
     });
   }
