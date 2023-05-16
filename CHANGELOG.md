@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/p3ol/oak/compare/v3.0.1...v3.0.2) (2023-05-16)
+
+
+### Bug Fixes
+
+* **react:** correctly paste content before builder ([7dab078](https://github.com/p3ol/oak/commit/7dab078b40d4198b8141d054d7092c4d3e7d27bb))
+
+
+
+
+
 ## [3.0.1](https://github.com/p3ol/oak/compare/v3.0.0...v3.0.1) (2023-05-16)
 
 
