@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/p3ol/oak/compare/v3.0.2...v3.0.3) (2023-05-17)
+
+
+### Bug Fixes
+
+* **strapi-plugin:** missing ckeditor styling ([ad3a360](https://github.com/p3ol/oak/commit/ad3a360028337e0af683f159e3d72b3d66f5e33f))
+
+
+
+
+
 ## [3.0.2](https://github.com/p3ol/oak/compare/v3.0.1...v3.0.2) (2023-05-16)
 
 **Note:** Version bump only for package @oakjs/strapi-plugin
