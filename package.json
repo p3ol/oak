@@ -37,7 +37,7 @@
     "@rollup/plugin-babel": "6.0.3",
     "@rollup/plugin-commonjs": "25.0.0",
     "@rollup/plugin-node-resolve": "15.0.2",
-    "@rollup/plugin-terser": "0.4.2",
+    "@rollup/plugin-terser": "0.4.3",
     "@storybook/addon-actions": "7.0.12",
     "@storybook/react": "7.0.12",
     "@storybook/react-webpack5": "7.0.12",
