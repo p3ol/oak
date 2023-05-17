@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client';
+import { version } from 'react';
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { createDropdown } from '@ckeditor/ckeditor5-ui';
 import FontColorCommand from '@ckeditor/ckeditor5-font/src/fontcolor/fontcolorcommand.js';
@@ -69,8 +69,8 @@ export default class ColorPlugin extends Plugin {
       });
 
       let root;
-      dropdown.panelView.on('render', () => {
-        root = createRoot(dropdown.panelView.element);
+      dropdown.panelView.on('render', async () => {
+        root = await this.createReactRoot(dropdown.panelView.element);
       });
 
       dropdown.buttonView.on('open', () => {
@@ -87,5 +87,25 @@ export default class ColorPlugin extends Plugin {
 
       return dropdown;
     });
+  }
+
+  async createReactRoot (element) {
+    try {
+      if (version.startsWith('18')) {
+        const { createRoot } = await import('react-dom/client');
+
+        return createRoot(element);
+      }
+    } catch (err) {
+      console.error(
+        'Cannot init color plugin using react 18, fallback to react 17', err
+      );
+    }
+
+    const { render } = await import('react-dom');
+
+    return {
+      render: component => render(component, element),
+    };
   }
 }
