@@ -29,6 +29,7 @@ exports[`Components should allow to add a new group and add components 1`] = `
           "render": undefined,
           "sanitize": undefined,
           "settings": ComponentSettingsForm {
+            "defaults": {},
             "fields": [],
             "floatingSettings": undefined,
             "title": undefined,
