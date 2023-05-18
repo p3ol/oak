@@ -4,6 +4,7 @@ import { Builder, baseAddon, classNames } from '@oakjs/react';
 import { remirrorFieldAddon } from '@oakjs/addon-remirror';
 import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
 import styles from '@oakjs/theme/dist/oak.min.css';
+import remirrorStyles from '@oakjs/addon-remirror/dist/oak-addon-remirror.min.css';
 import ckeditorStyles from '@oakjs/addon-ckeditor5-react/dist/oak-addon-ckeditor.min.css';
 
 import { addStyles } from '../utils';
@@ -20,7 +21,15 @@ const BuilderField = ({ attribute, name, value, onChange }) => {
 
   useLayoutEffect(() => {
     addStyles(styles, { id: 'oak-theme' });
-    addStyles(ckeditorStyles, { id: 'oak-ckeditor' });
+
+    switch (options.editor) {
+      case 'remirror':
+        addStyles(remirrorStyles, { id: 'oak-remirror' });
+        break;
+      case 'ckeditor':
+        addStyles(ckeditorStyles, { id: 'oak-ckeditor' });
+        break;
+    }
   }, []);
 
   return (
