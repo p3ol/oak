@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/p3ol/oak/compare/v3.0.3...v3.0.4) (2023-05-18)
+
+
+### Bug Fixes
+
+* **strapi-plugin:** switch styles for editor ([fcc5704](https://github.com/p3ol/oak/commit/fcc57046d13c6acce0464ef6c3a67dac11ce4438))
+
+
+
+
+
 ## [3.0.3](https://github.com/p3ol/oak/compare/v3.0.2...v3.0.3) (2023-05-17)
 
 
