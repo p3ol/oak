@@ -244,43 +244,44 @@ export const colComponent = (...props) => ({
         },
         ...COL_SIZES,
       ],
+    }, {
+      tab: 'responsive',
+      key: 'responsive.xl',
+      type: 'select',
+      label: t => t('core.responsive.xl', 'Extra-large screens'),
+      default: 'fluid',
+      options: COL_RESPONSIVE_SETTINGS,
+    }, {
+      tab: 'responsive',
+      key: 'responsive.lg',
+      type: 'select',
+      label: t => t('core.responsive.lg', 'Large screens (desktop)'),
+      default: 'fluid',
+      options: COL_RESPONSIVE_SETTINGS,
+    }, {
+      tab: 'responsive',
+      key: 'responsive.md',
+      type: 'select',
+      label: t => t('core.responsive.md', 'Medium screens (tablet)'),
+      default: 'fluid',
+      options: COL_RESPONSIVE_SETTINGS,
+    }, {
+      tab: 'responsive',
+      key: 'responsive.sm',
+      type: 'select',
+      label: t => t('core.responsive.sm', 'Small screens (phones)'),
+      default: 'fluid',
+      options: COL_RESPONSIVE_SETTINGS,
+    }, {
+      tab: 'responsive',
+      key: 'responsive.xs',
+      type: 'select',
+      label: t => t('core.responsive.xs', 'Extra-small screens (old phones)'),
+      default: 'fluid',
+      options: COL_RESPONSIVE_SETTINGS,
     }],
     defaults: {
       responsive: false,
-    },
-    responsive: {
-      title: t => t('core.responsive.title', 'Responsive'),
-      fields: [{
-        key: 'responsive.xl',
-        type: 'select',
-        label: t => t('core.responsive.xl', 'Extra-large screens'),
-        default: 'fluid',
-        options: COL_RESPONSIVE_SETTINGS,
-      }, {
-        key: 'responsive.lg',
-        type: 'select',
-        label: t => t('core.responsive.lg', 'Large screens (desktop)'),
-        default: 'fluid',
-        options: COL_RESPONSIVE_SETTINGS,
-      }, {
-        key: 'responsive.md',
-        type: 'select',
-        label: t => t('core.responsive.md', 'Medium screens (tablet)'),
-        default: 'fluid',
-        options: COL_RESPONSIVE_SETTINGS,
-      }, {
-        key: 'responsive.sm',
-        type: 'select',
-        label: t => t('core.responsive.sm', 'Small screens (phones)'),
-        default: 'fluid',
-        options: COL_RESPONSIVE_SETTINGS,
-      }, {
-        key: 'responsive.xs',
-        type: 'select',
-        label: t => t('core.responsive.xs', 'Extra-small screens (old phones)'),
-        default: 'fluid',
-        options: COL_RESPONSIVE_SETTINGS,
-      }],
     },
   },
   ...props,
@@ -805,6 +806,8 @@ export const responsiveSettings = (...props) => ({
       title: t => t('core.responsive.hide', 'Hidden'),
       value: 'hide',
     }],
+    condition: (_, { component } = {}) =>
+      component.settings?.defaults?.responsive !== false,
   }, {
     key: 'responsive.lg',
     type: 'select',
@@ -817,6 +820,8 @@ export const responsiveSettings = (...props) => ({
       title: t => t('core.responsive.hide', 'Hidden'),
       value: 'hide',
     }],
+    condition: (_, { component } = {}) =>
+      component.settings?.defaults?.responsive !== false,
   }, {
     key: 'responsive.md',
     type: 'select',
@@ -829,6 +834,8 @@ export const responsiveSettings = (...props) => ({
       title: t => t('core.responsive.hide', 'Hidden'),
       value: 'hide',
     }],
+    condition: (_, { component } = {}) =>
+      component.settings?.defaults?.responsive !== false,
   }, {
     key: 'responsive.sm',
     type: 'select',
@@ -841,6 +848,8 @@ export const responsiveSettings = (...props) => ({
       title: t => t('core.responsive.hide', 'Hidden'),
       value: 'hide',
     }],
+    condition: (_, { component } = {}) =>
+      component.settings?.defaults?.responsive !== false,
   }, {
     key: 'responsive.xs',
     type: 'select',
@@ -853,6 +862,8 @@ export const responsiveSettings = (...props) => ({
       title: t => t('core.responsive.hide', 'Hidden'),
       value: 'hide',
     }],
+    condition: (_, { component } = {}) =>
+      component.settings?.defaults?.responsive !== false,
   }],
 });
 

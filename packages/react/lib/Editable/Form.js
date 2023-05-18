@@ -87,7 +87,7 @@ const Form = ({
           )
           .sort((a, b) => (b.priority || 0) - (a.priority || 0))
           .filter(tab => tab.type === 'tab' &&
-            (!tab.condition || tab.condition(state.element)))
+            (!tab.condition || tab.condition(state.element, { component })))
           .map((tab, t) => (
             <Tab key={tab.id || t} title={<Text>{ tab.title }</Text>}>
               <div className="fields oak-flex oak-flex-col oak-gap-4">
@@ -99,7 +99,9 @@ const Form = ({
                         field.tab === tab.id)
                   )
                   .sort((a, b) => (b.priority || 0) - (a.priority || 0))
-                  .filter(f => !f.condition || f.condition(state.element))
+                  .filter(f =>
+                    !f.condition || f.condition(state.element, { component })
+                  )
                   .map((setting, i) => (
                     <div className="field" key={i}>
                       <FieldControl>
@@ -124,6 +126,7 @@ const Form = ({
                                     setting={f}
                                     editableRef={editableRef}
                                     element={state.element}
+                                    component={component}
                                     onChange={onSettingChange_}
                                     onCustomChange={onSettingCustomChange_}
                                   />
@@ -136,6 +139,7 @@ const Form = ({
                             setting={setting}
                             editableRef={editableRef}
                             element={state.element}
+                            component={component}
                             onChange={onSettingChange_}
                             onCustomChange={onSettingCustomChange_}
                           />

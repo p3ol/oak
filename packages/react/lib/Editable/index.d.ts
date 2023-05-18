@@ -45,6 +45,7 @@ export declare interface FieldProps extends ComponentPropsWithoutRef<any> {
     ComponentSettingField |
     ComponentSettingFieldObject;
   element?: ElementObject | Element;
+  component?: ComponentObject | Component;
   onChange?(
     key: string | ComponentSettingFieldKeyTuple,
     field: { value: any; valid: boolean }

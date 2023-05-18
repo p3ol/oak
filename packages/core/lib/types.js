@@ -99,6 +99,7 @@ export class ComponentSettingsForm {
   constructor (props) {
     this.title = props.title;
     this.floatingSettings = props.floatingSettings;
+    this.defaults = props.defaults || {};
     this.fields = (props.fields || []).map(t =>
       t.type === 'tab'
         ? t instanceof ComponentSettingsTab ? t : new ComponentSettingsTab(t)

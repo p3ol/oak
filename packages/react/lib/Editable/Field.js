@@ -5,6 +5,7 @@ import { useBuilder } from '../hooks';
 const Field = ({
   setting,
   element,
+  component,
   onChange,
   onCustomChange,
   editableRef,
@@ -34,7 +35,7 @@ const Field = ({
     ...overrides?.props,
   };
 
-  if (setting.condition && !setting.condition(element)) {
+  if (setting.condition && !setting.condition(element, { component })) {
     return null;
   }
 

@@ -95,7 +95,9 @@ export declare interface ComponentSettingsFieldObject {
   valueType?: string;
   fields?: Array<ComponentSettingsFieldObject>;
   props?: object;
-  condition?: (element: Element | ElementObject) => boolean;
+  condition: (element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+  }) => boolean;
 }
 
 export declare class ComponentSettingsField {
@@ -115,14 +117,18 @@ export declare class ComponentSettingsField {
   valueType: string;
   fields: Array<ComponentSettingsField>;
   props: object;
-  condition: (element: Element | ElementObject) => boolean;
+  condition: (element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+  }) => boolean;
 }
 
 export declare interface ComponentSettingsTabObject {
   id: string;
   priority?: number;
   title?: string | GetTextCallback;
-  condition?: (element: Element | ElementObject) => boolean;
+  condition?: (element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+  }) => boolean;
   fields?: Array<ComponentSettingsField | ComponentSettingsFieldObject>;
 }
 
@@ -134,13 +140,16 @@ export declare class ComponentSettingsTab {
   id: string;
   priority: number;
   title: string | GetTextCallback;
-  condition: (element: Element) => boolean;
+  condition: (element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+  }) => boolean;
   fields: Array<ComponentSettingsField>;
 }
 
 export declare class ComponentSettingsFormObject {
   title: string | GetTextCallback;
   floatingSettings?: object;
+  defaults?: object;
   fields?: Array<
     ComponentSettingsTab |
     ComponentSettingsTabObject |
@@ -153,6 +162,7 @@ export declare class ComponentSettingsForm {
   constructor(props: object);
   title?: string | GetTextCallback;
   floatingSettings?: object;
+  defaults?: object;
   fields?: Array<ComponentSettingsTab | ComponentSettingsField>;
 }
 
