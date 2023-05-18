@@ -3,8 +3,17 @@ import { createGlobalStyle } from 'styled-components';
 import { ImageField as OakImageField } from '@oakjs/react';
 import { prefixFileUrlWithBackendUrl, useLibrary } from '@strapi/helper-plugin';
 
+// Strapi is making this very difficult
+// -------------------------
+// Basically, oak editables are absolutely positioned, and have a z-index of 20.
+// Weirdly enough, strapi media library modals have a z-index of 4 AND
+// use styled-components, so we can't target any selector as they are scoped.
+// For a short period of time, the modals were targetable using
+// [data-react-portal], but it has been removed since Strapi 4.10.x.
+// This selector is very, very far from being bulletproof, but it works for now.
 const GlobalStyling = createGlobalStyle`
-  body > [data-react-portal] > div {
+  body > div:not(#app):has([aria-modal="true"]),
+  body > div:not(#app) > div {
     z-index: 100;
   }
 `;
@@ -40,7 +49,6 @@ const ImageField = ({ value: valueProp, onChange }) => {
       { opened && (
         <MediaLibraryDialog
           allowedTypes={['images']}
-          multiple={false}
           onClose={() => setOpened(false)}
           onSelectAssets={onSelectAssets}
         />
