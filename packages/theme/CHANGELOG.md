@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/p3ol/oak/compare/v3.0.6...v3.0.7) (2023-05-19)
+
+
+### Bug Fixes
+
+* **theme:** fix missing tailwind base vars ([f578fb3](https://github.com/p3ol/oak/commit/f578fb30359bbd479cd15da4e0e6c2348df839dc))
+
+
+
+
+
 ## [3.0.5](https://github.com/p3ol/oak/compare/v3.0.4...v3.0.5) (2023-05-18)
 
 

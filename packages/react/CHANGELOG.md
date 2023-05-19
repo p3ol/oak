@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/p3ol/oak/compare/v3.0.6...v3.0.7) (2023-05-19)
+
+
+### Bug Fixes
+
+* **react:** add col size info ([c37c8d7](https://github.com/p3ol/oak/commit/c37c8d771c108d8cda7181261194dfa60bf59c18))
+* **react:** add row background info ([a66b810](https://github.com/p3ol/oak/commit/a66b8105a54b6b4950368944c393cf31afc63a1d))
+
+
+
+
+
 ## [3.0.6](https://github.com/p3ol/oak/compare/v3.0.5...v3.0.6) (2023-05-19)
 
 
