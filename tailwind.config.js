@@ -76,7 +76,8 @@ module.exports = {
         ...fromPairs(Object.entries(theme('flexBasis')).map(([k, v]) => [
           `.basis-${e(k)}`,
           {
-            'flex-basis': `calc(${v} - (var(--tw-gap) / 2))`,
+            'flex-basis':
+              `calc(${v} - (var(--tw-gap) - (var(--tw-gap) * (${k}))))`,
           },
         ])),
       }, variants('flexBasis'));
