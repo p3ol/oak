@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/p3ol/oak/compare/v3.0.5...v3.0.6) (2023-05-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @strapi/design-system to v1.7.6 ([8a610b2](https://github.com/p3ol/oak/commit/8a610b257c2da14d51bdd33edd4c9bb7bb077c95))
+* **strapi-plugin:** simulate loading to trigger a needed rerender ([7ef9a96](https://github.com/p3ol/oak/commit/7ef9a9637ed3d831c1d721ff13899c8afa5e4265))
+
+
+
+
+
 ## [3.0.5](https://github.com/p3ol/oak/compare/v3.0.4...v3.0.5) (2023-05-18)
 
 

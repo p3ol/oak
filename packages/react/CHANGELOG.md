@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/p3ol/oak/compare/v3.0.5...v3.0.6) (2023-05-19)
+
+
+### Bug Fixes
+
+* **react:** export junipero's useTimeout ([daef598](https://github.com/p3ol/oak/commit/daef5984b5e6d5d1689f6fbadbf4bbf04d46dd6b))
+
+
+
+
+
 ## [3.0.4](https://github.com/p3ol/oak/compare/v3.0.3...v3.0.4) (2023-05-18)
 
 
