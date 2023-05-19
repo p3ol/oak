@@ -184,6 +184,60 @@ const Col = ({
         </a>
       </Tooltip>
 
+      <div className="size-info oak-absolute oak-bottom-1 oak-left-1">
+        { element.size === 'auto' ? (
+          <Tooltip
+            className="secondary"
+            text={(
+              <Text name="core.tooltips.columnSize.auto">Fits content</Text>
+            )}
+            placement="right"
+          >
+            <span>
+              <Icon
+                className={classNames(
+                  '!oak-text-alternate-text-color oak-block oak-rotate-90',
+                  'oak-cursor-help'
+                )}
+              >
+                unfold
+              </Icon>
+            </span>
+          </Tooltip>
+        ) : Number.isInteger(element.size) ? (
+          <span
+            className={classNames(
+              'junipero extra oak-block !oak-text-alternate-text-color',
+              'oak-pointer-events-none oak-user-select-none',
+              'oak-pb-1 oak-pl-2'
+            )}
+          >
+            { element.size }/12
+          </span>
+        ) : (
+          <Tooltip
+            className="secondary"
+            text={(
+              <Text name="core.tooltips.columnSize.fluid">
+                Fills available space
+              </Text>
+            )}
+            placement="right"
+          >
+            <span>
+              <Icon
+                className={classNames(
+                  '!oak-text-alternate-text-color oak-rotate-90 oak-block',
+                  'oak-cursor-help'
+                )}
+              >
+                foldable
+              </Icon>
+            </span>
+          </Tooltip>
+        ) }
+      </div>
+
       { component && (
         <div className="options oak-flex oak-items-center oak-gap-0.5">
           <Editable
