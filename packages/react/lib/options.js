@@ -61,3 +61,21 @@ export const dragOption = () => ({
     );
   },
 });
+
+export const backgroundColorOption = () => ({
+  render: ({ element = {} }) =>
+    (element.styles?.backgroundColor || element.styles?.backgroundImage) && (
+      <div
+        className={classNames(
+          'oak-order-last oak-ml-2 oak-rounded-full oak-w-[15px]',
+          'oak-h-[15px] oak-bg-no-repeat oak-bg-center oak-bg-cover',
+        )}
+        style={{
+          backgroundColor: element.styles?.backgroundColor,
+          ...element.styles?.backgroundImage && {
+            backgroundImage: `url(${element.styles?.backgroundImage.url})`,
+          },
+        }}
+      />
+    ),
+});

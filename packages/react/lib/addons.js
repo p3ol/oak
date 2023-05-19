@@ -8,7 +8,7 @@ import {
 import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
 
-import { dragOption } from './options';
+import { dragOption, backgroundColorOption } from './options';
 import { ImageField } from './fields';
 import {
   Button,
@@ -127,7 +127,7 @@ export const toggleField = props => ({
 export const rowComponent = props => ({
   ...coreAddons.rowComponent(),
   render: Row,
-  options: [dragOption()],
+  options: [dragOption(), backgroundColorOption()],
   ...props,
 });
 
