@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.8](https://github.com/p3ol/oak/compare/v3.0.7...v3.0.8) (2023-05-19)
+
+
+### Bug Fixes
+
+* **theme:** correctly handle non floaty basis values ([11961b5](https://github.com/p3ol/oak/commit/11961b526625ba67e012e5f4ed10978d1d636b7d))
+
+
+
+
+
 ## [3.0.7](https://github.com/p3ol/oak/compare/v3.0.6...v3.0.7) (2023-05-19)
 
 
