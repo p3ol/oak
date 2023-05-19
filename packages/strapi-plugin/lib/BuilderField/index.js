@@ -1,8 +1,10 @@
-import React, { useLayoutEffect, useMemo } from 'react';
+import React, { useLayoutEffect, useMemo, useState } from 'react';
 import { useStrapiApp } from '@strapi/helper-plugin';
-import { Builder, baseAddon, classNames } from '@oakjs/react';
+import { Loader } from '@strapi/design-system';
+import { Builder, baseAddon, classNames, useTimeout } from '@oakjs/react';
 import { remirrorFieldAddon } from '@oakjs/addon-remirror';
 import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
+import styled from 'styled-components';
 import styles from '@oakjs/theme/dist/oak.min.css';
 import remirrorStyles from '@oakjs/addon-remirror/dist/oak-addon-remirror.min.css';
 import ckeditorStyles from '@oakjs/addon-ckeditor5-react/dist/oak-addon-ckeditor.min.css';
@@ -10,14 +12,28 @@ import ckeditorStyles from '@oakjs/addon-ckeditor5-react/dist/oak-addon-ckeditor
 import { addStyles } from '../utils';
 import ImageField from '../ImageField';
 
+const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+`;
+
 const BuilderField = ({ attribute, name, value, onChange }) => {
   const { runHookSeries } = useStrapiApp();
   const { options } = attribute;
   const addon = baseAddon();
+  const [loading, setLoading] = useState(true);
   const theme = globalThis.localStorage?.getItem?.('STRAPI_THEME') || 'light';
   const customAddons = useMemo(() => (
     runHookSeries('oak:addons:add') || []
   ), []);
+
+  // Delay rendering to avoid content issues when locale changes due to
+  // non-controlled builder (for performance reasons)
+  useTimeout(() => {
+    setLoading(false);
+  }, 500, []);
 
   useLayoutEffect(() => {
     addStyles(styles, { id: 'oak-theme' });
@@ -31,6 +47,10 @@ const BuilderField = ({ attribute, name, value, onChange }) => {
         break;
     }
   }, []);
+
+  if (loading) {
+    return <LoaderContainer><Loader /></LoaderContainer>;
+  }
 
   return (
     <div className={classNames('oak-strapi', theme)}>
