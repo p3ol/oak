@@ -268,6 +268,17 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
                 </i>
               </a>
               <div
+                class="size-info oak-absolute oak-bottom-1 oak-left-1"
+              >
+                <span>
+                  <i
+                    class="icon junipero-icons !oak-text-alternate-text-color oak-rotate-90 oak-block oak-cursor-help"
+                  >
+                    foldable
+                  </i>
+                </span>
+              </div>
+              <div
                 class="options oak-flex oak-items-center oak-gap-0.5"
               >
                 <a
@@ -716,6 +727,17 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
                 </i>
               </a>
               <div
+                class="size-info oak-absolute oak-bottom-1 oak-left-1"
+              >
+                <span>
+                  <i
+                    class="icon junipero-icons !oak-text-alternate-text-color oak-rotate-90 oak-block oak-cursor-help"
+                  >
+                    foldable
+                  </i>
+                </span>
+              </div>
+              <div
                 class="options oak-flex oak-items-center oak-gap-0.5"
               >
                 <a
@@ -1118,6 +1140,17 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
             add
           </i>
         </a>
+        <div
+          class="size-info oak-absolute oak-bottom-1 oak-left-1"
+        >
+          <span>
+            <i
+              class="icon junipero-icons !oak-text-alternate-text-color oak-rotate-90 oak-block oak-cursor-help"
+            >
+              foldable
+            </i>
+          </span>
+        </div>
         <div
           class="options oak-flex oak-items-center oak-gap-0.5"
         >
