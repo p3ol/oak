@@ -28,7 +28,7 @@
     "@ckeditor/ckeditor5-core": "37.1.0",
     "@ckeditor/ckeditor5-dev-translations": "37.0.1",
     "@ckeditor/ckeditor5-dev-utils": "37.0.1",
-    "@ckeditor/ckeditor5-editor-classic": "37.1.0",
+    "@ckeditor/ckeditor5-editor-classic": "38.0.1",
     "@ckeditor/ckeditor5-essentials": "37.1.0",
     "@ckeditor/ckeditor5-font": "37.1.0",
     "@ckeditor/ckeditor5-horizontal-line": "37.1.0",
