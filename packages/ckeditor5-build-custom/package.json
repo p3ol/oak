@@ -9,7 +9,7 @@
     "dist"
   ],
   "engines": {
-    "node": "16 || 18",
+    "node": "16 || 18 || 20",
     "yarn": "1"
   },
   "peerDependencies": {
