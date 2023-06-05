@@ -31,7 +31,7 @@
     "@poool/eslint-config": "2.0.2",
     "@poool/eslint-config-react": "2.0.2",
     "@poool/eslint-plugin": "2.0.2",
-    "@remirror/pm": "2.0.5",
+    "@remirror/pm": "2.0.6",
     "@remirror/react": "2.0.28",
     "@rollup/plugin-alias": "5.0.0",
     "@rollup/plugin-babel": "6.0.3",
