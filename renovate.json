@@ -13,5 +13,8 @@
   }, {
     "packagePatterns": ["^@poool/junipero"],
     "groupName": "poool junipero monorepo"
+  }, {
+    "packagePatterns": ["^@ckeditor"],
+    "groupName": "ckeditor monorepo"
   }]
 }
