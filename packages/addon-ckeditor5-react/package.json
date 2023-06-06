@@ -28,7 +28,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.21.5",
+    "@babel/runtime-corejs3": "7.22.3",
     "core-js": "3.30.2"
   },
   "scripts": {
