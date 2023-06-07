@@ -10,7 +10,7 @@
   "author": "Ugo Stephant <ugo@poool.fr>",
   "license": "MIT",
   "engines": {
-    "node": "16 || 18 || 20",
+    "node": ">= 16",
     "yarn": "1"
   },
   "peerDependencies": {

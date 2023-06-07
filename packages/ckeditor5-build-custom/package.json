@@ -9,11 +9,11 @@
     "dist"
   ],
   "engines": {
-    "node": "16 || 18 || 20",
+    "node": ">= 16",
     "yarn": "1"
   },
   "peerDependencies": {
-    "@oakjs/react": "^3.0.0-alpha.1",
+    "@oakjs/react": "^3.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

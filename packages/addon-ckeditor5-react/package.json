@@ -17,13 +17,13 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": "16 || 18 || 20",
+    "node": ">= 16",
     "yarn": "1"
   },
   "peerDependencies": {
     "@ckeditor/ckeditor5-react": "^6.0.0",
-    "@oakjs/ckeditor5-build-custom": "^3.0.0-alpha.21",
-    "@oakjs/react": "^3.0.0-alpha.1",
+    "@oakjs/ckeditor5-build-custom": "^3.0.0",
+    "@oakjs/react": "^3.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
