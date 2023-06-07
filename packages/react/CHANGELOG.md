@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.9](https://github.com/p3ol/oak/compare/v3.0.8...v3.0.9) (2023-06-07)
+
+
+### Bug Fixes
+
+* allow to install package on node 20 ([811ec5c](https://github.com/p3ol/oak/commit/811ec5c314d76d45c21dc9c75f3ef1c45600552c))
+* **deps:** update dependency @floating-ui/react to v0.24.2 ([b56899c](https://github.com/p3ol/oak/commit/b56899c7bec8334c922d924154a8a8a24dc4adf3))
+* update junipero ([50173d1](https://github.com/p3ol/oak/commit/50173d1002e54e6bd4e67a32a3a067dfd90c3496))
+
+
+
+
+
 ## [3.0.7](https://github.com/p3ol/oak/compare/v3.0.6...v3.0.7) (2023-05-19)
 
 

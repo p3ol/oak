@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.9](https://github.com/p3ol/oak/compare/v3.0.8...v3.0.9) (2023-06-07)
+
+
+### Bug Fixes
+
+* allow to install package on node 20 ([811ec5c](https://github.com/p3ol/oak/commit/811ec5c314d76d45c21dc9c75f3ef1c45600552c))
+* **deps:** update dependency @floating-ui/react to v0.24.2 ([b56899c](https://github.com/p3ol/oak/commit/b56899c7bec8334c922d924154a8a8a24dc4adf3))
+* **deps:** update dependency @remirror/pm to v2.0.6 ([ea4dddc](https://github.com/p3ol/oak/commit/ea4dddca08f9825625e7711320c35d3cae89ad7b))
+* **deps:** update dependency @strapi/design-system to v1.7.10 ([c690eea](https://github.com/p3ol/oak/commit/c690eea75fc7093e40d96120a176304cc10b8e68))
+* **deps:** update dependency @strapi/design-system to v1.7.7 ([3c06f9a](https://github.com/p3ol/oak/commit/3c06f9a00af4a5317b6829bc7bed537687d8a1a1))
+* **deps:** update dependency @strapi/design-system to v1.8.0 ([af0e495](https://github.com/p3ol/oak/commit/af0e4959444c994d281fe784a49844d61ffddaae))
+* **deps:** update dependency remirror to v2.0.32 ([9c32216](https://github.com/p3ol/oak/commit/9c322165216ea034fbc9d84963c164f8b6bfd9d1))
+* **deps:** update dependency styled-components to v5.3.11 ([63d19c6](https://github.com/p3ol/oak/commit/63d19c6cad6c3623c32eee2d61b373735e77e535))
+* update junipero ([50173d1](https://github.com/p3ol/oak/commit/50173d1002e54e6bd4e67a32a3a067dfd90c3496))
+
+
+
+
+
 ## [3.0.8](https://github.com/p3ol/oak/compare/v3.0.7...v3.0.8) (2023-05-19)
 
 
