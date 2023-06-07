@@ -1475,14 +1475,6 @@
   resolved "https://registry.yarnpkg.com/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime-corejs3@7.21.5":
-  version "7.21.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.21.5.tgz#a6d4e132ab1cb2fae2354f02284ebb6e07b4f7d8"
-  integrity sha512-FRqFlFKNazWYykft5zvzuEl1YyTDGsIRrjV9rvxvYkUC7W/ueBng1X68Xd6uRMzAaJ0xMKn08/wem5YS1lpX8w==
-  dependencies:
-    core-js-pure "^3.25.1"
-    regenerator-runtime "^0.13.11"
-
 "@babel/runtime-corejs3@7.22.3":
   version "7.22.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.22.3.tgz#a684fb6b2eb987d9eb4ee7f1bba832473a29f0f1"
@@ -2355,15 +2347,6 @@
   dependencies:
     "@floating-ui/dom" "^1.2.7"
 
-"@floating-ui/react@0.24.1":
-  version "0.24.1"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.24.1.tgz#9ef81c78045c4b88ac062755826a3daf7cbe23d6"
-  integrity sha512-qjCKUZDEz/4bnJmu4gn66TqsoX912/re8JGEi3pXazsphmyh327l0UpTgpBAT3WkNbnzAH7Adt3wKlLMNtfupw==
-  dependencies:
-    "@floating-ui/react-dom" "^2.0.0"
-    aria-hidden "^1.1.3"
-    tabbable "^6.0.1"
-
 "@floating-ui/react@0.24.2":
   version "0.24.2"
   resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.24.2.tgz#1f2e596da122341a3fa65667a6f26ed126d32cc0"
@@ -2696,40 +2679,40 @@
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
   integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
 
-"@junipero/core@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.0.0.tgz#e39a2553e454c0ad56c1e4968dbfebb4116c5aad"
-  integrity sha512-9sv7M7nU3iLF/jH2MfUMZ1ZoTgBT+KqXlreHNYEvT4Qgv+ubJsX1SQVbkkzYzJhszXGmA/LdI/HXwIv0WrJaeQ==
+"@junipero/core@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.0.2.tgz#0c030190e480c3857748885c8c204650f02fdadb"
+  integrity sha512-3mgygxh/lE/88t5JEtTA8goOEc2OPV3IH2VAIUYc+yAbdLrx3CwMJE/lLmjTl4I+r3kXgRZhW3ItcK6pkq7Kpg==
   dependencies:
-    "@babel/runtime-corejs3" "7.21.5"
+    "@babel/runtime-corejs3" "7.22.3"
     core-js "3.30.2"
 
-"@junipero/react@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.0.tgz#8b5ce0e18e96a4ebad637a552fcfeae0ccba28c8"
-  integrity sha512-KLaOxmdNDMyAQeoGU4Fm30jvN6SMiBnL7MoTgLo5/ilVwLAj2aOmFTI+nr2tiH2fprGnxQqIGM9yc3wusyLNZA==
+"@junipero/react@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.0.2.tgz#be565bec6a9e04c98972ff66441b36d2f5f3b3ec"
+  integrity sha512-pT5329lft6QgOLSt2mvz4HKOHclyh/Y8ZF1sIaLtaZ7s2SQLA65TnIB8GAE4rdgmVRl8retLo95uwQUBzRazKw==
   dependencies:
-    "@babel/runtime-corejs3" "7.21.5"
-    "@floating-ui/react" "0.24.1"
+    "@babel/runtime-corejs3" "7.22.3"
+    "@floating-ui/react" "0.24.2"
     core-js "3.30.2"
     prop-types "15.8.1"
 
-"@junipero/tailwind-plugin@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.0.0.tgz#20eb879d0257f469f87ddfccb0d6871a99f9fc52"
-  integrity sha512-FDVZVxpsPmjprmQ8MXpnq5b/deU2sU8Wvd7kWHpUI/qHqGz+MyNpP7ZnS6+YXKYI3bN9/9IycFiBbIUuzcVmwQ==
+"@junipero/tailwind-plugin@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.0.2.tgz#4f5cda4dda9e31b8d348954f8bf7471fe38a5c9a"
+  integrity sha512-xTKP+cZJGR+3kEfU+mkpqrlPqrSJA1j0j2kAr+IOKRodi2xJLxx5fQwSkmk7dtEu4HO78reLZNMfjEt0F9sU/A==
 
-"@junipero/theme@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.0.tgz#7a946a2dddc235dfd008dffa55ef8aa742077ab7"
-  integrity sha512-+ze/eOqh4HO31HqVIuJya4aSAg2FxfCG3YhVjQy+wyZaKZoF963RhUbOiJLikPMh6rxysuwDalVt+9g6LK3blA==
+"@junipero/theme@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.2.tgz#c9f818b4b8564d67f93384b3ae8ecee363054f09"
+  integrity sha512-qOJsU81TEKobMHWFmly2XVc71tcexxNnhMKnALthtAkB2s2jUqhQmKq3hXMpJUz5gvYAjaWROLusRZj3dLp15w==
 
-"@junipero/transitions@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@junipero/transitions/-/transitions-3.0.0.tgz#b9edf0ab47c65e4613b2ff5703e7233a2a7481d9"
-  integrity sha512-tAu4GTTxrMmwJseixQDUjr9opSHc2QRijlZrN+5Gm7IRWc/T+4AWd5uAFAUiOMfuMaXqx7bt2X9zKSqn/QvyxA==
+"@junipero/transitions@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@junipero/transitions/-/transitions-3.0.2.tgz#61b4db6c963579173ea832c15f6657ce49844130"
+  integrity sha512-QwCMhssODzfFkOrsaFXExuWrMJjwzGXCIBe2Uv3ZYYFFWxciYjMFjFFUl6i2nK7QsGOqn+Aj20PZArzTIqOQuw==
   dependencies:
-    "@babel/runtime-corejs3" "7.21.5"
+    "@babel/runtime-corejs3" "7.22.3"
     core-js "3.30.2"
 
 "@lerna/child-process@6.6.2":
@@ -8034,7 +8017,7 @@ core-js-compat@^3.25.1, core-js-compat@^3.30.1, core-js-compat@^3.30.2:
   dependencies:
     browserslist "^4.21.5"
 
-core-js-pure@^3.23.3, core-js-pure@^3.25.1, core-js-pure@^3.30.2:
+core-js-pure@^3.23.3, core-js-pure@^3.30.2:
   version "3.30.2"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.30.2.tgz#005a82551f4af3250dcfb46ed360fad32ced114e"
   integrity sha512-p/npFUJXXBkCCTIlEGBdghofn00jWG6ZOtdoIXSJmAu2QBvN0IqpZXWweOytcwE6cfx8ZvVUy1vw8zxhe4Y2vg==
