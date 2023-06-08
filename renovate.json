@@ -2,19 +2,43 @@
   "extends": [
     "config:base"
   ],
+  "baseBranches": [
+    "master",
+    "develop"
+  ],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 12,
   "packageRules": [{
-    "updateTypes": ["patch", "pin"],
-    "depTypeList": ["devDependencies", "dependencies"],
+    "matchUpdateTypes": ["patch", "pin"],
+    "matchDepTypes": ["devDependencies", "dependencies"],
     "excludePackagePatterns": ["^prosemirror"],
     "automerge": true
   }, {
-    "packagePatterns": ["^@poool/eslint"],
+    "matchUpdateTypes": ["major","minor"],
+    "matchBaseBranches": ["master"],
+    "enabled": false
+  }, {
+    "matchUpdateTypes": ["patch"],
+    "matchBaseBranches": ["develop"],
+    "enabled": false
+  }, {
+    "matchManagers": ["github-actions"],
+    "reviewers": ["yannispgs"]
+  }, {
+    "matchUpdateTypes": ["minor","major"],
+    "matchDepTypes": ["dependencies"],
+    "semanticCommitType": "feat"
+  }, {
+    "matchDepTypes": ["devDependencies"],
+    "prPriority": -1
+  }, {
+    "matchPackagePatterns": ["^@poool/eslint"],
     "groupName": "poool eslint monorepo"
   }, {
-    "packagePatterns": ["^@poool/junipero"],
+    "matchPackagePatterns": ["^@poool/junipero"],
     "groupName": "poool junipero monorepo"
   }, {
-    "packagePatterns": ["^@ckeditor"],
+    "matchPackagePatterns": ["^@ckeditor"],
     "groupName": "ckeditor monorepo"
   }]
 }
