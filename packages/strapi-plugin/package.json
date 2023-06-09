@@ -29,7 +29,7 @@
     "@oakjs/react": "^3.0.9",
     "@oakjs/theme": "^3.0.9",
     "@remirror/pm": "2.0.6",
-    "@remirror/react": "2.0.28",
+    "@remirror/react": "2.0.29",
     "@strapi/design-system": "1.8.0",
     "remirror": "2.0.32",
     "styled-components": "5.3.11"
