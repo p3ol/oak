@@ -25,7 +25,7 @@
     "yarn": "1"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.22.3",
+    "@babel/runtime-corejs3": "7.22.5",
     "@junipero/core": "3.0.2",
     "core-js": "3.30.2",
     "uuid": "9.0.0"
