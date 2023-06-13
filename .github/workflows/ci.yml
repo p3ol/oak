@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: yarn
       - name: Install deps
         run: yarn install
       - name: Eslint check
@@ -31,6 +32,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: yarn
       - name: Install deps
         run: yarn install
       - name: Build
@@ -51,6 +53,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: yarn
       - name: Install deps
         run: yarn install
       - name: Build
