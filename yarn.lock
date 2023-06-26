@@ -3151,13 +3151,13 @@
   resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.2.tgz#c9f818b4b8564d67f93384b3ae8ecee363054f09"
   integrity sha512-qOJsU81TEKobMHWFmly2XVc71tcexxNnhMKnALthtAkB2s2jUqhQmKq3hXMpJUz5gvYAjaWROLusRZj3dLp15w==
 
-"@junipero/transitions@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@junipero/transitions/-/transitions-3.0.2.tgz#61b4db6c963579173ea832c15f6657ce49844130"
-  integrity sha512-QwCMhssODzfFkOrsaFXExuWrMJjwzGXCIBe2Uv3ZYYFFWxciYjMFjFFUl6i2nK7QsGOqn+Aj20PZArzTIqOQuw==
+"@junipero/transitions@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@junipero/transitions/-/transitions-3.1.0.tgz#042d49c75a8ee0dfed90e93a1fc2ac89e8688368"
+  integrity sha512-CCHQlDo1Jmalmm7/EWsvD84O0/MvFsKt3Zm/pIuWAAde4bCN7gNoWJYbW1JDWr6xTgcKJohJnT+MEI1Hb7+knQ==
   dependencies:
-    "@babel/runtime-corejs3" "7.22.3"
-    core-js "3.30.2"
+    "@babel/runtime-corejs3" "7.22.5"
+    core-js "3.31.0"
 
 "@lerna/child-process@6.6.2":
   version "6.6.2"

@@ -32,7 +32,7 @@
     "@babel/runtime-corejs3": "7.22.5",
     "@floating-ui/react": "0.24.3",
     "@junipero/react": "3.0.2",
-    "@junipero/transitions": "3.0.2",
+    "@junipero/transitions": "3.1.0",
     "core-js": "3.31.0",
     "uuid": "9.0.0"
   },
