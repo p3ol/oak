@@ -3146,10 +3146,10 @@
   resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.0.2.tgz#4f5cda4dda9e31b8d348954f8bf7471fe38a5c9a"
   integrity sha512-xTKP+cZJGR+3kEfU+mkpqrlPqrSJA1j0j2kAr+IOKRodi2xJLxx5fQwSkmk7dtEu4HO78reLZNMfjEt0F9sU/A==
 
-"@junipero/theme@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.0.2.tgz#c9f818b4b8564d67f93384b3ae8ecee363054f09"
-  integrity sha512-qOJsU81TEKobMHWFmly2XVc71tcexxNnhMKnALthtAkB2s2jUqhQmKq3hXMpJUz5gvYAjaWROLusRZj3dLp15w==
+"@junipero/theme@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.1.0.tgz#21e7470435af405f5be9072a5086843b8a8fc476"
+  integrity sha512-un5Spqq2qPoVjXQVvN1dwyMaUlnclqc/EZAO9AwKOA1P9H9BaAzxFcueSxX7NlJ+IE0/R2YZKprFCa8cGcZnVg==
 
 "@junipero/transitions@3.0.2":
   version "3.0.2"

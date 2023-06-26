@@ -26,7 +26,7 @@
     "@ckeditor/ckeditor5-react": "6.0.0",
     "@junipero/core": "3.0.2",
     "@junipero/tailwind-plugin": "3.0.2",
-    "@junipero/theme": "3.0.2",
+    "@junipero/theme": "3.1.0",
     "@percy/storybook": "4.3.6",
     "@poool/eslint-config": "3.0.1",
     "@poool/eslint-config-react": "3.0.1",
