@@ -3141,10 +3141,10 @@
     core-js "3.30.2"
     prop-types "15.8.1"
 
-"@junipero/tailwind-plugin@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.0.2.tgz#4f5cda4dda9e31b8d348954f8bf7471fe38a5c9a"
-  integrity sha512-xTKP+cZJGR+3kEfU+mkpqrlPqrSJA1j0j2kAr+IOKRodi2xJLxx5fQwSkmk7dtEu4HO78reLZNMfjEt0F9sU/A==
+"@junipero/tailwind-plugin@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.1.0.tgz#0a44e383e91f1a870b4ca5d70dd4308d8f44da35"
+  integrity sha512-RrPeYxNs4AWQxqR1CohpNskbuzY3sL88bWlnlcdiCSgjiN85brhqNDdthu8n4IIDWVlR/QNMzaaCG/BLztLrDw==
 
 "@junipero/theme@3.0.2":
   version "3.0.2"
