@@ -3123,13 +3123,13 @@
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
   integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
 
-"@junipero/core@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.0.2.tgz#0c030190e480c3857748885c8c204650f02fdadb"
-  integrity sha512-3mgygxh/lE/88t5JEtTA8goOEc2OPV3IH2VAIUYc+yAbdLrx3CwMJE/lLmjTl4I+r3kXgRZhW3ItcK6pkq7Kpg==
+"@junipero/core@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@junipero/core/-/core-3.1.0.tgz#2cbde7a80af284e1b52a6d2f4290a00d6f72f12c"
+  integrity sha512-K7z5hFQKfNSh0nVdskRz0hAG7COI+Y3nPOOVhg6O5QNfKeGaygN+8Ve2HgutQyDE9zPxhhoStW/D2WC497OoEw==
   dependencies:
-    "@babel/runtime-corejs3" "7.22.3"
-    core-js "3.30.2"
+    "@babel/runtime-corejs3" "7.22.5"
+    core-js "3.31.0"
 
 "@junipero/react@3.0.2":
   version "3.0.2"
