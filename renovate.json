@@ -38,6 +38,9 @@
     "matchPackagePatterns": ["^@poool/junipero"],
     "groupName": "poool junipero monorepo"
   }, {
+    "matchPackagePatterns": ["^@junipero"],
+    "groupName": "junipero monorepo"
+  }, {
     "matchPackagePatterns": ["^@ckeditor"],
     "groupName": "ckeditor monorepo"
   }]
