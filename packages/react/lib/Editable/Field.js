@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useBuilder } from '../hooks';
 
 const Field = ({
-  setting,
+  setting: fieldSetting,
   element,
   component,
   onChange,
@@ -13,14 +13,19 @@ const Field = ({
   // const options = useOptions();
   const { builder, floatingsRef } = useBuilder();
   const field = useMemo(() => (
-    builder.getField(setting?.type)
-  ), [setting]);
+    builder.getField(fieldSetting?.type)
+  ), [fieldSetting]);
 
   const overrides = useMemo(() => (
     builder.getOverride('component', element.type, {
-      output: 'field', setting,
+      output: 'field', setting: fieldSetting,
     })
   ), [element, field]);
+
+  const setting = useMemo(() => ({
+    ...fieldSetting,
+    ...overrides?.setting,
+  }), [fieldSetting, overrides]);
 
   const fieldProps = {
     id: setting.id,
