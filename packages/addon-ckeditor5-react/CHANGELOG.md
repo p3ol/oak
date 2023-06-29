@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.10](https://github.com/p3ol/oak/compare/v3.0.9...v3.0.10) (2023-06-29)
+
+
+### Bug Fixes
+
+* **addon-ckeditor5-react:** missing new tab option ([e4578cd](https://github.com/p3ol/oak/commit/e4578cdf91b09536360681449e9870b9c88fa437))
+
+
+
+
+
 ## [3.0.9](https://github.com/p3ol/oak/compare/v3.0.8...v3.0.9) (2023-06-07)
 
 

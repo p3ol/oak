@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.10](https://github.com/p3ol/oak/compare/v3.0.9...v3.0.10) (2023-06-29)
+
+
+### Bug Fixes
+
+* **addon-ckeditor5-react:** missing new tab option ([e4578cd](https://github.com/p3ol/oak/commit/e4578cdf91b09536360681449e9870b9c88fa437))
+* **ci-cd:** use yarn cache for node libraries ([633568e](https://github.com/p3ol/oak/commit/633568e412f2ce6e731fe8d90de65e7e93a7e930))
+* **deps:** update dependency @floating-ui/react to v0.24.3 ([d48e6a3](https://github.com/p3ol/oak/commit/d48e6a3363f72fd764ada996a929ee6f1ee6be56))
+* **deps:** update dependency @remirror/react to v2.0.29 ([8ac79e1](https://github.com/p3ol/oak/commit/8ac79e1ff14a63d19fa5a71ab7899f83398cd99e))
+* **renovate:** improve config for PRs and commits ([126692e](https://github.com/p3ol/oak/commit/126692e6ecd06d79bc2338ca5067c7df66e1f278))
+* **theme:** handle ckeditor text classes ([53b7351](https://github.com/p3ol/oak/commit/53b7351a2eadf695338581d9260d957da88cf8f8))
+
+
+
+
+
 ## [3.0.9](https://github.com/p3ol/oak/compare/v3.0.8...v3.0.9) (2023-06-07)
 
 
