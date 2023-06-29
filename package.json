@@ -23,7 +23,7 @@
     "@babel/preset-env": "7.22.5",
     "@babel/preset-react": "7.22.5",
     "@ckeditor/ckeditor5-build-classic": "37.1.0",
-    "@ckeditor/ckeditor5-react": "6.0.0",
+    "@ckeditor/ckeditor5-react": "6.1.0",
     "@junipero/core": "3.1.0",
     "@junipero/tailwind-plugin": "3.1.0",
     "@junipero/theme": "3.1.0",
