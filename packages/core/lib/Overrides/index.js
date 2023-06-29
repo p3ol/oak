@@ -1,5 +1,6 @@
 import { ComponentOverride, FieldOverride } from '../types';
 import Emitter from '../Emitter';
+import { omit } from '@junipero/core';
 
 export default class Overrides extends Emitter {
   #overrides = [];
@@ -41,11 +42,13 @@ export default class Overrides extends Emitter {
             const newComponentField = override?.fields
               .find(f => f.key === setting?.key);
 
-            return Object.assign({},
+            return Object.assign(
+              {},
               this.#builder.getField(newComponentField?.type || setting?.type),
               this.#builder.getOverride('field',
                 newComponentField?.type || setting?.type),
-              { setting: newComponentField });
+              omit(newComponentField || setting || {}, ['type', 'key'])
+            );
           }
           default:
             return override;
