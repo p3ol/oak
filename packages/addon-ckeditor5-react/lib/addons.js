@@ -10,6 +10,19 @@ export const ckeditorField = ({ config, editor, ...props } = {}) => ({
     editor: editor || ClassicEditor,
     config: {
       ...config,
+      link: {
+        decorators: {
+          openInNewTab: {
+            mode: 'manual',
+            label: 'Open in a new tab',
+            defaultValue: false,
+            attributes: {
+              target: '_blank',
+              rel: 'noopener noreferrer',
+            },
+          },
+        },
+      },
       toolbar: {
         items: [
           'undo',
