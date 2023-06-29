@@ -1,6 +1,7 @@
+import { omit } from '@junipero/core';
+
 import { ComponentOverride, FieldOverride } from '../types';
 import Emitter from '../Emitter';
-import { omit } from '@junipero/core';
 
 export default class Overrides extends Emitter {
   #overrides = [];
