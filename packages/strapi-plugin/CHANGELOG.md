@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.10](https://github.com/p3ol/oak/compare/v3.0.9...v3.0.10) (2023-06-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @remirror/react to v2.0.29 ([8ac79e1](https://github.com/p3ol/oak/commit/8ac79e1ff14a63d19fa5a71ab7899f83398cd99e))
+
+
+
+
+
 ## [3.0.9](https://github.com/p3ol/oak/compare/v3.0.8...v3.0.9) (2023-06-07)
 
 
