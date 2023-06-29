@@ -24,7 +24,7 @@ const Field = ({
 
   const setting = useMemo(() => ({
     ...fieldSetting,
-    ...overrides?.setting,
+    ...overrides,
   }), [fieldSetting, overrides]);
 
   const fieldProps = {

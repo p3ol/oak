@@ -154,6 +154,14 @@ export const withMultipleCustomSettings = () => (
         { key: 'settings.foo', label: 'Foo', type: 'text', displayable: true },
         { key: 'settings.bar', label: 'Bar', type: 'text' },
       ],
+      overrides: [{
+        type: 'component',
+        targets: ['title'],
+        fields: [{
+          key: 'headingLevel',
+          options: ['t1', 't2', 't3', 't4', 't5', 't6'],
+        }],
+      }],
     }]}
     value={baseContent}
     options={{ debug: true }}
