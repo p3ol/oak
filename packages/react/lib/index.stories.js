@@ -161,6 +161,11 @@ export const withMultipleCustomSettings = () => (
           key: 'headingLevel',
           options: ['t1', 't2', 't3', 't4', 't5', 't6'],
         }],
+      }, {
+        type: 'setting',
+        targets: ['*'],
+        key: 'settings.className',
+        placeholder: 'This is a global setting placeholder',
       }],
     }]}
     value={baseContent}
