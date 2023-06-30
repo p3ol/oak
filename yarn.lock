@@ -3107,10 +3107,10 @@
     "@babel/runtime-corejs3" "7.22.5"
     core-js "3.31.0"
 
-"@junipero/react@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.1.0.tgz#e04f1e9e505487326c52414bfe9ceecb5cbf0d6a"
-  integrity sha512-6I0N80L/Gokuoyc9/uNVu2c1kSFnrAUJpd549dX3L225hAqYLzo9VlqoxI3LeLWbAAFdi7IW6flhf3a62C6O1A==
+"@junipero/react@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@junipero/react/-/react-3.1.1.tgz#f58ca4ddc76811d35da738b5c8fa1bad5558bbe8"
+  integrity sha512-HKO+7KNOxKSnrb5IAbCog+TTp0nip2zG5HyVddV00Mf/HcAbSq9b/Yw4JOWkpONPQ9ZPYhwdUz2/QqNRU8UCRQ==
   dependencies:
     "@babel/runtime-corejs3" "7.22.5"
     "@floating-ui/react" "0.24.3"
@@ -3122,10 +3122,10 @@
   resolved "https://registry.yarnpkg.com/@junipero/tailwind-plugin/-/tailwind-plugin-3.1.0.tgz#0a44e383e91f1a870b4ca5d70dd4308d8f44da35"
   integrity sha512-RrPeYxNs4AWQxqR1CohpNskbuzY3sL88bWlnlcdiCSgjiN85brhqNDdthu8n4IIDWVlR/QNMzaaCG/BLztLrDw==
 
-"@junipero/theme@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.1.0.tgz#21e7470435af405f5be9072a5086843b8a8fc476"
-  integrity sha512-un5Spqq2qPoVjXQVvN1dwyMaUlnclqc/EZAO9AwKOA1P9H9BaAzxFcueSxX7NlJ+IE0/R2YZKprFCa8cGcZnVg==
+"@junipero/theme@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@junipero/theme/-/theme-3.1.2.tgz#f062953819ad4d5965aeffe07fce23ce51dab8eb"
+  integrity sha512-aVTd7nPT0Pt0e23u6iOOEMGLTDaHP7PkEjXQQ0skF+W6bHhfAAEj44yBiq4rGiN1r45zAchKzbh92jk7NsoGgw==
 
 "@junipero/transitions@3.1.0":
   version "3.1.0"
