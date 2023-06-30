@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/p3ol/oak/compare/v3.0.10...v3.1.0) (2023-06-30)
+
+
+### Bug Fixes
+
+* property name typo ([032786e](https://github.com/p3ol/oak/commit/032786e30909a17c354707bd76e1211eb77137fd))
+
+
+### Features
+
+* allow global settings overrides ([63e6822](https://github.com/p3ol/oak/commit/63e6822b6d11bd0626b11a5f03bfe204213c3cf8))
+* **core:** add draft of setting overrides ([88a89a0](https://github.com/p3ol/oak/commit/88a89a01f7f1d7a294751c5891f567bd12a7bca4))
+* **deps:** update dependency core-js to v3.31.0 ([9dbd14b](https://github.com/p3ol/oak/commit/9dbd14b807168595afcdc034f7024fced23254cb))
+* **deps:** update junipero monorepo to v3.1.0 ([c1d7e96](https://github.com/p3ol/oak/commit/c1d7e96ae9d4e7dfdf1b3a990e39b3753e77c785))
+* **react:** allow to override field settings ([368aa1a](https://github.com/p3ol/oak/commit/368aa1add530de4c546cb01b6e99d93b01a820f4))
+
+
+
+
+
 ## [3.0.10](https://github.com/p3ol/oak/compare/v3.0.9...v3.0.10) (2023-06-29)
 
 

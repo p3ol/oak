@@ -2,7 +2,7 @@
   "name": "@oakjs/ckeditor5-build-custom",
   "author": "CKSource",
   "description": "A custom CKEditor 5 build made by the CKEditor 5 online builder.",
-  "version": "3.0.10",
+  "version": "3.1.0",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "dist/ckeditor.js",
   "files": [
