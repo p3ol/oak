@@ -35,7 +35,7 @@ export default class Overrides extends Emitter {
   }
 
   get (overrideType, target, { output, setting } = {}) {
-    const strategy = this.#builder.options.overrideStrategy;
+    const strategy = this.#builder?.options?.overrideStrategy;
     const overrides = this.#overrides.filter(override =>
       override.type === overrideType &&
       (override.targets.includes('*') || override.targets.includes(target))
