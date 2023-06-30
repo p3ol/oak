@@ -55,7 +55,7 @@ export default class Overrides extends Emitter {
               {},
               this.#builder.getOverride('field',
                 newComponentField?.type || setting?.type),
-              omit(newComponentField || setting || {}, ['type', 'key'])
+              omit(newComponentField || {}, ['type', 'key'])
             );
           }
           default:

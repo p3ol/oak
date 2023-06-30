@@ -26,7 +26,7 @@ const Field = ({
   const setting = useMemo(() => ({
     ...fieldSetting,
     ...overrides.settings,
-    ...overrides.component,
+    ...overrides.field,
   }), [fieldSetting, overrides]);
 
   const fieldProps = {
@@ -36,21 +36,21 @@ const Field = ({
     value: builder.getElementSettings(element, setting.key, setting.default),
     required: setting.required,
     onChange: overrides?.onChange
-      ? onCustomChange.bind(null, setting.key, overrides.component)
+      ? onCustomChange.bind(null, setting.key, overrides.field)
       : onChange.bind(null, setting.key),
     ...field?.props,
-    ...overrides.component?.props,
+    ...overrides.field?.props,
   };
 
   if (setting.condition && !setting.condition(element, { component })) {
     return null;
   }
 
-  return (overrides.component?.render || field?.render)?.(fieldProps, {
+  return (overrides.field?.render || field?.render)?.(fieldProps, {
     onChange: onChange.bind(null, setting.key),
     field,
     setting,
-    overrides: overrides.component,
+    overrides: overrides.field,
     element,
     editableRef,
     floatingsRef,
