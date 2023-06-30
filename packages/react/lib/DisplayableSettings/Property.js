@@ -5,9 +5,16 @@ import Text from '../Text';
 
 const Property = ({
   element,
-  field,
+  field: setting,
+  override,
 }) => {
+  const field = useMemo(() => ({
+    ...setting,
+    ...override?.fields?.find(f => f.key === setting.key) || {},
+  }), [setting, override]);
+
   const value = get(element, field.key, field.default);
+
   const option = useMemo(() => (
     field.options
       ? field.options.find(o => o.value === value || o === value)
@@ -21,7 +28,7 @@ const Property = ({
         <Text name="core.propertyPairSeparator" default=": " />
       </span>
       <span className="value">
-        { option ? (
+        { option?.title ? (
           <Text>{ option.title }</Text>
         ) : (
           <Text>{ value }</Text>

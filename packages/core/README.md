@@ -261,6 +261,7 @@ const builder = new Builder({
       fields: [{
         key: 'content',
         type: 'richtext',
+        placeholder: 'Write something...',
       }],
     }],
   }],
@@ -285,6 +286,25 @@ const builder = new Builder({
           <p>Some text underneath</p>
         </div>
       ),
+    }],
+  }],
+});
+```
+
+- `settings` ([packages/core/lib/types.d.ts:104](./lib/types.d.ts#L104)); Allows to override the various settings of one or multiple existing components
+
+For example, if you want to override the `placeholder` property of the `settings.className` field for the `title` component:
+
+```js
+import { Builder } from '@oakjs/core';
+
+const builder = new Builder({
+  addons: [{
+    overrides: [{
+      type: 'setting',
+      targets: ['title'],
+      key: 'settings.className',
+      placeholder: 'Add a class name...',
     }],
   }],
 });

@@ -123,6 +123,7 @@ const Element = ({
                 <DisplayableSettings
                   element={element}
                   component={component}
+                  override={override}
                 />
               </div>
             </div>
