@@ -4,6 +4,8 @@ import {
   Element as CoreElement,
   ComponentObject,
   Component,
+  ComponentOverride,
+  ComponentOverrideObject,
 } from '@oakjs/core';
 
 export declare interface DisplayableSettingsProps
@@ -11,6 +13,7 @@ export declare interface DisplayableSettingsProps
   className?: string;
   element?: ElementObject | CoreElement;
   component?: ComponentObject | Component;
+  override?: ComponentOverrideObject | ComponentOverride;
 }
 
 declare function DisplayableSettings(props: DisplayableSettingsProps):

@@ -5,7 +5,7 @@ import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Property from './Property';
 
-const DisplayableSettings = ({ className, element, component }) => {
+const DisplayableSettings = ({ className, element, component, override }) => {
   const { builder } = useBuilder();
 
   const displayableSettings = useMemo(() => (
@@ -28,7 +28,7 @@ const DisplayableSettings = ({ className, element, component }) => {
     >
       { displayableSettings.map((setting, i) => (
         <Fragment key={setting.key || i}>
-          <Property field={setting} element={element} />
+          <Property field={setting} element={element} override={override} />
           { i < displayableSettings.length - 1 && (
             <Text name="core.propertySeparator" default=", " />
           ) }

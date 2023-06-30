@@ -3,6 +3,7 @@ export class BuilderOptions {
     this.debug = props.debug || false;
     this.generateId = props.generateId;
     this.historyLimit = props.historyLimit || 20;
+    this.overrideStrategy = 'last';
   }
 }
 
@@ -85,6 +86,26 @@ export class FieldOverride {
     this.targets = props.targets || [];
     this.render = props.render;
     this.props = props.props || {};
+  }
+}
+
+export class SettingOverride {
+  constructor (props) {
+    this.type = 'setting';
+    this.key = props.key;
+    this.targets = props.targets || [];
+    this.id = props.id;
+    this.placeholder = props.placeholder;
+    this.default = props.default;
+    this.options = props.options;
+    this.label = props.label;
+    this.description = props.description;
+    this.displayable = props.displayable;
+    this.valueType = props.valueType;
+    this.condition = props.condition;
+    this.priority = props.priority || 0;
+    this.fields = (props.fields || []).map(f => new ComponentSettingsField(f));
+    this.props = props.props;
   }
 }
 

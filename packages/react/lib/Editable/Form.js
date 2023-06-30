@@ -127,6 +127,7 @@ const Form = ({
                                     editableRef={editableRef}
                                     element={state.element}
                                     component={component}
+                                    overrides={overrides}
                                     onChange={onSettingChange_}
                                     onCustomChange={onSettingCustomChange_}
                                   />
@@ -140,6 +141,7 @@ const Form = ({
                             editableRef={editableRef}
                             element={state.element}
                             component={component}
+                            overrides={overrides}
                             onChange={onSettingChange_}
                             onCustomChange={onSettingCustomChange_}
                           />
@@ -155,6 +157,7 @@ const Form = ({
                 { tab?.renderForm?.({
                   element: cloneDeep(state.element),
                   component,
+                  overrides,
                   update: onUpdate_,
                 }) }
               </div>

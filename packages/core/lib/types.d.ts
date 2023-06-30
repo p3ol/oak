@@ -11,6 +11,7 @@ export declare interface ElementObject {
 export declare class BuilderOptions {
   debug: boolean;
   historyLimit: number;
+  overrideStrategy: 'last' | 'merge';
   generateId: () => string | number;
 }
 
@@ -80,6 +81,43 @@ export declare class FieldOverride {
   targets: Array<string>;
   props: object;
   render: () => any;
+}
+
+export declare interface SettingOverrideObject {
+  type: string;
+  targets: Array<string>;
+  key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>;
+  id?: string;
+  label?: string | GetTextCallback;
+  description?: string | GetTextCallback;
+  placeholder?: string | GetTextCallback;
+  default?: any;
+  displayable?: boolean;
+  valueType?: string;
+  fields?: Array<ComponentSettingsFieldObject>;
+  props?: object;
+  condition: (element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+  }) => boolean;
+}
+
+export declare class SettingOverride {
+  constructor(props: object);
+  type: string;
+  targets: Array<string>;
+  key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>;
+  id: string;
+  label: string | GetTextCallback;
+  description: string | GetTextCallback;
+  placeholder: string;
+  default: any;
+  displayable: boolean;
+  valueType: string;
+  fields: Array<ComponentSettingsField>;
+  props: object;
+  condition: (element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+  }) => boolean;
 }
 
 export declare interface ComponentSettingsFieldObject {

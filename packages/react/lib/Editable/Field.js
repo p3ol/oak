@@ -3,24 +3,31 @@ import { useMemo } from 'react';
 import { useBuilder } from '../hooks';
 
 const Field = ({
-  setting,
+  setting: fieldSetting,
   element,
   component,
   onChange,
   onCustomChange,
   editableRef,
 }) => {
-  // const options = useOptions();
   const { builder, floatingsRef } = useBuilder();
   const field = useMemo(() => (
-    builder.getField(setting?.type)
-  ), [setting]);
+    builder.getField(fieldSetting?.type)
+  ), [fieldSetting]);
 
-  const overrides = useMemo(() => (
-    builder.getOverride('component', element.type, {
-      output: 'field', setting,
-    })
-  ), [element, field]);
+  const overrides = useMemo(() => ({
+    field: builder.getOverride('component', element.type, {
+      output: 'field', setting: fieldSetting,
+    }),
+    settings: builder
+      .getOverride('setting', element.type, { setting: fieldSetting }),
+  }), [element, field]);
+
+  const setting = useMemo(() => ({
+    ...fieldSetting,
+    ...overrides.settings,
+    ...overrides.field,
+  }), [fieldSetting, overrides]);
 
   const fieldProps = {
     id: setting.id,
@@ -29,23 +36,22 @@ const Field = ({
     value: builder.getElementSettings(element, setting.key, setting.default),
     required: setting.required,
     onChange: overrides?.onChange
-      ? onCustomChange.bind(null, setting.key, overrides)
+      ? onCustomChange.bind(null, setting.key, overrides.field)
       : onChange.bind(null, setting.key),
     ...field?.props,
-    ...overrides?.props,
+    ...overrides.field?.props,
   };
 
   if (setting.condition && !setting.condition(element, { component })) {
     return null;
   }
 
-  return (overrides?.render || field?.render)?.(fieldProps, {
+  return (overrides.field?.render || field?.render)?.(fieldProps, {
     onChange: onChange.bind(null, setting.key),
     field,
     setting,
-    overrides,
+    overrides: overrides.field,
     element,
-    // options,
     editableRef,
     floatingsRef,
     t: builder.getText.bind(builder),
