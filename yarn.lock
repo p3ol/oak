@@ -4465,6 +4465,17 @@
     "@types/direction" "^1.0.0"
     direction "^1.0.4"
 
+"@remirror/extension-bidi@^2.0.14":
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-bidi/-/extension-bidi-2.0.14.tgz#ab72e9cdf8847fc2c4a79daa850499ebc96315e2"
+  integrity sha512-tM0Ov4UpwIAs665T6kcsqb8sCZ2OwDcesGTHbBNI+NAxf9gpr/IALFA/xhzzQbpSj44yli1EYzVjQgcbKYfsKA==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core" "^2.0.17"
+    "@remirror/messages" "^2.0.5"
+    "@types/direction" "^1.0.0"
+    direction "^1.0.4"
+
 "@remirror/extension-blockquote@^2.0.14":
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/@remirror/extension-blockquote/-/extension-blockquote-2.0.14.tgz#6a125f047ecc733df31941f40f6b1c662fcfdca9"
@@ -4770,12 +4781,12 @@
     "@remirror/messages" "^2.0.3"
     extract-domain "2.2.1"
 
-"@remirror/extension-link@^2.0.16":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@remirror/extension-link/-/extension-link-2.0.16.tgz#c7f8ff3c03bf36e3e376b632282af44af1df6d57"
-  integrity sha512-39dszB5cLBswz+Napv0waGVNaP1gdBSdOW+KEUOJNM+nVXGQLS9QVnZu8VzXAqvKSku1Grk9H4O45RpDW+olaA==
+"@remirror/extension-link@^2.0.17":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-link/-/extension-link-2.0.17.tgz#5bdcc2c47880f9004fbd776203f226545f81b22f"
+  integrity sha512-LZguN6F/3DyXqPdtCZn/WPXErhe5jWLoMNEsNDttKpX9kZRgqHYFuGBjOdIWP/lRa5Fh0tMk9c34+6RsWH1zdg==
   dependencies:
-    "@babel/runtime" "^7.21.5"
+    "@babel/runtime" "^7.22.3"
     "@remirror/core" "^2.0.16"
     "@remirror/extension-events" "^2.1.15"
     "@remirror/messages" "^2.0.4"
@@ -15553,28 +15564,28 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==
 
-remirror@2.0.32:
-  version "2.0.32"
-  resolved "https://registry.yarnpkg.com/remirror/-/remirror-2.0.32.tgz#57ebb7c1aa8a1253ffdb5f696a118e2cc82cff3d"
-  integrity sha512-exYI3B6kX4GcL973A/EUTWd68BQ24IzKh0DcAtTj2nqfY0v7uWCK6lLR+eQg6QSIoSthn02GWpSzgfjipMgfng==
+remirror@2.0.33:
+  version "2.0.33"
+  resolved "https://registry.yarnpkg.com/remirror/-/remirror-2.0.33.tgz#33b47994e78edd71ec2be78a4d343c0d48c967a3"
+  integrity sha512-ICGOQS2r4tVjm+t+eAAr+U1MQAofOY23jpQPpw7QaZmm239bQAcwz7jCzEZBf8IQxxoFOlvfj3NZrSRrvyvAxQ==
   dependencies:
-    "@babel/runtime" "^7.21.5"
-    "@remirror/core" "^2.0.16"
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core" "^2.0.17"
     "@remirror/core-constants" "^2.0.1"
     "@remirror/core-helpers" "^2.0.3"
     "@remirror/core-types" "^2.0.5"
     "@remirror/core-utils" "^2.0.12"
     "@remirror/dom" "^2.0.16"
     "@remirror/extension-annotation" "^2.0.16"
-    "@remirror/extension-bidi" "^2.0.13"
+    "@remirror/extension-bidi" "^2.0.14"
     "@remirror/extension-blockquote" "^2.0.14"
     "@remirror/extension-bold" "^2.0.13"
-    "@remirror/extension-callout" "^2.0.14"
+    "@remirror/extension-callout" "^2.0.15"
     "@remirror/extension-code" "^2.0.13"
     "@remirror/extension-code-block" "^2.0.15"
     "@remirror/extension-codemirror5" "^2.0.13"
     "@remirror/extension-collaboration" "^2.0.13"
-    "@remirror/extension-columns" "^2.0.13"
+    "@remirror/extension-columns" "^2.0.14"
     "@remirror/extension-diff" "^2.0.13"
     "@remirror/extension-doc" "^2.1.5"
     "@remirror/extension-drop-cursor" "^2.0.13"
@@ -15587,16 +15598,16 @@ remirror@2.0.32:
     "@remirror/extension-font-size" "^2.0.13"
     "@remirror/extension-gap-cursor" "^2.0.13"
     "@remirror/extension-hard-break" "^2.0.13"
-    "@remirror/extension-heading" "^2.0.13"
+    "@remirror/extension-heading" "^2.0.14"
     "@remirror/extension-history" "^2.0.13"
     "@remirror/extension-horizontal-rule" "^2.0.13"
     "@remirror/extension-image" "^2.1.9"
     "@remirror/extension-italic" "^2.0.13"
-    "@remirror/extension-link" "^2.0.16"
+    "@remirror/extension-link" "^2.0.17"
     "@remirror/extension-list" "^2.0.16"
     "@remirror/extension-markdown" "^2.0.13"
     "@remirror/extension-mention" "^2.0.15"
-    "@remirror/extension-mention-atom" "^2.0.16"
+    "@remirror/extension-mention-atom" "^2.0.17"
     "@remirror/extension-node-formatting" "^2.0.13"
     "@remirror/extension-paragraph" "^2.0.13"
     "@remirror/extension-placeholder" "^2.0.14"
@@ -15609,7 +15620,7 @@ remirror@2.0.32:
     "@remirror/extension-tables" "^2.2.10"
     "@remirror/extension-text" "^2.0.13"
     "@remirror/extension-text-case" "^2.0.13"
-    "@remirror/extension-text-color" "^2.0.14"
+    "@remirror/extension-text-color" "^2.0.15"
     "@remirror/extension-text-highlight" "^2.0.14"
     "@remirror/extension-trailing-node" "^2.0.13"
     "@remirror/extension-underline" "^2.0.13"
