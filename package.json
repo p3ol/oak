@@ -32,7 +32,7 @@
     "@poool/eslint-config-react": "3.0.1",
     "@poool/eslint-plugin": "3.0.0",
     "@remirror/pm": "2.0.6",
-    "@remirror/react": "2.0.30",
+    "@remirror/react": "2.0.31",
     "@rollup/plugin-alias": "5.0.0",
     "@rollup/plugin-babel": "6.0.3",
     "@rollup/plugin-commonjs": "25.0.2",

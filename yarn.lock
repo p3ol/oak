@@ -2817,7 +2817,7 @@
     aria-hidden "^1.1.3"
     tabbable "^6.0.1"
 
-"@floating-ui/react@0.24.5":
+"@floating-ui/react@0.24.5", "@floating-ui/react@^0.24.3":
   version "0.24.5"
   resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.24.5.tgz#a5ba451c308ce112e98c59dcb89b28d100236cde"
   integrity sha512-p/cOvACHFooJX5yTaim8PZgMAt67IIBAkynZfWiLsor5aUE6all1OJ73eVpjATUxFP5l8gqOszvP1Zr22T2UgQ==
@@ -5343,14 +5343,15 @@
     multishift "^2.0.8"
     react-color "^2.19.3"
 
-"@remirror/react-components@^2.1.14":
-  version "2.1.14"
-  resolved "https://registry.yarnpkg.com/@remirror/react-components/-/react-components-2.1.14.tgz#500c820b29c56c8cd33d9fb5d8b00f9855d9c478"
-  integrity sha512-tdO/dvMjxZ3ZX4jH4BmFmrwsZh3LGXKdkd2BoLuYABmxjLWv7XvmvGY8YyvHb620e5798PXVIl/+CVmkytchFw==
+"@remirror/react-components@^2.1.15":
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/@remirror/react-components/-/react-components-2.1.15.tgz#c2d75beb1146d1e416d34d7d93e356ac586a74fd"
+  integrity sha512-pZSBzt/E59VndlSF4dLJFu3fEx2Fq8UuU21UEqWwHs7AdTuK+NqAItwxC0ZODgBGkXn3olcZCn5PpAO8cOujYQ==
   dependencies:
     "@babel/runtime" "^7.22.3"
     "@emotion/react" "^11.11.0"
     "@emotion/styled" "^11.11.0"
+    "@floating-ui/react" "^0.24.3"
     "@lingui/core" "^4.2.0"
     "@mui/material" "^5.13.2"
     "@remirror/core" "^2.0.17"
@@ -5511,10 +5512,10 @@
     "@remirror/core-helpers" "^2.0.2"
     "@remirror/core-types" "^2.0.5"
 
-"@remirror/react@2.0.30":
-  version "2.0.30"
-  resolved "https://registry.yarnpkg.com/@remirror/react/-/react-2.0.30.tgz#0dcdc8ed539a10b5b4a622fbd8408cd7f28b5372"
-  integrity sha512-WQwoyf1cf5SOeDFO9cDUNL2JAgTjmZKDQbdVLd2hwzDWdx7Mtc8y2w36n/LOsL609LP1jMEoFIrSvJN9I4vb2A==
+"@remirror/react@2.0.31":
+  version "2.0.31"
+  resolved "https://registry.yarnpkg.com/@remirror/react/-/react-2.0.31.tgz#f7b49dcf3e4084e2eb177a50a70f396fac66e8e1"
+  integrity sha512-DJry9UzyVPuj++rUSQt+82f+TZf2bEKEUGIy1dr7fj03plsB8o+4T8Ih8dXfJVoewQ8W8R4TO7xtmWi7y0Zd+A==
   dependencies:
     "@babel/runtime" "^7.22.3"
     "@remirror/extension-placeholder" "^2.0.14"
@@ -5522,7 +5523,7 @@
     "@remirror/extension-react-component" "^2.0.13"
     "@remirror/extension-react-tables" "^2.2.16"
     "@remirror/preset-react" "^2.0.14"
-    "@remirror/react-components" "^2.1.14"
+    "@remirror/react-components" "^2.1.15"
     "@remirror/react-core" "^2.0.19"
     "@remirror/react-hooks" "^2.0.24"
     "@remirror/react-renderer" "^2.0.13"
