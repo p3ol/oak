@@ -2756,6 +2756,15 @@
     aria-hidden "^1.1.3"
     tabbable "^6.0.1"
 
+"@floating-ui/react@0.24.4":
+  version "0.24.4"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.24.4.tgz#94700b4f702a437e904dc0489e78a1c854843de3"
+  integrity sha512-4l7azXEPMLamvcxR3Nd9OAa/g+5Tc0IkOfpacYH6iXYNm1SDD+XZhdonejZqfTwGApVGWbXhSRlYDeC3YJH+5A==
+  dependencies:
+    "@floating-ui/react-dom" "^2.0.1"
+    aria-hidden "^1.2.3"
+    tabbable "^6.0.1"
+
 "@gar/promisify@^1.0.1", "@gar/promisify@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
