@@ -33,7 +33,7 @@
     "@floating-ui/react": "0.24.5",
     "@junipero/react": "3.1.1",
     "@junipero/transitions": "3.1.0",
-    "core-js": "3.31.0",
+    "core-js": "3.31.1",
     "uuid": "9.0.0"
   },
   "scripts": {
