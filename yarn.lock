@@ -2833,7 +2833,16 @@
     aria-hidden "^1.1.3"
     tabbable "^6.0.1"
 
-"@floating-ui/react@0.24.5", "@floating-ui/react@^0.24.3":
+"@floating-ui/react@0.24.6":
+  version "0.24.6"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.24.6.tgz#427f497648f562a23d6648347a6ba47aa7365692"
+  integrity sha512-k09FRla1s+Y8ZTnk9Km7QM5zbmYcENnirOFbuldODE/4FxmSfrme21n6XybOMs8EsP69qrkhS5zlTnsd4NVmyA==
+  dependencies:
+    "@floating-ui/react-dom" "^2.0.1"
+    aria-hidden "^1.2.3"
+    tabbable "^6.0.1"
+
+"@floating-ui/react@^0.24.3":
   version "0.24.5"
   resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.24.5.tgz#a5ba451c308ce112e98c59dcb89b28d100236cde"
   integrity sha512-p/cOvACHFooJX5yTaim8PZgMAt67IIBAkynZfWiLsor5aUE6all1OJ73eVpjATUxFP5l8gqOszvP1Zr22T2UgQ==
