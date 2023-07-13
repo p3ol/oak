@@ -5244,6 +5244,54 @@
     multishift "^2.0.8"
     react-color "^2.19.3"
 
+"@remirror/react-components@^2.1.17":
+  version "2.1.17"
+  resolved "https://registry.yarnpkg.com/@remirror/react-components/-/react-components-2.1.17.tgz#e9f68e1302b58c90c2a6671001946054140aa779"
+  integrity sha512-25BIEfYJO10cxpChyA2fKdmQw5VSDD/Ltcjlxps9DuXTYtjPD1WQnwVdpUyW43W2r7UsvZ2OcVGtQLdJw+RBiw==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@emotion/react" "^11.11.0"
+    "@emotion/styled" "^11.11.0"
+    "@floating-ui/react" "^0.24.3"
+    "@lingui/core" "^4.2.0"
+    "@mui/material" "^5.13.2"
+    "@remirror/core" "^2.0.17"
+    "@remirror/extension-blockquote" "^2.0.14"
+    "@remirror/extension-bold" "^2.0.13"
+    "@remirror/extension-callout" "^2.0.15"
+    "@remirror/extension-code" "^2.0.13"
+    "@remirror/extension-code-block" "^2.0.15"
+    "@remirror/extension-columns" "^2.0.14"
+    "@remirror/extension-find" "^0.1.6"
+    "@remirror/extension-font-size" "^2.0.13"
+    "@remirror/extension-heading" "^2.0.14"
+    "@remirror/extension-history" "^2.0.13"
+    "@remirror/extension-horizontal-rule" "^2.0.13"
+    "@remirror/extension-italic" "^2.0.13"
+    "@remirror/extension-list" "^2.0.16"
+    "@remirror/extension-node-formatting" "^2.0.13"
+    "@remirror/extension-positioner" "^2.1.8"
+    "@remirror/extension-strike" "^2.0.13"
+    "@remirror/extension-sub" "^2.0.13"
+    "@remirror/extension-sup" "^2.0.13"
+    "@remirror/extension-tables" "^2.2.10"
+    "@remirror/extension-text-color" "^2.0.15"
+    "@remirror/extension-underline" "^2.0.13"
+    "@remirror/extension-whitespace" "^2.0.13"
+    "@remirror/i18n" "^2.0.4"
+    "@remirror/icons" "^2.0.2"
+    "@remirror/messages" "^2.0.5"
+    "@remirror/react-core" "^2.0.20"
+    "@remirror/react-hooks" "^2.0.25"
+    "@remirror/react-utils" "^2.0.5"
+    "@remirror/theme" "^2.0.8"
+    "@seznam/compose-react-refs" "^1.0.6"
+    "@types/react-color" "^3.0.6"
+    create-context-state "^2.0.2"
+    match-sorter "^6.3.1"
+    multishift "^2.0.8"
+    react-color "^2.19.3"
+
 "@remirror/react-core@^2.0.20":
   version "2.0.20"
   resolved "https://registry.yarnpkg.com/@remirror/react-core/-/react-core-2.0.20.tgz#451f828d016e7f86e7b95f1567f6903f41ae6d1a"
@@ -5303,10 +5351,10 @@
     "@remirror/core-helpers" "^2.0.2"
     "@remirror/core-types" "^2.0.5"
 
-"@remirror/react@2.0.32":
-  version "2.0.32"
-  resolved "https://registry.yarnpkg.com/@remirror/react/-/react-2.0.32.tgz#bbd04302b87bfd32beed4a43568249c9da0b3359"
-  integrity sha512-GdGAuMwurc88XRg1/odUziWTilxEp+UiL+Ktr5vdReKlvL6lIPe+lA2XkbTcOY8XVUzilny5uaMko52RKBr+5Q==
+"@remirror/react@2.0.33":
+  version "2.0.33"
+  resolved "https://registry.yarnpkg.com/@remirror/react/-/react-2.0.33.tgz#ccd71abcfd5107a4d97d4adfdf0ec64c6717319b"
+  integrity sha512-2nC6KjhHwqEM+OfBhw3Cy3+117Jt62Wq8NdIf0Tvvdw7Of3sXNybU2tF2Miap1MtwANgq8HC0W80UlYlaW0trQ==
   dependencies:
     "@babel/runtime" "^7.22.3"
     "@remirror/extension-placeholder" "^2.0.14"
@@ -5314,7 +5362,7 @@
     "@remirror/extension-react-component" "^2.0.13"
     "@remirror/extension-react-tables" "^2.2.17"
     "@remirror/preset-react" "^2.0.14"
-    "@remirror/react-components" "^2.1.16"
+    "@remirror/react-components" "^2.1.17"
     "@remirror/react-core" "^2.0.20"
     "@remirror/react-hooks" "^2.0.25"
     "@remirror/react-renderer" "^2.0.13"
