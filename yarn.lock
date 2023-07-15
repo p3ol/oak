@@ -2851,10 +2851,10 @@
     aria-hidden "^1.1.3"
     tabbable "^6.0.1"
 
-"@floating-ui/react@0.24.7":
-  version "0.24.7"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.24.7.tgz#af4e85cc1ff4c8695810e6d3e83fc17956e4ce2c"
-  integrity sha512-lPlXxAtnkEvdCw8KkErTrTkaTosNsvd1tTmNBei0+5SyQ17wr9Oz9z1rVG6ve6M18p5QJ61V8RltKGXUn1rxCw==
+"@floating-ui/react@0.24.8":
+  version "0.24.8"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.24.8.tgz#e079e2836990be3fce9665ab509360a5447251a1"
+  integrity sha512-AuYeDoaR8jtUlUXtZ1IJ/6jtBkGnSpJXbGNzokBL87VDJ8opMq1Bgrc0szhK482ReQY6KZsMoZCVSb4xwalkBA==
   dependencies:
     "@floating-ui/react-dom" "^2.0.1"
     aria-hidden "^1.2.3"
