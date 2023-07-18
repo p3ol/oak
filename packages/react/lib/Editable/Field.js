@@ -42,7 +42,8 @@ const Field = ({
     ...overrides.field?.props,
   };
 
-  if (setting.condition && !setting.condition(element, { component })) {
+  if (setting.condition &&
+    !setting.condition(element, { component, builder })) {
     return null;
   }
 

@@ -87,7 +87,8 @@ const Form = ({
           )
           .sort((a, b) => (b.priority || 0) - (a.priority || 0))
           .filter(tab => tab.type === 'tab' &&
-            (!tab.condition || tab.condition(state.element, { component })))
+            (!tab.condition ||
+              tab.condition(state.element, { component, builder })))
           .map((tab, t) => (
             <Tab key={tab.id || t} title={<Text>{ tab.title }</Text>}>
               <div className="fields oak-flex oak-flex-col oak-gap-4">
@@ -100,7 +101,8 @@ const Form = ({
                   )
                   .sort((a, b) => (b.priority || 0) - (a.priority || 0))
                   .filter(f =>
-                    !f.condition || f.condition(state.element, { component })
+                    !f.condition ||
+                    f.condition(state.element, { component, builder })
                   )
                   .map((setting, i) => (
                     <div className="field" key={i}>

@@ -1,3 +1,5 @@
+import { Builder } from './Builder';
+
 export declare interface GetTextCallback {
   (key: string | GetTextCallback, def?: any): any;
 }
@@ -98,6 +100,7 @@ export declare interface SettingOverrideObject {
   props?: object;
   condition: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
+    builder: Builder;
   }) => boolean;
 }
 
@@ -117,6 +120,7 @@ export declare class SettingOverride {
   props: object;
   condition: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
+    builder: Builder;
   }) => boolean;
 }
 
@@ -135,6 +139,7 @@ export declare interface ComponentSettingsFieldObject {
   props?: object;
   condition: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
+    builder: Builder;
   }) => boolean;
 }
 
@@ -157,6 +162,7 @@ export declare class ComponentSettingsField {
   props: object;
   condition: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
+    builder: Builder;
   }) => boolean;
 }
 
@@ -166,6 +172,7 @@ export declare interface ComponentSettingsTabObject {
   title?: string | GetTextCallback;
   condition?: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
+    builder: Builder;
   }) => boolean;
   fields?: Array<ComponentSettingsField | ComponentSettingsFieldObject>;
 }
@@ -180,6 +187,7 @@ export declare class ComponentSettingsTab {
   title: string | GetTextCallback;
   condition: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
+    builder: Builder;
   }) => boolean;
   fields: Array<ComponentSettingsField>;
 }
