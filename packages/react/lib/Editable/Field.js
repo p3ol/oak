@@ -11,9 +11,6 @@ const Field = ({
   editableRef,
 }) => {
   const { builder, floatingsRef } = useBuilder();
-  const field = useMemo(() => (
-    builder.getField(fieldSetting?.type)
-  ), [fieldSetting]);
 
   const overrides = useMemo(() => ({
     field: builder.getOverride('component', element.type, {
@@ -21,7 +18,11 @@ const Field = ({
     }),
     settings: builder
       .getOverride('setting', element.type, { setting: fieldSetting }),
-  }), [element, field]);
+  }), [element, fieldSetting]);
+
+  const field = useMemo(() => (
+    builder.getField(overrides?.field?.type || fieldSetting?.type)
+  ), [overrides, fieldSetting]);
 
   const setting = useMemo(() => ({
     ...fieldSetting,

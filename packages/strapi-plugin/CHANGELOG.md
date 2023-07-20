@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/p3ol/oak/compare/v3.0.10...v3.1.0) (2023-06-30)
+
+
+### Features
+
+* **deps:** update dependency @ckeditor/ckeditor5-react to v6.1.0 ([ce81ebc](https://github.com/p3ol/oak/commit/ce81ebc9d7201fd6224281c63abdf85e563ea350))
+
+
+
+
+
 ## [3.0.10](https://github.com/p3ol/oak/compare/v3.0.9...v3.0.10) (2023-06-29)
 
 

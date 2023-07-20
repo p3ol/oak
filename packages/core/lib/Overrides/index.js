@@ -52,7 +52,7 @@ export default class Overrides extends Emitter {
               .find(f => f.key === setting?.key);
 
             return Object.assign(
-              {},
+              { type: newComponentField?.type || setting.type },
               this.#builder.getOverride('field',
                 newComponentField?.type || setting?.type),
               omit(newComponentField || {}, ['type', 'key'])

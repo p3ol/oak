@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/p3ol/oak/compare/v3.0.10...v3.1.0) (2023-06-30)
+
+
+### Features
+
+* **deps:** update dependency core-js to v3.31.0 ([9dbd14b](https://github.com/p3ol/oak/commit/9dbd14b807168595afcdc034f7024fced23254cb))
+
+
+
+
+
 ## [3.0.10](https://github.com/p3ol/oak/compare/v3.0.9...v3.0.10) (2023-06-29)
 
 **Note:** Version bump only for package @oakjs/addon-remirror
