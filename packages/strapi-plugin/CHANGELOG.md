@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/p3ol/oak/compare/v3.1.0...v3.2.0) (2023-07-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @remirror/react to v2.0.30 ([cc1929a](https://github.com/p3ol/oak/commit/cc1929a8255669367117c9791ddaf4a74e51332c))
+* **deps:** update dependency @remirror/react to v2.0.31 ([6c44677](https://github.com/p3ol/oak/commit/6c44677a15b53ea0dae2f53f5abe4ee04ba23d9a))
+* **deps:** update dependency @remirror/react to v2.0.32 ([434590a](https://github.com/p3ol/oak/commit/434590a24fad8094a9277c6d57cfaf1d24270555))
+* **deps:** update dependency @remirror/react to v2.0.33 ([34ba414](https://github.com/p3ol/oak/commit/34ba414060780036ab0b90f927a5fdb7d8d2736e))
+* **deps:** update dependency @remirror/react to v2.0.34 ([47eb21e](https://github.com/p3ol/oak/commit/47eb21e353b6807126255939fa2b8763c01b9dc9))
+* **deps:** update dependency @strapi/design-system to v1.8.1 ([a213445](https://github.com/p3ol/oak/commit/a2134451896da8b13bca5bad63d9a36bddeda47b))
+* **deps:** update dependency @strapi/design-system to v1.8.2 ([e9f2a50](https://github.com/p3ol/oak/commit/e9f2a50ee04e92dd4d43f8006dc678831c96c3dd))
+* **deps:** update dependency remirror to v2.0.33 ([0510274](https://github.com/p3ol/oak/commit/0510274156cfc9d195bda73417aa57bfad80827f))
+
+
+
+
+
 # [3.1.0](https://github.com/p3ol/oak/compare/v3.0.10...v3.1.0) (2023-06-30)
 
 

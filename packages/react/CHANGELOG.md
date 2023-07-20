@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/p3ol/oak/compare/v3.1.0...v3.2.0) (2023-07-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to v0.24.4 ([6e9c789](https://github.com/p3ol/oak/commit/6e9c789e8c04396d5217ffe14faac913e6364b9d))
+* **deps:** update dependency @floating-ui/react to v0.24.5 ([301a0a9](https://github.com/p3ol/oak/commit/301a0a90c79465eb56675961345f30e010eb16fc))
+* **deps:** update dependency @floating-ui/react to v0.24.6 ([2fa5793](https://github.com/p3ol/oak/commit/2fa5793eec89e82380c8490aaa72604353f7f616))
+* **deps:** update dependency @floating-ui/react to v0.24.7 ([baf6752](https://github.com/p3ol/oak/commit/baf675255020ba2db152f466d9d6f33df6e37f5b))
+* **deps:** update dependency @floating-ui/react to v0.24.8 ([ca05037](https://github.com/p3ol/oak/commit/ca05037c6677eae51696c3d474ff3ac2a051c379))
+* **deps:** update dependency core-js to v3.31.1 ([cfa996d](https://github.com/p3ol/oak/commit/cfa996d41aca74a0399882c03b7ab9c7d96a8cec))
+* **deps:** update junipero monorepo ([d3b51ab](https://github.com/p3ol/oak/commit/d3b51ab21eee46bdecc73ac68762b0dd6b30aa4f))
+* reorder overrides on editable ([9d5dfd4](https://github.com/p3ol/oak/commit/9d5dfd431592f87b8c9efd3bc368f41ddceca701))
+
+
+### Features
+
+* **react:** add builder to condition callback ([5666f0c](https://github.com/p3ol/oak/commit/5666f0c3c41a7a52f427ccc605c58b4d951bdc71))
+
+
+
+
+
 # [3.1.0](https://github.com/p3ol/oak/compare/v3.0.10...v3.1.0) (2023-06-30)
 
 

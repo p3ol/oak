@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/p3ol/oak/compare/v3.1.0...v3.2.0) (2023-07-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to v0.24.4 ([6e9c789](https://github.com/p3ol/oak/commit/6e9c789e8c04396d5217ffe14faac913e6364b9d))
+* **deps:** update dependency @floating-ui/react to v0.24.5 ([301a0a9](https://github.com/p3ol/oak/commit/301a0a90c79465eb56675961345f30e010eb16fc))
+* **deps:** update dependency @floating-ui/react to v0.24.6 ([2fa5793](https://github.com/p3ol/oak/commit/2fa5793eec89e82380c8490aaa72604353f7f616))
+* **deps:** update dependency @floating-ui/react to v0.24.7 ([baf6752](https://github.com/p3ol/oak/commit/baf675255020ba2db152f466d9d6f33df6e37f5b))
+* **deps:** update dependency @floating-ui/react to v0.24.8 ([ca05037](https://github.com/p3ol/oak/commit/ca05037c6677eae51696c3d474ff3ac2a051c379))
+* **deps:** update dependency @remirror/react to v2.0.30 ([cc1929a](https://github.com/p3ol/oak/commit/cc1929a8255669367117c9791ddaf4a74e51332c))
+* **deps:** update dependency @remirror/react to v2.0.31 ([6c44677](https://github.com/p3ol/oak/commit/6c44677a15b53ea0dae2f53f5abe4ee04ba23d9a))
+* **deps:** update dependency @remirror/react to v2.0.32 ([434590a](https://github.com/p3ol/oak/commit/434590a24fad8094a9277c6d57cfaf1d24270555))
+* **deps:** update dependency @remirror/react to v2.0.33 ([34ba414](https://github.com/p3ol/oak/commit/34ba414060780036ab0b90f927a5fdb7d8d2736e))
+* **deps:** update dependency @remirror/react to v2.0.34 ([47eb21e](https://github.com/p3ol/oak/commit/47eb21e353b6807126255939fa2b8763c01b9dc9))
+* **deps:** update dependency @strapi/design-system to v1.8.1 ([a213445](https://github.com/p3ol/oak/commit/a2134451896da8b13bca5bad63d9a36bddeda47b))
+* **deps:** update dependency @strapi/design-system to v1.8.2 ([e9f2a50](https://github.com/p3ol/oak/commit/e9f2a50ee04e92dd4d43f8006dc678831c96c3dd))
+* **deps:** update dependency core-js to v3.31.1 ([cfa996d](https://github.com/p3ol/oak/commit/cfa996d41aca74a0399882c03b7ab9c7d96a8cec))
+* **deps:** update dependency remirror to v2.0.33 ([0510274](https://github.com/p3ol/oak/commit/0510274156cfc9d195bda73417aa57bfad80827f))
+* **deps:** update junipero monorepo ([d3b51ab](https://github.com/p3ol/oak/commit/d3b51ab21eee46bdecc73ac68762b0dd6b30aa4f))
+* reorder overrides on editable ([9d5dfd4](https://github.com/p3ol/oak/commit/9d5dfd431592f87b8c9efd3bc368f41ddceca701))
+* reuse getField when getting overrides ([0947dcb](https://github.com/p3ol/oak/commit/0947dcbc8522311f7893c437418f71ea55296244))
+
+
+### Features
+
+* **react:** add builder to condition callback ([5666f0c](https://github.com/p3ol/oak/commit/5666f0c3c41a7a52f427ccc605c58b4d951bdc71))
+
+
+
+
+
 # [3.1.0](https://github.com/p3ol/oak/compare/v3.0.10...v3.1.0) (2023-06-30)
 
 

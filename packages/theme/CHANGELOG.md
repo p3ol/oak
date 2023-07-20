@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/p3ol/oak/compare/v3.1.0...v3.2.0) (2023-07-20)
+
+**Note:** Version bump only for package @oakjs/theme
+
+
+
+
+
 ## [3.0.10](https://github.com/p3ol/oak/compare/v3.0.9...v3.0.10) (2023-06-29)
 
 

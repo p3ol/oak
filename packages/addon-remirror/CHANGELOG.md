@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/p3ol/oak/compare/v3.1.0...v3.2.0) (2023-07-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.31.1 ([cfa996d](https://github.com/p3ol/oak/commit/cfa996d41aca74a0399882c03b7ab9c7d96a8cec))
+
+
+
+
+
 # [3.1.0](https://github.com/p3ol/oak/compare/v3.0.10...v3.1.0) (2023-06-30)
 
 
