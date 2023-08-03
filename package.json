@@ -70,7 +70,7 @@
     "react-popper": "2.3.0",
     "remirror": "2.0.33",
     "resolve-url-loader": "5.0.0",
-    "rollup": "3.26.3",
+    "rollup": "3.27.1",
     "rollup-plugin-dts": "5.3.0",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.64.0",
