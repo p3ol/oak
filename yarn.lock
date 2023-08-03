@@ -4463,6 +4463,18 @@
     "@types/refractor" "^3.0.2"
     refractor "^3.6.0"
 
+"@remirror/extension-code-block@^2.0.18":
+  version "2.0.18"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-code-block/-/extension-code-block-2.0.18.tgz#62140479751018f41e863a937281a7672508ae17"
+  integrity sha512-Qu51glo0xQMUlSYiFR20HmYEnOJF1OcbZYLTcF32oa8Uq1JWStv1DacQaACUQEhZ6DKgxFZxFBWbPLonzZ1bmw==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core" "^2.0.19"
+    "@remirror/messages" "^2.0.6"
+    "@remirror/theme" "^2.0.9"
+    "@types/refractor" "^3.0.2"
+    refractor "^3.6.0"
+
 "@remirror/extension-code@^2.0.13":
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/@remirror/extension-code/-/extension-code-2.0.13.tgz#065cd7fdf02838bdcca1fe997e133ac4691537be"
@@ -4545,6 +4557,18 @@
     "@remirror/messages" "^2.0.3"
     "@types/querystringify" "^2.0.0"
     prosemirror-resizable-view "^2.0.12"
+    querystringify "^2.2.0"
+
+"@remirror/extension-embed@^2.0.14":
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-embed/-/extension-embed-2.0.14.tgz#db24479d44f16c8a7c60a856801e5e7e61ceb952"
+  integrity sha512-O0UzrmMWBNWZvaWPpc9ZafhJx4QgzpPqJ3p+7jDgEbtaB5VArTuKsYReSpyyGU8a0PcPOx7s9aFFbh+i7IkL7A==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core" "^2.0.19"
+    "@remirror/messages" "^2.0.6"
+    "@types/querystringify" "^2.0.0"
+    prosemirror-resizable-view "^2.0.14"
     querystringify "^2.2.0"
 
 "@remirror/extension-emoji@^2.0.17":
@@ -4682,6 +4706,17 @@
     "@babel/runtime" "^7.21.0"
     "@remirror/core" "^2.0.13"
     "@remirror/messages" "^2.0.3"
+
+"@remirror/extension-image@^2.1.10":
+  version "2.1.10"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-image/-/extension-image-2.1.10.tgz#e42da0ba0274c9b7979b61f184a319052e2dc38e"
+  integrity sha512-x2Sa/cXVcavOks6k5CkTrGGj0lDnDrc7PhRBbOqQCIzKXB36idRZWGBIzBkjvZrifqfxY2UUZ73BuABc0HHg6Q==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core" "^2.0.19"
+    "@remirror/messages" "^2.0.6"
+    "@remirror/theme" "^2.0.9"
+    prosemirror-resizable-view "^2.0.14"
 
 "@remirror/extension-image@^2.1.9":
   version "2.1.9"
@@ -4990,17 +5025,17 @@
     "@remirror/core" "^2.0.13"
     "@remirror/messages" "^2.0.3"
 
-"@remirror/extension-yjs@^3.0.14":
-  version "3.0.14"
-  resolved "https://registry.yarnpkg.com/@remirror/extension-yjs/-/extension-yjs-3.0.14.tgz#97992714ff483a4d6bf9c509fb0abdd78c9f0d3d"
-  integrity sha512-25o8OgeS+eKWiml2DngJeMwVbUbWoPcvCS42SUkTdYU1OZVTOLlNwjidMqiBwjRR48ePmrfN21dprWmqr9eAQA==
+"@remirror/extension-yjs@^3.0.15":
+  version "3.0.15"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-yjs/-/extension-yjs-3.0.15.tgz#3fd4cef6b11fd7b16162d0d4581f7e0b6fbeffb0"
+  integrity sha512-XLKWueyyXsdmv5KSitW86kwAYUrKKE5dAazv+WlHZMtKWjWhfhxMMWgct8R1Gp1sOfVHZhbGf+KxgOfxxMDsRg==
   dependencies:
-    "@babel/runtime" "^7.21.0"
-    "@remirror/core" "^2.0.13"
-    "@remirror/messages" "^2.0.3"
-    prosemirror-model "^1.19.0"
-    prosemirror-state "^1.4.2"
-    prosemirror-view "^1.30.2"
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core" "^2.0.19"
+    "@remirror/messages" "^2.0.6"
+    prosemirror-model "^1.19.3"
+    prosemirror-state "^1.4.3"
+    prosemirror-view "^1.31.7"
     y-prosemirror "^1.0.19"
     y-protocols "^1.0.5"
 
@@ -14630,6 +14665,17 @@ prosemirror-resizable-view@^2.0.12:
     prosemirror-model "^1.19.0"
     prosemirror-view "^1.30.2"
 
+prosemirror-resizable-view@^2.0.14:
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/prosemirror-resizable-view/-/prosemirror-resizable-view-2.0.14.tgz#78dcbc93cd4e7d8f24a6efdc23a5c8c6c4e59ddb"
+  integrity sha512-TgCaOWaMdR/R34AYsxHtHuQlC9rtHTuSBEgcmD5V9ldVe1+Ul72xz9G73xo9wLhVpTwt3YxzpenTcRWPZIofow==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core-helpers" "^3.0.0"
+    "@remirror/core-utils" "^2.0.13"
+    prosemirror-model "^1.19.3"
+    prosemirror-view "^1.31.7"
+
 prosemirror-schema-list@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/prosemirror-schema-list/-/prosemirror-schema-list-1.3.0.tgz#05374702cf35a3ba5e7ec31079e355a488d52519"
@@ -14639,7 +14685,7 @@ prosemirror-schema-list@^1.3.0:
     prosemirror-state "^1.0.0"
     prosemirror-transform "^1.7.3"
 
-prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.3.1, prosemirror-state@^1.4.2:
+prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.3.1:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/prosemirror-state/-/prosemirror-state-1.4.2.tgz#f93bd8a33a4454efab917ba9b738259d828db7e5"
   integrity sha512-puuzLD2mz/oTdfgd8msFbe0A42j5eNudKAAPDB0+QJRw8cO1ygjLmhLrg9RvDpf87Dkd6D4t93qdef00KKNacQ==
@@ -15253,17 +15299,17 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==
 
-remirror@2.0.33:
-  version "2.0.33"
-  resolved "https://registry.yarnpkg.com/remirror/-/remirror-2.0.33.tgz#33b47994e78edd71ec2be78a4d343c0d48c967a3"
-  integrity sha512-ICGOQS2r4tVjm+t+eAAr+U1MQAofOY23jpQPpw7QaZmm239bQAcwz7jCzEZBf8IQxxoFOlvfj3NZrSRrvyvAxQ==
+remirror@2.0.36:
+  version "2.0.36"
+  resolved "https://registry.yarnpkg.com/remirror/-/remirror-2.0.36.tgz#bafb14d20152c01e53a99621fc0b38f71e1653c5"
+  integrity sha512-oGOeEaYFILgxNrL33qCEJ/kGE+wNhYgcCiHwuTXOHFCmPnHn32+l0aZaQ2FRHeMW602i2wpkwy8HWWsBFz5PXg==
   dependencies:
     "@babel/runtime" "^7.22.3"
-    "@remirror/core" "^2.0.17"
-    "@remirror/core-constants" "^2.0.1"
-    "@remirror/core-helpers" "^2.0.3"
+    "@remirror/core" "^2.0.19"
+    "@remirror/core-constants" "^2.0.2"
+    "@remirror/core-helpers" "^3.0.0"
     "@remirror/core-types" "^2.0.5"
-    "@remirror/core-utils" "^2.0.12"
+    "@remirror/core-utils" "^2.0.13"
     "@remirror/dom" "^2.0.16"
     "@remirror/extension-annotation" "^2.0.16"
     "@remirror/extension-bidi" "^2.0.14"
@@ -15271,18 +15317,18 @@ remirror@2.0.33:
     "@remirror/extension-bold" "^2.0.13"
     "@remirror/extension-callout" "^2.0.15"
     "@remirror/extension-code" "^2.0.13"
-    "@remirror/extension-code-block" "^2.0.15"
+    "@remirror/extension-code-block" "^2.0.18"
     "@remirror/extension-codemirror5" "^2.0.13"
     "@remirror/extension-collaboration" "^2.0.13"
     "@remirror/extension-columns" "^2.0.14"
     "@remirror/extension-diff" "^2.0.13"
     "@remirror/extension-doc" "^2.1.5"
     "@remirror/extension-drop-cursor" "^2.0.13"
-    "@remirror/extension-embed" "^2.0.13"
+    "@remirror/extension-embed" "^2.0.14"
     "@remirror/extension-emoji" "^2.0.17"
     "@remirror/extension-entity-reference" "^2.2.6"
     "@remirror/extension-epic-mode" "^2.0.13"
-    "@remirror/extension-events" "^2.1.15"
+    "@remirror/extension-events" "^2.1.16"
     "@remirror/extension-font-family" "^2.0.13"
     "@remirror/extension-font-size" "^2.0.13"
     "@remirror/extension-gap-cursor" "^2.0.13"
@@ -15290,7 +15336,7 @@ remirror@2.0.33:
     "@remirror/extension-heading" "^2.0.14"
     "@remirror/extension-history" "^2.0.13"
     "@remirror/extension-horizontal-rule" "^2.0.13"
-    "@remirror/extension-image" "^2.1.9"
+    "@remirror/extension-image" "^2.1.10"
     "@remirror/extension-italic" "^2.0.13"
     "@remirror/extension-link" "^2.0.17"
     "@remirror/extension-list" "^2.0.16"
@@ -15306,7 +15352,7 @@ remirror@2.0.33:
     "@remirror/extension-strike" "^2.0.13"
     "@remirror/extension-sub" "^2.0.13"
     "@remirror/extension-sup" "^2.0.13"
-    "@remirror/extension-tables" "^2.2.10"
+    "@remirror/extension-tables" "^2.3.1"
     "@remirror/extension-text" "^2.0.13"
     "@remirror/extension-text-case" "^2.0.13"
     "@remirror/extension-text-color" "^2.0.15"
@@ -15314,12 +15360,12 @@ remirror@2.0.33:
     "@remirror/extension-trailing-node" "^2.0.13"
     "@remirror/extension-underline" "^2.0.13"
     "@remirror/extension-whitespace" "^2.0.13"
-    "@remirror/extension-yjs" "^3.0.14"
-    "@remirror/icons" "^2.0.2"
+    "@remirror/extension-yjs" "^3.0.15"
+    "@remirror/icons" "^2.0.3"
     "@remirror/preset-core" "^2.0.16"
     "@remirror/preset-formatting" "^2.0.14"
     "@remirror/preset-wysiwyg" "^2.0.19"
-    "@remirror/theme" "^2.0.8"
+    "@remirror/theme" "^2.0.9"
     "@types/codemirror" "^5.60.7"
     "@types/refractor" "^3.0.2"
     codemirror "^5.65.13"
