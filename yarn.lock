@@ -4285,6 +4285,22 @@
     min-document "^2.19.0"
     parenthesis "^3.1.8"
 
+"@remirror/core-utils@^2.0.13":
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/@remirror/core-utils/-/core-utils-2.0.13.tgz#a46bde5d18ea252664fa76f2428cb3cd9c20cd3d"
+  integrity sha512-5UggNc6Z2d7M8SVkstsVitID8DAHSKPrqet7Hfn4/dY+p4iMCOdwf9cLqcHMg3467k5/5/RvJPMTr9GQOEx7Hg==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core-constants" "^2.0.2"
+    "@remirror/core-helpers" "^3.0.0"
+    "@remirror/core-types" "^2.0.5"
+    "@remirror/messages" "^2.0.6"
+    "@types/min-document" "^2.19.0"
+    css-in-js-utils "^3.1.0"
+    get-dom-document "^0.1.3"
+    min-document "^2.19.0"
+    parenthesis "^3.1.8"
+
 "@remirror/core@^2.0.13", "@remirror/core@^2.0.15", "@remirror/core@^2.0.16":
   version "2.0.16"
   resolved "https://registry.yarnpkg.com/@remirror/core/-/core-2.0.16.tgz#11a185f28e6b071c814728b662cd8330e90218b0"
@@ -4333,6 +4349,23 @@
     "@remirror/i18n" "^2.0.4"
     "@remirror/icons" "^2.0.2"
     "@remirror/messages" "^2.0.5"
+    nanoevents "^5.1.13"
+    tiny-warning "^1.0.3"
+
+"@remirror/core@^2.0.19":
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/@remirror/core/-/core-2.0.19.tgz#1ef089497e9404cd008ea6768b6a56223a0736fc"
+  integrity sha512-TGvDPUdKYqOiDQmt3+58GNBi4PX6QhBhII1qk9btZ/uFvG2/LLHEe+KN/BfBdvykGAu8CK9codLzg8NZd2fDEg==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@linaria/core" "4.2.10"
+    "@remirror/core-constants" "^2.0.2"
+    "@remirror/core-helpers" "^3.0.0"
+    "@remirror/core-types" "^2.0.5"
+    "@remirror/core-utils" "^2.0.13"
+    "@remirror/i18n" "^2.0.5"
+    "@remirror/icons" "^2.0.3"
+    "@remirror/messages" "^2.0.6"
     nanoevents "^5.1.13"
     tiny-warning "^1.0.3"
 
@@ -4558,6 +4591,15 @@
     "@remirror/core" "^2.0.15"
     "@remirror/messages" "^2.0.4"
 
+"@remirror/extension-events@^2.1.16":
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-events/-/extension-events-2.1.16.tgz#3e74c35a24c75b69ed6e51be446c5ba4a4427c37"
+  integrity sha512-QHmYyLqKSaYnxsbZOVI3cx543lrTOzooHdH3FKjh5KBiZ84vmqBdngKvZIMWj6/2iPMIE6y+kp4VOXqm8qrLKA==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core" "^2.0.19"
+    "@remirror/messages" "^2.0.6"
+
 "@remirror/extension-find@^0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@remirror/extension-find/-/extension-find-0.1.6.tgz#efdb5b6ca28aa0e517b031c2f3817425bbdeb6af"
@@ -4780,25 +4822,25 @@
     "@remirror/messages" "^2.0.3"
     nanoevents "^5.1.13"
 
-"@remirror/extension-react-tables@^2.2.17":
-  version "2.2.17"
-  resolved "https://registry.yarnpkg.com/@remirror/extension-react-tables/-/extension-react-tables-2.2.17.tgz#e3e8e7d5bc67392e3327e4f0268462cdea6378ed"
-  integrity sha512-FVS1EVrujZmembhpTQNuAHsYF/0GblwOGm2GKmgV0ydhjDg0q/nOX/utvFgHr0iY3KBwvR2NIy8iY5p5Kd668g==
+"@remirror/extension-react-tables@^2.2.18":
+  version "2.2.18"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-react-tables/-/extension-react-tables-2.2.18.tgz#914db5daac8059f3658e39bc9e29758baa5e09d5"
+  integrity sha512-hv4edyYEBzZ0VhAHbzcfFxbLGbHhw1jGb20jU+qx1zPrgpMakdAl5qESMdy+1yyB7kHPRPGOpzpH62pkvm9HgQ==
   dependencies:
     "@babel/runtime" "^7.22.3"
     "@emotion/css" "^11.11.0"
     "@linaria/core" "4.2.10"
-    "@remirror/core" "^2.0.17"
-    "@remirror/core-utils" "^2.0.12"
+    "@remirror/core" "^2.0.19"
+    "@remirror/core-utils" "^2.0.13"
     "@remirror/extension-positioner" "^2.1.8"
-    "@remirror/extension-tables" "^2.2.10"
-    "@remirror/icons" "^2.0.2"
-    "@remirror/messages" "^2.0.5"
+    "@remirror/extension-tables" "^2.3.1"
+    "@remirror/icons" "^2.0.3"
+    "@remirror/messages" "^2.0.6"
     "@remirror/preset-core" "^2.0.16"
-    "@remirror/react-components" "^2.1.16"
-    "@remirror/react-core" "^2.0.20"
+    "@remirror/react-components" "^2.1.17"
+    "@remirror/react-core" "^2.0.21"
     "@remirror/react-hooks" "^2.0.25"
-    "@remirror/theme" "^2.0.8"
+    "@remirror/theme" "^2.0.9"
     jsx-dom-cjs "^8.0.6"
 
 "@remirror/extension-search@^2.0.14":
@@ -4856,6 +4898,18 @@
     "@remirror/extension-positioner" "^2.1.8"
     "@remirror/messages" "^2.0.3"
     "@remirror/theme" "^2.0.7"
+
+"@remirror/extension-tables@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@remirror/extension-tables/-/extension-tables-2.3.1.tgz#43cbec67366f2810f877c3eb9c69eacfd788b20e"
+  integrity sha512-SJ/vIrEql+dSC1K2vWr+g9fGONGYMId4D4AZWq0E/ttENZo8jZqEeUAV+Z6NIfPJyScVsXKxolZAVGWfZ4JK6g==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core" "^2.0.19"
+    "@remirror/extension-events" "^2.1.16"
+    "@remirror/extension-positioner" "^2.1.8"
+    "@remirror/messages" "^2.0.6"
+    "@remirror/theme" "^2.0.9"
 
 "@remirror/extension-text-case@^2.0.13":
   version "2.0.13"
@@ -4972,6 +5026,17 @@
     "@remirror/core-helpers" "^2.0.3"
     make-plural "^6.2.2"
 
+"@remirror/i18n@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@remirror/i18n/-/i18n-2.0.5.tgz#783e9118a875cd639576af26999d013f3e4523a6"
+  integrity sha512-oZ2umZav60iu+lBoVZxr7i11yUNRYpczVUXCsClNiHN55PDPMyYwNQ9CaEJdyQCvt0lb5WCmBNpnw1mbLaj7lQ==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@lingui/core" "^4.2.0"
+    "@lingui/detect-locale" "^4.2.0"
+    "@remirror/core-helpers" "^3.0.0"
+    make-plural "^6.2.2"
+
 "@remirror/icons@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@remirror/icons/-/icons-2.0.2.tgz#a1222dd6afbacfd2ac184859ba3590335b357b85"
@@ -4979,6 +5044,14 @@
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@remirror/core-helpers" "^2.0.2"
+
+"@remirror/icons@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@remirror/icons/-/icons-2.0.3.tgz#977e93b7f5cc1f0be03c77dc02005e1a70180c1e"
+  integrity sha512-ruOGU4FT6WJdXsdVwfNOurSaQvnk2Uo4AkMxxyLYkBPowxmR9Xe0lOn7d7UARai0wxmwFgX6IYaMSUVLIaaMCQ==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core-helpers" "^3.0.0"
 
 "@remirror/messages@^2.0.3", "@remirror/messages@^2.0.4":
   version "2.0.4"
@@ -4997,6 +5070,15 @@
     "@babel/runtime" "^7.22.3"
     "@lingui/core" "^4.2.0"
     "@remirror/core-helpers" "^2.0.3"
+
+"@remirror/messages@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@remirror/messages/-/messages-2.0.6.tgz#6b87a69001c691354cef3fa03f43e634edec69ce"
+  integrity sha512-JVnfuzuul4tcvnjiSM7Jj6iKDOP4hfaw79SciZ7t+cc2+iWyAcDYSrFMDV4Q50T+2IfWTYlWtKGpIhG6sfZaWw==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@lingui/core" "^4.2.0"
+    "@remirror/core-helpers" "^3.0.0"
 
 "@remirror/pm@2.0.8":
   version "2.0.8"
@@ -5099,54 +5181,6 @@
     "@remirror/extension-trailing-node" "^2.0.13"
     "@remirror/extension-underline" "^2.0.13"
     "@remirror/preset-core" "^2.0.16"
-
-"@remirror/react-components@^2.1.16":
-  version "2.1.16"
-  resolved "https://registry.yarnpkg.com/@remirror/react-components/-/react-components-2.1.16.tgz#fd075cd833307c67f656bb622311e02484a86098"
-  integrity sha512-xaim4kpqymmiQO/0FEbbiLnMMhmifpVCOf6KM/gK0FRZGqsSmjwlaedtrZhoA38Zgm3yFkD3Xb7LH2DVeMr2Tw==
-  dependencies:
-    "@babel/runtime" "^7.22.3"
-    "@emotion/react" "^11.11.0"
-    "@emotion/styled" "^11.11.0"
-    "@floating-ui/react" "^0.24.3"
-    "@lingui/core" "^4.2.0"
-    "@mui/material" "^5.13.2"
-    "@remirror/core" "^2.0.17"
-    "@remirror/extension-blockquote" "^2.0.14"
-    "@remirror/extension-bold" "^2.0.13"
-    "@remirror/extension-callout" "^2.0.15"
-    "@remirror/extension-code" "^2.0.13"
-    "@remirror/extension-code-block" "^2.0.15"
-    "@remirror/extension-columns" "^2.0.14"
-    "@remirror/extension-find" "^0.1.6"
-    "@remirror/extension-font-size" "^2.0.13"
-    "@remirror/extension-heading" "^2.0.14"
-    "@remirror/extension-history" "^2.0.13"
-    "@remirror/extension-horizontal-rule" "^2.0.13"
-    "@remirror/extension-italic" "^2.0.13"
-    "@remirror/extension-list" "^2.0.16"
-    "@remirror/extension-node-formatting" "^2.0.13"
-    "@remirror/extension-positioner" "^2.1.8"
-    "@remirror/extension-strike" "^2.0.13"
-    "@remirror/extension-sub" "^2.0.13"
-    "@remirror/extension-sup" "^2.0.13"
-    "@remirror/extension-tables" "^2.2.10"
-    "@remirror/extension-text-color" "^2.0.15"
-    "@remirror/extension-underline" "^2.0.13"
-    "@remirror/extension-whitespace" "^2.0.13"
-    "@remirror/i18n" "^2.0.4"
-    "@remirror/icons" "^2.0.2"
-    "@remirror/messages" "^2.0.5"
-    "@remirror/react-core" "^2.0.20"
-    "@remirror/react-hooks" "^2.0.25"
-    "@remirror/react-utils" "^2.0.5"
-    "@remirror/theme" "^2.0.8"
-    "@seznam/compose-react-refs" "^1.0.6"
-    "@types/react-color" "^3.0.6"
-    create-context-state "^2.0.2"
-    match-sorter "^6.3.1"
-    multishift "^2.0.8"
-    react-color "^2.19.3"
 
 "@remirror/react-components@^2.1.17":
   version "2.1.17"
@@ -5276,22 +5310,32 @@
     "@remirror/core-helpers" "^2.0.2"
     "@remirror/core-types" "^2.0.5"
 
-"@remirror/react@2.0.34":
-  version "2.0.34"
-  resolved "https://registry.yarnpkg.com/@remirror/react/-/react-2.0.34.tgz#eb1fdc9adaa9d777784eda742fd3dea0b1a18f44"
-  integrity sha512-OEKfvCIU9T7TBsSR8g4CIme2OglQ1hgj2x0++cKGF2FqsDwS5OQyEVv7+4sN1CjeikkhCB1DYcGnP1a37DvPig==
+"@remirror/react-utils@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@remirror/react-utils/-/react-utils-2.0.7.tgz#487ce2de395a27c089eec4ba67eb1494b90a5c59"
+  integrity sha512-FowQ47k0IV+8qVvQZu5OOS014FTPQ1x2BsXgfikvrMlggx5mRgsFkJ5Sf56iieyUUHqBwVXIWHtR2KVanQWbVQ==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@remirror/core-constants" "^2.0.2"
+    "@remirror/core-helpers" "^3.0.0"
+    "@remirror/core-types" "^2.0.5"
+
+"@remirror/react@2.0.35":
+  version "2.0.35"
+  resolved "https://registry.yarnpkg.com/@remirror/react/-/react-2.0.35.tgz#6fc9a4fcef2ffdb810b6a88cbb81a0a2b5a6f73c"
+  integrity sha512-SFs64SiQoHUatR+guSo9G1EVwBLqZec+tUtxdun11zC/5iiye0qIk+gnvu2h5pl0zwdqpK+b0ZQ/lR7JKzwagA==
   dependencies:
     "@babel/runtime" "^7.22.3"
     "@remirror/extension-placeholder" "^2.0.14"
     "@remirror/extension-positioner" "^2.1.8"
     "@remirror/extension-react-component" "^2.0.13"
-    "@remirror/extension-react-tables" "^2.2.17"
+    "@remirror/extension-react-tables" "^2.2.18"
     "@remirror/preset-react" "^2.0.14"
     "@remirror/react-components" "^2.1.17"
     "@remirror/react-core" "^2.0.21"
     "@remirror/react-hooks" "^2.0.25"
     "@remirror/react-renderer" "^2.0.13"
-    "@remirror/react-utils" "^2.0.5"
+    "@remirror/react-utils" "^2.0.7"
 
 "@remirror/theme@^2.0.7", "@remirror/theme@^2.0.8":
   version "2.0.8"
@@ -5300,6 +5344,17 @@
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@linaria/core" "4.2.9"
+    "@remirror/core-types" "^2.0.5"
+    color2k "^2.0.2"
+    csstype "^3.1.2"
+
+"@remirror/theme@^2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@remirror/theme/-/theme-2.0.9.tgz#0ae990448e90cfead0a6ff7d36b414165a9c663d"
+  integrity sha512-MI6j7C9KImVyfSBh9GR/WQCuLQKXRKQkE0HsS8Sc/BC8a/0n4QTt7dAg5/a/+MbakyymNaGlibCdts8URgGStg==
+  dependencies:
+    "@babel/runtime" "^7.22.3"
+    "@linaria/core" "4.2.10"
     "@remirror/core-types" "^2.0.5"
     color2k "^2.0.2"
     csstype "^3.1.2"
