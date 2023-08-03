@@ -28,7 +28,7 @@
     "@oakjs/ckeditor5-build-custom": "^3.2.0",
     "@oakjs/react": "^3.2.0",
     "@oakjs/theme": "^3.2.0",
-    "@remirror/pm": "2.0.6",
+    "@remirror/pm": "2.0.8",
     "@remirror/react": "2.0.34",
     "@strapi/design-system": "1.8.2",
     "remirror": "2.0.33",
