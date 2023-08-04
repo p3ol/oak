@@ -14,7 +14,8 @@
     "link-all": "./node_modules/.bin/lerna exec --parallel -- npm run link",
     "test": "BABEL_ENV=tests ./node_modules/.bin/jest",
     "build": "./node_modules/.bin/lerna exec -- npm run build",
-    "serve": "storybook dev"
+    "storybook": "./node_modules/.bin/storybook",
+    "serve": "npm run storybook dev"
   },
   "devDependencies": {
     "@babel/core": "7.22.9",
