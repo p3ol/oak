@@ -31,8 +31,8 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Install and build
         run: |
-          yarn install
-          yarn storybook build
+          npm install
+          npm run storybook build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
