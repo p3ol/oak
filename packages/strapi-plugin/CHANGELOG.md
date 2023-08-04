@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/p3ol/oak/compare/v3.2.0...v3.2.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @remirror/pm to v2.0.8 ([0dee2af](https://github.com/p3ol/oak/commit/0dee2af9d03c936de318651e35956bc3e8c0950d))
+
+
+
+
+
 # [3.2.0](https://github.com/p3ol/oak/compare/v3.1.0...v3.2.0) (2023-07-20)
 
 
