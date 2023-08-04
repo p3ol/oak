@@ -22,7 +22,7 @@
   "sideEffects": false,
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.22.6",

@@ -14,7 +14,7 @@
   "sideEffects": false,
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

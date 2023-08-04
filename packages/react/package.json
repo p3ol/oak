@@ -22,7 +22,7 @@
   "sideEffects": false,
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "peerDependencies": {
     "react": "^18.0.0",

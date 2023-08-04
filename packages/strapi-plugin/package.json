@@ -11,7 +11,7 @@
   "license": "MIT",
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "peerDependencies": {
     "@strapi/strapi": "^4.4.0",
