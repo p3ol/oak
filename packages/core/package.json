@@ -22,12 +22,12 @@
   "sideEffects": false,
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.22.6",
-    "@junipero/core": "3.1.0",
-    "core-js": "3.31.1",
+    "@junipero/core": "3.2.1",
+    "core-js": "3.32.0",
     "uuid": "9.0.0"
   },
   "scripts": {

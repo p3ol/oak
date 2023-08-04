@@ -14,11 +14,11 @@
   "sideEffects": false,
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
-    "build": "yarn clean && node script/build.js"
+    "build": "npm run clean && node script/build.js"
   },
   "publishConfig": {
     "access": "public"

@@ -22,7 +22,7 @@
   "sideEffects": false,
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "peerDependencies": {
     "react": "^18.0.0",
@@ -30,10 +30,10 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.22.6",
-    "@floating-ui/react": "0.24.8",
-    "@junipero/react": "3.1.1",
-    "@junipero/transitions": "3.1.0",
-    "core-js": "3.31.1",
+    "@floating-ui/react": "0.25.0",
+    "@junipero/react": "3.2.1",
+    "@junipero/transitions": "3.2.1",
+    "core-js": "3.32.0",
     "uuid": "9.0.0"
   },
   "scripts": {

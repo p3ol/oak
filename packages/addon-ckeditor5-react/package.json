@@ -18,7 +18,7 @@
   "sideEffects": false,
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "peerDependencies": {
     "@ckeditor/ckeditor5-react": "^6.0.0",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.22.6",
-    "core-js": "3.31.1"
+    "core-js": "3.32.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

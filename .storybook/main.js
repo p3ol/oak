@@ -4,7 +4,10 @@ const tailwindcss = require('tailwindcss');
 const { bundler, styles } = require('@ckeditor/ckeditor5-dev-utils');
 
 module.exports = {
-  stories: ['../packages/*/lib/**/*.stories.js'],
+  stories: [
+    '../packages/react/lib/index.stories.js',
+    '../packages/*/lib/**/*.stories.js',
+  ],
   addons: ['@storybook/addon-actions', 'storybook-dark-mode'],
   webpackFinal: config => {
     config.resolve.alias = {

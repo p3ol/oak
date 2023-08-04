@@ -11,7 +11,7 @@
   "license": "MIT",
   "engines": {
     "node": ">= 16",
-    "yarn": "1"
+    "npm": ">= 8"
   },
   "peerDependencies": {
     "@strapi/strapi": "^4.4.0",
@@ -32,7 +32,7 @@
     "@remirror/react": "2.0.35",
     "@strapi/design-system": "1.8.2",
     "remirror": "2.0.36",
-    "styled-components": "5.3.11"
+    "styled-components": "6.0.7"
   },
   "strapi": {
     "name": "oak",
