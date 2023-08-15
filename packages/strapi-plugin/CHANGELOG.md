@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/p3ol/oak/compare/v3.2.1...v3.2.2) (2023-08-15)
+
+**Note:** Version bump only for package @oakjs/strapi-plugin
+
+
+
+
+
 ## [3.2.1](https://github.com/p3ol/oak/compare/v3.2.0...v3.2.1) (2023-08-04)
 
 

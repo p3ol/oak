@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/p3ol/oak/compare/v3.2.1...v3.2.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @babel/runtime-corejs3 to v7.22.10 ([73fd824](https://github.com/p3ol/oak/commit/73fd8249be28c909694e0ad7e3b9a4850aceff13))
+* **deps:** update dependency @floating-ui/react to v0.25.1 ([1b4e6bb](https://github.com/p3ol/oak/commit/1b4e6bb3f00e2fa5558acb46cb247981b343fd7a))
+* **theme:** update upstream junipero with broken css fix ([a971d23](https://github.com/p3ol/oak/commit/a971d2346aed296dc3c4bd500d7ea5063e514841))
+
+
+
+
+
 ## [3.2.1](https://github.com/p3ol/oak/compare/v3.2.0...v3.2.1) (2023-08-04)
 
 
