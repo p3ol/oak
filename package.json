@@ -92,7 +92,7 @@
     "remirror": "2.0.36",
     "resolve-url-loader": "5.0.0",
     "rollup": "3.28.0",
-    "rollup-plugin-dts": "5.3.1",
+    "rollup-plugin-dts": "6.0.0",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.66.0",
     "sass-loader": "13.3.2",
