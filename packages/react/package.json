@@ -29,7 +29,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.22.10",
+    "@babel/runtime-corejs3": "7.22.11",
     "@floating-ui/react": "0.25.1",
     "@junipero/react": "3.2.2",
     "@junipero/transitions": "3.2.2",
