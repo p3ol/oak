@@ -18,12 +18,12 @@
     "serve": "npm run storybook dev"
   },
   "devDependencies": {
-    "@babel/core": "7.22.11",
-    "@babel/eslint-parser": "7.22.11",
+    "@babel/core": "7.22.15",
+    "@babel/eslint-parser": "7.22.15",
     "@babel/eslint-plugin": "7.22.10",
-    "@babel/plugin-transform-runtime": "7.22.10",
-    "@babel/preset-env": "7.22.14",
-    "@babel/preset-react": "7.22.5",
+    "@babel/plugin-transform-runtime": "7.22.15",
+    "@babel/preset-env": "7.22.15",
+    "@babel/preset-react": "7.22.15",
     "@ckeditor/ckeditor5-alignment": "39.0.1",
     "@ckeditor/ckeditor5-basic-styles": "39.0.1",
     "@ckeditor/ckeditor5-block-quote": "39.0.1",
