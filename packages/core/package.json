@@ -28,7 +28,7 @@
     "@babel/runtime-corejs3": "7.22.15",
     "@junipero/core": "3.2.2",
     "core-js": "3.32.2",
-    "uuid": "9.0.0"
+    "uuid": "9.0.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
