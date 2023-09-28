@@ -91,7 +91,7 @@
     "react-popper": "2.3.0",
     "remirror": "2.0.36",
     "resolve-url-loader": "5.0.0",
-    "rollup": "3.28.0",
+    "rollup": "3.29.4",
     "rollup-plugin-dts": "6.0.0",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.66.0",
