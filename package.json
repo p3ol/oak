@@ -47,7 +47,7 @@
     "@junipero/core": "3.2.2",
     "@junipero/tailwind-plugin": "3.2.1",
     "@junipero/theme": "3.2.2",
-    "@percy/storybook": "4.3.6",
+    "@percy/storybook": "4.3.7",
     "@poool/eslint-config": "3.0.1",
     "@poool/eslint-config-react": "3.0.1",
     "@poool/eslint-plugin": "3.0.0",
