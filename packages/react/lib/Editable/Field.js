@@ -10,7 +10,7 @@ const Field = ({
   onCustomChange,
   editableRef,
 }) => {
-  const { builder, floatingsRef } = useBuilder();
+  const { builder, addons, floatingsRef } = useBuilder();
 
   const overrides = useMemo(() => ({
     field: builder.getOverride('component', element.type, {
@@ -18,17 +18,17 @@ const Field = ({
     }),
     settings: builder
       .getOverride('setting', element.type, { setting: fieldSetting }),
-  }), [element, fieldSetting]);
+  }), [element, fieldSetting, addons]);
 
   const field = useMemo(() => (
     builder.getField(overrides?.field?.type || fieldSetting?.type)
-  ), [overrides, fieldSetting]);
+  ), [overrides, fieldSetting, addons]);
 
   const setting = useMemo(() => ({
     ...fieldSetting,
     ...overrides.settings,
     ...overrides.field,
-  }), [fieldSetting, overrides]);
+  }), [fieldSetting, overrides, addons]);
 
   const fieldProps = {
     id: setting.id,

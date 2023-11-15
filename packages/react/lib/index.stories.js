@@ -147,32 +147,42 @@ export const withMultipleLanguages = () => {
   );
 };
 
-export const withMultipleCustomSettings = () => (
-  <Builder
-    addons={[baseAddon(), {
-      settings: [
-        { key: 'settings.foo', label: 'Foo', type: 'text', displayable: true },
-        { key: 'settings.bar', label: 'Bar', type: 'text' },
-      ],
-      overrides: [{
-        type: 'component',
-        targets: ['title'],
-        fields: [{
-          key: 'headingLevel',
-          options: ['t1', 't2', 't3', 't4', 't5', 't6'],
-        }],
-      }, {
-        type: 'setting',
-        targets: ['*'],
-        key: 'settings.className',
-        placeholder: 'This is a global setting placeholder',
-      }],
-    }]}
-    value={baseContent}
-    options={{ debug: true }}
-    onChange={action('change')}
-  />
-);
+export const withMultipleCustomSettings = () => {
+  const [addons, setAddons] = useState(true);
+
+  return (
+    <>
+      <button onClick={() => setAddons(a => !a)}>Toggle addons</button>
+      <Builder
+        addons={addons ? [baseAddon(), {
+          settings: [
+            { id: 'foo', key: 'settings.foo', label: 'Foo', type: 'text',
+              displayable: true },
+            { id: 'bar', key: 'settings.bar', label: 'Bar', type: 'text' },
+          ],
+          overrides: [{
+            id: 'titleOverride',
+            type: 'component',
+            targets: ['title'],
+            fields: [{
+              key: 'headingLevel',
+              options: ['t1', 't2', 't3', 't4', 't5', 't6'],
+            }],
+          }, {
+            id: 'classNameOverride',
+            type: 'setting',
+            targets: ['*'],
+            key: 'settings.className',
+            placeholder: 'This is a global setting placeholder',
+          }],
+        }] : []}
+        value={baseContent}
+        options={{ debug: true }}
+        onChange={action('change')}
+      />
+    </>
+  );
+};
 
 export const withMultipleCustomSettingsAndFields = () => (
   <Builder
