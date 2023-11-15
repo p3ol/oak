@@ -28,8 +28,8 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.22.15",
-    "core-js": "3.32.2"
+    "@babel/runtime-corejs3": "7.23.2",
+    "core-js": "3.33.2"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
