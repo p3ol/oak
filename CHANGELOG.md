@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/p3ol/oak/compare/v3.2.1...v3.2.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @babel/runtime-corejs3 to v7.22.10 ([73fd824](https://github.com/p3ol/oak/commit/73fd8249be28c909694e0ad7e3b9a4850aceff13))
+* **deps:** update dependency @floating-ui/react to v0.25.1 ([1b4e6bb](https://github.com/p3ol/oak/commit/1b4e6bb3f00e2fa5558acb46cb247981b343fd7a))
+* **theme:** update upstream junipero with broken css fix ([a971d23](https://github.com/p3ol/oak/commit/a971d2346aed296dc3c4bd500d7ea5063e514841))
+
+
+
+
+
+## [3.2.1](https://github.com/p3ol/oak/compare/v3.2.0...v3.2.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* **ckeditor5-build-custom:** fix ckeditor versions ([011cefa](https://github.com/p3ol/oak/commit/011cefaf51962610b91dfe7cffab3b5240c40b68))
+* **deps:** update dependency @remirror/pm to v2.0.8 ([0dee2af](https://github.com/p3ol/oak/commit/0dee2af9d03c936de318651e35956bc3e8c0950d))
+* **deps:** update dependency @remirror/react to v2.0.35 ([4716dd7](https://github.com/p3ol/oak/commit/4716dd7f8b591bb329f4d636f8a6876d2c324264))
+* **deps:** update dependency remirror to v2.0.36 ([dfe5c01](https://github.com/p3ol/oak/commit/dfe5c012eb97372cb4983e00bb469cf6ccbc21a3))
+* update junipero ([c467fa1](https://github.com/p3ol/oak/commit/c467fa1826369884811d901010d9549a2f19cab5))
+
+
+### Features
+
+* **deps:** update dependency @floating-ui/react to v0.25.0 ([284b27b](https://github.com/p3ol/oak/commit/284b27b0a518f69f3b0190dca71bb394f750251d))
+* **deps:** update junipero monorepo to v3.2.0 ([d3a087c](https://github.com/p3ol/oak/commit/d3a087c376cffb31284f11b559aabe314de060fa))
+
+
+
+
+
 # [3.2.0](https://github.com/p3ol/oak/compare/v3.1.0...v3.2.0) (2023-07-20)
 
 

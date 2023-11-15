@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/p3ol/oak/compare/v3.2.1...v3.2.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* **theme:** update upstream junipero with broken css fix ([a971d23](https://github.com/p3ol/oak/commit/a971d2346aed296dc3c4bd500d7ea5063e514841))
+
+
+
+
+
+## [3.2.1](https://github.com/p3ol/oak/compare/v3.2.0...v3.2.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* update junipero ([c467fa1](https://github.com/p3ol/oak/commit/c467fa1826369884811d901010d9549a2f19cab5))
+
+
+### Features
+
+* **deps:** update junipero monorepo to v3.2.0 ([d3a087c](https://github.com/p3ol/oak/commit/d3a087c376cffb31284f11b559aabe314de060fa))
+
+
+
+
+
 # [3.2.0](https://github.com/p3ol/oak/compare/v3.1.0...v3.2.0) (2023-07-20)
 
 
