@@ -50,6 +50,7 @@ export declare class Field {
 }
 
 export declare interface ComponentOverrideObject {
+  id: string;
   type: string;
   targets: Array<string>;
   fields: Array<any>;
@@ -61,6 +62,7 @@ export declare interface ComponentOverrideObject {
 
 export declare class ComponentOverride {
   constructor(props: object);
+  id: string;
   type: string;
   targets: Array<string>;
   fields: Array<any>;
@@ -71,6 +73,7 @@ export declare class ComponentOverride {
 }
 
 export declare interface FieldOverrideObject {
+  id: string;
   type: string;
   targets: Array<string>;
   props: object;
@@ -79,6 +82,7 @@ export declare interface FieldOverrideObject {
 
 export declare class FieldOverride {
   constructor(props: object);
+  id: string;
   type: string;
   targets: Array<string>;
   props: object;

@@ -4,10 +4,11 @@ const WARN = 1;
 module.exports = {
   extends: ['@poool/eslint-config-react'],
   rules: {
-    'react/prop-types': 0,
-    'react/jsx-uses-react': 0,
-    'react/react-in-jsx-scope': 0,
+    'react/prop-types': OFF,
+    'react/jsx-uses-react': OFF,
+    'react/react-in-jsx-scope': OFF,
     'max-len': [WARN, { code: 80, ignorePattern: '^import .*' }],
+    'n/no-callback-literal': OFF,
   },
   overrides: [{
     files: ['packages/**/*.test.js', 'packages/**/tests/**/*.js'],
@@ -26,9 +27,9 @@ module.exports = {
     },
     rules: {
       // function params are considered as unused vars
-      'no-unused-vars': 0,
-      'lines-between-class-members': 0,
-      'no-use-before-define': 0,
+      'no-unused-vars': OFF,
+      'lines-between-class-members': OFF,
+      'no-use-before-define': OFF,
     },
   }, {
     files: ['packages/strapi-plugin/**/*.js'],

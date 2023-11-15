@@ -12,7 +12,7 @@ const Builder = forwardRef(({
   className,
   defaultValue,
   value,
-  addons,
+  addons: addonsProp,
   rootBoundary,
   onChange,
   onImageUpload,
@@ -26,10 +26,10 @@ const Builder = forwardRef(({
   const innerRef = useRef();
   const catalogueRef = useRef();
   const floatingsRef = useRef();
-  const { builder, content, canUndo, canRedo } = useRootBuilder({
+  const { builder, content, addons, canUndo, canRedo } = useRootBuilder({
     content: value,
     defaultContent: defaultValue,
-    addons,
+    addons: addonsProp,
     onChange,
     ...opts,
   });
@@ -45,12 +45,13 @@ const Builder = forwardRef(({
   const getContext = useCallback(() => ({
     builder,
     content,
+    addons,
     rootBoundary: rootBoundary?.current
       ? rootBoundary : { current: rootBoundary },
     onImageUpload,
     rootRef: innerRef,
     floatingsRef,
-  }), [builder, content, rootBoundary, onImageUpload]);
+  }), [builder, content, addons, rootBoundary, onImageUpload]);
 
   const onAppend = component => {
     catalogueRef.current?.close();

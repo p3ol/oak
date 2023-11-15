@@ -28,6 +28,7 @@ export declare class Builder extends Emitter {
   subscribe(cb: Function): Function;
   setAddons(addons: Array<AddonObject>): void;
   addAddon(addon: AddonObject): void;
+  removeAddon(addon: AddonObject): void;
   getAvailableComponents(): Array<ComponentsGroup>;
   getComponent(type: string): Component;
   getComponentDisplayableSettings(component: Component): Array<any>;

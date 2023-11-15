@@ -71,6 +71,7 @@ export class Field {
 export class ComponentOverride {
   constructor (props) {
     this.type = 'component';
+    this.id = props.id;
     this.targets = props.targets || [];
     this.fields = props.fields || [];
     this.render = props.render;
@@ -83,6 +84,7 @@ export class ComponentOverride {
 export class FieldOverride {
   constructor (props) {
     this.type = 'field';
+    this.id = props.id;
     this.targets = props.targets || [];
     this.render = props.render;
     this.props = props.props || {};

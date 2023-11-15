@@ -4,6 +4,8 @@ import { ComponentOverride, FieldOverride, SettingOverride } from '../types';
 import Emitter from '../Emitter';
 
 export default class Overrides extends Emitter {
+  static FIND_PREDICATE = id => o => id ? o.id === id : null;
+
   #overrides = [];
   #builder = null;
 
@@ -14,6 +16,22 @@ export default class Overrides extends Emitter {
   }
 
   add (override) {
+    const existing = this.#overrides
+      .find(Overrides.FIND_PREDICATE(override.id));
+
+    if (existing) {
+      this.#builder?.logger.log(
+        'Override already exists, updating definition.',
+        'Old:', existing,
+        'New:', override
+      );
+
+      this.#overrides.splice(this.#overrides.indexOf(existing), 1, override);
+      this.emit('overrides.update', override);
+
+      return override;
+    }
+
     switch (override.type) {
       case 'component':
         override = new ComponentOverride(override);
@@ -66,6 +84,22 @@ export default class Overrides extends Emitter {
         return overrides.find(o => o.key === setting?.key);
       default:
         return strategy === 'merge' ? this.merge(overrides) : overrides[0];
+    }
+  }
+
+  remove (id) {
+    if (!id) {
+      return;
+    }
+
+    const index = this.#overrides.findIndex(Overrides.FIND_PREDICATE(id));
+
+    if (index !== -1) {
+      this.#builder?.logger.log('Removing override:', this.#overrides[index]);
+
+      const override = this.#overrides[index];
+      this.#overrides.splice(index, 1);
+      this.emit('overrides.remove', this, override);
     }
   }
 

@@ -6,6 +6,7 @@ import Icon from '../Icon';
 
 const Option = forwardRef(({
   className,
+  iconClassName,
   option,
   renderIcon,
   draggable,
@@ -47,7 +48,7 @@ const Option = forwardRef(({
     >
       { renderIcon ? renderIcon() : (
         <Icon
-          className="!oak-text-lg"
+          className={classNames('!oak-text-lg', iconClassName)}
           children={typeof option?.icon === 'function'
             ? option?.icon?.() : option?.icon}
         />

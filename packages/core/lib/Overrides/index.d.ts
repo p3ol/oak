@@ -44,6 +44,9 @@ export declare class Overrides extends Emitter {
     setting?: ComponentSettingsField,
   }): ComponentOverride | FieldOverrideObject;
 
+  /** Removes an override by its id (if available) */
+  remove (id: string): void;
+
   /** Merges overrides into a single non-typed object */
   merge(overrides: Array<ComponentOverride | FieldOverride>): object;
 

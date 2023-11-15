@@ -30,6 +30,7 @@ export declare interface OptionObject {
 
 export declare interface OptionProps extends ComponentPropsWithRef<any> {
   className?: string;
+  iconClassName?: string;
   option: OptionObject,
   draggable?: boolean;
   name?: ReactNode | JSX.Element;

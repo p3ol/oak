@@ -16,16 +16,16 @@ const Element = ({
   className,
   depth = 0,
 }) => {
-  const { builder } = useBuilder();
   const innerRef = useRef();
   const editableRef = useRef();
   const [editableOpened, setEditableOpened] = useState(false);
+  const { builder, addons } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent(element?.type)
-  ), [element?.type]);
+  ), [element?.type, addons]);
   const override = useMemo(() => (
     builder.getOverride('component', element?.type)
-  ), [element?.type]);
+  ), [element?.type, addons]);
 
   const onDelete_ = e => {
     e?.preventDefault();
@@ -172,7 +172,7 @@ const Element = ({
               onClick={onCopy_}
               name={<Text name="core.tooltips.copy">Copy</Text>}
             />
-            { component?.options?.map((o, i) => (
+            { (component?.options || []).map((o, i) => (
               <Fragment key={i}>
                 { o?.render?.({
                   option: o,

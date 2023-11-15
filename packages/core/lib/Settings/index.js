@@ -87,7 +87,7 @@ export default class Settings extends Emitter {
       .getSetting(setting.id || setting.key, { tabId: tab.id });
 
     if (existing) {
-      this.#builder.logger.log(
+      this.#builder?.logger.log(
         'Setting already exists, updating definition.',
         'Old:', existing,
         'New:', setting
@@ -107,6 +107,7 @@ export default class Settings extends Emitter {
       .findIndex(ComponentSettingsTab.FIND_PREDICATE(id));
 
     if (tabIndex !== -1) {
+      this.#builder?.logger.log('Removing tab:', this.#tabs[tabIndex]);
       const tab = this.#tabs[tabIndex];
       this.#tabs.splice(tabIndex, 1);
       this.emit('tabs.remove', tab);
@@ -119,6 +120,7 @@ export default class Settings extends Emitter {
         .findIndex(ComponentSettingsField.FIND_PREDICATE(id));
 
       if (index !== -1) {
+        this.#builder?.logger.log('Removing setting:', tab.fields[index]);
         const setting = tab.fields[index];
         tab.fields.splice(index, 1);
         this.emit('settings.remove', setting);

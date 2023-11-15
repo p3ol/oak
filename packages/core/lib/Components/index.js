@@ -78,15 +78,14 @@ export default class Components extends Emitter {
     const mutateMethod = mode === 'append' ? 'push' : 'unshift';
 
     // This component is a group, add a new group
-    if (
-      component.type === Components.TYPE_GROUP &&
-      !this.hasGroup(component.id)
-    ) {
-      component = new ComponentsGroup(component);
-      component.components = component.components || [];
+    if (component.type === Components.TYPE_GROUP) {
+      if (!this.hasGroup(component.id)) {
+        component = new ComponentsGroup(component);
+        component.components = component.components || [];
 
-      this.#groups[mutateMethod](component);
-      this.emit('groups.add', component);
+        this.#groups[mutateMethod](component);
+        this.emit('groups.add', component);
+      }
 
       return;
     }
@@ -120,6 +119,7 @@ export default class Components extends Emitter {
       .findIndex(ComponentsGroup.FIND_PREDICATE(id));
 
     if (groupIndex !== -1) {
+      this.#builder.logger.log('Removing group:', this.#groups[groupIndex]);
       const group = this.#groups[groupIndex];
       this.#groups.splice(groupIndex, 1);
       this.emit('groups.remove', group);
@@ -132,6 +132,8 @@ export default class Components extends Emitter {
         .findIndex(Component.FIND_PREDICATE(id));
 
       if (index !== -1) {
+        this.#builder.logger
+          .log('Removing component:', group.components[index]);
         const component = group.components[index];
         group.components.splice(index, 1);
         this.emit('components.remove', component, group);
@@ -144,6 +146,9 @@ export default class Components extends Emitter {
       .findIndex(Component.FIND_PREDICATE(id));
 
     if (index !== -1) {
+      this.#builder.logger.log(
+        'Removing component:', this.#defaultGroup.components[index]
+      );
       const component = this.#defaultGroup.components[index];
       this.#defaultGroup.components.splice(index, 1);
       this.emit('components.remove', component, this.#defaultGroup);
@@ -167,7 +172,7 @@ export default class Components extends Emitter {
         return displayable;
       }
 
-      fields = component.settings.fields;
+      fields = component?.settings.fields;
     }
 
     for (const setting of fields) {
