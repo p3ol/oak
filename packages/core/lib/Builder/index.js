@@ -18,6 +18,7 @@ export default class Builder extends Emitter {
   #texts = null;
   #store = null;
   #settings = null;
+  #addons = [];
 
   constructor ({ addons, content, options = {} } = {}) {
     super();
@@ -33,6 +34,7 @@ export default class Builder extends Emitter {
     this.#settings = new Settings({ builder: this });
 
     if (Array.isArray(addons)) {
+      this.#addons = addons;
       addons.forEach(addon => {
         this.logger.log('Initializing builder with addon:', addon);
         this.addAddon(addon);
@@ -62,10 +64,18 @@ export default class Builder extends Emitter {
   }
 
   setAddons (addons) {
-    addons?.forEach(addon => {
+    this.#addons?.forEach(addon => {
+      this.logger.log('Removing builder addon:', addon);
+      this.removeAddon(addon);
+    });
+
+    this.#addons = addons;
+    this.#addons?.forEach(addon => {
       this.logger.log('Updating builder addon:', addon);
       this.addAddon(addon);
     });
+
+    this.emit('addons.update', addons);
   }
 
   addAddon (addon) {
@@ -87,6 +97,28 @@ export default class Builder extends Emitter {
 
     addon.settings?.forEach(setting => {
       this.#settings.add(setting);
+    });
+  }
+
+  removeAddon (addon) {
+    addon.settings?.forEach(setting => {
+      this.#settings.remove(setting.id);
+    });
+
+    addon.overrides?.forEach(override => {
+      this.#overrides.remove(override.id);
+    });
+
+    addon.texts?.forEach(sheet => {
+      this.#texts.removeSheet(sheet.id);
+    });
+
+    addon.components?.forEach(component => {
+      this.#components.remove(component.id);
+    });
+
+    addon.fields?.forEach(field => {
+      this.#fields.remove(field.type);
     });
   }
 

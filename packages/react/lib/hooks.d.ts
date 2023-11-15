@@ -1,4 +1,4 @@
-import { Builder, BuilderOptions, ElementObject, Logger } from '@oakjs/core';
+import { AddonObject, Builder, BuilderOptions, ElementObject, Logger } from '@oakjs/core';
 
 import { BuilderContextValue } from './Builder';
 
@@ -11,6 +11,7 @@ export declare function useRootBuilder(opts?: Partial<BuilderOptions & {
   activeTextSheet: string;
   canUndo: boolean;
   canRedo: boolean;
+  addons: Array<AddonObject>;
 };
 
 export declare function useBuilder(): BuilderContextValue;

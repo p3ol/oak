@@ -21,6 +21,7 @@ export const useRootBuilder = ({
   const [state, dispatch] = useReducer(mockState, {
     content: builder.getContent(),
     activeTextSheet: null,
+    addons: opts.addons,
     canUndo: false,
     canRedo: false,
   });
@@ -74,6 +75,14 @@ export const useRootBuilder = ({
           });
           break;
         }
+        case 'addons.update': {
+          const [addons] = args;
+          builder.logger.log(
+            '[react] Receiving addons from builder:',
+            addons,
+          );
+          dispatch({ addons });
+        }
       }
 
       onEvent?.(eventName, ...args);
@@ -93,6 +102,14 @@ export const useRootBuilder = ({
 
     builder.setActiveTextSheet(activeTextSheet);
   }, [activeTextSheet]);
+
+  useEffect(() => {
+    if (opts.addons === state.addons) {
+      return;
+    }
+
+    builder.setAddons(opts.addons);
+  }, [opts.addons]);
 
   return { builder, ...state };
 };
