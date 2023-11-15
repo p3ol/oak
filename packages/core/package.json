@@ -25,7 +25,7 @@
     "npm": ">= 8"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.22.6",
+    "@babel/runtime-corejs3": "7.23.2",
     "@junipero/core": "3.4.1",
     "core-js": "3.33.2",
     "uuid": "9.0.0"
