@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.22.6",
-    "core-js": "3.32.0"
+    "core-js": "3.33.2"
   },
   "scripts": {
     "build": "webpack --mode production"
