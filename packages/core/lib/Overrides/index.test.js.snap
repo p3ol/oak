@@ -3,6 +3,7 @@
 exports[`Overrides should allow to add overrides 1`] = `
 [
   FieldOverride {
+    "id": undefined,
     "props": {},
     "render": undefined,
     "targets": [],
@@ -14,6 +15,7 @@ exports[`Overrides should allow to add overrides 1`] = `
     "fields": [
       {},
     ],
+    "id": undefined,
     "render": undefined,
     "sanitize": undefined,
     "targets": [
@@ -31,6 +33,7 @@ ComponentOverride {
   "fields": [
     {},
   ],
+  "id": undefined,
   "render": undefined,
   "sanitize": undefined,
   "targets": [
