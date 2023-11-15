@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/p3ol/oak/compare/v3.2.2...v3.3.0) (2023-11-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.32.1 ([6554864](https://github.com/p3ol/oak/commit/65548645a826cf7e6087e44d2c8dbed883eb9285))
+* **deps:** update dependency core-js to v3.32.2 ([41b793e](https://github.com/p3ol/oak/commit/41b793eb70b4270cea72c77a1720afd858e45416))
+
+
+### Features
+
+* **deps:** update dependency core-js to v3.33.2 ([b9a0a1a](https://github.com/p3ol/oak/commit/b9a0a1ada4b11bcd71c6a549a3f71da48908af74))
+
+
+
+
+
 ## [3.2.2](https://github.com/p3ol/oak/compare/v3.2.1...v3.2.2) (2023-08-15)
 
 **Note:** Version bump only for package @oakjs/addon-ckeditor5-react

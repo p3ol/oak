@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/p3ol/oak/compare/v3.2.2...v3.3.0) (2023-11-15)
+
+
+### Bug Fixes
+
+* **theme:** add missing drag option icon styling ([2b17573](https://github.com/p3ol/oak/commit/2b17573f123fea98b4c4950b793c1d19dde7565f))
+
+
+
+
+
 ## [3.2.1](https://github.com/p3ol/oak/compare/v3.2.0...v3.2.1) (2023-08-04)
 
 **Note:** Version bump only for package @oakjs/theme

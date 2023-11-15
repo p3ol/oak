@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/p3ol/oak/compare/v3.2.2...v3.3.0) (2023-11-15)
+
+
+### Bug Fixes
+
+* **core:** don't re-add existing components ([9e769c2](https://github.com/p3ol/oak/commit/9e769c211f68b62a4a92656c488091098de60242))
+* **core:** overrides not being added correctly ([3f6fccb](https://github.com/p3ol/oak/commit/3f6fccbdb6b40a5bc7ffde59653f7bcff5a89404))
+* **deps:** update dependency @babel/runtime-corejs3 to v7.22.11 ([d5462ca](https://github.com/p3ol/oak/commit/d5462ca598474e3309a174bedc096558f08f3f1d))
+* **deps:** update dependency @floating-ui/react to v0.25.2 ([b2e8892](https://github.com/p3ol/oak/commit/b2e8892c631f2d161583c0b2439e85c5a8b7d144))
+* **deps:** update dependency @floating-ui/react to v0.25.3 ([8ead50e](https://github.com/p3ol/oak/commit/8ead50e3147131913d5cf0a73e17db13f6f13fb5))
+* **deps:** update dependency @floating-ui/react to v0.25.4 ([c861e19](https://github.com/p3ol/oak/commit/c861e193e6c9e167937ed997035baaebd288fcf5))
+* **deps:** update dependency core-js to v3.32.1 ([e0a2ba5](https://github.com/p3ol/oak/commit/e0a2ba5a046d7f69de73897ffed7dec79fe6a227))
+* **deps:** update dependency core-js to v3.32.1 ([6554864](https://github.com/p3ol/oak/commit/65548645a826cf7e6087e44d2c8dbed883eb9285))
+* **deps:** update dependency core-js to v3.32.2 ([41b793e](https://github.com/p3ol/oak/commit/41b793eb70b4270cea72c77a1720afd858e45416))
+* **deps:** update dependency remirror to v2.0.37 ([700822e](https://github.com/p3ol/oak/commit/700822ecd75d6165a7b15d8f6cad46878b9150c6))
+* **deps:** update dependency remirror to v2.0.37 ([4c620da](https://github.com/p3ol/oak/commit/4c620da13c19b5724946901a439afeeefde1e173))
+* **deps:** update dependency uuid to v9.0.1 ([271ada9](https://github.com/p3ol/oak/commit/271ada9f3a0a1debf718765db611828c7f116d62))
+* **react:** allow to use custom option icon classname ([c965568](https://github.com/p3ol/oak/commit/c965568045771d8f6559eea39f92dda43762f2da))
+* **react:** correctly rerender on addons updates ([0d74897](https://github.com/p3ol/oak/commit/0d7489716817a6d6cce0617953dcbbb3ddc98120))
+* **react:** fix wrong drag option render ([3500f73](https://github.com/p3ol/oak/commit/3500f73f858589072b73d13b943ad4e5f1f98e91))
+* **strapi-plugin:** force styled-components v6 ([0516f24](https://github.com/p3ol/oak/commit/0516f2408089ba7d5a78787f48fd6c5f505308de))
+* **theme:** add missing drag option icon styling ([2b17573](https://github.com/p3ol/oak/commit/2b17573f123fea98b4c4950b793c1d19dde7565f))
+
+
+### Features
+
+* **deps:** update dependency @floating-ui/react to v0.26.2 ([27b430d](https://github.com/p3ol/oak/commit/27b430d296371a251333917255ec2d7714d836c7))
+* **deps:** update dependency core-js to v3.33.2 ([acf5e5f](https://github.com/p3ol/oak/commit/acf5e5f68260e93ca7c4b8dc872bd83cc9dcf32c))
+* **deps:** update dependency core-js to v3.33.2 ([b9a0a1a](https://github.com/p3ol/oak/commit/b9a0a1ada4b11bcd71c6a549a3f71da48908af74))
+* **deps:** update junipero monorepo ([3d7af43](https://github.com/p3ol/oak/commit/3d7af43aeb9209b23fb2c7b2ca41e50e1406f87b))
+* handle addons updates/removal ([827fc20](https://github.com/p3ol/oak/commit/827fc20ec188bde86cd1b71135f62f0ca83e5106))
+
+
+
+
+
 ## [3.2.2](https://github.com/p3ol/oak/compare/v3.2.1...v3.2.2) (2023-08-15)
 
 
