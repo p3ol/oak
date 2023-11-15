@@ -78,15 +78,14 @@ export default class Components extends Emitter {
     const mutateMethod = mode === 'append' ? 'push' : 'unshift';
 
     // This component is a group, add a new group
-    if (
-      component.type === Components.TYPE_GROUP &&
-      !this.hasGroup(component.id)
-    ) {
-      component = new ComponentsGroup(component);
-      component.components = component.components || [];
+    if (component.type === Components.TYPE_GROUP) {
+      if (!this.hasGroup(component.id)) {
+        component = new ComponentsGroup(component);
+        component.components = component.components || [];
 
-      this.#groups[mutateMethod](component);
-      this.emit('groups.add', component);
+        this.#groups[mutateMethod](component);
+        this.emit('groups.add', component);
+      }
 
       return;
     }
