@@ -63,7 +63,7 @@
     "@storybook/react-webpack5": "7.5.3",
     "@storybook/theming": "7.5.3",
     "@testing-library/jest-dom": "6.1.4",
-    "@testing-library/react": "14.1.0",
+    "@testing-library/react": "14.1.2",
     "@typescript-eslint/parser": "6.11.0",
     "autoprefixer": "10.4.16",
     "babel-jest": "29.7.0",
