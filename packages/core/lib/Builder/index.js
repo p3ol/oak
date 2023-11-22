@@ -134,9 +134,9 @@ export default class Builder extends Emitter {
 
   getComponentDisplayableSettings (element, { component }) {
     return [
-      ...this.#settings.getDisplayable?.(element) || [],
       ...this.#components
         .getDisplayableSettings?.(element, { component }) || [],
+      ...this.#settings.getDisplayable?.(element) || [],
     ];
   }
 

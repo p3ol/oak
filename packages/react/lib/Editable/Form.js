@@ -105,13 +105,10 @@ const Form = ({
           .map((tab, t) => (
             <Tab key={tab.id || t} title={<Text>{ tab.title }</Text>}>
               <div className="fields oak-flex oak-flex-col oak-gap-4">
-                { tab
-                  .fields
-                  .concat(
-                    (component.settings?.fields || [])
-                      .filter(field => (tab.id === 'general' && !field.tab) ||
-                        field.tab === tab.id)
-                  )
+                { (component.settings?.fields || [])
+                  .filter(field => (tab.id === 'general' && !field.tab) ||
+                    field.tab === tab.id)
+                  .concat(tab.fields)
                   .sort((a, b) => getFieldPriority(b) - getFieldPriority(a))
                   .filter(f =>
                     !f.condition ||
