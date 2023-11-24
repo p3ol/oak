@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/core",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-core.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -25,9 +25,9 @@
     "npm": ">= 8"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.23.2",
+    "@babel/runtime-corejs3": "7.23.4",
     "@junipero/core": "3.4.1",
-    "core-js": "3.33.2",
+    "core-js": "3.33.3",
     "uuid": "9.0.1"
   },
   "scripts": {

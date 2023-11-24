@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/p3ol/oak/compare/v3.2.2...v3.3.0) (2023-11-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to v0.25.2 ([b2e8892](https://github.com/p3ol/oak/commit/b2e8892c631f2d161583c0b2439e85c5a8b7d144))
+* **deps:** update dependency @floating-ui/react to v0.25.3 ([8ead50e](https://github.com/p3ol/oak/commit/8ead50e3147131913d5cf0a73e17db13f6f13fb5))
+* **deps:** update dependency @floating-ui/react to v0.25.4 ([c861e19](https://github.com/p3ol/oak/commit/c861e193e6c9e167937ed997035baaebd288fcf5))
+* **deps:** update dependency core-js to v3.32.1 ([6554864](https://github.com/p3ol/oak/commit/65548645a826cf7e6087e44d2c8dbed883eb9285))
+* **deps:** update dependency core-js to v3.32.2 ([41b793e](https://github.com/p3ol/oak/commit/41b793eb70b4270cea72c77a1720afd858e45416))
+* **deps:** update dependency uuid to v9.0.1 ([271ada9](https://github.com/p3ol/oak/commit/271ada9f3a0a1debf718765db611828c7f116d62))
+* **react:** allow to use custom option icon classname ([c965568](https://github.com/p3ol/oak/commit/c965568045771d8f6559eea39f92dda43762f2da))
+* **react:** correctly rerender on addons updates ([0d74897](https://github.com/p3ol/oak/commit/0d7489716817a6d6cce0617953dcbbb3ddc98120))
+* **react:** fix wrong drag option render ([3500f73](https://github.com/p3ol/oak/commit/3500f73f858589072b73d13b943ad4e5f1f98e91))
+
+
+### Features
+
+* **deps:** update dependency @floating-ui/react to v0.26.2 ([27b430d](https://github.com/p3ol/oak/commit/27b430d296371a251333917255ec2d7714d836c7))
+* **deps:** update dependency core-js to v3.33.2 ([b9a0a1a](https://github.com/p3ol/oak/commit/b9a0a1ada4b11bcd71c6a549a3f71da48908af74))
+* **deps:** update junipero monorepo ([3d7af43](https://github.com/p3ol/oak/commit/3d7af43aeb9209b23fb2c7b2ca41e50e1406f87b))
+* handle addons updates/removal ([827fc20](https://github.com/p3ol/oak/commit/827fc20ec188bde86cd1b71135f62f0ca83e5106))
+
+
+
+
+
 ## [3.2.2](https://github.com/p3ol/oak/compare/v3.2.1...v3.2.2) (2023-08-15)
 
 
