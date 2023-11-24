@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/p3ol/oak/compare/v3.3.0...v3.4.0) (2023-11-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.33.3 ([36a79b9](https://github.com/p3ol/oak/commit/36a79b98a27873778ad5a716af6faab8cc5ff5a0))
+* **react:** wrong settings order ([13ac8c4](https://github.com/p3ol/oak/commit/13ac8c44a95250875483e6f0deb097d1185a0a34))
+
+
+### Features
+
+* **react:** add priority override for settings ([0720afb](https://github.com/p3ol/oak/commit/0720afb4d0369860ee3468e6eeda51876cac6517))
+
+
+
+
+
 # [3.3.0](https://github.com/p3ol/oak/compare/v3.2.2...v3.3.0) (2023-11-15)
 
 
