@@ -60,6 +60,19 @@ const Form = ({
     onCancel();
   };
 
+  const getFieldPriority = field => {
+    const fieldOverride = {
+      ...builder.getOverride('setting', element.type, { setting: field }),
+      ...builder.getOverride('component', element.type, {
+        output: 'field', setting: field,
+      }),
+    };
+
+    return Number.isSafeInteger(fieldOverride?.priority)
+      ? fieldOverride.priority
+      : field.priority || 0;
+  };
+
   const hasSubfields = setting =>
     Array.isArray(setting.fields) && setting.fields.length > 0;
 
@@ -92,14 +105,11 @@ const Form = ({
           .map((tab, t) => (
             <Tab key={tab.id || t} title={<Text>{ tab.title }</Text>}>
               <div className="fields oak-flex oak-flex-col oak-gap-4">
-                { tab
-                  .fields
-                  .concat(
-                    (component.settings?.fields || [])
-                      .filter(field => (tab.id === 'general' && !field.tab) ||
-                        field.tab === tab.id)
-                  )
-                  .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+                { (component.settings?.fields || [])
+                  .filter(field => (tab.id === 'general' && !field.tab) ||
+                    field.tab === tab.id)
+                  .concat(tab.fields)
+                  .sort((a, b) => getFieldPriority(b) - getFieldPriority(a))
                   .filter(f =>
                     !f.condition ||
                     f.condition(state.element, { component, builder })

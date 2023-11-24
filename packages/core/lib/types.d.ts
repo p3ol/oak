@@ -100,6 +100,7 @@ export declare interface SettingOverrideObject {
   default?: any;
   displayable?: boolean;
   valueType?: string;
+  priority?: number;
   fields?: Array<ComponentSettingsFieldObject>;
   props?: object;
   condition: (element: Element | ElementObject, opts?: {
@@ -120,6 +121,7 @@ export declare class SettingOverride {
   default: any;
   displayable: boolean;
   valueType: string;
+  priority: number;
   fields: Array<ComponentSettingsField>;
   props: object;
   condition: (element: Element | ElementObject, opts?: {

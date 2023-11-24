@@ -8,11 +8,24 @@ import Property from './Property';
 const DisplayableSettings = ({ className, element, component, override }) => {
   const { builder } = useBuilder();
 
+  const getSettingPriority = setting => {
+    const fieldOverride = {
+      ...builder.getOverride('setting', element.type, { setting }),
+      ...builder.getOverride('component', element.type, {
+        output: 'field', setting,
+      }),
+    };
+
+    return Number.isSafeInteger(fieldOverride?.priority)
+      ? fieldOverride.priority
+      : setting.priority || 0;
+  };
+
   const displayableSettings = useMemo(() => (
     builder
       .getComponentDisplayableSettings(element, { component })
       .filter(s => !s.condition || s.condition(element))
-      .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+      .sort((a, b) => getSettingPriority(b) - getSettingPriority(a))
   ), [element, component]);
 
   if (displayableSettings.length <= 0) {

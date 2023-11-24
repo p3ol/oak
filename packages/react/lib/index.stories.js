@@ -167,6 +167,13 @@ export const withMultipleCustomSettings = () => {
             fields: [{
               key: 'headingLevel',
               options: ['t1', 't2', 't3', 't4', 't5', 't6'],
+              priority: 3,
+            }, {
+              key: 'settings.foo',
+              priority: 1,
+            }, {
+              key: 'settings.bar',
+              priority: 2,
             }],
           }, {
             id: 'classNameOverride',
