@@ -43,7 +43,7 @@
     "@ckeditor/ckeditor5-theme-lark": "40.1.0",
     "@ckeditor/ckeditor5-typing": "40.1.0",
     "@ckeditor/ckeditor5-ui": "40.1.0",
-    "@ckeditor/ckeditor5-react": "6.1.0",
+    "@ckeditor/ckeditor5-react": "6.2.0",
     "@junipero/core": "3.4.1",
     "@junipero/tailwind-plugin": "3.3.0",
     "@junipero/theme": "3.4.0",
