@@ -1,5 +1,4 @@
 import { omit } from '@junipero/core';
-import { mergeDeep } from '@junipero/react';
 
 import { ComponentOverride, FieldOverride, SettingOverride } from '../types';
 import Emitter from '../Emitter';
