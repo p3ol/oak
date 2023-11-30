@@ -254,3 +254,38 @@ export const disallowSomeChildren = () => {
     </div>
   );
 };
+
+export const withMergeOverrides = () => {
+
+  return (
+    <>
+      <Builder
+        addons={[baseAddon(), {
+
+          overrides: [{
+            id: 'titleOverride',
+            type: 'component',
+            targets: ['title'],
+            fields: [{
+              key: 'headingLevel',
+              options: ['t1', 't2', 't3', 't4', 't5', 't6'],
+              priority: 3,
+            }],
+          }, {
+            id: 'constructOverride',
+            type: 'component',
+            targets: ['title'],
+            construct: () => ({
+              type: 'title',
+              headingLevel: 't4',
+              content: 'This is an updated title',
+            }),
+          }],
+        }]}
+        value={baseContent}
+        options={{ debug: true, overrideStrategy: 'merge' }}
+        onChange={action('change')}
+      />
+    </>
+  );
+};

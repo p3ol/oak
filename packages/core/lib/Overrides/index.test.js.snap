@@ -42,3 +42,16 @@ ComponentOverride {
   "type": "component",
 }
 `;
+
+exports[`Overrides should alow to merge overrides 1`] = `
+{
+  "construct": [Function],
+  "fields": [
+    {},
+  ],
+  "targets": [
+    "foo",
+  ],
+  "type": "component",
+}
+`;

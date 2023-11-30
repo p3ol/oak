@@ -3,7 +3,7 @@ export class BuilderOptions {
     this.debug = props.debug || false;
     this.generateId = props.generateId;
     this.historyLimit = props.historyLimit || 20;
-    this.overrideStrategy = 'last';
+    this.overrideStrategy = props.overrideStrategy || 'last';
   }
 }
 

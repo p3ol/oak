@@ -1,4 +1,5 @@
 import { omit } from '@junipero/core';
+import { mergeDeep } from '@junipero/react';
 
 import { ComponentOverride, FieldOverride, SettingOverride } from '../types';
 import Emitter from '../Emitter';
@@ -67,7 +68,7 @@ export default class Overrides extends Emitter {
         switch (output) {
           case 'field': {
             const newComponentField = override?.fields
-              .find(f => f.key === setting?.key);
+              ?.find(f => f.key === setting?.key);
 
             return Object.assign(
               { type: newComponentField?.type || setting.type },
@@ -81,7 +82,7 @@ export default class Overrides extends Emitter {
         }
       }
       case 'setting':
-        return overrides.find(o => o.key === setting?.key);
+        return overrides?.find(o => o.key === setting?.key);
       default:
         return strategy === 'merge' ? this.merge(overrides) : overrides[0];
     }
@@ -105,6 +106,11 @@ export default class Overrides extends Emitter {
 
   merge (overrides) {
     return overrides.reduce((res, override) => {
+      Object.keys(override).forEach(key => {
+        if (override[key] === null || override[key] === undefined) {
+          delete override[key];
+        }
+      });
       Object.assign(res, override);
 
       return res;
