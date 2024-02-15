@@ -98,6 +98,7 @@ export declare interface SettingOverrideObject {
   key: string | string[] | ComponentSettingsFieldKeyTuple[];
   id?: string;
   label?: string | GetTextCallback;
+  info?: string | GetTextCallback;
   description?: string | GetTextCallback;
   placeholder?: string | GetTextCallback;
   default?: any;
@@ -119,6 +120,7 @@ export declare class SettingOverride {
   key: string | string[] | ComponentSettingsFieldKeyTuple[];
   id: string;
   label: string | GetTextCallback;
+  info: string | GetTextCallback;
   description: string | GetTextCallback;
   placeholder: string;
   default: any;
@@ -145,6 +147,7 @@ export declare interface ComponentSettingsFieldObject {
   tab?: string;
   id?: string;
   label?: string | GetTextCallback;
+  info?: string | GetTextCallback;
   description?: string | GetTextCallback;
   placeholder?: string | GetTextCallback;
   default?: any;
@@ -172,6 +175,7 @@ export declare class ComponentSettingsField {
   placeholder: string | GetTextCallback;
   default: any;
   label: string | GetTextCallback;
+  info: string | GetTextCallback;
   description: string | GetTextCallback;
   displayable: boolean;
   valueType: string;
