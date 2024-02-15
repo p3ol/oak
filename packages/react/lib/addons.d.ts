@@ -28,9 +28,3 @@ export declare function baseComponents(): Array<ComponentObject>;
 export declare function coreComponentsGroups(): ComponentsGroupObject;
 
 export declare function baseAddon(): AddonObject;
-export {
-  AddonObject,
-  ComponentObject,
-  ComponentsGroupObject,
-  FieldObject,
-};

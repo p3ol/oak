@@ -1,14 +1,12 @@
-import { ReactNode, MutableRefObject, ComponentPropsWithoutRef } from 'react';
+import { ReactNode, ComponentPropsWithoutRef } from 'react';
 import {
   ComponentObject,
   ElementObject,
-  Element,
   Component,
 } from '@oakjs/core';
 
 declare interface RowProps extends ComponentPropsWithoutRef<any> {
-  className?: string;
-  element: ElementObject | Element;
+  element: ElementObject;
   parent: Array<ElementObject>;
   component?: ComponentObject | Component;
   parentComponent?: ComponentObject | Component;

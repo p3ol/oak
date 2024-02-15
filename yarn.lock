@@ -3267,6 +3267,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@junipero/hooks@npm:3.4.1":
+  version: 3.4.1
+  resolution: "@junipero/hooks@npm:3.4.1"
+  dependencies:
+    "@babel/runtime-corejs3": "npm:7.23.2"
+    core-js: "npm:3.33.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 10/2d3a97ce351e6c04a1cfe87d6d273aa88213249c65e05bcb1b0be847cb3ed7e61da3d5cb2f55ed55979e0d73570a3526afa84f75fdc201f2d18394d593d9a4c6
+  languageName: node
+  linkType: hard
+
 "@junipero/react@npm:3.4.2":
   version: 3.4.2
   resolution: "@junipero/react@npm:3.4.2"
@@ -4015,6 +4027,7 @@ __metadata:
   dependencies:
     "@babel/runtime-corejs3": "npm:7.23.4"
     "@floating-ui/react": "npm:0.26.2"
+    "@junipero/hooks": "npm:3.4.1"
     "@junipero/react": "npm:3.4.2"
     "@junipero/transitions": "npm:3.4.1"
     core-js: "npm:3.33.3"

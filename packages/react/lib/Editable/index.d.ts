@@ -6,11 +6,11 @@ import {
 } from 'react';
 import {
   ElementObject,
-  Element,
   ComponentObject,
   Component,
   ComponentSettingsField,
-  ComponentSettingGroupObject,
+  ComponentSettingsTab,
+  ComponentSettingsTabObject,
   ComponentSettingsFieldObject,
   ComponentSettingsFieldKeyTuple,
   FieldOverrideObject,
@@ -19,7 +19,7 @@ import {
 
 export declare interface EditableProps extends ComponentPropsWithRef<any> {
   children?: ReactNode | JSX.Element;
-  element?: ElementObject | Element;
+  element?: ElementObject;
   component?: ComponentObject | Component;
   onToggle?(props: { opened: boolean });
 }
@@ -30,7 +30,7 @@ export default Editable;
 
 export declare interface FormProps extends ComponentPropsWithoutRef<any> {
   placement?: string;
-  element?: ElementObject | Element;
+  element?: ElementObject;
   component?: ComponentObject | Component;
   className?: string;
   onSave?(): void;
@@ -41,10 +41,11 @@ export declare interface FormProps extends ComponentPropsWithoutRef<any> {
 export declare function Form(props: FormProps): ReactNode | JSX.Element;
 
 export declare interface FieldProps extends ComponentPropsWithoutRef<any> {
-  setting?: ComponentSettingGroupObject |
+  setting?: ComponentSettingsTab |
+    ComponentSettingsTabObject |
     ComponentSettingsField |
     ComponentSettingsFieldObject;
-  element?: ElementObject | Element;
+  element?: ElementObject;
   component?: ComponentObject | Component;
   overrides?: FieldOverrideObject | FieldOverride;
   onChange?(

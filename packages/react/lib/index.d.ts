@@ -14,6 +14,8 @@ export {
   useTimeout,
 } from '@junipero/react';
 
+export * from '@oakjs/core/lib/types';
+
 export {
   default as Builder,
   BuilderProps,
@@ -34,8 +36,8 @@ export {
   EditableProps,
   Form,
   FormProps,
-  Field,
-  FieldProps,
+  Field as EditableField,
+  FieldProps as EditableFieldProps,
 } from './Editable';
 export {
   default as Element,

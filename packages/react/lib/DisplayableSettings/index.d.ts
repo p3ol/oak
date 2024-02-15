@@ -1,7 +1,6 @@
 import { ReactNode, ComponentPropsWithoutRef } from 'react';
 import {
   ElementObject,
-  Element as CoreElement,
   ComponentObject,
   Component,
   ComponentOverride,
@@ -10,8 +9,7 @@ import {
 
 export declare interface DisplayableSettingsProps
   extends ComponentPropsWithoutRef<any> {
-  className?: string;
-  element?: ElementObject | CoreElement;
+  element?: ElementObject;
   component?: ComponentObject | Component;
   override?: ComponentOverrideObject | ComponentOverride;
 }

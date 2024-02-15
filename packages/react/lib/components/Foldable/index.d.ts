@@ -1,14 +1,12 @@
-import { ReactNode, MutableRefObject, ComponentPropsWithoutRef } from 'react';
+import { ReactNode, ComponentPropsWithoutRef } from 'react';
 import {
   ComponentObject,
   ElementObject,
-  Element,
   Component,
 } from '@oakjs/core';
 
 declare interface FoldableProps extends ComponentPropsWithoutRef<any> {
-  className?: string;
-  element: ElementObject | Element;
+  element: ElementObject;
   component?: ComponentObject | Component;
   parentComponent?: ComponentObject | Component;
   parent?: Array<ElementObject>;

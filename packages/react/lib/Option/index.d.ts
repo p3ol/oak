@@ -3,7 +3,6 @@ import {
   Builder,
   Component,
   ComponentObject,
-  Element,
   ElementObject,
 } from '@oakjs/core';
 
@@ -18,10 +17,10 @@ export declare interface OptionObject {
   render?(props: {
     option: OptionObject;
     className: string;
-    element: ElementObject | Element;
+    element: ElementObject;
     elementInnerRef: MutableRefObject<any>;
     editableRef: MutableRefObject<any>;
-    parent: Array<ElementObject | Element>;
+    parent: Array<ElementObject>;
     component: ComponentObject | Component;
     builder: Builder;
     index: number;
