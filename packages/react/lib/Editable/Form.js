@@ -6,6 +6,7 @@ import {
   Label,
   Abstract,
   FieldControl,
+  Tooltip,
   mockState,
   cloneDeep,
   classNames,
@@ -13,6 +14,7 @@ import {
 
 import { useBuilder } from '../hooks';
 import Text from '../Text';
+import Icon from '../Icon';
 import Field from './Field';
 
 const Form = ({
@@ -118,7 +120,18 @@ const Form = ({
                     <div className="field" key={i}>
                       <FieldControl>
                         { setting.label && (
-                          <Label><Text>{ setting.label }</Text></Label>
+                          <Label
+                            className="oak-flex oak-items-center oak-gap-2"
+                          >
+                            <Text>{ setting.label }</Text>
+                            { setting.info && (
+                              <Tooltip text={<Text>{ setting.info }</Text>}>
+                                <Icon className="!oak-text-[18px]">
+                                  info_circle
+                                </Icon>
+                              </Tooltip>
+                            ) }
+                          </Label>
                         ) }
                         { hasSubfields(setting) ? (
                           <div
@@ -130,8 +143,20 @@ const Form = ({
                               <div className="field" key={n}>
                                 <FieldControl>
                                   { f.label && (
-                                    <Label className="field-label">
+                                    <Label
+                                      className={classNames(
+                                        'field-label oak-flex oak-items-center',
+                                        'oak-gap-1'
+                                      )}
+                                    >
                                       <Text>{ f.label }</Text>
+                                      { f.info && (
+                                        <Tooltip text={<Text>{ f.info }</Text>}>
+                                          <Icon className="!oak-text-[14px]">
+                                            info_circle
+                                          </Icon>
+                                        </Tooltip>
+                                      ) }
                                     </Label>
                                   ) }
                                   <Field
