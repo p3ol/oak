@@ -155,7 +155,7 @@ export class ComponentSettingsField {
 
   constructor (props) {
     if (!props.fields && !props.type) {
-      throw new Error('ComponentSettingField must have a type (or be ' +
+      throw new Error('ComponentSettingsField must have a type (or be ' +
         'a group of fields)');
     }
 

@@ -1,4 +1,5 @@
 import { Builder } from './Builder';
+import { Logger } from './Logger';
 
 export declare interface GetTextCallback {
   (key: string | GetTextCallback, def?: any): any;
@@ -8,6 +9,8 @@ export declare type ElementId = string | number;
 
 export declare interface ElementObject {
   id: ElementId;
+  type: string;
+  [_: string]: any
 }
 
 export declare class BuilderOptions {
@@ -15,6 +18,58 @@ export declare class BuilderOptions {
   historyLimit: number;
   overrideStrategy: 'last' | 'merge';
   generateId: () => string | number;
+}
+
+export declare interface BuilderObject {
+  constructor(opts?: {
+    addons?: Array<AddonObject>,
+    content?: Array<ElementObject>,
+    options?: BuilderOptions,
+  });
+
+  options?: BuilderOptions;
+  logger?: Logger;
+
+  subscribe(cb: Function): Function;
+  setAddons(addons: Array<AddonObject>): void;
+  addAddon(addon: AddonObject): void;
+  removeAddon(addon: AddonObject): void;
+  getAvailableComponents(): Array<ComponentsGroup>;
+  getComponent(type: string): Component;
+  getComponentDisplayableSettings(component: Component): Array<any>;
+  getAvailableFields(): Array<Field>;
+  getField(type: string): Field;
+  getOverride(
+    type: string,
+    target: Component | Field,
+    options?: {
+      output?: 'field';
+      field?: Field;
+    },
+  ): ComponentOverride | FieldOverride;
+  mergeOverrides(overrides: Array<ComponentOverride | FieldOverride>): void;
+  getContent(): Array<ElementObject>;
+  setContent(content: Array<ElementObject>, options?: { emit: boolean }): void;
+  createElement(type: string, opts: {
+    component?: Component;
+    override?: ComponentOverride;
+    baseElement?: object;
+    resetIds?: boolean;
+  }): object;
+  addElement(element: ElementObject, options?: {
+    component?: Component;
+    parent?: Array<ElementObject>;
+    position?: 'before' | 'after';
+  }): Element;
+  addElements(elements: Array<ElementObject>, options?: {
+    parent?: Array<ElementObject>;
+    position?: 'before' | 'after';
+  }): Array<ElementObject>;
+  canUndo(): boolean;
+  canRedo(): boolean;
+  undo(): void;
+  redo(): void;
+  resetHistory(): void;
 }
 
 export declare interface ComponentOptionObject {
@@ -37,7 +92,7 @@ export declare interface ComponentSettingsFieldKeyTuple {
 export declare interface FieldObject {
   type: string;
   props?: object;
-  render?: () => any;
+  render?: (props: any) => any;
 }
 
 export declare class Field {
@@ -50,14 +105,14 @@ export declare class Field {
 }
 
 export declare interface ComponentOverrideObject {
-  id: string;
-  type: string;
-  targets: Array<string>;
-  fields: Array<any>;
-  render?: () => any;
+  id?: string;
+  type?: string;
+  targets?: Array<string>;
+  fields?: Array<any>;
+  render?: (props?: any) => any;
   sanitize?: () => any;
-  construct?: () => any;
-  duplicate?: () => any;
+  construct?: ({ builder }: {builder?: BuilderObject} = {}) => ComponentObject;
+  duplicate?: (elmt?: ComponentObject) => ComponentObject;
 }
 
 export declare class ComponentOverride {
@@ -66,10 +121,10 @@ export declare class ComponentOverride {
   type: string;
   targets: Array<string>;
   fields: Array<any>;
-  render: () => any;
+  render: (props?: any) => any;
   sanitize: () => any;
-  construct: () => any;
-  duplicate: () => any;
+  construct: ({ builder }: {builder?: BuilderObject} = {}) => ComponentObject;
+  duplicate: (elmt?: ComponentObject) => ComponentObject;
 }
 
 export declare interface FieldOverrideObject {
@@ -130,20 +185,29 @@ export declare class SettingOverride {
   }) => boolean;
 }
 
-export declare interface ComponentSettingsFieldObject {
+export declare interface ComponentSettingsFieldOptionObject {
+  value: any;
+  title: string | GetTextCallback;
+}
+
+export declare interface ComponentSettingsFieldObject<
+  T = Array<ComponentSettingsFieldObject>
+> {
+  priority?: number;
   type: string;
   key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>;
   tab?: string;
   id?: string;
   label?: string | GetTextCallback;
   description?: string | GetTextCallback;
-  placeholder?: string;
+  placeholder?: string | GetTextCallback;
   default?: any;
+  options?: Array<ComponentSettingsFieldOptionObject> | any;
   displayable?: boolean;
   valueType?: string;
-  fields?: Array<ComponentSettingsFieldObject>;
+  fields?: T;
   props?: object;
-  condition: (element: Element | ElementObject, opts?: {
+  condition?: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
     builder: Builder;
   }) => boolean;
@@ -154,11 +218,12 @@ export declare class ComponentSettingsField {
     (field: ComponentSettingsField) => boolean;
 
   constructor(props: object);
+  priority: number;
   type: string;
   tab: string;
   id: string;
   key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>;
-  placeholder: string;
+  placeholder: string | GetTextCallback;
   default: any;
   label: string | GetTextCallback;
   description: string | GetTextCallback;
@@ -219,11 +284,11 @@ export declare class ComponentSettingsForm {
 }
 
 export declare interface ComponentObject {
-  type: string;
+  type?: string;
   id?: string;
   group?: string;
   icon?: any;
-  name?: string;
+  name?: string | GetTextCallback;
   hasCustomInnerContent?: boolean;
   draggable?: boolean;
   droppable?: boolean;
@@ -232,10 +297,10 @@ export declare interface ComponentObject {
   options?: Array<ComponentOption | ComponentOptionObject>;
   settings?: ComponentSettingsForm | ComponentSettingsFormObject;
   disallow?: Array<string>;
-  render?: () => any;
+  render?: (props?: any) => any;
   sanitize?: () => any;
-  construct?: () => any;
-  duplicate?: () => any;
+  construct?: ({ builder }: {builder?: BuilderObject} = {}) => ComponentObject;
+  duplicate?: (elmt?: ComponentObject) => ComponentObject;
   getContainers?: () => Array<any>;
 }
 
@@ -294,8 +359,13 @@ export declare class TextsSheet {
   texts: object;
 }
 
+export declare interface ComponentTabOject {
+  id: string;
+  title: string | GetTextCallback;
+  components: Array<Component | ComponentObject>;
+}
 export declare interface AddonObject {
-  components?: Array<Component | ComponentObject>;
+  components?: Array<Component | ComponentObject | ComponentTabOject>;
   fields?: Array<Field | FieldObject>;
   texts?: Array<TextsSheet | TextsSheetObject>;
   overrides?: Array<

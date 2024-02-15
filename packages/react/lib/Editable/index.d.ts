@@ -9,10 +9,10 @@ import {
   Element,
   ComponentObject,
   Component,
-  ComponentSettingField,
+  ComponentSettingsField,
   ComponentSettingGroupObject,
-  ComponentSettingFieldObject,
-  ComponentSettingFieldKeyTuple,
+  ComponentSettingsFieldObject,
+  ComponentSettingsFieldKeyTuple,
   FieldOverrideObject,
   FieldOverride,
 } from '@oakjs/core';
@@ -42,17 +42,17 @@ export declare function Form(props: FormProps): ReactNode | JSX.Element;
 
 export declare interface FieldProps extends ComponentPropsWithoutRef<any> {
   setting?: ComponentSettingGroupObject |
-    ComponentSettingField |
-    ComponentSettingFieldObject;
+    ComponentSettingsField |
+    ComponentSettingsFieldObject;
   element?: ElementObject | Element;
   component?: ComponentObject | Component;
   overrides?: FieldOverrideObject | FieldOverride;
   onChange?(
-    key: string | ComponentSettingFieldKeyTuple,
+    key: string | ComponentSettingsFieldKeyTuple,
     field: { value: any; valid: boolean }
   ): void;
   onCustomChange?(
-    key: string | ComponentSettingFieldKeyTuple,
+    key: string | ComponentSettingsFieldKeyTuple,
     overrides: FieldOverrideObject | FieldOverride,
     field: { value: any; valid: boolean }
   ): void;
