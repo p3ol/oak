@@ -5,17 +5,16 @@
   ],
   "repository": "https://github.com/p3ol/oak.git",
   "scripts": {
-    "preinstall": "node scripts/check-package-manager.js",
-    "lerna": "./node_modules/.bin/lerna",
-    "changelog": "./node_modules/.bin/lerna-changelog",
-    "prepack": "npm run lint && npm run build && npm run test",
-    "lint": "./node_modules/.bin/eslint .",
-    "unlink-all": "./node_modules/.bin/lerna exec --parallel -- npm run unlink",
-    "link-all": "./node_modules/.bin/lerna exec --parallel -- npm run link",
-    "test": "BABEL_ENV=tests ./node_modules/.bin/jest",
-    "build": "./node_modules/.bin/lerna exec -- npm run build",
-    "storybook": "./node_modules/.bin/storybook",
-    "serve": "npm run storybook dev"
+    "lerna": "lerna",
+    "changelog": "lerna-changelog",
+    "prepack": "yarn lint && yarn build && yarn test",
+    "lint": "eslint --max-warnings=0 .",
+    "unlink-all": "lerna exec --parallel -- yarn unlink",
+    "link-all": "lerna exec --parallel -- yarn link",
+    "test": "BABEL_ENV=tests jest",
+    "build": "lerna exec -- npm run build",
+    "storybook": "storybook",
+    "serve": "yarn storybook dev"
   },
   "devDependencies": {
     "@babel/core": "7.23.3",
@@ -38,12 +37,12 @@
     "@ckeditor/ckeditor5-link": "40.1.0",
     "@ckeditor/ckeditor5-list": "40.1.0",
     "@ckeditor/ckeditor5-paragraph": "40.1.0",
+    "@ckeditor/ckeditor5-react": "6.2.0",
     "@ckeditor/ckeditor5-remove-format": "40.1.0",
     "@ckeditor/ckeditor5-table": "40.1.0",
     "@ckeditor/ckeditor5-theme-lark": "40.1.0",
     "@ckeditor/ckeditor5-typing": "40.1.0",
     "@ckeditor/ckeditor5-ui": "40.1.0",
-    "@ckeditor/ckeditor5-react": "6.2.0",
     "@junipero/core": "3.4.1",
     "@junipero/tailwind-plugin": "3.3.0",
     "@junipero/theme": "3.4.0",
@@ -100,7 +99,10 @@
     "storybook-dark-mode": "3.0.1",
     "style-loader": "3.3.3",
     "tailwindcss": "3.3.5",
+    "terser-webpack-plugin": "5.3.10",
+    "typescript": "5.3.3",
     "webpack": "5.89.0",
     "webpack-cli": "5.1.4"
-  }
+  },
+  "packageManager": "yarn@4.1.0"
 }
