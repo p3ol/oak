@@ -16,12 +16,12 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: 20
+          cache: yarn
       - name: Install deps
-        run: npm install
+        run: yarn install
       - name: Eslint check
-        run: npm run lint
+        run: yarn lint
   test:
     name: Unit tests
     runs-on: ubuntu-latest
@@ -31,14 +31,14 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: 20
+          cache: yarn
       - name: Install deps
-        run: npm install
+        run: yarn install
       - name: Build
-        run: npm run build
+        run: yarn build
       - name: Test
-        run: npm run test
+        run: yarn test
       - name: Codecov upload
         uses: codecov/codecov-action@v3.1.4
         with:
@@ -52,9 +52,9 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: 20
+          cache: yarn
       - name: Install deps
-        run: npm install
+        run: yarn install
       - name: Build
-        run: npm run build
+        run: yarn build
