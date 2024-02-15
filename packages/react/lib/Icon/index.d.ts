@@ -1,6 +1,6 @@
-import { ReactNode, ComponentPropsWithoutRef } from 'react';
+import { ReactNode, ComponentPropsWithRef, ForwardRefRenderFunction } from 'react';
 
-export declare interface IconProps extends ComponentPropsWithoutRef<any> {}
+export declare interface IconProps extends ComponentPropsWithRef<any> {}
 
 declare function Icon(props: IconProps): ReactNode | JSX.Element;
 
