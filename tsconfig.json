@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@oakjs/core": [
+        "./packages/core/lib"
+      ],
+      "@tests-utils": [
+        "./packages/oak/tests/utils.js"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/dist"
+  ]
+}

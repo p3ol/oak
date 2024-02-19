@@ -169,11 +169,11 @@ export default class Builder extends Emitter {
   }
 
   addElement (element, options) {
-    this.#store.addElement(element, options);
+    return this.#store.addElement(element, options);
   }
 
   addElements (elements, options) {
-    this.#store.addElements(elements, options);
+    return this.#store.addElements(elements, options);
   }
 
   getElement (id, options) {
@@ -181,19 +181,19 @@ export default class Builder extends Emitter {
   }
 
   removeElement (id, options) {
-    this.#store.removeElement(id, options);
+    return this.#store.removeElement(id, options);
   }
 
   setElement (id, updates, options) {
-    this.#store.setElement(id, updates, options);
+    return this.#store.setElement(id, updates, options);
   }
 
   moveElement (element, sibling, options) {
-    this.#store.moveElement(element, sibling, options);
+    return this.#store.moveElement(element, sibling, options);
   }
 
   duplicateElement (element, options) {
-    this.#store.duplicateElement(element, options);
+    return this.#store.duplicateElement(element, options);
   }
 
   getElementSettings (element, key, def) {
@@ -201,7 +201,7 @@ export default class Builder extends Emitter {
   }
 
   setElementSettings (element, key, value) {
-    this.#store.setElementSettings(element, key, value);
+    return this.#store.setElementSettings(element, key, value);
   }
 
   undo () {
@@ -239,7 +239,7 @@ export default class Builder extends Emitter {
   }
 
   setText (key, value) {
-    this.#texts.set(key, value);
+    return this.#texts.set(key, value);
   }
 
   getActiveTextSheet () {
@@ -247,7 +247,7 @@ export default class Builder extends Emitter {
   }
 
   setActiveTextSheet (id) {
-    this.#texts.setActiveSheet(id);
+    return this.#texts.setActiveSheet(id);
   }
 
   getAvailableSettings () {

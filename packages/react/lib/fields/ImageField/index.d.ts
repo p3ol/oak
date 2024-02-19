@@ -1,4 +1,3 @@
-import { ComponentObject, ElementObject, Element } from '@oakjs/core';
 import { ReactNode, ComponentPropsWithoutRef } from 'react';
 
 export declare interface ImageFieldValue {
@@ -8,10 +7,9 @@ export declare interface ImageFieldValue {
 }
 
 declare interface ImageFieldProps extends ComponentPropsWithoutRef<any> {
-  className?: string;
   value?: ImageFieldValue;
   iconOnly?: boolean;
-  accept?: Array<'image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'>;
+  accept?: ('image/jpeg' | 'image/jpg' | 'image/png' | 'image/svg+xml')[];
   onChange?(field: { value: ImageFieldValue, valid: boolean }): void;
 }
 

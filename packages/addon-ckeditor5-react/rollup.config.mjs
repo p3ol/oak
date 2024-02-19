@@ -7,6 +7,7 @@ import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import terser from '@rollup/plugin-terser';
 import tailwindcss from 'tailwindcss';
+import { dts } from 'rollup-plugin-dts';
 
 const input = './lib/index.js';
 const defaultOutput = './dist';
@@ -111,5 +112,10 @@ export default [
 
       warn(warning);
     },
+  },
+  {
+    input: './lib/index.d.ts',
+    output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
+    plugins: [dts()],
   },
 ];

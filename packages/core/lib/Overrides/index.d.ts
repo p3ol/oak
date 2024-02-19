@@ -27,7 +27,7 @@ export declare class Overrides extends Emitter {
    * Example:
    * this.get('component', 'title', {
    *   output: 'field',
-   *   setting: new ComponentSettingField({
+   *   setting: new ComponentSettingsField({
    *     key: 'content',
    *     type: 'textarea',
    *   }),

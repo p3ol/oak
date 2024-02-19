@@ -2,12 +2,13 @@
   "name": "@oakjs/addon-ckeditor5-react",
   "version": "3.4.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/oak-addon-ckeditor-react.cjs.js",
+  "main": "dist/oak-addon-ckeditor.cjs.js",
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "esnext": "src/index.js",
-  "unpkg": "dist/oak-addon-ckeditor-react.min.js",
-  "cdn": "dist/oak-addon-ckeditor-react.min.js",
+  "unpkg": "dist/oak-addon-ckeditor.min.js",
+  "cdn": "dist/oak-addon-ckeditor.min.js",
+  "types": "dist/oak-addon-ckeditor.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",
@@ -28,7 +29,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.23.4",
+    "@babel/runtime-corejs3": "7.23.9",
     "core-js": "3.33.3"
   },
   "scripts": {

@@ -1,11 +1,6 @@
-import { ElementObject, Element as CoreElement } from '@oakjs/core';
-import { ReactNode, ComponentPropsWithoutRef } from 'react';
+import { ReactNode, ComponentPropsWithRef, ForwardRefRenderFunction } from 'react';
 
-export declare interface IconProps extends ComponentPropsWithoutRef<any> {
-  className?: string;
-  children?: ReactNode | JSX.Element;
-  [key: string]: any;
-}
+export declare interface IconProps extends ComponentPropsWithRef<any> {}
 
 declare function Icon(props: IconProps): ReactNode | JSX.Element;
 

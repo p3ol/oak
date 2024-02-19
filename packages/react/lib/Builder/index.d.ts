@@ -8,7 +8,6 @@ import {
   AddonObject,
   Builder as CoreBuilder,
   BuilderOptions,
-  Element as CoreElement,
   ElementObject,
   ComponentSettingsField,
   ComponentSettingsFieldObject,
@@ -42,8 +41,6 @@ export declare interface BuilderProps extends ComponentPropsWithRef<any> {
   addons: Array<AddonObject>;
   bottomHistoryButtonsContainer?: string | Element | DocumentFragment;
   bottomHistoryButtonsEnabled?: boolean;
-  children?: ReactNode | JSX.Element;
-  className?: string;
   defaultValue?: Array<ElementObject>;
   historyEnabled?: boolean;
   options?: BuilderOptions;
@@ -54,7 +51,7 @@ export declare interface BuilderProps extends ComponentPropsWithRef<any> {
   [key: string]: any;
   onChange?(content: Array<ElementObject>): void;
   onImageUpload?(event: FormEvent, opts: {
-    element?: ElementObject | CoreElement;
+    element?: ElementObject;
     setting?: ComponentSettingsFieldObject | ComponentSettingsField;
   }): Promise<ImageUploadCallbackResult>;
   ref?: MutableRefObject<BuilderRef>;

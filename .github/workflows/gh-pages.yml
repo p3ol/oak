@@ -25,14 +25,14 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: 20
+          cache: yarn
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Install and build
         run: |
-          npm install
-          npm run storybook build
+          yarn install
+          yarn storybook build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
