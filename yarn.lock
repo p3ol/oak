@@ -3806,7 +3806,7 @@ __metadata:
   resolution: "@oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react"
   dependencies:
     "@babel/runtime-corejs3": "npm:7.23.9"
-    core-js: "npm:3.33.3"
+    core-js: "npm:3.36.0"
   peerDependencies:
     "@ckeditor/ckeditor5-react": ^6.0.0
     "@oakjs/ckeditor5-build-custom": ^3.0.0
@@ -3821,7 +3821,7 @@ __metadata:
   resolution: "@oakjs/addon-remirror@workspace:packages/addon-remirror"
   dependencies:
     "@babel/runtime-corejs3": "npm:7.23.9"
-    core-js: "npm:3.33.3"
+    core-js: "npm:3.36.0"
   peerDependencies:
     "@oakjs/react": ^3.0.0
     "@remirror/pm": ^2.0.0
@@ -3837,7 +3837,7 @@ __metadata:
   resolution: "@oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom"
   dependencies:
     "@babel/runtime-corejs3": "npm:7.23.9"
-    core-js: "npm:3.33.3"
+    core-js: "npm:3.36.0"
   peerDependencies:
     "@oakjs/react": ^3.0.0
     react: ^18.0.0
@@ -3851,7 +3851,7 @@ __metadata:
   dependencies:
     "@babel/runtime-corejs3": "npm:7.23.9"
     "@junipero/core": "npm:3.4.1"
-    core-js: "npm:3.33.3"
+    core-js: "npm:3.36.0"
     uuid: "npm:9.0.1"
   languageName: unknown
   linkType: soft
@@ -3865,7 +3865,7 @@ __metadata:
     "@junipero/hooks": "npm:3.4.1"
     "@junipero/react": "npm:3.4.2"
     "@junipero/transitions": "npm:3.4.1"
-    core-js: "npm:3.33.3"
+    core-js: "npm:3.36.0"
     uuid: "npm:9.0.1"
   peerDependencies:
     react: ^18.0.0
@@ -10508,10 +10508,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.33.3":
-  version: 3.33.3
-  resolution: "core-js@npm:3.33.3"
-  checksum: 10/77b4c9abaf22ae9c60966121b4b2a4a388cebd067d4cf6ae0f22762b2e8060f301eaacebb781e598ba5f43fe2e53fc88489b013faefdfcecadbf12e242263a50
+"core-js@npm:3.36.0":
+  version: 3.36.0
+  resolution: "core-js@npm:3.36.0"
+  checksum: 10/896326c6391c1607dc645293c214cd31c6c535d4a77a88b15fc29e787199f9b06dc15986ddfbc798335bf7a7afd1e92152c94aa5a974790a7f97a98121774302
   languageName: node
   linkType: hard
 
