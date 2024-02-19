@@ -80,7 +80,7 @@
     "jest-css-modules-transform": "4.4.2",
     "jest-environment-jsdom": "29.7.0",
     "jest-transform-stub": "2.0.0",
-    "lerna": "7.4.2",
+    "lerna": "8.1.2",
     "lerna-changelog": "2.2.0",
     "postcss": "8.4.31",
     "postcss-loader": "8.1.0",
