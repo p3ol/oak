@@ -94,7 +94,7 @@
     "rollup-plugin-dts": "6.1.0",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.69.5",
-    "sass-loader": "13.3.2",
+    "sass-loader": "13.3.3",
     "storybook": "7.6.16",
     "storybook-dark-mode": "3.0.3",
     "style-loader": "3.3.3",
