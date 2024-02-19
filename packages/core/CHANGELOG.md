@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/p3ol/oak/compare/v3.4.0...v3.5.0) (2024-02-19)
+
+
+### Bug Fixes
+
+* **core:** fix merge overrides options behavior ([3f1cf61](https://github.com/p3ol/oak/commit/3f1cf617102b22c0cb944c0c7f33c275c59bfe76))
+* **deps:** update poool junipero monorepo ([a9428e7](https://github.com/p3ol/oak/commit/a9428e74d7f6887afcabc138d612f10e624c47ab))
+* fix a lot of type issues ([6ff92c0](https://github.com/p3ol/oak/commit/6ff92c02f9eaf2cf017b33a311c5504f500001e5))
+* **overrides:** remove useless import ([7ef6495](https://github.com/p3ol/oak/commit/7ef64956d9d613518709b092aad383e56d325e1c))
+
+
+### Features
+
+* **ckeditor:** add Ck editor package types and enhance other ([3de5ded](https://github.com/p3ol/oak/commit/3de5dede3a92d4a7bcea9ff548eb0897d4b6cf4f))
+* **core:** add info prop to field def ([c774acf](https://github.com/p3ol/oak/commit/c774acff04133c502b5ca82ac4925053ddfd836d))
+* **deps:** update dependency core-js to v3.36.0 ([ecd2143](https://github.com/p3ol/oak/commit/ecd214319d6e830ff0a9ef02b379cb444df139e7))
+
+
+
+
+
 # [3.4.0](https://github.com/p3ol/oak/compare/v3.3.0...v3.4.0) (2023-11-24)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/p3ol/oak/compare/v3.4.0...v3.5.0) (2024-02-19)
+
+
+### Features
+
+* **ckeditor:** add Ck editor package types and enhance other ([3de5ded](https://github.com/p3ol/oak/commit/3de5dede3a92d4a7bcea9ff548eb0897d4b6cf4f))
+* **deps:** update dependency core-js to v3.36.0 ([ecd2143](https://github.com/p3ol/oak/commit/ecd214319d6e830ff0a9ef02b379cb444df139e7))
+
+
+
+
+
 # [3.4.0](https://github.com/p3ol/oak/compare/v3.3.0...v3.4.0) (2023-11-24)
 
 

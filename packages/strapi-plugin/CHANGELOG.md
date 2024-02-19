@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/p3ol/oak/compare/v3.4.0...v3.5.0) (2024-02-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency remirror to v2.0.38 ([71583d5](https://github.com/p3ol/oak/commit/71583d56ec99308d81257e504116f0bfdfadef71))
+* **deps:** update dependency styled-components to v6.1.8 ([5354a57](https://github.com/p3ol/oak/commit/5354a574d633a79c08e43992911b40b5cda6accb))
+
+
+### Features
+
+* **deps:** update dependency @strapi/design-system to v1.14.1 ([9f0712c](https://github.com/p3ol/oak/commit/9f0712c64815bfeeadc709d9aaa2e4dafc8ae02e))
+
+
+
+
+
 # [3.4.0](https://github.com/p3ol/oak/compare/v3.3.0...v3.4.0) (2023-11-24)
 
 

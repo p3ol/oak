@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/p3ol/oak/compare/v3.4.0...v3.5.0) (2024-02-19)
+
+
+### Bug Fixes
+
+* **core:** fix merge overrides options behavior ([3f1cf61](https://github.com/p3ol/oak/commit/3f1cf617102b22c0cb944c0c7f33c275c59bfe76))
+* **deps:** update dependency @floating-ui/react to v0.26.9 ([63ce76b](https://github.com/p3ol/oak/commit/63ce76bb171a882db513ad4ac1ab8fb1ff41346e))
+* **deps:** update poool junipero monorepo ([a9428e7](https://github.com/p3ol/oak/commit/a9428e74d7f6887afcabc138d612f10e624c47ab))
+* fix a lot of type issues ([6ff92c0](https://github.com/p3ol/oak/commit/6ff92c02f9eaf2cf017b33a311c5504f500001e5))
+* **react:** forward icon ref ([927e375](https://github.com/p3ol/oak/commit/927e37514be5c94f271718155a78ccc00cd43a1f))
+
+
+### Features
+
+* **ckeditor:** add Ck editor package types and enhance other ([3de5ded](https://github.com/p3ol/oak/commit/3de5dede3a92d4a7bcea9ff548eb0897d4b6cf4f))
+* **deps:** update dependency core-js to v3.36.0 ([ecd2143](https://github.com/p3ol/oak/commit/ecd214319d6e830ff0a9ef02b379cb444df139e7))
+* **react:** add info tooltip to fields ([ac38c5e](https://github.com/p3ol/oak/commit/ac38c5e85e4198895d20cdf96a1207e441d6716d))
+
+
+
+
+
 # [3.4.0](https://github.com/p3ol/oak/compare/v3.3.0...v3.4.0) (2023-11-24)
 
 
