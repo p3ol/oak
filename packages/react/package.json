@@ -30,9 +30,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.23.9",
-    "@floating-ui/react": "0.26.2",
+    "@floating-ui/react": "0.26.9",
     "@junipero/hooks": "3.4.1",
-    "@junipero/react": "3.4.2",
+    "@junipero/react": "3.4.10",
     "@junipero/transitions": "3.4.1",
     "core-js": "3.36.0",
     "uuid": "9.0.1"
