@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.23.9",
-    "core-js": "3.33.3"
+    "core-js": "3.36.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

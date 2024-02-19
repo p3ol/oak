@@ -34,7 +34,7 @@
     "@junipero/hooks": "3.4.1",
     "@junipero/react": "3.4.2",
     "@junipero/transitions": "3.4.1",
-    "core-js": "3.33.3",
+    "core-js": "3.36.0",
     "uuid": "9.0.1"
   },
   "scripts": {
