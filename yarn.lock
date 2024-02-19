@@ -2625,7 +2625,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/react-dom@npm:^2.0.0, @floating-ui/react-dom@npm:^2.0.1, @floating-ui/react-dom@npm:^2.0.2, @floating-ui/react-dom@npm:^2.0.3, @floating-ui/react-dom@npm:^2.0.8":
+"@floating-ui/react-dom@npm:^2.0.0, @floating-ui/react-dom@npm:^2.0.1, @floating-ui/react-dom@npm:^2.0.2, @floating-ui/react-dom@npm:^2.0.3, @floating-ui/react-dom@npm:^2.0.5, @floating-ui/react-dom@npm:^2.0.8":
   version: 2.0.8
   resolution: "@floating-ui/react-dom@npm:2.0.8"
   dependencies:
@@ -2741,21 +2741,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@internationalized/date@npm:^3.5.0":
-  version: 3.5.1
-  resolution: "@internationalized/date@npm:3.5.1"
+"@internationalized/date@npm:^3.5.1":
+  version: 3.5.2
+  resolution: "@internationalized/date@npm:3.5.2"
   dependencies:
     "@swc/helpers": "npm:^0.5.0"
-  checksum: 10/38bce4ca2123dc4a3a7ef62ea44a86e0619764d42c3895ae5f0c4f17e7320dc945d61691dd0bc0f4dff6cda834113d1fe55253afebf4a46bf21e7b0e9f890096
+  checksum: 10/e37cdea4efa6214e72148f55f42782b3e8cd40bdca29705e52e6c490855f9ccbf38d0182632be005d9555463b50e8bf5fdb0d759cadff1baf7bae4fdaa28e96f
   languageName: node
   linkType: hard
 
-"@internationalized/number@npm:^3.3.0":
-  version: 3.5.0
-  resolution: "@internationalized/number@npm:3.5.0"
+"@internationalized/number@npm:^3.5.0":
+  version: 3.5.1
+  resolution: "@internationalized/number@npm:3.5.1"
   dependencies:
     "@swc/helpers": "npm:^0.5.0"
-  checksum: 10/8272b5da8afd4e1379767765f9ef24283e7ccb7c077646ded17fe7de11d72d2fd8f6e41f4ea21f101d084133f670059f062c3929ff18cf171f8f768151502bf5
+  checksum: 10/4ad68d98285a18a910d19455a0fa9c3960a919a139f0b01d2d589bfda1a2ebb8378b8c912e17c0d82cf756e7b3f48b0bff8a6decef1644c6c2f894da4e1e7c79
   languageName: node
   linkType: hard
 
@@ -3885,7 +3885,7 @@ __metadata:
     "@oakjs/theme": "npm:^3.4.0"
     "@remirror/pm": "npm:2.0.8"
     "@remirror/react": "npm:2.0.35"
-    "@strapi/design-system": "npm:1.13.1"
+    "@strapi/design-system": "npm:1.14.1"
     remirror: "npm:2.0.37"
     styled-components: "npm:6.1.1"
   peerDependencies:
@@ -7165,19 +7165,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/design-system@npm:1.13.1":
-  version: 1.13.1
-  resolution: "@strapi/design-system@npm:1.13.1"
+"@strapi/design-system@npm:1.14.1":
+  version: 1.14.1
+  resolution: "@strapi/design-system@npm:1.14.1"
   dependencies:
     "@codemirror/lang-json": "npm:^6.0.1"
-    "@floating-ui/react-dom": "npm:^2.0.2"
-    "@internationalized/date": "npm:^3.5.0"
-    "@internationalized/number": "npm:^3.3.0"
+    "@floating-ui/react-dom": "npm:^2.0.5"
+    "@internationalized/date": "npm:^3.5.1"
+    "@internationalized/number": "npm:^3.5.0"
     "@radix-ui/react-dismissable-layer": "npm:^1.0.5"
     "@radix-ui/react-dropdown-menu": "npm:^2.0.6"
     "@radix-ui/react-focus-scope": "npm:1.0.4"
-    "@strapi/ui-primitives": "npm:^1.13.1"
-    "@uiw/react-codemirror": "npm:^4.21.20"
+    "@strapi/ui-primitives": "npm:^1.14.1"
+    "@uiw/react-codemirror": "npm:^4.21.21"
     aria-hidden: "npm:^1.2.3"
     compute-scroll-into-view: "npm:^3.1.0"
     prop-types: "npm:^15.8.1"
@@ -7188,11 +7188,11 @@ __metadata:
     react-dom: ^17.0.0 || ^18.0.0
     react-router-dom: ^5.2.0
     styled-components: ^5.2.1
-  checksum: 10/822ab75db1908f1646a20daa9f3b103fcfb69f73688f03a60857334c39f903ce76ec64703c2f433bebb1e71219e44da50a0193f16d1eef0187b0407d5a4897d7
+  checksum: 10/adf5f74b79575a3e501fa5536f8d3c49e97583b4fbead17f40dafe990d68bc0d1077ad50dee6791cacbb5483cabd246d02fea6a049eb2828c7f35159baa64fa3
   languageName: node
   linkType: hard
 
-"@strapi/ui-primitives@npm:^1.13.1":
+"@strapi/ui-primitives@npm:^1.14.1":
   version: 1.14.1
   resolution: "@strapi/ui-primitives@npm:1.14.1"
   dependencies:
@@ -8220,9 +8220,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uiw/codemirror-extensions-basic-setup@npm:4.21.21":
-  version: 4.21.21
-  resolution: "@uiw/codemirror-extensions-basic-setup@npm:4.21.21"
+"@uiw/codemirror-extensions-basic-setup@npm:4.21.22":
+  version: 4.21.22
+  resolution: "@uiw/codemirror-extensions-basic-setup@npm:4.21.22"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.0.0"
     "@codemirror/commands": "npm:^6.0.0"
@@ -8239,19 +8239,19 @@ __metadata:
     "@codemirror/search": ">=6.0.0"
     "@codemirror/state": ">=6.0.0"
     "@codemirror/view": ">=6.0.0"
-  checksum: 10/c5a307588031ad9ba4ffcc5660d7acd61ed62c9b7f4f2ad124d5fd11bb87e4fb1f2ef6b19da8dceeeba91bc1aee05900bac660c9f80c8db614dee4842447a769
+  checksum: 10/60ea9d53574cdc34febec0bee45a0415d96a1a3d1d5846bb51616fa77388a7646956e08427209a8c961c60877a22b218b8bf23f9ada162dca4039008717dcb7c
   languageName: node
   linkType: hard
 
-"@uiw/react-codemirror@npm:^4.21.20":
-  version: 4.21.21
-  resolution: "@uiw/react-codemirror@npm:4.21.21"
+"@uiw/react-codemirror@npm:^4.21.21":
+  version: 4.21.22
+  resolution: "@uiw/react-codemirror@npm:4.21.22"
   dependencies:
     "@babel/runtime": "npm:^7.18.6"
     "@codemirror/commands": "npm:^6.1.0"
     "@codemirror/state": "npm:^6.1.1"
     "@codemirror/theme-one-dark": "npm:^6.0.0"
-    "@uiw/codemirror-extensions-basic-setup": "npm:4.21.21"
+    "@uiw/codemirror-extensions-basic-setup": "npm:4.21.22"
     codemirror: "npm:^6.0.0"
   peerDependencies:
     "@babel/runtime": ">=7.11.0"
@@ -8261,7 +8261,7 @@ __metadata:
     codemirror: ">=6.0.0"
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 10/cbb11d0a32d672868ad73d80d345a0bc6f2318bf870f6f9f450ef9a05945768669db4776d69047c5ed3708839a9c5498c4cb3d5838a5359203294c5662a7b8c3
+  checksum: 10/13c9abd0a2bb816a2e05d311e6fd062fc1400f1e237b99438a184b4e847c83953fe3278e1117232890d5ad786ee1aba2df328ecd586597d6ac95385d756aa9ec
   languageName: node
   linkType: hard
 
