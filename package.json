@@ -98,7 +98,7 @@
     "storybook": "7.6.16",
     "storybook-dark-mode": "3.0.3",
     "style-loader": "3.3.3",
-    "tailwindcss": "3.3.5",
+    "tailwindcss": "3.4.1",
     "terser-webpack-plugin": "5.3.10",
     "typescript": "5.3.3",
     "webpack": "5.89.0",
