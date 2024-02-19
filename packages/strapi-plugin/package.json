@@ -32,7 +32,7 @@
     "@remirror/react": "2.0.35",
     "@strapi/design-system": "1.13.1",
     "remirror": "2.0.38",
-    "styled-components": "6.1.1"
+    "styled-components": "6.1.8"
   },
   "strapi": {
     "name": "oak",
