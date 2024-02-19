@@ -3886,7 +3886,7 @@ __metadata:
     "@remirror/pm": "npm:2.0.8"
     "@remirror/react": "npm:2.0.35"
     "@strapi/design-system": "npm:1.13.1"
-    remirror: "npm:2.0.37"
+    remirror: "npm:2.0.38"
     styled-components: "npm:6.1.1"
   peerDependencies:
     "@strapi/strapi": ^4.4.0
@@ -5771,7 +5771,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-tables@npm:^2.2.10, @remirror/extension-tables@npm:^2.3.1, @remirror/extension-tables@npm:^2.4.0":
+"@remirror/extension-tables@npm:^2.2.10, @remirror/extension-tables@npm:^2.3.1, @remirror/extension-tables@npm:^2.4.1":
   version: 2.4.1
   resolution: "@remirror/extension-tables@npm:2.4.1"
   dependencies:
@@ -19557,9 +19557,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remirror@npm:2.0.37":
-  version: 2.0.37
-  resolution: "remirror@npm:2.0.37"
+"remirror@npm:2.0.38":
+  version: 2.0.38
+  resolution: "remirror@npm:2.0.38"
   dependencies:
     "@babel/runtime": "npm:^7.22.3"
     "@remirror/core": "npm:^2.0.19"
@@ -19609,7 +19609,7 @@ __metadata:
     "@remirror/extension-strike": "npm:^2.0.13"
     "@remirror/extension-sub": "npm:^2.0.13"
     "@remirror/extension-sup": "npm:^2.0.13"
-    "@remirror/extension-tables": "npm:^2.4.0"
+    "@remirror/extension-tables": "npm:^2.4.1"
     "@remirror/extension-text": "npm:^2.0.13"
     "@remirror/extension-text-case": "npm:^2.0.13"
     "@remirror/extension-text-color": "npm:^2.0.15"
@@ -19637,7 +19637,7 @@ __metadata:
       optional: true
     prettier:
       optional: true
-  checksum: 10/debdd3fac94769a82daa1881680fe3b62c1739d3981191172e39f8da8f21d53854508e48c18bad1327cb05d679545f108344daef415eb7f03b40742def7edd06
+  checksum: 10/df6646ee6e6df51d3ad11a859382b6127768bd0d66d2e4d71ad90a2138403b2976e3717a8bea95978fef921d0c38cf9cabdeff0d5e1a8412b0e5cb75fc970f28
   languageName: node
   linkType: hard
 
@@ -20036,7 +20036,7 @@ __metadata:
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-popper: "npm:2.3.0"
-    remirror: "npm:2.0.37"
+    remirror: "npm:2.0.38"
     resolve-url-loader: "npm:5.0.0"
     rollup: "npm:4.12.0"
     rollup-plugin-dts: "npm:6.1.0"
