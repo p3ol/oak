@@ -88,7 +88,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-popper": "2.3.0",
-    "remirror": "2.0.37",
+    "remirror": "2.0.38",
     "resolve-url-loader": "5.0.0",
     "rollup": "4.12.0",
     "rollup-plugin-dts": "6.1.0",
