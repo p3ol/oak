@@ -8,8 +8,8 @@ export declare interface GetTextCallback {
 export declare type ElementId = string | number;
 
 export declare interface ElementObject {
-  id: ElementId;
-  type: string;
+  id?: ElementId;
+  type?: string;
   [_: string]: any
 }
 
@@ -57,7 +57,7 @@ export declare interface ComponentOverrideObject {
   type?: string;
   targets?: string[];
   fields?: ComponentSettingsFieldObject[];
-  construct(opts?: { builder?: Builder }): ElementObject;
+  construct?(opts?: { builder?: Builder }): ElementObject;
   render?(props?: any): any;
   sanitize?(): any;
   duplicate?(elmt?: ElementObject): ElementObject;
@@ -69,10 +69,10 @@ export declare class ComponentOverride {
   type: string;
   targets: string[];
   fields: ComponentSettingsField[];
-  construct(opts?: { builder?: Builder }): ElementObject;
+  construct?(opts?: { builder?: Builder }): ElementObject;
   render?(props?: any): any;
   sanitize?(): any;
-  duplicate?(elmt?: ElementObject): ComponentObject;
+  duplicate?(elmt?: ElementObject): ElementObject;
 }
 
 export declare interface FieldOverrideObject {
@@ -136,8 +136,13 @@ export declare class SettingOverride {
 }
 
 export declare interface ComponentSettingsFieldOptionObject {
-  value: any;
-  title: string | GetTextCallback;
+  value?: any;
+  title?: string | GetTextCallback;
+  imageTransformation?: {
+    width: number;
+    height: number;
+    [_: string]: any;
+  };
 }
 
 export declare interface ComponentSettingsFieldObject {
@@ -151,7 +156,9 @@ export declare interface ComponentSettingsFieldObject {
   description?: string | GetTextCallback;
   placeholder?: string | GetTextCallback;
   default?: any;
-  options?: ComponentSettingsFieldOptionObject[] | Record<string, any>[];
+  options?: ComponentSettingsFieldOptionObject |
+  ComponentSettingsFieldOptionObject[] |
+  Record<string, any>[];
   displayable?: boolean;
   valueType?: string;
   fields?: ComponentSettingsFieldObject[];
@@ -180,6 +187,7 @@ export declare class ComponentSettingsField {
   displayable: boolean;
   valueType: string;
   fields: ComponentSettingsField[];
+  options: ComponentSettingsFieldOptionObject | ComponentSettingsFieldOptionObject[];
   props: Record<string, any>;
   condition?(element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
@@ -196,6 +204,7 @@ export declare interface ComponentSettingsTabObject {
     component: Component | ComponentObject;
     builder: Builder;
   }): boolean;
+  options?: ComponentSettingsFieldOptionObject | ComponentSettingsFieldOptionObject[];
 }
 
 export declare class ComponentSettingsTab {
@@ -245,12 +254,14 @@ export declare interface ComponentObject {
   usable?: boolean;
   editable?: boolean;
   options?: (ComponentOption | ComponentOptionObject)[];
-  settings?: (ComponentSettingsForm | ComponentSettingsFormObject)[];
+  settings?: ComponentSettingsForm |
+    ComponentSettingsFormObject |
+    (ComponentSettingsForm | ComponentSettingsFormObject)[];
   disallow?: string[];
   render?(props?: any): any;
   sanitize?(): any;
-  construct?(opts?: { builder?: Builder }): ComponentObject;
-  duplicate?(elmt?: ComponentObject): ComponentObject;
+  construct?(opts?: { builder?: Builder }): ElementObject;
+  duplicate?(elmt?: ElementObject): ElementObject;
   getContainers?(element: ElementObject): ElementObject[];
 }
 

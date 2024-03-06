@@ -55,7 +55,7 @@ export {
 } from './Option';
 export {
   default as ReactText,
-  TextProps,
+  TextProps as ReactTextProps,
 } from './Text';
 export {
   default as DisplayableSettings,
