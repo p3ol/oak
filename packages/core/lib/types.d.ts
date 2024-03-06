@@ -14,10 +14,10 @@ export declare interface ElementObject {
 }
 
 export declare class BuilderOptions {
-  debug: boolean;
-  historyLimit: number;
-  overrideStrategy: 'last' | 'merge';
-  generateId(): string | number;
+  debug?: boolean;
+  historyLimit?: number;
+  overrideStrategy?: 'last' | 'merge';
+  generateId?(): string | number;
 }
 
 export declare interface ComponentOptionObject {
