@@ -8,7 +8,7 @@ export declare interface GetTextCallback {
 export declare type ElementId = string | number;
 
 export declare interface ElementObject {
-  id: ElementId;
+  id?: ElementId;
   type: string;
   [_: string]: any
 }
@@ -57,10 +57,10 @@ export declare interface ComponentOverrideObject {
   type?: string;
   targets?: string[];
   fields?: ComponentSettingsFieldObject[];
-  construct?(opts?: { builder?: Builder }): ComponentObject;
+  construct?(opts?: { builder?: Builder }): ElementObject;
   render?(props?: any): any;
   sanitize?(): any;
-  duplicate?(elmt?: ComponentObject): ComponentObject;
+  duplicate?(elmt?: ElementObject): ElementObject;
 }
 
 export declare class ComponentOverride {
@@ -69,10 +69,10 @@ export declare class ComponentOverride {
   type: string;
   targets: string[];
   fields: ComponentSettingsField[];
-  construct(opts?: { builder?: Builder }): ComponentObject;
+  construct(opts?: { builder?: Builder }): ElementObject;
   render?(props?: any): any;
   sanitize?(): any;
-  duplicate?(elmt?: ComponentObject): ComponentObject;
+  duplicate?(elmt?: ElementObject): ElementObject;
 }
 
 export declare interface FieldOverrideObject {
@@ -253,8 +253,8 @@ export declare interface ComponentObject {
   disallow?: string[];
   render?(props?: any): any;
   sanitize?(): any;
-  construct?(opts?: { builder?: Builder }): ComponentObject;
-  duplicate?(elmt?: ComponentObject): ComponentObject;
+  construct?(opts?: { builder?: Builder }): ElementObject;
+  duplicate?(elmt?: ElementObject): ElementObject;
   getContainers?(element: ElementObject): ElementObject[];
 }
 
