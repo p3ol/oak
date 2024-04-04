@@ -1,4 +1,4 @@
-import { OptionObject } from './Option';
+import { ComponentOptionObject } from '.';
 
-export declare function dragOption(): OptionObject;
-export declare function backgroundColorOption(): OptionObject;
+export declare function dragOption(): ComponentOptionObject;
+export declare function backgroundColorOption(): ComponentOptionObject;

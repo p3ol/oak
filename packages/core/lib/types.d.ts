@@ -14,10 +14,10 @@ export declare interface ElementObject {
 }
 
 export declare class BuilderOptions {
-  debug: boolean;
-  historyLimit: number;
-  overrideStrategy: 'last' | 'merge';
-  generateId(): string | number;
+  debug?: boolean;
+  historyLimit?: number;
+  overrideStrategy?: 'last' | 'merge';
+  generateId?(): string | number;
 }
 
 export declare interface ComponentOptionObject {
@@ -57,10 +57,10 @@ export declare interface ComponentOverrideObject {
   type?: string;
   targets?: string[];
   fields?: ComponentSettingsFieldObject[];
-  construct(opts?: { builder?: Builder }): ElementObject;
+  construct?(opts?: { builder?: Builder }): ComponentObject;
   render?(props?: any): any;
   sanitize?(): any;
-  duplicate?(elmt?: ElementObject): ElementObject;
+  duplicate?(elmt?: ComponentObject): ComponentObject;
 }
 
 export declare class ComponentOverride {
@@ -69,10 +69,10 @@ export declare class ComponentOverride {
   type: string;
   targets: string[];
   fields: ComponentSettingsField[];
-  construct(opts?: { builder?: Builder }): ElementObject;
+  construct(opts?: { builder?: Builder }): ComponentObject;
   render?(props?: any): any;
   sanitize?(): any;
-  duplicate?(elmt?: ElementObject): ComponentObject;
+  duplicate?(elmt?: ComponentObject): ComponentObject;
 }
 
 export declare interface FieldOverrideObject {
@@ -136,8 +136,12 @@ export declare class SettingOverride {
 }
 
 export declare interface ComponentSettingsFieldOptionObject {
-  value: any;
-  title: string | GetTextCallback;
+  value?: any;
+  title?: string | GetTextCallback;
+  imageTransformation?: {
+    width: number;
+    height: number;
+  };
 }
 
 export declare interface ComponentSettingsFieldObject {
@@ -214,7 +218,7 @@ export declare class ComponentSettingsTab {
 }
 
 export declare class ComponentSettingsFormObject {
-  title: string | GetTextCallback;
+  title?: string | GetTextCallback;
   floatingSettings?: Record<string, any>;
   defaults?: any;
   fields?: (
@@ -245,7 +249,7 @@ export declare interface ComponentObject {
   usable?: boolean;
   editable?: boolean;
   options?: (ComponentOption | ComponentOptionObject)[];
-  settings?: (ComponentSettingsForm | ComponentSettingsFormObject)[];
+  settings?: ComponentSettingsForm | ComponentSettingsFormObject;
   disallow?: string[];
   render?(props?: any): any;
   sanitize?(): any;
@@ -262,7 +266,7 @@ export declare class Component {
   id: string;
   group: string;
   icon: any;
-  name: string;
+  name: string | GetTextCallback;
   hasCustomInnerContent: boolean;
   draggable: boolean;
   droppable: boolean;
