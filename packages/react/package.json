@@ -29,12 +29,12 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.23.9",
-    "@floating-ui/react": "0.26.9",
+    "@babel/runtime-corejs3": "7.24.4",
+    "@floating-ui/react": "0.26.11",
     "@junipero/hooks": "3.4.11",
     "@junipero/react": "3.4.11",
     "@junipero/transitions": "3.4.11",
-    "core-js": "3.36.0",
+    "core-js": "3.36.1",
     "uuid": "9.0.1"
   },
   "scripts": {

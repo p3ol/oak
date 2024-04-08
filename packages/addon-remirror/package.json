@@ -29,8 +29,8 @@
     "remirror": "^2.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.23.9",
-    "core-js": "3.36.0"
+    "@babel/runtime-corejs3": "7.24.4",
+    "core-js": "3.36.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
