@@ -1,7 +1,39 @@
-import { ComponentSettingsTab, ComponentSettingsField } from '../types';
+import {
+  ComponentSettingsTab,
+  ComponentSettingsField,
+  ComponentSettingsTabObject,
+  ComponentSettingsFieldObject,
+} from '../types';
 import Emitter from '../Emitter';
+import Builder from '../Builder';
 
-export default class Settings extends Emitter {
+export declare class ISettings extends Emitter {
+  static TYPE_TAB: string;
+  static TYPE_SETTING: string;
+
+  static SETTINGS_TAB_GENERAL: string;
+  static SETTINGS_TAB_STYLING: string;
+  static SETTINGS_TAB_RESPONSIVE: string;
+
+  constructor(options?: { builder: Builder });
+
+  hasTab(id: string): boolean;
+  getTab(id: string): ComponentSettingsTab;
+
+  hasSetting(id: string, opts?: { tabId?: string }): boolean;
+  getSetting(id: string, opts?: { tabId?: string }): ComponentSettingsField;
+
+  add(
+    setting: ComponentSettingsTab |
+      ComponentSettingsTabObject |
+      ComponentSettingsField |
+      ComponentSettingsFieldObject
+  ): void;
+  remove(id: string): boolean;
+
+  all(): Array<ComponentSettingsTab | ComponentSettingsField>;
+}
+export default class Settings extends Emitter implements ISettings {
   static TYPE_TAB = 'tab';
   static TYPE_SETTING = 'setting';
 
@@ -12,27 +44,29 @@ export default class Settings extends Emitter {
   #builder = null;
   #tabs = null;
 
-  constructor ({ builder } = {}) {
+  constructor ({ builder }: { builder?: Builder } = {}) {
     super();
 
     this.#builder = builder;
     this.#tabs = [new ComponentSettingsTab({
       type: Settings.TYPE_TAB,
       id: Settings.SETTINGS_TAB_GENERAL,
-      title: t => t('core.settings.title', 'Settings'),
+      title: (
+        t: (key: string, def: string) => string
+      ) => t('core.settings.title', 'Settings'),
       fields: [],
     })];
   }
 
-  hasTab (id) {
+  hasTab (id: string) {
     return this.#tabs.some(ComponentSettingsTab.FIND_PREDICATE(id));
   }
 
-  getTab (id) {
+  getTab (id: string) {
     return this.#tabs.find(ComponentSettingsTab.FIND_PREDICATE(id));
   }
 
-  hasSetting (id, { tabId } = {}) {
+  hasSetting (id: string, { tabId }: { tabId?: string} = {}) {
     if (tabId) {
       return this.getTab(tabId)?.fields
         .some(ComponentSettingsField.FIND_PREDICATE(id));
@@ -47,7 +81,7 @@ export default class Settings extends Emitter {
     return false;
   }
 
-  getSetting (id, { tabId } = {}) {
+  getSetting (id: string, { tabId }: { tabId?: string} = {}) {
     if (tabId) {
       return this.getTab(tabId)?.fields
         .find(ComponentSettingsField.FIND_PREDICATE(id));
@@ -63,9 +97,12 @@ export default class Settings extends Emitter {
     }
   }
 
-  add (setting) {
+  add (setting: ComponentSettingsTab |
+    ComponentSettingsTabObject |
+    ComponentSettingsField |
+    ComponentSettingsFieldObject) {
     if (
-      setting.type === Settings.TYPE_TAB &&
+      (setting as ComponentSettingsFieldObject).type === Settings.TYPE_TAB &&
       !this.hasTab(setting.id)
     ) {
       setting = new ComponentSettingsTab(setting);
@@ -75,7 +112,9 @@ export default class Settings extends Emitter {
       return;
     }
 
-    setting = new ComponentSettingsField(setting);
+    setting = new ComponentSettingsField(
+      setting
+    ) as ComponentSettingsFieldObject | ComponentSettingsField;
 
     const tab = setting.tab && this.hasTab(setting.tab)
       ? this.getTab(setting.tab)
@@ -84,7 +123,7 @@ export default class Settings extends Emitter {
       ));
 
     const existing = this
-      .getSetting(setting.id || setting.key, { tabId: tab.id });
+      .getSetting((setting.id || setting.key) as string, { tabId: tab.id });
 
     if (existing) {
       this.#builder?.logger.log(

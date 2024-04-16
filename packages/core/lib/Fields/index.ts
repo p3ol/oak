@@ -1,25 +1,46 @@
-import { Field } from '../types';
+import { Field, FieldObject } from '../types';
 import Emitter from '../Emitter';
+import Builder from '../Builder';
 
-export default class Fields extends Emitter {
+export declare abstract class IFields {
+  constructor(options?: { builder: Builder });
+
+  /** Checkes if a field exists */
+  has(type: string): boolean;
+
+  /** Get a field by its type */
+  get(type: string): Field;
+
+  /** Add a new field definition */
+  add(field: FieldObject | Field): Field;
+
+  /** Remove a field definition */
+  remove(type: string): void;
+
+  /** Get all fields */
+  all(): Array<Field>;
+}
+
+export default class Fields extends Emitter implements IFields {
   #fields = [];
   #builder = null;
 
-  constructor ({ builder } = {}) {
+  field: object;
+  constructor ({ builder }: { builder?: Builder} = {}) {
     super();
 
     this.#builder = builder;
   }
 
-  has (type) {
+  has (type: string) {
     return this.#fields.some(Field.FIND_PREDICATE(type));
   }
 
-  get (type) {
+  get (type: string) {
     return this.#fields.find(Field.FIND_PREDICATE(type));
   }
 
-  add (field) {
+  add (field: FieldObject | Field) {
     field = new Field(field);
 
     const existing = this.get(field.type);
@@ -39,10 +60,10 @@ export default class Fields extends Emitter {
       this.emit('fields.add', this, field);
     }
 
-    return field;
+    return field as Field;
   }
 
-  remove (type) {
+  remove (type: string) {
     const index = this.#fields
       .findIndex(Field.FIND_PREDICATE(type));
 
