@@ -4840,7 +4840,7 @@ __metadata:
     "@remirror/pm": "npm:2.0.8"
     "@remirror/react": "npm:2.0.35"
     "@strapi/design-system": "npm:1.14.1"
-    remirror: "npm:2.0.38"
+    remirror: "npm:2.0.39"
     styled-components: "npm:6.1.8"
   peerDependencies:
     "@strapi/strapi": ^4.4.0
@@ -6493,21 +6493,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-markdown@npm:^2.0.13":
-  version: 2.0.13
-  resolution: "@remirror/extension-markdown@npm:2.0.13"
+"@remirror/extension-markdown@npm:^2.0.14":
+  version: 2.0.14
+  resolution: "@remirror/extension-markdown@npm:2.0.14"
   dependencies:
-    "@babel/runtime": "npm:^7.21.0"
-    "@remirror/core": "npm:^2.0.13"
-    "@remirror/messages": "npm:^2.0.3"
-    "@types/marked": "npm:^4.0.8"
+    "@babel/runtime": "npm:^7.22.3"
+    "@remirror/core": "npm:^2.0.19"
+    "@remirror/messages": "npm:^2.0.6"
+    "@types/marked": "npm:^4.3.1"
     "@types/turndown": "npm:^5.0.1"
     marked: "npm:^4.3.0"
     turndown: "npm:^7.1.2"
     turndown-plugin-gfm: "npm:^1.0.2"
   peerDependencies:
     "@remirror/pm": ^2.0.5
-  checksum: 10/c5933d56547a1df1d38051621430b2d3f54ff7991704c72ca7ad014a8ac8eba455b12843ea9353639ad9acc10e8e96f0610389a23393bf2283e7ffcb329fe39f
+  checksum: 10/554a69e8d9eced606a4457423da2380721580072a80751633dc14a663a5ca599974a59c489692358b92f68138f5b581a126ec0c7a4e02bbb7b21e9a8910d2f8f
   languageName: node
   linkType: hard
 
@@ -8922,7 +8922,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/marked@npm:^4.0.8":
+"@types/marked@npm:^4.3.1":
   version: 4.3.2
   resolution: "@types/marked@npm:4.3.2"
   checksum: 10/c1b5aa2cee0b8929164f4a8d206d7f89256ebde0d5b9998e9cdf6da2a5fa71162f66ef30e80b98213ee2c3372514b39b756e8494980174a4907a4aa4690b4d1d
@@ -21036,9 +21036,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remirror@npm:2.0.38":
-  version: 2.0.38
-  resolution: "remirror@npm:2.0.38"
+"remirror@npm:2.0.39":
+  version: 2.0.39
+  resolution: "remirror@npm:2.0.39"
   dependencies:
     "@babel/runtime": "npm:^7.22.3"
     "@remirror/core": "npm:^2.0.19"
@@ -21076,7 +21076,7 @@ __metadata:
     "@remirror/extension-italic": "npm:^2.0.13"
     "@remirror/extension-link": "npm:^2.0.17"
     "@remirror/extension-list": "npm:^2.0.16"
-    "@remirror/extension-markdown": "npm:^2.0.13"
+    "@remirror/extension-markdown": "npm:^2.0.14"
     "@remirror/extension-mention": "npm:^2.0.15"
     "@remirror/extension-mention-atom": "npm:^2.0.17"
     "@remirror/extension-node-formatting": "npm:^2.0.13"
@@ -21116,7 +21116,7 @@ __metadata:
       optional: true
     prettier:
       optional: true
-  checksum: 10/df6646ee6e6df51d3ad11a859382b6127768bd0d66d2e4d71ad90a2138403b2976e3717a8bea95978fef921d0c38cf9cabdeff0d5e1a8412b0e5cb75fc970f28
+  checksum: 10/87d446972b280b26bd92a7c976d2ae4e44daf95e33e62b29a2acd5b0f7944166966d881c329dc2415774ca9aec623a57590d4bbd6aa1b96631c525435a595e6c
   languageName: node
   linkType: hard
 
@@ -21520,7 +21520,7 @@ __metadata:
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-popper: "npm:2.3.0"
-    remirror: "npm:2.0.38"
+    remirror: "npm:2.0.39"
     resolve-url-loader: "npm:5.0.0"
     rollup: "npm:4.14.1"
     rollup-plugin-dts: "npm:6.1.0"
