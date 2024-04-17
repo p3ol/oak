@@ -16,6 +16,9 @@
     "node": ">= 16",
     "npm": ">= 8"
   },
+  "dependencies": {
+    "@junipero/theme": "3.4.12"
+  },
   "scripts": {
     "clean": "rm -rf ./dist || true",
     "build": "npm run clean && node script/build.js"
