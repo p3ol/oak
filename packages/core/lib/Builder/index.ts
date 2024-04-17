@@ -8,7 +8,7 @@ import Components from '../Components';
 import Fields from '../Fields';
 import Overrides from '../Overrides';
 import Store from '../Store';
-import { Texts } from '../Texts';
+import Texts from '../Texts';
 import Settings from '../Settings';
 
 declare interface IBuilder {
@@ -27,7 +27,10 @@ export default class Builder extends Emitter implements IBuilder {
   #settings = null;
   #addons = [];
 
-  constructor ({ addons, content, options = {} }: {[_: string]: any} = {}) { // TODO fix it
+  constructor (
+    { addons, content, options = {} }:
+    {[_: string]: any} = {}
+  ) { // TODO fix it
     super();
 
     this.options = new BuilderOptions(options);

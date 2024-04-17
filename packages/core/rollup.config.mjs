@@ -1,70 +1,108 @@
 import path from 'path';
+import fs from 'node:fs';
 
-import babel from '@rollup/plugin-babel';
+import swc from '@rollup/plugin-swc';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
-import dts from 'rollup-plugin-dts';
+import typescript from '@rollup/plugin-typescript';
+import { dts } from 'rollup-plugin-dts';
 
-const input = './lib/index.js';
-const defaultOutput = './dist';
+const input = './lib/index.ts';
+const output = './dist';
 const name = 'oak-core';
-const libName = 'OakCore';
 const formats = ['umd', 'cjs', 'esm'];
+
+const defaultPlugins = [
+  commonjs({ include: /node_modules/ }),
+  resolve({
+    rootDir: path.resolve('../../'),
+    extensions: ['.js', '.ts', '.json', '.node'],
+  }),
+  terser(),
+];
 
 const defaultExternals = [];
 const defaultGlobals = {};
 
-const defaultPlugins = [
-  babel({
-    exclude: /node_modules/,
-    babelHelpers: 'runtime',
-  }),
-  resolve({
-    rootDir: path.resolve('../../'),
-  }),
-  commonjs(),
-  terser({ mangle: false }),
-];
-
-const getConfig = (format, {
-  output = defaultOutput,
-  globals = defaultGlobals,
-  external = defaultExternals,
-} = {}) => ({
-  input,
-  plugins: [
-    ...defaultPlugins,
-  ],
-  external,
-  output: {
-    ...(format === 'esm' ? {
-      dir: `${output}/esm`,
-      chunkFileNames: '[name].js',
-    } : {
-      file: `${output}/${name}.${format}.js`,
-    }),
-    format,
-    name: libName,
-    sourcemap: true,
-    globals,
-    ...(format === 'esm' ? {
-      manualChunks: id => {
-        if (/packages\/core\/lib\/(\w+)\/index.js/.test(id)) {
-          return path.parse(id).dir.split('/').pop();
-        } else {
-          return id.includes('node_modules') ? 'vendor' : path.parse(id).name;
-        }
-      },
-    } : {}),
-  },
-});
-
 export default [
-  ...formats.map(f => getConfig(f)),
-  {
-    input: './lib/index.d.ts',
+  ...formats.map(f => ({
+    input,
+    plugins: [
+      swc({
+        swc: {
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              jsx: true,
+              tsx: true,
+            },
+          },
+        },
+      }),
+      ...defaultPlugins,
+    ],
+    external: defaultExternals,
+    output: {
+      ...(f === 'esm' ? {
+        dir: `${output}/esm`,
+        chunkFileNames: '[name].js',
+      } : {
+        file: `${output}/${name}.${f}.js`,
+      }),
+      format: f,
+      name,
+      sourcemap: true,
+      globals: defaultGlobals,
+      ...(f === 'esm' ? {
+        manualChunks: id => {
+          if (/packages\/core\/lib\/(\w+)\/index.ts/.test(id)) {
+            return path.parse(id).dir.split('/').pop();
+          } else {
+            return id.includes('node_modules') ? 'vendor' : path.parse(id).name;
+          }
+        },
+      } : {}),
+    },
+  })), {
+    input: './lib/index.ts',
+    output: [{ file: `./dist/${name}.d.ts`, format: 'es' }],
+    plugins: [
+      typescript({
+        emitDeclarationOnly: true,
+        declaration: true,
+        declarationDir: './types',
+        tsconfig: path.resolve('./tsconfig.json'),
+        outputToFilesystem: true,
+        incremental: false,
+        include: ['lib/**/*.ts'],
+        exclude: [
+          '**/*.test.ts',
+          '**/tests/**/*',
+        ],
+      }),
+      ...defaultPlugins,
+      {
+        writeBundle () {
+          fs.unlinkSync(`./dist/${name}.d.ts`);
+        },
+      },
+    ],
+  }, {
+    input: './dist/types/index.d.ts',
     output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
-    plugins: [dts()],
+    external: defaultExternals,
+    plugins: [
+      resolve({
+        rootDir: path.resolve('../../'),
+        extensions: ['.js', '.ts', '.json', '.node'],
+      }),
+      dts({ respectExternal: true }),
+      {
+        writeBundle () {
+          fs.rmSync('./dist/types', { recursive: true, force: true });
+        },
+      },
+    ],
   },
 ];

@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "target": "ES2015",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ES2022"],
     "paths": {
       "@oakjs/core": [
         "./packages/core/lib"
@@ -12,7 +16,7 @@
   },
   "include": [
     "**/*.ts"
-  ],
+, "packages/react/lib/Builder/HistoryButtons.tsx"  ],
   "exclude": [
     "node_modules",
     "**/dist"

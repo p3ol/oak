@@ -47,5 +47,8 @@
       "import": "./dist/esm/addons.js",
       "require": "./dist/oak-core.cjs.js"
     }
+  },
+  "devDependencies": {
+    "rollup": "^4.14.3"
   }
 }

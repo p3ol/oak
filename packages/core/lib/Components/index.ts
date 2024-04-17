@@ -103,7 +103,7 @@ export default class Components extends Emitter implements IComponents {
   }
 
   add (
-    component: ComponentObject | ComponentsGroupObject,
+    component: Component | ComponentsGroup | ComponentObject | ComponentsGroupObject,
     { mode = 'append' }: { mode?: string } = {}//TODO mode is a string ?
   ) {
     const mutateMethod = mode === 'append' ? 'push' : 'unshift';
@@ -212,13 +212,13 @@ export default class Components extends Emitter implements IComponents {
         return displayable;
       }
 
-      fields = component?.settings.fields;
+      fields = component?.settings.fields as any; //TODO fix it;
     }
 
     for (const setting of fields) {
       if (Array.isArray(setting.fields)) {
         displayable.push(...this.getDisplayableSettings(element, {
-          fields: setting.fields,
+          fields: setting.fields as any, //TODO fix it;
         }));
       }
 

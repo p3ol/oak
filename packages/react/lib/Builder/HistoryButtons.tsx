@@ -1,10 +1,13 @@
 import { Tooltip, Button } from '@junipero/react';
+import { MutableRefObject } from 'react';
 
 import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Icon from '../Icon';
 
-const HistoryButtons = ({ canUndo, canRedo }) => {
+const HistoryButtons = (
+  { canUndo, canRedo }: { canUndo: boolean, canRedo: boolean}
+) => {
   const { builder, rootRef, floatingsRef, rootBoundary } = useBuilder();
 
   return (
@@ -13,8 +16,10 @@ const HistoryButtons = ({ canUndo, canRedo }) => {
         disabled={!canUndo}
         container={floatingsRef.current}
         floatingOptions={{
-          boundary: rootBoundary?.current || rootRef?.current,
-          rootBoundary: rootBoundary?.current || rootRef?.current,
+          boundary: (rootBoundary as MutableRefObject<any>)?.current ||
+            rootRef?.current,
+          rootBoundary: (rootBoundary as MutableRefObject<any>)?.current ||
+            rootRef?.current,
         }}
         text={<Text name="core.tooltips.undo">Undo</Text>}
       >
@@ -30,8 +35,10 @@ const HistoryButtons = ({ canUndo, canRedo }) => {
         disabled={!canRedo}
         container={floatingsRef.current}
         floatingOptions={{
-          boundary: rootBoundary?.current || rootRef?.current,
-          rootBoundary: rootBoundary?.current || rootRef?.current,
+          boundary: (rootBoundary as MutableRefObject<any>)?.current ||
+            rootRef?.current,
+          rootBoundary: (rootBoundary as MutableRefObject<any>)?.current ||
+            rootRef?.current,
         }}
         text={<Text name="core.tooltips.redo">Redo</Text>}
       >

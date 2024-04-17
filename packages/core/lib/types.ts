@@ -109,7 +109,7 @@ export class ComponentOverride {
   sanitize?: Function;
   construct: Function;
   duplicate: Function;
-
+  priority: number;
   constructor (props) {
     this.type = 'component';
     this.id = props.id;
@@ -119,6 +119,7 @@ export class ComponentOverride {
     this.sanitize = props.sanitize;
     this.construct = props.construct;
     this.duplicate = props.duplicate;
+    this.priority = props.priority || 0;
   }
 }
 
@@ -128,12 +129,13 @@ export class FieldOverride {
   targets: Array<any>;
   render: Function;
   props: object;
-
+  priority: number;
   constructor (props) {
     this.type = 'field';
     this.id = props.id;
     this.targets = props.targets || [];
     this.render = props.render;
+    this.priority = props.priority || 0;
     this.props = props.props || {};
   }
 }
@@ -188,7 +190,7 @@ export class ComponentSettingsForm {
   title: string;
   floatingSettings: any;
   defaults: object;
-  fields: Array<any>;
+  fields: Array<ComponentSettingsFieldObject | ComponentSettingsTabObject>;
 
   constructor (props) {
     this.title = props.title;
@@ -323,6 +325,7 @@ export declare interface ComponentOverrideObject {
   render?(props?: any): any;
   sanitize?(): any;
   duplicate?(elmt?: ElementObject): ElementObject;
+  priority?: number;
 }
 
 export declare interface FieldOverrideObject {
@@ -331,6 +334,7 @@ export declare interface FieldOverrideObject {
   targets: string[];
   props: Record<string, any>;
   render?(): any;
+  priority?: number;
 }
 
 export declare interface SettingOverrideObject {
@@ -377,7 +381,10 @@ export declare interface ComponentSettingsFieldObject {
   placeholder?: string | GetTextCallback;
   default?: any;
   options?: ComponentSettingsFieldOptionObject[] | Record<string, any>[];
-  displayable?: boolean;
+  displayable?: boolean | ((element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+    builder: Builder;
+  }) => boolean);
   valueType?: string;
   fields?: ComponentSettingsFieldObject[];
   props?: Record<string, any>;
