@@ -14,7 +14,8 @@
     "test": "BABEL_ENV=tests jest",
     "build": "lerna exec -- npm run build",
     "storybook": "storybook",
-    "serve": "yarn storybook dev"
+    "dev": "yarn storybook dev",
+    "serve": "yarn dev"
   },
   "devDependencies": {
     "@babel/core": "7.24.4",
