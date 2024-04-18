@@ -1,8 +1,11 @@
 import { Button, classNames } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
+import { ElementObject } from '../../../../core/lib/types';
 
-const Button_ = ({ element, className }) => !element.content ? null : (
+const Button_ = (
+  { element, className }: { element: ElementObject, className: string }
+) => !element.content ? null : (
   <Button
     className={classNames(
       'default !oak-pointer-events-none sanitize-html',

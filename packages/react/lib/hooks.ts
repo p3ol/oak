@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo, useReducer } from 'react';
-import { Builder } from '@oakjs/core';
+import { AddonObject, Builder, BuilderOptions, ElementObject } from '@oakjs/core';
 import { mockState, useEffectAfterMount } from '@junipero/react';
 
 import { BuilderContext } from './contexts';
@@ -11,7 +11,14 @@ export const useRootBuilder = ({
   onChange,
   onEvent,
   ...opts
-}) => {
+}: Partial<BuilderOptions & {
+  defaultContent?: Array<ElementObject | Element>;
+  activeTextSheet?: string;
+  addons?: Array<AddonObject>;
+  content?: Array<ElementObject | Element>;
+  onChange?(content: Array<ElementObject | Element>): void;
+  onEvent?(content: Array<ElementObject | Element>, ...rest: any[]): void;//TODO fix it
+}>) => {
   const builder = useMemo(() => (
     new Builder({
       ...opts,

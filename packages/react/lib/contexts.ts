@@ -22,8 +22,6 @@ declare type BuilderContextType = {
       setting?: ComponentSettingsField;
     }): Promise<ImageUploadCallbackResult>;
     rootRef?: MutableRefObject<HTMLElement>;
-    floatingsRef?:
-      MutableRefObject<HTMLElement>[] |
-      MutableRefObject<HTMLElement>;
+    floatingsRef?: MutableRefObject<HTMLElement>;
 };
 export const BuilderContext = createContext<BuilderContextType>({});

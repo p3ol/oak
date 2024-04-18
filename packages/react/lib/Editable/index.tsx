@@ -6,6 +6,10 @@ import {
   useReducer,
   useImperativeHandle,
   useRef,
+  ComponentPropsWithRef,
+  ReactNode,
+  MutableRefObject,
+  ForwardedRef,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { mockState, classNames, ensureNode } from '@junipero/react';
@@ -24,14 +28,26 @@ import {
 
 import { useBuilder } from '../hooks';
 import Form from './Form';
+import { Component, ComponentObject, ElementObject } from '../../../core/lib/types';
 
+export declare interface EditableRef {
+  isOak: boolean;
+}
+
+export declare interface EditableProps extends ComponentPropsWithRef<any> {
+  children?: ReactNode | JSX.Element;
+  element?: ElementObject;
+  component?: ComponentObject | Component;
+  onToggle?(props: { opened: boolean });
+  ref?: MutableRefObject<EditableRef>;
+}
 const Editable = forwardRef(({
   children,
   element,
   component,
   onToggle,
-}, ref) => {
-  const innerRef = useRef();
+}: EditableProps, ref) => {
+  const innerRef = useRef<any>();
   const { rootBoundary, floatingsRef } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
@@ -50,17 +66,17 @@ const Editable = forwardRef(({
     middleware: [
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
-        boundary: rootBoundary?.current,
+        boundary: (rootBoundary as MutableRefObject<HTMLElement>)?.current,
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
-        boundary: rootBoundary?.current,
+        boundary: (rootBoundary as MutableRefObject<HTMLElement>)?.current,
         allowedPlacements: ['bottom'],
         ...floatingSettings.autoPlacement || {},
       })] : []),
       ...(floatingSettings?.flip?.enabled !== false ? [flip({
-        boundary: rootBoundary?.current,
+        boundary: (rootBoundary as MutableRefObject<HTMLElement>)?.current,
         ...floatingSettings.flip || {},
       })] : []),
       ...floatingSettings.middleware || [],
@@ -100,7 +116,7 @@ const Editable = forwardRef(({
     dispatch({ visible: false });
   };
 
-  const child = Children.only(children);
+  const child = Children.only(children) as JSX.Element;
 
   return (
     <>
@@ -124,7 +140,8 @@ const Editable = forwardRef(({
           }}
           data-placement={context.placement}
           ref={ref => {
-            refs.setFloating(ref?.isOak ? ref?.innerRef.current : ref);
+            refs.setFloating((ref as any)?.isOak
+              ? (ref as any)?.innerRef.current : ref);//TODO fix it
             innerRef.current = ref;
           }}
           {...getFloatingProps()}
@@ -140,7 +157,8 @@ const Editable = forwardRef(({
             />
           ), { opened: state.opened, onExited: onAnimationExit }) }
         </div>
-      ), ensureNode(floatingsRef.current)) }
+      ), ensureNode(floatingsRef.current) as any) }
+      {/*TODO FIX UPPER LINE */}
     </>
   );
 });

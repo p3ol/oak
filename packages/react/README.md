@@ -21,7 +21,7 @@ A React renderer for the (maybe) popular block-based builder
 # Installation
 
 ```sh
-yarn add @oakjs/react @oakjs/theme
+yarn add @oakjs/react @oakjs/theme‡
 ```
 
 # Usage

@@ -14,7 +14,7 @@ import Settings from '../Settings';
 declare interface IBuilder {
   //TODO do
 }
-
+//TODO type this
 export default class Builder extends Emitter implements IBuilder {
   logger = null;
   options = null;
@@ -158,7 +158,7 @@ export default class Builder extends Emitter implements IBuilder {
     return this.#fields.get(type);
   }
 
-  getOverride (type, target, opts) {
+  getOverride (type, target, opts?: any) {
     return this.#overrides.get(type, target, opts);
   }
 

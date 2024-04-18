@@ -1,8 +1,14 @@
 import { classNames } from '@junipero/react';
+import { ComponentPropsWithoutRef } from 'react';
 
 import { sanitizeHTML } from '../../utils';
+import { ElementObject } from '../../../../core/lib/types';
 
-const Title = ({ element, className }) => {
+declare interface TitleProps extends ComponentPropsWithoutRef<any> {
+  element: ElementObject;
+}
+
+const Title = ({ element, className }: TitleProps) => {
   const Tag = element.headingLevel || 'h1';
   const sizes = {
     h1: '!oak-text-4xl',

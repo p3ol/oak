@@ -1,7 +1,17 @@
 import { Droppable, classNames, omit } from '@junipero/react';
+import { ComponentPropsWithoutRef } from 'react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
+import { ComponentObject, Component, ElementObject } from '../../../../core/lib/types';
+
+declare interface RowProps extends ComponentPropsWithoutRef<any> {
+  element: ElementObject;
+  parent: Array<ElementObject>;
+  component?: ComponentObject | Component;
+  parentComponent?: ComponentObject | Component;
+  depth?: number;
+}
 
 const Row = ({
   element,
@@ -10,7 +20,7 @@ const Row = ({
   className,
   depth = 0,
   ...rest
-}) => {
+}: RowProps) => {
   const { builder } = useBuilder();
 
   const onDivide = (index, isBefore) => {
