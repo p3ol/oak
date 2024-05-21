@@ -5,9 +5,6 @@ import { BuilderContextValue } from './Builder';
 export declare function useRootBuilder(opts?: Partial<BuilderOptions & {
   defaultContent?: Array<ElementObject | Element>;
   activeTextSheet?: string;
-  addons?: Array<AddonObject>;
-  content?: Array<ElementObject | Element>;
-  onChange?(content: Array<ElementObject | Element>): void;
 }>): {
   builder: Builder;
   content: Array<ElementObject | Element>;

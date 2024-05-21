@@ -1,38 +1,6 @@
-import { ComponentPropsWithoutRef, MutableRefObject, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useBuilder } from '../hooks';
-import {
-  Component,
-  ComponentObject,
-  ComponentSettingsField,
-  ComponentSettingsFieldKeyTuple,
-  ComponentSettingsFieldObject,
-  ComponentSettingsTab,
-  ComponentSettingsTabObject,
-  ElementObject,
-  FieldOverride,
-  FieldOverrideObject,
-} from '../../../core/lib/types';
-
-export declare interface FieldProps extends ComponentPropsWithoutRef<any> {
-  setting?: ComponentSettingsTab |
-    ComponentSettingsTabObject |
-    ComponentSettingsField |
-    ComponentSettingsFieldObject;
-  element?: ElementObject;
-  component?: ComponentObject | Component;
-  overrides?: FieldOverrideObject | FieldOverride;
-  onChange?(
-    key: string | ComponentSettingsFieldKeyTuple,
-    field: { value: any; valid: boolean }
-  ): void;
-  onCustomChange?(
-    key: string | ComponentSettingsFieldKeyTuple,
-    overrides: FieldOverrideObject | FieldOverride,
-    field: { value: any; valid: boolean }
-  ): void;
-  editableRef: MutableRefObject<any>;
-}
 
 const Field = ({
   setting: fieldSetting,
@@ -50,8 +18,6 @@ const Field = ({
     }),
     settings: builder
       .getOverride('setting', element.type, { setting: fieldSetting }),
-    //TODO fix it, it used to know which onChange to use @dackmin
-    onChange: false,
   }), [element, fieldSetting, addons]);
 
   const field = useMemo(() => (
