@@ -17,7 +17,7 @@
   },
   "include": [
     "**/*.ts"
-, "packages/react/lib/Builder/HistoryButtons.tsx", "packages/react/lib/options.tsx", "packages/react/lib/DisplayableSettings/Property.tsx", "packages/react/lib/components/Image/index.tsx"  ],
+, "packages/react/lib/Builder/HistoryButtons.tsx"  ],
   "exclude": [
     "node_modules",
     "**/dist"

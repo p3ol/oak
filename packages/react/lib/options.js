@@ -67,8 +67,8 @@ export const dragOption = () => ({
 });
 
 export const backgroundColorOption = () => ({
-  render: ({ element = {} }: { element: { [_: string]: any}}) =>//TODO fix it
-    (element?.styles?.backgroundColor || element.styles?.backgroundImage) && (
+  render: ({ element = {} }) =>
+    (element.styles?.backgroundColor || element.styles?.backgroundImage) && (
       <div
         className={classNames(
           'oak-order-last oak-ml-2 oak-rounded-full oak-w-[15px]',

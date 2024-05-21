@@ -24,7 +24,7 @@ import Text from './Text';
 
 export const textField = props => ({
   ...coreAddons.textField(),
-  render: (fieldProps, { setting, t }: { setting?: any, t?: any} = {}) => (
+  render: (fieldProps, { setting, t } = {}) => (
     <TextField
       { ...fieldProps }
       { ...setting.placeholder && {
