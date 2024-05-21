@@ -1,6 +1,7 @@
-import { Component, ComponentObject, ComponentSettingsFieldObject, ComponentSettingsTabObject, ComponentsGroup, ComponentsGroupObject, FieldObject } from '../types';
+import { Component, ComponentObject, ComponentSettingsField, ComponentSettingsFieldObject, ComponentSettingsTab, ComponentSettingsTabObject, ComponentsGroup, ComponentsGroupObject, ElementObject, FieldObject, GetTextCallback } from '../types';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
+import Settings from '../Settings';
 
 declare abstract class IComponents {
   static TYPE_COMPONENT: string;
@@ -16,14 +17,11 @@ declare abstract class IComponents {
   hasComponent(id: string, opts?: { groupId?: string }): boolean;
   getComponent(id: string, opts?: { groupId?: string }): Component;
 
-  append(component: object): void;
-  prepend(component: object): void;
   add(component: object, opts?: { mode?: string }): void;
   remove(id: string): void;
   getAll(): object;
   toJSON(): object;
 }
-
 export default class Components extends Emitter implements IComponents {
   static TYPE_COMPONENT = 'component';
   static TYPE_GROUP = 'group';
@@ -31,9 +29,9 @@ export default class Components extends Emitter implements IComponents {
   static COMPONENTS_GROUP_CORE = 'core';
   static COMPONENTS_GROUP_OTHER = 'other';
 
-  #builder = null;
-  #groups = null;
-  #defaultGroup = null; // Other tab
+  #builder: Builder = null;
+  #groups: Array<ComponentsGroup> = null;
+  #defaultGroup: ComponentsGroup = null; // Other tab
 
   constructor ({ builder }: { builder?: Builder} = {}) {
     super();
@@ -43,7 +41,7 @@ export default class Components extends Emitter implements IComponents {
     this.#defaultGroup = new ComponentsGroup({
       type: 'group',
       id: Components.COMPONENTS_GROUP_OTHER,
-      name: t => t('core.components.other.title', 'Other'),
+      name: (t: GetTextCallback) => t('core.components.other.title', 'Other'),
       components: [],
     });
   }
@@ -55,10 +53,17 @@ export default class Components extends Emitter implements IComponents {
   getGroup (id: string) { //TODO id is a string?
     return this.#groups.find(ComponentsGroup.FIND_PREDICATE(id));
   }
+  toObject (): ComponentsGroupObject[] {
+    return [
+      ...this.#groups.map(group => group.toObject()),
+      this.#defaultGroup.toObject(),
+    ];
+
+  }
 
   hasComponent (
     id: string, { groupId }: { groupId?: string } = {}
-  ) { //TODO groupId is a string ? id ? @ka
+  ) { //TODO groupId is a string ? id ?
     if (groupId) {
       return this.getGroup(groupId)?.components
         .some(Component.FIND_PREDICATE.bind(null, id));
@@ -77,7 +82,7 @@ export default class Components extends Emitter implements IComponents {
   getComponent (
     id: string,
     { groupId }: { groupId?: string } = {}
-  ) { //TODO groupId is a string ? id ?
+  ): Component { //TODO groupId is a string ? id ?
     if (groupId) {
       return this.getGroup(groupId)?.components
         ?.find(Component.FIND_PREDICATE(id));
@@ -94,16 +99,8 @@ export default class Components extends Emitter implements IComponents {
     return this.#defaultGroup.components.find(Component.FIND_PREDICATE(id));
   }
 
-  append (component: ComponentObject) {
-    return this.add(component, { mode: 'append' });
-  }
-
-  prepend (component: ComponentObject) {
-    return this.add(component, { mode: 'prepend' });
-  }
-
   add (
-    component: Component | ComponentsGroup | ComponentObject | ComponentsGroupObject,
+    component: ComponentObject | ComponentsGroupObject,
     { mode = 'append' }: { mode?: string } = {}//TODO mode is a string ?
   ) {
     const mutateMethod = mode === 'append' ? 'push' : 'unshift';
@@ -111,21 +108,21 @@ export default class Components extends Emitter implements IComponents {
     // This component is a group, add a new group
     if (component.type === Components.TYPE_GROUP) {
       if (!this.hasGroup(component.id)) {
-        component = new ComponentsGroup(component);
-        (component as ComponentsGroupObject).components =
-          (component as ComponentsGroupObject).components || [];
+        const group = new ComponentsGroup(component as ComponentsGroupObject);
+        group.components = (
+          component as ComponentsGroupObject
+        ).components.map(component => new Component(component));
 
-        this.#groups[mutateMethod](component);
+        this.#groups[mutateMethod](component as ComponentsGroup);
         this.emit('groups.add', component);
       }
 
       return;
     }
 
-    component = new Component(component);
-
-    const group = component.group && this.hasGroup(component.group)
-      ? this.getGroup(component.group)
+    const component_ = new Component(component);
+    const group = component_.group && this.hasGroup(component_.group)
+      ? this.getGroup(component_.group)
       : this.#defaultGroup;
 
     const existing = this.getComponent(component.id, { groupId: group.id });
@@ -138,10 +135,10 @@ export default class Components extends Emitter implements IComponents {
       );
 
       const index = group.components.indexOf(existing);
-      group.components[index] = component;
+      group.components[index as any] = component_;
       this.emit('components.update', component, group);
     } else {
-      group.components[mutateMethod](component);
+      group.components[mutateMethod](component_);
       this.emit('components.add', component, group);
     }
   }
@@ -189,21 +186,21 @@ export default class Components extends Emitter implements IComponents {
 
   getAll () {
     return {
-      groups: this.#groups,
-      defaultGroup: this.#defaultGroup,
+      groups: this.#groups, //TODO to object
+      defaultGroup: this.#defaultGroup, //TODO to object
     };
   }
 
   getDisplayableSettings (
-    element,
+    element: ElementObject,
     {
       fields,
       component,
     }: {
-      fields?: Array<ComponentSettingsFieldObject | ComponentSettingsTabObject>
-      component?: ComponentObject
+      fields?: Array<ComponentSettingsField | ComponentSettingsTab>//TODO keep class ? use objects ?
+      component?: Component
     } = {}) {
-    const displayable = [];
+    const displayable: Array<ComponentSettingsField> = [];
 
     if (!fields) {
       component = component || this.getComponent(element.type);
@@ -222,12 +219,12 @@ export default class Components extends Emitter implements IComponents {
         }));
       }
 
-      const settingFieldObject = setting as ComponentSettingsFieldObject;
+      const settingFieldObject = setting as ComponentSettingsField;
 
       if (
         settingFieldObject.displayable === true
       ) {
-        displayable.push(setting);
+        displayable.push(settingFieldObject);
       } else if (typeof settingFieldObject.displayable === 'function') {
         if (
           settingFieldObject.displayable(
@@ -235,12 +232,12 @@ export default class Components extends Emitter implements IComponents {
             { component, builder: this.#builder }
           )
         ) {
-          displayable.push(setting);
+          displayable.push(settingFieldObject);
         }
       }
     }
 
-    return displayable;
+    return displayable;//TODO to object
   }
 
   toJSON () {

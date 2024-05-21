@@ -7,7 +7,7 @@ declare abstract class ILogger {
 }
 
 export default class Logger implements ILogger {
-  #builder = null;
+  #builder: Builder = null;
 
   constructor ({ builder }: { builder?: Builder }) {
     this.#builder = builder;

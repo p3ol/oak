@@ -2,7 +2,7 @@ import { exists } from '@junipero/core';
 import { v4 as uuid } from 'uuid';
 
 import Emitter from '../Emitter';
-import { BuilderOptions } from '../types';
+import { AddonObject, BuilderOptions, Component, ComponentObject, ComponentOverride, ComponentOverrideObject, ComponentSettingsField, ComponentSettingsFieldObject, ComponentSettingsTab, ComponentSettingsTabObject, ElementObject, ElementSettingsKeyObject, Field, FieldOverride, FieldOverrideObject } from '../types';
 import Logger from '../Logger';
 import Components from '../Components';
 import Fields from '../Fields';
@@ -14,18 +14,17 @@ import Settings from '../Settings';
 declare interface IBuilder {
   //TODO do
 }
-//TODO type this
 export default class Builder extends Emitter implements IBuilder {
-  logger = null;
-  options = null;
+  logger: Logger = null;
+  options: BuilderOptions = null;
 
-  #components = null;
-  #fields = null;
-  #overrides = null;
-  #texts = null;
-  #store = null;
-  #settings = null;
-  #addons = [];
+  #components: Components = null;
+  #fields: Fields = null;
+  #overrides: Overrides = null;
+  #texts: Texts = null;
+  #store: Store = null;
+  #settings: Settings = null;
+  #addons: Array<AddonObject> = [];
 
   constructor (
     { addons, content, options = {} }:
@@ -73,7 +72,7 @@ export default class Builder extends Emitter implements IBuilder {
     };
   }
 
-  setAddons (addons) {
+  setAddons (addons: Array<AddonObject>): void {
     this.#addons?.forEach(addon => {
       this.logger.log('Removing builder addon:', addon);
       this.removeAddon(addon);
@@ -88,7 +87,7 @@ export default class Builder extends Emitter implements IBuilder {
     this.emit('addons.update', addons);
   }
 
-  addAddon (addon) {
+  addAddon (addon: AddonObject): void {
     addon.fields?.forEach(field => {
       this.#fields.add(field);
     });
@@ -110,7 +109,7 @@ export default class Builder extends Emitter implements IBuilder {
     });
   }
 
-  removeAddon (addon) {
+  removeAddon (addon: AddonObject): void {
     addon.settings?.forEach(setting => {
       this.#settings.remove(setting.id);
     });
@@ -132,85 +131,154 @@ export default class Builder extends Emitter implements IBuilder {
     });
   }
 
-  getAvailableComponents () {
-    const { groups, defaultGroup } = this.#components.all();
+  getAvailableComponents (): Array<ComponentObject> {
+    const {
+      groups,
+      defaultGroup,
+    } = this.#components.getAll();
+    const groups_ = groups.map(group => group.toObject());
 
-    return [...groups, defaultGroup];
+    return [...groups_, defaultGroup.toObject()];
   }
 
-  getComponent (type) {
-    return this.#components.getComponent(type);
+  getComponent (type: string): ComponentObject {
+    return this.#components.getComponent(type).toObject();
   }
 
-  getComponentDisplayableSettings (element, { component }) {
+  getComponentDisplayableSettings (
+    element: ElementObject,
+    { component }: { component: ComponentObject}
+  ): Array<ComponentSettingsTabObject | ComponentSettingsFieldObject> {
+    const component_ = new Component(component);
+
     return [
       ...this.#components
-        .getDisplayableSettings?.(element, { component }) || [],
-      ...this.#settings.getDisplayable?.(element) || [],
+        .getDisplayableSettings?.(
+          element, { component: component_ }
+        ).map(field => field.toObject()) || [],
+      ...this.#settings.getDisplayable?.(element).map(
+        setting => setting.toObject()
+      ) || [],
     ];
   }
 
   getAvailableFields () {
-    return this.#fields.all();
+    return this.#fields.all().map((field: Field) => field.toObject());
   }
 
-  getField (type) {
-    return this.#fields.get(type);
+  getField (type: string) {
+    return this.#fields.get(type).toObject();
   }
 
-  getOverride (type, target, opts?: any) {
+  getOverride (
+    type: 'component' | 'field' | 'setting',
+    target: string,
+    opts?: any
+  ) {
     return this.#overrides.get(type, target, opts);
   }
 
-  mergeOverrides (overrides) {
-    return this.#overrides.merge(overrides);
+  mergeOverrides (
+    overrides: Array<ComponentOverrideObject | FieldOverrideObject>
+  ) {
+    const ovrrides_ = overrides.map(override => {
+      if (override.type === 'component') {
+        return new ComponentOverride(override);
+      } else {
+        return new FieldOverride(override);
+      }
+    });
+
+    return this.#overrides.merge(ovrrides_);
   }
 
   getContent () {
     return this.#store.get();
   }
 
-  setContent (content, options) {
+  setContent (content: Array<ElementObject>, options: { emit?: boolean }) {
     this.#store.set(content, options);
   }
 
-  createElement (type, options) {
+  createElement (type: string, options?: {
+    component?: ComponentObject | Component,
+    override?: ComponentOverrideObject,
+    baseElement?: ElementObject,
+    [_: string]: any
+  }) {
     return this.#store.createElement(type, options);
   }
 
-  addElement (element, options) {
+  addElement (element: ElementObject, options?: {
+    parent?: Array<ElementObject>,
+    position?: 'before' | 'after',
+    component?: ComponentObject,
+    [_: string]: any
+  }) {
     return this.#store.addElement(element, options);
   }
 
-  addElements (elements, options) {
+  addElements (elements: Array<ElementObject>, options?:{
+    parent?: Array<ElementObject>,
+    position?: 'before' | 'after',
+    component?: ComponentObject,
+    [_: string]: any
+  }) {
     return this.#store.addElements(elements, options);
   }
 
-  getElement (id, options) {
+  getElement (id: string, options?: {
+    parent?: any[];
+    deep?: boolean;
+}) {
     return this.#store.getElement(id, options);
   }
 
-  removeElement (id, options) {
+  removeElement (id: string, options?: {
+    parent?: any[];
+    deep?: boolean;
+}) {
     return this.#store.removeElement(id, options);
   }
 
-  setElement (id, updates, options) {
+  setElement (id: string, updates: ElementObject, options: {
+    element?: ElementObject;
+    parent?: ElementObject[];
+    deep?: boolean;
+}) {
     return this.#store.setElement(id, updates, options);
   }
 
-  moveElement (element, sibling, options) {
+  moveElement (
+    element: ElementObject,
+    sibling: ElementObject,
+    options?: {
+      parent?: Array<ElementObject>,
+      position?: 'before' | 'after'
+    }
+  ) {
     return this.#store.moveElement(element, sibling, options);
   }
 
-  duplicateElement (element, options) {
+  duplicateElement (element: ElementObject, options?: {
+    parent?: ElementObject[];
+}) {
     return this.#store.duplicateElement(element, options);
   }
 
-  getElementSettings (element, key, def) {
+  getElementSettings (
+    element: ElementObject,
+    key: ElementSettingsKeyObject |string,
+    def: any
+  ) { //TODO FIX IT
     return this.#store.getElementSettings(element, key, def);
   }
 
-  setElementSettings (element, key, value) {
+  setElementSettings (
+    element: ElementObject,
+    key: ElementSettingsKeyObject | string,
+    value: any
+  ) { // TODO FIX IT
     return this.#store.setElementSettings(element, key, value);
   }
 
@@ -240,15 +308,15 @@ export default class Builder extends Emitter implements IBuilder {
     return exists(customId) && customId !== '' ? customId : uuid();
   }
 
-  getTextSheet (id) {
+  getTextSheet (id: string) {
     return this.#texts.getSheet(id);
   }
 
-  getText (key, def) {
+  getText (key: string, def: string) {
     return this.#texts.get(key, def);
   }
 
-  setText (key, value) {
+  setText (key: string, value: string) {
     return this.#texts.set(key, value);
   }
 
@@ -256,11 +324,13 @@ export default class Builder extends Emitter implements IBuilder {
     return this.#texts.getActiveSheet();
   }
 
-  setActiveTextSheet (id) {
+  setActiveTextSheet (id: string) {
     return this.#texts.setActiveSheet(id);
   }
 
   getAvailableSettings () {
-    return this.#settings.all();
+    return this.#settings.all().map(
+      (setting: ComponentSettingsTab) => setting.toObject()
+    );
   }
 }

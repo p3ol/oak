@@ -6,7 +6,7 @@ export class BuilderOptions {
   historyLimit: number;
   overrideStrategy: 'last' | 'merge';
 
-  constructor (props) {
+  constructor (props: BuilderObject) {
     this.debug = props.debug || false;
     this.generateId = props.generateId;
     this.historyLimit = props.historyLimit || 20;
@@ -15,16 +15,18 @@ export class BuilderOptions {
 }
 
 export class Component {
-  static FIND_PREDICATE = id => c => c.id === id;
+  static FIND_PREDICATE = (id: string) => (c: Component) => c.id === id;
   type: string;
   id: string;
   group: string;
   render: () => any;
-  sanitize: any;
-  construct: Function;
-  duplicate: Function;
+  sanitize: (
+    element: ElementObject, { builder }: { builder: Builder }
+  ) => ElementObject;
+  construct: (opts?: { builder?: Builder }) => ElementObject;
+  duplicate: (elmt?: ElementObject) => ElementObject;
   icon: any;
-  getContainers: Function;
+  getContainers: (element: ElementObject) => ElementObject[][];
   name: string;
   hasCustomInnerContent: boolean;
   draggable: boolean;
@@ -34,7 +36,8 @@ export class Component {
   disallow: any;
   options: any;
   settings: any;
-
+  deserialize: (opts: { builder: Builder }) => ElementObject;
+  serialize: Function; //TODO
   constructor (props: any) {
     if (!props.id) {
       throw new Error('Component must have an id');
@@ -56,19 +59,55 @@ export class Component {
     this.usable = props.usable ?? true;
     this.editable = props.editable ?? true;
     this.disallow = props.disallow || [];
-    this.options = (props.options || []).map(o => new ComponentOption(o));
+    this.serialize = props.serialize;
+    this.options = (props.options || []).map(
+      (o: ComponentOptionObject) => new ComponentOption(o)
+    );
     this.settings = new ComponentSettingsForm(props.settings || {});
+    this.deserialize = props.deserialize;
+    this.serialize = props.serialize;
+  }
+  toObject (): ComponentObject {
+    return {
+      id: this.id,
+      type: this.type,
+      group: this.group,
+      name: this.name,
+      icon: this.icon,
+      settings: this.settings,
+      hasCustomInnerContent: this.hasCustomInnerContent,
+      draggable: this.draggable,
+      droppable: this.droppable,
+      usable: this.usable,
+      editable: this.editable,
+      options: this.options,
+      disallow: this.disallow,
+      render: this.render,
+      sanitize: this.sanitize,
+      construct: this.construct,
+      duplicate: this.duplicate,
+      getContainers: this.getContainers,
+    };
   }
 }
 
 export class ComponentsGroup {
-  static FIND_PREDICATE = id => g => g.id === id;
+  static FIND_PREDICATE = (id: string) => (g: ComponentsGroup) => g.id === id;
   type: string;
   id: string;
-  name: string;
+  name: string | GetTextCallback;
   usable: boolean;
   components: Component[];
-  constructor (props) {
+  toObject (): ComponentsGroupObject {
+    return {
+      type: this.type,
+      id: this.id,
+      name: this.name,
+      usable: this.usable,
+      components: this.components.map(c => c.toObject()),
+    };
+  }
+  constructor (props: ComponentsGroupObject) {
     if (!props.id) {
       throw new Error('Component Group must have an id');
     }
@@ -85,11 +124,17 @@ export class ComponentsGroup {
 
 export class Field {
   type: string;
-  render: Function;
+  render: (props: any) => any;
   props: object;
-  static FIND_PREDICATE = type => f => f.type === type;
-
-  constructor (props) {
+  static FIND_PREDICATE = (type: string) => (f: Field) => f.type === type;
+  toObject (): FieldObject {
+    return {
+      type: this.type,
+      render: this.render,
+      props: this.props,
+    };
+  }
+  constructor (props: FieldObject) {
     if (!props.type) {
       throw new Error('Field must have a type');
     }
@@ -106,11 +151,18 @@ export class ComponentOverride {
   targets: Array<any>;
   fields: Array<any>;
   render: Function;
-  sanitize?: Function;
-  construct: Function;
-  duplicate: Function;
+  construct: (
+    opts: { builder: Builder, baseElement?: ElementObject }
+  ) => ElementObject;
+  sanitize: (
+    element: ElementObject, { builder }: { builder: Builder}
+  ) => ElementObject;
+  duplicate: Function;//TODO fix it
+  deserialize: Function;//TODO fix it
   priority: number;
-  constructor (props) {
+  serialize: Function;//TODO fix it
+  getContainers: (element: ElementObject) => ElementObject[][];
+  constructor (props: ComponentOverrideObject) {
     this.type = 'component';
     this.id = props.id;
     this.targets = props.targets || [];
@@ -119,6 +171,7 @@ export class ComponentOverride {
     this.sanitize = props.sanitize;
     this.construct = props.construct;
     this.duplicate = props.duplicate;
+    this.deserialize = props.deserialize;
     this.priority = props.priority || 0;
   }
 }
@@ -129,35 +182,36 @@ export class FieldOverride {
   targets: Array<any>;
   render: Function;
   props: object;
+  construct: Function;
   priority: number;
-  constructor (props) {
+  constructor (props : FieldOverrideObject) {
     this.type = 'field';
     this.id = props.id;
     this.targets = props.targets || [];
     this.render = props.render;
     this.priority = props.priority || 0;
     this.props = props.props || {};
+    this.construct = props.construct;
   }
 }
 
 export class SettingOverride {
   type: string;
-  key: string;
-  targets: Array<any>;
+  key: string | string[] | ComponentSettingsFieldKeyTuple[];
+  targets: Array<any>;//TODO type it
   id: string;
-  placeholder: string;
+  placeholder: string | GetTextCallback;
   default: any;
-  options: Array<any>;
-  label: string;
-  description: string;
+  options: Array<any>;//TODO type it
+  label: string | GetTextCallback;
+  description: string | GetTextCallback;
   displayable: boolean;
   valueType: string;
   condition: Function;
   priority: number;
   fields: Array<any>;
   props: object;
-
-  constructor (props) {
+  constructor (props: SettingOverrideObject) {
     this.type = 'setting';
     this.key = props.key;
     this.targets = props.targets || [];
@@ -171,7 +225,9 @@ export class SettingOverride {
     this.valueType = props.valueType;
     this.condition = props.condition;
     this.priority = props.priority || 0;
-    this.fields = (props.fields || []).map(f => new ComponentSettingsField(f));
+    this.fields = (props.fields || []).map(
+      (f: ComponentSettingsFieldObject) => new ComponentSettingsField(f)
+    );
     this.props = props.props;
   }
 }
@@ -180,41 +236,58 @@ export class ComponentOption {
   icon: any;
   render: Function;
 
-  constructor (props) {
+  constructor (props: ComponentOptionObject) {
     this.icon = props.icon;
     this.render = props.render;
   }
 }
 
 export class ComponentSettingsForm {
-  title: string;
+  title: string | GetTextCallback;
   floatingSettings: any;
   defaults: object;
-  fields: Array<ComponentSettingsFieldObject | ComponentSettingsTabObject>;
+  fields: Array<ComponentSettingsField | ComponentSettingsTab>;
 
-  constructor (props) {
+  constructor (props: ComponentSettingsFormObject) {
     this.title = props.title;
     this.floatingSettings = props.floatingSettings;
     this.defaults = props.defaults || {};
-    this.fields = (props.fields || []).map(t =>
-      t.type === 'tab'
-        ? t instanceof ComponentSettingsTab ? t : new ComponentSettingsTab(t)
-        : t instanceof ComponentSettingsField
-          ? t : new ComponentSettingsField(t)
+    this.fields = (props.fields || []).map(
+      (t: ComponentSettingsFieldObject | ComponentSettingsTabObject) =>
+        t.type === 'tab'
+          ? t instanceof ComponentSettingsTab
+            ? t : new ComponentSettingsTab(t as ComponentSettingsTabObject)
+          : t instanceof ComponentSettingsField
+            ? t : new ComponentSettingsField(t as ComponentSettingsFieldObject)
     );
   }
 }
 
 export class ComponentSettingsTab {
-  static FIND_PREDICATE = id => t => t.id === id;
+  static FIND_PREDICATE = (id: string) => (
+    t: ComponentSettingsTab
+  ) => t.id === id;
   type: string;
   id: string;
-  title: string;
+  title: string | GetTextCallback;
   priority: number;
-  condition: Function;
+  condition: (element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+    builder: Builder;
+  }) => boolean;
   fields: Array<any>;
-
-  constructor (props) {
+  displayable: boolean | ((...rest: any) => false);
+  toObject (): ComponentSettingsTabObject {
+    return {
+      id: this.id,
+      type: this.type,
+      title: this.title,
+      priority: this.priority,
+      condition: this.condition,
+      fields: this.fields.map(f => f.toObject()),
+    };
+  }
+  constructor (props: ComponentSettingsTabObject) {
     if (!props.id) {
       throw new Error('ComponentSettingsTab must have an id');
     }
@@ -230,25 +303,52 @@ export class ComponentSettingsTab {
 }
 
 export class ComponentSettingsField {
-  static FIND_PREDICATE = id => f => f.id === id || f.key === id;
+  static FIND_PREDICATE = (id: string) => (
+    f: ComponentSettingsField
+  ) => f.id === id || f.key === id;
   type: string;
   tab: string;
-  key: string;
+  key: string | string[];
   id: string;
-  placeholder: string;
+  placeholder: string | GetTextCallback;
   default: any;
   options: Array<any>;
-  label: string;
-  info: string;
-  description: string;
-  displayable: boolean;
+  label: string | GetTextCallback;
+  info: string | GetTextCallback;
+  description: string | GetTextCallback;
+  displayable: boolean | ((element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+    builder: Builder;
+  }) => boolean);
   valueType: string;
-  condition: Function;
+  condition: (element: Element | ElementObject, opts?: {
+    component: Component | ComponentObject;
+    builder: Builder;
+  }) => boolean;
   priority: number;
   fields: Array<any>;
   props: object;
-
-  constructor (props) {
+  toObject (): ComponentSettingsFieldObject {
+    return {
+      type: this.type,
+      tab: this.tab,
+      key: this.key,
+      id: this.id,
+      placeholder: this.placeholder,
+      default: this.default,
+      options: this.options,
+      label: this.label,
+      info: this.info,
+      description: this.description,
+      displayable: this.displayable,
+      valueType: this.valueType,
+      condition: this.condition,
+      priority: this.priority,
+      fields: this.fields.map(f => f.toObject()),
+      props: this.props,
+    };
+  }
+  constructor (props: ComponentSettingsFieldObject) {
     if (!props.fields && !props.type) {
       throw new Error('ComponentSettingsField must have a type (or be ' +
         'a group of fields)');
@@ -274,10 +374,10 @@ export class ComponentSettingsField {
 }
 
 export class TextsSheet {
-  static FIND_PREDICATE = id => s => s.id === id;
+  static FIND_PREDICATE = (id: string) => (s: {id: string}) => s.id === id;
   id: string;
   texts: object;
-  constructor (props) {
+  constructor (props: {id: string, texts: object}) {
     if (!props.id) {
       throw new Error('TextsSheet must have an id');
     }
@@ -296,6 +396,7 @@ export declare type ElementId = string | number;
 export declare interface ElementObject {
   id?: ElementId;
   type: string;
+  content?: Function | ElementObject[] //TODO not sure
   [_: string]: any
 }
 
@@ -318,10 +419,11 @@ export declare interface FieldObject {
 
 export declare interface ComponentOverrideObject {
   id?: string;
-  type?: string;
+  type?: 'component';
   targets?: string[];
   fields?: ComponentSettingsFieldObject[];
   construct?(opts?: { builder?: Builder }): ElementObject;
+  deserialize?(opts?: { builder?: Builder }): ElementObject;
   render?(props?: any): any;
   sanitize?(): any;
   duplicate?(elmt?: ElementObject): ElementObject;
@@ -330,11 +432,12 @@ export declare interface ComponentOverrideObject {
 
 export declare interface FieldOverrideObject {
   id: string;
-  type: string;
+  type: 'field';
   targets: string[];
   props: Record<string, any>;
   render?(): any;
   priority?: number;
+  construct: Function;//TODO fix it
 }
 
 export declare interface SettingOverrideObject {
@@ -351,6 +454,7 @@ export declare interface SettingOverrideObject {
   displayable?: boolean;
   valueType?: string;
   priority?: number;
+  options?: Array<any>;
   fields?: (ComponentSettingsField | ComponentSettingsFieldObject)[];
   props?: Record<string, any>;
   condition?(element: Element | ElementObject, opts?: {
@@ -396,6 +500,7 @@ export declare interface ComponentSettingsFieldObject {
 
 export declare interface ComponentSettingsTabObject {
   id: string;
+  type?: string;
   priority?: number;
   title?: string | GetTextCallback;
   fields?: (ComponentSettingsField | ComponentSettingsFieldObject)[];
@@ -432,17 +537,21 @@ export declare interface ComponentObject {
   settings?: ComponentSettingsForm | ComponentSettingsFormObject;
   disallow?: string[];
   render?(props?: any): any;
-  sanitize?(): any;
+  deserialize?: Function;
+  serialize?: Function;
+  sanitize?(
+    element: ElementObject, { builder }: { builder: Builder }
+  ): ElementObject
   construct?(opts?: { builder?: Builder }): ElementObject;
   duplicate?(elmt?: ElementObject): ElementObject;
-  getContainers?(element: ElementObject): ElementObject[];
+  getContainers?(element: ElementObject): ElementObject[][];
 }
 
 export declare interface ComponentsGroupObject {
   type: string;
   id: string;
-  name: string;
-  usable: boolean;
+  name: string | GetTextCallback;
+  usable?: boolean;
   components: (Component | ComponentObject)[];
 }
 
@@ -457,19 +566,32 @@ export declare interface ComponentTabOject {
   components: (Component | ComponentObject)[];
 }
 export declare interface AddonObject {
-  components?: (Component | ComponentObject | ComponentTabOject)[];
-  fields?: (Field | FieldObject)[];
-  texts?: (TextsSheet | TextsSheetObject)[];
+  components?: (ComponentObject | ComponentTabOject)[];
+  fields?: (FieldObject)[];
+  texts?: (TextsSheetObject)[];
   overrides?: (
-    ComponentOverride |
     ComponentOverrideObject |
-    FieldOverride |
     FieldOverrideObject
   )[];
   settings?: (
-    ComponentSettingsTab |
     ComponentSettingsTabObject |
-    ComponentSettingsField |
     ComponentSettingsFieldObject
   )[];
 }
+
+export declare interface BuilderObject {
+  debug?: boolean;
+  generateId?: () => string | number
+  historyLimit?: number;
+  overrideStrategy?: 'last' | 'merge';
+}
+export declare type ElementSettingsComplexKey = {
+  from: string,
+  to: string,
+  default: string
+}
+export declare type ElementSettingsKeyObject =
+  string |
+  Array<string |
+  ElementSettingsComplexKey> |
+  ElementSettingsComplexKey

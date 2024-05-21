@@ -1,5 +1,4 @@
 export { default as Builder } from './Builder';
-
 export * from './types';
 
-export * from './addons';
+export * as coreAddons from './addons';

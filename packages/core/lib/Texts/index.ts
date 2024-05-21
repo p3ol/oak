@@ -31,11 +31,14 @@ export declare class ITexts {
   /** Updates a text key in the current active sheet */
   set(key: string, value: any): void;
 }
-
+export declare interface ISheet {
+  id: string;
+  texts: object;
+}
 export default class Texts extends Emitter implements ITexts {
-  #sheets = [];
-  #activeSheet = null;
-  #builder = null;
+  #sheets: Array<ISheet> = [];
+  #activeSheet: number = null;
+  #builder: Builder = null;
 
   constructor ({ builder }: { builder?: Builder } = {}) {
     super();
@@ -43,11 +46,11 @@ export default class Texts extends Emitter implements ITexts {
     this.#builder = builder;
   }
 
-  getSheet (id) {
+  getSheet (id: string) {
     return this.#sheets.find(TextsSheet.FIND_PREDICATE(id));
   }
 
-  addSheet (sheet) {
+  addSheet (sheet: ISheet) {
     sheet = new TextsSheet(sheet);
     const existing = this.getSheet(sheet.id);
 
@@ -69,7 +72,7 @@ export default class Texts extends Emitter implements ITexts {
     return sheet;
   }
 
-  setSheet (sheet) {
+  setSheet (sheet: ISheet) {
     const index = this.#sheets.findIndex(TextsSheet.FIND_PREDICATE(sheet.id));
 
     if (index !== -1) {
@@ -80,7 +83,7 @@ export default class Texts extends Emitter implements ITexts {
     return sheet;
   }
 
-  removeSheet (id) {
+  removeSheet (id: string) { //TODO nope its not string
     const index = this.#sheets.findIndex(TextsSheet.FIND_PREDICATE(id));
 
     if (index !== -1) {
@@ -97,7 +100,7 @@ export default class Texts extends Emitter implements ITexts {
     return this.#sheets[this.#activeSheet ?? 0]?.id;
   }
 
-  setActiveSheet (id) {
+  setActiveSheet (id: string) { //TODO nope its not string
     const index = this.#sheets.findIndex(TextsSheet.FIND_PREDICATE(id));
 
     if (index !== -1) {
@@ -109,7 +112,7 @@ export default class Texts extends Emitter implements ITexts {
     }
   }
 
-  get (key, def) {
+  get (key: Function | string, def: string) {
     if (typeof key === 'function') {
       return key(this.get.bind(this));
     }
@@ -125,7 +128,7 @@ export default class Texts extends Emitter implements ITexts {
     return get(activeSheet.texts, key, def ?? key);
   }
 
-  set (key, value) {
+  set (key: string, value: string) {
     const activeSheet = this.#sheets[this.#activeSheet ?? 0];
 
     if (!activeSheet) {

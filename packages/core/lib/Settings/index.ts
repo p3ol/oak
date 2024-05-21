@@ -3,6 +3,8 @@ import {
   ComponentSettingsField,
   ComponentSettingsTabObject,
   ComponentSettingsFieldObject,
+  ElementObject,
+  SettingOverrideObject,
 } from '../types';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
@@ -34,15 +36,15 @@ export declare class ISettings extends Emitter {
   all(): Array<ComponentSettingsTab | ComponentSettingsField>;
 }
 export default class Settings extends Emitter implements ISettings {
-  static TYPE_TAB = 'tab';
+  static TYPE_TAB: string = 'tab';
   static TYPE_SETTING = 'setting';
 
   static SETTINGS_TAB_GENERAL = 'general';
   static SETTINGS_TAB_STYLING = 'styling';
   static SETTINGS_TAB_RESPONSIVE = 'responsive';
 
-  #builder = null;
-  #tabs = null;
+  #builder: Builder = null;
+  #tabs: Array<ComponentSettingsTab> = null;
 
   constructor ({ builder }: { builder?: Builder } = {}) {
     super();
@@ -105,43 +107,43 @@ export default class Settings extends Emitter implements ISettings {
       (setting as ComponentSettingsFieldObject).type === Settings.TYPE_TAB &&
       !this.hasTab(setting.id)
     ) {
-      setting = new ComponentSettingsTab(setting);
-      this.#tabs.push(setting);
+      const setting_ = new ComponentSettingsTab(setting as ComponentSettingsTabObject);
+      this.#tabs.push(setting_);
       this.emit('tabs.add', setting);
 
       return;
     }
 
-    setting = new ComponentSettingsField(
-      setting
-    ) as ComponentSettingsFieldObject | ComponentSettingsField;
+    const setting_ = new ComponentSettingsField(
+      setting as ComponentSettingsFieldObject
+    ) as ComponentSettingsField;
 
-    const tab = setting.tab && this.hasTab(setting.tab)
-      ? this.getTab(setting.tab)
+    const tab = setting_.tab && this.hasTab(setting_.tab)
+      ? this.getTab(setting_.tab)
       : this.#tabs.find(ComponentSettingsTab.FIND_PREDICATE(
         Settings.SETTINGS_TAB_GENERAL
       ));
 
     const existing = this
-      .getSetting((setting.id || setting.key) as string, { tabId: tab.id });
+      .getSetting((setting_.id || setting_.key) as string, { tabId: tab.id });
 
     if (existing) {
       this.#builder?.logger.log(
         'Setting already exists, updating definition.',
         'Old:', existing,
-        'New:', setting
+        'New:', setting_
       );
 
       const index = tab.fields.indexOf(existing);
-      tab.fields[index] = setting;
-      this.emit('settings.update', setting, tab);
+      tab.fields[index] = setting_;
+      this.emit('settings.update', setting_, tab);
     } else {
-      tab.fields.push(setting);
-      this.emit('settings.add', setting, tab);
+      tab.fields.push(setting_);
+      this.emit('settings.add', setting_, tab);
     }
   }
 
-  remove (id) {
+  remove (id: string) {
     const tabIndex = this.#tabs
       .findIndex(ComponentSettingsTab.FIND_PREDICATE(id));
 
@@ -171,7 +173,10 @@ export default class Settings extends Emitter implements ISettings {
     return false;
   }
 
-  getDisplayable (element, { fields = this.#tabs } = {}) {
+  getDisplayable (
+    element: ElementObject,
+    { fields = this.#tabs }: { fields?: Array<ComponentSettingsTab>} = {}
+  ): Array<ComponentSettingsField | ComponentSettingsTab> {
     const displayable = [];
 
     for (const setting of fields) {
@@ -196,7 +201,7 @@ export default class Settings extends Emitter implements ISettings {
   }
 
   all () {
-    return this.#tabs;
+    return this.#tabs;// TODO to object
   }
 
   toJSON () {

@@ -1,6 +1,7 @@
 import { omit } from '@junipero/core';
+import { Component } from 'react';
 
-import { ComponentOverride, ComponentOverrideObject, ComponentSettingsField, FieldOverride, FieldOverrideObject, SettingOverride } from '../types';
+import { ComponentOverride, ComponentOverrideObject, ComponentSettingsField, ComponentSettingsFieldObject, FieldOverride, FieldOverrideObject, SettingOverride, SettingOverrideObject } from '../types';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
 
@@ -36,24 +37,29 @@ export declare class IOverrides {
    * */
   get(type: 'component' | 'field' | 'setting', target: string, options?: {
     output?: 'field',
-    setting?: ComponentSettingsField,
-  }): ComponentOverride | FieldOverrideObject;
+    setting?: ComponentSettingsFieldObject,
+  }): ComponentOverride | FieldOverride | SettingOverride;
 
   /** Removes an override by its id (if available) */
   remove (id: string): void;
 
   /** Merges overrides into a single non-typed object */
-  merge(overrides: Array<ComponentOverride | FieldOverride>): object;
+  merge(overrides: Array<ComponentOverride | FieldOverride | SettingOverride>):
+    ComponentOverride | FieldOverride | SettingOverride;
 
   /** Returns all available overrides */
-  all(): Array<ComponentOverride | FieldOverride>;
+  all(): Array<ComponentOverride | FieldOverride | SettingOverride>;
 }
 
 export default class Overrides extends Emitter implements IOverrides {
-  static FIND_PREDICATE = id => o => id ? o.id === id : null;
+  static FIND_PREDICATE = (id: string) => (
+    o: ComponentOverride |
+    FieldOverride |
+    SettingOverride
+  ) => id ? o.id === id : null;
 
-  #overrides = [];
-  #builder = null;
+  #overrides: Array<FieldOverride | ComponentOverride | SettingOverride> = [];
+  #builder: Builder = null;
 
   constructor ({ builder }: { builder?: Builder } = {}) {
     super();
@@ -62,13 +68,26 @@ export default class Overrides extends Emitter implements IOverrides {
   }
 
   add (
-    override: ComponentOverride |
+    override:
       ComponentOverrideObject |
-      FieldOverride |
-      FieldOverrideObject
+      FieldOverrideObject |
+      SettingOverrideObject
   ) {
     const existing = this.#overrides
       .find(Overrides.FIND_PREDICATE(override.id));
+    let override_: ComponentOverride | SettingOverride | FieldOverride;
+
+    switch (override.type) {
+      case 'component':
+        override_ = new ComponentOverride(override as ComponentOverrideObject);
+        break;
+      case 'field':
+        override_ = new FieldOverride(override as FieldOverrideObject);
+        break;
+      case 'setting':
+        override_ = new SettingOverride(override as SettingOverrideObject);
+        break;
+    }
 
     if (existing) {
       this.#builder?.logger.log(
@@ -77,26 +96,13 @@ export default class Overrides extends Emitter implements IOverrides {
         'New:', override
       );
 
-      this.#overrides.splice(this.#overrides.indexOf(existing), 1, override);
+      this.#overrides.splice(this.#overrides.indexOf(existing), 1, override_);
       this.emit('overrides.update', override);
 
       return override as ComponentOverride | FieldOverride;
     }
 
-    switch (override.type) {
-      case 'component':
-        override = new ComponentOverride(override);
-        this.#overrides.unshift(override);
-        break;
-      case 'field':
-        override = new FieldOverride(override);
-        this.#overrides.unshift(override);
-        break;
-      case 'setting':
-        override = new SettingOverride(override);
-        this.#overrides.unshift(override);
-        break;
-    }
+    this.#overrides.unshift(override_);
 
     this.emit('overrides.add', this, override);
 
@@ -110,10 +116,10 @@ export default class Overrides extends Emitter implements IOverrides {
       output,
       setting,
     }: {
-      output?: 'field',
-      setting?: ComponentSettingsField
+      output?: 'field', //TODO repair
+      setting?: ComponentSettingsFieldObject
     } = {}
-  ) {
+  ): FieldOverride | ComponentOverride | SettingOverride {
     const strategy = this.#builder?.options?.overrideStrategy;
     const overrides = this.#overrides.filter(override =>
       override.type === overrideType &&
@@ -127,7 +133,7 @@ export default class Overrides extends Emitter implements IOverrides {
 
         switch (output) {
           case 'field': {
-            const newComponentField = override?.fields
+            const newComponentField = (override as ComponentOverride)?.fields
               ?.find(f => f.key === setting?.key);
 
             return Object.assign(
@@ -142,7 +148,7 @@ export default class Overrides extends Emitter implements IOverrides {
         }
       }
       case 'setting':
-        return overrides?.find(o => o.key === setting?.key);
+        return overrides?.find((o: SettingOverride) => o.key === setting?.key);
       default:
         return strategy === 'merge' ? this.merge(overrides) : overrides[0];
     }
@@ -164,17 +170,21 @@ export default class Overrides extends Emitter implements IOverrides {
     }
   }
 
-  merge (overrides: Array<ComponentOverride | FieldOverride>) {
+  merge (
+    overrides: Array<ComponentOverride | FieldOverride | SettingOverride>
+  ): FieldOverride | ComponentOverride | SettingOverride {
     return overrides.reduce((res, override) => {
-      Object.keys(override).forEach(key => {
-        if (override[key] === null || override[key] === undefined) {
-          delete override[key];
+      Object.keys(override).forEach((key: string) => {
+        if (
+          (override as any)[key] === null ||
+          (override as any)[key as any] === undefined) {
+          delete (override as any)[key];
         }
       });
       Object.assign(res, override);
 
       return res;
-    }, {});
+    }, {} as FieldOverride | ComponentOverride | SettingOverride);
   }
 
   all () {

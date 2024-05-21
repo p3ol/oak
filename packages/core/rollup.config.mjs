@@ -88,21 +88,22 @@ export default [
         },
       },
     ],
-  }, {
-    input: './dist/types/index.d.ts',
-    output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
-    external: defaultExternals,
-    plugins: [
-      resolve({
-        rootDir: path.resolve('../../'),
-        extensions: ['.js', '.ts', '.json', '.node'],
-      }),
-      dts({ respectExternal: true }),
-      {
-        writeBundle () {
-          fs.rmSync('./dist/types', { recursive: true, force: true });
-        },
-      },
-    ],
   },
+  // {
+  //   input: './dist/types/index.d.ts',
+  //   output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
+  //   external: defaultExternals,
+  //   plugins: [
+  //     resolve({
+  //       rootDir: path.resolve('../../'),
+  //       extensions: ['.js', '.ts', '.json', '.node'],
+  //     }),
+  //     dts({ respectExternal: true }),
+  //     {
+  //       writeBundle () {
+  //         fs.rmSync('./dist/types', { recursive: true, force: true });
+  //       },
+  //     },
+  //   ],
+  // },
 ];

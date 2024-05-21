@@ -22,8 +22,8 @@ export declare abstract class IFields {
 }
 
 export default class Fields extends Emitter implements IFields {
-  #fields = [];
-  #builder = null;
+  #fields: Field[] = [];
+  #builder: Builder = null;
 
   field: object;
   constructor ({ builder }: { builder?: Builder} = {}) {
@@ -32,18 +32,18 @@ export default class Fields extends Emitter implements IFields {
     this.#builder = builder;
   }
 
-  has (type: string) {
+  has (type: string): boolean {
     return this.#fields.some(Field.FIND_PREDICATE(type));
   }
 
   get (type: string) {
-    return this.#fields.find(Field.FIND_PREDICATE(type));
+    return this.#fields.find(Field.FIND_PREDICATE(type));// TODO to object
   }
 
-  add (field: FieldObject | Field) {
-    field = new Field(field);
+  add (field: FieldObject) {
+    const field_ = new Field(field);
 
-    const existing = this.get(field.type);
+    const existing = this.get(field_.type);
 
     if (existing) {
       this.#builder.logger.log(
@@ -53,14 +53,14 @@ export default class Fields extends Emitter implements IFields {
       );
 
       const index = this.#fields.indexOf(existing);
-      this.#fields[index] = field;
+      this.#fields[index] = field_;
       this.emit('fields.update', this, field);
     } else {
-      this.#fields.push(field);
+      this.#fields.push(field_);
       this.emit('fields.add', this, field);
     }
 
-    return field as Field;
+    return field_;//TODO return object or class ?
   }
 
   remove (type: string) {
@@ -75,6 +75,6 @@ export default class Fields extends Emitter implements IFields {
   }
 
   all () {
-    return this.#fields;
+    return this.#fields;//TODO to object
   }
 }

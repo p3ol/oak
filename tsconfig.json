@@ -3,6 +3,7 @@
     "declaration": true,
     "target": "ES2015",
     "moduleResolution": "Bundler",
+    "noImplicitAny": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "ES2022"],
     "paths": {
