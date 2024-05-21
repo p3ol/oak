@@ -1,11 +1,24 @@
-import { Fragment, useMemo } from 'react';
+import { ComponentPropsWithoutRef, Fragment, useMemo } from 'react';
 import { classNames } from '@junipero/react';
+import { Component, ComponentObject, ComponentOverride, ComponentOverrideObject, ElementObject } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Property from './Property';
 
-const DisplayableSettings = ({ className, element, component, override }) => {
+export declare interface DisplayableSettingsProps
+  extends ComponentPropsWithoutRef<any> {
+  element?: ElementObject;
+  component?: ComponentObject | Component;
+  override?: ComponentOverrideObject | ComponentOverride;
+}
+
+const DisplayableSettings = ({
+  className,
+  element,
+  component,
+  override,
+}: DisplayableSettingsProps) => {
   const { builder } = useBuilder();
 
   const getSettingPriority = setting => {
