@@ -4,8 +4,6 @@ import {
   useReducer,
   useRef,
   useMemo,
-  MutableRefObject,
-  ComponentPropsWithRef,
 } from 'react';
 import { createPortal } from 'react-dom';
 import {
@@ -24,29 +22,10 @@ import {
   offset,
   shift,
 } from '@floating-ui/react';
-import { ComponentObject, ElementObject } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 import Text from '../Text';
-
-export declare type CatalogueRef = {
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
-  opened: boolean;
-  isOak: boolean;
-  innerRef: MutableRefObject<any>;
-};
-
-export declare interface CatalogueProps extends ComponentPropsWithRef<any> {
-  className?: string;
-  placement?: string;
-  onToggle?(props: { opened: boolean }): void;
-  onAppend?(props: { component: ComponentObject }): void;
-  onPaste?(clipboardData: ElementObject): void;
-  ref?: MutableRefObject<CatalogueRef>;
-}
 
 const Catalogue = forwardRef(({
   component,
@@ -55,7 +34,7 @@ const Catalogue = forwardRef(({
   onToggle,
   onAppend,
   onPaste,
-}: CatalogueProps, ref) => {
+}, ref) => {
   const innerRef = useRef();
   const { builder, rootRef, rootBoundary, floatingsRef } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
@@ -68,8 +47,7 @@ const Catalogue = forwardRef(({
     middleware: [
       offset(16),
       shift({
-        rootBoundary: (rootBoundary as MutableRefObject<any>)?.current ||
-        rootRef?.current,
+        rootBoundary: rootBoundary?.current || rootRef?.current,
       }),
     ],
   });
@@ -230,7 +208,7 @@ const Catalogue = forwardRef(({
             ) }
           </div>
         </div>
-      ), { opened: state.opened }), ensureNode(floatingsRef?.current) as any) } {/*TODO fix it*/}
+      ), { opened: state.opened }), ensureNode(floatingsRef?.current)) }
     </div>
   );
 });

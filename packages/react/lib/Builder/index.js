@@ -1,65 +1,12 @@
-import { forwardRef, useCallback, useRef, useImperativeHandle, MutableRefObject, FormEvent, ComponentPropsWithRef } from 'react';
+import { forwardRef, useCallback, useRef, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
 import { classNames, ensureNode } from '@junipero/react';
-import {
-  AddonObject,
-  Builder as CoreBuilder,
-  BuilderOptions,
-  ElementObject,
-  ComponentSettingsField,
-  ComponentSettingsFieldObject,
-} from '@oakjs/core';
 
+import { BuilderContext } from '../contexts';
 import { useRootBuilder } from '../hooks';
 import Element from '../Element';
 import Catalogue from '../Catalogue';
 import HistoryButtons from './HistoryButtons';
-import { BuilderContext } from '../contexts';
-
-export declare interface ImageUploadCallbackResult {
-  url: string;
-  name: string;
-  [key: string]: any;
-}
-
-export declare interface BuilderContextValue {
-  builder: CoreBuilder;
-  content: Array<Element | ElementObject>;
-  rootBoundary: MutableRefObject<any> | Element | DocumentFragment;
-  onImageUpload?(event: FormEvent): Promise<ImageUploadCallbackResult>;
-  rootRef: MutableRefObject<any>;
-  floatingsRef: MutableRefObject<any>;
-}
-
-export declare type BuilderRef = {
-  builder: CoreBuilder;
-  content: Array<ElementObject>;
-  isOak: boolean;
-  catalogueRef: MutableRefObject<any>;
-  innerRef: MutableRefObject<any>;
-  close?: () => void
-};
-
-export declare interface BuilderProps extends ComponentPropsWithRef<any> {
-  activeTextSheet?: string;
-  addons: Array<AddonObject>;
-  bottomHistoryButtonsContainer?: string | Element | DocumentFragment;
-  bottomHistoryButtonsEnabled?: boolean;
-  defaultValue?: Array<ElementObject>;
-  historyEnabled?: boolean;
-  options?: BuilderOptions;
-  rootBoundary?: MutableRefObject<any> | string | Element | DocumentFragment;
-  topHistoryButtonsContainer?: string | Element | DocumentFragment;
-  topHistoryButtonsEnabled?: boolean;
-  value?: Array<ElementObject>;
-  [key: string]: any;
-  onChange?(content: Array<ElementObject>): void;
-  onImageUpload?(event: FormEvent, opts: {
-    element?: ElementObject;
-    setting?: ComponentSettingsFieldObject | ComponentSettingsField;
-  }): Promise<ImageUploadCallbackResult>;
-  ref?: MutableRefObject<BuilderRef>;
-}
 
 const Builder = forwardRef(({
   className,
@@ -75,10 +22,10 @@ const Builder = forwardRef(({
   topHistoryButtonsEnabled = true,
   bottomHistoryButtonsEnabled = true,
   ...opts
-}: BuilderProps, ref) => {
+}, ref) => {
   const innerRef = useRef();
-  const catalogueRef = useRef<any>();
-  const floatingsRef = useRef<any>();
+  const catalogueRef = useRef();
+  const floatingsRef = useRef();
   const { builder, content, addons, canUndo, canRedo } = useRootBuilder({
     content: value,
     defaultContent: defaultValue,
@@ -99,7 +46,7 @@ const Builder = forwardRef(({
     builder,
     content,
     addons,
-    rootBoundary: (rootBoundary as MutableRefObject<any>)?.current
+    rootBoundary: rootBoundary?.current
       ? rootBoundary : { current: rootBoundary },
     onImageUpload,
     rootRef: innerRef,
@@ -137,7 +84,7 @@ const Builder = forwardRef(({
         { historyEnabled && topHistoryButtonsEnabled && (
           topHistoryButtonsContainer
             ? createPortal(historyButtons,
-              ensureNode(topHistoryButtonsContainer)as any)//TODO fix it
+              ensureNode(topHistoryButtonsContainer))
             : historyButtons
         ) }
         <div className="elements oak-flex oak-flex-col oak-gap-4">
@@ -170,7 +117,7 @@ const Builder = forwardRef(({
         { historyEnabled && bottomHistoryButtonsEnabled && (
           bottomHistoryButtonsContainer
             ? createPortal(historyButtons,
-              ensureNode(bottomHistoryButtonsContainer) as any)// TODO fix it
+              ensureNode(bottomHistoryButtonsContainer))
             : historyButtons
         ) }
 

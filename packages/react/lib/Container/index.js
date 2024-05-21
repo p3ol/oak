@@ -1,18 +1,9 @@
-import { ComponentPropsWithoutRef, useRef } from 'react';
+import { useRef } from 'react';
 import { Droppable, classNames } from '@junipero/react';
-import { Component, ComponentObject, ElementObject } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 import Element from '../Element';
-import Catalogue, { CatalogueRef } from '../Catalogue';
-
-export declare interface ContainerProps extends ComponentPropsWithoutRef<any> {
-  element?: ElementObject;
-  className?: string;
-  content?: Array<ElementObject>;
-  component?: ComponentObject | Component;
-  depth?: number;
-}
+import Catalogue from '../Catalogue';
 
 const Container = ({
   element,
@@ -20,12 +11,12 @@ const Container = ({
   className,
   content = [],
   depth = 0,
-}: ContainerProps) => {
-  const prependCatalogueRef = useRef<CatalogueRef>();
-  const appendCatalogueRef = useRef<CatalogueRef>();
+}) => {
+  const prependCatalogueRef = useRef();
+  const appendCatalogueRef = useRef();
   const { builder } = useBuilder();
 
-  const onPrepend = (c: Component | ComponentObject) => {
+  const onPrepend = c => {
     prependCatalogueRef.current?.close();
     builder.addElement?.({}, {
       parent: content,
@@ -34,7 +25,7 @@ const Container = ({
     });
   };
 
-  const onAppend = (c: Component | ComponentObject) => {
+  const onAppend = c => {
     appendCatalogueRef.current?.close();
     builder.addElement?.({}, {
       parent: content,
@@ -43,7 +34,7 @@ const Container = ({
     });
   };
 
-  const onDrop = (data: ElementObject) => {
+  const onDrop = data => {
     if (component?.disallow?.includes?.(data.type)) {
       return;
     }
@@ -54,7 +45,7 @@ const Container = ({
     });
   };
 
-  const onPasteBefore = (elmt: ElementObject) => {
+  const onPasteBefore = elmt => {
     prependCatalogueRef.current?.close();
     builder.addElements([].concat(elmt || []), {
       parent: content,
@@ -63,7 +54,7 @@ const Container = ({
     });
   };
 
-  const onPasteAfter = (elmt: ElementObject) => {
+  const onPasteAfter = elmt => {
     appendCatalogueRef.current?.close();
     builder.addElements([].concat(elmt || []), {
       parent: content,
