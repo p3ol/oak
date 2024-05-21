@@ -1,7 +1,14 @@
 import { omit } from '@junipero/core';
-import { Component } from 'react';
 
-import { ComponentOverride, ComponentOverrideObject, ComponentSettingsField, ComponentSettingsFieldObject, FieldOverride, FieldOverrideObject, SettingOverride, SettingOverrideObject } from '../types';
+import {
+  ComponentOverride,
+  ComponentOverrideObject,
+  ComponentSettingsFieldObject,
+  FieldOverride,
+  FieldOverrideObject,
+  SettingOverride,
+  SettingOverrideObject,
+} from '../types';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
 
