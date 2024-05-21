@@ -4097,10 +4097,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/theme@npm:3.4.11":
-  version: 3.4.11
-  resolution: "@junipero/theme@npm:3.4.11"
-  checksum: 10/26c33b4fa26453734d6bb593df5b3b6eae08b9a98c5d65b1abcab1b9d514161b58309bd582eea2b73817172a5b2db07ddcbcd0d76eade85d8118fbdea2757137
+"@junipero/theme@npm:3.4.12":
+  version: 3.4.12
+  resolution: "@junipero/theme@npm:3.4.12"
+  checksum: 10/e9d6e5ea55d2d6729c18ea8aaf9bb7ca1fc3cc3ed8923c0895457b9f3a3479871c30d7f8bc94d022dfa4e901c4b2580a1bedc704d23d1c0556ca94ad0dcdca0a
   languageName: node
   linkType: hard
 
@@ -4838,7 +4838,7 @@ __metadata:
     "@oakjs/addon-remirror": "npm:^3.5.2"
     "@oakjs/ckeditor5-build-custom": "npm:^3.5.2"
     "@oakjs/react": "npm:^3.5.2"
-    "@oakjs/theme": "npm:^3.5.1"
+    "@oakjs/theme": "npm:^3.5.4"
     "@remirror/pm": "npm:2.0.8"
     "@remirror/react": "npm:2.0.35"
     "@strapi/design-system": "npm:1.14.1"
@@ -4851,9 +4851,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/theme@npm:^3.5.1, @oakjs/theme@workspace:packages/theme":
+"@oakjs/theme@npm:^3.5.4, @oakjs/theme@workspace:packages/theme":
   version: 0.0.0-use.local
   resolution: "@oakjs/theme@workspace:packages/theme"
+  dependencies:
+    "@junipero/theme": "npm:3.4.12"
   languageName: unknown
   linkType: soft
 
@@ -21688,7 +21690,6 @@ __metadata:
     "@ckeditor/ckeditor5-ui": "npm:40.2.0"
     "@junipero/core": "npm:3.4.11"
     "@junipero/tailwind-plugin": "npm:3.4.11"
-    "@junipero/theme": "npm:3.4.11"
     "@percy/storybook": "npm:5.0.3"
     "@poool/eslint-config": "npm:3.0.1"
     "@poool/eslint-config-react": "npm:3.0.1"
