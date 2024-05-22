@@ -151,7 +151,7 @@ const Builder = forwardRef(({
             </div>
           ) }
 
-          { content?.map((element, i) => (
+          { content?.map((element: ElementObject, i: number) => (
             <Element
               key={element.id || i}
               index={i}
