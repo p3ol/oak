@@ -1,31 +1,19 @@
-import { ComponentPropsWithoutRef, useMemo } from 'react';
+import { useMemo } from 'react';
 import { get } from '@junipero/react';
 
 import Text from '../Text';
-import { ComponentOverride, ComponentOverrideObject, ElementObject } from '../../../core/lib/types';
-
-export declare interface PropertyProps extends ComponentPropsWithoutRef<any> {
-  element: ElementObject;
-  field: {
-    key: string;
-    label: string;
-    default?: any;
-    options?: { value: any, title: string }[];
-  };
-  override?: ComponentOverrideObject | ComponentOverride;
-}
 
 const Property = ({
   element,
   field: setting,
   override,
-}: PropertyProps) => {
+}) => {
   const field = useMemo(() => ({
     ...setting,
     ...override?.fields?.find(f => f.key === setting.key) || {},
   }), [setting, override]);
 
-  const value = get(element, field.key as string, field.default);
+  const value = get(element, field.key, field.default);
 
   const option = useMemo(() => (
     field.options

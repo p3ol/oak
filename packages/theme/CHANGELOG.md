@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.4](https://github.com/p3ol/oak/compare/v3.5.3...v3.5.4) (2024-04-17)
+
+
+### Bug Fixes
+
+* **theme:** junipero icons wrongly overridden ([d614c6b](https://github.com/p3ol/oak/commit/d614c6ba2af7665800988dd63b96515350ae28c0))
+
+
+
+
+
+## [3.5.3](https://github.com/p3ol/oak/compare/v3.5.2...v3.5.3) (2024-04-17)
+
+
+### Bug Fixes
+
+* **theme:** move junipero theme to standalone file ([6d51e80](https://github.com/p3ol/oak/commit/6d51e8018418b4bbfcd97933d58196edaf36082e))
+
+
+
+
+
 ## [3.5.1](https://github.com/p3ol/oak/compare/v3.5.0...v3.5.1) (2024-02-19)
 
 **Note:** Version bump only for package @oakjs/theme

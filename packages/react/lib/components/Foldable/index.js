@@ -1,18 +1,8 @@
 import { Droppable, omit, classNames } from '@junipero/react';
-import { ComponentPropsWithoutRef } from 'react';
 
 import { useBuilder } from '../../hooks';
 import Text from '../../Text';
 import Container from '../../Container';
-import { Component, ComponentObject, ElementObject } from '../../../../core/lib/types';
-
-declare interface FoldableProps extends ComponentPropsWithoutRef<any> {
-  element: ElementObject;
-  component?: ComponentObject | Component;
-  parentComponent?: ComponentObject | Component;
-  parent?: Array<ElementObject>;
-  depth?: number;
-}
 
 const Foldable = ({
   component,
@@ -22,13 +12,10 @@ const Foldable = ({
   className,
   depth = 0,
   ...rest
-}: FoldableProps) => {
+}) => {
   const { builder } = useBuilder();
 
-  const onDropElement = (
-    position: 'before' | 'after',
-    sibling: ElementObject,
-  ) => {
+  const onDropElement = (position, sibling) => {
     if (parentComponent?.disallow?.includes?.(sibling.type)) {
       return;
     }

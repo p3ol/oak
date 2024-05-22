@@ -1,17 +1,11 @@
 import { classNames } from '@junipero/react';
-import { ComponentPropsWithoutRef } from 'react';
 
 import Text from '../../Text';
-import { ElementObject } from '../../../../core/lib/types';
-
-declare interface ImageProps extends ComponentPropsWithoutRef<any> {
-  element: ElementObject;
-}
 
 const Image = ({
   element,
   className,
-}: ImageProps) => {
+}) => {
   const getName = () =>
     element.name ||
     (/data:/.test(element.url) ? (

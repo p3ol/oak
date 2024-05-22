@@ -1,7 +1,17 @@
 import { exists, get, set, cloneDeep } from '@junipero/core';
 
 import Emitter from '../Emitter';
-import { Component, ComponentObject, ComponentOverride, ComponentOverrideObject, ComponentSettingsFieldKeyTuple, ElementId, ElementObject, ElementSettingsComplexKey, ElementSettingsKeyObject } from '../types';
+import {
+  Component,
+  ComponentObject,
+  ComponentOverride,
+  ComponentOverrideObject,
+  ComponentSettingsFieldKeyTuple,
+  ElementId,
+  ElementObject,
+  ElementSettingsComplexKey,
+  ElementSettingsKeyObject,
+} from '../types';
 import Builder from '../Builder';
 
 export declare interface StoreSanitizeOptions {

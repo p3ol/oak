@@ -1,7 +1,7 @@
-export const copyToClipboard = (value: string): Promise<void> =>
+export const copyToClipboard = value =>
   globalThis.navigator.clipboard.writeText(value);
 
-export const sanitizeHTML = (content: string): string => {
+export const sanitizeHTML = content => {
   try {
     const parsed = new DOMParser().parseFromString(content, 'text/html');
 

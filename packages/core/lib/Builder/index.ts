@@ -2,7 +2,22 @@ import { exists } from '@junipero/core';
 import { v4 as uuid } from 'uuid';
 
 import Emitter from '../Emitter';
-import { AddonObject, BuilderOptions, Component, ComponentObject, ComponentOverride, ComponentOverrideObject, ComponentSettingsField, ComponentSettingsFieldObject, ComponentSettingsTab, ComponentSettingsTabObject, ElementObject, ElementSettingsKeyObject, Field, FieldOverride, FieldOverrideObject } from '../types';
+import {
+  AddonObject,
+  BuilderOptions,
+  Component,
+  ComponentObject,
+  ComponentOverride,
+  ComponentOverrideObject,
+  ComponentSettingsFieldObject,
+  ComponentSettingsTab,
+  ComponentSettingsTabObject,
+  ElementObject,
+  ElementSettingsKeyObject,
+  Field,
+  FieldOverride,
+  FieldOverrideObject,
+} from '../types';
 import Logger from '../Logger';
 import Components from '../Components';
 import Fields from '../Fields';
@@ -11,10 +26,7 @@ import Store from '../Store';
 import Texts from '../Texts';
 import Settings from '../Settings';
 
-declare interface IBuilder {
-  //TODO do
-}
-export default class Builder extends Emitter implements IBuilder {
+export default class Builder extends Emitter {
   logger: Logger = null;
   options: BuilderOptions = null;
 
@@ -29,7 +41,7 @@ export default class Builder extends Emitter implements IBuilder {
   constructor (
     { addons, content, options = {} }:
     {[_: string]: any} = {}
-  ) { // TODO fix it
+  ) {
     super();
 
     this.options = new BuilderOptions(options);

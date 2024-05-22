@@ -14,7 +14,8 @@
     "test": "BABEL_ENV=tests jest",
     "build": "lerna exec -- npm run build",
     "storybook": "storybook",
-    "serve": "yarn storybook dev"
+    "dev": "yarn storybook dev",
+    "serve": "yarn dev"
   },
   "devDependencies": {
     "@babel/core": "7.24.4",
@@ -45,7 +46,6 @@
     "@ckeditor/ckeditor5-ui": "40.2.0",
     "@junipero/core": "3.4.11",
     "@junipero/tailwind-plugin": "3.4.11",
-    "@junipero/theme": "3.4.11",
     "@percy/storybook": "5.0.3",
     "@poool/eslint-config": "3.0.1",
     "@poool/eslint-config-react": "3.0.1",

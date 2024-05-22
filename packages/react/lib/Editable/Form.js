@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, MutableRefObject, useReducer } from 'react';
+import { useReducer } from 'react';
 import {
   Button,
   Tabs,
@@ -16,17 +16,6 @@ import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Icon from '../Icon';
 import Field from './Field';
-import { Component, ComponentObject, ElementObject } from '../../../core/lib/types';
-
-export declare interface FormProps extends ComponentPropsWithoutRef<any> {
-  placement?: string;
-  element?: ElementObject;
-  component?: ComponentObject | Component;
-  className?: string;
-  onSave?(): void;
-  onCancel?(): void;
-  editableRef?: MutableRefObject<any>;
-}
 
 const Form = ({
   placement,
@@ -37,9 +26,9 @@ const Form = ({
   onCancel,
   editableRef,
   ...rest
-}: FormProps) => {
+}) => {
   const { builder } = useBuilder();
-  const overrides = builder?.getOverride('component', element.type);
+  const overrides = builder.getOverride('component', element.type);
   const deserialize = overrides?.deserialize || component?.deserialize ||
     (e => e);
 
@@ -52,7 +41,7 @@ const Form = ({
   };
 
   const onSettingChange_ = (name, field) => {
-    builder?.setElementSettings(state.element, name,
+    builder.setElementSettings(state.element, name,
       field.checked ?? field.value);
     dispatch({ element: state.element });
   };
@@ -64,19 +53,19 @@ const Form = ({
   };
 
   const onSave_ = () => {
-    builder?.setElement(element?.id, state.element || {}, { element });
-    onSave?.();
+    builder.setElement(element.id, state.element || {}, { element });
+    onSave();
   };
 
   const onCancel_ = () => {
     dispatch({ element: deserialize(cloneDeep(element)) });
-    onCancel?.();
+    onCancel();
   };
 
   const getFieldPriority = field => {
     const fieldOverride = {
-      ...builder?.getOverride('setting', element?.type, { setting: field }),
-      ...builder?.getOverride('component', element?.type, {
+      ...builder.getOverride('setting', element.type, { setting: field }),
+      ...builder.getOverride('component', element.type, {
         output: 'field', setting: field,
       }),
     };
@@ -89,7 +78,7 @@ const Form = ({
   const hasSubfields = setting =>
     Array.isArray(setting.fields) && setting.fields.length > 0;
 
-  const tabs = builder?.getAvailableSettings();
+  const tabs = builder.getAvailableSettings();
 
   return (
     <div

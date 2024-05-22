@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, Fragment, useMemo, useRef, useState } from 'react';
+import { Fragment, useMemo, useRef, useState } from 'react';
 import { Draggable, Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { copyToClipboard } from '../utils';
@@ -8,14 +8,6 @@ import Text from '../Text';
 import Option from '../Option';
 import Editable from '../Editable';
 import DisplayableSettings from '../DisplayableSettings';
-import { Component, ComponentObject, ElementObject } from '../../../core/lib/types';
-
-export declare interface ElementProps extends ComponentPropsWithoutRef<any> {
-  depth?: number;
-  element?: ElementObject;
-  parent?: Array<ElementObject>;
-  parentComponent?: ComponentObject | Component;
-}
 
 const Element = ({
   element,
@@ -23,9 +15,9 @@ const Element = ({
   parentComponent,
   className,
   depth = 0,
-}: ElementProps) => {
+}) => {
   const innerRef = useRef();
-  const editableRef = useRef<any>();
+  const editableRef = useRef();
   const [editableOpened, setEditableOpened] = useState(false);
   const { builder, addons } = useBuilder();
   const component = useMemo(() => (

@@ -1,7 +1,15 @@
-import { Component, ComponentObject, ComponentSettingsField, ComponentSettingsFieldObject, ComponentSettingsTab, ComponentSettingsTabObject, ComponentsGroup, ComponentsGroupObject, ElementObject, FieldObject, GetTextCallback } from '../types';
+import {
+  Component,
+  ComponentObject,
+  ComponentSettingsField,
+  ComponentSettingsTab,
+  ComponentsGroup,
+  ComponentsGroupObject,
+  ElementObject,
+  GetTextCallback,
+} from '../types';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
-import Settings from '../Settings';
 
 declare abstract class IComponents {
   static TYPE_COMPONENT: string;
@@ -197,7 +205,7 @@ export default class Components extends Emitter implements IComponents {
       fields,
       component,
     }: {
-      fields?: Array<ComponentSettingsField | ComponentSettingsTab>//TODO keep class ? use objects ?
+      fields?: Array<ComponentSettingsField | ComponentSettingsTab>
       component?: Component
     } = {}) {
     const displayable: Array<ComponentSettingsField> = [];

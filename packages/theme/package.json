@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/theme",
-  "version": "3.5.1",
+  "version": "3.5.4",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak.min.css",
   "cdn": "dist/oak.min.css",
@@ -15,6 +15,9 @@
   "engines": {
     "node": ">= 16",
     "npm": ">= 8"
+  },
+  "dependencies": {
+    "@junipero/theme": "3.4.12"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

@@ -4,7 +4,6 @@ import {
   ComponentSettingsTabObject,
   ComponentSettingsFieldObject,
   ElementObject,
-  SettingOverrideObject,
 } from '../types';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
@@ -107,7 +106,9 @@ export default class Settings extends Emitter implements ISettings {
       (setting as ComponentSettingsFieldObject).type === Settings.TYPE_TAB &&
       !this.hasTab(setting.id)
     ) {
-      const setting_ = new ComponentSettingsTab(setting as ComponentSettingsTabObject);
+      const setting_ = new ComponentSettingsTab(
+        setting as ComponentSettingsTabObject
+      );
       this.#tabs.push(setting_);
       this.emit('tabs.add', setting);
 

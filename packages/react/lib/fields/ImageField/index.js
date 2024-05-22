@@ -1,22 +1,9 @@
-import { ComponentPropsWithoutRef, useEffect, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { TouchableZone, Spinner, classNames, mockState } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Text from '../../Text';
 import Icon from '../../Icon';
-
-export declare interface ImageFieldValue {
-  url: string;
-  name: string;
-  [key: string]: any;
-}
-
-declare interface ImageFieldProps extends ComponentPropsWithoutRef<any> {
-  value?: ImageFieldValue;
-  iconOnly?: boolean;
-  accept?: ('image/jpeg' | 'image/jpg' | 'image/png' | 'image/svg+xml')[];
-  onChange?(field: { value: ImageFieldValue, valid?: boolean }): void;
-}
 
 const ImageField = ({
   className,
@@ -27,7 +14,7 @@ const ImageField = ({
   onChange,
   iconOnly = false,
   accept = ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'],
-}: ImageFieldProps) => {
+}) => {
   const { onImageUpload } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
     value: {
@@ -85,8 +72,7 @@ const ImageField = ({
         fr.readAsDataURL(file);
 
         fr.onload = () => {
-          //TODO fix it, I had to add toString()
-          onUrlReady({ name: file.name, url: fr.result.toString() });
+          onUrlReady({ name: file.name, url: fr.result });
         };
       } else {
         dispatch({ loading: false });
@@ -94,9 +80,7 @@ const ImageField = ({
     }
   };
 
-  const onUrlReady = (
-    { url, name, ...rest }: { url?: string, name?: string } = {}
-  ) => {
+  const onUrlReady = ({ url, name, ...rest } = {}) => {
     const val = { url, name, ...rest };
     dispatch({ value: val });
     onChange?.({ value: val });

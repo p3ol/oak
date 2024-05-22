@@ -1,18 +1,13 @@
-import { useRef, useMemo, ComponentPropsWithoutRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
-import Catalogue, { CatalogueRef } from '../../Catalogue';
+import Catalogue from '../../Catalogue';
 import Option from '../../Option';
 import Element from '../../Element';
 import Editable from '../../Editable';
 import Icon from '../../Icon';
 import Text from '../../Text';
-import { ComponentObject, ElementObject } from '../../../../core/lib/types';
-
-declare interface ColProps extends ComponentPropsWithoutRef<any> {
-  element: ElementObject;
-}
 
 const Col = ({
   element,
@@ -22,12 +17,12 @@ const Col = ({
   onAppend,
   onRemove,
   ...rest
-}: ColProps) => {
-  const editableRef = useRef<any>();//TODO fix it
-  const prependCatalogueRef = useRef<CatalogueRef>();
-  const appendCatalogueRef = useRef<CatalogueRef>();
+}) => {
+  const editableRef = useRef();
+  const prependCatalogueRef = useRef();
+  const appendCatalogueRef = useRef();
   const { builder, floatingsRef } = useBuilder();
-  const component: ComponentObject = useMemo(() => (
+  const component = useMemo(() => (
     builder.getComponent?.(element.type)
   ), [element.type]);
 
@@ -60,7 +55,7 @@ const Col = ({
     });
   };
 
-  const onAppend_ = (component: ComponentObject) => {
+  const onAppend_ = component => {
     appendCatalogueRef.current?.close();
     builder.addElement?.({}, {
       parent: element.content,
@@ -69,7 +64,7 @@ const Col = ({
     });
   };
 
-  const onDrop_ = (data: ElementObject) => {
+  const onDrop_ = data => {
     if (component?.disallow?.includes?.(data.type)) {
       return;
     }
@@ -80,7 +75,7 @@ const Col = ({
     });
   };
 
-  const onPasteBefore_ = (elmt: ElementObject) => {
+  const onPasteBefore_ = elmt => {
     prependCatalogueRef.current?.close();
     builder.addElements([].concat(elmt || []), {
       parent: element.content,
@@ -89,7 +84,7 @@ const Col = ({
     });
   };
 
-  const onPasteAfter_ = (elmt: ElementObject) => {
+  const onPasteAfter_ = elmt => {
     appendCatalogueRef.current?.close();
     builder.addElements([].concat(elmt || []), {
       parent: element.content,
