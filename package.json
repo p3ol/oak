@@ -44,7 +44,7 @@
     "@ckeditor/ckeditor5-theme-lark": "40.2.0",
     "@ckeditor/ckeditor5-typing": "40.2.0",
     "@ckeditor/ckeditor5-ui": "40.2.0",
-    "@junipero/core": "3.4.11",
+    "@junipero/core": "3.4.13",
     "@junipero/tailwind-plugin": "3.4.11",
     "@percy/storybook": "5.0.3",
     "@poool/eslint-config": "3.0.1",

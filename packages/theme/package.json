@@ -17,7 +17,7 @@
     "npm": ">= 8"
   },
   "dependencies": {
-    "@junipero/theme": "3.4.12"
+    "@junipero/theme": "3.4.14"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
