@@ -218,7 +218,7 @@ export const colComponent = (...props) => ({
   editable: true,
   usable: false,
   settings: {
-    title: t => t('core.components.col.settings.titssle', 'Colsdqdsqs options'),
+    title: t => t('core.components.col.settings.title', 'Col options'),
     floatingSettings: {
       placement: 'left-start',
       shift: { enabled: true },
