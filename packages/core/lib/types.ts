@@ -5,7 +5,6 @@ export class BuilderOptions {
   generateId: () => string | number;
   historyLimit: number;
   overrideStrategy: 'last' | 'merge';
-
   constructor (props: BuilderObject) {
     this.debug = props.debug || false;
     this.generateId = props.generateId;
@@ -588,6 +587,9 @@ export declare interface BuilderObject {
   generateId?: () => string | number
   historyLimit?: number;
   overrideStrategy?: 'last' | 'merge';
+  content?: ElementObject[];
+  addons?: AddonObject[];
+  onChange?(content: ElementObject[]): void;
 }
 export declare type ElementSettingsComplexKey = {
   from: string,

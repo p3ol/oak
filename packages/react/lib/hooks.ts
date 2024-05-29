@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo, useReducer } from 'react';
-import { Builder } from '@oakjs/core';
+import { AddonObject, Builder, ElementObject } from '@oakjs/core';
 import { mockState, useEffectAfterMount } from '@junipero/react';
 
 import { BuilderContext } from './contexts';
@@ -11,6 +11,14 @@ export const useRootBuilder = ({
   onChange,
   onEvent,
   ...opts
+}: {
+  activeTextSheet?: string;
+  content?: Array<ElementObject>;
+  defaultContent?: Array<ElementObject>;
+  onChange?: (content: Array<ElementObject>) => void;
+  onEvent?: (eventName: string, ...args: any[]) => void;
+  addons?: AddonObject[],
+} = {
 }) => {
   const builder = useMemo(() => (
     new Builder({
@@ -44,7 +52,7 @@ export const useRootBuilder = ({
   }, [content]);
 
   useEffect(() => {
-    const unsubscribe = builder.subscribe((eventName, ...args) => {
+    const unsubscribe = builder.subscribe((eventName: string, ...args) => {
       switch (eventName) {
         case 'content.update': {
           const [content_] = args;

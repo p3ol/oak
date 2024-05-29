@@ -6,8 +6,8 @@ import {
   Builder as CoreBuilder,
   BuilderOptions,
   ElementObject,
-  ComponentSettingsField,
   ComponentSettingsFieldObject,
+  ComponentObject,
 } from '@oakjs/core';
 
 import { useRootBuilder } from '../hooks';
@@ -60,7 +60,7 @@ export declare interface BuilderProps extends ComponentPropsWithRef<any> {
   onChange?(content: Array<ElementObject>): void;
   onImageUpload?(event: FormEvent, opts: {
     element?: ElementObject;
-    setting?: ComponentSettingsFieldObject | ComponentSettingsField;
+    setting?: ComponentSettingsFieldObject;
   }): Promise<ImageUploadCallbackResult>;
   ref?: MutableRefObject<BuilderRef>;
 }
@@ -110,17 +110,17 @@ const Builder = forwardRef(({
     floatingsRef,
   }), [builder, content, addons, rootBoundary, onImageUpload]);
 
-  const onAppend = component => {
+  const onAppend = (component: ComponentObject) => {
     catalogueRef.current?.close();
     builder.addElement({}, { component });
   };
 
-  const onPrepend = component => {
+  const onPrepend = (component: ComponentObject) => {
     catalogueRef.current?.close();
     builder.addElement({}, { component, position: 'before' });
   };
 
-  const onPaste = (position, element) => {
+  const onPaste = (position: 'before' | 'after', element: ElementObject) => {
     catalogueRef.current?.close();
     builder.addElements([].concat(element || []), { resetIds: true, position });
   };
@@ -155,7 +155,7 @@ const Builder = forwardRef(({
             </div>
           ) }
 
-          { content?.map((element, i) => (
+          { content?.map((element: ElementObject, i: number) => (
             <Element
               key={element.id || i}
               index={i}

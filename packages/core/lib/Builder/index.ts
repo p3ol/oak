@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid';
 import Emitter from '../Emitter';
 import {
   AddonObject,
+  BuilderObject,
   BuilderOptions,
   Component,
   ComponentObject,
@@ -41,7 +42,11 @@ export default class Builder extends Emitter {
 
   constructor (
     { addons, content, options = {} }:
-    {[_: string]: any} = {}
+    {
+      addons?: AddonObject[],
+      content?: ElementObject[],
+      options?: BuilderObject
+    } = {}
   ) {
     super();
 
