@@ -8,6 +8,7 @@ import {
   ElementObject,
   ComponentSettingsFieldObject,
   ComponentObject,
+  ComponentSettingsField,
 } from '@oakjs/core';
 
 import { useRootBuilder } from '../hooks';
@@ -158,7 +159,6 @@ const Builder = forwardRef(({
           { content?.map((element: ElementObject, i: number) => (
             <Element
               key={element.id || i}
-              index={i}
               element={element}
             />
           )) }

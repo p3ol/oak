@@ -30,9 +30,9 @@ import Text from '../Text';
 import { useBuilder } from '../hooks';
 
 interface ElementProps {
-  element: ElementObject;
-  parent: ElementObject[];
-  parentComponent: ComponentObject;
+  element?: ElementObject;
+  parent?: ElementObject[];
+  parentComponent?: ComponentObject;
   className?: string;
   depth?: number;
 }
