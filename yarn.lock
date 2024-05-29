@@ -4344,10 +4344,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/theme@npm:3.4.14":
-  version: 3.4.14
-  resolution: "@junipero/theme@npm:3.4.14"
-  checksum: 10/7cba694b76b088685174c8b1dd28276233e8e165c8a02b2484df7daf4d2276e86aa70c06f761735ab3cb12420490acc3d5bc3e282ae740e388ad179004bf9c82
+"@junipero/theme@npm:3.4.15":
+  version: 3.4.15
+  resolution: "@junipero/theme@npm:3.4.15"
+  checksum: 10/3456b6fdcb4284a910c50e87ad048c39833cf66b087b7b95ed665757bba96b2deadf1d5c14f9b791b21ce52f7e6a569d3c8628718df0d4eb4b10505c0345370f
   languageName: node
   linkType: hard
 
@@ -5101,7 +5101,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/theme@workspace:packages/theme"
   dependencies:
-    "@junipero/theme": "npm:3.4.14"
+    "@junipero/theme": "npm:3.4.15"
   languageName: unknown
   linkType: soft
 
