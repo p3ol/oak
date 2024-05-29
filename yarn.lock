@@ -5084,7 +5084,7 @@ __metadata:
     "@oakjs/addon-remirror": "npm:^3.5.5"
     "@oakjs/ckeditor5-build-custom": "npm:^3.5.5"
     "@oakjs/react": "npm:^3.5.5"
-    "@oakjs/theme": "npm:^3.5.5"
+    "@oakjs/theme": "npm:^3.5.6"
     "@remirror/pm": "npm:2.0.8"
     "@remirror/react": "npm:2.0.35"
     "@strapi/design-system": "npm:1.14.1"
@@ -5097,7 +5097,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/theme@npm:^3.5.5, @oakjs/theme@workspace:packages/theme":
+"@oakjs/theme@npm:^3.5.6, @oakjs/theme@workspace:packages/theme":
   version: 0.0.0-use.local
   resolution: "@oakjs/theme@workspace:packages/theme"
   dependencies:
