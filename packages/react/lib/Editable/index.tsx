@@ -1,37 +1,57 @@
 import {
+  type MutableRefObject,
+  type ReactElement,
+  type Ref,
   Children,
   cloneElement,
   forwardRef,
+  useImperativeHandle,
   useMemo,
   useReducer,
-  useImperativeHandle,
   useRef,
 } from 'react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { createPortal } from 'react-dom';
 import { mockState, classNames, ensureNode } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import {
-  useFloating,
-  useInteractions,
-  useClick,
-  offset,
+  autoPlacement,
   autoUpdate,
-  shift,
   flip,
   limitShift,
-  autoPlacement,
+  offset,
+  shift,
+  useClick,
+  useFloating,
+  useInteractions,
 } from '@floating-ui/react';
 
-import { useBuilder } from '../hooks';
 import Form from './Form';
+import { useBuilder } from '../hooks';
+
+interface EditableProps {
+  children: ReactElement;
+  element: ElementObject;
+  component: ComponentObject;
+  onToggle?: (state: { opened: boolean }) => void;
+}
+
+type FloatingRef = {
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
+  opened: boolean;
+  isOak: boolean;
+  innerRef: MutableRefObject<any>;
+};
 
 const Editable = forwardRef(({
   children,
   element,
   component,
   onToggle,
-}, ref) => {
-  const innerRef = useRef();
+}: EditableProps, ref) => {
+  const innerRef: MutableRefObject<any> = useRef<Ref<HTMLElement>>();
   const { rootBoundary, floatingsRef } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
@@ -50,17 +70,17 @@ const Editable = forwardRef(({
     middleware: [
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
-        boundary: rootBoundary?.current,
+        boundary: (rootBoundary as MutableRefObject<any>)?.current,
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
-        boundary: rootBoundary?.current,
+        boundary: (rootBoundary as MutableRefObject<any>)?.current,
         allowedPlacements: ['bottom'],
         ...floatingSettings.autoPlacement || {},
       })] : []),
       ...(floatingSettings?.flip?.enabled !== false ? [flip({
-        boundary: rootBoundary?.current,
+        boundary: (rootBoundary as MutableRefObject<any>)?.current,
         ...floatingSettings.flip || {},
       })] : []),
       ...floatingSettings.middleware || [],
@@ -105,7 +125,9 @@ const Editable = forwardRef(({
   return (
     <>
       { child && cloneElement(child, {
-        ref: r => { refs.setReference(r?.isOak ? r.innerRef.current : r); },
+        ref: (r: FloatingRef) => {
+          refs.setReference(r?.isOak ? r.innerRef.current : r);
+        },
         className: classNames(
           child.props.className,
           { opened: state.opened }
@@ -123,8 +145,11 @@ const Editable = forwardRef(({
             left: x ?? 0,
           }}
           data-placement={context.placement}
-          ref={ref => {
-            refs.setFloating(ref?.isOak ? ref?.innerRef.current : ref);
+          ref={(ref: FloatingRef | HTMLDivElement) => {
+            refs.setFloating((ref as FloatingRef)?.isOak
+              ? (ref as FloatingRef)?.innerRef.current
+              : ref
+            );
             innerRef.current = ref;
           }}
           {...getFloatingProps()}
@@ -140,7 +165,7 @@ const Editable = forwardRef(({
             />
           ), { opened: state.opened, onExited: onAnimationExit }) }
         </div>
-      ), ensureNode(floatingsRef.current)) }
+      ), ensureNode(floatingsRef.current) as any) } {/*TODO fix it*/}
     </>
   );
 });

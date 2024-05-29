@@ -1,4 +1,4 @@
-import { ReactNode, ComponentPropsWithRef, ForwardRefRenderFunction } from 'react';
+import type { ReactNode, ComponentPropsWithRef } from 'react';
 
 export declare interface IconProps extends ComponentPropsWithRef<any> {}
 

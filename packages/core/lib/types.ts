@@ -395,14 +395,14 @@ export declare type ElementId = string | number;
 
 export declare interface ElementObject {
   id?: ElementId;
-  type: string;
-  content?: Function | ElementObject[] //TODO not sure
+  type?: string;
+  content?: Function | ElementObject[] | string //TODO not sure
   [_: string]: any
 }
 
 export declare interface ComponentOptionObject {
   icon: any;
-  render?(): any;
+  render?(r: any): any;
 }
 
 export declare interface ComponentSettingsFieldKeyTuple {
@@ -473,6 +473,7 @@ export declare interface ComponentSettingsFieldOptionObject {
 }
 
 export declare interface ComponentSettingsFieldObject {
+  name?: string;
   priority?: number;
   type: string;
   key?: string | string[];
@@ -496,6 +497,8 @@ export declare interface ComponentSettingsFieldObject {
     component: Component | ComponentObject;
     builder: Builder;
   }): boolean;
+  disabled?: boolean;
+  required?: boolean;
 }
 
 export declare interface ComponentSettingsTabObject {
@@ -508,6 +511,7 @@ export declare interface ComponentSettingsTabObject {
     component: Component | ComponentObject;
     builder: Builder;
   }): boolean;
+  renderForm?(props: any): any;
 }
 
 export declare class ComponentSettingsFormObject {
@@ -595,3 +599,9 @@ export declare type ElementSettingsKeyObject =
   Array<string |
   ElementSettingsComplexKey> |
   ElementSettingsComplexKey
+
+export declare type FieldContent<T = any> = {
+  valid?: boolean;
+  checked?: boolean;
+  value?: T;
+}

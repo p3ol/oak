@@ -1,10 +1,16 @@
+import type { ElementObject } from '@oakjs/core';
 import { classNames } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
 
-const Title = ({ element, className }) => {
+interface TitleProps {
+  element: ElementObject;
+  className?: string;
+}
+
+const Title = ({ element, className }: TitleProps) => {
   const Tag = element.headingLevel || 'h1';
-  const sizes = {
+  const sizes: { [key: string]: string } = {
     h1: '!oak-text-4xl',
     h2: '!oak-text-3xl',
     h3: '!oak-text-2xl',
@@ -22,7 +28,9 @@ const Title = ({ element, className }) => {
         sizes[Tag],
         className
       )}
-      dangerouslySetInnerHTML={{ __html: sanitizeHTML(element.content) }}
+      dangerouslySetInnerHTML={
+        { __html: sanitizeHTML(element.content as string) }
+      }
     />
   );
 };

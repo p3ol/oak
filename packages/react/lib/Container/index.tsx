@@ -1,10 +1,10 @@
-import { ComponentPropsWithoutRef, useRef } from 'react';
+import { type ComponentPropsWithoutRef, useRef } from 'react';
+import type { Component, ComponentObject, ElementObject } from '@oakjs/core';
 import { Droppable, classNames } from '@junipero/react';
-import { Component, ComponentObject, ElementObject } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 import Element from '../Element';
-import Catalogue, { CatalogueRef } from '../Catalogue';
+import Catalogue, { type CatalogueRef } from '../Catalogue';
 
 export declare interface ContainerProps extends ComponentPropsWithoutRef<any> {
   element?: ElementObject;
@@ -99,7 +99,6 @@ const Container = ({
               <Element
                 depth={depth + 1}
                 key={elt.id || i}
-                index={i}
                 element={elt}
                 parent={content}
                 parentComponent={component}

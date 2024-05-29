@@ -1,13 +1,26 @@
 import { useMemo } from 'react';
+import type {
+  ComponentOverride,
+  ComponentOverrideObject,
+  ComponentSettingsFieldObject,
+  ComponentSettingsFieldOptionObject,
+  ElementObject,
+} from '@oakjs/core';
 import { get } from '@junipero/react';
 
 import Text from '../Text';
+
+interface PropertyProps {
+  element: ElementObject;
+  field: ComponentSettingsFieldObject;
+  override?: ComponentOverrideObject | ComponentOverride;
+}
 
 const Property = ({
   element,
   field: setting,
   override,
-}) => {
+}: PropertyProps) => {
   const field = useMemo(() => ({
     ...setting,
     ...override?.fields?.find(f => f.key === setting.key) || {},
@@ -17,7 +30,9 @@ const Property = ({
 
   const option = useMemo(() => (
     field.options
-      ? field.options.find(o => o.value === value || o === value)
+      ? field.options.find(
+        (o: { value: Record<string, any>[]}) =>
+          o.value === value || o === value)
       : null
   ), [field, value]);
 

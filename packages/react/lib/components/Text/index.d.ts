@@ -1,5 +1,5 @@
-import { ElementObject } from '@oakjs/core';
-import { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { ElementObject } from '@oakjs/core';
 
 declare interface TextProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;

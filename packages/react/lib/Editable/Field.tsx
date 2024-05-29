@@ -1,6 +1,22 @@
-import { useMemo } from 'react';
+import { type MutableRefObject, useMemo } from 'react';
+import type {
+  ComponentObject,
+  ComponentSettingsFieldObject,
+  ElementObject,
+  FieldObject,
+  FieldOverride,
+} from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
+
+interface FieldProps {
+  setting: ComponentSettingsFieldObject;
+  element: ElementObject;
+  component: ComponentObject;
+  onChange: (key: string, value: any) => void;
+  onCustomChange: (key: string, field: FieldObject, value: any) => void;
+  editableRef: MutableRefObject<any>;
+}
 
 const Field = ({
   setting: fieldSetting,
@@ -9,7 +25,7 @@ const Field = ({
   onChange,
   onCustomChange,
   editableRef,
-}) => {
+}: FieldProps) => {
   const { builder, addons, floatingsRef } = useBuilder();
 
   const overrides = useMemo(() => ({
@@ -18,6 +34,7 @@ const Field = ({
     }),
     settings: builder
       .getOverride('setting', element.type, { setting: fieldSetting }),
+    onChange: () => {},
   }), [element, fieldSetting, addons]);
 
   const field = useMemo(() => (
@@ -40,7 +57,7 @@ const Field = ({
       ? onCustomChange.bind(null, setting.key, overrides.field)
       : onChange.bind(null, setting.key),
     ...field?.props,
-    ...overrides.field?.props,
+    ...(overrides.field as FieldOverride)?.props,
   };
 
   if (setting.condition &&
@@ -48,7 +65,8 @@ const Field = ({
     return null;
   }
 
-  return (overrides.field?.render || field?.render)?.(fieldProps, {
+  return (
+    (overrides.field as FieldOverride)?.render || field?.render)?.(fieldProps, {
     onChange: onChange.bind(null, setting.key),
     field,
     setting,

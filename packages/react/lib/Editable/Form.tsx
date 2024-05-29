@@ -1,21 +1,38 @@
-import { useReducer } from 'react';
+import { type Key, useReducer } from 'react';
+import type {
+  ComponentObject,
+  ComponentOverride,
+  ComponentSettingsFieldObject,
+  ElementObject, FieldContent,
+  FieldObject,
+} from '@oakjs/core';
 import {
-  Button,
-  Tabs,
-  Tab,
-  Label,
   Abstract,
+  Button,
   FieldControl,
+  Label,
+  Tab,
+  Tabs,
   Tooltip,
-  mockState,
-  cloneDeep,
   classNames,
+  cloneDeep,
+  mockState,
 } from '@junipero/react';
 
-import { useBuilder } from '../hooks';
-import Text from '../Text';
-import Icon from '../Icon';
 import Field from './Field';
+import Icon from '../Icon';
+import Text from '../Text';
+import { useBuilder } from '../hooks';
+
+interface FormProps {
+  placement?: string;
+  element: ElementObject;
+  component: ComponentObject;
+  className?: string;
+  onSave: () => void;
+  onCancel: () => void;
+  editableRef?: any;
+}
 
 const Form = ({
   placement,
@@ -26,34 +43,39 @@ const Form = ({
   onCancel,
   editableRef,
   ...rest
-}) => {
+}: FormProps) => {
   const { builder } = useBuilder();
   const overrides = builder.getOverride('component', element.type);
-  const deserialize = overrides?.deserialize || component?.deserialize ||
-    (e => e);
+  const deserialize = (overrides as ComponentOverride)?.deserialize ||
+    component?.deserialize ||
+    ((e: ElementObject) => e);
 
   const [state, dispatch] = useReducer(mockState, {
     element: deserialize(cloneDeep(element)),
   });
 
-  const onUpdate_ = elmt => {
+  const onUpdate_ = (elmt: ElementObject) => {
     dispatch({ element: elmt });
   };
 
-  const onSettingChange_ = (name, field) => {
+  const onSettingChange_ = (name: string, field: FieldContent) => {
     builder.setElementSettings(state.element, name,
       field.checked ?? field.value);
     dispatch({ element: state.element });
   };
 
-  const onSettingCustomChange_ = (name, renderer, field) => {
+  const onSettingCustomChange_ = (
+    name: string,
+    renderer: any, // TODO FIX IT
+    field: FieldContent
+  ) => {
     const changes = renderer
       .onChange(name, field, state.element);
     dispatch({ element: Object.assign(state.element, changes) });
   };
 
   const onSave_ = () => {
-    builder.setElement(element.id, state.element || {}, { element });
+    builder.setElement(element.id as string, state.element || {}, { element });
     onSave();
   };
 
@@ -62,7 +84,7 @@ const Form = ({
     onCancel();
   };
 
-  const getFieldPriority = field => {
+  const getFieldPriority = (field: ComponentSettingsFieldObject) => {
     const fieldOverride = {
       ...builder.getOverride('setting', element.type, { setting: field }),
       ...builder.getOverride('component', element.type, {
@@ -75,7 +97,7 @@ const Form = ({
       : field.priority || 0;
   };
 
-  const hasSubfields = setting =>
+  const hasSubfields = (setting: ComponentSettingsFieldObject) =>
     Array.isArray(setting.fields) && setting.fields.length > 0;
 
   const tabs = builder.getAvailableSettings();
@@ -88,7 +110,7 @@ const Form = ({
     >
       <div className="form-title junipero oak-flex oak-py-2 oak-px-5">
         { component.settings?.title ? (
-          <Text>{ component.settings?.title }</Text>
+          <Text>{ component.settings?.title as string }</Text>
         ) : (
           <Text name="core.components.default.settings.title">
             Element options
@@ -98,34 +120,47 @@ const Form = ({
       <Tabs>
         { tabs
           .concat(
-            (component.settings?.fields || []).filter(f => f.type === 'tab')
+            ((component.settings as any)?.fields || []) // TODO FIX IT
+              .filter((f: FieldObject) => f.type === 'tab')
           )
           .sort((a, b) => (b.priority || 0) - (a.priority || 0))
           .filter(tab => tab.type === 'tab' &&
             (!tab.condition ||
               tab.condition(state.element, { component, builder })))
           .map((tab, t) => (
-            <Tab key={tab.id || t} title={<Text>{ tab.title }</Text>}>
+            <Tab
+              key={tab.id || t}
+              title={<Text>{ tab.title as string }</Text> as any} // TODO FIX IT
+            >
               <div className="fields oak-flex oak-flex-col oak-gap-4">
                 { (component.settings?.fields || [])
-                  .filter(field => (tab.id === 'general' && !field.tab) ||
-                    field.tab === tab.id)
+                  .filter((field: ComponentSettingsFieldObject) =>
+                    (tab.id === 'general' && !field.tab) ||
+                    field.tab === tab.id
+                  )
                   .concat(tab.fields)
-                  .sort((a, b) => getFieldPriority(b) - getFieldPriority(a))
-                  .filter(f =>
+                  .sort((
+                    a: ComponentSettingsFieldObject,
+                    b: ComponentSettingsFieldObject
+                  ) => getFieldPriority(b) - getFieldPriority(a))
+                  .filter((f: ComponentSettingsFieldObject) =>
                     !f.condition ||
                     f.condition(state.element, { component, builder })
                   )
-                  .map((setting, i) => (
+                  .map((setting: ComponentSettingsFieldObject, i: Key) => (
                     <div className="field" key={i}>
                       <FieldControl>
                         { setting.label && (
                           <Label
                             className="oak-flex oak-items-center oak-gap-2"
                           >
-                            <Text>{ setting.label }</Text>
+                            <Text>{ setting.label as string }</Text>
                             { setting.info && (
-                              <Tooltip text={<Text>{ setting.info }</Text>}>
+                              <Tooltip
+                                text={
+                                  <Text>{ setting.info as string }</Text>
+                                }
+                              >
                                 <Icon className="!oak-text-[18px]">
                                   info_circle
                                 </Icon>
@@ -149,9 +184,13 @@ const Form = ({
                                         'oak-gap-1'
                                       )}
                                     >
-                                      <Text>{ f.label }</Text>
+                                      <Text>{ f.label as string }</Text>
                                       { f.info && (
-                                        <Tooltip text={<Text>{ f.info }</Text>}>
+                                        <Tooltip
+                                          text={
+                                            <Text>{ f.info as string }</Text>
+                                          }
+                                        >
                                           <Icon className="!oak-text-[14px]">
                                             info_circle
                                           </Icon>
@@ -164,7 +203,7 @@ const Form = ({
                                     editableRef={editableRef}
                                     element={state.element}
                                     component={component}
-                                    overrides={overrides}
+                                    // overrides={overrides}
                                     onChange={onSettingChange_}
                                     onCustomChange={onSettingCustomChange_}
                                   />
@@ -178,14 +217,14 @@ const Form = ({
                             editableRef={editableRef}
                             element={state.element}
                             component={component}
-                            overrides={overrides}
+                            // overrides={overrides}
                             onChange={onSettingChange_}
                             onCustomChange={onSettingCustomChange_}
                           />
                         ) }
                         { setting.description && (
                           <Abstract className="secondary">
-                            <Text>{ setting.description }</Text>
+                            <Text>{ setting.description as string }</Text>
                           </Abstract>
                         ) }
                       </FieldControl>

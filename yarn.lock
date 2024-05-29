@@ -4821,7 +4821,6 @@ __metadata:
     "@junipero/react": "npm:3.4.11"
     "@junipero/transitions": "npm:3.4.11"
     core-js: "npm:3.36.1"
-    rollup: "npm:4.14.3"
     uuid: "npm:9.0.1"
   peerDependencies:
     react: ^18.0.0

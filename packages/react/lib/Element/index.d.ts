@@ -1,5 +1,5 @@
-import { ReactNode, ComponentPropsWithoutRef } from 'react';
-import {
+import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type {
   ElementObject,
   ComponentObject,
   Component,

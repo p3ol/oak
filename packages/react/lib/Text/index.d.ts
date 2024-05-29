@@ -1,5 +1,5 @@
-import { GetTextCallback } from '@oakjs/core';
-import { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { GetTextCallback } from '@oakjs/core';
 
 export declare interface TextProps extends ComponentPropsWithoutRef<any> {
   children?: ReactNode | JSX.Element | GetTextCallback;

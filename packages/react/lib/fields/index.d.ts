@@ -1,1 +1,1 @@
-export { default as ImageField, ImageFieldValue } from './ImageField';
+export { default as ImageField } from './ImageField';

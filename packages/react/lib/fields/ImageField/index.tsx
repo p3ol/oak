@@ -1,9 +1,39 @@
-import { useEffect, useReducer } from 'react';
-import { TouchableZone, Spinner, classNames, mockState } from '@junipero/react';
+import { type MouseEvent, useEffect, useReducer } from 'react';
+import type {
+  ComponentSettingsField,
+  ComponentSettingsFieldObject,
+  ElementObject,
+} from '@oakjs/core';
+import {
+  TouchableZone,
+  Spinner,
+  classNames,
+  mockState,
+} from '@junipero/react';
 
-import { useBuilder } from '../../hooks';
-import Text from '../../Text';
 import Icon from '../../Icon';
+import Text from '../../Text';
+import { useBuilder } from '../../hooks';
+
+export declare type imageFieldObject = {
+  name: string,
+  url: string,
+}
+
+export declare type imageFieldContent<T = any> = {
+  value?: T;
+}
+
+interface ImageFieldProps {
+  className?: string;
+  value?: imageFieldObject;
+  element?: ElementObject;
+  setting?: ComponentSettingsFieldObject | ComponentSettingsField;
+  onOpenDialog?: () => void;
+  onChange?: (value: imageFieldContent) => void;
+  iconOnly?: boolean;
+  accept?: string[];
+}
 
 const ImageField = ({
   className,
@@ -14,7 +44,7 @@ const ImageField = ({
   onChange,
   iconOnly = false,
   accept = ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'],
-}) => {
+}: ImageFieldProps) => {
   const { onImageUpload } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
     value: {
@@ -30,7 +60,7 @@ const ImageField = ({
     }
   }, [value]);
 
-  const onOpenFileDialog = e => {
+  const onOpenFileDialog = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
     if (state.loading) {
@@ -49,7 +79,7 @@ const ImageField = ({
     input.click();
   };
 
-  const onFile = async e => {
+  const onFile = async (e: Event) => {
     if (state.loading) {
       return;
     }
@@ -65,7 +95,7 @@ const ImageField = ({
         dispatch({ loading: false });
       }
     } else {
-      const file = e.target.files[0];
+      const file = (e.target as HTMLInputElement).files[0];
 
       if (file) {
         const fr = new FileReader();
@@ -80,14 +110,18 @@ const ImageField = ({
     }
   };
 
-  const onUrlReady = ({ url, name, ...rest } = {}) => {
+  const onUrlReady = ({
+    url,
+    name,
+    ...rest
+  }: { url?: string | ArrayBuffer, name?: string } = {}) => {
     const val = { url, name, ...rest };
     dispatch({ value: val });
     onChange?.({ value: val });
     dispatch({ loading: false });
   };
 
-  const onReset = e => {
+  const onReset = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     dispatch({ value: null });
     onChange?.({ value: null });

@@ -1,8 +1,34 @@
-import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
-import { Tooltip, classNames } from '@junipero/react';
+import {
+  type MouseEvent,
+  type MutableRefObject,
+  type ReactNode,
+  type Ref,
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from 'react';
+import {
+  type TooltipRef,
+  Tooltip,
+  classNames,
+} from '@junipero/react';
 
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
+
+interface OptionProps {
+  className?: string;
+  iconClassName?: string;
+  option?: { icon:
+    (string | ReactNode) | (() => (string | ReactNode))
+  };
+  renderIcon?: () => ReactNode;
+  draggable?: boolean;
+  name?: ReactNode | JSX.Element;
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
+  tooltipProps?: any;
+}
 
 const Option = forwardRef(({
   className,
@@ -14,10 +40,10 @@ const Option = forwardRef(({
   onClick,
   tooltipProps,
   ...props
-}, ref) => {
+}: OptionProps, ref) => {
   const { rootRef, rootBoundary, floatingsRef } = useBuilder();
-  const innerRef = useRef();
-  const tooltipRef = useRef();
+  const innerRef = useRef<Ref<HTMLElement>>();
+  const tooltipRef = useRef<TooltipRef>();
 
   useImperativeHandle(ref, () => ({
     isOak: true,
@@ -26,12 +52,14 @@ const Option = forwardRef(({
   }), [innerRef.current]);
 
   const floatingOptions = useMemo(() => ({
-    boundary: rootBoundary?.current || rootRef?.current,
-    rootBoundary: rootBoundary?.current || rootRef?.current,
+    boundary: (rootBoundary as MutableRefObject<any>)?.current ||
+      rootRef?.current,
+    rootBoundary: (rootBoundary as MutableRefObject<any>)?.current ||
+      rootRef?.current,
   }), []);
 
-  const onClick_ = e => {
-    tooltipRef.current?.close();
+  const onClick_ = (e: MouseEvent<HTMLAnchorElement>) => {
+    tooltipRef?.current?.close();
     onClick?.(e);
   };
 
@@ -59,15 +87,15 @@ const Option = forwardRef(({
   return name ? (
     <Tooltip
       container={floatingsRef.current || '.oak'}
-      ref={r => {
+      ref={(r: TooltipRef) => {
         tooltipRef.current = r;
         innerRef.current = r?.handleRef?.current;
       }}
       floatingOptions={floatingOptions}
       text={name}
-      { ...tooltipProps }
+      {...tooltipProps}
     >
-      { inner }
+      {inner}
     </Tooltip>
   ) : inner;
 });

@@ -1,7 +1,17 @@
+import type { Key } from 'react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
+
+interface RowProps {
+  element: ElementObject;
+  parent: Array<ElementObject>;
+  parentComponent: ComponentObject;
+  className?: string;
+  depth?: number;
+}
 
 const Row = ({
   element,
@@ -10,10 +20,10 @@ const Row = ({
   className,
   depth = 0,
   ...rest
-}) => {
+}: RowProps) => {
   const { builder } = useBuilder();
 
-  const onDivide = (index, isBefore) => {
+  const onDivide = (index: number, isBefore: boolean) => {
     if (!element.cols || element.cols.length <= 0) {
       element.cols = [{
         content: [],
@@ -30,22 +40,33 @@ const Row = ({
       type: 'col',
     });
 
-    builder.setElement(element.id, { cols: element.cols }, { element });
+    builder.setElement(
+      element.id as string,
+      { cols: element.cols },
+      { element }
+    );
   };
 
-  const onRemoveCol = index => {
+  const onRemoveCol = (index: number) => {
     if (element.cols?.length > 0) {
       element.cols.splice(index, 1);
     }
 
     if (element.cols?.length <= 0) {
-      builder.removeElement(element.id, { parent });
+      builder.removeElement(element.id as string, { parent });
     } else {
-      builder.setElement(element.id, { cols: element.cols }, { element });
+      builder.setElement(
+        element.id as string,
+        { cols: element.cols },
+        { element }
+      );
     }
   };
 
-  const onDropElement = (position, sibling) => {
+  const onDropElement = (
+    position: 'before' | 'after',
+    sibling: ElementObject
+  ) => {
     if (parentComponent?.disallow?.includes?.(sibling.type)) {
       return;
     }
@@ -78,7 +99,7 @@ const Row = ({
             'oak-justify-' + element.settings.justifyContent,
         )}
       >
-        { element?.cols?.map((col, i) => (
+        { element?.cols?.map((col: ElementObject, i: Key) => (
           <Col
             key={i}
             depth={depth}

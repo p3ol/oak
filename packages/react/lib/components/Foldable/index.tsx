@@ -1,8 +1,18 @@
+import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { Droppable, omit, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Text from '../../Text';
 import Container from '../../Container';
+
+interface FoldableProps {
+  element: ElementObject;
+  parent: Array<ElementObject>;
+  component: ComponentObject;
+  parentComponent: ComponentObject;
+  className?: string;
+  depth?: number;
+}
 
 const Foldable = ({
   component,
@@ -12,10 +22,13 @@ const Foldable = ({
   className,
   depth = 0,
   ...rest
-}) => {
+}: FoldableProps) => {
   const { builder } = useBuilder();
 
-  const onDropElement = (position, sibling) => {
+  const onDropElement = (
+    position: 'before' | 'after',
+    sibling: ElementObject
+  ) => {
     if (parentComponent?.disallow?.includes?.(sibling.type)) {
       return;
     }
@@ -78,7 +91,7 @@ const Foldable = ({
           <Container
             depth={depth + 1}
             element={element}
-            content={element.content}
+            content={element.content as ElementObject[]}
             component={component}
           />
         </div>

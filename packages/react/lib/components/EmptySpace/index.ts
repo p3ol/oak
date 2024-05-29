@@ -1,4 +1,4 @@
-const EmptySpace = () => null;
+const EmptySpace = (): null => null;
 
 EmptySpace.displayName = 'EmptySpace';
 

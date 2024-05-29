@@ -1,27 +1,28 @@
-import {
+import type {
   ReactNode,
   ComponentPropsWithRef,
   ComponentPropsWithoutRef,
   MutableRefObject,
 } from 'react';
-import {
-  ElementObject,
-  ComponentObject,
+import type {
   Component,
+  ComponentObject,
   ComponentSettingsField,
+  ComponentSettingsFieldKeyTuple,
+  ComponentSettingsFieldObject,
   ComponentSettingsTab,
   ComponentSettingsTabObject,
-  ComponentSettingsFieldObject,
-  ComponentSettingsFieldKeyTuple,
-  FieldOverrideObject,
+  ElementObject,
+  FieldContent,
   FieldOverride,
+  FieldOverrideObject,
 } from '@oakjs/core';
 
 export declare interface EditableProps extends ComponentPropsWithRef<any> {
   children?: ReactNode | JSX.Element;
   element?: ElementObject;
   component?: ComponentObject | Component;
-  onToggle?(props: { opened: boolean });
+  onToggle?(props: { opened: boolean }): void;
 }
 
 declare function Editable(props: EditableProps): ReactNode | JSX.Element;
@@ -50,12 +51,12 @@ export declare interface FieldProps extends ComponentPropsWithoutRef<any> {
   overrides?: FieldOverrideObject | FieldOverride;
   onChange?(
     key: string | ComponentSettingsFieldKeyTuple,
-    field: { value: any; valid: boolean }
+    field: { value: FieldContent; valid: boolean }
   ): void;
   onCustomChange?(
     key: string | ComponentSettingsFieldKeyTuple,
     overrides: FieldOverrideObject | FieldOverride,
-    field: { value: any; valid: boolean }
+    field: { value: FieldContent; valid: boolean }
   ): void;
   editableRef: MutableRefObject<any>;
 }

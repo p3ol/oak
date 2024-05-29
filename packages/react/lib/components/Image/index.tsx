@@ -1,11 +1,17 @@
+import type { ElementObject } from '@oakjs/core';
 import { classNames } from '@junipero/react';
 
 import Text from '../../Text';
 
+interface ImageProps {
+  element: ElementObject;
+  className?: string;
+}
+
 const Image = ({
   element,
   className,
-}) => {
+}: ImageProps) => {
   const getName = () =>
     element.name ||
     (/data:/.test(element.url) ? (
@@ -24,7 +30,7 @@ const Image = ({
       <div
         className="preview oak-bg-inner-background-color"
         style={{
-          backgroundImage: element.url ? `url('${element.url}')` : null,
+          backgroundImage: element.url ? `url('${element.url}')` : undefined,
         }}
       />
       <div className="info">

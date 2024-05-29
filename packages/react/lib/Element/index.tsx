@@ -1,13 +1,46 @@
-import { Fragment, useMemo, useRef, useState } from 'react';
-import { Draggable, Droppable, Tooltip, classNames } from '@junipero/react';
+import {
+  type MouseEvent,
+  type MutableRefObject,
+  type Ref,
+  Fragment,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import type {
+  ComponentObject,
+  ComponentOverride,
+  ComponentOverrideObject,
+  ElementObject,
+  FieldOverride,
+} from '@oakjs/core';
+import {
+  Draggable,
+  Droppable,
+  Tooltip,
+  classNames,
+} from '@junipero/react';
 
 import { copyToClipboard } from '../utils';
-import { useBuilder } from '../hooks';
-import Icon from '../Icon';
-import Text from '../Text';
-import Option from '../Option';
-import Editable from '../Editable';
 import DisplayableSettings from '../DisplayableSettings';
+import Editable from '../Editable';
+import Icon from '../Icon';
+import Option from '../Option';
+import Text from '../Text';
+import { useBuilder } from '../hooks';
+
+interface ElementProps {
+  element: ElementObject;
+  parent: ElementObject[];
+  parentComponent: ComponentObject;
+  className?: string;
+  depth?: number;
+}
+
+interface editableRefObject {
+  current: MutableRefObject<any>;
+  toggle: () => void;
+}
 
 const Element = ({
   element,
@@ -15,9 +48,9 @@ const Element = ({
   parentComponent,
   className,
   depth = 0,
-}) => {
-  const innerRef = useRef();
-  const editableRef = useRef();
+}: ElementProps) => {
+  const innerRef = useRef<Ref<HTMLElement>>();
+  const editableRef = useRef<editableRefObject>();
   const [editableOpened, setEditableOpened] = useState(false);
   const { builder, addons } = useBuilder();
   const component = useMemo(() => (
@@ -27,17 +60,17 @@ const Element = ({
     builder.getOverride('component', element?.type)
   ), [element?.type, addons]);
 
-  const onDelete_ = e => {
+  const onDelete_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
-    builder.removeElement(element.id, { parent });
+    builder.removeElement(element.id as string, { parent });
   };
 
-  const onDuplicate_ = e => {
+  const onDuplicate_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
     builder.duplicateElement(element, { parent });
   };
 
-  const onDrop_ = (data, position) => {
+  const onDrop_ = (data: any, position: ('before' | 'after')) => {
     if (parentComponent?.disallow?.includes?.(data.type)) {
       return;
     }
@@ -45,28 +78,31 @@ const Element = ({
     builder.moveElement?.(data, element, { parent, position });
   };
 
-  const onEdit_ = e => {
+  const onEdit_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
     editableRef.current?.toggle();
   };
 
-  const onEditableToggle_ = ({ opened }) => {
+  const onEditableToggle_ = ({ opened }: { opened: boolean }) => {
     setEditableOpened(opened);
   };
 
-  const onCopy_ = e => {
-    e?.preventDefault();
-    copyToClipboard(JSON.stringify(element));
-  };
-
-  const onPrintDebug = e => {
+  const onPrintDebug = (e: MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
     // eslint-disable-next-line no-console
     console.log('Component', component, '\nElement', element,
       '\nOverride', override, '\nParent', parent);
   };
 
-  const rendered = (override?.render || component?.render)?.({
+  const onCopy_ = (e: MouseEvent<HTMLAnchorElement>) => {
+    e?.preventDefault();
+    copyToClipboard(JSON.stringify(element));
+  };
+
+  const rendered = (
+    (override as FieldOverride | ComponentOverride)?.render ||
+    component?.render
+  )?.({
     element,
     component,
     parentComponent,
@@ -112,7 +148,7 @@ const Element = ({
                 )}
               >
                 <h6 className="junipero oak-m-0">
-                  <Text>{ component?.name }</Text>
+                  <Text>{ component?.name as string }</Text>
                 </h6>
                 { rendered && (
                   <div className="element-content oak-flex-auto">
@@ -123,7 +159,9 @@ const Element = ({
                 <DisplayableSettings
                   element={element}
                   component={component}
-                  override={override}
+                  override={
+                    override as ComponentOverrideObject | ComponentOverride
+                  }
                 />
               </div>
             </div>
@@ -156,7 +194,7 @@ const Element = ({
               option={{ icon: 'close' }}
               className="remove"
               onClick={onDelete_}
-              name={<Text name="core.tooltips.remove">Remove</Text>}
+              name={<Text name="core.tooltips.remove">Remove</Text> }
             />
             <Option
               option={{ icon: 'copy' }}

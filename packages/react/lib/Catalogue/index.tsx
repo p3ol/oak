@@ -1,12 +1,14 @@
 import {
+  type ComponentPropsWithRef,
+  type MouseEvent,
+  type MutableRefObject,
   forwardRef,
   useImperativeHandle,
+  useMemo,
   useReducer,
   useRef,
-  useMemo,
-  MutableRefObject,
-  ComponentPropsWithRef,
 } from 'react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { createPortal } from 'react-dom';
 import {
   Tabs,
@@ -24,7 +26,6 @@ import {
   offset,
   shift,
 } from '@floating-ui/react';
-import { ComponentObject, ElementObject } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
@@ -43,7 +44,7 @@ export declare interface CatalogueProps extends ComponentPropsWithRef<any> {
   className?: string;
   placement?: string;
   onToggle?(props: { opened: boolean }): void;
-  onAppend?(props: { component: ComponentObject }): void;
+  onAppend?(component: ComponentObject): void;
   onPaste?(clipboardData: ElementObject): void;
   ref?: MutableRefObject<CatalogueRef>;
 }
@@ -117,7 +118,7 @@ const Catalogue = forwardRef(({
     onToggle?.({ opened: false });
   };
 
-  const toggle = e => {
+  const toggle = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
     if (state.opened) {
@@ -127,7 +128,10 @@ const Catalogue = forwardRef(({
     }
   };
 
-  const onAppend_ = (component, e) => {
+  const onAppend_ = (
+    component: ComponentObject,
+    e: MouseEvent<HTMLAnchorElement>,
+  ) => {
     e?.preventDefault();
     onAppend?.(component);
   };
@@ -138,7 +142,7 @@ const Catalogue = forwardRef(({
       .filter(g => g.usable !== false)
       .map(g => ({
         ...g,
-        components: g.components.filter(c =>
+        components: g.components.filter((c: ComponentObject) =>
           c.usable !== false &&
           (!component || !component.disallow ||
             !component.disallow.includes(c.id))
@@ -183,9 +187,13 @@ const Catalogue = forwardRef(({
           <div className="groups">
             <Tabs>
               { groups.map(group => (
-                <Tab key={group.id} title={<Text>{ group.name }</Text>}>
+                <Tab
+                  key={group.id}
+                  title={<Text>{ group.name as string }</Text> as any }
+                  // TODO FIX IT TYPE
+                >
                   <div className="group oak-grid oak-grid-cols-2 oak-gap-2">
-                    { group.components.map(component => (
+                    { group.components.map((component: ComponentObject) => (
                       <a
                         key={component.id}
                         href="#"
@@ -205,7 +213,7 @@ const Catalogue = forwardRef(({
                             : component.icon}
                         />
                         <span className="name">
-                          <Text>{ component.name }</Text>
+                          <Text>{ component.name as string }</Text>
                         </span>
                       </a>
                     )) }

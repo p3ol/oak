@@ -1,5 +1,5 @@
-import { MutableRefObject, ComponentPropsWithRef, ReactNode } from 'react';
-import {
+import type { MutableRefObject, ComponentPropsWithRef, ReactNode } from 'react';
+import type {
   Builder,
   Component,
   ComponentObject,

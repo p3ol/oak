@@ -1,13 +1,40 @@
-import { useRef, useMemo } from 'react';
+import {
+  type Key,
+  type MouseEvent,
+  type MutableRefObject,
+  useMemo,
+  useRef,
+} from 'react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Catalogue from '../../Catalogue';
-import Option from '../../Option';
-import Element from '../../Element';
 import Editable from '../../Editable';
+import Element from '../../Element';
 import Icon from '../../Icon';
+import Option from '../../Option';
 import Text from '../../Text';
+
+interface ColProps {
+  element: ElementObject;
+  className?: string;
+  depth?: number;
+  onPrepend?: () => void;
+  onAppend?: () => void;
+  onRemove?: () => void;
+}
+
+interface editableRefObject {
+  current: MutableRefObject<any>;
+  toggle: () => void;
+}
+
+interface CatalogueRefObject {
+  current: MutableRefObject<any>;
+  open(): void;
+  close(): void;
+}
 
 const Col = ({
   element,
@@ -17,77 +44,77 @@ const Col = ({
   onAppend,
   onRemove,
   ...rest
-}) => {
-  const editableRef = useRef();
-  const prependCatalogueRef = useRef();
-  const appendCatalogueRef = useRef();
+}: ColProps) => {
+  const editableRef = useRef<editableRefObject>();
+  const prependCatalogueRef = useRef<CatalogueRefObject>();
+  const appendCatalogueRef = useRef<CatalogueRefObject>();
   const { builder, floatingsRef } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent?.(element.type)
   ), [element.type]);
 
-  const onPrependCol_ = e => {
+  const onPrependCol_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     onPrepend?.();
   };
 
-  const onAppendCol_ = e => {
+  const onAppendCol_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     onAppend?.();
   };
 
-  const onRemove_ = e => {
+  const onRemove_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     onRemove?.();
   };
 
-  const onEdit_ = e => {
+  const onEdit_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     editableRef.current?.toggle();
   };
 
-  const onPrepend_ = component => {
+  const onPrepend_ = (component: ComponentObject) => {
     prependCatalogueRef.current?.close();
     builder.addElement?.({}, {
-      parent: element.content,
+      parent: element.content as ElementObject[],
       position: 'before',
       component,
     });
   };
 
-  const onAppend_ = component => {
+  const onAppend_ = (component: ComponentObject) => {
     appendCatalogueRef.current?.close();
     builder.addElement?.({}, {
-      parent: element.content,
+      parent: element.content as ElementObject[],
       position: 'after',
       component,
     });
   };
 
-  const onDrop_ = data => {
+  const onDrop_ = (data: ComponentObject) => {
     if (component?.disallow?.includes?.(data.type)) {
       return;
     }
 
     builder.moveElement?.(data, element, {
-      parent: element.content,
+      parent: element.content as ElementObject[],
       position: 'after',
     });
   };
 
-  const onPasteBefore_ = elmt => {
+  const onPasteBefore_ = (elmt: ElementObject) => {
     prependCatalogueRef.current?.close();
     builder.addElements([].concat(elmt || []), {
-      parent: element.content,
+      parent: element.content as ElementObject[],
       position: 'before',
       resetIds: true,
     });
   };
 
-  const onPasteAfter_ = elmt => {
+  const onPasteAfter_ = (elmt: ElementObject) => {
     appendCatalogueRef.current?.close();
     builder.addElements([].concat(elmt || []), {
-      parent: element.content,
+      parent: element.content as ElementObject[],
       position: 'after',
       resetIds: true,
     });
@@ -142,16 +169,17 @@ const Col = ({
 
           { element.content?.length > 0 && (
             <div className="col-content oak-flex oak-flex-col oak-gap-4">
-              { element.content?.map((item, i) => (
-                <Element
-                  depth={depth + 1}
-                  key={item.id || i}
-                  index={i}
-                  parent={element.content}
-                  element={item}
-                  parentComponent={component}
-                />
-              )) }
+              { (element.content as ElementObject[])?.map(
+                (item: ElementObject, i: Key) => (
+                  <Element
+                    depth={depth + 1}
+                    key={item.id || i}
+                    parent={element.content as ElementObject[]}
+                    element={item}
+                    parentComponent={component}
+                  />
+                )
+              ) }
             </div>
           ) }
 
@@ -244,7 +272,6 @@ const Col = ({
             ref={editableRef}
             element={element}
             component={component}
-            container={floatingsRef.current}
           >
             <Option
               className="edit"

@@ -26,9 +26,13 @@ export declare interface BuilderContextValue {
   builder: CoreBuilder;
   content: Array<Element | ElementObject>;
   rootBoundary: MutableRefObject<any> | Element | DocumentFragment;
-  onImageUpload?(event: FormEvent): Promise<ImageUploadCallbackResult>;
+  onImageUpload?(event: Event, opts: {
+    element?: ElementObject;
+    setting?: ComponentSettingsFieldObject | ComponentSettingsField;
+  }): Promise<ImageUploadCallbackResult>;
   rootRef: MutableRefObject<any>;
   floatingsRef: MutableRefObject<any>;
+  addons: Array<AddonObject>;
 }
 
 export declare type BuilderRef = {

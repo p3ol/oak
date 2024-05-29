@@ -1,4 +1,4 @@
-import { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { ReactNode, ComponentPropsWithoutRef } from 'react';
 
 export declare interface ImageFieldValue {
   url: string;
