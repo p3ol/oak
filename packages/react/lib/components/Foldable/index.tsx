@@ -1,3 +1,4 @@
+import type { ComponentPropsWithoutRef } from 'react';
 import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { Droppable, omit, classNames } from '@junipero/react';
 
@@ -5,7 +6,7 @@ import { useBuilder } from '../../hooks';
 import Text from '../../Text';
 import Container from '../../Container';
 
-interface FoldableProps {
+interface FoldableProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
   parent: Array<ElementObject>;
   component: ComponentObject;

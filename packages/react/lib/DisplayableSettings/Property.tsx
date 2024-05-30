@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { type ComponentPropsWithoutRef, useMemo } from 'react';
 import type {
   ComponentOverride,
   ComponentOverrideObject,
@@ -10,10 +10,10 @@ import { get } from '@junipero/react';
 
 import Text from '../Text';
 
-interface PropertyProps {
+interface PropertyProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
   field: ComponentSettingsFieldObject;
-  override?: ComponentOverrideObject | ComponentOverride;
+  override?: ComponentOverrideObject;
 }
 
 const Property = ({
@@ -26,12 +26,12 @@ const Property = ({
     ...override?.fields?.find(f => f.key === setting.key) || {},
   }), [setting, override]);
 
-  const value = get(element, field.key, field.default);
+  const value = get(element, field.key as string, field.default);
 
   const option = useMemo(() => (
     field.options
       ? field.options.find(
-        (o: { value: Record<string, any>[]}) =>
+        (o: { value: ComponentSettingsFieldOptionObject[]}) =>
           o.value === value || o === value)
       : null
   ), [field, value]);
@@ -39,7 +39,7 @@ const Property = ({
   return (
     <span className="property">
       <span className="key">
-        <Text>{ field.label }</Text>
+        <Text>{ field.label as string }</Text>
         <Text name="core.propertyPairSeparator" default=": " />
       </span>
       <span className="value">

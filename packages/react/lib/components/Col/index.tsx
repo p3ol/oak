@@ -1,4 +1,5 @@
 import {
+  type ComponentPropsWithoutRef,
   type Key,
   type MouseEvent,
   type MutableRefObject,
@@ -16,7 +17,7 @@ import Icon from '../../Icon';
 import Option from '../../Option';
 import Text from '../../Text';
 
-interface ColProps {
+interface ColProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
   className?: string;
   depth?: number;
@@ -25,7 +26,7 @@ interface ColProps {
   onRemove?: () => void;
 }
 
-interface editableRefObject {
+interface EditableRefObject {
   current: MutableRefObject<any>;
   toggle: () => void;
 }
@@ -45,7 +46,7 @@ const Col = ({
   onRemove,
   ...rest
 }: ColProps) => {
-  const editableRef = useRef<editableRefObject>();
+  const editableRef = useRef<EditableRefObject>();
   const prependCatalogueRef = useRef<CatalogueRefObject>();
   const appendCatalogueRef = useRef<CatalogueRefObject>();
   const { builder, floatingsRef } = useBuilder();
@@ -174,6 +175,7 @@ const Col = ({
                   <Element
                     depth={depth + 1}
                     key={item.id || i}
+                    index={i}
                     parent={element.content as ElementObject[]}
                     element={item}
                     parentComponent={component}

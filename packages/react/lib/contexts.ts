@@ -1,4 +1,4 @@
-import { AddonObject, Builder, ComponentSettingsField, ElementObject } from '@oakjs/core';
+import { AddonObject, Builder, ComponentSettingsField, ComponentSettingsFieldObject, ElementObject } from '@oakjs/core';
 import { ChangeEvent, MutableRefObject, createContext } from 'react';
 
 import { ImageUploadCallbackResult } from './Builder';
@@ -19,7 +19,7 @@ declare type BuilderContextType = {
       DocumentFragment;
     onImageUpload?(event: ChangeEvent<HTMLInputElement>, opts?: {
       element?: ElementObject;
-      setting?: ComponentSettingsField;
+      setting?: ComponentSettingsFieldObject;
     }): Promise<ImageUploadCallbackResult>;
     rootRef?: MutableRefObject<HTMLElement>;
     floatingsRef?: MutableRefObject<HTMLElement>;

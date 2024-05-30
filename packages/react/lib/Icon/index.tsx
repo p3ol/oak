@@ -1,7 +1,12 @@
-import { type ReactNode, type Ref, forwardRef } from 'react';
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  type Ref,
+  forwardRef,
+} from 'react';
 import { classNames } from '@junipero/react';
 
-interface IconProps {
+interface IconProps extends ComponentPropsWithoutRef<any> {
   className?: string;
   children?: ReactNode;
 }

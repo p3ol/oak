@@ -1,4 +1,5 @@
 import {
+  type ComponentPropsWithoutRef,
   type MutableRefObject,
   type ReactElement,
   type Ref,
@@ -10,7 +11,7 @@ import {
   useReducer,
   useRef,
 } from 'react';
-import type { ComponentObject, ElementObject } from '@oakjs/core';
+import type { ComponentObject, ComponentSettingsFormObject, ElementObject } from '@oakjs/core';
 import { createPortal } from 'react-dom';
 import { mockState, classNames, ensureNode } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
@@ -29,7 +30,7 @@ import {
 import Form from './Form';
 import { useBuilder } from '../hooks';
 
-interface EditableProps {
+interface EditableProps extends ComponentPropsWithoutRef<any> {
   children: ReactElement;
   element: ElementObject;
   component: ComponentObject;
@@ -58,9 +59,12 @@ const Editable = forwardRef(({
     visible: false,
   });
   const floatingSettings = useMemo(() => (
-    (typeof component?.settings?.floatingSettings === 'function'
-      ? component.settings.floatingSettings()
-      : component?.settings?.floatingSettings) || {}
+    (typeof (component?.settings as ComponentSettingsFormObject
+    )?.floatingSettings === 'function'
+      ? ((component.settings as ComponentSettingsFormObject
+      ).floatingSettings as Function)()
+      : (component?.settings as ComponentSettingsFormObject
+      )?.floatingSettings) || {}
   ), [component]);
   const { x, y, refs, strategy, context } = useFloating({
     open: state.opened,
@@ -165,7 +169,7 @@ const Editable = forwardRef(({
             />
           ), { opened: state.opened, onExited: onAnimationExit }) }
         </div>
-      ), ensureNode(floatingsRef.current) as any) } {/*TODO fix it*/}
+      ), ensureNode(floatingsRef.current) as any) } {/*TODO update junipero*/}
     </>
   );
 });

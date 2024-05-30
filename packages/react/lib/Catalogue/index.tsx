@@ -190,7 +190,7 @@ const Catalogue = forwardRef(({
                 <Tab
                   key={group.id}
                   title={<Text>{ group.name as string }</Text> as any }
-                  // TODO FIX IT TYPE
+                  // TODO update junipero version
                 >
                   <div className="group oak-grid oak-grid-cols-2 oak-gap-2">
                     { group.components.map((component: ComponentObject) => (
@@ -239,7 +239,7 @@ const Catalogue = forwardRef(({
           </div>
         </div>
       ),
-      { opened: state.opened }), ensureNode(floatingsRef?.current) as any) }
+      { opened: state.opened }), ensureNode(floatingsRef?.current)) } {/*TODO update junipero*/}
     </div>
   );
 });

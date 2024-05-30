@@ -1,4 +1,8 @@
-import { type MutableRefObject, useMemo } from 'react';
+import {
+  type ComponentPropsWithoutRef,
+  type MutableRefObject,
+  useMemo,
+} from 'react';
 import type {
   ComponentObject,
   ComponentSettingsFieldObject,
@@ -9,7 +13,7 @@ import type {
 
 import { useBuilder } from '../hooks';
 
-interface FieldProps {
+interface FieldProps extends ComponentPropsWithoutRef<any> {
   setting: ComponentSettingsFieldObject;
   element: ElementObject;
   component: ComponentObject;
@@ -34,7 +38,7 @@ const Field = ({
     }),
     settings: builder
       .getOverride('setting', element.type, { setting: fieldSetting }),
-    onChange: () => {},
+
   }), [element, fieldSetting, addons]);
 
   const field = useMemo(() => (
@@ -53,7 +57,7 @@ const Field = ({
     disabled: setting.disabled,
     value: builder.getElementSettings(element, setting.key, setting.default),
     required: setting.required,
-    onChange: overrides?.onChange
+    onChange: overrides?.onChange //TODO change getOverride method
       ? onCustomChange.bind(null, setting.key, overrides.field)
       : onChange.bind(null, setting.key),
     ...field?.props,

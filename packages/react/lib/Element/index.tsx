@@ -1,7 +1,7 @@
 import {
+  type ComponentPropsWithoutRef,
   type MouseEvent,
   type MutableRefObject,
-  type Ref,
   Fragment,
   useMemo,
   useRef,
@@ -9,10 +9,9 @@ import {
 } from 'react';
 import type {
   ComponentObject,
-  ComponentOverride,
   ComponentOverrideObject,
   ElementObject,
-  FieldOverride,
+  FieldOverrideObject,
 } from '@oakjs/core';
 import {
   Draggable,
@@ -29,7 +28,7 @@ import Option from '../Option';
 import Text from '../Text';
 import { useBuilder } from '../hooks';
 
-interface ElementProps {
+interface ElementProps extends ComponentPropsWithoutRef<any> {
   element?: ElementObject;
   parent?: ElementObject[];
   parentComponent?: ComponentObject;
@@ -37,7 +36,7 @@ interface ElementProps {
   depth?: number;
 }
 
-interface editableRefObject {
+interface EditableRefObject {
   current: MutableRefObject<any>;
   toggle: () => void;
 }
@@ -49,8 +48,8 @@ const Element = ({
   className,
   depth = 0,
 }: ElementProps) => {
-  const innerRef = useRef<Ref<HTMLElement>>();
-  const editableRef = useRef<editableRefObject>();
+  const innerRef = useRef<HTMLElement>();
+  const editableRef = useRef<EditableRefObject>();
   const [editableOpened, setEditableOpened] = useState(false);
   const { builder, addons } = useBuilder();
   const component = useMemo(() => (
@@ -100,7 +99,7 @@ const Element = ({
   };
 
   const rendered = (
-    (override as FieldOverride | ComponentOverride)?.render ||
+    (override as FieldOverrideObject | ComponentOverrideObject)?.render ||
     component?.render
   )?.({
     element,
@@ -159,9 +158,7 @@ const Element = ({
                 <DisplayableSettings
                   element={element}
                   component={component}
-                  override={
-                    override as ComponentOverrideObject | ComponentOverride
-                  }
+                  override={override as ComponentOverrideObject}
                 />
               </div>
             </div>

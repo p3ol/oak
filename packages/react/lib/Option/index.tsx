@@ -1,8 +1,8 @@
 import {
+  type ComponentPropsWithoutRef,
   type MouseEvent,
   type MutableRefObject,
   type ReactNode,
-  type Ref,
   forwardRef,
   useImperativeHandle,
   useMemo,
@@ -17,7 +17,7 @@ import {
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 
-interface OptionProps {
+interface OptionProps extends ComponentPropsWithoutRef<any> {
   className?: string;
   iconClassName?: string;
   option?: { icon:
@@ -42,7 +42,7 @@ const Option = forwardRef(({
   ...props
 }: OptionProps, ref) => {
   const { rootRef, rootBoundary, floatingsRef } = useBuilder();
-  const innerRef = useRef<Ref<HTMLElement>>();
+  const innerRef = useRef();
   const tooltipRef = useRef<TooltipRef>();
 
   useImperativeHandle(ref, () => ({

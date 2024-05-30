@@ -1,8 +1,14 @@
-import { type Key, useReducer } from 'react';
+import {
+  type ComponentPropsWithoutRef,
+  type Key,
+  useReducer,
+} from 'react';
 import type {
   ComponentObject,
   ComponentOverride,
   ComponentSettingsFieldObject,
+  ComponentSettingsFormObject,
+  ComponentSettingsTabObject,
   ElementObject, FieldContent,
   FieldObject,
 } from '@oakjs/core';
@@ -24,7 +30,7 @@ import Icon from '../Icon';
 import Text from '../Text';
 import { useBuilder } from '../hooks';
 
-interface FormProps {
+interface FormProps extends ComponentPropsWithoutRef<any> {
   placement?: string;
   element: ElementObject;
   component: ComponentObject;
@@ -100,7 +106,9 @@ const Form = ({
   const hasSubfields = (setting: ComponentSettingsFieldObject) =>
     Array.isArray(setting.fields) && setting.fields.length > 0;
 
-  const tabs = builder.getAvailableSettings();
+  const tabs: Array<
+    ComponentSettingsTabObject | ComponentSettingsFormObject
+  > = builder.getAvailableSettings();
 
   return (
     <div
@@ -120,17 +128,21 @@ const Form = ({
       <Tabs>
         { tabs
           .concat(
-            ((component.settings as any)?.fields || []) // TODO FIX IT
+            (component.settings?.fields || [])
               .filter((f: FieldObject) => f.type === 'tab')
           )
-          .sort((a, b) => (b.priority || 0) - (a.priority || 0))
-          .filter(tab => tab.type === 'tab' &&
+          .sort((
+            a: ComponentSettingsTabObject,
+            b: ComponentSettingsTabObject,
+          ) => (b.priority || 0) - (a.priority || 0))
+          .filter((tab: ComponentSettingsTabObject) => tab.type === 'tab' &&
             (!tab.condition ||
               tab.condition(state.element, { component, builder })))
-          .map((tab, t) => (
+          .map((tab: ComponentSettingsTabObject, t) => (
             <Tab
               key={tab.id || t}
-              title={<Text>{ tab.title as string }</Text> as any} // TODO FIX IT
+              title={<Text>{ tab.title as string }</Text> as any}
+              // TODO update junipero version
             >
               <div className="fields oak-flex oak-flex-col oak-gap-4">
                 { (component.settings?.fields || [])
@@ -203,7 +215,6 @@ const Form = ({
                                     editableRef={editableRef}
                                     element={state.element}
                                     component={component}
-                                    // overrides={overrides}
                                     onChange={onSettingChange_}
                                     onCustomChange={onSettingCustomChange_}
                                   />
@@ -217,7 +228,6 @@ const Form = ({
                             editableRef={editableRef}
                             element={state.element}
                             component={component}
-                            // overrides={overrides}
                             onChange={onSettingChange_}
                             onCustomChange={onSettingCustomChange_}
                           />

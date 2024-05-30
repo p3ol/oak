@@ -1,11 +1,11 @@
-import type { Key } from 'react';
+import type { ComponentPropsWithoutRef, Key } from 'react';
 import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
 
-interface RowProps {
+interface RowProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
   parent: Array<ElementObject>;
   parentComponent: ComponentObject;

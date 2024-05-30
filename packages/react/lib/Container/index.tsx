@@ -99,6 +99,7 @@ const Container = ({
               <Element
                 depth={depth + 1}
                 key={elt.id || i}
+                index={i}
                 element={elt}
                 parent={content}
                 parentComponent={component}

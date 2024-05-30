@@ -395,7 +395,7 @@ export declare type ElementId = string | number;
 export declare interface ElementObject {
   id?: ElementId;
   type?: string;
-  content?: Function | ElementObject[] | string //TODO not sure
+  content?: Function | ElementObject[] | string
   [_: string]: any
 }
 
@@ -515,7 +515,7 @@ export declare interface ComponentSettingsTabObject {
 
 export declare class ComponentSettingsFormObject {
   title?: string | GetTextCallback;
-  floatingSettings?: Record<string, any>;
+  floatingSettings?: Record<string, any> | Function;
   defaults?: any;
   fields?: (
     ComponentSettingsTabObject |
@@ -535,7 +535,7 @@ export declare interface ComponentObject {
   usable?: boolean;
   editable?: boolean;
   options?: (ComponentOptionObject)[];
-  settings?: ComponentSettingsFormObject;
+  settings?: ComponentSettingsFormObject | ComponentSettingsTabObject;
   disallow?: string[];
   render?(props?: any): any;
   deserialize?: Function;

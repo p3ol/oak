@@ -8,7 +8,6 @@ import {
   ElementObject,
   ComponentSettingsFieldObject,
   ComponentObject,
-  ComponentSettingsField,
 } from '@oakjs/core';
 
 import { useRootBuilder } from '../hooks';
@@ -29,7 +28,7 @@ export declare interface BuilderContextValue {
   rootBoundary: MutableRefObject<any> | Element | DocumentFragment;
   onImageUpload?(event: Event, opts: {
     element?: ElementObject;
-    setting?: ComponentSettingsFieldObject | ComponentSettingsField;
+    setting?: ComponentSettingsFieldObject;
   }): Promise<ImageUploadCallbackResult>;
   rootRef: MutableRefObject<any>;
   floatingsRef: MutableRefObject<any>;
@@ -159,6 +158,7 @@ const Builder = forwardRef(({
           { content?.map((element: ElementObject, i: number) => (
             <Element
               key={element.id || i}
+              index={i}
               element={element}
             />
           )) }

@@ -1,9 +1,10 @@
+import type { ComponentPropsWithoutRef } from 'react';
 import type { ElementObject } from '@oakjs/core';
 import { classNames } from '@junipero/react';
 
 import Text from '../../Text';
 
-interface ImageProps {
+interface ImageProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
   className?: string;
 }
@@ -30,7 +31,7 @@ const Image = ({
       <div
         className="preview oak-bg-inner-background-color"
         style={{
-          backgroundImage: element.url ? `url('${element.url}')` : undefined,
+          backgroundImage: element.url ? `url('${element.url}')` : null,
         }}
       />
       <div className="info">

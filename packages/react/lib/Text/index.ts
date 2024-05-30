@@ -1,8 +1,8 @@
-import type { FC, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, FC, ReactNode } from 'react';
 
 import { useBuilder } from '../hooks';
 
-interface TextProps {
+interface TextProps extends ComponentPropsWithoutRef<any> {
   children?: ReactNode;
   name?: string;
   default?: ReactNode;

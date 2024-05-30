@@ -1,4 +1,9 @@
-import { type MouseEvent, useEffect, useReducer } from 'react';
+import {
+  type ComponentPropsWithRef,
+  type MouseEvent,
+  useEffect,
+  useReducer,
+} from 'react';
 import type {
   ComponentSettingsField,
   ComponentSettingsFieldObject,
@@ -15,22 +20,22 @@ import Icon from '../../Icon';
 import Text from '../../Text';
 import { useBuilder } from '../../hooks';
 
-export declare type imageFieldObject = {
+export declare type ImageFieldObject = {
   name: string,
   url: string,
 }
 
-export declare type imageFieldContent<T = any> = {
+export declare type ImageFieldContent<T = any> = {
   value?: T;
 }
 
-interface ImageFieldProps {
+interface ImageFieldProps extends ComponentPropsWithRef<any> {
   className?: string;
-  value?: imageFieldObject;
+  value?: ImageFieldObject;
   element?: ElementObject;
   setting?: ComponentSettingsFieldObject | ComponentSettingsField;
   onOpenDialog?: () => void;
-  onChange?: (value: imageFieldContent) => void;
+  onChange?: (value: ImageFieldContent) => void;
   iconOnly?: boolean;
   accept?: string[];
 }
@@ -87,7 +92,8 @@ const ImageField = ({
     dispatch({ loading: true });
 
     if (onImageUpload) {
-      const result = await onImageUpload(e, { element, setting });
+      const result = await onImageUpload(e as any, { element, setting });
+      //TODO record this @maxime
 
       if (result) {
         onUrlReady(result);
