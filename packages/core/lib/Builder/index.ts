@@ -13,6 +13,7 @@ import {
   ComponentSettingsFieldObject,
   ComponentSettingsTab,
   ComponentSettingsTabObject,
+  ComponentsGroupObject,
   ElementObject,
   ElementSettingsKeyObject,
   Field,
@@ -148,7 +149,7 @@ export default class Builder extends Emitter {
     });
   }
 
-  getAvailableComponents (): Array<ComponentObject> {
+  getAvailableComponents (): Array<ComponentsGroupObject> {
     const {
       groups,
       defaultGroup,

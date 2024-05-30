@@ -6,6 +6,7 @@ import {
   useMemo,
   MutableRefObject,
   ComponentPropsWithRef,
+  MouseEvent,
 } from 'react';
 import { createPortal } from 'react-dom';
 import {
@@ -43,7 +44,7 @@ export declare interface CatalogueProps extends ComponentPropsWithRef<any> {
   className?: string;
   placement?: string;
   onToggle?(props: { opened: boolean }): void;
-  onAppend?(props: { component: ComponentObject }): void;
+  onAppend?(component: ComponentObject): void;
   onPaste?(clipboardData: ElementObject): void;
   ref?: MutableRefObject<CatalogueRef>;
 }
@@ -117,7 +118,7 @@ const Catalogue = forwardRef(({
     onToggle?.({ opened: false });
   };
 
-  const toggle = e => {
+  const toggle = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
     if (state.opened) {
@@ -127,7 +128,10 @@ const Catalogue = forwardRef(({
     }
   };
 
-  const onAppend_ = (component, e) => {
+  const onAppend_ = (
+    component: ComponentObject,
+    e: MouseEvent<HTMLElement>
+  ) => {
     e?.preventDefault();
     onAppend?.(component);
   };
@@ -230,7 +234,8 @@ const Catalogue = forwardRef(({
             ) }
           </div>
         </div>
-      ), { opened: state.opened }), ensureNode(floatingsRef?.current) as any) } {/*TODO fix it*/}
+      ),
+      { opened: state.opened }), ensureNode(floatingsRef?.current) as any) }
     </div>
   );
 });
