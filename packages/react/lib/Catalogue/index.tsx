@@ -238,7 +238,8 @@ const Catalogue = forwardRef(({
             ) }
           </div>
         </div>
-      ), { opened: state.opened }), ensureNode(floatingsRef?.current) as any) } {/*TODO fix it*/}
+      ),
+      { opened: state.opened }), ensureNode(floatingsRef?.current) as any) }
     </div>
   );
 });
