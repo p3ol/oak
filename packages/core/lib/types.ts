@@ -454,7 +454,7 @@ export declare interface SettingOverrideObject {
   valueType?: string;
   priority?: number;
   options?: Array<any>;
-  fields?: (ComponentSettingsField | ComponentSettingsFieldObject)[];
+  fields?: (ComponentSettingsFieldObject)[];
   props?: Record<string, any>;
   condition?(element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
@@ -492,7 +492,7 @@ export declare interface ComponentSettingsFieldObject {
   fields?: ComponentSettingsFieldObject[];
   props?: Record<string, any>;
   condition?(element: Element | ElementObject, opts?: {
-    component: Component | ComponentObject;
+    component: ComponentObject;
     builder: Builder;
   }): boolean;
 }
@@ -502,7 +502,7 @@ export declare interface ComponentSettingsTabObject {
   type?: string;
   priority?: number;
   title?: string | GetTextCallback;
-  fields?: (ComponentSettingsField | ComponentSettingsFieldObject)[];
+  fields?: (ComponentSettingsFieldObject)[];
   condition?(element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
     builder: Builder;
@@ -514,9 +514,7 @@ export declare class ComponentSettingsFormObject {
   floatingSettings?: Record<string, any>;
   defaults?: any;
   fields?: (
-    ComponentSettingsTab |
     ComponentSettingsTabObject |
-    ComponentSettingsField |
     ComponentSettingsFieldObject
   )[];
 }
@@ -532,8 +530,8 @@ export declare interface ComponentObject {
   droppable?: boolean;
   usable?: boolean;
   editable?: boolean;
-  options?: (ComponentOption | ComponentOptionObject)[];
-  settings?: ComponentSettingsForm | ComponentSettingsFormObject;
+  options?: (ComponentOptionObject)[];
+  settings?: ComponentSettingsFormObject;
   disallow?: string[];
   render?(props?: any): any;
   deserialize?: Function;
@@ -551,7 +549,7 @@ export declare interface ComponentsGroupObject {
   id: string;
   name: string | GetTextCallback;
   usable?: boolean;
-  components: (Component | ComponentObject)[];
+  components: (ComponentObject)[];
 }
 
 export declare interface TextsSheetObject {

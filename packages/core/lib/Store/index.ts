@@ -552,15 +552,15 @@ export default class Store extends Emitter {
     // In some cases (Store.moveElement for example), parent cannot be
     // `element.content` because it would prevent rows (with `element.cols`)
     // or other container-based elements from being checked by `contains`
-    parent = [].concat(parent);
+    const parent_ = [].concat(parent);
 
-    for (const e of parent) {
+    for (const e of parent_) {
       if (this.isSameElement(e?.id, id)) {
         return true;
       }
     }
 
-    for (const e of parent) {
+    for (const e of parent_) {
       const component = this.#builder.getComponent(e.type);
       const override: ComponentOverride =
         this.#builder.getOverride('component', e.type) as ComponentOverride;
