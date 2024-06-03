@@ -11904,9 +11904,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-loader@npm:7.0.0":
-  version: 7.0.0
-  resolution: "css-loader@npm:7.0.0"
+"css-loader@npm:7.1.2":
+  version: 7.1.2
+  resolution: "css-loader@npm:7.1.2"
   dependencies:
     icss-utils: "npm:^5.1.0"
     postcss: "npm:^8.4.33"
@@ -11924,7 +11924,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10/dfd916dc9d7ecdda6d17a4798ef6f96cc61a3ed2f640c27ae17cfa2cbf534826ef402927e0650171d5a690945f98cc052ee7d6214146eb6f4ee917f98d726652
+  checksum: 10/ddde22fb103888320f60a1414a6a04638d2e9760a532a52d03c45e6e2830b32dd76c734aeef426f78dd95b2d15f77eeec3854ac53061aff02569732dc6e6801c
   languageName: node
   linkType: hard
 
@@ -21508,7 +21508,7 @@ __metadata:
     babel-jest: "npm:29.7.0"
     babel-loader: "npm:9.1.3"
     ckeditor5: "npm:40.2.0"
-    css-loader: "npm:7.0.0"
+    css-loader: "npm:7.1.2"
     eslint: "npm:8.57.0"
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-babel: "npm:5.3.1"
