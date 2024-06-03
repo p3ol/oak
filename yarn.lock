@@ -141,15 +141,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-plugin@npm:7.23.5":
-  version: 7.23.5
-  resolution: "@babel/eslint-plugin@npm:7.23.5"
+"@babel/eslint-plugin@npm:7.24.6":
+  version: 7.24.6
+  resolution: "@babel/eslint-plugin@npm:7.24.6"
   dependencies:
     eslint-rule-composer: "npm:^0.3.0"
   peerDependencies:
     "@babel/eslint-parser": ^7.11.0
-    eslint: ^7.5.0 || ^8.0.0
-  checksum: 10/07b0907d100d5fabb05d0e3d573872dfed1ec094f167679928ddd20f3dcf6d914d0d08dd202590e2afa5a80550eede18cc96f69795505d88a7d7ab5b8b4071d8
+    eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
+  checksum: 10/8d9f55f0494f2ff433be294f0f70ddb11ac0762c354e569f2bb63b2d3c28b3f16a0ccf12e0db3fc4cbbdd7e449cac792bac2c95053e78a24a5c4f1bb586b0675
   languageName: node
   linkType: hard
 
@@ -21459,7 +21459,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.24.4"
     "@babel/eslint-parser": "npm:7.24.1"
-    "@babel/eslint-plugin": "npm:7.23.5"
+    "@babel/eslint-plugin": "npm:7.24.6"
     "@babel/plugin-transform-runtime": "npm:7.24.3"
     "@babel/preset-env": "npm:7.24.4"
     "@babel/preset-react": "npm:7.24.1"
