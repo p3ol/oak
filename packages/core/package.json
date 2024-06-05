@@ -21,13 +21,10 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">= 16",
-    "npm": ">= 8"
+    "node": ">= 18"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.24.6",
-    "@junipero/core": "3.4.13",
-    "core-js": "3.37.1",
+    "@junipero/core": "3.5.0",
     "uuid": "9.0.1"
   },
   "scripts": {
@@ -47,8 +44,5 @@
       "import": "./dist/esm/addons.js",
       "require": "./dist/oak-core.cjs.js"
     }
-  },
-  "devDependencies": {
-    "rollup": "4.14.3"
   }
 }
