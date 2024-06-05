@@ -3,7 +3,9 @@
 exports[`Overrides should allow to add overrides 1`] = `
 [
   FieldOverride {
+    "construct": undefined,
     "id": undefined,
+    "priority": 0,
     "props": {},
     "render": undefined,
     "targets": [],
@@ -11,13 +13,15 @@ exports[`Overrides should allow to add overrides 1`] = `
   },
   ComponentOverride {
     "construct": undefined,
+    "deserialize": undefined,
     "duplicate": undefined,
-    "fields": [
-      {},
-    ],
+    "fields": [],
+    "getContainers": undefined,
     "id": undefined,
+    "priority": 0,
     "render": undefined,
     "sanitize": undefined,
+    "serialize": undefined,
     "targets": [
       "foo",
     ],
@@ -29,13 +33,15 @@ exports[`Overrides should allow to add overrides 1`] = `
 exports[`Overrides should allow to get an override 1`] = `
 ComponentOverride {
   "construct": undefined,
+  "deserialize": undefined,
   "duplicate": undefined,
-  "fields": [
-    {},
-  ],
+  "fields": [],
+  "getContainers": undefined,
   "id": undefined,
+  "priority": 0,
   "render": undefined,
   "sanitize": undefined,
+  "serialize": undefined,
   "targets": [
     "foo",
   ],
@@ -46,9 +52,8 @@ ComponentOverride {
 exports[`Overrides should alow to merge overrides 1`] = `
 {
   "construct": [Function],
-  "fields": [
-    {},
-  ],
+  "fields": [],
+  "priority": 0,
   "targets": [
     "foo",
   ],

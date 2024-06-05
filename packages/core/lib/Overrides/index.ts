@@ -9,6 +9,7 @@ import type {
 import {
   ComponentOverride,
   FieldOverride,
+  Override,
   SettingOverride,
 } from '../classes';
 import Emitter from '../Emitter';
@@ -119,7 +120,7 @@ export default class Overrides extends Emitter implements IOverrides {
     overrideType: 'component' | 'field' | 'setting',
     target: string,
     { output, setting }: {
-      output?: 'field', //TODO repair
+      output?: 'field' | 'component',
       setting?: ComponentSettingsFieldObject
     } = {}
   ): FieldOverride | ComponentOverride | SettingOverride {
@@ -144,14 +145,16 @@ export default class Overrides extends Emitter implements IOverrides {
               this.#builder.getOverride('field',
                 newComponentField?.type || setting?.type),
               omit(newComponentField || {}, ['type', 'key'])
-            );
+            ) as FieldOverride;
           }
           default:
-            return override;
+            return override as ComponentOverride;
         }
       }
       case 'setting':
-        return overrides?.find((o: SettingOverride) => o.key === setting?.key);
+        return overrides?.find((o: SettingOverride) => (
+          o.key === setting?.key
+        )) as SettingOverride;
       default:
         return strategy === 'merge' ? this.merge(overrides) : overrides[0];
     }

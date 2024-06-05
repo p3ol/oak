@@ -64,6 +64,7 @@ export default class Components extends Emitter implements IComponents {
   getGroup (id: string) { //TODO id is a string?
     return this.#groups.find(ComponentsGroup.FIND_PREDICATE(id));
   }
+
   toObject (): ComponentsGroupObject[] {
     return [
       ...this.#groups.map(group => group.toObject()),
@@ -120,12 +121,12 @@ export default class Components extends Emitter implements IComponents {
     if (component.type === Components.TYPE_GROUP) {
       if (!this.hasGroup(component.id)) {
         const group = new ComponentsGroup(component as ComponentsGroupObject);
-        group.components = (
+        group.components = ((
           component as ComponentsGroupObject
-        ).components.map(component => new Component(component));
+        ).components || []).map(component => new Component(component));
 
-        this.#groups[mutateMethod](component as ComponentsGroup);
-        this.emit('groups.add', component);
+        this.#groups[mutateMethod](group as ComponentsGroup);
+        this.emit('groups.add', group);
       }
 
       return;

@@ -22,11 +22,11 @@ export class BuilderOptions {
   historyLimit: number;
   overrideStrategy: 'last' | 'merge';
 
-  constructor (props: BuilderObject) {
-    this.debug = props.debug || false;
-    this.generateId = props.generateId;
-    this.historyLimit = props.historyLimit || 20;
-    this.overrideStrategy = props.overrideStrategy || 'last';
+  constructor (props?: BuilderObject) {
+    this.debug = props?.debug ?? false;
+    this.generateId = props?.generateId;
+    this.historyLimit = props?.historyLimit ?? 20;
+    this.overrideStrategy = props?.overrideStrategy || 'last';
   }
 }
 
@@ -170,8 +170,11 @@ export class Field {
   }
 }
 
-export class ComponentOverride {
-  type: 'component';
+export class Override {
+  type: 'component' | 'field' | 'setting';
+}
+
+export class ComponentOverride extends Override {
   id: string;
   targets: Array<any>; // TODO remove any
   fields: Array<any>; // TODO remove any
@@ -189,6 +192,8 @@ export class ComponentOverride {
   getContainers: (element: ElementObject) => ElementObject[][];
 
   constructor (props: ComponentOverrideObject) {
+    super();
+
     this.type = 'component';
     this.id = props.id;
     this.targets = props.targets || [];
@@ -202,8 +207,7 @@ export class ComponentOverride {
   }
 }
 
-export class FieldOverride {
-  type: string;
+export class FieldOverride extends Override {
   id: string;
   targets: Array<any>;
   render: Function;
@@ -211,7 +215,9 @@ export class FieldOverride {
   construct: Function;
   priority: number;
 
-  constructor (props : FieldOverrideObject) {
+  constructor (props: FieldOverrideObject) {
+    super();
+
     this.type = 'field';
     this.id = props.id;
     this.targets = props.targets || [];
@@ -222,8 +228,7 @@ export class FieldOverride {
   }
 }
 
-export class SettingOverride {
-  type: string;
+export class SettingOverride extends Override {
   key: string | string[] | ComponentSettingsFieldKeyTuple[];
   targets: Array<any>; //TODO type it
   id: string;
@@ -240,7 +245,8 @@ export class SettingOverride {
   props: object;
 
   constructor (props: SettingOverrideObject) {
-    this.type = 'setting';
+    super();
+
     this.key = props.key;
     this.targets = props.targets || [];
     this.id = props.id;

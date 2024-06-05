@@ -1,3 +1,4 @@
+import type { ComponentSettingsFieldObject } from '../types';
 import Settings from './index';
 
 describe('Settings', () => {
@@ -6,7 +7,9 @@ describe('Settings', () => {
     const settings = new Settings();
     settings.subscribe(cb);
 
-    const setting = { key: 'test', fields: [], label: 'Test' };
+    const setting: ComponentSettingsFieldObject = {
+      type: 'text', key: 'test', label: 'Test',
+    };
 
     settings.add(setting);
     expect(settings.getSetting('test')).toMatchObject(setting);

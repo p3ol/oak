@@ -8,6 +8,7 @@ import type {
   ComponentOverrideObject,
   ComponentSettingsFieldObject,
   ComponentSettingsTabObject,
+  ElementId,
   ElementObject,
   ElementSettingsKeyObject,
   FieldOverrideObject,
@@ -19,6 +20,8 @@ import {
   ComponentSettingsTab,
   Field,
   FieldOverride,
+  Override,
+  SettingOverride,
 } from '../classes';
 import Emitter from '../Emitter';
 import Logger from '../Logger';
@@ -152,13 +155,12 @@ export default class Builder extends Emitter {
       groups,
       defaultGroup,
     } = this.#components.getAll();
-    const groups_ = groups.map(group => group.toObject());
 
-    return [...groups_, defaultGroup.toObject()];
+    return [...groups, defaultGroup];
   }
 
   getComponent (type: string): ComponentObject {
-    return this.#components.getComponent(type).toObject();
+    return this.#components.getComponent(type);
   }
 
   getComponentDisplayableSettings (
@@ -171,19 +173,17 @@ export default class Builder extends Emitter {
       ...this.#components
         .getDisplayableSettings?.(
           element, { component: component_ }
-        ).map(field => field.toObject()) || [],
-      ...this.#settings.getDisplayable?.(element).map(
-        setting => setting.toObject()
-      ) || [],
+        ) || [],
+      ...this.#settings.getDisplayable?.(element) || [],
     ];
   }
 
   getAvailableFields () {
-    return this.#fields.all().map((field: Field) => field.toObject());
+    return this.#fields.all();
   }
 
   getField (type: string) {
-    return this.#fields.get(type).toObject();
+    return this.#fields.get(type);
   }
 
   getOverride (
@@ -243,21 +243,21 @@ export default class Builder extends Emitter {
     return this.#store.addElements(elements, options);
   }
 
-  getElement (id: string, options?: {
+  getElement (id: ElementId, options?: {
     parent?: any[];
     deep?: boolean;
   }) {
     return this.#store.getElement(id, options);
   }
 
-  removeElement (id: string, options?: {
+  removeElement (id: ElementId, options?: {
     parent?: any[];
     deep?: boolean;
   }) {
     return this.#store.removeElement(id, options);
   }
 
-  setElement (id: string, updates: ElementObject, options: {
+  setElement (id: ElementId, updates: ElementObject, options?: {
     element?: ElementObject;
     parent?: ElementObject[];
     deep?: boolean;
@@ -345,8 +345,6 @@ export default class Builder extends Emitter {
   }
 
   getAvailableSettings () {
-    return this.#settings.all().map(
-      (setting: ComponentSettingsTab) => setting.toObject()
-    );
+    return this.#settings.all();
   }
 }

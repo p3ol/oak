@@ -170,7 +170,7 @@ export default class Store extends Emitter implements IStore {
     override: o,
     ...opts
   }: {
-    component?: Component,
+    component?: Component | ComponentObject,
     override?: ComponentOverride,
     [_: string]: any
   } = {}) {
@@ -179,29 +179,25 @@ export default class Store extends Emitter implements IStore {
     }
 
     const component = c || this.#builder.getComponent(element.type);
-    const override = o || this.#builder.getOverride(
-      'component', element.type
-    ) as ComponentOverrideObject;
-    const override_ = new ComponentOverride(
-      override as ComponentOverrideObject
-    );
+    const override = o || this.#builder
+      .getOverride('component', element.type) as ComponentOverride;
 
     if (opts.withDefaults) {
       element = {
-        ...(override_?.construct || component?.construct)?.({
+        ...(override?.construct || component?.construct)?.({
           builder: this.#builder,
         }) || {},
         ...element,
       };
     }
 
-    const deserialize = override_?.deserialize || component?.deserialize;
+    const deserialize = override?.deserialize || component?.deserialize;
     element = deserialize?.(element, { builder: this.#builder }) || element;
 
-    const customSanitize = override_?.sanitize || component?.sanitize;
+    const customSanitize = override?.sanitize || component?.sanitize;
     element = customSanitize?.(element, { builder: this.#builder }) || element;
 
-    const containers = override_?.getContainers?.(element) ||
+    const containers = override?.getContainers?.(element) ||
       component?.getContainers?.(element) ||
       [element.content];
 
@@ -223,7 +219,7 @@ export default class Store extends Emitter implements IStore {
     ...opts
   }: {
     component?: ComponentObject,
-    override?: ComponentOverrideObject,
+    override?: ComponentOverride | ComponentOverrideObject,
     baseElement?: ElementObject,
     [_: string]: any
   } = {}) {
@@ -319,7 +315,7 @@ export default class Store extends Emitter implements IStore {
   }
 
   getElement (
-    id: string,
+    id: ElementId,
     { parent = this.#content, deep = false }: {
       deep?: boolean,
       parent?: ElementObject[]
@@ -356,13 +352,12 @@ export default class Store extends Emitter implements IStore {
   }
 
   removeElement (
-    id: string, {
-      parent = this.#content,
-      deep,
-    }: {
+    id: ElementId,
+    { parent = this.#content, deep }: {
       parent?: Array<ElementObject>,
       deep?: boolean
-    } = {}) {
+    } = {}
+  ) {
     if (!this.isIdValid(id)) {
       return;
     }
@@ -399,11 +394,10 @@ export default class Store extends Emitter implements IStore {
     return false;
   }
 
-  setElement (id: string, newContent: Partial<ElementObject>, {
-    element: e,
-    parent = this.#content,
-    deep,
-  }: {
+  setElement (
+    id: ElementId,
+    newContent: Partial<ElementObject>,
+    { element: e, parent = this.#content, deep }: {
     element?: ElementObject,
     parent?: Array<ElementObject>,
     deep?: boolean
@@ -434,13 +428,11 @@ export default class Store extends Emitter implements IStore {
   moveElement (
     element?: ElementObject,
     sibling?: ElementObject,
-    {
-      parent = this.#content,
-      position,
-    }: {
+    { parent = this.#content, position }: {
       parent?: Array<ElementObject>,
       position?: 'before' | 'after'
-    } = {}) {
+    } = {}
+  ) {
     if (
       this.isSameElement(element?.id, sibling?.id) ||
       this.contains(sibling.id, { parent: element })
@@ -494,7 +486,8 @@ export default class Store extends Emitter implements IStore {
   }
 
   findNearestParent (
-    id: string | ElementId, { parent = this.#content } = {}
+    id: ElementId,
+    { parent = this.#content } = {}
   ): Array<ElementObject> {
     // First check if element in inside direct parent to avoid trying to
     // find every component & override for every nested level
@@ -534,7 +527,7 @@ export default class Store extends Emitter implements IStore {
   }
 
   contains (
-    id: string | ElementId,
+    id: ElementId,
     { parent = this.#content }: { parent?: ElementObject | Array<any> } = {}
   ) {
     // Force parent to be an array to be able to loop over it

@@ -12,7 +12,7 @@ export declare type ElementId = string | number;
 export declare interface ElementObject {
   id?: ElementId;
   type?: string;
-  content?: Function | ElementObject[]; //TODO not sure
+  content?: string | Function | ElementObject[]; //TODO not sure
   [_: string]: any;
 }
 
@@ -42,7 +42,7 @@ export declare interface ComponentOverrideObject {
   construct?(opts?: { builder?: Builder }): ElementObject;
   deserialize?(opts?: { builder?: Builder }): ElementObject;
   render?(props?: any): any;
-  sanitize?(): any;
+  sanitize?(elmt?: ElementObject): any;
   duplicate?(elmt?: ElementObject): ElementObject;
   priority?: number;
 }
@@ -208,7 +208,7 @@ export declare interface BuilderObject {
 export declare type ElementSettingsComplexKey = {
   from: string,
   to: string,
-  default: string
+  default?: string
 }
 
 export declare type ElementSettingsKeyObject =

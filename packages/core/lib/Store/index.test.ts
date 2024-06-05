@@ -1,10 +1,10 @@
+import { ComponentOverride } from '../classes';
 import { baseAddon, titleComponent } from '../addons';
 import Builder from '../Builder';
-import { ComponentOverride } from '../types';
 import Store from './index';
 
 describe('Store', () => {
-  const getBuilder = opts => {
+  const getBuilder = (opts?: ConstructorParameters<typeof Builder>[0]) => {
     let id = 0;
 
     return new Builder({
