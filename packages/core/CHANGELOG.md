@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.5](https://github.com/p3ol/oak/compare/v3.5.4...v3.5.5) (2024-05-29)
+
+
+### Bug Fixes
+
+* **floating-ui:** add shift option to floating col and row options ([ae48220](https://github.com/p3ol/oak/commit/ae48220616fb50b66262e0950e9ccbdc160bfb20))
+* **floating-ui:** add shift option to floating col and row options ([1d79726](https://github.com/p3ol/oak/commit/1d797269cc69e0c2b68fce4fb39dbfdf8a711349))
+* upgrade various dependencies ([33eeb54](https://github.com/p3ol/oak/commit/33eeb547b85298cb43c324601cb0d4270358c715))
+
+
+
+
+
+## [3.5.2](https://github.com/p3ol/oak/compare/v3.5.1...v3.5.2) (2024-04-08)
+
+
+### Bug Fixes
+
+* **types:** fix some types errors ([c3f7102](https://github.com/p3ol/oak/commit/c3f7102a9d81c9130b539cfd027f366291cefa1f))
+* **types:** switch from componentObject to ElementObject ([9e29671](https://github.com/p3ol/oak/commit/9e2967169848df54bb8de5d02bf3345f2a200f8d))
+* update various deps ([c1f22bd](https://github.com/p3ol/oak/commit/c1f22bd8dd647a9fbc7f637ba6cad6f931646448))
+
+
+
+
+
 ## [3.5.1](https://github.com/p3ol/oak/compare/v3.5.0...v3.5.1) (2024-02-19)
 
 **Note:** Version bump only for package @oakjs/core

@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.6](https://github.com/p3ol/oak/compare/v3.5.5...v3.5.6) (2024-05-29)
+
+
+### Bug Fixes
+
+* **theme:** update junipero theme ([d342811](https://github.com/p3ol/oak/commit/d3428112fdac359a914350b66c111fa956df6b61))
+
+
+
+
+
+## [3.5.5](https://github.com/p3ol/oak/compare/v3.5.4...v3.5.5) (2024-05-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to v0.26.16 ([2c7fd0a](https://github.com/p3ol/oak/commit/2c7fd0a97a6aba55a23d97b23f8217b6ca586645))
+* **deps:** update dependency remirror to v2.0.39 ([9196385](https://github.com/p3ol/oak/commit/9196385f0d181e955c8ab646f044c8f4bf941430))
+* **deps:** update dependency styled-components to v6.1.11 ([4b564ad](https://github.com/p3ol/oak/commit/4b564ad6ca9c3b1fb9199f0aa5db49b40fa02415))
+* **floating-ui:** add shift option to floating col and row options ([ae48220](https://github.com/p3ol/oak/commit/ae48220616fb50b66262e0950e9ccbdc160bfb20))
+* **floating-ui:** add shift option to floating col and row options ([1d79726](https://github.com/p3ol/oak/commit/1d797269cc69e0c2b68fce4fb39dbfdf8a711349))
+* upgrade various dependencies ([33eeb54](https://github.com/p3ol/oak/commit/33eeb547b85298cb43c324601cb0d4270358c715))
+
+
+
+
+
+## [3.5.4](https://github.com/p3ol/oak/compare/v3.5.3...v3.5.4) (2024-04-17)
+
+
+### Bug Fixes
+
+* **theme:** junipero icons wrongly overridden ([d614c6b](https://github.com/p3ol/oak/commit/d614c6ba2af7665800988dd63b96515350ae28c0))
+
+
+
+
+
+## [3.5.3](https://github.com/p3ol/oak/compare/v3.5.2...v3.5.3) (2024-04-17)
+
+
+### Bug Fixes
+
+* **theme:** move junipero theme to standalone file ([6d51e80](https://github.com/p3ol/oak/commit/6d51e8018418b4bbfcd97933d58196edaf36082e))
+
+
+
+
+
+## [3.5.2](https://github.com/p3ol/oak/compare/v3.5.1...v3.5.2) (2024-04-08)
+
+
+### Bug Fixes
+
+* **types:** fix some types errors ([c3f7102](https://github.com/p3ol/oak/commit/c3f7102a9d81c9130b539cfd027f366291cefa1f))
+* **types:** switch from componentObject to ElementObject ([9e29671](https://github.com/p3ol/oak/commit/9e2967169848df54bb8de5d02bf3345f2a200f8d))
+* update various deps ([c1f22bd](https://github.com/p3ol/oak/commit/c1f22bd8dd647a9fbc7f637ba6cad6f931646448))
+
+
+
+
+
 ## [3.5.1](https://github.com/p3ol/oak/compare/v3.5.0...v3.5.1) (2024-02-19)
 
 **Note:** Version bump only for package oak

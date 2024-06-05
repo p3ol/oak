@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/addon-remirror",
-  "version": "3.5.1",
+  "version": "3.5.5",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-addon-remirror.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -29,8 +29,8 @@
     "remirror": "^2.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.24.4",
-    "core-js": "3.36.1"
+    "@babel/runtime-corejs3": "7.24.6",
+    "core-js": "3.37.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

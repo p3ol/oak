@@ -88,6 +88,7 @@ export declare class Builder extends Emitter {
     opts?: {
       deep?: boolean;
       position?: 'before' | 'after';
+      parent: ElementObject;
     }
   ): ElementObject;
   duplicateElement(
