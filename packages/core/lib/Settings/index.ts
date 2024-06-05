@@ -1,14 +1,16 @@
-import {
-  ComponentSettingsTab,
-  ComponentSettingsField,
+import type {
   ComponentSettingsTabObject,
   ComponentSettingsFieldObject,
   ElementObject,
 } from '../types';
+import {
+  ComponentSettingsTab,
+  ComponentSettingsField,
+} from '../classes';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
 
-export declare class ISettings extends Emitter {
+export declare abstract class ISettings {
   static TYPE_TAB: string;
   static TYPE_SETTING: string;
 
@@ -34,6 +36,7 @@ export declare class ISettings extends Emitter {
 
   all(): Array<ComponentSettingsTab | ComponentSettingsField>;
 }
+
 export default class Settings extends Emitter implements ISettings {
   static TYPE_TAB: string = 'tab';
   static TYPE_SETTING = 'setting';
@@ -98,10 +101,10 @@ export default class Settings extends Emitter implements ISettings {
     }
   }
 
-  add (setting: ComponentSettingsTab |
-    ComponentSettingsTabObject |
-    ComponentSettingsField |
-    ComponentSettingsFieldObject) {
+  add (
+    setting: ComponentSettingsTab | ComponentSettingsTabObject |
+      ComponentSettingsField | ComponentSettingsFieldObject
+  ) {
     if (
       (setting as ComponentSettingsFieldObject).type === Settings.TYPE_TAB &&
       !this.hasTab(setting.id)
@@ -202,7 +205,7 @@ export default class Settings extends Emitter implements ISettings {
   }
 
   all () {
-    return this.#tabs;// TODO to object
+    return this.#tabs; // TODO to object
   }
 
   toJSON () {

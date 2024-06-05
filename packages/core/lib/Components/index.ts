@@ -1,17 +1,19 @@
-import {
-  Component,
+import type {
   ComponentObject,
-  ComponentSettingsField,
-  ComponentSettingsTab,
-  ComponentsGroup,
   ComponentsGroupObject,
   ElementObject,
   GetTextCallback,
 } from '../types';
+import {
+  Component,
+  ComponentSettingsField,
+  ComponentSettingsTab,
+  ComponentsGroup,
+} from '../classes';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
 
-declare abstract class IComponents {
+export declare abstract class IComponents {
   static TYPE_COMPONENT: string;
   static TYPE_GROUP: string;
   static COMPONENTS_GROUP_CORE: string;
@@ -30,6 +32,7 @@ declare abstract class IComponents {
   getAll(): object;
   toJSON(): object;
 }
+
 export default class Components extends Emitter implements IComponents {
   static TYPE_COMPONENT = 'component';
   static TYPE_GROUP = 'group';
@@ -109,7 +112,7 @@ export default class Components extends Emitter implements IComponents {
 
   add (
     component: ComponentObject | ComponentsGroupObject,
-    { mode = 'append' }: { mode?: string } = {}//TODO mode is a string ?
+    { mode = 'append' }: { mode?: string } = {} //TODO mode is a string ?
   ) {
     const mutateMethod = mode === 'append' ? 'push' : 'unshift';
 
@@ -201,13 +204,11 @@ export default class Components extends Emitter implements IComponents {
 
   getDisplayableSettings (
     element: ElementObject,
-    {
-      fields,
-      component,
-    }: {
+    { fields, component }: {
       fields?: Array<ComponentSettingsField | ComponentSettingsTab>
       component?: Component
-    } = {}) {
+    } = {}
+  ) {
     const displayable: Array<ComponentSettingsField> = [];
 
     if (!fields) {
@@ -245,7 +246,7 @@ export default class Components extends Emitter implements IComponents {
       }
     }
 
-    return displayable;//TODO to object
+    return displayable; //TODO to object
   }
 
   toJSON () {

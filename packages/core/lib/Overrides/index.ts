@@ -1,18 +1,20 @@
 import { omit } from '@junipero/core';
 
-import {
-  ComponentOverride,
+import type {
   ComponentOverrideObject,
   ComponentSettingsFieldObject,
-  FieldOverride,
   FieldOverrideObject,
-  SettingOverride,
   SettingOverrideObject,
 } from '../types';
+import {
+  ComponentOverride,
+  FieldOverride,
+  SettingOverride,
+} from '../classes';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
 
-export declare class IOverrides {
+export declare abstract class IOverrides {
   constructor(options?: { builder: Builder });
 
   /** Adds a new component or field override */
@@ -75,9 +77,7 @@ export default class Overrides extends Emitter implements IOverrides {
   }
 
   add (
-    override:
-      ComponentOverrideObject |
-      FieldOverrideObject |
+    override: ComponentOverrideObject | FieldOverrideObject |
       SettingOverrideObject
   ) {
     const existing = this.#overrides
@@ -110,7 +110,6 @@ export default class Overrides extends Emitter implements IOverrides {
     }
 
     this.#overrides.unshift(override_);
-
     this.emit('overrides.add', this, override);
 
     return override as ComponentOverride | FieldOverride;
@@ -119,10 +118,7 @@ export default class Overrides extends Emitter implements IOverrides {
   get (
     overrideType: 'component' | 'field' | 'setting',
     target: string,
-    {
-      output,
-      setting,
-    }: {
+    { output, setting }: {
       output?: 'field', //TODO repair
       setting?: ComponentSettingsFieldObject
     } = {}

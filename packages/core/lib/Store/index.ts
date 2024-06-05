@@ -1,34 +1,25 @@
 import { exists, get, set, cloneDeep } from '@junipero/core';
 
-import Emitter from '../Emitter';
-import {
-  Component,
+import type {
   ComponentObject,
-  ComponentOverride,
   ComponentOverrideObject,
   ComponentSettingsFieldKeyTuple,
   ElementId,
   ElementObject,
   ElementSettingsComplexKey,
   ElementSettingsKeyObject,
+  StoreSanitizeOptions,
+  StoreFindOptions,
+  StoreFindDeepOptions,
 } from '../types';
+import {
+  Component,
+  ComponentOverride,
+} from '../classes';
+import Emitter from '../Emitter';
 import Builder from '../Builder';
 
-export declare interface StoreSanitizeOptions {
-  component?: Component;
-  override?: ComponentOverride;
-  resetIds?: boolean;
-}
-
-export declare interface StoreFindOptions {
-  parent?: Array<ElementObject>;
-}
-
-export declare type StoreFindDeepOptions = Partial<StoreFindOptions & {
-  deep?: boolean;
-}>;
-
-export declare class IStore {
+export declare abstract class IStore {
   constructor(options?: { builder: Builder });
 
   /**
@@ -62,6 +53,8 @@ export declare class IStore {
   /** Creates a new element object based on an existing component (or not) */
   createElement(type: string, options?: Partial<{
     baseElement?: ElementObject;
+    component?: ComponentObject;
+    override?: ComponentOverrideObject;
   } & StoreSanitizeOptions>): ElementObject;
 
   /** Adds an element to the store */
@@ -139,7 +132,7 @@ export declare class IStore {
   resetHistory(): void;
 }
 
-export default class Store extends Emitter {
+export default class Store extends Emitter implements IStore {
   #content: ElementObject[] = [];
   #history: ElementObject[] = [];
   #historyIndex: number = 0;
@@ -327,10 +320,7 @@ export default class Store extends Emitter {
 
   getElement (
     id: string,
-    {
-      parent = this.#content,
-      deep = false,
-    }: {
+    { parent = this.#content, deep = false }: {
       deep?: boolean,
       parent?: ElementObject[]
     } = {}
@@ -409,7 +399,7 @@ export default class Store extends Emitter {
     return false;
   }
 
-  setElement (id: string, newContent: object, {
+  setElement (id: string, newContent: Partial<ElementObject>, {
     element: e,
     parent = this.#content,
     deep,

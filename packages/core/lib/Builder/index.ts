@@ -1,24 +1,26 @@
 import { exists } from '@junipero/core';
 import { v4 as uuid } from 'uuid';
 
-import Emitter from '../Emitter';
-import {
+import type {
   AddonObject,
   BuilderObject,
-  BuilderOptions,
-  Component,
   ComponentObject,
-  ComponentOverride,
   ComponentOverrideObject,
   ComponentSettingsFieldObject,
-  ComponentSettingsTab,
   ComponentSettingsTabObject,
   ElementObject,
   ElementSettingsKeyObject,
-  Field,
-  FieldOverride,
   FieldOverrideObject,
 } from '../types';
+import {
+  BuilderOptions,
+  Component,
+  ComponentOverride,
+  ComponentSettingsTab,
+  Field,
+  FieldOverride,
+} from '../classes';
+import Emitter from '../Emitter';
 import Logger from '../Logger';
 import Components from '../Components';
 import Fields from '../Fields';
@@ -39,17 +41,14 @@ export default class Builder extends Emitter {
   #settings: Settings = null;
   #addons: Array<AddonObject> = [];
 
-  constructor (
-    { addons, content, options = {} }:
-    {
-      addons?: AddonObject[],
-      content?: ElementObject[],
-      options?: BuilderObject
-    } = {}
-  ) {
+  constructor (opts: {
+    addons?: AddonObject[],
+    content?: ElementObject[],
+    options?: BuilderObject
+  } = {}) {
     super();
 
-    this.options = new BuilderOptions(options);
+    this.options = new BuilderOptions(opts.options);
     this.logger = new Logger({ builder: this });
 
     this.#components = new Components({ builder: this });
@@ -59,17 +58,17 @@ export default class Builder extends Emitter {
     this.#texts = new Texts({ builder: this });
     this.#settings = new Settings({ builder: this });
 
-    if (Array.isArray(addons)) {
-      this.#addons = addons;
-      addons.forEach(addon => {
+    if (Array.isArray(opts.addons)) {
+      this.#addons = opts.addons;
+      opts.addons.forEach(addon => {
         this.logger.log('Initializing builder with addon:', addon);
         this.addAddon(addon);
       });
     }
 
-    if (content) {
-      this.logger.log('Initializing builder with content:', content);
-      this.#store.set(content);
+    if (opts.content) {
+      this.logger.log('Initializing builder with content:', opts.content);
+      this.#store.set(opts.content);
     }
   }
 
@@ -247,14 +246,14 @@ export default class Builder extends Emitter {
   getElement (id: string, options?: {
     parent?: any[];
     deep?: boolean;
-}) {
+  }) {
     return this.#store.getElement(id, options);
   }
 
   removeElement (id: string, options?: {
     parent?: any[];
     deep?: boolean;
-}) {
+  }) {
     return this.#store.removeElement(id, options);
   }
 
@@ -262,7 +261,7 @@ export default class Builder extends Emitter {
     element?: ElementObject;
     parent?: ElementObject[];
     deep?: boolean;
-}) {
+  }) {
     return this.#store.setElement(id, updates, options);
   }
 
@@ -279,7 +278,7 @@ export default class Builder extends Emitter {
 
   duplicateElement (element: ElementObject, options?: {
     parent?: ElementObject[];
-}) {
+  }) {
     return this.#store.duplicateElement(element, options);
   }
 
