@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.6](https://github.com/p3ol/oak/compare/v3.5.5...v3.5.6) (2024-05-29)
+
+
+### Bug Fixes
+
+* **theme:** update junipero theme ([d342811](https://github.com/p3ol/oak/commit/d3428112fdac359a914350b66c111fa956df6b61))
+
+
+
+
+
+## [3.5.5](https://github.com/p3ol/oak/compare/v3.5.4...v3.5.5) (2024-05-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to v0.26.16 ([2c7fd0a](https://github.com/p3ol/oak/commit/2c7fd0a97a6aba55a23d97b23f8217b6ca586645))
+* **deps:** update dependency remirror to v2.0.39 ([9196385](https://github.com/p3ol/oak/commit/9196385f0d181e955c8ab646f044c8f4bf941430))
+* **deps:** update dependency styled-components to v6.1.11 ([4b564ad](https://github.com/p3ol/oak/commit/4b564ad6ca9c3b1fb9199f0aa5db49b40fa02415))
+* **floating-ui:** add shift option to floating col and row options ([ae48220](https://github.com/p3ol/oak/commit/ae48220616fb50b66262e0950e9ccbdc160bfb20))
+* **floating-ui:** add shift option to floating col and row options ([1d79726](https://github.com/p3ol/oak/commit/1d797269cc69e0c2b68fce4fb39dbfdf8a711349))
+* upgrade various dependencies ([33eeb54](https://github.com/p3ol/oak/commit/33eeb547b85298cb43c324601cb0d4270358c715))
+
+
+
+
+
 ## [3.5.4](https://github.com/p3ol/oak/compare/v3.5.3...v3.5.4) (2024-04-17)
 
 

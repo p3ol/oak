@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.6](https://github.com/p3ol/oak/compare/v3.5.5...v3.5.6) (2024-05-29)
+
+**Note:** Version bump only for package @oakjs/strapi-plugin
+
+
+
+
+
+## [3.5.5](https://github.com/p3ol/oak/compare/v3.5.4...v3.5.5) (2024-05-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency remirror to v2.0.39 ([9196385](https://github.com/p3ol/oak/commit/9196385f0d181e955c8ab646f044c8f4bf941430))
+* **deps:** update dependency styled-components to v6.1.11 ([4b564ad](https://github.com/p3ol/oak/commit/4b564ad6ca9c3b1fb9199f0aa5db49b40fa02415))
+
+
+
+
+
 ## [3.5.4](https://github.com/p3ol/oak/compare/v3.5.3...v3.5.4) (2024-04-17)
 
 **Note:** Version bump only for package @oakjs/strapi-plugin

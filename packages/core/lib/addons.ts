@@ -64,12 +64,8 @@ export const rowComponent = (...props: any): ComponentObject => ({
     ) => t('core.components.row.settings.title', 'Row options'),
     floatingSettings: {
       placement: 'right-start',
-      shift: {
-        enabled: false,
-      },
-      autoPlacement: {
-        alignment: 'start',
-      },
+      shift: { enabled: true },
+      autoPlacement: { alignment: 'start' },
     },
     fields: [{
       type: 'select',
@@ -279,7 +275,7 @@ export const colComponent = (...props: any[]): ComponentObject => ({
     ) => t('core.components.col.settings.title', 'Col options'),
     floatingSettings: {
       placement: 'left-start',
-      shift: { enabled: false },
+      shift: { enabled: true },
       autoPlacement: { enabled: false },
     },
     fields: [{
