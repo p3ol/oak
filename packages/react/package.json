@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/react",
-  "version": "3.5.2",
+  "version": "3.5.5",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-react.cjs.js",
   "jsnext:main": "dist/esm/index.js",
@@ -29,12 +29,12 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.24.4",
-    "@floating-ui/react": "0.26.11",
-    "@junipero/hooks": "3.4.11",
-    "@junipero/react": "3.4.11",
-    "@junipero/transitions": "3.4.11",
-    "core-js": "3.36.1",
+    "@babel/runtime-corejs3": "7.24.6",
+    "@floating-ui/react": "0.26.16",
+    "@junipero/hooks": "3.5.0",
+    "@junipero/react": "3.5.0",
+    "@junipero/transitions": "3.5.0",
+    "core-js": "3.37.1",
     "uuid": "9.0.1"
   },
   "scripts": {

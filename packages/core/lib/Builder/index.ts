@@ -1,25 +1,30 @@
 import { exists } from '@junipero/core';
 import { v4 as uuid } from 'uuid';
 
-import Emitter from '../Emitter';
-import {
+import type {
   AddonObject,
   BuilderObject,
-  BuilderOptions,
-  Component,
   ComponentObject,
-  ComponentOverride,
   ComponentOverrideObject,
   ComponentSettingsFieldObject,
-  ComponentSettingsTab,
   ComponentSettingsTabObject,
   ComponentsGroupObject,
+  ElementId,
   ElementObject,
   ElementSettingsKeyObject,
-  Field,
-  FieldOverride,
   FieldOverrideObject,
 } from '../types';
+import {
+  BuilderOptions,
+  Component,
+  ComponentOverride,
+  ComponentSettingsTab,
+  Field,
+  FieldOverride,
+  Override,
+  SettingOverride,
+} from '../classes';
+import Emitter from '../Emitter';
 import Logger from '../Logger';
 import Components from '../Components';
 import Fields from '../Fields';
@@ -40,17 +45,14 @@ export default class Builder extends Emitter {
   #settings: Settings = null;
   #addons: Array<AddonObject> = [];
 
-  constructor (
-    { addons, content, options = {} }:
-    {
-      addons?: AddonObject[],
-      content?: ElementObject[],
-      options?: BuilderObject
-    } = {}
-  ) {
+  constructor (opts: {
+    addons?: AddonObject[],
+    content?: ElementObject[],
+    options?: BuilderObject
+  } = {}) {
     super();
 
-    this.options = new BuilderOptions(options);
+    this.options = new BuilderOptions(opts.options);
     this.logger = new Logger({ builder: this });
 
     this.#components = new Components({ builder: this });
@@ -60,17 +62,17 @@ export default class Builder extends Emitter {
     this.#texts = new Texts({ builder: this });
     this.#settings = new Settings({ builder: this });
 
-    if (Array.isArray(addons)) {
-      this.#addons = addons;
-      addons.forEach(addon => {
+    if (Array.isArray(opts.addons)) {
+      this.#addons = opts.addons;
+      opts.addons.forEach(addon => {
         this.logger.log('Initializing builder with addon:', addon);
         this.addAddon(addon);
       });
     }
 
-    if (content) {
-      this.logger.log('Initializing builder with content:', content);
-      this.#store.set(content);
+    if (opts.content) {
+      this.logger.log('Initializing builder with content:', opts.content);
+      this.#store.set(opts.content);
     }
   }
 
@@ -154,13 +156,12 @@ export default class Builder extends Emitter {
       groups,
       defaultGroup,
     } = this.#components.getAll();
-    const groups_ = groups.map(group => group.toObject());
 
-    return [...groups_, defaultGroup.toObject()];
+    return [...groups, defaultGroup];
   }
 
   getComponent (type: string): ComponentObject {
-    return this.#components.getComponent(type).toObject();
+    return this.#components.getComponent(type);
   }
 
   getComponentDisplayableSettings (
@@ -173,19 +174,17 @@ export default class Builder extends Emitter {
       ...this.#components
         .getDisplayableSettings?.(
           element, { component: component_ }
-        ).map(field => field.toObject()) || [],
-      ...this.#settings.getDisplayable?.(element).map(
-        setting => setting.toObject()
-      ) || [],
+        ) || [],
+      ...this.#settings.getDisplayable?.(element) || [],
     ];
   }
 
   getAvailableFields () {
-    return this.#fields.all().map((field: Field) => field.toObject());
+    return this.#fields.all();
   }
 
   getField (type: string) {
-    return this.#fields.get(type).toObject();
+    return this.#fields.get(type);
   }
 
   getOverride (
@@ -245,25 +244,25 @@ export default class Builder extends Emitter {
     return this.#store.addElements(elements, options);
   }
 
-  getElement (id: string, options?: {
+  getElement (id: ElementId, options?: {
     parent?: any[];
     deep?: boolean;
-}) {
+  }) {
     return this.#store.getElement(id, options);
   }
 
-  removeElement (id: string, options?: {
+  removeElement (id: ElementId, options?: {
     parent?: any[];
     deep?: boolean;
-}) {
+  }) {
     return this.#store.removeElement(id, options);
   }
 
-  setElement (id: string, updates: ElementObject, options: {
+  setElement (id: ElementId, updates: ElementObject, options?: {
     element?: ElementObject;
     parent?: ElementObject[];
     deep?: boolean;
-}) {
+  }) {
     return this.#store.setElement(id, updates, options);
   }
 
@@ -280,7 +279,7 @@ export default class Builder extends Emitter {
 
   duplicateElement (element: ElementObject, options?: {
     parent?: ElementObject[];
-}) {
+  }) {
     return this.#store.duplicateElement(element, options);
   }
 
@@ -347,8 +346,6 @@ export default class Builder extends Emitter {
   }
 
   getAvailableSettings () {
-    return this.#settings.all().map(
-      (setting: ComponentSettingsTab) => setting.toObject()
-    );
+    return this.#settings.all();
   }
 }

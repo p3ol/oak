@@ -1,6 +1,6 @@
-export declare type EmitterCallback = (...args: any[]) => void;
+import type { EmitterCallback } from '../types';
 
-declare abstract class IEmitter {
+export declare abstract class IEmitter {
   constructor();
 
   /** Subscribes to events and return an unsubscribe callback */

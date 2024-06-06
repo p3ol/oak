@@ -1,16 +1,17 @@
+import type { ElementObject } from '../types';
 import { baseAddon } from '../addons';
 import Builder from './index';
 
 describe('Builder', () => {
   it('should create a builder', () => {
-    const content = [
+    const content: ElementObject[] = [
       { type: 'title', content: 'This is a title' },
       { type: 'text', content: 'This is a text' },
     ];
 
     let id = 0;
     const builder = new Builder({
-      addons: [baseAddon],
+      addons: [baseAddon()],
       content,
       options: {
         generateId: () => id++,
@@ -43,7 +44,7 @@ describe('Builder', () => {
 
   it('should allow to listen to changes', () => {
     const builder = new Builder({
-      addons: [baseAddon],
+      addons: [baseAddon()],
     });
 
     const listener = jest.fn();

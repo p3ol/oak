@@ -1,14 +1,10 @@
 {
   "name": "@oakjs/core",
-  "version": "3.5.2",
+  "version": "3.5.5",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-core.cjs.js",
-  "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
-  "esnext": "lib/index.js",
-  "unpkg": "dist/oak-core.min.js",
-  "cdn": "dist/oak-core.min.js",
-  "types": "dist/oak-core.d.ts",
+  "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",
@@ -21,18 +17,17 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">= 16",
-    "npm": ">= 8"
+    "node": ">= 18"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.24.4",
-    "@junipero/core": "3.4.11",
-    "core-js": "3.36.1",
+    "@junipero/core": "3.5.0",
     "uuid": "9.0.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
-    "build": "yarn clean && rollup -c",
+    "build": "yarn clean && yarn build:code && yarn build:dts",
+    "build:code": "yarn run -T rollup --configPlugin @rollup/plugin-swc -c",
+    "build:dts": "yarn run -T tsc --project ./tsconfig.build.json",
     "test": "jest"
   },
   "publishConfig": {
@@ -47,8 +42,5 @@
       "import": "./dist/esm/addons.js",
       "require": "./dist/oak-core.cjs.js"
     }
-  },
-  "devDependencies": {
-    "rollup": "4.14.3"
   }
 }

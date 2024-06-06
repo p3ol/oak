@@ -16,7 +16,18 @@ module.exports = {
     '^.+\\.styl$',
   ],
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.(t|j)sx?$': [
+      '@swc/jest',
+      {
+        jsc: {
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
+      },
+    ],
   },
   transformIgnorePatterns: [
     '/node_modules/(?!(uuid))',

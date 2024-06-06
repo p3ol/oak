@@ -3,6 +3,7 @@ const WARN = 1;
 
 module.exports = {
   extends: ['@poool/eslint-config-react'],
+  parser: '@typescript-eslint/parser',
   rules: {
     'react/prop-types': OFF,
     'react/jsx-uses-react': OFF,
@@ -11,16 +12,16 @@ module.exports = {
     'n/no-callback-literal': OFF,
   },
   overrides: [{
-    files: ['packages/**/*.test.js', 'packages/**/tests/**/*.js'],
+    files: [
+      'packages/**/*.test.js',
+      'packages/**/*.test.tsx',
+      'packages/**/*.test.ts',
+    ],
     env: {
       jest: true,
     },
-    rules: {
-      'import/order': OFF,
-    },
   }, {
     files: ['packages/**/*.{ts,tsx}'],
-    parser: '@typescript-eslint/parser',
     globals: {
       JSX: 'readonly',
       React: 'readonly',

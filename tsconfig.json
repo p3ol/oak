@@ -1,25 +1,26 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "target": "ES2015",
-    "moduleResolution": "Bundler",
+    "target": "esnext",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "types": ["jest", "node"],
+    "module": "esnext",
+    "noEmit": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "ES2022"],
     "paths": {
-      "@oakjs/core": [
-        "./packages/core/lib"
-      ],
-      "@tests-utils": [
-        "./packages/oak/tests/utils.js"
-      ]
-    }
+      "@oakjs/core": ["./packages/core/lib"],
+      "@tests-utils": ["./packages/oak/tests/utils.js"],
+    },
   },
   "include": [
-    "**/*.ts"
-, "packages/react/lib/Builder/HistoryButtons.tsx"  ],
+    "**/*.ts",
+    "**/*.tsx",
+  ],
   "exclude": [
     "node_modules",
-    "**/dist"
+    "dist"
   ]
 }

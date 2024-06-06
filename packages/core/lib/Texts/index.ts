@@ -1,10 +1,11 @@
 import { get, set } from '@junipero/core';
 
+import type { GetTextCallback, TextsSheetObject } from '../types';
+import { TextsSheet } from '../classes';
 import Emitter from '../Emitter';
-import { GetTextCallback, TextsSheet, TextsSheetObject } from '../types';
 import Builder from '../Builder';
 
-export declare class ITexts {
+export declare abstract class ITexts {
   constructor(options?: { builder: Builder });
 
   /** Retrieves a text sheet using its id */
@@ -31,12 +32,9 @@ export declare class ITexts {
   /** Updates a text key in the current active sheet */
   set(key: string, value: any): void;
 }
-export declare interface ISheet {
-  id: string;
-  texts: object;
-}
+
 export default class Texts extends Emitter implements ITexts {
-  #sheets: Array<ISheet> = [];
+  #sheets: Array<TextsSheetObject> = [];
   #activeSheet: number = null;
   #builder: Builder = null;
 
@@ -50,7 +48,7 @@ export default class Texts extends Emitter implements ITexts {
     return this.#sheets.find(TextsSheet.FIND_PREDICATE(id));
   }
 
-  addSheet (sheet: ISheet) {
+  addSheet (sheet: TextsSheetObject) {
     sheet = new TextsSheet(sheet);
     const existing = this.getSheet(sheet.id);
 
@@ -72,7 +70,7 @@ export default class Texts extends Emitter implements ITexts {
     return sheet;
   }
 
-  setSheet (sheet: ISheet) {
+  setSheet (sheet: TextsSheetObject) {
     const index = this.#sheets.findIndex(TextsSheet.FIND_PREDICATE(sheet.id));
 
     if (index !== -1) {
