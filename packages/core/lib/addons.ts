@@ -2,6 +2,7 @@ import type {
   AddonObject,
   ComponentObject,
   ComponentSettingsFieldObject,
+  ComponentSettingsFormObject,
   ComponentsGroupObject,
   ElementObject,
   FieldObject,
@@ -959,7 +960,8 @@ export const responsiveSettings = (
       value: 'hide',
     }],
     condition: (_, { component }: { component?: ComponentObject} = {}) =>
-      component.settings?.defaults?.responsive !== false,
+      (component.settings as ComponentSettingsFormObject)
+        ?.defaults?.responsive !== false,
   }, {
     key: 'responsive.lg',
     type: 'select',
@@ -975,7 +977,8 @@ export const responsiveSettings = (
       value: 'hide',
     }],
     condition: (_, { component }: { component?: ComponentObject} = {}) =>
-      component.settings?.defaults?.responsive !== false,
+      (component.settings as ComponentSettingsFormObject)
+        ?.defaults?.responsive !== false,
   }, {
     key: 'responsive.md',
     type: 'select',
@@ -991,7 +994,8 @@ export const responsiveSettings = (
       value: 'hide',
     }],
     condition: (_, { component }: { component?: ComponentObject} = {}) =>
-      component.settings?.defaults?.responsive !== false,
+      (component.settings as ComponentSettingsFormObject)
+        ?.defaults?.responsive !== false,
   }, {
     key: 'responsive.sm',
     type: 'select',
@@ -1007,7 +1011,8 @@ export const responsiveSettings = (
       value: 'hide',
     }],
     condition: (_, { component }: { component?: ComponentObject} = {}) =>
-      component.settings?.defaults?.responsive !== false,
+      (component.settings as ComponentSettingsFormObject)
+        ?.defaults?.responsive !== false,
   }, {
     key: 'responsive.xs',
     type: 'select',
@@ -1023,7 +1028,8 @@ export const responsiveSettings = (
       value: 'hide',
     }],
     condition: (_, { component }: { component?: ComponentObject} = {}) =>
-      component.settings?.defaults?.responsive !== false,
+      (component.settings as ComponentSettingsFormObject)
+        ?.defaults?.responsive !== false,
   }],
 });
 
