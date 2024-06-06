@@ -10,31 +10,19 @@ import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
-import Catalogue from '../../Catalogue';
-import Editable from '../../Editable';
+import Catalogue, { type CatalogueRef } from '../../Catalogue';
+import Editable, { type EditableRef } from '../../Editable';
 import Element from '../../Element';
 import Icon from '../../Icon';
 import Option from '../../Option';
 import Text from '../../Text';
 
-interface ColProps extends ComponentPropsWithoutRef<any> {
+export interface ColProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
-  className?: string;
   depth?: number;
   onPrepend?: () => void;
   onAppend?: () => void;
   onRemove?: () => void;
-}
-
-interface EditableRefObject {
-  current: MutableRefObject<any>;
-  toggle: () => void;
-}
-
-interface CatalogueRefObject {
-  current: MutableRefObject<any>;
-  open(): void;
-  close(): void;
 }
 
 const Col = ({
@@ -46,9 +34,9 @@ const Col = ({
   onRemove,
   ...rest
 }: ColProps) => {
-  const editableRef = useRef<EditableRefObject>();
-  const prependCatalogueRef = useRef<CatalogueRefObject>();
-  const appendCatalogueRef = useRef<CatalogueRefObject>();
+  const editableRef = useRef<EditableRef>();
+  const prependCatalogueRef = useRef<CatalogueRef>();
+  const appendCatalogueRef = useRef<CatalogueRef>();
   const { builder, floatingsRef } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent?.(element.type)
@@ -279,14 +267,14 @@ const Col = ({
               className="edit"
               option={{ icon: 'pen' }}
               onClick={onEdit_}
-              name={<Text name="core.tooltips.edit" default="Edit" />}
+              name={<Text name="core.tooltips.edit">Edit</Text>}
             />
           </Editable>
           <Option
             className="remove"
             option={{ icon: 'close' }}
             onClick={onRemove_}
-            name={<Text name="core.tooltips.remove" default="Remove" />}
+            name={<Text name="core.tooltips.remove">Remove</Text>}
           />
         </div>
       ) }

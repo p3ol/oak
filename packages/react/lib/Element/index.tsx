@@ -21,24 +21,19 @@ import {
 } from '@junipero/react';
 
 import { copyToClipboard } from '../utils';
+import { useBuilder } from '../hooks';
 import DisplayableSettings from '../DisplayableSettings';
-import Editable from '../Editable';
+import Editable, { type EditableRef } from '../Editable';
 import Icon from '../Icon';
 import Option from '../Option';
 import Text from '../Text';
-import { useBuilder } from '../hooks';
 
-interface ElementProps extends ComponentPropsWithoutRef<any> {
+export interface ElementProps extends ComponentPropsWithoutRef<any> {
   element?: ElementObject;
   parent?: ElementObject[];
   parentComponent?: ComponentObject;
   className?: string;
   depth?: number;
-}
-
-interface EditableRefObject {
-  current: MutableRefObject<any>;
-  toggle: () => void;
 }
 
 const Element = ({
@@ -49,9 +44,10 @@ const Element = ({
   depth = 0,
 }: ElementProps) => {
   const innerRef = useRef<HTMLElement>();
-  const editableRef = useRef<EditableRefObject>();
+  const editableRef = useRef<EditableRef>();
   const [editableOpened, setEditableOpened] = useState(false);
   const { builder, addons } = useBuilder();
+
   const component = useMemo(() => (
     builder.getComponent(element?.type)
   ), [element?.type, addons]);

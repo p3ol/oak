@@ -4,9 +4,8 @@ import { classNames } from '@junipero/react';
 
 import Text from '../../Text';
 
-interface ImageProps extends ComponentPropsWithoutRef<any> {
+export interface ImageProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
-  className?: string;
 }
 
 const Image = ({

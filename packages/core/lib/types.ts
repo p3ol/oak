@@ -30,7 +30,9 @@ export declare interface ComponentSettingsFieldKeyTuple {
 export declare interface FieldObject {
   type: string;
   props?: object;
-  render?(props: any): any;
+  render?(props: any, opts?: {
+    setting: ComponentSettingsFieldObject;
+  }): any;
   deserialize?(val: string): any;
 }
 
@@ -52,9 +54,14 @@ export declare interface FieldOverrideObject {
   type: 'field';
   targets: string[];
   props: Record<string, any>;
+  construct: Function; //TODO fix it
   render?(): any;
   priority?: number;
-  construct: Function; //TODO fix it
+  onChange?<T = any>(
+    name: string,
+    field: FieldContent<T>,
+    element: ElementObject
+  ): void;
 }
 
 export declare interface SettingOverrideObject {
@@ -74,6 +81,8 @@ export declare interface SettingOverrideObject {
   options?: Array<any>;
   fields?: (ComponentSettingsFieldObject)[];
   props?: Record<string, any>;
+  parseTitle?(value: any): string;
+  parseValue?(value: any): any;
   condition?(element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
     builder: Builder;
@@ -110,6 +119,10 @@ export declare interface ComponentSettingsFieldObject {
   valueType?: string;
   fields?: ComponentSettingsFieldObject[];
   props?: Record<string, any>;
+  checkedLabel?: string | GetTextCallback;
+  uncheckedLabel?: string | GetTextCallback;
+  parseTitle?(value: any): string;
+  parseValue?(value: any): any;
   condition?(element: Element | ElementObject, opts?: {
     component: ComponentObject;
     builder: Builder;

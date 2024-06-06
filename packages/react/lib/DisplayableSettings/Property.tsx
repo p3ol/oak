@@ -13,7 +13,7 @@ import Text from '../Text';
 interface PropertyProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
   field: ComponentSettingsFieldObject;
-  override?: ComponentOverrideObject;
+  override?: ComponentOverrideObject | ComponentOverride;
 }
 
 const Property = ({
@@ -21,12 +21,14 @@ const Property = ({
   field: setting,
   override,
 }: PropertyProps) => {
-  const field = useMemo(() => ({
+  const field = useMemo<ComponentSettingsFieldObject>(() => ({
     ...setting,
     ...override?.fields?.find(f => f.key === setting.key) || {},
   }), [setting, override]);
 
-  const value = get(element, field.key as string, field.default);
+  const value = useMemo(() => (
+    get(element, field.key as string, field.default)
+  ), [element, field]);
 
   const option = useMemo(() => (
     field.options
@@ -39,7 +41,7 @@ const Property = ({
   return (
     <span className="property">
       <span className="key">
-        <Text>{ field.label as string }</Text>
+        <Text>{ field.label }</Text>
         <Text name="core.propertyPairSeparator" default=": " />
       </span>
       <span className="value">

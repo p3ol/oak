@@ -11,11 +11,17 @@ import {
   useReducer,
   useRef,
 } from 'react';
-import type { ComponentObject, ComponentSettingsFormObject, ElementObject } from '@oakjs/core';
+import type {
+  ComponentObject,
+  ComponentSettingsFormObject,
+  ElementObject,
+} from '@oakjs/core';
 import { createPortal } from 'react-dom';
-import { mockState, classNames, ensureNode } from '@junipero/react';
+import { mockState, classNames, ensureNode, omit } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import {
+  type UseFloatingOptions,
+  type Boundary,
   autoPlacement,
   autoUpdate,
   flip,
@@ -27,13 +33,16 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 
-import Form from './Form';
 import { useBuilder } from '../hooks';
+import Form from './Form';
 
-interface EditableProps extends ComponentPropsWithoutRef<any> {
+export interface EditableProps extends ComponentPropsWithoutRef<any> {
   children: ReactElement;
   element: ElementObject;
   component: ComponentObject;
+  floatingOptions?: UseFloatingOptions & {
+    boundary?: Boundary;
+  };
   onToggle?: (state: { opened: boolean }) => void;
 }
 
@@ -46,8 +55,18 @@ type FloatingRef = {
   innerRef: MutableRefObject<any>;
 };
 
-const Editable = forwardRef(({
+export type EditableRef = {
+  open: () => void;
+  close: () => void;
+  forceClose: () => void;
+  toggle: () => void;
+  isOak: boolean;
+  innerRef: MutableRefObject<any>;
+};
+
+const Editable = forwardRef<EditableRef, EditableProps>(({
   children,
+  floatingOptions,
   element,
   component,
   onToggle,
@@ -71,23 +90,28 @@ const Editable = forwardRef(({
     onOpenChange: o => o ? open() : close(),
     whileElementsMounted: autoUpdate,
     placement: floatingSettings.placement || 'bottom',
+    ...omit(floatingOptions || {}, ['boundary', 'middleware']),
     middleware: [
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
-        boundary: (rootBoundary as MutableRefObject<any>)?.current,
+        boundary: floatingOptions?.boundary ||
+          (rootBoundary as MutableRefObject<any>)?.current,
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
-        boundary: (rootBoundary as MutableRefObject<any>)?.current,
+        boundary: floatingOptions?.boundary ||
+          (rootBoundary as MutableRefObject<any>)?.current,
         allowedPlacements: ['bottom'],
         ...floatingSettings.autoPlacement || {},
       })] : []),
       ...(floatingSettings?.flip?.enabled !== false ? [flip({
-        boundary: (rootBoundary as MutableRefObject<any>)?.current,
+        boundary: floatingOptions?.boundary ||
+          (rootBoundary as MutableRefObject<any>)?.current,
         ...floatingSettings.flip || {},
       })] : []),
       ...floatingSettings.middleware || [],
+      ...floatingOptions?.middleware || [],
     ],
   });
   const { getReferenceProps, getFloatingProps } = useInteractions([
@@ -169,7 +193,7 @@ const Editable = forwardRef(({
             />
           ), { opened: state.opened, onExited: onAnimationExit }) }
         </div>
-      ), ensureNode(floatingsRef.current) as any) } {/*TODO update junipero*/}
+      ), ensureNode(floatingsRef.current)) }
     </>
   );
 });

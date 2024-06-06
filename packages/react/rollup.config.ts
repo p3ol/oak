@@ -4,10 +4,9 @@ import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
-import dts from 'rollup-plugin-dts';
 import alias from '@rollup/plugin-alias';
 
-const input = './lib/index.js';
+const input = './lib/index.ts';
 const defaultOutput = './dist';
 const name = 'oak-react';
 const formats = ['umd', 'cjs', 'esm'];
@@ -37,10 +36,14 @@ const defaultPlugins = [
   terser(),
 ];
 
-const getConfig = (format, {
+const getConfig = (format: string, {
   output = defaultOutput,
   globals = defaultGlobals,
   external = defaultExternals,
+}: {
+  output?: string;
+  globals?: Record<string, string>;
+  external?: string[];
 } = {}) => ({
   input,
   plugins: [
@@ -74,18 +77,13 @@ export default [
   ...formats.map(f => getConfig(f)),
   getConfig('esm', {
     output: './dist/no-junipero',
-    defaultExternals: [
+    external: [
       ...defaultExternals,
       '@junipero/react',
     ],
-    defaultGlobals: {
+    globals: {
       ...defaultGlobals,
       '@junipero/react': 'JuniperoReact',
     },
   }),
-  {
-    input: './lib/index.d.ts',
-    output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
-    plugins: [dts()],
-  },
 ];

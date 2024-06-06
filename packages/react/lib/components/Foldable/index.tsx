@@ -6,12 +6,11 @@ import { useBuilder } from '../../hooks';
 import Text from '../../Text';
 import Container from '../../Container';
 
-interface FoldableProps extends ComponentPropsWithoutRef<any> {
+export interface FoldableProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
   parent: Array<ElementObject>;
   component: ComponentObject;
   parentComponent: ComponentObject;
-  className?: string;
   depth?: number;
 }
 

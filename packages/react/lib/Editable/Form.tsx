@@ -25,12 +25,12 @@ import {
   mockState,
 } from '@junipero/react';
 
-import Field from './Field';
+import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 import Text from '../Text';
-import { useBuilder } from '../hooks';
+import Field from './Field';
 
-interface FormProps extends ComponentPropsWithoutRef<any> {
+export interface FormProps extends ComponentPropsWithoutRef<any> {
   placement?: string;
   element: ElementObject;
   component: ComponentObject;
@@ -118,7 +118,7 @@ const Form = ({
     >
       <div className="form-title junipero oak-flex oak-py-2 oak-px-5">
         { component.settings?.title ? (
-          <Text>{ component.settings?.title as string }</Text>
+          <Text>{ component.settings?.title }</Text>
         ) : (
           <Text name="core.components.default.settings.title">
             Element options
@@ -234,7 +234,7 @@ const Form = ({
                         ) }
                         { setting.description && (
                           <Abstract className="secondary">
-                            <Text>{ setting.description as string }</Text>
+                            <Text>{ setting.description }</Text>
                           </Abstract>
                         ) }
                       </FieldControl>

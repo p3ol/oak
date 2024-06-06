@@ -14,7 +14,8 @@
     "storybook": "storybook",
     "dev": "yarn storybook dev",
     "serve": "yarn dev",
-    "p:core": "yarn workspace @oakjs/core"
+    "p:core": "yarn workspace @oakjs/core",
+    "p:react": "yarn workspace @oakjs/react"
   },
   "devDependencies": {
     "@babel/core": "7.24.6",

@@ -5,11 +5,10 @@ import { Droppable, classNames, omit } from '@junipero/react';
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
 
-interface RowProps extends ComponentPropsWithoutRef<any> {
+export interface RowProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
   parent: Array<ElementObject>;
   parentComponent: ComponentObject;
-  className?: string;
   depth?: number;
 }
 
@@ -116,5 +115,7 @@ const Row = ({
     </div>
   );
 };
+
+Row.displayName = 'Row';
 
 export default Row;

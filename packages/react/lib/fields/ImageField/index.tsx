@@ -16,22 +16,22 @@ import {
   mockState,
 } from '@junipero/react';
 
+import { useBuilder } from '../../hooks';
 import Icon from '../../Icon';
 import Text from '../../Text';
-import { useBuilder } from '../../hooks';
 
-export declare type ImageFieldObject = {
-  name: string,
-  url: string,
+export declare interface ImageFieldValue {
+  name: string;
+  url: string | ArrayBuffer;
 }
 
-export declare type ImageFieldContent<T = any> = {
-  value?: T;
+export declare interface ImageFieldContent {
+  value?: ImageFieldValue;
 }
 
-interface ImageFieldProps extends ComponentPropsWithRef<any> {
+export interface ImageFieldProps extends ComponentPropsWithRef<any> {
   className?: string;
-  value?: ImageFieldObject;
+  value?: ImageFieldValue;
   element?: ElementObject;
   setting?: ComponentSettingsFieldObject | ComponentSettingsField;
   onOpenDialog?: () => void;
@@ -121,7 +121,7 @@ const ImageField = ({
     name,
     ...rest
   }: { url?: string | ArrayBuffer, name?: string } = {}) => {
-    const val = { url, name, ...rest };
+    const val: ImageFieldValue = { url, name, ...rest };
     dispatch({ value: val });
     onChange?.({ value: val });
     dispatch({ loading: false });
@@ -175,16 +175,12 @@ const ImageField = ({
         <TouchableZone
           disabled={state.loading}
           onClick={iconOnly && state.value?.url ? onReset : onOpenFileDialog}
+          className={classNames({ '!oak-w-full': !iconOnly })}
           { ...(iconOnly && {
             style: {
               backgroundImage: state.value?.url && `url(${state.value?.url})`,
             },
           }) }
-          className={classNames(
-            {
-              '!oak-w-full': !iconOnly,
-            },
-          )}
         >
           { state.loading ? (
             <Spinner />

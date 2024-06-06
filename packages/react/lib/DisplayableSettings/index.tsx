@@ -10,9 +10,9 @@ import type {
 } from '@oakjs/core';
 import { classNames } from '@junipero/react';
 
-import Property from './Property';
-import Text from '../Text';
 import { useBuilder } from '../hooks';
+import Text from '../Text';
+import Property from './Property';
 
 export declare interface DisplayableSettingsProps
   extends ComponentPropsWithoutRef<any> {

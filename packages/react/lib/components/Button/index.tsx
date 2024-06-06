@@ -4,9 +4,8 @@ import { Button, classNames } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
 
-interface ButtonProps extends ComponentPropsWithoutRef<any> {
+export interface ButtonProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
-  className?: string;
 }
 
 const Button_ = ({

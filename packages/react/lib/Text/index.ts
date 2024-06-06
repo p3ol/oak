@@ -1,18 +1,19 @@
-import type { ComponentPropsWithoutRef, FC, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { GetTextCallback } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 
 interface TextProps extends ComponentPropsWithoutRef<any> {
-  children?: ReactNode;
-  name?: string;
+  children?: ReactNode | GetTextCallback;
+  name?: string | GetTextCallback;
   default?: ReactNode;
 }
 
-const Text: FC<TextProps> = ({
+const Text = ({
   children,
   name,
   default: def,
-}) => {
+}: TextProps) => {
   const { builder } = useBuilder();
   const handler = name || children;
 

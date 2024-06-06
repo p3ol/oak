@@ -4,9 +4,8 @@ import { classNames } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
 
-interface TitleProps extends ComponentPropsWithoutRef<any> {
+export interface TitleProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
-  className?: string;
 }
 
 const Title = ({ element, className }: TitleProps) => {

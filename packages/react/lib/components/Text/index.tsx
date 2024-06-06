@@ -4,15 +4,14 @@ import { classNames } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
 
-interface TextProps extends ComponentPropsWithoutRef<any> {
+export interface TextComponentProps extends ComponentPropsWithoutRef<any> {
   element: ElementObject;
-  className?: string;
 }
 
 const Text = ({
   element,
   className,
-}: TextProps) => !element.content ? null : (
+}: TextComponentProps) => !element.content ? null : (
   <div
     className={classNames('junipero sanitize-html', className)}
     dangerouslySetInnerHTML={

@@ -13,7 +13,7 @@ import type {
 
 import { useBuilder } from '../hooks';
 
-interface FieldProps extends ComponentPropsWithoutRef<any> {
+export interface FieldProps extends ComponentPropsWithoutRef<any> {
   setting: ComponentSettingsFieldObject;
   element: ElementObject;
   component: ComponentObject;
@@ -38,7 +38,6 @@ const Field = ({
     }),
     settings: builder
       .getOverride('setting', element.type, { setting: fieldSetting }),
-
   }), [element, fieldSetting, addons]);
 
   const field = useMemo(() => (
@@ -57,7 +56,7 @@ const Field = ({
     disabled: setting.disabled,
     value: builder.getElementSettings(element, setting.key, setting.default),
     required: setting.required,
-    onChange: overrides?.onChange //TODO change getOverride method
+    onChange: (overrides?.field as FieldOverride)?.onChange
       ? onCustomChange.bind(null, setting.key, overrides.field)
       : onChange.bind(null, setting.key),
     ...field?.props,

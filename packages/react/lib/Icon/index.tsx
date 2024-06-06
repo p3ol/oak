@@ -1,21 +1,14 @@
 import {
   type ComponentPropsWithoutRef,
-  type ReactNode,
-  type Ref,
   forwardRef,
 } from 'react';
 import { classNames } from '@junipero/react';
 
-interface IconProps extends ComponentPropsWithoutRef<any> {
-  className?: string;
-  children?: ReactNode;
-}
-
-const Icon = forwardRef(({
+const Icon = forwardRef<HTMLElement, ComponentPropsWithoutRef<any>>(({
   className,
   children,
   ...rest
-}: IconProps, ref: Ref<HTMLElement>) =>
+}, ref) =>
   typeof children === 'function' ? (children as Function)({ ref }) : (
     <i
       className={classNames('icon junipero-icons', className)}

@@ -8,6 +8,7 @@ import {
   useMemo,
   useRef,
 } from 'react';
+import { type Boundary } from '@floating-ui/react';
 import {
   type TooltipRef,
   Tooltip,
@@ -17,8 +18,7 @@ import {
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 
-interface OptionProps extends ComponentPropsWithoutRef<any> {
-  className?: string;
+export interface OptionProps extends ComponentPropsWithoutRef<any> {
   iconClassName?: string;
   option?: { icon:
     (string | ReactNode) | (() => (string | ReactNode))
@@ -51,10 +51,8 @@ const Option = forwardRef(({
     tooltipRef,
   }), [innerRef.current]);
 
-  const floatingOptions = useMemo(() => ({
+  const floatingOptions = useMemo<{ boundary: Boundary }>(() => ({
     boundary: (rootBoundary as MutableRefObject<any>)?.current ||
-      rootRef?.current,
-    rootBoundary: (rootBoundary as MutableRefObject<any>)?.current ||
       rootRef?.current,
   }), []);
 
@@ -93,9 +91,9 @@ const Option = forwardRef(({
       }}
       floatingOptions={floatingOptions}
       text={name}
-      {...tooltipProps}
+      { ...tooltipProps }
     >
-      {inner}
+      { inner }
     </Tooltip>
   ) : inner;
 });
