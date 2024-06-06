@@ -78,11 +78,11 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
       offset(16),
       flip({
         boundary: floatingOptions?.boundary ||
-          floatingOptions?.elements.reference,
+          floatingOptions?.elements?.reference,
       }),
       shift({
         boundary: floatingOptions?.boundary ||
-          floatingOptions?.elements.reference,
+          floatingOptions?.elements?.reference,
       }),
     ],
   });

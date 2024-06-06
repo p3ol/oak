@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { render, screen, fireEvent, within } from '@testing-library/react';
+import { BuilderObject } from '@oakjs/core';
 
 import { baseAddon } from '../addons';
 import Builder from './index';
 
 describe('<Builder />', () => {
-  const getOptions = (...props) => {
+  const getOptions = (props?: BuilderObject) => {
     let i = 0;
 
     return {
@@ -76,8 +77,8 @@ describe('<Builder />', () => {
 
     expect(container).toMatchSnapshot('Empty content');
 
-    const floatings = container.querySelector('.floatings');
-    const catalogue = container.querySelector('.catalogue');
+    const floatings = container.querySelector<HTMLElement>('.floatings');
+    const catalogue = container.querySelector<HTMLElement>('.catalogue');
 
     // Open catalogue
     fireEvent.click(within(catalogue).getByText('add'));
@@ -90,8 +91,8 @@ describe('<Builder />', () => {
     expect(container).toMatchSnapshot('Content with row');
 
     // Open row's first col catalogue
-    const row = container.querySelector('.element.type-row');
-    const col = row.querySelector('.column .col-inner');
+    const row = container.querySelector<HTMLElement>('.element.type-row');
+    const col = row.querySelector<HTMLElement>('.column .col-inner');
     fireEvent.click(within(col).getByText('add'));
 
     // Add a title
@@ -101,7 +102,8 @@ describe('<Builder />', () => {
     expect(row).toMatchSnapshot('Row with title');
 
     // Open main prepend catalogue
-    const prependCatalogue = container.querySelectorAll('.catalogue')[0];
+    const prependCatalogue = container
+      .querySelectorAll<HTMLElement>('.catalogue')[0];
     fireEvent.click(within(prependCatalogue).getByText('add'));
 
     // Add a text

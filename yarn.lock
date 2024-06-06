@@ -4297,9 +4297,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/react@npm:3.5.1":
-  version: 3.5.1
-  resolution: "@junipero/react@npm:3.5.1"
+"@junipero/react@npm:3.5.3":
+  version: 3.5.3
+  resolution: "@junipero/react@npm:3.5.3"
   dependencies:
     "@floating-ui/react": "npm:0.26.16"
     "@junipero/core": "npm:^3.5.0"
@@ -4308,7 +4308,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10/9ea5fc060ce70ee60df8691284002dc20ed4e4e7e57c5a37d9aab92887744bbfe5b0d562e54b96c605cab62f1bb87334193bb37304ad9c6c51b9457b1f4f8cbc
+  checksum: 10/232dca3729cd883af29cbd1cd580b9fb28fc83f0f264c521318598d96d84fa67a134b11fdb7c2e6a21ee6fcef7d9fd5fb83e16bcb17d28450780b8d4977b4880
   languageName: node
   linkType: hard
 
@@ -4329,14 +4329,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/transitions@npm:3.5.2":
-  version: 3.5.2
-  resolution: "@junipero/transitions@npm:3.5.2"
+"@junipero/transitions@npm:3.5.3":
+  version: 3.5.3
+  resolution: "@junipero/transitions@npm:3.5.3"
   peerDependencies:
     "@junipero/react": ^3.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/5c8203bd9f8d2277b632a68f545709877ab5516995348e7503b29e8423694556977f4834639ee87a606d39f6de62c15fbd94e01c063382a2e3bca54154fe51cb
+  checksum: 10/69a6efc160d45232f19aa6f8f0c9ab12f36e80452c4546c483186909503eb2933d35db3d0cde6dd7170bfcb451b30ac0f288e18dc3625fc9a7646592aadd41ca
   languageName: node
   linkType: hard
 
@@ -5038,8 +5038,8 @@ __metadata:
   dependencies:
     "@floating-ui/react": "npm:0.26.16"
     "@junipero/hooks": "npm:3.5.0"
-    "@junipero/react": "npm:3.5.1"
-    "@junipero/transitions": "npm:3.5.2"
+    "@junipero/react": "npm:3.5.3"
+    "@junipero/transitions": "npm:3.5.3"
     uuid: "npm:9.0.1"
   peerDependencies:
     react: ^18.0.0

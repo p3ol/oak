@@ -4,9 +4,17 @@ import {
   type ElementObject,
   Builder,
 } from '@oakjs/core';
-import { mockState, useEffectAfterMount } from '@junipero/react';
+import { MockState, mockState, useEffectAfterMount } from '@junipero/react';
 
 import { BuilderContext } from './contexts';
+
+export interface RootBuilderState {
+  content: ElementObject[];
+  activeTextSheet: string | null;
+  addons: AddonObject[];
+  canUndo: boolean;
+  canRedo: boolean;
+}
 
 export const useRootBuilder = ({
   activeTextSheet,
@@ -22,15 +30,14 @@ export const useRootBuilder = ({
   onChange?: (content: Array<ElementObject>) => void;
   onEvent?: (eventName: string, ...args: any[]) => void;
   addons?: AddonObject[],
-} = {
-}) => {
+} = {}) => {
   const builder = useMemo(() => (
     new Builder({
       ...opts,
       content: defaultContent || content,
     })
   ), []);
-  const [state, dispatch] = useReducer(mockState, {
+  const [state, dispatch] = useReducer<MockState<RootBuilderState>>(mockState, {
     content: builder.getContent(),
     activeTextSheet: null,
     addons: opts.addons,

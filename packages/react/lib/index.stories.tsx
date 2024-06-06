@@ -1,7 +1,8 @@
+import type { AddonObject, ComponentSettingsFieldObject, ElementObject } from '@oakjs/core';
 import { useEffect, useRef, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
-import Builder from './Builder';
+import Builder, { BuilderRef } from './Builder';
 import { baseAddon } from './addons';
 
 export default { title: 'React/Builder' };
@@ -54,7 +55,7 @@ export const controlled = () => {
 };
 
 export const uncontrolled = () => {
-  const builderRef = useRef();
+  const builderRef = useRef<BuilderRef>();
 
   const addElement = () => {
     builderRef.current?.builder.addElement({
@@ -80,7 +81,7 @@ export const uncontrolled = () => {
 };
 
 export const withCustomTexts = () => {
-  const builderRef = useRef();
+  const builderRef = useRef<BuilderRef>();
 
   useEffect(() => {
     builderRef.current?.builder.setActiveTextSheet('fr');
@@ -108,7 +109,7 @@ export const withCustomTexts = () => {
 };
 
 export const withMultipleLanguages = () => {
-  const builderRef = useRef();
+  const builderRef = useRef<BuilderRef>();
   const [locale, setLocale] = useState('fr');
 
   const texts = [
@@ -216,14 +217,14 @@ export const withMultipleCustomSettingsAndFields = () => (
         label: 'Foo',
         type: 'weird-text',
         displayable: true,
-        condition: e => e.type === 'weird-component',
+        condition: (e: ElementObject) => e.type === 'weird-component',
       }, {
         key: 'settings.bar',
         label: 'Bar',
         type: 'weird-text',
-        condition: e => e.type === 'weird-component',
-      }],
-    }]}
+        condition: (e: ElementObject) => e.type === 'weird-component',
+      }] as ComponentSettingsFieldObject[],
+    } as AddonObject]}
     value={baseContent}
     options={{ debug: true }}
     onChange={action('change')}
@@ -255,37 +256,31 @@ export const disallowSomeChildren = () => {
   );
 };
 
-export const withMergeOverrides = () => {
-
-  return (
-    <>
-      <Builder
-        addons={[baseAddon(), {
-
-          overrides: [{
-            id: 'titleOverride',
-            type: 'component',
-            targets: ['title'],
-            fields: [{
-              key: 'headingLevel',
-              options: ['t1', 't2', 't3', 't4', 't5', 't6'],
-              priority: 3,
-            }],
-          }, {
-            id: 'constructOverride',
-            type: 'component',
-            targets: ['title'],
-            construct: () => ({
-              type: 'title',
-              headingLevel: 't4',
-              content: 'This is an updated title',
-            }),
-          }],
-        }]}
-        value={baseContent}
-        options={{ debug: true, overrideStrategy: 'merge' }}
-        onChange={action('change')}
-      />
-    </>
-  );
-};
+export const withMergeOverrides = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        id: 'titleOverride',
+        type: 'component',
+        targets: ['title'],
+        fields: [{
+          key: 'headingLevel',
+          options: ['t1', 't2', 't3', 't4', 't5', 't6'],
+          priority: 3,
+        }],
+      }, {
+        id: 'constructOverride',
+        type: 'component',
+        targets: ['title'],
+        construct: () => ({
+          type: 'title',
+          headingLevel: 't4',
+          content: 'This is an updated title',
+        }),
+      }],
+    }]}
+    value={baseContent}
+    options={{ debug: true, overrideStrategy: 'merge' }}
+    onChange={action('change')}
+  />
+);

@@ -1,3 +1,4 @@
+import type { BuilderObject, ElementObject } from '@oakjs/core';
 import { fireEvent, render, within } from '@testing-library/react';
 
 import { BuilderLite } from '../../tests/utils';
@@ -5,7 +6,7 @@ import { baseAddon } from '../addons';
 import Container from './index';
 
 describe('<Container />', () => {
-  const getOptions = props => {
+  const getOptions = (props?: BuilderObject) => {
     let i = 0;
 
     return {
@@ -15,19 +16,24 @@ describe('<Container />', () => {
   };
 
   it('should render', () => {
-    const elmt = { id: '1', type: 'foldable', content: [] };
+    const elmt: ElementObject = {
+      id: '1',
+      type: 'foldable',
+      content: [],
+    };
+
     const { container, unmount } = render(
       <BuilderLite options={getOptions()} addons={[baseAddon()]}>
         <Container
           element={elmt}
-          content={elmt.content}
+          content={elmt.content as ElementObject[]}
         />
       </BuilderLite>
     );
     expect(container).toMatchSnapshot();
 
     // Open catalogue
-    const catalogue = container.querySelector('.catalogue');
+    const catalogue = container.querySelector<HTMLElement>('.catalogue');
     fireEvent.click(within(catalogue).getByText('add'));
 
     // Add a text
@@ -52,11 +58,12 @@ describe('<Container />', () => {
     );
 
     // Open catalogue
-    const catalogue = container.querySelector('.catalogue:first-child');
+    const catalogue = container
+      .querySelector<HTMLElement>('.catalogue:first-child');
     fireEvent.click(within(catalogue).getByText('add'));
 
     // Add a text
-    const menu = container.querySelector('.catalogue-menu');
+    const menu = container.querySelector<HTMLElement>('.catalogue-menu');
     fireEvent.click(within(menu).getByText('Text'));
 
     expect(elmt).toMatchSnapshot('With element added before');

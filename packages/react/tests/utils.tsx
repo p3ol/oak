@@ -1,10 +1,14 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 
-import Element from '../lib/Element';
+import type { BuilderProps, BuilderRef } from '../lib/Builder';
 import { BuilderContext } from '../lib/contexts';
 import { useRootBuilder } from '../lib/hooks';
+import Element from '../lib/Element';
 
-export const BuilderLite = forwardRef(({ children, ...opts }, ref) => {
+export const BuilderLite = forwardRef<BuilderRef, BuilderProps>(({
+  children,
+  ...opts
+}, ref) => {
   const innerRef = useRef();
   const { content, builder } = useRootBuilder(opts);
 
