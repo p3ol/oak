@@ -4,6 +4,7 @@ exports[`Settings should allow to add a new tab and add settings to it 1`] = `
 [
   ComponentSettingsTab {
     "condition": undefined,
+    "displayable": undefined,
     "fields": [],
     "id": "general",
     "priority": 0,
@@ -12,6 +13,7 @@ exports[`Settings should allow to add a new tab and add settings to it 1`] = `
   },
   ComponentSettingsTab {
     "condition": undefined,
+    "displayable": undefined,
     "fields": [
       ComponentSettingsField {
         "condition": undefined,

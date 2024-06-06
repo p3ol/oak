@@ -1,34 +1,25 @@
 import { exists, get, set, cloneDeep } from '@junipero/core';
 
-import Emitter from '../Emitter';
-import {
-  Component,
+import type {
   ComponentObject,
-  ComponentOverride,
   ComponentOverrideObject,
   ComponentSettingsFieldKeyTuple,
   ElementId,
   ElementObject,
   ElementSettingsComplexKey,
   ElementSettingsKeyObject,
+  StoreSanitizeOptions,
+  StoreFindOptions,
+  StoreFindDeepOptions,
 } from '../types';
+import {
+  Component,
+  ComponentOverride,
+} from '../classes';
+import Emitter from '../Emitter';
 import Builder from '../Builder';
 
-export declare interface StoreSanitizeOptions {
-  component?: Component;
-  override?: ComponentOverride;
-  resetIds?: boolean;
-}
-
-export declare interface StoreFindOptions {
-  parent?: Array<ElementObject>;
-}
-
-export declare type StoreFindDeepOptions = Partial<StoreFindOptions & {
-  deep?: boolean;
-}>;
-
-export declare class IStore {
+export declare abstract class IStore {
   constructor(options?: { builder: Builder });
 
   /**
@@ -62,6 +53,8 @@ export declare class IStore {
   /** Creates a new element object based on an existing component (or not) */
   createElement(type: string, options?: Partial<{
     baseElement?: ElementObject;
+    component?: ComponentObject;
+    override?: ComponentOverrideObject;
   } & StoreSanitizeOptions>): ElementObject;
 
   /** Adds an element to the store */
@@ -139,7 +132,7 @@ export declare class IStore {
   resetHistory(): void;
 }
 
-export default class Store extends Emitter {
+export default class Store extends Emitter implements IStore {
   #content: ElementObject[] = [];
   #history: ElementObject[] = [];
   #historyIndex: number = 0;
@@ -177,7 +170,7 @@ export default class Store extends Emitter {
     override: o,
     ...opts
   }: {
-    component?: Component,
+    component?: Component | ComponentObject,
     override?: ComponentOverride,
     [_: string]: any
   } = {}) {
@@ -186,29 +179,25 @@ export default class Store extends Emitter {
     }
 
     const component = c || this.#builder.getComponent(element.type);
-    const override = o || this.#builder.getOverride(
-      'component', element.type
-    ) as ComponentOverrideObject;
-    const override_ = new ComponentOverride(
-      override as ComponentOverrideObject
-    );
+    const override = o || this.#builder
+      .getOverride('component', element.type) as ComponentOverride;
 
     if (opts.withDefaults) {
       element = {
-        ...(override_?.construct || component?.construct)?.({
+        ...(override?.construct || component?.construct)?.({
           builder: this.#builder,
         }) || {},
         ...element,
       };
     }
 
-    const deserialize = override_?.deserialize || component?.deserialize;
+    const deserialize = override?.deserialize || component?.deserialize;
     element = deserialize?.(element, { builder: this.#builder }) || element;
 
-    const customSanitize = override_?.sanitize || component?.sanitize;
+    const customSanitize = override?.sanitize || component?.sanitize;
     element = customSanitize?.(element, { builder: this.#builder }) || element;
 
-    const containers = override_?.getContainers?.(element) ||
+    const containers = override?.getContainers?.(element) ||
       component?.getContainers?.(element) ||
       [element.content];
 
@@ -230,7 +219,7 @@ export default class Store extends Emitter {
     ...opts
   }: {
     component?: ComponentObject,
-    override?: ComponentOverrideObject,
+    override?: ComponentOverride | ComponentOverrideObject,
     baseElement?: ElementObject,
     [_: string]: any
   } = {}) {
@@ -326,11 +315,8 @@ export default class Store extends Emitter {
   }
 
   getElement (
-    id: string,
-    {
-      parent = this.#content,
-      deep = false,
-    }: {
+    id: ElementId,
+    { parent = this.#content, deep = false }: {
       deep?: boolean,
       parent?: ElementObject[]
     } = {}
@@ -366,13 +352,12 @@ export default class Store extends Emitter {
   }
 
   removeElement (
-    id: string, {
-      parent = this.#content,
-      deep,
-    }: {
+    id: ElementId,
+    { parent = this.#content, deep }: {
       parent?: Array<ElementObject>,
       deep?: boolean
-    } = {}) {
+    } = {}
+  ) {
     if (!this.isIdValid(id)) {
       return;
     }
@@ -409,11 +394,10 @@ export default class Store extends Emitter {
     return false;
   }
 
-  setElement (id: string, newContent: object, {
-    element: e,
-    parent = this.#content,
-    deep,
-  }: {
+  setElement (
+    id: ElementId,
+    newContent: Partial<ElementObject>,
+    { element: e, parent = this.#content, deep }: {
     element?: ElementObject,
     parent?: Array<ElementObject>,
     deep?: boolean
@@ -444,13 +428,11 @@ export default class Store extends Emitter {
   moveElement (
     element?: ElementObject,
     sibling?: ElementObject,
-    {
-      parent = this.#content,
-      position,
-    }: {
+    { parent = this.#content, position }: {
       parent?: Array<ElementObject>,
       position?: 'before' | 'after'
-    } = {}) {
+    } = {}
+  ) {
     if (
       this.isSameElement(element?.id, sibling?.id) ||
       this.contains(sibling.id, { parent: element })
@@ -504,7 +486,8 @@ export default class Store extends Emitter {
   }
 
   findNearestParent (
-    id: string | ElementId, { parent = this.#content } = {}
+    id: ElementId,
+    { parent = this.#content } = {}
   ): Array<ElementObject> {
     // First check if element in inside direct parent to avoid trying to
     // find every component & override for every nested level
@@ -544,7 +527,7 @@ export default class Store extends Emitter {
   }
 
   contains (
-    id: string | ElementId,
+    id: ElementId,
     { parent = this.#content }: { parent?: ElementObject | Array<any> } = {}
   ) {
     // Force parent to be an array to be able to loop over it

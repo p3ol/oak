@@ -1,18 +1,21 @@
 import { omit } from '@junipero/core';
 
-import {
-  ComponentOverride,
+import type {
   ComponentOverrideObject,
   ComponentSettingsFieldObject,
-  FieldOverride,
   FieldOverrideObject,
-  SettingOverride,
   SettingOverrideObject,
 } from '../types';
+import {
+  ComponentOverride,
+  FieldOverride,
+  Override,
+  SettingOverride,
+} from '../classes';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
 
-export declare class IOverrides {
+export declare abstract class IOverrides {
   constructor(options?: { builder: Builder });
 
   /** Adds a new component or field override */
@@ -75,9 +78,7 @@ export default class Overrides extends Emitter implements IOverrides {
   }
 
   add (
-    override:
-      ComponentOverrideObject |
-      FieldOverrideObject |
+    override: ComponentOverrideObject | FieldOverrideObject |
       SettingOverrideObject
   ) {
     const existing = this.#overrides
@@ -110,7 +111,6 @@ export default class Overrides extends Emitter implements IOverrides {
     }
 
     this.#overrides.unshift(override_);
-
     this.emit('overrides.add', this, override);
 
     return override as ComponentOverride | FieldOverride;
@@ -119,11 +119,8 @@ export default class Overrides extends Emitter implements IOverrides {
   get (
     overrideType: 'component' | 'field' | 'setting',
     target: string,
-    {
-      output,
-      setting,
-    }: {
-      output?: 'field', //TODO repair
+    { output, setting }: {
+      output?: 'field' | 'component',
       setting?: ComponentSettingsFieldObject
     } = {}
   ): FieldOverride | ComponentOverride | SettingOverride {
@@ -148,14 +145,16 @@ export default class Overrides extends Emitter implements IOverrides {
               this.#builder.getOverride('field',
                 newComponentField?.type || setting?.type),
               omit(newComponentField || {}, ['type', 'key'])
-            );
+            ) as FieldOverride;
           }
           default:
-            return override;
+            return override as ComponentOverride;
         }
       }
       case 'setting':
-        return overrides?.find((o: SettingOverride) => o.key === setting?.key);
+        return overrides?.find((o: SettingOverride) => (
+          o.key === setting?.key
+        )) as SettingOverride;
       default:
         return strategy === 'merge' ? this.merge(overrides) : overrides[0];
     }

@@ -14,6 +14,7 @@ exports[`Components should allow to add a new group and add components 1`] = `
       "components": [
         Component {
           "construct": undefined,
+          "deserialize": undefined,
           "disallow": [],
           "draggable": true,
           "droppable": true,
@@ -28,6 +29,7 @@ exports[`Components should allow to add a new group and add components 1`] = `
           "options": [],
           "render": undefined,
           "sanitize": undefined,
+          "serialize": undefined,
           "settings": ComponentSettingsForm {
             "defaults": {},
             "fields": [],

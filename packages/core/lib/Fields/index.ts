@@ -1,4 +1,5 @@
-import { Field, FieldObject } from '../types';
+import type { FieldObject } from '../types';
+import { Field } from '../classes';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
 
@@ -26,6 +27,7 @@ export default class Fields extends Emitter implements IFields {
   #builder: Builder = null;
 
   field: object;
+
   constructor ({ builder }: { builder?: Builder} = {}) {
     super();
 
@@ -37,7 +39,7 @@ export default class Fields extends Emitter implements IFields {
   }
 
   get (type: string) {
-    return this.#fields.find(Field.FIND_PREDICATE(type));// TODO to object
+    return this.#fields.find(Field.FIND_PREDICATE(type)); // TODO to object
   }
 
   add (field: FieldObject) {
@@ -60,7 +62,7 @@ export default class Fields extends Emitter implements IFields {
       this.emit('fields.add', this, field);
     }
 
-    return field_;//TODO return object or class ?
+    return field_; //TODO return object or class ?
   }
 
   remove (type: string) {
@@ -75,6 +77,6 @@ export default class Fields extends Emitter implements IFields {
   }
 
   all () {
-    return this.#fields;//TODO to object
+    return this.#fields; //TODO to object
   }
 }

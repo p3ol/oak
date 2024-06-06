@@ -1,53 +1,59 @@
-import { Component } from 'react';
-
+import type {
+  AddonObject,
+  ComponentObject,
+  ComponentSettingsFieldObject,
+  ComponentsGroupObject,
+  ElementObject,
+  FieldObject,
+  GetTextCallback,
+} from './types';
 import Builder from './Builder';
-import { AddonObject, ComponentObject, ComponentSettingsFieldObject, ComponentsGroupObject, ElementObject, FieldObject, GetTextCallback, SettingOverrideObject } from './types';
 
-export const textField = (...props: any): FieldObject => ({
+export const textField = (props?: FieldObject): FieldObject => ({
   type: 'text',
   deserialize: (val: string) => '' + val,
   render: () => null,
   ...props,
 });
 
-export const textareaField = (...props: any): FieldObject => ({
+export const textareaField = (props?: FieldObject): FieldObject => ({
   type: 'textarea',
   deserialize: (val: string) => '' + val,
   render: () => null,
   ...props,
 });
 
-export const selectField = (...props: any): FieldObject => ({
+export const selectField = (props?: FieldObject): FieldObject => ({
   type: 'select',
   render: () => null,
   ...props,
 });
 
-export const colorField = (...props: any):FieldObject => ({
+export const colorField = (props?: FieldObject): FieldObject => ({
   type: 'color',
   render: () => null,
   ...props,
 });
 
-export const imageField = (...props: any): FieldObject => ({
+export const imageField = (props?: FieldObject): FieldObject => ({
   type: 'image',
   render: () => null,
   ...props,
 });
 
-export const dateField = (...props: any): FieldObject => ({
+export const dateField = (props?: FieldObject): FieldObject => ({
   type: 'date',
   render: () => null,
   ...props,
 });
 
-export const toggleField = (...props: any): FieldObject => ({
+export const toggleField = (props?: FieldObject): FieldObject => ({
   type: 'toggle',
   render: () => null,
   ...props,
 });
 
-export const rowComponent = (...props: any): ComponentObject => ({
+export const rowComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'row',
   name: (t: GetTextCallback) => t('core.components.row.name', 'Row'),
   type: 'component',
@@ -64,12 +70,8 @@ export const rowComponent = (...props: any): ComponentObject => ({
     ) => t('core.components.row.settings.title', 'Row options'),
     floatingSettings: {
       placement: 'right-start',
-      shift: {
-        enabled: false,
-      },
-      autoPlacement: {
-        alignment: 'start',
-      },
+      shift: { enabled: true },
+      autoPlacement: { alignment: 'start' },
     },
     fields: [{
       type: 'select',
@@ -234,19 +236,17 @@ export const rowComponent = (...props: any): ComponentObject => ({
   ...props,
 });
 
-const COL_SIZES = Array.from({ length: 12 }).map((_, i) => (
-  {
-    title: (t: GetTextCallback) =>
-      (i + 1) + ' ' + t(
-        'core.components.col.settings.size.value',
-        'column(s)'
-      ),
-    value: i + 1,
-  }
-)).reverse();
+const COL_SIZES = Array.from({ length: 12 }).map((_, i) => ({
+  title: (t: GetTextCallback) =>
+    (i + 1) + ' ' + t(
+      'core.components.col.settings.size.value',
+      'column(s)'
+    ),
+  value: i + 1,
+})).reverse();
 
 const COL_RESPONSIVE_SETTINGS: Array<
-{ title: string | any, value: string | number}
+  { title: string | any, value: string | number}
 > = [{
   title: (t: GetTextCallback) => t('core.responsive.fluid', 'Flexible'),
   value: 'fluid',
@@ -260,7 +260,7 @@ const COL_RESPONSIVE_SETTINGS: Array<
   value: 'hide',
 }];
 
-export const colComponent = (...props: any[]): ComponentObject => ({
+export const colComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'col',
   type: 'component',
   draggable: false,
@@ -279,7 +279,7 @@ export const colComponent = (...props: any[]): ComponentObject => ({
     ) => t('core.components.col.settings.title', 'Col options'),
     floatingSettings: {
       placement: 'left-start',
-      shift: { enabled: false },
+      shift: { enabled: true },
       autoPlacement: { enabled: false },
     },
     fields: [{
@@ -355,7 +355,9 @@ export const colComponent = (...props: any[]): ComponentObject => ({
   ...props,
 });
 
-export const emptySpaceComponent = (...props: any[]): ComponentObject => ({
+export const emptySpaceComponent = (
+  props?: ComponentObject
+): ComponentObject => ({
   id: 'empty-space',
   name: (
     t: GetTextCallback
@@ -387,7 +389,7 @@ export const emptySpaceComponent = (...props: any[]): ComponentObject => ({
   ...props,
 });
 
-export const titleComponent = (...props: any[]): ComponentObject => ({
+export const titleComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'title',
   name: (t: GetTextCallback) => t('core.components.title.name', 'Title'),
   type: 'component',
@@ -432,7 +434,7 @@ export const titleComponent = (...props: any[]): ComponentObject => ({
   ...props,
 });
 
-export const textComponent = (...props: any[]): ComponentObject => ({
+export const textComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'text',
   name: (t: GetTextCallback) => t('core.components.text.name', 'Text'),
   type: 'component',
@@ -463,7 +465,7 @@ export const textComponent = (...props: any[]): ComponentObject => ({
   ...props,
 });
 
-export const imageComponent = (...props: any[]): ComponentObject => ({
+export const imageComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'image',
   name: (t: GetTextCallback) => t('core.components.image.name', 'Image'),
   type: 'component',
@@ -576,7 +578,7 @@ export const imageComponent = (...props: any[]): ComponentObject => ({
   ...props,
 });
 
-export const buttonComponent = (...props: any[]): ComponentObject => ({
+export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'button',
   name: (t: GetTextCallback) => t('core.components.button.name', 'Button'),
   type: 'component',
@@ -668,7 +670,9 @@ export const buttonComponent = (...props: any[]): ComponentObject => ({
   ...props,
 });
 
-export const foldableComponent = (...props: any[]): ComponentObject => ({
+export const foldableComponent = (
+  props?: ComponentObject
+): ComponentObject => ({
   id: 'foldable',
   name: (t: GetTextCallback) => t('core.components.foldable.name', 'Foldable'),
   type: 'component',
@@ -725,7 +729,9 @@ export const foldableComponent = (...props: any[]): ComponentObject => ({
   ...props,
 });
 
-export const stylingSettings = (props?: any): ComponentSettingsFieldObject => ({
+export const stylingSettings = (
+  props?: any // TODO fix this
+): ComponentSettingsFieldObject => ({
   id: 'styling',
   type: 'tab',
   title: (t: GetTextCallback) => t('core.styling.title', 'Styling'),
@@ -932,7 +938,7 @@ export const stylingSettings = (props?: any): ComponentSettingsFieldObject => ({
 });
 
 export const responsiveSettings = (
-  props?: any
+  props?: any // TODO fix this
 ): ComponentSettingsFieldObject => ({
   id: 'responsive',
   type: 'tab',
@@ -1048,7 +1054,7 @@ export const baseSettings = (): Array<ComponentSettingsFieldObject> => [
 ];
 
 export const coreComponentsGroup = (
-  ...props: any[]
+  props?: ComponentsGroupObject
 ): ComponentsGroupObject => ({
   id: 'core',
   type: 'group',

@@ -1,6 +1,6 @@
-import Builder from '../Builder';
+import type Builder from '../Builder';
 
-declare abstract class ILogger {
+export declare abstract class ILogger {
   constructor(options?: { builder: Builder });
   log(...args: any[]): void;
   warn(...args: any[]): void;

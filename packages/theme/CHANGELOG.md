@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.6](https://github.com/p3ol/oak/compare/v3.5.5...v3.5.6) (2024-05-29)
+
+
+### Bug Fixes
+
+* **theme:** update junipero theme ([d342811](https://github.com/p3ol/oak/commit/d3428112fdac359a914350b66c111fa956df6b61))
+
+
+
+
+
+## [3.5.5](https://github.com/p3ol/oak/compare/v3.5.4...v3.5.5) (2024-05-29)
+
+
+### Bug Fixes
+
+* upgrade various dependencies ([33eeb54](https://github.com/p3ol/oak/commit/33eeb547b85298cb43c324601cb0d4270358c715))
+
+
+
+
+
 ## [3.5.4](https://github.com/p3ol/oak/compare/v3.5.3...v3.5.4) (2024-04-17)
 
 

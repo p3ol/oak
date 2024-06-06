@@ -3,9 +3,15 @@ import Logger from './index';
 
 /* eslint-disable no-console */
 describe('Logger', () => {
+  let logSpy: ReturnType<typeof jest.spyOn>;
+  let warnSpy: ReturnType<typeof jest.spyOn>;
+
   beforeEach(() => {
-    jest.spyOn(console, 'log').mockImplementation(() => {});
-    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    logSpy = jest.spyOn(console, 'log');
+    logSpy.mockImplementation(() => {});
+
+    warnSpy = jest.spyOn(console, 'warn');
+    warnSpy.mockImplementation(() => {});
   });
 
   it('should log', () => {
@@ -41,13 +47,12 @@ describe('Logger', () => {
   });
 
   afterEach(() => {
-    console.log.mockClear();
-    console.warn.mockClear();
+    logSpy.mockClear();
+    warnSpy.mockClear();
   });
 
   afterAll(() => {
-    // eslint-disable-next-line no-console
-    console.log.mockRestore();
-    console.warn.mockRestore();
+    logSpy.mockRestore();
+    warnSpy.mockRestore();
   });
 });
