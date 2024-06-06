@@ -30,7 +30,13 @@ export interface OptionProps extends ComponentPropsWithoutRef<any> {
   tooltipProps?: any;
 }
 
-const Option = forwardRef(({
+export interface OptionRef {
+  isOak: boolean;
+  innerRef: MutableRefObject<HTMLElement>;
+  tooltipRef: MutableRefObject<TooltipRef>;
+}
+
+const Option = forwardRef<OptionRef, OptionProps>(({
   className,
   iconClassName,
   option,
@@ -40,7 +46,7 @@ const Option = forwardRef(({
   onClick,
   tooltipProps,
   ...props
-}: OptionProps, ref) => {
+}, ref) => {
   const { rootRef, rootBoundary, floatingsRef } = useBuilder();
   const innerRef = useRef();
   const tooltipRef = useRef<TooltipRef>();

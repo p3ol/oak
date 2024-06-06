@@ -1,16 +1,25 @@
-import { useRef, useState } from 'react';
+import { ComponentPropsWithoutRef, DragEvent, MouseEvent, MutableRefObject, useRef, useState } from 'react';
 import { Draggable, classNames } from '@junipero/react';
+import type { ComponentOptionObject, ElementObject } from '@oakjs/core';
 
-import Option from './Option';
+import type { EditableRef } from './Editable';
+import Option, { OptionRef } from './Option';
 import Text from './Text';
+import { ReactComponentOptionObject } from './types';
+
+export interface DragOptionProps extends ComponentPropsWithoutRef<'a'> {
+  element: ElementObject | ElementObject[];
+  elementInnerRef: MutableRefObject<HTMLElement>;
+  editableRef: MutableRefObject<EditableRef>;
+}
 
 export const DragOption = ({
   element, elementInnerRef, editableRef, className,
-}) => {
-  const optionRef = useRef();
+}: DragOptionProps) => {
+  const optionRef = useRef<OptionRef>();
   const [hasTooltip, setHasTooltip] = useState(true);
 
-  const onBeforeDragStart = e => {
+  const onBeforeDragStart = (e: DragEvent) => {
     setHasTooltip(false);
     // optionRef.current?.tooltipRef?.current?.close();
 
@@ -39,7 +48,7 @@ export const DragOption = ({
     setHasTooltip(false);
   };
 
-  const onClick = e => {
+  const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
   };
 
@@ -62,11 +71,11 @@ export const DragOption = ({
   );
 };
 
-export const dragOption = () => ({
-  render: props => <DragOption {...props} />,
+export const dragOption = (): ComponentOptionObject => ({
+  render: (props: DragOptionProps) => <DragOption {...props} />,
 });
 
-export const backgroundColorOption = () => ({
+export const backgroundColorOption = (): ReactComponentOptionObject => ({
   render: ({ element = {} }) =>
     (element.styles?.backgroundColor || element.styles?.backgroundImage) && (
       <div

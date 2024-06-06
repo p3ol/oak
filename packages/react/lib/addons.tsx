@@ -1,15 +1,21 @@
 import {
+  type TextFieldProps,
+  type SelectFieldProps,
+  type ColorFieldProps,
   TextField,
   SelectField,
   ColorField,
   DateField,
   Toggle,
+  DateFieldProps,
+  ToggleProps,
 } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
 
+import type { ReactComponentObject, ReactFieldObject } from './types';
 import { dragOption, backgroundColorOption } from './options';
-import { ImageField } from './fields';
+import { type ImageFieldProps, ImageField } from './fields';
 import {
   Button,
   Col,
@@ -22,9 +28,9 @@ import {
 } from './components';
 import Text from './Text';
 
-export const textField = props => ({
+export const textField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.textField(),
-  render: (fieldProps, { setting, t } = {}) => (
+  render: (fieldProps: TextFieldProps, { setting, t } = {}) => (
     <TextField
       { ...fieldProps }
       { ...setting.placeholder && {
@@ -36,9 +42,9 @@ export const textField = props => ({
   ...props,
 });
 
-export const textareaField = props => ({
+export const textareaField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.textareaField(),
-  render: (fieldProps, { setting, t } = {}) => (
+  render: (fieldProps: TextFieldProps, { setting, t } = {}) => (
     <TextField
       { ...fieldProps }
       tag="textarea"
@@ -52,9 +58,9 @@ export const textareaField = props => ({
   ...props,
 });
 
-export const selectField = props => ({
+export const selectField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.selectField(),
-  render: (fieldProps, { setting, editableRef, t } = {}) => (
+  render: (fieldProps: SelectFieldProps, { setting, editableRef, t } = {}) => (
     <SelectField
       clearable={false}
       { ...fieldProps }
@@ -71,9 +77,9 @@ export const selectField = props => ({
   ...props,
 });
 
-export const colorField = props => ({
+export const colorField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.colorField(),
-  render: (fieldProps, { setting, t } = {}) => (
+  render: (fieldProps: ColorFieldProps, { setting, t } = {}) => (
     <ColorField
       { ...fieldProps }
       { ...setting.placeholder && {
@@ -84,9 +90,9 @@ export const colorField = props => ({
   ...props,
 });
 
-export const imageField = props => ({
+export const imageField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.imageField(),
-  render: (fieldProps, { setting, element }) => (
+  render: (fieldProps: ImageFieldProps, { setting, element }) => (
     <ImageField
       { ...fieldProps }
       iconOnly={setting?.props?.iconOnly}
@@ -97,9 +103,9 @@ export const imageField = props => ({
   ...props,
 });
 
-export const dateField = props => ({
+export const dateField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.dateField(),
-  render: (fieldProps, { setting, t } = {}) => (
+  render: (fieldProps: DateFieldProps, { setting, t } = {}) => (
     <DateField
       { ...fieldProps }
       { ...setting.placeholder && {
@@ -110,9 +116,9 @@ export const dateField = props => ({
   ...props,
 });
 
-export const toggleField = props => ({
+export const toggleField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.toggleField(),
-  render: (fieldProps, { setting } = {}) => (
+  render: (fieldProps: ToggleProps, { setting } = {}) => (
     <Toggle { ...fieldProps } checked={fieldProps.value}>
       <Text>
         { fieldProps.value
@@ -124,50 +130,74 @@ export const toggleField = props => ({
   ...props,
 });
 
-export const rowComponent = props => ({
+export const rowComponent = (
+  props?: ReactComponentObject
+  // @ts-ignore TODO: fix this
+): ReactComponentObject => ({
   ...coreAddons.rowComponent(),
   render: Row,
   options: [dragOption(), backgroundColorOption()],
   ...props,
 });
 
-export const colComponent = props => ({
+export const colComponent = (
+  props?: ReactComponentObject
+  // @ts-ignore TODO: fix this
+): ReactComponentObject => ({
   ...coreAddons.colComponent(),
   render: Col,
   ...props,
 });
 
-export const emptySpaceComponent = props => ({
+export const emptySpaceComponent = (
+  props?: ReactComponentObject
+  // @ts-ignore TODO: fix this
+): ReactComponentObject => ({
   ...coreAddons.emptySpaceComponent(),
   render: EmptySpace,
   ...props,
 });
 
-export const titleComponent = props => ({
+export const titleComponent = (
+  props?: ReactComponentObject
+  // @ts-ignore TODO: fix this
+): ReactComponentObject => ({
   ...coreAddons.titleComponent(),
   render: Title,
   ...props,
 });
 
-export const textComponent = props => ({
+export const textComponent = (
+  props?: ReactComponentObject
+  // @ts-ignore TODO: fix this
+): ReactComponentObject => ({
   ...coreAddons.textComponent(),
   render: TextComponent,
   ...props,
 });
 
-export const imageComponent = props => ({
+export const imageComponent = (
+  props?: ReactComponentObject
+  // @ts-ignore TODO: fix this
+): ReactComponentObject => ({
   ...coreAddons.imageComponent(),
   render: Image,
   ...props,
 });
 
-export const buttonComponent = props => ({
+export const buttonComponent = (
+  props?: ReactComponentObject
+  // @ts-ignore TODO: fix this
+): ReactComponentObject => ({
   ...coreAddons.buttonComponent(),
   render: Button,
   ...props,
 });
 
-export const foldableComponent = props => ({
+export const foldableComponent = (
+  props?: ReactComponentObject
+  // @ts-ignore TODO: fix this
+): ReactComponentObject => ({
   ...coreAddons.foldableComponent(),
   options: [dragOption()],
   render: Foldable,

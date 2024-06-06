@@ -12,6 +12,7 @@ import type {
   ElementId,
   ElementObject,
   ElementSettingsKeyObject,
+  EventCallback,
   FieldOverrideObject,
 } from '../types';
 import {
@@ -76,7 +77,7 @@ export default class Builder extends Emitter {
     }
   }
 
-  subscribe (callback: Function) {
+  subscribe (callback: EventCallback) {
     const subscriptions = [
       super.subscribe(callback),
       this.#store.subscribe(this.emit.bind(this)),

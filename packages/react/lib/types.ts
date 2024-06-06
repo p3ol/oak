@@ -1,6 +1,8 @@
 import type { ComponentProps, MutableRefObject, ReactNode } from 'react';
 import type {
+  Builder,
   ComponentObject,
+  ComponentOptionObject,
   ComponentSettingsFieldObject,
   ElementObject,
   FieldObject,
@@ -41,11 +43,30 @@ export declare interface ReactFieldObject extends FieldObject {
   ): ReactNode;
 }
 
-export declare interface ReactComponentObject extends ComponentObject {
+export declare interface ReactComponentObject
+  extends Omit<ComponentObject, 'options'> {
+  options?: ReactComponentOptionObject[];
   render?(
     props: ComponentProps<any>,
     opts?: {
       t?: GetTextCallback;
+    },
+  ): ReactNode;
+}
+
+export declare interface ReactComponentOptionObject
+  extends ComponentOptionObject {
+  render?(
+    props: {
+      element: ElementObject;
+      builder: Builder;
+      option: ComponentOptionObject;
+      className: string;
+      parent: ElementObject[];
+      component: ReactComponentObject;
+      index: number;
+      elementInnerRef: MutableRefObject<HTMLElement>;
+      editableRef: MutableRefObject<EditableRef>;
     },
   ): ReactNode;
 }

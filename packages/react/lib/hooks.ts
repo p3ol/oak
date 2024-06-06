@@ -1,5 +1,9 @@
 import { useContext, useEffect, useMemo, useReducer } from 'react';
-import { AddonObject, Builder, ElementObject } from '@oakjs/core';
+import {
+  type AddonObject,
+  type ElementObject,
+  Builder,
+} from '@oakjs/core';
 import { mockState, useEffectAfterMount } from '@junipero/react';
 
 import { BuilderContext } from './contexts';
@@ -52,7 +56,10 @@ export const useRootBuilder = ({
   }, [content]);
 
   useEffect(() => {
-    const unsubscribe = builder.subscribe((eventName: string, ...args) => {
+    const unsubscribe = builder.subscribe((
+      eventName: string,
+      ...args: any[]
+    ) => {
       switch (eventName) {
         case 'content.update': {
           const [content_] = args;
@@ -123,9 +130,3 @@ export const useRootBuilder = ({
 };
 
 export const useBuilder = () => useContext(BuilderContext);
-
-export const useLogger = rootBuilder => {
-  const { builder } = useBuilder();
-
-  return builder.logger || rootBuilder?.builder?.logger;
-};

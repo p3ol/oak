@@ -1,10 +1,10 @@
 import path from 'path';
 
-import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import alias from '@rollup/plugin-alias';
+import swc from '@rollup/plugin-swc';
 
 const input = './lib/index.ts';
 const defaultOutput = './dist';
@@ -20,19 +20,30 @@ const defaultGlobals = {
 };
 
 const defaultPlugins = [
-  babel({
-    exclude: /node_modules\/(?!@oakjs)/,
-    babelHelpers: 'runtime',
+  swc({
+    swc: {
+      jsc: {
+        transform: {
+          react: {
+            runtime: 'automatic',
+          },
+        },
+        parser: {
+          syntax: 'typescript',
+          tsx: true,
+        },
+      },
+    },
   }),
   alias({
     entries: [
       { find: '@oakjs/core', replacement: path.resolve('../core/lib') },
     ],
   }),
+  commonjs({ include: /node_modules/ }),
   resolve({
-    rootDir: path.resolve('../../'),
+    extensions: ['.js', '.ts', '.tsx', '.json', '.node'],
   }),
-  commonjs(),
   terser(),
 ];
 

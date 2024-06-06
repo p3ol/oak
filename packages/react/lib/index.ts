@@ -50,9 +50,9 @@ export {
 
 export {
   useBuilder,
-  useLogger,
 } from './hooks';
 
 export * from './fields';
 export * from './options';
 export * from './addons';
+export * from './utils';

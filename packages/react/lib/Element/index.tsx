@@ -3,9 +3,11 @@ import {
   type MouseEvent,
   type MutableRefObject,
   Fragment,
+  forwardRef,
   useMemo,
   useRef,
   useState,
+  useImperativeHandle,
 } from 'react';
 import type {
   ComponentObject,
@@ -27,6 +29,7 @@ import Editable, { type EditableRef } from '../Editable';
 import Icon from '../Icon';
 import Option from '../Option';
 import Text from '../Text';
+import { ReactComponentObject } from '../types';
 
 export interface ElementProps extends ComponentPropsWithoutRef<any> {
   element?: ElementObject;
@@ -36,19 +39,29 @@ export interface ElementProps extends ComponentPropsWithoutRef<any> {
   depth?: number;
 }
 
-const Element = ({
+export interface ElementRef {
+  innerRef: MutableRefObject<HTMLElement>;
+  isOak: boolean;
+}
+
+const Element = forwardRef<ElementRef, ElementProps>(({
   element,
   parent,
   parentComponent,
   className,
   depth = 0,
-}: ElementProps) => {
+}, ref) => {
   const innerRef = useRef<HTMLElement>();
   const editableRef = useRef<EditableRef>();
   const [editableOpened, setEditableOpened] = useState(false);
   const { builder, addons } = useBuilder();
 
-  const component = useMemo(() => (
+  useImperativeHandle(ref, () => ({
+    innerRef,
+    isOak: true,
+  }));
+
+  const component = useMemo<ReactComponentObject>(() => (
     builder.getComponent(element?.type)
   ), [element?.type, addons]);
   const override = useMemo(() => (
@@ -253,7 +266,7 @@ const Element = ({
       </Draggable>
     </Droppable>
   );
-};
+});
 
 Element.displayName = 'Element';
 

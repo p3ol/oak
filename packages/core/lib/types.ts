@@ -1,5 +1,5 @@
-import type Builder from './Builder';
 import type { Component, ComponentOverride } from './classes';
+import type Builder from './Builder';
 
 export declare interface GetTextCallback {
   (key: string | GetTextCallback, def?: any): any;
@@ -16,9 +16,9 @@ export declare interface ElementObject {
   [_: string]: any;
 }
 
-export declare interface ComponentOptionObject {
-  icon: any;
-  render?(r: any): any;
+export interface ComponentOptionObject {
+  icon?: any;
+  render?(props?: any): any;
 }
 
 export declare interface ComponentSettingsFieldKeyTuple {
@@ -165,7 +165,7 @@ export declare interface ComponentObject {
   droppable?: boolean;
   usable?: boolean;
   editable?: boolean;
-  options?: (ComponentOptionObject)[];
+  options?: ComponentOptionObject[];
   settings?: ComponentSettingsFormObject | ComponentSettingsTabObject;
   disallow?: string[];
   render?(props?: any): any;
@@ -251,4 +251,8 @@ export declare type FieldContent<T = any> = {
   valid?: boolean;
   checked?: boolean;
   value?: T;
+}
+
+export declare interface EventCallback {
+  (eventName: string, ...args: any[]): void;
 }
