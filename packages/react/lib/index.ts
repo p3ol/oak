@@ -14,13 +14,39 @@ export {
   useTimeout,
 } from '@junipero/react';
 
-export { default as Builder } from './Builder';
-export { default as Container } from './Container';
-export { default as Catalogue } from './Catalogue';
-export { default as Icon } from './Icon';
-export { default as Text } from './Text';
-export { default as Field } from './Editable/Field';
-export { default as DisplayableSettings } from './DisplayableSettings';
+export {
+  default as Builder,
+  type BuilderProps,
+} from './Builder';
+
+export {
+  default as Container,
+  type ContainerProps,
+} from './Container';
+
+export {
+  default as Catalogue,
+  type CatalogueProps,
+} from './Catalogue';
+
+export {
+  default as Icon,
+} from './Icon';
+
+export {
+  default as Text,
+  type TextProps as TextComponentProps,
+} from './Text';
+
+export {
+  default as Field,
+  type FieldProps,
+} from './Editable/Field';
+
+export {
+  default as DisplayableSettings,
+  type DisplayableSettingsProps,
+} from './DisplayableSettings';
 
 export {
   useBuilder,

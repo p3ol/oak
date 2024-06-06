@@ -3,7 +3,7 @@ import type { GetTextCallback } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 
-interface TextProps extends ComponentPropsWithoutRef<any> {
+export interface TextProps extends ComponentPropsWithoutRef<any> {
   children?: ReactNode | GetTextCallback;
   name?: string | GetTextCallback;
   default?: ReactNode;

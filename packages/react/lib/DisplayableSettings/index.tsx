@@ -78,4 +78,6 @@ const DisplayableSettings = ({
   );
 };
 
+DisplayableSettings.displayName = 'DisplayableSettings';
+
 export default DisplayableSettings;
