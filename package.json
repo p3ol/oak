@@ -18,12 +18,12 @@
     "serve": "yarn dev"
   },
   "devDependencies": {
-    "@babel/core": "7.24.6",
-    "@babel/eslint-parser": "7.24.6",
-    "@babel/eslint-plugin": "7.24.6",
-    "@babel/plugin-transform-runtime": "7.24.6",
-    "@babel/preset-env": "7.24.6",
-    "@babel/preset-react": "7.24.6",
+    "@babel/core": "7.24.7",
+    "@babel/eslint-parser": "7.24.7",
+    "@babel/eslint-plugin": "7.24.7",
+    "@babel/plugin-transform-runtime": "7.24.7",
+    "@babel/preset-env": "7.24.7",
+    "@babel/preset-react": "7.24.7",
     "@ckeditor/ckeditor5-alignment": "40.2.0",
     "@ckeditor/ckeditor5-basic-styles": "40.2.0",
     "@ckeditor/ckeditor5-block-quote": "40.2.0",
