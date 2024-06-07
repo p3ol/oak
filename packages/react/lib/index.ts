@@ -1,18 +1,47 @@
 export {
   TextField,
+  type TextFieldProps,
+  type TextFieldRef,
   SelectField,
+  type SelectFieldProps,
+  type SelectFieldRef,
   DateField,
+  type DateFieldProps,
+  type DateFieldRef,
   ColorField,
+  type ColorFieldRef,
+  type ColorFieldProps,
   Card,
+  type CardProps,
+  type CardRef,
   Dropdown,
+  type DropdownProps,
+  type DropdownRef,
   DropdownMenu,
+  type DropdownMenuProps,
+  type DropdownMenuRef,
   DropdownToggle,
+  type DropdownToggleProps,
+  type DropdownToggleRef,
   Toggle,
+  type ToggleProps,
+  type ToggleRef,
   TouchableZone,
+  type TouchableZoneProps,
   Label,
+  type LabelProps,
   classNames,
   useTimeout,
 } from '@junipero/react';
+
+export type {
+  Builder as CoreBuilder,
+  FieldContent,
+  ElementObject,
+  AddonObject,
+  FieldObject,
+  ComponentObject,
+} from '@oakjs/core';
 
 export {
   default as Builder,
@@ -56,3 +85,5 @@ export * from './fields';
 export * from './options';
 export * from './addons';
 export * from './utils';
+
+export type * from './types';

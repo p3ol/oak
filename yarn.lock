@@ -5298,11 +5298,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react"
   dependencies:
-    "@babel/runtime-corejs3": "npm:7.24.6"
-    core-js: "npm:3.37.1"
+    "@oakjs/ckeditor5-build-custom": "workspace:*"
+    "@oakjs/react": "workspace:*"
   peerDependencies:
     "@ckeditor/ckeditor5-react": ^6.0.0
-    "@oakjs/ckeditor5-build-custom": ^3.0.0
     "@oakjs/react": ^3.0.0
     react: ^18.0.0
     react-dom: ^18.0.0
@@ -5313,8 +5312,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/addon-remirror@workspace:packages/addon-remirror"
   dependencies:
-    "@babel/runtime-corejs3": "npm:7.24.6"
-    core-js: "npm:3.37.1"
+    "@oakjs/react": "workspace:*"
   peerDependencies:
     "@oakjs/react": ^3.0.0
     "@remirror/pm": ^2.0.0
@@ -5325,7 +5323,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/ckeditor5-build-custom@npm:^3.5.5, @oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom":
+"@oakjs/ckeditor5-build-custom@npm:^3.5.5, @oakjs/ckeditor5-build-custom@workspace:*, @oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom":
   version: 0.0.0-use.local
   resolution: "@oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom"
   dependencies:

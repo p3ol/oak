@@ -5,8 +5,8 @@ import rootConfig from '../../tailwind.config';
 const config: Config = {
   ...rootConfig,
   content: [
-    '../react/**/*.js',
-    '../addon-*/**/*.js',
+    '../react/**/*.{js,ts,tsx}',
+    '../addon-*/**/*.{js,ts,tsx}',
   ],
 };
 

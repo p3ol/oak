@@ -8,11 +8,13 @@
     "types": ["jest", "node"],
     "module": "esnext",
     "noEmit": true,
+    "skipLibCheck": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "ES2022"],
     "paths": {
       "@oakjs/core": ["./packages/core"],
       "@oakjs/react": ["./packages/react"],
+      "@oakjs/ckeditor5-custom-build": ["./packages/ckeditor5-custom-build"],
       "@tests-utils": ["./packages/oak/tests/utils.js"],
     },
   },

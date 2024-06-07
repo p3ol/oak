@@ -1,3 +1,4 @@
+import type { ComponentsGroupObject, AddonObject } from '@oakjs/core';
 import {
   type TextFieldProps,
   type SelectFieldProps,
@@ -204,7 +205,7 @@ export const foldableComponent = (
   ...props,
 });
 
-export const baseFields = () => [
+export const baseFields = (): ReactFieldObject[] => [
   textField(),
   textareaField(),
   selectField(),
@@ -214,7 +215,7 @@ export const baseFields = () => [
   toggleField(),
 ];
 
-export const baseComponents = () => [
+export const baseComponents = (): ReactComponentObject[] => [
   rowComponent(),
   colComponent(),
   emptySpaceComponent(),
@@ -225,12 +226,12 @@ export const baseComponents = () => [
   foldableComponent(),
 ];
 
-export const coreComponentsGroup = () => ({
+export const coreComponentsGroup = (): ComponentsGroupObject => ({
   ...coreAddons.coreComponentsGroup(),
   components: baseComponents(),
 });
 
-export const baseAddon = () => ({
+export const baseAddon = (): AddonObject => ({
   ...coreAddons.baseAddon(),
   components: [coreComponentsGroup()],
   fields: baseFields(),

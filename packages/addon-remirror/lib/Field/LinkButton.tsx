@@ -1,3 +1,4 @@
+import type { LinkAttributes } from 'remirror/extensions';
 import { useCallback, useState } from 'react';
 import {
   Dropdown,
@@ -7,20 +8,23 @@ import {
   Toggle,
   Label,
   Text,
-  /*Icon, */
+  FieldContent,
 } from '@oakjs/react';
 import { useAttrs, useChainedCommands, useCommands } from '@remirror/react';
 
-import MenuButton from './MenuButton';
+import type { Extensions } from '../types';
+import MenuButton, { type MenuButtonProps } from './MenuButton';
 
-const LinkButton = ({ children }) => {
+const LinkButton = (props: MenuButtonProps) => {
   const { updateLink } = useCommands();
   const chain = useChainedCommands();
-  const { link } = useAttrs();
-  const [href, setHref] = useState(link?.()?.href || '');
-  const [target, setTarget] = useState(link?.()?.target || null);
+  const { link } = useAttrs<Extensions>();
+  const [href, setHref] = useState(link?.()?.href as string || '');
+  const [target, setTarget] = useState<
+    LinkAttributes['target']
+  >(link()?.target as LinkAttributes['target']);
 
-  const onUrlChange = useCallback(field => {
+  const onUrlChange = useCallback((field: FieldContent<string>) => {
     setHref(field.value);
 
     if (!field.value) {
@@ -30,7 +34,7 @@ const LinkButton = ({ children }) => {
     }
   }, [chain, target]);
 
-  const onTargetChange = useCallback(field => {
+  const onTargetChange = useCallback((field: FieldContent<string>) => {
     const t = field.value ? '_blank' : null;
     setTarget(t);
 
@@ -47,16 +51,15 @@ const LinkButton = ({ children }) => {
         <span className="oak-inline-flex oak-items-center">
           <MenuButton
             enabled={() => !!updateLink}
-            isActive={() => link()}
+            isActive={() => !!link()}
             className="link-button oak-inline-flex oak-items-center"
             tooltipText={(
               <Text name="addons.remirror.fields.editor.link">
                 Link
               </Text>
             )}
-          >
-            { children }
-          </MenuButton>
+            { ...props }
+          />
         </span>
       </DropdownToggle>
       <DropdownMenu className="link-input">

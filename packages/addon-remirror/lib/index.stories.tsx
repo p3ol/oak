@@ -1,15 +1,20 @@
 import { action } from '@storybook/addon-actions';
-import { Builder, baseAddon } from '@oakjs/react';
+import {
+  type ElementObject,
+  type AddonObject,
+  Builder,
+  baseAddon,
+} from '@oakjs/react';
 
 import { remirrorFieldAddon } from './addons';
 
 export default { title: 'React/With addon: Remirror' };
 
-const baseContent = [
+const baseContent: ElementObject[] = [
   { type: 'text', content: 'This is a title' },
 ];
 
-const addon = {
+const addon: AddonObject = {
   overrides: [{
     type: 'component',
     targets: ['text', 'title', 'button'],

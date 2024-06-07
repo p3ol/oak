@@ -20,7 +20,8 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
-    "build": "npm run clean && node script/build.js"
+    "build": "yarn clean && yarn build:code",
+    "build:code": "node script/build.js"
   },
   "publishConfig": {
     "access": "public"

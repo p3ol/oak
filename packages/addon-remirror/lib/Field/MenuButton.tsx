@@ -1,4 +1,12 @@
+import type { ComponentPropsWithoutRef, MouseEvent, ReactNode } from 'react';
 import { Tooltip, classNames } from '@junipero/react';
+
+export interface MenuButtonProps extends ComponentPropsWithoutRef<'a'> {
+  onClick?: () => void;
+  enabled?: () => boolean;
+  isActive?: () => boolean;
+  tooltipText?: ReactNode;
+}
 
 const MenuButton = ({
   onClick,
@@ -6,9 +14,9 @@ const MenuButton = ({
   isActive,
   className,
   tooltipText,
-  children,
-}) => {
-  const onClick_ = e => {
+  ...rest
+}: MenuButtonProps) => {
+  const onClick_ = (e: MouseEvent) => {
     e.preventDefault();
     onClick?.();
   };
@@ -20,15 +28,15 @@ const MenuButton = ({
   return (
     <Tooltip text={tooltipText}>
       <a
-        href="#"
-        onClick={onClick_}
         className={classNames(
           'menu-button',
           'oak-flex oak-items-center oak-justify-center',
           { active: isActive?.() },
           className,
         )}
-        children={children}
+        { ...rest }
+        href="#"
+        onClick={onClick_}
       />
     </Tooltip>
   );

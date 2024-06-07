@@ -5,6 +5,7 @@
   "version": "3.5.5",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "dist/ckeditor.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],

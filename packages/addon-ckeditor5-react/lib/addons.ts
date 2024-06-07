@@ -1,8 +1,13 @@
+import type { FieldObject, AddonObject } from '@oakjs/react';
 import ClassicEditor from '@oakjs/ckeditor5-build-custom';
 
-import Field from './Field';
+import Field, { CKEditorFieldProps } from './Field';
 
-export const ckeditorField = ({ config, editor, ...props } = {}) => ({
+export const ckeditorField = ({
+  config,
+  editor,
+  ...props
+}: CKEditorFieldProps = {}): FieldObject => ({
   type: 'ckeditor',
   render: Field,
   ...props,
@@ -53,6 +58,8 @@ export const ckeditorField = ({ config, editor, ...props } = {}) => ({
   },
 });
 
-export const ckeditorFieldAddon = props => ({
+export const ckeditorFieldAddon = (
+  props?: CKEditorFieldProps
+): AddonObject => ({
   fields: [ckeditorField(props)],
 });

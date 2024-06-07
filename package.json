@@ -16,7 +16,11 @@
     "serve": "yarn dev",
     "p:core": "yarn workspace @oakjs/core",
     "p:react": "yarn workspace @oakjs/react",
-    "p:ckeditor": "yarn workspace @oakjs/ckeditor5-build-custom"
+    "p:ckeditor": "yarn workspace @oakjs/ckeditor5-build-custom",
+    "p:addon-ckeditor": "yarn workspace @oakjs/addon-ckeditor5-react",
+    "p:addon-remirror": "yarn workspace @oakjs/addon-remirror",
+    "p:theme": "yarn workspace @oakjs/theme",
+    "p:strapi": "yarn workspace @oakjs/strapi-plugin"
   },
   "devDependencies": {
     "@babel/core": "7.24.6",

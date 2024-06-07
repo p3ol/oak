@@ -82,3 +82,8 @@ class Editor extends ClassicEditor {
 }
 
 export default Editor;
+
+export type {
+  Editor,
+  ClassicEditor,
+};

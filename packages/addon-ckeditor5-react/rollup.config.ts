@@ -1,18 +1,18 @@
-import path from 'path';
+import path from 'node:path';
 
-import babel from '@rollup/plugin-babel';
+import type { ModuleFormat, Plugin, RollupOptions } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import postcss from 'rollup-plugin-postcss';
-import autoprefixer from 'autoprefixer';
 import terser from '@rollup/plugin-terser';
+import postcss from 'rollup-plugin-postcss';
+import swc from '@rollup/plugin-swc';
+import autoprefixer from 'autoprefixer';
 import tailwindcss from 'tailwindcss';
-import { dts } from 'rollup-plugin-dts';
 
-const input = './lib/index.js';
+const input = './lib/index.ts';
 const defaultOutput = './dist';
 const name = 'oak-addon-ckeditor';
-const formats = ['umd', 'cjs', 'esm'];
+const formats: ModuleFormat[] = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = [
   'react', 'react-dom', '@oakjs/react', '@oakjs/ckeditor5-build-custom',
@@ -27,26 +27,41 @@ const defaultGlobals = {
   '@oakjs/ckeditor5-build-custom': 'ClassicEditor',
 };
 
-const defaultPlugins = [
-  babel({
-    exclude: /node_modules/,
-    babelHelpers: 'runtime',
+const defaultPlugins: Plugin[] = [
+  swc({
+    swc: {
+      jsc: {
+        transform: {
+          react: {
+            runtime: 'automatic',
+          },
+        },
+        parser: {
+          syntax: 'typescript',
+          tsx: true,
+        },
+      },
+    },
   }),
   resolve({
     rootDir: path.resolve('../../'),
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   }),
   commonjs({
     include: /node_modules/,
-    requireReturnsDefault: 'auto',
   }),
   terser(),
 ];
 
-const getConfig = (format, {
+const getConfig = (format: ModuleFormat, {
   output = defaultOutput,
   external = defaultExternals,
   globals = defaultGlobals,
-} = {}) => ({
+}: {
+  output?: string;
+  external?: string[];
+  globals?: Record<string, string>;
+} = {}): RollupOptions => ({
   input,
   plugins: [
     ...defaultPlugins,
@@ -76,7 +91,7 @@ const getConfig = (format, {
   },
 });
 
-export default [
+const config: RollupOptions[] = [
   ...formats.map(f => getConfig(f)),
   {
     input: './lib/index.sass',
@@ -95,10 +110,12 @@ export default [
               path.resolve('../../node_modules'),
             ],
           },
+          stylus: {},
+          less: {},
         },
         plugins: [
-          tailwindcss({ config: path.resolve('../../tailwind.config.js') }),
-          autoprefixer({ env: process.env.BROWSERSLIST_ENV }),
+          autoprefixer,
+          tailwindcss({ config: path.resolve('../../tailwind.config.ts') }),
         ],
       }),
     ],
@@ -113,9 +130,6 @@ export default [
       warn(warning);
     },
   },
-  {
-    input: './lib/index.d.ts',
-    output: [{ file: `dist/${name}.d.ts`, format: 'es' }],
-    plugins: [dts()],
-  },
 ];
+
+export default config;

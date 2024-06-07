@@ -1,20 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+  type ColorFieldRef,
+  type FieldContent,
+  type DropdownProps,
   ColorField,
   Dropdown,
   DropdownMenu,
   DropdownToggle,
   Text,
-  /*Icon, */
 } from '@oakjs/react';
 import { useActive, useChainedCommands, useCommands } from '@remirror/react';
 
-import MenuButton from './MenuButton';
+import type { Extensions } from '../types';
+import MenuButton, { type MenuButtonProps } from './MenuButton';
 
-const ColorButton = ({ children }) => {
-  const fieldRef = useRef();
+const ColorButton = (props: MenuButtonProps) => {
+  const fieldRef = useRef<ColorFieldRef>();
   const { setTextColor } = useCommands();
-  const { textColor } = useActive();
+  const { textColor } = useActive<Extensions>();
   const chain = useChainedCommands();
   const [opened, setOpened] = useState(false);
   const [color, setColor] = useState('#000000');
@@ -27,11 +30,11 @@ const ColorButton = ({ children }) => {
     }
   }, [opened]);
 
-  const onToggle = ({ opened: o }) => {
+  const onToggle: DropdownProps['onToggle'] = ({ opened: o }) => {
     setOpened(o);
   };
 
-  const onChange = field => {
+  const onChange = (field: FieldContent<string>) => {
     setColor(field.value);
     chain.setTextColor(field.value).run();
   };
@@ -41,7 +44,7 @@ const ColorButton = ({ children }) => {
       <DropdownToggle>
         <span className="oak-inline-flex oak-items-center">
           <MenuButton
-            enabled={setTextColor?.enabled}
+            enabled={() => setTextColor?.enabled(color)}
             isActive={textColor}
             onClick={() => fieldRef.current?.open()}
             className="color-button oak-inline-flex oak-items-center"
@@ -50,9 +53,8 @@ const ColorButton = ({ children }) => {
                 Color
               </Text>
             )}
-          >
-            { children }
-          </MenuButton>
+            { ...props }
+          />
         </span>
       </DropdownToggle>
       <DropdownMenu apparition="css">

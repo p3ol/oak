@@ -1,21 +1,23 @@
-import path from 'path';
+import path from 'node:path';
 
-import babel from '@rollup/plugin-babel';
+import type { ModuleFormat, Plugin, RollupOptions } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
+import swc from '@rollup/plugin-swc';
 import autoprefixer from 'autoprefixer';
 import terser from '@rollup/plugin-terser';
 
-const input = './lib/index.js';
+const input = './lib/index.ts';
 const defaultOutput = './dist';
 const name = 'oak-addon-remirror';
-const formats = ['umd', 'cjs', 'esm'];
+const formats: ModuleFormat[] = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = [
   'react', 'react-dom', '@oakjs/react', '@remirror/core', '@remirror/react',
   '@remirror/pm', 'remirror', 'remirror/extensions',
 ];
+
 const defaultGlobals = {
   react: 'React',
   'react-dom': 'ReactDOM',
@@ -27,23 +29,41 @@ const defaultGlobals = {
   'remirror/extensions': 'RemirrorExtensions',
 };
 
-const defaultPlugins = [
-  babel({
-    exclude: /node_modules/,
-    babelHelpers: 'runtime',
+const defaultPlugins: Plugin[] = [
+  swc({
+    swc: {
+      jsc: {
+        transform: {
+          react: {
+            runtime: 'automatic',
+          },
+        },
+        parser: {
+          syntax: 'typescript',
+          tsx: true,
+        },
+      },
+    },
   }),
   resolve({
     rootDir: path.resolve('../../'),
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   }),
-  commonjs(),
+  commonjs({
+    include: /node_modules/,
+  }),
   terser(),
 ];
 
-const getConfig = (format, {
+const getConfig = (format: ModuleFormat, {
   output = defaultOutput,
   external = defaultExternals,
   globals = defaultGlobals,
-} = {}) => ({
+}: {
+  output?: string;
+  external?: string[];
+  globals?: Record<string, string>;
+} = {}): RollupOptions => ({
   input,
   plugins: [
     ...defaultPlugins,
@@ -71,7 +91,7 @@ const getConfig = (format, {
   },
 });
 
-export default [
+const config: RollupOptions[] = [
   ...formats.map(f => getConfig(f)),
   {
     input: './lib/index.sass',
@@ -90,9 +110,11 @@ export default [
               path.resolve('../../node_modules'),
             ],
           },
+          less: {},
+          stylus: {},
         },
         plugins: [
-          autoprefixer({ env: process.env.BROWSERSLIST_ENV }),
+          autoprefixer,
         ],
       }),
     ],
@@ -108,3 +130,5 @@ export default [
     },
   },
 ];
+
+export default config;

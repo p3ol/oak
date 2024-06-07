@@ -6,6 +6,7 @@ import {
 } from '@remirror/react';
 import { Icon } from '@oakjs/react';
 
+import type { Extensions } from '../types';
 import MenuButton from './MenuButton';
 import LinkButton from './LinkButton';
 import ColorButton from './ColorButton';
@@ -22,7 +23,7 @@ const Menu = () => {
     centerAlign,
     rightAlign,
     justifyAlign,
-  } = useCommands();
+  } = useCommands<Extensions>();
   const { getFontSizeForSelection } = useHelpers();
   const { bold, italic, underline, paragraph } = useActive();
 
@@ -32,7 +33,7 @@ const Menu = () => {
     if (Array.isArray(size)) {
       return size[0];
     } else if (typeof size === 'string') {
-      return size.replace('px', '');
+      return ('' + size).replace('px', '');
     }
 
     return 16;

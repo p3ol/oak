@@ -13,6 +13,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
   },
+  target: 'web',
   entry: path.resolve(__dirname, 'lib', 'index.ts'),
   output: {
     path: path.resolve(__dirname, 'dist'),
