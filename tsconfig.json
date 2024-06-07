@@ -11,7 +11,8 @@
     "jsx": "react-jsx",
     "lib": ["DOM", "ES2022"],
     "paths": {
-      "@oakjs/core": ["./packages/core/lib"],
+      "@oakjs/core": ["./packages/core"],
+      "@oakjs/react": ["./packages/react"],
       "@tests-utils": ["./packages/oak/tests/utils.js"],
     },
   },

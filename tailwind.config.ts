@@ -26,8 +26,8 @@ const config: Config = {
     },
   },
   content: [
-    './packages/react/**/*.js',
-    './packages/addon-*/**/*.js',
+    './packages/react/**/*.{js,ts,tsx}',
+    './packages/addon-*/**/*.{js,ts,tsx}',
   ],
   safelist: [
     { pattern: /flex-/ },

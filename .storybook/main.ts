@@ -22,7 +22,17 @@ const config: StorybookConfig = {
             use: [
               'style-loader',
               'css-loader',
-              'postcss-loader',
+              {
+                loader: 'postcss-loader',
+                options: {
+                  postcssOptions: {
+                    plugins: [
+                      'autoprefixer',
+                      'tailwindcss',
+                    ],
+                  },
+                },
+              },
               'sass-loader',
             ],
           },

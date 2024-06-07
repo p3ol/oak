@@ -5330,6 +5330,7 @@ __metadata:
   resolution: "@oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom"
   dependencies:
     "@babel/runtime-corejs3": "npm:7.24.6"
+    "@oakjs/react": "workspace:*"
     core-js: "npm:3.37.1"
   peerDependencies:
     "@oakjs/react": ^3.0.0
@@ -5347,7 +5348,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/react@npm:^3.5.5, @oakjs/react@workspace:packages/react":
+"@oakjs/react@npm:^3.5.5, @oakjs/react@workspace:*, @oakjs/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@oakjs/react@workspace:packages/react"
   dependencies:
@@ -21935,6 +21936,7 @@ __metadata:
     storybook: "npm:8.1.6"
     storybook-dark-mode: "npm:4.0.1"
     style-loader: "npm:4.0.0"
+    swc-loader: "npm:^0.2.6"
     tailwindcss: "npm:3.4.3"
     terser-webpack-plugin: "npm:5.3.10"
     typescript: "npm:5.4.5"
@@ -23154,7 +23156,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swc-loader@npm:^0.2.3":
+"swc-loader@npm:^0.2.3, swc-loader@npm:^0.2.6":
   version: 0.2.6
   resolution: "swc-loader@npm:0.2.6"
   dependencies:

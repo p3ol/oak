@@ -8,7 +8,7 @@
   "esnext": "src/index.js",
   "unpkg": "dist/oak-react.min.js",
   "cdn": "dist/oak-react.min.js",
-  "types": "dist/oak-react.d.ts",
+  "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/p3ol/oak.git",
@@ -47,15 +47,18 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/oak-react.cjs.js"
+      "require": "./dist/oak-react.cjs.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./addons": {
       "import": "./dist/esm/addons.js",
-      "require": "./dist/oak-react.cjs.js"
+      "require": "./dist/oak-react.cjs.js",
+      "types": "./dist/types/addons.d.ts"
     },
     "./options": {
       "import": "./dist/esm/options.js",
-      "require": "./dist/oak-react.cjs.js"
+      "require": "./dist/oak-react.cjs.js",
+      "types": "./dist/types/options.d.ts"
     }
   }
 }

@@ -10,7 +10,10 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 module.exports = {
   devtool: 'source-map',
   performance: { hints: false },
-  entry: path.resolve(__dirname, 'lib', 'index.js'),
+  resolve: {
+    extensions: ['.js', '.ts', '.tsx'],
+  },
+  entry: path.resolve(__dirname, 'lib', 'index.ts'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'ckeditor.js',
@@ -47,9 +50,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js/,
+        test: /\.[jt]sx?/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: ['swc-loader'],
       },
       {
         test: /\.svg$/,

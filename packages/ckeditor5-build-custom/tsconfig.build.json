@@ -8,11 +8,5 @@
     "outDir": "dist/types",
     "baseUrl": "."
   },
-  "exclude": [
-    "tests",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "rollup.config.ts",
-    "**/*.stories.tsx",
-  ]
+  "exclude": ["tests", "**/*.test.ts", "rollup.config.ts"]
 }

@@ -1,9 +1,12 @@
-import { version } from 'react';
+import type { Root } from 'react-dom/client';
+import type { ViewElement } from 'ckeditor5/src/engine';
+import { type ReactElement, version } from 'react';
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { createDropdown } from '@ckeditor/ckeditor5-ui';
 import FontColorCommand from '@ckeditor/ckeditor5-font/src/fontcolor/fontcolorcommand.js';
 import icon from '@ckeditor/ckeditor5-font/theme/icons/font-color.svg';
 
+import type Editor from '..';
 import Field from './Field';
 
 export default class ColorPlugin extends Plugin {
@@ -38,12 +41,14 @@ export default class ColorPlugin extends Plugin {
       },
       model: {
         key: 'color',
-        value: viewElement => viewElement.getStyle('color'),
+        value: (viewElement: ViewElement) => viewElement.getStyle('color'),
       },
     });
 
     conversion.for('downcast').attributeToAttribute({
-      model: 'color',
+      model: {
+        key: 'color',
+      },
       view: modelAttributeValue => ({
         key: 'style',
         value: {
@@ -68,20 +73,20 @@ export default class ColorPlugin extends Plugin {
         icon,
       });
 
-      let root;
+      let root: Root;
       dropdown.panelView.on('render', async () => {
         root = await this.createReactRoot(dropdown.panelView.element);
       });
 
       dropdown.buttonView.on('open', () => {
-        dropdown.buttonView.labelView.destroy();
+        dropdown.buttonView.label = null;
       });
 
       dropdown.on('change:isOpen', () => {
         const key = Math.random().toString(36).substring(7);
 
         if (dropdown.isOpen) {
-          root.render(<Field key={key} editor={this.editor} />);
+          root.render(<Field key={key} editor={this.editor as Editor} />);
         }
       });
 
@@ -89,7 +94,7 @@ export default class ColorPlugin extends Plugin {
     });
   }
 
-  async createReactRoot (element) {
+  async createReactRoot (element: HTMLElement) {
     try {
       if (version.startsWith('18')) {
         const { createRoot } = await import('react-dom/client');
@@ -105,7 +110,8 @@ export default class ColorPlugin extends Plugin {
     const { render } = await import('react-dom');
 
     return {
-      render: component => render(component, element),
-    };
+      render: (component: ReactElement) => render(component, element),
+      unmount: () => render(null, element),
+    } as Root;
   }
 }
