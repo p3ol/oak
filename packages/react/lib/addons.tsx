@@ -133,7 +133,6 @@ export const toggleField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const rowComponent = (
   props?: ReactComponentObject
-  // @ts-ignore TODO: fix this
 ): ReactComponentObject => ({
   ...coreAddons.rowComponent(),
   render: Row,
@@ -143,7 +142,6 @@ export const rowComponent = (
 
 export const colComponent = (
   props?: ReactComponentObject
-  // @ts-ignore TODO: fix this
 ): ReactComponentObject => ({
   ...coreAddons.colComponent(),
   render: Col,
@@ -152,7 +150,6 @@ export const colComponent = (
 
 export const emptySpaceComponent = (
   props?: ReactComponentObject
-  // @ts-ignore TODO: fix this
 ): ReactComponentObject => ({
   ...coreAddons.emptySpaceComponent(),
   render: EmptySpace,
@@ -161,7 +158,6 @@ export const emptySpaceComponent = (
 
 export const titleComponent = (
   props?: ReactComponentObject
-  // @ts-ignore TODO: fix this
 ): ReactComponentObject => ({
   ...coreAddons.titleComponent(),
   render: Title,
@@ -170,7 +166,6 @@ export const titleComponent = (
 
 export const textComponent = (
   props?: ReactComponentObject
-  // @ts-ignore TODO: fix this
 ): ReactComponentObject => ({
   ...coreAddons.textComponent(),
   render: TextComponent,
@@ -179,7 +174,6 @@ export const textComponent = (
 
 export const imageComponent = (
   props?: ReactComponentObject
-  // @ts-ignore TODO: fix this
 ): ReactComponentObject => ({
   ...coreAddons.imageComponent(),
   render: Image,
@@ -188,7 +182,6 @@ export const imageComponent = (
 
 export const buttonComponent = (
   props?: ReactComponentObject
-  // @ts-ignore TODO: fix this
 ): ReactComponentObject => ({
   ...coreAddons.buttonComponent(),
   render: Button,
@@ -197,7 +190,6 @@ export const buttonComponent = (
 
 export const foldableComponent = (
   props?: ReactComponentObject
-  // @ts-ignore TODO: fix this
 ): ReactComponentObject => ({
   ...coreAddons.foldableComponent(),
   options: [dragOption()],
