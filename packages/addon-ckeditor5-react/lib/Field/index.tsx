@@ -1,5 +1,5 @@
 import type { EditorConfig } from '@ckeditor/ckeditor5-core';
-import type { EventInfo } from 'ckeditor5/src/utils';
+import type { EventInfo } from '@ckeditor/ckeditor5-utils';
 import type { Editor } from '@oakjs/ckeditor5-build-custom';
 import { type ComponentPropsWithoutRef, useCallback } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';

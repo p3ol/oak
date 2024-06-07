@@ -35,11 +35,16 @@
         --border-color: var(--oak-main-color)
 
   /* Toolbar */
+  .ck-editor__top
+    & > .ck-sticky-panel > .ck-sticky-panel__content
+      border: none
+
   .ck-toolbar
     border: none
     box-shadow: 0 0 0 2px var(--border-color)
     padding-bottom: 0
     background: var(--background-color)
+    border-radius: var(--ck-border-radius) var(--ck-border-radius) 0 0
 
     .ck-button.ck-insert-table-dropdown-grid-box
       --ck-border-radius: 2px
@@ -55,7 +60,7 @@
 
     .ck-dropdown
       .ck-button
-        border-radius: var(--ck-border-radius) 
+        border-radius: var(--ck-border-radius)
 
       .ck-dropdown__panel
         border: none

@@ -5,7 +5,7 @@
     "noImplicitAny": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "types": ["jest", "node"],
+    "types": ["jest", "node", "react", "react-dom"],
     "module": "esnext",
     "noEmit": true,
     "skipLibCheck": true,

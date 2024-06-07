@@ -1,5 +1,5 @@
 import type { Root } from 'react-dom/client';
-import type { ViewElement } from 'ckeditor5/src/engine';
+import type { ViewEditableElement } from '@ckeditor/ckeditor5-engine';
 import { type ReactElement, version } from 'react';
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { createDropdown } from '@ckeditor/ckeditor5-ui';
@@ -41,7 +41,8 @@ export default class ColorPlugin extends Plugin {
       },
       model: {
         key: 'color',
-        value: (viewElement: ViewElement) => viewElement.getStyle('color'),
+        value: (viewElement: ViewEditableElement) =>
+          viewElement.getStyle('color'),
       },
     });
 
