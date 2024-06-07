@@ -22,7 +22,7 @@
     "build": "true"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-react": "6.2.0",
+    "@ckeditor/ckeditor5-react": "7.0.0",
     "@oakjs/addon-ckeditor5-react": "^3.5.5",
     "@oakjs/addon-remirror": "^3.5.5",
     "@oakjs/ckeditor5-build-custom": "^3.5.5",

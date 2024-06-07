@@ -22,7 +22,7 @@
     "npm": ">= 8"
   },
   "peerDependencies": {
-    "@ckeditor/ckeditor5-react": "^6.0.0",
+    "@ckeditor/ckeditor5-react": "^6.0.0 || ^7.0.0",
     "@oakjs/ckeditor5-build-custom": "^3.0.0",
     "@oakjs/react": "^3.0.0",
     "react": "^18.0.0",
