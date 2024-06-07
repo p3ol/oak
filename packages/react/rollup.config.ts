@@ -1,5 +1,6 @@
-import path from 'path';
+import path from 'node:path';
 
+import type { ModuleFormat, Plugin } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
@@ -9,7 +10,7 @@ import swc from '@rollup/plugin-swc';
 const input = './lib/index.ts';
 const defaultOutput = './dist';
 const name = 'oak-react';
-const formats = ['umd', 'cjs', 'esm'];
+const formats: ModuleFormat[] = ['umd', 'cjs', 'esm'];
 
 const defaultExternals = [
   'react', 'react-dom',
@@ -19,7 +20,7 @@ const defaultGlobals = {
   'react-dom': 'ReactDOM',
 };
 
-const defaultPlugins = [
+const defaultPlugins: Plugin[] = [
   swc({
     swc: {
       jsc: {
@@ -73,7 +74,7 @@ const getConfig = (format: string, {
     sourcemap: true,
     globals,
     ...(format === 'esm' ? {
-      manualChunks: id => {
+      manualChunks: (id: string) => {
         if (/packages\/core\/lib\/(\w+)\/index.js/.test(id)) {
           return path.parse(id).dir.split('/').pop();
         } else {

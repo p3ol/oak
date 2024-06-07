@@ -1,5 +1,6 @@
 import path from 'node:path';
 
+import type { Plugin } from 'rollup';
 import swc from '@rollup/plugin-swc';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -10,7 +11,7 @@ const output = './dist';
 const name = 'oak-core';
 const formats = ['umd', 'cjs', 'esm'];
 
-const defaultPlugins = [
+const defaultPlugins: Plugin[] = [
   commonjs({ include: /node_modules/ }),
   resolve({
     rootDir: path.resolve('../../'),
@@ -19,7 +20,7 @@ const defaultPlugins = [
   terser(),
 ];
 
-const defaultExternals = [];
+const defaultExternals: string[] = [];
 const defaultGlobals = {};
 
 export default [
@@ -51,7 +52,7 @@ export default [
       sourcemap: true,
       globals: defaultGlobals,
       ...(f === 'esm' ? {
-        manualChunks: id => {
+        manualChunks: (id: string) => {
           if (/packages\/core\/lib\/(\w+)\/index.ts/.test(id)) {
             return path.parse(id).dir.split('/').pop();
           } else {
