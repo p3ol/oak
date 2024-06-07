@@ -36,11 +36,13 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/oak-core.cjs.js"
+      "require": "./dist/oak-core.cjs.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./addons": {
       "import": "./dist/esm/addons.js",
-      "require": "./dist/oak-core.cjs.js"
+      "require": "./dist/oak-core.cjs.js",
+      "types": "./dist/types/addons.d.ts"
     }
   }
 }

@@ -1,6 +1,14 @@
-import { ComponentPropsWithoutRef, Fragment, useMemo } from 'react';
+import { type ComponentPropsWithoutRef, Fragment, useMemo } from 'react';
+import type {
+  Component,
+  ComponentObject,
+  ComponentOverride,
+  ComponentOverrideObject,
+  ComponentSettingsFieldObject,
+  ElementObject,
+  SettingOverrideObject,
+} from '@oakjs/core';
 import { classNames } from '@junipero/react';
-import { Component, ComponentObject, ComponentOverride, ComponentOverrideObject, ElementObject } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 import Text from '../Text';
@@ -21,7 +29,7 @@ const DisplayableSettings = ({
 }: DisplayableSettingsProps) => {
   const { builder } = useBuilder();
 
-  const getSettingPriority = setting => {
+  const getSettingPriority = (setting: SettingOverrideObject) => {
     const fieldOverride = {
       ...builder.getOverride('setting', element.type, { setting }),
       ...builder.getOverride('component', element.type, {
@@ -38,7 +46,10 @@ const DisplayableSettings = ({
     builder
       .getComponentDisplayableSettings(element, { component })
       .filter(s => !s.condition || s.condition(element))
-      .sort((a, b) => getSettingPriority(b) - getSettingPriority(a))
+      .sort((a, b) =>
+        getSettingPriority(b as SettingOverrideObject) -
+        getSettingPriority(a as SettingOverrideObject)
+      )
   ), [element, component]);
 
   if (displayableSettings.length <= 0) {
@@ -52,8 +63,11 @@ const DisplayableSettings = ({
         className,
       )}
     >
-      { displayableSettings.map((setting, i) => (
-        <Fragment key={setting.key || i}>
+      { displayableSettings.map((
+        setting: ComponentSettingsFieldObject,
+        i: number,
+      ) => (
+        <Fragment key={setting.key as string || i}>
           <Property field={setting} element={element} override={override} />
           { i < displayableSettings.length - 1 && (
             <Text name="core.propertySeparator" default=", " />
@@ -63,5 +77,7 @@ const DisplayableSettings = ({
     </div>
   );
 };
+
+DisplayableSettings.displayName = 'DisplayableSettings';
 
 export default DisplayableSettings;

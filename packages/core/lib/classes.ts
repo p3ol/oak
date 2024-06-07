@@ -214,6 +214,7 @@ export class FieldOverride extends Override {
   props: object;
   construct: Function;
   priority: number;
+  onChange: Function;
 
   constructor (props: FieldOverrideObject) {
     super();
@@ -225,6 +226,7 @@ export class FieldOverride extends Override {
     this.priority = props.priority || 0;
     this.props = props.props || {};
     this.construct = props.construct;
+    this.onChange = props.onChange;
   }
 }
 

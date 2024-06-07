@@ -18,7 +18,18 @@ module.exports = {
     '^.+\\.styl$',
   ],
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.(t|j)sx?$': [
+      '@swc/jest',
+      {
+        jsc: {
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
+      },
+    ],
     '^.+\\.styl$': 'jest-css-modules-transform',
   },
   transformIgnorePatterns: [

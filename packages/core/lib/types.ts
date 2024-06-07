@@ -1,5 +1,5 @@
-import type Builder from './Builder';
 import type { Component, ComponentOverride } from './classes';
+import type Builder from './Builder';
 
 export declare interface GetTextCallback {
   (key: string | GetTextCallback, def?: any): any;
@@ -12,13 +12,13 @@ export declare type ElementId = string | number;
 export declare interface ElementObject {
   id?: ElementId;
   type?: string;
-  content?: string | Function | ElementObject[]; //TODO not sure
+  content?: string | Function | ElementObject[];
   [_: string]: any;
 }
 
-export declare interface ComponentOptionObject {
-  icon: any;
-  render?(): any;
+export interface ComponentOptionObject {
+  icon?: any;
+  render?(props?: any): any;
 }
 
 export declare interface ComponentSettingsFieldKeyTuple {
@@ -30,7 +30,9 @@ export declare interface ComponentSettingsFieldKeyTuple {
 export declare interface FieldObject {
   type: string;
   props?: object;
-  render?(props: any): any;
+  render?(props: any, opts?: {
+    setting: ComponentSettingsFieldObject;
+  }): any;
   deserialize?(val: string): any;
 }
 
@@ -52,9 +54,14 @@ export declare interface FieldOverrideObject {
   type: 'field';
   targets: string[];
   props: Record<string, any>;
+  construct: Function; //TODO fix it
   render?(): any;
   priority?: number;
-  construct: Function; //TODO fix it
+  onChange?<T = any>(
+    name: string,
+    field: FieldContent<T>,
+    element: ElementObject
+  ): void;
 }
 
 export declare interface SettingOverrideObject {
@@ -74,6 +81,8 @@ export declare interface SettingOverrideObject {
   options?: Array<any>;
   fields?: (ComponentSettingsFieldObject)[];
   props?: Record<string, any>;
+  parseTitle?(value: any): string;
+  parseValue?(value: any): any;
   condition?(element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
     builder: Builder;
@@ -90,6 +99,7 @@ export declare interface ComponentSettingsFieldOptionObject {
 }
 
 export declare interface ComponentSettingsFieldObject {
+  name?: string;
   priority?: number;
   type: string;
   key?: string | string[];
@@ -109,10 +119,16 @@ export declare interface ComponentSettingsFieldObject {
   valueType?: string;
   fields?: ComponentSettingsFieldObject[];
   props?: Record<string, any>;
+  checkedLabel?: string | GetTextCallback;
+  uncheckedLabel?: string | GetTextCallback;
+  parseTitle?(value: any): string;
+  parseValue?(value: any): any;
   condition?(element: Element | ElementObject, opts?: {
     component: ComponentObject;
     builder: Builder;
   }): boolean;
+  disabled?: boolean;
+  required?: boolean;
 }
 
 export declare interface ComponentSettingsTabObject {
@@ -125,11 +141,12 @@ export declare interface ComponentSettingsTabObject {
     component: Component | ComponentObject;
     builder: Builder;
   }): boolean;
+  renderForm?(props: any): any;
 }
 
 export declare class ComponentSettingsFormObject {
   title?: string | GetTextCallback;
-  floatingSettings?: Record<string, any>;
+  floatingSettings?: Record<string, any> | Function;
   defaults?: any;
   fields?: (
     ComponentSettingsTabObject |
@@ -148,8 +165,8 @@ export declare interface ComponentObject {
   droppable?: boolean;
   usable?: boolean;
   editable?: boolean;
-  options?: (ComponentOptionObject)[];
-  settings?: ComponentSettingsFormObject;
+  options?: ComponentOptionObject[];
+  settings?: ComponentSettingsFormObject | ComponentSettingsTabObject;
   disallow?: string[];
   render?(props?: any): any;
   deserialize?: Function;
@@ -229,3 +246,13 @@ export declare interface StoreFindOptions {
 export declare type StoreFindDeepOptions = Partial<StoreFindOptions & {
   deep?: boolean;
 }>;
+
+export declare type FieldContent<T = any> = {
+  valid?: boolean;
+  checked?: boolean;
+  value?: T;
+}
+
+export declare interface EventCallback {
+  (eventName: string, ...args: any[]): void;
+}

@@ -1,15 +1,17 @@
 import {
+  type ComponentPropsWithRef,
+  type MouseEvent,
+  type MutableRefObject,
   forwardRef,
   useImperativeHandle,
+  useMemo,
   useReducer,
   useRef,
-  useMemo,
-  MutableRefObject,
-  ComponentPropsWithRef,
-  MouseEvent,
 } from 'react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { createPortal } from 'react-dom';
 import {
+  type ForwardedProps,
   Tabs,
   Tab,
   classNames,
@@ -18,14 +20,16 @@ import {
 } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import {
+  type UseFloatingOptions,
+  type Boundary,
   useFloating,
   useInteractions,
   useClick,
   useDismiss,
   offset,
   shift,
+  flip,
 } from '@floating-ui/react';
-import { ComponentObject, ElementObject } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
@@ -43,16 +47,20 @@ export declare type CatalogueRef = {
 export declare interface CatalogueProps extends ComponentPropsWithRef<any> {
   className?: string;
   placement?: string;
+  floatingOptions?: UseFloatingOptions & {
+    boundary?: Boundary;
+  };
   onToggle?(props: { opened: boolean }): void;
   onAppend?(component: ComponentObject): void;
   onPaste?(clipboardData: ElementObject): void;
   ref?: MutableRefObject<CatalogueRef>;
 }
 
-const Catalogue = forwardRef(({
+const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
   component,
   className,
   placement = 'bottom',
+  floatingOptions,
   onToggle,
   onAppend,
   onPaste,
@@ -68,9 +76,13 @@ const Catalogue = forwardRef(({
     onOpenChange: o => o ? open() : close(),
     middleware: [
       offset(16),
+      flip({
+        boundary: floatingOptions?.boundary ||
+          floatingOptions?.elements?.reference,
+      }),
       shift({
-        rootBoundary: (rootBoundary as MutableRefObject<any>)?.current ||
-        rootRef?.current,
+        boundary: floatingOptions?.boundary ||
+          floatingOptions?.elements?.reference,
       }),
     ],
   });
@@ -118,9 +130,7 @@ const Catalogue = forwardRef(({
     onToggle?.({ opened: false });
   };
 
-  const toggle = (e: MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-
+  const toggle = () => {
     if (state.opened) {
       close();
     } else {
@@ -130,7 +140,7 @@ const Catalogue = forwardRef(({
 
   const onAppend_ = (
     component: ComponentObject,
-    e: MouseEvent<HTMLElement>
+    e: MouseEvent<HTMLAnchorElement>,
   ) => {
     e?.preventDefault();
     onAppend?.(component);
@@ -142,7 +152,7 @@ const Catalogue = forwardRef(({
       .filter(g => g.usable !== false)
       .map(g => ({
         ...g,
-        components: g.components.filter(c =>
+        components: g.components.filter((c: ComponentObject) =>
           c.usable !== false &&
           (!component || !component.disallow ||
             !component.disallow.includes(c.id))
@@ -187,9 +197,12 @@ const Catalogue = forwardRef(({
           <div className="groups">
             <Tabs>
               { groups.map(group => (
-                <Tab key={group.id} title={<Text>{ group.name }</Text>}>
+                <Tab
+                  key={group.id}
+                  title={<Text>{ group.name }</Text>}
+                >
                   <div className="group oak-grid oak-grid-cols-2 oak-gap-2">
-                    { group.components.map(component => (
+                    { group.components.map((component: ComponentObject) => (
                       <a
                         key={component.id}
                         href="#"
@@ -209,7 +222,7 @@ const Catalogue = forwardRef(({
                             : component.icon}
                         />
                         <span className="name">
-                          <Text>{ component.name }</Text>
+                          <Text>{ component.name as string }</Text>
                         </span>
                       </a>
                     )) }
@@ -235,7 +248,7 @@ const Catalogue = forwardRef(({
           </div>
         </div>
       ),
-      { opened: state.opened }), ensureNode(floatingsRef?.current) as any) }
+      { opened: state.opened }), ensureNode(floatingsRef?.current)) }
     </div>
   );
 });

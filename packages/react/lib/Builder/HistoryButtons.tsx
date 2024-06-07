@@ -1,5 +1,5 @@
+import type { MutableRefObject } from 'react';
 import { Tooltip, Button } from '@junipero/react';
-import { MutableRefObject } from 'react';
 
 import { useBuilder } from '../hooks';
 import Text from '../Text';
@@ -18,8 +18,6 @@ const HistoryButtons = (
         floatingOptions={{
           boundary: (rootBoundary as MutableRefObject<any>)?.current ||
             rootRef?.current,
-          rootBoundary: (rootBoundary as MutableRefObject<any>)?.current ||
-            rootRef?.current,
         }}
         text={<Text name="core.tooltips.undo">Undo</Text>}
       >
@@ -36,8 +34,6 @@ const HistoryButtons = (
         container={floatingsRef.current}
         floatingOptions={{
           boundary: (rootBoundary as MutableRefObject<any>)?.current ||
-            rootRef?.current,
-          rootBoundary: (rootBoundary as MutableRefObject<any>)?.current ||
             rootRef?.current,
         }}
         text={<Text name="core.tooltips.redo">Redo</Text>}
