@@ -1,8 +1,9 @@
-const junipero = require('@junipero/tailwind-plugin');
-const plugin = require('tailwindcss/plugin');
-const { fromPairs } = require('@junipero/core');
+import junipero from '@junipero/tailwind-plugin';
+import plugin from 'tailwindcss/plugin';
+import { fromPairs } from '@junipero/core';
+import { Config } from 'tailwindcss/types/config';
 
-module.exports = {
+const config: Config = {
   prefix: 'oak-',
   theme: {
     colors: {
@@ -37,7 +38,7 @@ module.exports = {
   ],
   plugins: [
     junipero,
-    plugin(({ addUtilities, theme, variants, e }) => {
+    plugin(({ addUtilities, theme, e }) => {
       // Handle old flexbox utilities
       addUtilities({
         '.justify-space-around': {
@@ -69,7 +70,7 @@ module.exports = {
             gap: v,
           },
         ])),
-      }, variants('gap'));
+      }, theme('gap'));
 
       // And overwrite flex basis minus the gap
       addUtilities({
@@ -81,7 +82,9 @@ module.exports = {
               : `calc(${v} - (var(--tw-gap) / 2))`,
           },
         ])),
-      }, variants('flexBasis'));
+      }, theme('flexBasis'));
     }),
   ],
 };
+
+export default config;
