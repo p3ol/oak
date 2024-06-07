@@ -180,26 +180,12 @@ export const rowComponent = (props?: ComponentObject): ComponentObject => ({
         value: 'stretch',
       }],
     }, {
-      type: 'select',
-      key: 'settings.gutters',
-      default: true,
-      label: (
-        t: GetTextCallback
-      ) => t('core.components.row.settings.gutters.title',
-        'Column gap'),
-      options: [{
-        title: (
-          t: GetTextCallback
-        ) => t('core.components.row.settings.gutters.enabled',
-          'Enabled'),
-        value: true,
-      }, {
-        title: (
-          t: GetTextCallback
-        ) => t('core.components.row.settings.gutters.disabled',
-          'Disabled'),
-        value: false,
-      }],
+      type: 'text',
+      key: 'settings.gap',
+      label: (t: GetTextCallback) =>
+        t('core.components.row.settings.gutters.title', 'Column gap'),
+      placeholder: (t: GetTextCallback) =>
+        t('core.components.row.settings.gutters.placeholder', '10px'),
     }],
   },
   getContainers: element => [element.cols],
@@ -731,16 +717,17 @@ export const foldableComponent = (
 });
 
 export const stylingSettings = (
-  props?: any // TODO fix this
+  props?: ComponentSettingsFieldObject // TODO fix this
 ): ComponentSettingsFieldObject => ({
   id: 'styling',
   type: 'tab',
   title: (t: GetTextCallback) => t('core.styling.title', 'Styling'),
   ...props,
   fields: [...(props?.fields || []), {
+    type: 'field',
     label: (
       t: GetTextCallback
-    ) => t('core.styling.paddings.title', 'Inside spacing'),
+    ) => t('core.styling.paddings.title', 'Inside spacing (padding)'),
     fields: [{
       type: 'text',
       key: 'styles.paddingTop',
@@ -767,9 +754,10 @@ export const stylingSettings = (
       ) => t('core.styling.paddings.left', 'Left'),
     }],
   }, {
+    type: 'field',
     label: (
       t: GetTextCallback
-    ) => t('core.styling.margins.title', 'Outside spacing'),
+    ) => t('core.styling.margins.title', 'Outside spacing (margin)'),
     fields: [{
       type: 'text',
       key: 'styles.marginTop',
@@ -794,6 +782,99 @@ export const stylingSettings = (
       ) => t('core.styling.margins.left', 'Left'),
     }],
   }, {
+    type: 'field',
+    label: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.title', 'Border size'),
+    fields: [{
+      type: 'text',
+      key: 'styles.borderTop',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.top', 'Top'),
+    }, {
+      type: 'text',
+      key: 'styles.borderRight',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.right', 'Right'),
+    }, {
+      type: 'text',
+      key: 'styles.borderBottom',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.bottom', 'Bottom'),
+    }, {
+      type: 'text',
+      key: 'styles.borderLeft',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.left', 'Left'),
+    }],
+  }, {
+    type: 'field',
+    condition: (element: ElementObject) =>
+      element?.styles?.borderTop ||
+      element?.styles?.borderRight ||
+      element?.styles?.borderBottom ||
+      element?.styles?.borderLeft,
+    fields: [{
+      type: 'color',
+      key: 'styles.borderTopColor',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.topColor', '#000'),
+    }, {
+      type: 'color',
+      key: 'styles.borderRightColor',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.rightColor', '#000'),
+    }, {
+      type: 'color',
+      key: 'styles.borderBottomColor',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.bottomColor', '#000'),
+    }, {
+      type: 'color',
+      key: 'styles.borderLeftColor',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.leftColor', '#000'),
+    }],
+  }, {
+    type: 'field',
+    label: (
+      t: GetTextCallback
+    ) => t('core.styling.borderRadius.title', 'Border radius'),
+    fields: [{
+      type: 'text',
+      key: 'styles.borderTopLeftRadius',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borderRadius.topLeft', 'Top left'),
+    }, {
+      type: 'text',
+      key: 'styles.borderTopRightRadius',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borderRadius.topRight', 'Top right'),
+    }, {
+      type: 'text',
+      key: 'styles.borderBottomRightRadius',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borderRadius.bottomRight', 'Bottom right'),
+    }, {
+      type: 'text',
+      key: 'styles.borderBottomLeftRadius',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borderRadius.bottomLeft', 'Bottom left'),
+    }],
+  }, {
+    type: 'field',
     label: (
       t: GetTextCallback
     ) => t('core.styling.background.image.title', 'Background image'),
@@ -939,7 +1020,7 @@ export const stylingSettings = (
 });
 
 export const responsiveSettings = (
-  props?: any // TODO fix this
+  props?: ComponentSettingsFieldObject
 ): ComponentSettingsFieldObject => ({
   id: 'responsive',
   type: 'tab',
