@@ -1,13 +1,18 @@
-import type { AddonObject, ComponentSettingsFieldObject, ElementObject } from '@oakjs/core';
+import type {
+  AddonObject,
+  ComponentSettingsFieldObject,
+  ComponentTabOject,
+  ElementObject,
+} from '@oakjs/core';
 import { useEffect, useRef, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
-import Builder, { BuilderRef } from './Builder';
+import Builder, { type BuilderRef } from './Builder';
 import { baseAddon } from './addons';
 
 export default { title: 'React/Builder' };
 
-const baseContent = [
+const baseContent: ElementObject[] = [
   { type: 'row', cols: [
     { type: 'col', content: [
       { type: 'title', content: 'This is a title' },
@@ -98,7 +103,7 @@ export const withCustomTexts = () => {
               pasteFromClipboard: 'Coller depuis le presse-papier',
             },
           } }],
-        }]}
+        } as AddonObject]}
         value={baseContent}
         rootBoundary={document.documentElement}
         options={{ debug: true }}
@@ -137,7 +142,7 @@ export const withMultipleLanguages = () => {
       </div>
       <div>&quot;Paste from clipboard&quot; should be in {locale}</div>
       <Builder
-        addons={[baseAddon(), { texts }]}
+        addons={[baseAddon(), { texts } as AddonObject]}
         value={baseContent}
         options={{ debug: true }}
         onChange={action('change')}
@@ -183,7 +188,7 @@ export const withMultipleCustomSettings = () => {
             key: 'settings.className',
             placeholder: 'This is a global setting placeholder',
           }],
-        }] : []}
+        } as AddonObject] : []}
         value={baseContent}
         options={{ debug: true }}
         onChange={action('change')}
@@ -242,12 +247,11 @@ export const disallowSomeChildren = () => {
           ...addon,
           components: addon.components.map(c => c.id === 'core' ? {
             ...c,
-            components: c.components.map(c_ => c_.id === 'col' ? {
-              ...c_,
-              disallow: ['text'],
-            } : c_),
+            components: (c as ComponentTabOject).components.map(c_ =>
+              c_.id === 'col' ? { ...c_, disallow: ['text'] } : c_
+            ),
           } : c),
-        }]}
+        } as AddonObject]}
         value={baseContent}
         options={{ debug: true }}
         onChange={action('change')}
@@ -278,7 +282,7 @@ export const withMergeOverrides = () => (
           content: 'This is an updated title',
         }),
       }],
-    }]}
+    } as AddonObject]}
     value={baseContent}
     options={{ debug: true, overrideStrategy: 'merge' }}
     onChange={action('change')}
