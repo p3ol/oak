@@ -1,7 +1,7 @@
 {
   "extends": [
-    "p3ol/renovate-presets//presets/base#v1.0.0",
-    "p3ol/renovate-presets//presets/master-develop#v1.0.0"
+    "p3ol/renovate-presets//presets/base#v1.1.0",
+    "p3ol/renovate-presets//presets/master-develop#v1.1.0"
   ],
   "packageRules": [{
     "matchUpdateTypes": ["patch", "pin"],
