@@ -17,10 +17,6 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
-  "dependencies": {
-    "@babel/runtime-corejs3": "7.24.6",
-    "core-js": "3.37.1"
-  },
   "devDependencies": {
     "@oakjs/react": "workspace:*"
   },
