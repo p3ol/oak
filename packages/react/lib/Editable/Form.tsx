@@ -183,7 +183,7 @@ const Form = ({
                         { hasSubfields(setting) ? (
                           <div
                             className={classNames(
-                              'sub-fields oak-grid oak-grid-cols-4 oak-gap-2',
+                              'sub-fields oak-flex oak-gap-2',
                             )}
                           >
                             { setting.fields.map((f, n) => (
