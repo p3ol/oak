@@ -3,13 +3,14 @@ import {
   type TextFieldProps,
   type SelectFieldProps,
   type ColorFieldProps,
+  type ToggleProps,
+  type DateFieldProps,
   TextField,
   SelectField,
   ColorField,
   DateField,
   Toggle,
-  DateFieldProps,
-  ToggleProps,
+  classNames,
 } from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
@@ -96,6 +97,7 @@ export const imageField = (props?: ReactFieldObject): ReactFieldObject => ({
   render: (fieldProps: ImageFieldProps, { setting, element }) => (
     <ImageField
       { ...fieldProps }
+      className={classNames(fieldProps?.className, setting?.props?.className)}
       iconOnly={setting?.props?.iconOnly}
       setting={setting}
       element={element}
@@ -227,4 +229,13 @@ export const baseAddon = (): AddonObject => ({
   ...coreAddons.baseAddon(),
   components: [coreComponentsGroup()],
   fields: baseFields(),
+  overrides: [{
+    type: 'setting',
+    targets: ['*'],
+    key: 'styles.backgroundImage',
+    props: {
+      iconOnly: true,
+      className: 'oak-mr-4 oak-relative oak-top-[2px]',
+    },
+  }],
 });

@@ -30,7 +30,6 @@ export declare interface ImageFieldContent {
 }
 
 export interface ImageFieldProps extends ComponentPropsWithRef<any> {
-  className?: string;
   value?: ImageFieldValue;
   element?: ElementObject;
   setting?: ComponentSettingsFieldObject | ComponentSettingsField;
@@ -141,7 +140,8 @@ const ImageField = ({
   return (
     <div
       className={classNames(
-        'image-field oak-flex oak-items-center oak-gap-4',
+        'image-field oak-flex oak-flex-none oak-items-center oak-gap-4',
+        'oak-w-[80px] oak-h-[80px]',
         {
           loading: state.loading,
           'icon-only': iconOnly,

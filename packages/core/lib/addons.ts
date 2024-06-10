@@ -1011,6 +1011,42 @@ export const stylingSettings = (
     type: 'color',
     key: 'styles.backgroundColor',
   }, {
+    type: 'field',
+    label: (
+      t: GetTextCallback
+    ) => t('core.styling.shadow.title', 'Box shadow'),
+    fields: [{
+      type: 'text',
+      key: 'styles.boxShadowX',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.shadow.x', 'X'),
+    }, {
+      type: 'text',
+      key: 'styles.boxShadowY',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.shadow.y', 'Y'),
+    }, {
+      type: 'text',
+      key: 'styles.boxShadowBlur',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.shadow.blur', 'Blur'),
+    }, {
+      type: 'text',
+      key: 'styles.boxShadowSpread',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.shadow.spread', 'Spread'),
+    }, {
+      type: 'color',
+      key: 'styles.boxShadowColor',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.shadow.color', '#000'),
+    }],
+  }, {
     label: (t: GetTextCallback) =>
       t('core.styling.className.title', 'Additional CSS class'),
     type: 'text',
