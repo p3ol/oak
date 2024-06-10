@@ -34,6 +34,10 @@ export declare interface FieldObject {
     setting: ComponentSettingsFieldObject;
   }): any;
   deserialize?(val: string): any;
+  onChange?<T = any>(
+    field: FieldContent<T>,
+    element?: ElementObject
+  ): void;
 }
 
 export declare interface ComponentOverrideObject {
@@ -60,7 +64,7 @@ export declare interface FieldOverrideObject {
   onChange?<T = any>(
     name: string,
     field: FieldContent<T>,
-    element: ElementObject
+    element?: ElementObject
   ): void;
 }
 

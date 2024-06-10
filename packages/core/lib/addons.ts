@@ -717,7 +717,7 @@ export const foldableComponent = (
 });
 
 export const stylingSettings = (
-  props?: ComponentSettingsFieldObject // TODO fix this
+  props?: ComponentSettingsFieldObject
 ): ComponentSettingsFieldObject => ({
   id: 'styling',
   type: 'tab',

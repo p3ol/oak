@@ -11,6 +11,8 @@ import type {
   ComponentSettingsTabObject,
   ElementObject, FieldContent,
   FieldObject,
+  FieldOverride,
+  FieldOverrideObject,
 } from '@oakjs/core';
 import {
   Abstract,
@@ -72,7 +74,7 @@ const Form = ({
 
   const onSettingCustomChange_ = (
     name: string,
-    renderer: any, // TODO FIX IT
+    renderer: FieldOverride | FieldObject | FieldOverrideObject,
     field: FieldContent
   ) => {
     const changes = renderer
@@ -141,8 +143,7 @@ const Form = ({
           .map((tab: ComponentSettingsTabObject, t) => (
             <Tab
               key={tab.id || t}
-              title={<Text>{ tab.title as string }</Text> as any}
-              // TODO update junipero version
+              title={<Text>{ tab.title }</Text>}
             >
               <div className="fields oak-flex oak-flex-col oak-gap-4">
                 { (component.settings?.fields || [])

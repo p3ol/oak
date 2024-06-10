@@ -14,6 +14,7 @@ import type {
   ComponentSettingsTabObject,
   ComponentSettingsFieldKeyTuple,
   GetTextCallback,
+  ComponentSettingsFieldOptionObject,
 } from './types';
 
 export class BuilderOptions {
@@ -176,8 +177,8 @@ export class Override {
 
 export class ComponentOverride extends Override {
   id: string;
-  targets: Array<any>; // TODO remove any
-  fields: Array<any>; // TODO remove any
+  targets: string[];
+  fields: ComponentSettingsFieldObject[];
   render: Function;
   construct: (
     opts: { builder: Builder, baseElement?: ElementObject }
@@ -232,18 +233,18 @@ export class FieldOverride extends Override {
 
 export class SettingOverride extends Override {
   key: string | string[] | ComponentSettingsFieldKeyTuple[];
-  targets: Array<any>; //TODO type it
+  targets: string[];
   id: string;
   placeholder: string | GetTextCallback;
   default: any;
-  options: Array<any>; //TODO type it
+  options: ComponentSettingsFieldOptionObject[];
   label: string | GetTextCallback;
   description: string | GetTextCallback;
   displayable: boolean;
   valueType: string;
   condition: Function;
   priority: number;
-  fields: Array<any>;
+  fields: ComponentSettingsFieldObject[];
   props: object;
 
   constructor (props: SettingOverrideObject) {
@@ -262,9 +263,9 @@ export class SettingOverride extends Override {
     this.valueType = props.valueType;
     this.condition = props.condition;
     this.priority = props.priority || 0;
-    this.fields = (props.fields || []).map(
-      (f: ComponentSettingsFieldObject) => new ComponentSettingsField(f)
-    );
+    this.fields = (props.fields || []).map((
+      f: ComponentSettingsFieldObject
+    ) => new ComponentSettingsField(f));
     this.props = props.props;
   }
 }
@@ -415,7 +416,7 @@ export class ComponentSettingsField {
 }
 
 export class TextsSheet {
-  static FIND_PREDICATE = (id: string) => (s: {id: string}) => s.id === id;
+  static FIND_PREDICATE = (id: string) => (s: { id: string }) => s.id === id;
 
   id: string;
   texts: object;

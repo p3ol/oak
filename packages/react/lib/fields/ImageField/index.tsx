@@ -3,6 +3,7 @@ import {
   type MouseEvent,
   useEffect,
   useReducer,
+  ChangeEvent,
 } from 'react';
 import type {
   ComponentSettingsField,
@@ -79,11 +80,11 @@ const ImageField = ({
     input.type = 'file';
     input.accept = accept.join(',');
 
-    input.addEventListener('change', onFile, false);
+    input.addEventListener('change', onFile.bind(null), false);
     input.click();
   };
 
-  const onFile = async (e: Event) => {
+  const onFile = async (e: ChangeEvent<HTMLInputElement>) => {
     if (state.loading) {
       return;
     }
@@ -91,8 +92,7 @@ const ImageField = ({
     dispatch({ loading: true });
 
     if (onImageUpload) {
-      const result = await onImageUpload(e as any, { element, setting });
-      //TODO record this @maxime
+      const result = await onImageUpload(e, { element, setting });
 
       if (result) {
         onUrlReady(result);

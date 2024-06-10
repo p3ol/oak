@@ -1,4 +1,5 @@
 import type { AddonObject, ReactFieldObject } from '@oakjs/react';
+import { omit } from '@oakjs/react';
 import {
   BoldExtension,
   FontSizeExtension,
@@ -18,7 +19,7 @@ export const remirrorField = ({
 }: RemirrorFieldProps = {}): ReactFieldObject => ({
   type: 'remirror',
   render: Field,
-  ...props,
+  ...omit(props, ['onChange']),
   props: {
     extensions,
   },

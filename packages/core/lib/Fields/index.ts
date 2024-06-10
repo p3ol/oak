@@ -39,7 +39,7 @@ export default class Fields extends Emitter implements IFields {
   }
 
   get (type: string) {
-    return this.#fields.find(Field.FIND_PREDICATE(type)); // TODO to object
+    return this.#fields.find(Field.FIND_PREDICATE(type));
   }
 
   add (field: FieldObject) {
@@ -62,7 +62,7 @@ export default class Fields extends Emitter implements IFields {
       this.emit('fields.add', this, field);
     }
 
-    return field_; //TODO return object or class ?
+    return field_;
   }
 
   remove (type: string) {
@@ -77,6 +77,6 @@ export default class Fields extends Emitter implements IFields {
   }
 
   all () {
-    return this.#fields; //TODO to object
+    return this.#fields;
   }
 }

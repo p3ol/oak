@@ -282,9 +282,9 @@ export default class Builder extends Emitter {
 
   getElementSettings (
     element: ElementObject,
-    key: ElementSettingsKeyObject |string,
-    def: any
-  ) { //TODO FIX IT
+    key: ElementSettingsKeyObject | string,
+    def?: any
+  ) {
     return this.#store.getElementSettings(element, key, def);
   }
 
@@ -292,7 +292,7 @@ export default class Builder extends Emitter {
     element: ElementObject,
     key: ElementSettingsKeyObject | string,
     value: any
-  ) { // TODO FIX IT
+  ) {
     return this.#store.setElementSettings(element, key, value);
   }
 

@@ -57,11 +57,11 @@ export default class Components extends Emitter implements IComponents {
     });
   }
 
-  hasGroup (id: string) { //TODO id is a string?
+  hasGroup (id: string) {
     return this.#groups.some(ComponentsGroup.FIND_PREDICATE(id));
   }
 
-  getGroup (id: string) { //TODO id is a string?
+  getGroup (id: string) {
     return this.#groups.find(ComponentsGroup.FIND_PREDICATE(id));
   }
 
@@ -74,8 +74,9 @@ export default class Components extends Emitter implements IComponents {
   }
 
   hasComponent (
-    id: string, { groupId }: { groupId?: string } = {}
-  ) { //TODO groupId is a string ? id ?
+    id: string,
+    { groupId }: { groupId?: string } = {}
+  ) {
     if (groupId) {
       return this.getGroup(groupId)?.components
         .some(Component.FIND_PREDICATE.bind(null, id));
@@ -94,7 +95,7 @@ export default class Components extends Emitter implements IComponents {
   getComponent (
     id: string,
     { groupId }: { groupId?: string } = {}
-  ): Component { //TODO groupId is a string ? id ?
+  ): Component {
     if (groupId) {
       return this.getGroup(groupId)?.components
         ?.find(Component.FIND_PREDICATE(id));
@@ -113,7 +114,7 @@ export default class Components extends Emitter implements IComponents {
 
   add (
     component: ComponentObject | ComponentsGroupObject,
-    { mode = 'append' }: { mode?: string } = {} //TODO mode is a string ?
+    { mode = 'append' }: { mode?: 'append' | 'prepend' } = {}
   ) {
     const mutateMethod = mode === 'append' ? 'push' : 'unshift';
 
@@ -155,7 +156,7 @@ export default class Components extends Emitter implements IComponents {
     }
   }
 
-  remove (id: string) { // TODO ID is a string ?
+  remove (id: string) {
     const groupIndex = this.#groups
       .findIndex(ComponentsGroup.FIND_PREDICATE(id));
 
@@ -198,16 +199,16 @@ export default class Components extends Emitter implements IComponents {
 
   getAll () {
     return {
-      groups: this.#groups, //TODO to object
-      defaultGroup: this.#defaultGroup, //TODO to object
+      groups: this.#groups,
+      defaultGroup: this.#defaultGroup,
     };
   }
 
   getDisplayableSettings (
     element: ElementObject,
     { fields, component }: {
-      fields?: Array<ComponentSettingsField | ComponentSettingsTab>
-      component?: Component
+      fields?: Array<ComponentSettingsField | ComponentSettingsTab>;
+      component?: Component;
     } = {}
   ) {
     const displayable: Array<ComponentSettingsField> = [];
@@ -219,13 +220,13 @@ export default class Components extends Emitter implements IComponents {
         return displayable;
       }
 
-      fields = component?.settings.fields as any; //TODO fix it;
+      fields = component?.settings.fields;
     }
 
     for (const setting of fields) {
       if (Array.isArray(setting.fields)) {
         displayable.push(...this.getDisplayableSettings(element, {
-          fields: setting.fields as any, //TODO fix it;
+          fields: setting.fields,
         }));
       }
 
@@ -247,7 +248,7 @@ export default class Components extends Emitter implements IComponents {
       }
     }
 
-    return displayable; //TODO to object
+    return displayable;
   }
 
   toJSON () {

@@ -205,7 +205,7 @@ export default class Settings extends Emitter implements ISettings {
   }
 
   all () {
-    return this.#tabs; // TODO to object
+    return this.#tabs;
   }
 
   toJSON () {

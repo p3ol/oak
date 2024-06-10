@@ -81,7 +81,7 @@ export default class Texts extends Emitter implements ITexts {
     return sheet;
   }
 
-  removeSheet (id: string) { //TODO nope its not string
+  removeSheet (id: string) {
     const index = this.#sheets.findIndex(TextsSheet.FIND_PREDICATE(id));
 
     if (index !== -1) {
@@ -98,7 +98,7 @@ export default class Texts extends Emitter implements ITexts {
     return this.#sheets[this.#activeSheet ?? 0]?.id;
   }
 
-  setActiveSheet (id: string) { //TODO nope its not string
+  setActiveSheet (id: string) {
     const index = this.#sheets.findIndex(TextsSheet.FIND_PREDICATE(id));
 
     if (index !== -1) {

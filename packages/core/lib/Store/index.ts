@@ -572,7 +572,7 @@ export default class Store extends Emitter implements IStore {
   getElementSettings (
     element: ElementObject,
     key: ElementSettingsKeyObject,
-    def?: string
+    def?: any
   ) {
     if (Array.isArray(key)) {
       return key.reduce((
