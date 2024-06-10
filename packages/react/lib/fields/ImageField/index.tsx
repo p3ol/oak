@@ -141,10 +141,9 @@ const ImageField = ({
     <div
       className={classNames(
         'image-field oak-flex oak-flex-none oak-items-center oak-gap-4',
-        'oak-w-[80px] oak-h-[80px]',
         {
           loading: state.loading,
-          'icon-only': iconOnly,
+          'icon-only oak-w-[80px] oak-h-[80px]': iconOnly,
         },
         className
       )}
@@ -152,7 +151,9 @@ const ImageField = ({
       { state.value?.url && !iconOnly ? (
         <>
           <div
-            className="preview"
+            className={classNames(
+              'preview oak-w-[80px] oak-h-[80px] oak-bg-cover oak-bg-center'
+            )}
             style={{ backgroundImage: `url(${state.value.url})` }}
           />
           <div className="info">
