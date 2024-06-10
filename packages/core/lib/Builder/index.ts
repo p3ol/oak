@@ -19,11 +19,7 @@ import {
   BuilderOptions,
   Component,
   ComponentOverride,
-  ComponentSettingsTab,
-  Field,
   FieldOverride,
-  Override,
-  SettingOverride,
 } from '../classes';
 import Emitter from '../Emitter';
 import Logger from '../Logger';
