@@ -50,11 +50,11 @@ export declare interface ComponentOverrideObject {
 }
 
 export declare interface FieldOverrideObject {
-  id: string;
   type: 'field';
-  targets: string[];
-  props: Record<string, any>;
-  construct: Function; //TODO fix it
+  construct?: Function; //TODO fix it
+  targets?: string[];
+  props?: Record<string, any>;
+  id?: string;
   render?(): any;
   priority?: number;
   onChange?<T = any>(
@@ -65,7 +65,7 @@ export declare interface FieldOverrideObject {
 }
 
 export declare interface SettingOverrideObject {
-  type: string;
+  type: 'setting';
   targets?: string[];
   key?: string | string[] | ComponentSettingsFieldKeyTuple[];
   id?: string;
@@ -204,7 +204,8 @@ export declare interface AddonObject {
   texts?: (TextsSheetObject)[];
   overrides?: (
     ComponentOverrideObject |
-    FieldOverrideObject
+    FieldOverrideObject |
+    SettingOverrideObject
   )[];
   settings?: (
     ComponentSettingsTabObject |

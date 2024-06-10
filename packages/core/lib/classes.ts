@@ -250,6 +250,7 @@ export class SettingOverride extends Override {
     super();
 
     this.key = props.key;
+    this.type = 'setting';
     this.targets = props.targets || [];
     this.id = props.id;
     this.placeholder = props.placeholder;

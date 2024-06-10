@@ -9,7 +9,6 @@ import type {
 import {
   ComponentOverride,
   FieldOverride,
-  Override,
   SettingOverride,
 } from '../classes';
 import Emitter from '../Emitter';
@@ -21,8 +20,8 @@ export declare abstract class IOverrides {
   /** Adds a new component or field override */
   add(
     override: ComponentOverride | ComponentOverrideObject | FieldOverride |
-      FieldOverrideObject
-  ): ComponentOverride | FieldOverride;
+      FieldOverrideObject | SettingOverride | SettingOverrideObject
+  ): ComponentOverride | FieldOverride | SettingOverride;
 
   /**
    * Retrieves an override for a component or a field.
@@ -107,13 +106,13 @@ export default class Overrides extends Emitter implements IOverrides {
       this.#overrides.splice(this.#overrides.indexOf(existing), 1, override_);
       this.emit('overrides.update', override);
 
-      return override as ComponentOverride | FieldOverride;
+      return override as ComponentOverride | FieldOverride | SettingOverride;
     }
 
     this.#overrides.unshift(override_);
     this.emit('overrides.add', this, override);
 
-    return override as ComponentOverride | FieldOverride;
+    return override as ComponentOverride | FieldOverride | SettingOverride;
   }
 
   get (
