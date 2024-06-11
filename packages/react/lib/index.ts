@@ -45,6 +45,7 @@ export type {
   AddonObject,
   FieldObject,
   ComponentObject,
+  GetTextCallback,
 } from '@oakjs/core';
 
 export {
