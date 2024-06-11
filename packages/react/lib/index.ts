@@ -50,6 +50,7 @@ export type {
 export {
   default as Builder,
   type BuilderProps,
+  type BuilderRef,
 } from './Builder';
 
 export {
