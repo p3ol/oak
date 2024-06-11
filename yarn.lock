@@ -3882,9 +3882,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/react@npm:3.5.3":
-  version: 3.5.3
-  resolution: "@junipero/react@npm:3.5.3"
+"@junipero/react@npm:3.5.4":
+  version: 3.5.4
+  resolution: "@junipero/react@npm:3.5.4"
   dependencies:
     "@floating-ui/react": "npm:0.26.16"
     "@junipero/core": "npm:^3.5.0"
@@ -3893,7 +3893,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10/232dca3729cd883af29cbd1cd580b9fb28fc83f0f264c521318598d96d84fa67a134b11fdb7c2e6a21ee6fcef7d9fd5fb83e16bcb17d28450780b8d4977b4880
+  checksum: 10/597d3c897419af5e69291c3fc9ddec4f8db64e4f617adcbcbbb10c2e2131c0c2f510eb293ef548777feb67259ebbaed8029add673347d369a8b306e6eb8fbf27
   languageName: node
   linkType: hard
 
@@ -3914,20 +3914,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/transitions@npm:3.5.3":
-  version: 3.5.3
-  resolution: "@junipero/transitions@npm:3.5.3"
+"@junipero/transitions@npm:3.5.4":
+  version: 3.5.4
+  resolution: "@junipero/transitions@npm:3.5.4"
   peerDependencies:
     "@junipero/react": ^3.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/69a6efc160d45232f19aa6f8f0c9ab12f36e80452c4546c483186909503eb2933d35db3d0cde6dd7170bfcb451b30ac0f288e18dc3625fc9a7646592aadd41ca
+  checksum: 10/1974153c1714595747f85d3544cd3ee1301d4e590a4cfdbb436f0e7ac11b313d9f2c19538d8a0f3f64cd7d7ed28d8a55367adad0a28a841e7844d6ac5ad361c5
   languageName: node
   linkType: hard
 
-"@lerna/create@npm:8.1.4":
-  version: 8.1.4
-  resolution: "@lerna/create@npm:8.1.4"
+"@lerna/create@npm:8.1.3":
+  version: 8.1.3
+  resolution: "@lerna/create@npm:8.1.3"
   dependencies:
     "@npmcli/run-script": "npm:7.0.2"
     "@nx/devkit": "npm:>=17.1.2 < 20"
@@ -3993,7 +3993,7 @@ __metadata:
     write-pkg: "npm:4.0.0"
     yargs: "npm:17.7.2"
     yargs-parser: "npm:21.1.1"
-  checksum: 10/605334521bf32fcf6125af3a1bbd27a661154123cb11100ff6b72415a6e54b829c6e8d3a4a4428908ff1f008b62b639630222da0f208656314f6bb36a85d9075
+  checksum: 10/52cc1ce736bd1a30ee7f6c24ded1dbf26fe369927fa1e3923d4b829808249e0e018a9f204d1d69c36352b69b973ab2f5e6fad696aee4c62cfa4ecbe443e91a9a
   languageName: node
   linkType: hard
 
@@ -4611,8 +4611,8 @@ __metadata:
   dependencies:
     "@floating-ui/react": "npm:0.26.16"
     "@junipero/hooks": "npm:3.5.0"
-    "@junipero/react": "npm:3.5.3"
-    "@junipero/transitions": "npm:3.5.3"
+    "@junipero/react": "npm:3.5.4"
+    "@junipero/transitions": "npm:3.5.4"
     uuid: "npm:10.0.0"
   peerDependencies:
     react: ^18.0.0
@@ -16796,11 +16796,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lerna@npm:8.1.4":
-  version: 8.1.4
-  resolution: "lerna@npm:8.1.4"
+"lerna@npm:8.1.3":
+  version: 8.1.3
+  resolution: "lerna@npm:8.1.3"
   dependencies:
-    "@lerna/create": "npm:8.1.4"
+    "@lerna/create": "npm:8.1.3"
     "@npmcli/run-script": "npm:7.0.2"
     "@nx/devkit": "npm:>=17.1.2 < 20"
     "@octokit/plugin-enterprise-rest": "npm:6.0.1"
@@ -16876,7 +16876,7 @@ __metadata:
     yargs-parser: "npm:21.1.1"
   bin:
     lerna: dist/cli.js
-  checksum: 10/75335897623438bdfed8f2a55884356ee64f78a70487a1da3db30a039e9564aae5833f1cd4f6ac6d587856058330be88b65a76e86230a9591b32ab3152a20db3
+  checksum: 10/822268c86fedba07e7ecf27d219237c8e381c47d33c83ea8c19da7ccb03c0aa051dc86297d5af3244485e18d0de8933b3266b7241349f9fce66d2fc1884a1a9a
   languageName: node
   linkType: hard
 
@@ -21620,7 +21620,7 @@ __metadata:
     jest-css-modules-transform: "npm:4.4.2"
     jest-environment-jsdom: "npm:29.7.0"
     jest-transform-stub: "npm:2.0.0"
-    lerna: "npm:8.1.4"
+    lerna: "npm:8.1.3"
     lerna-changelog: "npm:2.2.0"
     postcss: "npm:8.4.38"
     postcss-loader: "npm:8.1.1"
