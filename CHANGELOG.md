@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.3](https://github.com/p3ol/oak/compare/v3.6.2...v3.6.3) (2024-06-11)
+
+
+### Bug Fixes
+
+* **core:** wrong addons export ([e1b14a4](https://github.com/p3ol/oak/commit/e1b14a48c1a8aa6ac8cab01675644d5084157dd1))
+* **react:** missing forwarded export ([5d4af48](https://github.com/p3ol/oak/commit/5d4af488075b3fdc3c572c8e51717f0020e596f6))
+* update junipero ([2beb16e](https://github.com/p3ol/oak/commit/2beb16e5d01c6f9ef8ebfdd08f1f65f26609720f))
+
+
+
+
+
 ## [3.6.2](https://github.com/p3ol/oak/compare/v3.6.1...v3.6.2) (2024-06-11)
 
 
