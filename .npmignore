@@ -6,3 +6,5 @@ coverage
 *.stories.js
 oak-icons.json
 .DS_Store
+tsconfig.json
+tsconfig.build.json
