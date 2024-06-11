@@ -32,7 +32,7 @@
     "@junipero/hooks": "3.5.0",
     "@junipero/react": "3.5.3",
     "@junipero/transitions": "3.5.3",
-    "uuid": "9.0.1"
+    "uuid": "10.0.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
