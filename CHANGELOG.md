@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.2](https://github.com/p3ol/oak/compare/v3.6.1...v3.6.2) (2024-06-11)
+
+
+### Bug Fixes
+
+* npm ignore tsconfig ([720dbb5](https://github.com/p3ol/oak/commit/720dbb5044ba2464013504efad36f534e56169b7))
+
+
+
+
+
 ## [3.6.1](https://github.com/p3ol/oak/compare/v3.6.0...v3.6.1) (2024-06-11)
 
 
