@@ -1,19 +1,29 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "types": ["jest", "node", "react", "react-dom"],
+    "module": "esnext",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ES2022"],
     "paths": {
-      "@oakjs/core": [
-        "./packages/core/lib"
-      ],
-      "@tests-utils": [
-        "./packages/oak/tests/utils.js"
-      ]
-    }
+      "@oakjs/core": ["./packages/core"],
+      "@oakjs/react": ["./packages/react"],
+      "@oakjs/ckeditor5-custom-build": ["./packages/ckeditor5-custom-build"],
+      "@tests-utils": ["./packages/oak/tests/utils.js"],
+    },
   },
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    "**/*.tsx",
   ],
   "exclude": [
     "node_modules",
-    "**/dist"
+    "dist"
   ]
 }

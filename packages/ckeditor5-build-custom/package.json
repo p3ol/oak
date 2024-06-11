@@ -5,24 +5,25 @@
   "version": "3.5.5",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "dist/ckeditor.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "engines": {
-    "node": ">= 16",
-    "npm": ">= 8"
+    "node": ">= 18"
   },
   "peerDependencies": {
     "@oakjs/react": "^3.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
-  "dependencies": {
-    "@babel/runtime-corejs3": "7.24.6",
-    "core-js": "3.37.1"
+  "devDependencies": {
+    "@oakjs/react": "workspace:*"
   },
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "yarn build:code && yarn build:dts",
+    "build:code": "webpack --mode production",
+    "build:dts": "yarn run -T tsc --project ./tsconfig.build.json"
   },
   "publishConfig": {
     "access": "public"

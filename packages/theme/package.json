@@ -13,15 +13,15 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">= 16",
-    "npm": ">= 8"
+    "node": ">= 18"
   },
   "dependencies": {
-    "@junipero/theme": "3.4.15"
+    "@junipero/theme": "3.5.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
-    "build": "npm run clean && node script/build.js"
+    "build": "yarn clean && yarn build:code",
+    "build:code": "node script/build.js"
   },
   "publishConfig": {
     "access": "public"
