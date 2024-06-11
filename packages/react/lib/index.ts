@@ -50,6 +50,7 @@ export type {
 export {
   default as Builder,
   type BuilderProps,
+  type BuilderRef,
 } from './Builder';
 
 export {
@@ -60,6 +61,7 @@ export {
 export {
   default as Catalogue,
   type CatalogueProps,
+  type CatalogueRef,
 } from './Catalogue';
 
 export {
@@ -84,6 +86,10 @@ export {
 export {
   useBuilder,
 } from './hooks';
+
+export type {
+  BuilderContextValue,
+} from './contexts';
 
 export * from './fields';
 export * from './options';
