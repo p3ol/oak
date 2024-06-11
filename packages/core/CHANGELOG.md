@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/p3ol/oak/compare/v3.5.6...v3.6.0) (2024-06-11)
+
+
+### Bug Fixes
+
+* **core:** settings override not working ([668109a](https://github.com/p3ol/oak/commit/668109afde59a58e87dbaae26a1fb7db4ac3ca93))
+* **core:** types ([0c44447](https://github.com/p3ol/oak/commit/0c44447ffced5670c112beb16ee8fea96241e00e))
+* **react:** a lot of types ([8458000](https://github.com/p3ol/oak/commit/8458000b90ae59e1ce4ec081d48f2adf79deb288))
+* **react:** a lot of types issues ([cdf9ef0](https://github.com/p3ol/oak/commit/cdf9ef09b737f648afbf593b067473a5de699073))
+* **react:** update and clean code ([9c19732](https://github.com/p3ol/oak/commit/9c197322c3f66f4d1247eb62151f88bf6f8267d2))
+* update various deps ([8b72c2a](https://github.com/p3ol/oak/commit/8b72c2a84215181363efb26e059b5056fa3e9305))
+* various remaining type issues ([a975e97](https://github.com/p3ol/oak/commit/a975e975ef60e5504cef8f934ba6310560f59d07))
+
+
+### Features
+
+* add box shadow styling field ([0f635a4](https://github.com/p3ol/oak/commit/0f635a43f4a891bcc04d0892317aa5fb26e88e92))
+* **core:** add border width, color & radius ([f3b990b](https://github.com/p3ol/oak/commit/f3b990bbfe2e445a8da8b1e5c9572db5983e22bf))
+* **typescript-core:** lint core files ([441e4d3](https://github.com/p3ol/oak/commit/441e4d3fbf1ea1efb14cfe08dfab1ffa736c202f))
+* **typescript:** builder constructor rework ([c00ceae](https://github.com/p3ol/oak/commit/c00ceae3f3adc511ae80f13957d0d81f45493f22))
+* **typescript:** rework core lib ([59a799d](https://github.com/p3ol/oak/commit/59a799d51c1e09991c9b69af06d926784df3d7a3))
+* **typescript:** wip typescript ([88dec47](https://github.com/p3ol/oak/commit/88dec47fce29d8e3768305b39c5fc9cdb1e67ffa))
+* **typescript:** wip typescript ([1c12174](https://github.com/p3ol/oak/commit/1c12174a47c0744dcde2a8c353be6f24bef4d616))
+* **typescript:** wip typescript - react package ([f4ca25f](https://github.com/p3ol/oak/commit/f4ca25f4535a6028b1ec128597cae5ad5e5f20e6))
+
+
+
+
+
 ## [3.5.5](https://github.com/p3ol/oak/compare/v3.5.4...v3.5.5) (2024-05-29)
 
 

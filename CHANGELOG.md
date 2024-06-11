@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/p3ol/oak/compare/v3.5.6...v3.6.0) (2024-06-11)
+
+
+### Bug Fixes
+
+* **addon-ckeditor5-react:** update ckeditor to v41 ([ef99c10](https://github.com/p3ol/oak/commit/ef99c1002a5dba9bb318cd2c5521e7f04ed26de8))
+* **core:** settings override not working ([668109a](https://github.com/p3ol/oak/commit/668109afde59a58e87dbaae26a1fb7db4ac3ca93))
+* **core:** types ([0c44447](https://github.com/p3ol/oak/commit/0c44447ffced5670c112beb16ee8fea96241e00e))
+* **react:** a lot of types ([8458000](https://github.com/p3ol/oak/commit/8458000b90ae59e1ce4ec081d48f2adf79deb288))
+* **react:** a lot of types issues ([cdf9ef0](https://github.com/p3ol/oak/commit/cdf9ef09b737f648afbf593b067473a5de699073))
+* **react:** allow more sibling fields in editable ([95a6404](https://github.com/p3ol/oak/commit/95a6404148c2758f85fb7d144b9870b2609a5be1))
+* **react:** clean code ([f5079f6](https://github.com/p3ol/oak/commit/f5079f64b1d56994d251fc71fb3451b5ce721119))
+* **react:** image field preview ([469391e](https://github.com/p3ol/oak/commit/469391e9cf832c87d9911feb273f51da911ba60c))
+* **react:** missing exports ([51a36ed](https://github.com/p3ol/oak/commit/51a36edf9bc647d0b2a507b0193890834072c8cf))
+* **react:** update and clean code ([9c19732](https://github.com/p3ol/oak/commit/9c197322c3f66f4d1247eb62151f88bf6f8267d2))
+* tests typings ([f3ba27e](https://github.com/p3ol/oak/commit/f3ba27e3897f74f099b0d240ae76194f321392cc))
+* **theme:** editable fields menus zindex ([0c92e1c](https://github.com/p3ol/oak/commit/0c92e1c359000d5e6ad5754f4612843541b6c049))
+* update junipero ([64aeff9](https://github.com/p3ol/oak/commit/64aeff92b2add9c0262a0806748295603a929167))
+* update various deps ([8b72c2a](https://github.com/p3ol/oak/commit/8b72c2a84215181363efb26e059b5056fa3e9305))
+* various remaining type issues ([a975e97](https://github.com/p3ol/oak/commit/a975e975ef60e5504cef8f934ba6310560f59d07))
+
+
+### Features
+
+* add box shadow styling field ([0f635a4](https://github.com/p3ol/oak/commit/0f635a43f4a891bcc04d0892317aa5fb26e88e92))
+* **core:** add border width, color & radius ([f3b990b](https://github.com/p3ol/oak/commit/f3b990bbfe2e445a8da8b1e5c9572db5983e22bf))
+* **typescript-core:** lint core files ([441e4d3](https://github.com/p3ol/oak/commit/441e4d3fbf1ea1efb14cfe08dfab1ffa736c202f))
+* **typescript-core:** remove react ([6ed6f20](https://github.com/p3ol/oak/commit/6ed6f2059cbca1adcfca8760a669231bc743ed4e))
+* **typescript-core:** remove react ([21fa955](https://github.com/p3ol/oak/commit/21fa955ae006c01e0c849ebafd0bca160da8a7d1))
+* **typescript-core:** revert react ([b973f43](https://github.com/p3ol/oak/commit/b973f437dc533c9a5ec4b795b2ee5de16aa74580))
+* **typescript-react:** begin react package ([62d8dee](https://github.com/p3ol/oak/commit/62d8dee8b3cc6dae7f81653d797ca84d47daf6f8))
+* **typescript-react:** rework react builder ([04bbbd7](https://github.com/p3ol/oak/commit/04bbbd7ce166114ea11f7428a5fab8ebeb131790))
+* **typescript-react:** type builder react ([1ef7ff3](https://github.com/p3ol/oak/commit/1ef7ff32e962c1b256604f3bd9718a2c4bd95566))
+* **typescript:** builder constructor rework ([c00ceae](https://github.com/p3ol/oak/commit/c00ceae3f3adc511ae80f13957d0d81f45493f22))
+* **typescript:** rework core lib ([59a799d](https://github.com/p3ol/oak/commit/59a799d51c1e09991c9b69af06d926784df3d7a3))
+* **typescript:** wip typescript ([cdd6222](https://github.com/p3ol/oak/commit/cdd6222070b88eb878579656391d7721ea1b2d28))
+* **typescript:** wip typescript ([88dec47](https://github.com/p3ol/oak/commit/88dec47fce29d8e3768305b39c5fc9cdb1e67ffa))
+* **typescript:** wip typescript ([1c12174](https://github.com/p3ol/oak/commit/1c12174a47c0744dcde2a8c353be6f24bef4d616))
+* **typescript:** wip typescript - react package ([f4ca25f](https://github.com/p3ol/oak/commit/f4ca25f4535a6028b1ec128597cae5ad5e5f20e6))
+
+
+
+
+
 ## [3.5.6](https://github.com/p3ol/oak/compare/v3.5.5...v3.5.6) (2024-05-29)
 
 

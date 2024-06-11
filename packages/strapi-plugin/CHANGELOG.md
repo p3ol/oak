@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/p3ol/oak/compare/v3.5.6...v3.6.0) (2024-06-11)
+
+
+### Bug Fixes
+
+* **addon-ckeditor5-react:** update ckeditor to v41 ([ef99c10](https://github.com/p3ol/oak/commit/ef99c1002a5dba9bb318cd2c5521e7f04ed26de8))
+
+
+
+
+
 ## [3.5.6](https://github.com/p3ol/oak/compare/v3.5.5...v3.5.6) (2024-05-29)
 
 **Note:** Version bump only for package @oakjs/strapi-plugin

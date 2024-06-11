@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/p3ol/oak/compare/v3.5.6...v3.6.0) (2024-06-11)
+
+
+### Bug Fixes
+
+* **addon-ckeditor5-react:** update ckeditor to v41 ([ef99c10](https://github.com/p3ol/oak/commit/ef99c1002a5dba9bb318cd2c5521e7f04ed26de8))
+* various remaining type issues ([a975e97](https://github.com/p3ol/oak/commit/a975e975ef60e5504cef8f934ba6310560f59d07))
+
+
+
+
+
 ## [3.5.5](https://github.com/p3ol/oak/compare/v3.5.4...v3.5.5) (2024-05-29)
 
 

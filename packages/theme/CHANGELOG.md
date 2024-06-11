@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/p3ol/oak/compare/v3.5.6...v3.6.0) (2024-06-11)
+
+
+### Bug Fixes
+
+* **theme:** editable fields menus zindex ([0c92e1c](https://github.com/p3ol/oak/commit/0c92e1c359000d5e6ad5754f4612843541b6c049))
+
+
+
+
+
 ## [3.5.6](https://github.com/p3ol/oak/compare/v3.5.5...v3.5.6) (2024-05-29)
 
 
