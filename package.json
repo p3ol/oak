@@ -7,7 +7,7 @@
   "scripts": {
     "lerna": "lerna",
     "changelog": "lerna-changelog",
-    "prepack": "yarn lint && yarn tsc && yarn build && yarn test",
+    "prepack": "yarn build && yarn lint && yarn tsc && yarn test",
     "lint": "eslint --max-warnings=0 .",
     "test": "jest",
     "build": "lerna exec -- yarn build",
