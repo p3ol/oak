@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.1](https://github.com/p3ol/oak/compare/v3.6.0...v3.6.1) (2024-06-11)
+
+**Note:** Version bump only for package @oakjs/addon-ckeditor5-react
+
+
+
+
+
 # [3.6.0](https://github.com/p3ol/oak/compare/v3.5.6...v3.6.0) (2024-06-11)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.1](https://github.com/p3ol/oak/compare/v3.6.0...v3.6.1) (2024-06-11)
+
+
+### Bug Fixes
+
+* **react:** missing types exports ([9e9d6d5](https://github.com/p3ol/oak/commit/9e9d6d5590d32591cd6c5232f9a6c9b8c5f458e7))
+
+
+
+
+
 # [3.6.0](https://github.com/p3ol/oak/compare/v3.5.6...v3.6.0) (2024-06-11)
 
 
