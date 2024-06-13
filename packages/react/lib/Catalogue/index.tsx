@@ -1,7 +1,7 @@
 import {
-  type ComponentPropsWithRef,
   type MouseEvent,
   type MutableRefObject,
+  type ComponentPropsWithoutRef,
   forwardRef,
   useImperativeHandle,
   useMemo,
@@ -11,7 +11,7 @@ import {
 import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { createPortal } from 'react-dom';
 import {
-  type ForwardedProps,
+  type StateReducer,
   Tabs,
   Tab,
   classNames,
@@ -31,21 +31,22 @@ import {
   flip,
 } from '@floating-ui/react';
 
+import type { OakRef } from '../types';
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 import Text from '../Text';
 
-export declare type CatalogueRef = {
+export declare interface CatalogueRef extends OakRef {
   open: () => void;
   close: () => void;
   toggle: () => void;
   opened: boolean;
-  isOak: boolean;
-  innerRef: MutableRefObject<any>;
-};
+  innerRef: MutableRefObject<HTMLDivElement>;
+}
 
-export declare interface CatalogueProps extends ComponentPropsWithRef<any> {
-  className?: string;
+export declare interface CatalogueProps
+  extends ComponentPropsWithoutRef<'div'> {
+  component?: ComponentObject;
   placement?: string;
   floatingOptions?: UseFloatingOptions & {
     boundary?: Boundary;
@@ -53,7 +54,11 @@ export declare interface CatalogueProps extends ComponentPropsWithRef<any> {
   onToggle?(props: { opened: boolean }): void;
   onAppend?(component: ComponentObject): void;
   onPaste?(clipboardData: ElementObject): void;
-  ref?: MutableRefObject<CatalogueRef>;
+}
+
+export declare interface CatalogueState {
+  opened: boolean;
+  clipboard?: ElementObject;
 }
 
 const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
@@ -64,10 +69,13 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
   onToggle,
   onAppend,
   onPaste,
-}: CatalogueProps, ref) => {
-  const innerRef = useRef();
-  const { builder, rootRef, rootBoundary, floatingsRef } = useBuilder();
-  const [state, dispatch] = useReducer(mockState, {
+  ...rest
+}, ref) => {
+  const innerRef = useRef<HTMLDivElement>();
+  const { builder, floatingsRef } = useBuilder();
+  const [state, dispatch] = useReducer<
+    StateReducer<CatalogueState>
+  >(mockState, {
     opened: false,
     clipboard: null,
   });
@@ -146,7 +154,10 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
     onAppend?.(component);
   };
 
-  const availableGroups = builder.getAvailableComponents();
+  const availableGroups = useMemo(() => (
+    builder.getAvailableComponents()
+  ), [builder]);
+
   const groups = useMemo(() => (
     availableGroups
       .filter(g => g.usable !== false)
@@ -163,6 +174,7 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
 
   return (
     <div
+      { ...rest }
       ref={innerRef}
       className={classNames(
         'catalogue',

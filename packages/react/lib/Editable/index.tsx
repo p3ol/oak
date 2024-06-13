@@ -1,8 +1,6 @@
 import {
-  type ComponentPropsWithoutRef,
   type MutableRefObject,
   type ReactElement,
-  type Ref,
   Children,
   cloneElement,
   forwardRef,
@@ -17,7 +15,13 @@ import type {
   ElementObject,
 } from '@oakjs/core';
 import { createPortal } from 'react-dom';
-import { mockState, classNames, ensureNode, omit } from '@junipero/react';
+import {
+  type SpecialComponentPropsWithoutRef,
+  mockState,
+  classNames,
+  ensureNode,
+  omit,
+} from '@junipero/react';
 import { slideInDownMenu } from '@junipero/transitions';
 import {
   type UseFloatingOptions,
@@ -33,10 +37,11 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 
+import type { OakRef } from '../types';
 import { useBuilder } from '../hooks';
 import Form from './Form';
 
-export interface EditableProps extends ComponentPropsWithoutRef<any> {
+export interface EditableProps extends SpecialComponentPropsWithoutRef {
   children: ReactElement;
   element: ElementObject;
   component: ComponentObject;
@@ -46,23 +51,21 @@ export interface EditableProps extends ComponentPropsWithoutRef<any> {
   onToggle?: (state: { opened: boolean }) => void;
 }
 
-type FloatingRef = {
+export declare interface FloatingRef extends OakRef {
   open: () => void;
   close: () => void;
   toggle: () => void;
   opened: boolean;
-  isOak: boolean;
   innerRef: MutableRefObject<any>;
-};
+}
 
-export type EditableRef = {
+export declare interface EditableRef extends OakRef {
   open: () => void;
   close: () => void;
   forceClose: () => void;
   toggle: () => void;
-  isOak: boolean;
-  innerRef: MutableRefObject<any>;
-};
+  innerRef: MutableRefObject<FloatingRef | HTMLDivElement>;
+}
 
 const Editable = forwardRef<EditableRef, EditableProps>(({
   children,
@@ -70,8 +73,8 @@ const Editable = forwardRef<EditableRef, EditableProps>(({
   element,
   component,
   onToggle,
-}: EditableProps, ref) => {
-  const innerRef: MutableRefObject<any> = useRef<Ref<HTMLElement>>();
+}, ref) => {
+  const innerRef = useRef<FloatingRef | HTMLDivElement>();
   const { rootBoundary, floatingsRef } = useBuilder();
   const [state, dispatch] = useReducer(mockState, {
     opened: false,
@@ -180,7 +183,7 @@ const Editable = forwardRef<EditableRef, EditableProps>(({
             );
             innerRef.current = ref;
           }}
-          {...getFloatingProps()}
+          { ...getFloatingProps() }
         >
           { slideInDownMenu((
             <Form
@@ -189,7 +192,7 @@ const Editable = forwardRef<EditableRef, EditableProps>(({
               placement={context.placement}
               onSave={close}
               onCancel={close}
-              editableRef={innerRef}
+              editableRef={ref as MutableRefObject<EditableRef>}
             />
           ), { opened: state.opened, onExited: onAnimationExit }) }
         </div>

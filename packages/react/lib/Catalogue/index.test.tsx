@@ -24,7 +24,7 @@ describe('<Catalogue />', () => {
 
     expect(container).toMatchSnapshot('Closed');
 
-    fireEvent.click(screen.getByText('add'));
+    fireEvent.click(screen.getAllByText('add')[0]);
 
     expect(container).toMatchSnapshot('Opened');
 

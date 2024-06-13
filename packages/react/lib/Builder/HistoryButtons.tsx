@@ -5,9 +5,12 @@ import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Icon from '../Icon';
 
-const HistoryButtons = (
-  { canUndo, canRedo }: { canUndo: boolean, canRedo: boolean}
-) => {
+export declare interface HistoryButtonsProps {
+  canUndo: boolean;
+  canRedo: boolean;
+}
+
+const HistoryButtons = ({ canUndo, canRedo }: HistoryButtonsProps) => {
   const { builder, rootRef, floatingsRef, rootBoundary } = useBuilder();
 
   return (

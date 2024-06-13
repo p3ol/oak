@@ -1,9 +1,9 @@
 import {
   type ComponentPropsWithRef,
   type MouseEvent,
+  type ChangeEvent,
   useEffect,
   useReducer,
-  ChangeEvent,
 } from 'react';
 import type {
   ComponentSettingsField,
@@ -11,6 +11,8 @@ import type {
   ElementObject,
 } from '@oakjs/core';
 import {
+  type StateReducer,
+  type FieldContent,
   TouchableZone,
   Spinner,
   classNames,
@@ -26,16 +28,19 @@ export declare interface ImageFieldValue {
   url: string | ArrayBuffer;
 }
 
-export declare interface ImageFieldContent {
-  value?: ImageFieldValue;
+export declare interface ImageFieldState {
+  value: ImageFieldValue;
+  loading: boolean;
 }
 
-export interface ImageFieldProps extends ComponentPropsWithRef<any> {
+export interface ImageFieldProps extends Omit<
+  ComponentPropsWithRef<'div'>, 'onChange'
+> {
   value?: ImageFieldValue;
   element?: ElementObject;
   setting?: ComponentSettingsFieldObject | ComponentSettingsField;
   onOpenDialog?: () => void;
-  onChange?: (value: ImageFieldContent) => void;
+  onChange?: (field: FieldContent<ImageFieldValue>) => void;
   iconOnly?: boolean;
   accept?: string[];
 }
@@ -51,7 +56,9 @@ const ImageField = ({
   accept = ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'],
 }: ImageFieldProps) => {
   const { onImageUpload } = useBuilder();
-  const [state, dispatch] = useReducer(mockState, {
+  const [state, dispatch] = useReducer<
+    StateReducer<ImageFieldState>
+  >(mockState, {
     value: {
       ...value,
       url: value?.url || '',
@@ -134,7 +141,8 @@ const ImageField = ({
 
   const getName = () =>
     state.value.name ||
-    (/data:/.test(state.value.url) ? 'Local image' : state.value.url) ||
+    (typeof state.value.url === 'string' && /data:/.test(state.value.url)
+      ? 'Local image' : state.value.url?.toString()) ||
     'No image';
 
   return (

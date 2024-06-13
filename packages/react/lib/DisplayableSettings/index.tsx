@@ -15,7 +15,7 @@ import Text from '../Text';
 import Property from './Property';
 
 export declare interface DisplayableSettingsProps
-  extends ComponentPropsWithoutRef<any> {
+  extends ComponentPropsWithoutRef<'div'> {
   element?: ElementObject;
   component?: ComponentObject | Component;
   override?: ComponentOverrideObject | ComponentOverride;
@@ -26,6 +26,7 @@ const DisplayableSettings = ({
   element,
   component,
   override,
+  ...rest
 }: DisplayableSettingsProps) => {
   const { builder } = useBuilder();
 
@@ -58,6 +59,7 @@ const DisplayableSettings = ({
 
   return (
     <div
+      { ...rest }
       className={classNames(
         'displayable-settings junipero extra !oak-text-alternate-text-color',
         className,

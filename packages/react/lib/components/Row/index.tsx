@@ -5,7 +5,7 @@ import { Droppable, classNames, omit } from '@junipero/react';
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
 
-export interface RowProps extends ComponentPropsWithoutRef<any> {
+export interface RowProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
   parent: Array<ElementObject>;
   parentComponent: ComponentObject;

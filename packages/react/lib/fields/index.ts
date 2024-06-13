@@ -1,6 +1,6 @@
 export {
   default as ImageField,
   type ImageFieldProps,
+  type ImageFieldState,
   type ImageFieldValue,
-  type ImageFieldContent,
 } from './ImageField';

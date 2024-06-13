@@ -6,9 +6,9 @@ import { useBuilder } from '../hooks';
 import Element from '../Element';
 import Catalogue, { type CatalogueRef } from '../Catalogue';
 
-export declare interface ContainerProps extends ComponentPropsWithoutRef<any> {
+export declare interface ContainerProps
+  extends Omit<ComponentPropsWithoutRef<'div'>, 'content'> {
   element?: ElementObject;
-  className?: string;
   content?: Array<ElementObject>;
   component?: ComponentObject | Component;
   depth?: number;
@@ -20,6 +20,7 @@ const Container = ({
   className,
   content = [],
   depth = 0,
+  ...rest
 }: ContainerProps) => {
   const prependCatalogueRef = useRef<CatalogueRef>();
   const appendCatalogueRef = useRef<CatalogueRef>();
@@ -75,6 +76,7 @@ const Container = ({
   return (
     <Droppable disabled={content.length > 0} onDrop={onDrop}>
       <div
+        { ...rest }
         className={classNames(
           'container oak-flex-auto oak-flex oak-flex-col oak-gap-2',
           'oak-p-4',

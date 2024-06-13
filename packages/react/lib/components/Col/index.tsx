@@ -2,7 +2,6 @@ import {
   type ComponentPropsWithoutRef,
   type Key,
   type MouseEvent,
-  type MutableRefObject,
   useMemo,
   useRef,
 } from 'react';
@@ -17,7 +16,7 @@ import Icon from '../../Icon';
 import Option from '../../Option';
 import Text from '../../Text';
 
-export interface ColProps extends ComponentPropsWithoutRef<any> {
+export interface ColProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
   depth?: number;
   onPrepend?: () => void;
@@ -32,7 +31,6 @@ const Col = ({
   onPrepend,
   onAppend,
   onRemove,
-  ...rest
 }: ColProps) => {
   const editableRef = useRef<EditableRef>();
   const prependCatalogueRef = useRef<CatalogueRef>();
@@ -111,7 +109,6 @@ const Col = ({
 
   return (
     <div
-      { ...rest }
       className={classNames(
         'column',
         {

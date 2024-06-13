@@ -73,7 +73,7 @@ export const selectField = (props?: ReactFieldObject): ReactFieldObject => ({
       animateMenu={slideInDownMenu}
       parseTitle={setting.parseTitle || (o => o?.title ? t(o.title) : o)}
       parseValue={setting.parseValue || (o => o?.value ?? o)}
-      container={editableRef.current}
+      container={editableRef.current?.innerRef.current as HTMLDivElement}
     />
   ),
   ...props,
@@ -81,12 +81,13 @@ export const selectField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const colorField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.colorField(),
-  render: (fieldProps: ColorFieldProps, { setting, t } = {}) => (
+  render: (fieldProps: ColorFieldProps, { setting, editableRef, t } = {}) => (
     <ColorField
       { ...fieldProps }
       { ...setting.placeholder && {
         placeholder: t(setting.placeholder),
       } }
+      container={editableRef.current?.innerRef.current as HTMLDivElement}
     />
   ),
   ...props,
@@ -108,12 +109,13 @@ export const imageField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const dateField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.dateField(),
-  render: (fieldProps: DateFieldProps, { setting, t } = {}) => (
+  render: (fieldProps: DateFieldProps, { setting, editableRef, t } = {}) => (
     <DateField
       { ...fieldProps }
       { ...setting.placeholder && {
         placeholder: t(setting.placeholder),
       } }
+      container={editableRef.current?.innerRef.current as HTMLDivElement}
     />
   ),
   ...props,

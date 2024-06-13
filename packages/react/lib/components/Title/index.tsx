@@ -1,10 +1,12 @@
-import type { ComponentPropsWithoutRef } from 'react';
 import type { ElementObject } from '@oakjs/core';
-import { classNames } from '@junipero/react';
+import {
+  type SpecialComponentPropsWithoutRef,
+  classNames,
+} from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
 
-export interface TitleProps extends ComponentPropsWithoutRef<any> {
+export interface TitleProps extends SpecialComponentPropsWithoutRef {
   element: ElementObject;
 }
 

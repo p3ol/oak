@@ -6,11 +6,11 @@ import type {
   ComponentSettingsFieldOptionObject,
   ElementObject,
 } from '@oakjs/core';
-import { get } from '@junipero/react';
+import { get, classNames } from '@junipero/react';
 
 import Text from '../Text';
 
-interface PropertyProps extends ComponentPropsWithoutRef<any> {
+interface PropertyProps extends ComponentPropsWithoutRef<'span'> {
   element: ElementObject;
   field: ComponentSettingsFieldObject;
   override?: ComponentOverrideObject | ComponentOverride;
@@ -20,6 +20,8 @@ const Property = ({
   element,
   field: setting,
   override,
+  className,
+  ...rest
 }: PropertyProps) => {
   const field = useMemo<ComponentSettingsFieldObject>(() => ({
     ...setting,
@@ -39,7 +41,7 @@ const Property = ({
   ), [field, value]);
 
   return (
-    <span className="property">
+    <span { ...rest } className={classNames('property', className)}>
       <span className="key">
         <Text>{ field.label }</Text>
         <Text name="core.propertyPairSeparator" default=": " />

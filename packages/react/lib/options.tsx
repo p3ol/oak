@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, DragEvent, MouseEvent, MutableRefObject, useRef, useState } from 'react';
-import { Draggable, classNames } from '@junipero/react';
+import { Draggable, DraggableRef, classNames } from '@junipero/react';
 import type { ComponentOptionObject, ElementObject } from '@oakjs/core';
 
 import type { EditableRef } from './Editable';
@@ -16,7 +16,7 @@ export interface DragOptionProps extends ComponentPropsWithoutRef<'a'> {
 export const DragOption = ({
   element, elementInnerRef, editableRef, className,
 }: DragOptionProps) => {
-  const optionRef = useRef<OptionRef>();
+  const optionRef = useRef<DraggableRef>();
   const [hasTooltip, setHasTooltip] = useState(true);
 
   const onBeforeDragStart = (e: DragEvent) => {

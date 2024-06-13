@@ -16,12 +16,14 @@ import type {
   FieldOverrideObject,
 } from '@oakjs/core';
 import {
+  type DroppableRef,
   Draggable,
   Droppable,
   Tooltip,
   classNames,
 } from '@junipero/react';
 
+import type { OakRef, ReactComponentObject } from '../types';
 import { copyToClipboard } from '../utils';
 import { useBuilder } from '../hooks';
 import DisplayableSettings from '../DisplayableSettings';
@@ -29,7 +31,6 @@ import Editable, { type EditableRef } from '../Editable';
 import Icon from '../Icon';
 import Option from '../Option';
 import Text from '../Text';
-import { ReactComponentObject } from '../types';
 
 export interface ElementProps extends ComponentPropsWithoutRef<any> {
   element?: ElementObject;
@@ -39,9 +40,8 @@ export interface ElementProps extends ComponentPropsWithoutRef<any> {
   depth?: number;
 }
 
-export interface ElementRef {
-  innerRef: MutableRefObject<HTMLElement>;
-  isOak: boolean;
+export interface ElementRef extends OakRef {
+  innerRef: MutableRefObject<DroppableRef>;
 }
 
 const Element = forwardRef<ElementRef, ElementProps>(({
@@ -51,7 +51,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   className,
   depth = 0,
 }, ref) => {
-  const innerRef = useRef<HTMLElement>();
+  const innerRef = useRef<DroppableRef>();
   const editableRef = useRef<EditableRef>();
   const [editableOpened, setEditableOpened] = useState(false);
   const { builder, addons } = useBuilder();

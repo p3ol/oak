@@ -6,7 +6,7 @@ import { useBuilder } from '../../hooks';
 import Text from '../../Text';
 import Container from '../../Container';
 
-export interface FoldableProps extends ComponentPropsWithoutRef<any> {
+export interface FoldableProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
   parent: Array<ElementObject>;
   component: ComponentObject;

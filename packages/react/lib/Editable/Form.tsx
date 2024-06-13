@@ -2,6 +2,7 @@ import {
   type ComponentPropsWithoutRef,
   type Key,
   useReducer,
+  MutableRefObject,
 } from 'react';
 import type {
   ComponentObject,
@@ -19,6 +20,7 @@ import {
   Button,
   FieldControl,
   Label,
+  StateReducer,
   Tab,
   Tabs,
   Tooltip,
@@ -27,19 +29,23 @@ import {
   mockState,
 } from '@junipero/react';
 
+import type { EditableRef } from '.';
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 import Text from '../Text';
 import Field from './Field';
 
-export interface FormProps extends ComponentPropsWithoutRef<any> {
+export declare interface FormProps extends ComponentPropsWithoutRef<'div'> {
   placement?: string;
   element: ElementObject;
   component: ComponentObject;
-  className?: string;
   onSave: () => void;
   onCancel: () => void;
-  editableRef?: any;
+  editableRef?: MutableRefObject<EditableRef>;
+}
+
+export declare interface FormState {
+  element: ElementObject;
 }
 
 const Form = ({
@@ -58,7 +64,7 @@ const Form = ({
     component?.deserialize ||
     ((e: ElementObject) => e);
 
-  const [state, dispatch] = useReducer(mockState, {
+  const [state, dispatch] = useReducer<StateReducer<FormState>>(mockState, {
     element: deserialize(cloneDeep(element)),
   });
 

@@ -4,7 +4,7 @@ import { classNames } from '@junipero/react';
 
 import Text from '../../Text';
 
-export interface ImageProps extends ComponentPropsWithoutRef<any> {
+export interface ImageProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
 }
 

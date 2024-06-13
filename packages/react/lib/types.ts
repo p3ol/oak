@@ -11,6 +11,7 @@ import type {
 import type {
   ColorFieldProps,
   DateFieldProps,
+  DroppableRef,
   SelectFieldProps,
   TextFieldProps,
   ToggleProps,
@@ -18,6 +19,10 @@ import type {
 
 import type { EditableRef } from './Editable';
 import type { ImageFieldProps } from './fields';
+
+export declare interface OakRef {
+  isOak: boolean;
+}
 
 export declare interface ImageUploadCallbackResult {
   url: string;
@@ -65,7 +70,7 @@ export declare interface ReactComponentOptionObject
       parent: ElementObject[];
       component: ReactComponentObject;
       index: number;
-      elementInnerRef: MutableRefObject<HTMLElement>;
+      elementInnerRef: MutableRefObject<DroppableRef>;
       editableRef: MutableRefObject<EditableRef>;
     },
   ): ReactNode;

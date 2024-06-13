@@ -4,7 +4,7 @@ import { classNames } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
 
-export interface TextComponentProps extends ComponentPropsWithoutRef<any> {
+export interface TextComponentProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
 }
 

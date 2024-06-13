@@ -11,27 +11,28 @@ import {
 import { type Boundary } from '@floating-ui/react';
 import {
   type TooltipRef,
+  type TooltipProps,
   Tooltip,
   classNames,
 } from '@junipero/react';
 
+import type { OakRef } from '../types';
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 
-export interface OptionProps extends ComponentPropsWithoutRef<any> {
+export interface OptionProps extends ComponentPropsWithoutRef<'a'> {
   iconClassName?: string;
-  option?: { icon:
-    (string | ReactNode) | (() => (string | ReactNode))
+  option?: {
+    icon: string | ReactNode | (() => ReactNode | ReactNode)
   };
   renderIcon?: () => ReactNode;
   draggable?: boolean;
   name?: ReactNode | JSX.Element;
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
-  tooltipProps?: any;
+  tooltipProps?: Partial<TooltipProps>;
 }
 
-export interface OptionRef {
-  isOak: boolean;
+export interface OptionRef extends OakRef {
   innerRef: MutableRefObject<HTMLElement>;
   tooltipRef: MutableRefObject<TooltipRef>;
 }
@@ -45,10 +46,10 @@ const Option = forwardRef<OptionRef, OptionProps>(({
   name,
   onClick,
   tooltipProps,
-  ...props
+  ...rest
 }, ref) => {
   const { rootRef, rootBoundary, floatingsRef } = useBuilder();
-  const innerRef = useRef();
+  const innerRef = useRef<HTMLElement>();
   const tooltipRef = useRef<TooltipRef>();
 
   useImperativeHandle(ref, () => ({
@@ -69,7 +70,7 @@ const Option = forwardRef<OptionRef, OptionProps>(({
 
   const inner = (
     <a
-      { ...props }
+      { ...rest }
       onClick={onClick_}
       href="#"
       draggable={draggable ?? false}
