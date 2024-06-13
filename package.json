@@ -69,7 +69,7 @@
     "@storybook/react": "8.1.6",
     "@storybook/react-webpack5": "8.1.6",
     "@storybook/theming": "8.1.6",
-    "@swc/core": "1.5.28",
+    "@swc/core": "1.5.29",
     "@swc/jest": "0.2.36",
     "@testing-library/dom": "10.1.0",
     "@testing-library/jest-dom": "6.4.6",
