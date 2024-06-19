@@ -2,6 +2,7 @@ import type {
   AddonObject,
   ComponentObject,
   ComponentSettingsFieldObject,
+  ComponentSettingsFieldOptionObject,
   ComponentSettingsFormObject,
   ComponentsGroupObject,
   ElementObject,
@@ -716,6 +717,48 @@ export const foldableComponent = (
   ...props,
 });
 
+const BORDER_STYLE_OPTIONS: ComponentSettingsFieldOptionObject[] = [{
+  title: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style.solid', 'Solid'),
+  value: 'solid',
+}, {
+  title: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style.dashed', 'Dashed'),
+  value: 'dashed',
+}, {
+  title: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style.dotted', 'Dotted'),
+  value: 'dotted',
+}, {
+  title: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style.double', 'Double'),
+  value: 'double',
+}, {
+  title: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style.groove', 'Groove'),
+  value: 'groove',
+}, {
+  title: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style.ridge', 'Ridge'),
+  value: 'ridge',
+}, {
+  title: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style.inset', 'Inset'),
+  value: 'inset',
+}, {
+  title: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style.outset', 'Outset'),
+  value: 'outset',
+}];
+
 export const stylingSettings = (
   props?: ComponentSettingsFieldObject
 ): ComponentSettingsFieldObject => ({
@@ -813,6 +856,9 @@ export const stylingSettings = (
     }],
   }, {
     type: 'field',
+    label: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.color', 'Border color'),
     condition: (element: ElementObject) =>
       element?.styles?.borderTop ||
       element?.styles?.borderRight ||
@@ -842,6 +888,49 @@ export const stylingSettings = (
       placeholder: (
         t: GetTextCallback
       ) => t('core.styling.borders.leftColor', '#000'),
+    }],
+  }, {
+    type: 'field',
+    condition: (element: ElementObject) =>
+      element?.styles?.borderTop ||
+      element?.styles?.borderRight ||
+      element?.styles?.borderBottom ||
+      element?.styles?.borderLeft,
+    label: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.style', 'Border style'),
+    fields: [{
+      type: 'select',
+      key: 'styles.borderTopStyle',
+      default: 'solid',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.topStyle', 'Top'),
+      options: BORDER_STYLE_OPTIONS,
+    }, {
+      type: 'select',
+      key: 'styles.borderRightStyle',
+      default: 'solid',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.rightStyle', 'Right'),
+      options: BORDER_STYLE_OPTIONS,
+    }, {
+      type: 'select',
+      key: 'styles.borderBottomStyle',
+      default: 'solid',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.bottomStyle', 'Bottom'),
+      options: BORDER_STYLE_OPTIONS,
+    }, {
+      type: 'select',
+      key: 'styles.borderLeftStyle',
+      default: 'solid',
+      placeholder: (
+        t: GetTextCallback
+      ) => t('core.styling.borders.leftStyle', 'Left'),
+      options: BORDER_STYLE_OPTIONS,
     }],
   }, {
     type: 'field',
