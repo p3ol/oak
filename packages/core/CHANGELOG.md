@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.8](https://github.com/p3ol/oak/compare/v3.6.7...v3.6.8) (2024-06-19)
+
+
+### Bug Fixes
+
+* **core:** add missing border style ([f593f50](https://github.com/p3ol/oak/commit/f593f509f3befa8aaed16af3008cc9c366a36b6c))
+
+
+
+
+
 ## [3.6.7](https://github.com/p3ol/oak/compare/v3.6.6...v3.6.7) (2024-06-19)
 
 
