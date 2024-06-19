@@ -110,7 +110,7 @@
     "tailwindcss": "3.4.4",
     "terser-webpack-plugin": "5.3.10",
     "typescript": "5.4.5",
-    "webpack": "5.91.0",
+    "webpack": "5.92.1",
     "webpack-cli": "5.1.4"
   },
   "packageManager": "yarn@4.2.2"
