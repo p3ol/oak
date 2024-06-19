@@ -5,7 +5,7 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import type { ComponentObject, ElementObject } from '@oakjs/core';
+import type { ComponentObject, ComponentOverrideObject, ElementObject } from '@oakjs/core';
 import { Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
@@ -35,10 +35,13 @@ const Col = ({
   const editableRef = useRef<EditableRef>();
   const prependCatalogueRef = useRef<CatalogueRef>();
   const appendCatalogueRef = useRef<CatalogueRef>();
-  const { builder, floatingsRef } = useBuilder();
+  const { builder, floatingsRef, addons } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent?.(element.type)
   ), [element.type]);
+  const override = useMemo(() => (
+    builder.getOverride('component', element?.type)
+  ), [element?.type, addons]);
 
   const onPrependCol_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -255,18 +258,23 @@ const Col = ({
 
       { component && (
         <div className="options oak-flex oak-items-center oak-gap-0.5">
-          <Editable
-            ref={editableRef}
-            element={element}
-            component={component}
-          >
-            <Option
-              className="edit"
-              option={{ icon: 'pen' }}
-              onClick={onEdit_}
-              name={<Text name="core.tooltips.edit">Edit</Text>}
-            />
-          </Editable>
+          { (
+            (override as ComponentOverrideObject)?.editable ??
+            component.editable
+          ) && (
+            <Editable
+              ref={editableRef}
+              element={element}
+              component={component}
+            >
+              <Option
+                className="edit"
+                option={{ icon: 'pen' }}
+                onClick={onEdit_}
+                name={<Text name="core.tooltips.edit">Edit</Text>}
+              />
+            </Editable>
+          ) }
           <Option
             className="remove"
             option={{ icon: 'close' }}

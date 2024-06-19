@@ -231,7 +231,10 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                 }) }
               </Fragment>
             )) }
-            { component?.editable && (
+            { (
+              (override as ComponentOverrideObject)?.editable ??
+              component?.editable
+            ) && (
               <Editable
                 element={element}
                 component={component}

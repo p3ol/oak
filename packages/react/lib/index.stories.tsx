@@ -288,3 +288,18 @@ export const withMergeOverrides = () => (
     onChange={action('change')}
   />
 );
+
+export const withNonEditableComponents = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'component',
+        targets: ['*'],
+        editable: false,
+      }],
+    }]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
