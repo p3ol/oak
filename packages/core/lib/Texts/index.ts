@@ -110,7 +110,7 @@ export default class Texts extends Emitter implements ITexts {
     }
   }
 
-  get (key: Function | string, def: string) {
+  get (key: Function | string, def?: string) {
     if (typeof key === 'function') {
       return key(this.get.bind(this));
     }

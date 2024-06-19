@@ -326,7 +326,7 @@ export default class Builder extends Emitter {
     return this.#texts.getSheet(id);
   }
 
-  getText (key: string, def: string) {
+  getText (key: string, def?: string) {
     return this.#texts.get(key, def);
   }
 
