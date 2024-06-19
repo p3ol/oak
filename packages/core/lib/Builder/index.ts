@@ -242,14 +242,14 @@ export default class Builder extends Emitter {
   }
 
   getElement (id: ElementId, options?: {
-    parent?: any[];
+    parent?: ElementObject[];
     deep?: boolean;
   }) {
     return this.#store.getElement(id, options);
   }
 
   removeElement (id: ElementId, options?: {
-    parent?: any[];
+    parent?: ElementObject[];
     deep?: boolean;
   }) {
     return this.#store.removeElement(id, options);
