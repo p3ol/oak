@@ -36,8 +36,7 @@ export declare interface BuilderRef extends OakRef {
   close?: () => void
 }
 
-export declare interface BuilderProps
-  extends BuilderOptions, SpecialComponentPropsWithoutRef {
+export declare interface BuilderProps extends SpecialComponentPropsWithoutRef {
   activeTextSheet?: string;
   addons: Array<AddonObject>;
   bottomHistoryButtonsContainer?: string | HTMLElement | DocumentFragment;
