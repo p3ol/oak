@@ -191,6 +191,7 @@ export class ComponentOverride extends Override {
   priority: number;
   serialize: Function; //TODO fix it
   getContainers: (element: ElementObject) => ElementObject[][];
+  editable: boolean;
 
   constructor (props: ComponentOverrideObject) {
     super();
@@ -205,6 +206,7 @@ export class ComponentOverride extends Override {
     this.duplicate = props.duplicate;
     this.deserialize = props.deserialize;
     this.priority = props.priority || 0;
+    this.editable = props.editable;
   }
 }
 

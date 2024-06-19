@@ -51,6 +51,7 @@ export declare interface ComponentOverrideObject {
   sanitize?(elmt?: ElementObject): any;
   duplicate?(elmt?: ElementObject): ElementObject;
   priority?: number;
+  editable?: boolean;
 }
 
 export declare interface FieldOverrideObject {
