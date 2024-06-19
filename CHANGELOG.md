@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.5](https://github.com/p3ol/oak/compare/v3.6.4...v3.6.5) (2024-06-19)
+
+
+### Bug Fixes
+
+* **core:** optional parameter ([18cec71](https://github.com/p3ol/oak/commit/18cec71d04c26aa597cdfa68dbabe42d2e66b04e))
+* **core:** remove some any types ([c2fb150](https://github.com/p3ol/oak/commit/c2fb1505d0569d68c8de48a117eb04440a9ea449))
+* **react:** export missing type ([f2d4207](https://github.com/p3ol/oak/commit/f2d4207c4b3b45f9855a79e228d169f4f51e343b))
+* **react:** wrong builder options type ([cbd9d63](https://github.com/p3ol/oak/commit/cbd9d632f18df160e543afca0481f065d4b507a1))
+
+
+
+
+
 ## [3.6.4](https://github.com/p3ol/oak/compare/v3.6.3...v3.6.4) (2024-06-14)
 
 
