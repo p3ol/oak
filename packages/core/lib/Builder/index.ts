@@ -14,6 +14,7 @@ import type {
   ElementSettingsKeyObject,
   EventCallback,
   FieldOverrideObject,
+  GetTextCallback,
 } from '../types';
 import {
   BuilderOptions,
@@ -326,7 +327,7 @@ export default class Builder extends Emitter {
     return this.#texts.getSheet(id);
   }
 
-  getText (key: string, def?: string) {
+  getText (key: GetTextCallback | string, def?: string) {
     return this.#texts.get(key, def);
   }
 
