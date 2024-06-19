@@ -46,6 +46,7 @@ export type {
   FieldObject,
   ComponentObject,
   GetTextCallback,
+  ComponentSettingsFieldObject,
 } from '@oakjs/core';
 
 export {
