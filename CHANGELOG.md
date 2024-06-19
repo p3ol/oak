@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.6](https://github.com/p3ol/oak/compare/v3.6.5...v3.6.6) (2024-06-19)
+
+
+### Bug Fixes
+
+* **core:** wrong getText param type ([c6ec87b](https://github.com/p3ol/oak/commit/c6ec87bdf579af9ebbbd8ced4f39f168ca05401d))
+
+
+
+
+
 ## [3.6.5](https://github.com/p3ol/oak/compare/v3.6.4...v3.6.5) (2024-06-19)
 
 
