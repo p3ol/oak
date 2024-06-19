@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.7](https://github.com/p3ol/oak/compare/v3.6.6...v3.6.7) (2024-06-19)
+
+
+### Bug Fixes
+
+* **core:** correctly allow to override editable prop ([3ef0bbc](https://github.com/p3ol/oak/commit/3ef0bbcfec3ad43d25493b0e7e80d383c0386135))
+
+
+
+
+
 ## [3.6.6](https://github.com/p3ol/oak/compare/v3.6.5...v3.6.6) (2024-06-19)
 
 
