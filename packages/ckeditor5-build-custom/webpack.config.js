@@ -53,7 +53,22 @@ module.exports = {
       {
         test: /\.[jt]sx?/,
         exclude: /node_modules/,
-        use: ['swc-loader'],
+        use: [{
+          loader: 'swc-loader',
+          options: {
+            jsc: {
+              parser: {
+                syntax: 'typescript',
+                tsx: true,
+              },
+              transform: {
+                react: {
+                  runtime: 'automatic',
+                },
+              },
+            },
+          },
+        }],
       },
       {
         test: /\.svg$/,
