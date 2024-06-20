@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.10](https://github.com/p3ol/oak/compare/v3.6.9...v3.6.10) (2024-06-20)
+
+
+### Bug Fixes
+
+* **ckeditor5-build-custom:** wrong react runtime ([edc5577](https://github.com/p3ol/oak/commit/edc55773c2c65e1f9ec48ca69ec6fb1cd411c3d8))
+* upgrade various deps ([9af77d7](https://github.com/p3ol/oak/commit/9af77d7efb7e10fcebf1633e273e1e4779071087))
+
+
+
+
+
 ## [3.6.9](https://github.com/p3ol/oak/compare/v3.6.8...v3.6.9) (2024-06-19)
 
 **Note:** Version bump only for package oak
