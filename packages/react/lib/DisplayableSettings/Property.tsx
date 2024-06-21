@@ -30,14 +30,12 @@ const Property = ({
 
   const value = useMemo(() => (
     get(element, field.key as string, field.default)
-  ), [element, field]);
+  ), [element, Object.values(element), field]);
 
   const option = useMemo(() => (
-    field.options
-      ? field.options.find(
-        (o: { value: ComponentSettingsFieldOptionObject[]}) =>
-          o.value === value || o === value)
-      : null
+    field.options?.find((o: ComponentSettingsFieldOptionObject) => (
+      o.value === value || o === value
+    ))
   ), [field, value]);
 
   return (
