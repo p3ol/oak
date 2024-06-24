@@ -1,13 +1,13 @@
-import { useCallback, useMemo, type MutableRefObject } from 'react';
-import {
+import type {
   SettingOverride,
-  type ComponentObject,
-  type ComponentSettingsFieldObject,
-  type ElementObject,
-  type FieldObject,
-  type FieldOverride,
-  type FieldOverrideObject,
+  ComponentObject,
+  ComponentSettingsFieldObject,
+  ElementObject,
+  FieldObject,
+  FieldOverride,
+  FieldOverrideObject,
 } from '@oakjs/core';
+import { type MutableRefObject, useMemo } from 'react';
 import {
   type FieldContent,
   Abstract,
@@ -18,10 +18,10 @@ import {
 } from '@junipero/react';
 
 import type { EditableRef } from './index';
+import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Icon from '../Icon';
 import Field from './Field';
-import { useBuilder } from '../hooks';
 
 export interface SettingProps {
   setting: ComponentSettingsFieldObject;
