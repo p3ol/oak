@@ -150,6 +150,22 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
                   Foldable
                 </span>
               </a>
+              <a
+                class="component component-clickable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  clickable
+                </i>
+                <span
+                  class="name"
+                >
+                  Clickable
+                </span>
+              </a>
             </div>
           </div>
         </div>
