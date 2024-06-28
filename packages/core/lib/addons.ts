@@ -738,6 +738,12 @@ export const clickableComponent = (
       'core.components.clickable.settings.title',
       'Clickable options'
     ),
+    floatingSettings: {
+      placement: 'right-start',
+      autoPlacement: {
+        alignment: 'start',
+      },
+    },
     fields: [{
       type: 'select',
       key: 'action',
