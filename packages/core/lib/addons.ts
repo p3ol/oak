@@ -717,6 +717,80 @@ export const foldableComponent = (
   ...props,
 });
 
+export const clickableComponent = (
+  props?: ComponentObject
+): ComponentObject => ({
+  id: 'clickable',
+  name: (t: GetTextCallback) =>
+    t('core.components.clickable.name', 'Clickable'),
+  type: 'component',
+  render: () => null,
+  icon: 'clickable',
+  editable: true,
+  hasCustomInnerContent: true,
+  draggable: false,
+  droppable: false,
+  getContainers: element => [element.content as ElementObject[]],
+  options: [],
+  disallow: ['clickable'],
+  settings: {
+    title: (t: GetTextCallback) => t(
+      'core.components.clickable.settings.title',
+      'Clickable options'
+    ),
+    fields: [{
+      type: 'select',
+      key: 'action',
+      default: 'link',
+      displayable: true,
+      label: (t: GetTextCallback) => t(
+        'core.components.clickable.settings.action.title',
+        'Action'
+      ),
+      options: [{
+        title: (t: GetTextCallback) => t(
+          'core.components.clickable.settings.action.openLink',
+          'Open a link'
+        ),
+        value: 'link',
+      }, {
+        title: (t: GetTextCallback) => t(
+          'core.components.clickable.settings.action.fireEvent',
+          'Trigger an event'
+        ),
+        value: 'event',
+      }],
+    }, {
+      type: 'text',
+      key: 'url',
+      default: '',
+      displayable: true,
+      label: (t: GetTextCallback) => t(
+        'core.components.clickable.settings.url.title',
+        'Link URL'
+      ),
+      condition: (element: ElementObject) => element.action === 'link',
+    }, {
+      type: 'text',
+      key: 'event',
+      default: '',
+      displayable: true,
+      label: (t: GetTextCallback) => t(
+        'core.components.clickable.settings.event.title',
+        'Javascript event name'
+      ),
+      condition: (element: ElementObject) => element.action === 'event',
+    }],
+  },
+  construct: () => ({
+    type: 'clickable',
+    action: 'link',
+    url: '',
+    content: [],
+  }),
+  ...props,
+});
+
 const BORDER_STYLE_OPTIONS: ComponentSettingsFieldOptionObject[] = [{
   title: (
     t: GetTextCallback
@@ -1258,6 +1332,7 @@ export const baseComponents = (): Array<ComponentObject> => [
   imageComponent(),
   buttonComponent(),
   foldableComponent(),
+  clickableComponent(),
 ];
 
 export const baseSettings = (): Array<ComponentSettingsFieldObject> => [
