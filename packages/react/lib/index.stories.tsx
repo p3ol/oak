@@ -303,3 +303,19 @@ export const withNonEditableComponents = () => (
     onChange={action('change')}
   />
 );
+
+export const withSettingOverrides = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'setting',
+        targets: ['*'],
+        key: 'responsive.xl',
+        info: 'Test',
+      }],
+    }]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);

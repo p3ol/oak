@@ -1,39 +1,32 @@
-import {
-  type ComponentPropsWithoutRef,
-  type Key,
-  useReducer,
-  MutableRefObject,
-} from 'react';
 import type {
   ComponentObject,
   ComponentOverride,
-  ComponentSettingsFieldObject,
   ComponentSettingsFormObject,
   ComponentSettingsTabObject,
-  ElementObject, FieldContent,
+  ElementObject,
+  FieldContent,
   FieldObject,
   FieldOverride,
   FieldOverrideObject,
 } from '@oakjs/core';
 import {
-  Abstract,
+  type ComponentPropsWithoutRef,
+  useReducer,
+  MutableRefObject,
+} from 'react';
+import {
+  type StateReducer,
   Button,
-  FieldControl,
-  Label,
-  StateReducer,
-  Tab,
   Tabs,
-  Tooltip,
   classNames,
   cloneDeep,
   mockState,
 } from '@junipero/react';
 
-import type { EditableRef } from '.';
+import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
-import Icon from '../Icon';
 import Text from '../Text';
-import Field from './Field';
+import Tab from './Tab';
 
 export declare interface FormProps extends ComponentPropsWithoutRef<'div'> {
   placement?: string;
@@ -98,22 +91,6 @@ const Form = ({
     onCancel();
   };
 
-  const getFieldPriority = (field: ComponentSettingsFieldObject) => {
-    const fieldOverride = {
-      ...builder.getOverride('setting', element.type, { setting: field }),
-      ...builder.getOverride('component', element.type, {
-        output: 'field', setting: field,
-      }),
-    };
-
-    return Number.isSafeInteger(fieldOverride?.priority)
-      ? fieldOverride.priority
-      : field.priority || 0;
-  };
-
-  const hasSubfields = (setting: ComponentSettingsFieldObject) =>
-    Array.isArray(setting.fields) && setting.fields.length > 0;
-
   const tabs: Array<
     ComponentSettingsTabObject | ComponentSettingsFormObject
   > = builder.getAvailableSettings();
@@ -133,8 +110,8 @@ const Form = ({
           </Text>
         ) }
       </div>
-      <Tabs>
-        { tabs
+      <Tabs
+        tabs={tabs
           .concat(
             (component.settings?.fields || [])
               .filter((f: FieldObject) => f.type === 'tab')
@@ -146,117 +123,24 @@ const Form = ({
           .filter((tab: ComponentSettingsTabObject) => tab.type === 'tab' &&
             (!tab.condition ||
               tab.condition(state.element, { component, builder })))
-          .map((tab: ComponentSettingsTabObject, t) => (
-            <Tab
-              key={tab.id || t}
-              title={<Text>{ tab.title }</Text>}
-            >
-              <div className="fields oak-flex oak-flex-col oak-gap-4">
-                { (component.settings?.fields || [])
-                  .filter((field: ComponentSettingsFieldObject) =>
-                    (tab.id === 'general' && !field.tab) ||
-                    field.tab === tab.id
-                  )
-                  .concat(tab.fields)
-                  .sort((
-                    a: ComponentSettingsFieldObject,
-                    b: ComponentSettingsFieldObject
-                  ) => getFieldPriority(b) - getFieldPriority(a))
-                  .filter((f: ComponentSettingsFieldObject) =>
-                    !f.condition ||
-                    f.condition(state.element, { component, builder })
-                  )
-                  .map((setting: ComponentSettingsFieldObject, i: Key) => (
-                    <div className="field" key={i}>
-                      <FieldControl>
-                        { setting.label && (
-                          <Label
-                            className="oak-flex oak-items-center oak-gap-2"
-                          >
-                            <Text>{ setting.label as string }</Text>
-                            { setting.info && (
-                              <Tooltip
-                                text={
-                                  <Text>{ setting.info as string }</Text>
-                                }
-                              >
-                                <Icon className="!oak-text-[18px]">
-                                  info_circle
-                                </Icon>
-                              </Tooltip>
-                            ) }
-                          </Label>
-                        ) }
-                        { hasSubfields(setting) ? (
-                          <div
-                            className={classNames(
-                              'sub-fields oak-flex oak-gap-2',
-                            )}
-                          >
-                            { setting.fields.map((f, n) => (
-                              <div className="field" key={n}>
-                                <FieldControl>
-                                  { f.label && (
-                                    <Label
-                                      className={classNames(
-                                        'field-label oak-flex oak-items-center',
-                                        'oak-gap-1'
-                                      )}
-                                    >
-                                      <Text>{ f.label as string }</Text>
-                                      { f.info && (
-                                        <Tooltip
-                                          text={
-                                            <Text>{ f.info as string }</Text>
-                                          }
-                                        >
-                                          <Icon className="!oak-text-[14px]">
-                                            info_circle
-                                          </Icon>
-                                        </Tooltip>
-                                      ) }
-                                    </Label>
-                                  ) }
-                                  <Field
-                                    setting={f}
-                                    editableRef={editableRef}
-                                    element={state.element}
-                                    component={component}
-                                    onChange={onSettingChange_}
-                                    onCustomChange={onSettingCustomChange_}
-                                  />
-                                </FieldControl>
-                              </div>
-                            )) }
-                          </div>
-                        ) : (
-                          <Field
-                            setting={setting}
-                            editableRef={editableRef}
-                            element={state.element}
-                            component={component}
-                            onChange={onSettingChange_}
-                            onCustomChange={onSettingCustomChange_}
-                          />
-                        ) }
-                        { setting.description && (
-                          <Abstract className="secondary">
-                            <Text>{ setting.description }</Text>
-                          </Abstract>
-                        ) }
-                      </FieldControl>
-                    </div>
-                  )) }
-                { tab?.renderForm?.({
-                  element: cloneDeep(state.element),
-                  component,
-                  overrides,
-                  update: onUpdate_,
-                }) }
-              </div>
-            </Tab>
-          )) }
-      </Tabs>
+          .map((tab: ComponentSettingsTabObject, t) => ({
+            title: <Text>{ tab.title }</Text>,
+            content: (
+              <Tab
+                key={tab.id || t}
+                tab={tab}
+                component={component}
+                element={state.element}
+                overrides={overrides}
+                editableRef={editableRef}
+                onUpdate={onUpdate_}
+                onSettingChange={onSettingChange_}
+                onSettingCustomChange={onSettingCustomChange_}
+              />
+            ),
+          }))
+        }
+      />
       <div
         className={classNames(
           'buttons oak-flex oak-items-center oak-justify-end oak-gap-2 oak-p-5',
