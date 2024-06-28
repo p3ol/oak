@@ -18,6 +18,7 @@ import Text from '../../Text';
 
 export interface ColProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
+  parent: ElementObject[];
   depth?: number;
   onPrepend?: () => void;
   onAppend?: () => void;
@@ -27,6 +28,7 @@ export interface ColProps extends ComponentPropsWithoutRef<'div'> {
 const Col = ({
   element,
   className,
+  parent = [],
   depth = 0,
   onPrepend,
   onAppend,
@@ -258,6 +260,24 @@ const Col = ({
 
       { component && (
         <div className="options oak-flex oak-items-center oak-gap-0.5">
+          { (
+            element.styles?.backgroundColor ||
+            element.styles?.backgroundImage
+          ) && parent.length <= 6 && (
+            <div
+              className={classNames(
+                'oak-mr-2 oak-rounded-full oak-w-[15px]',
+                'oak-h-[15px] oak-bg-no-repeat oak-bg-center oak-bg-cover',
+              )}
+              style={{
+                backgroundColor: element.styles?.backgroundColor,
+                ...element.styles?.backgroundImage && {
+                  backgroundImage:
+                    `url(${element.styles?.backgroundImage.url})`,
+                },
+              }}
+            />
+          )}
           { (
             (override as ComponentOverrideObject)?.editable ??
             component.editable
