@@ -3426,17 +3426,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/react@npm:0.26.17":
-  version: 0.26.17
-  resolution: "@floating-ui/react@npm:0.26.17"
+"@floating-ui/react@npm:0.26.18":
+  version: 0.26.18
+  resolution: "@floating-ui/react@npm:0.26.18"
   dependencies:
     "@floating-ui/react-dom": "npm:^2.1.0"
-    "@floating-ui/utils": "npm:^0.2.0"
+    "@floating-ui/utils": "npm:^0.2.3"
     tabbable: "npm:^6.0.0"
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 10/bceabe5a2f515fffaae85b4f652cc3ab8f9066ae09e8d094308932321454340465fa3b2605a0a38a2e999f31e4edf3ed5b741c4656a9a7996b5fb7ad732a5da2
+  checksum: 10/070d91761bd74f64cdd7041597da843515191a2855a4b42c51319fef068de0850a7e6f8bd6070e01cc4549cc346e44d402faeb83fe2df4405960d07538b11932
   languageName: node
   linkType: hard
 
@@ -3458,6 +3458,13 @@ __metadata:
   version: 0.2.1
   resolution: "@floating-ui/utils@npm:0.2.1"
   checksum: 10/33c9ab346e7b05c5a1e6a95bc902aafcfc2c9d513a147e2491468843bd5607531b06d0b9aa56aa491cbf22a6c2495c18ccfc4c0344baec54a689a7bb8e4898d6
+  languageName: node
+  linkType: hard
+
+"@floating-ui/utils@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@floating-ui/utils@npm:0.2.3"
+  checksum: 10/234c3862426cffc1551eafad60a8ad4c5325f36ff985aea671089646a574c6672ef81e54e26282b935d22d84306e13c24ff57a18f1ac564e19ae99b6ce1299fa
   languageName: node
   linkType: hard
 
@@ -4629,7 +4636,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/react@workspace:packages/react"
   dependencies:
-    "@floating-ui/react": "npm:0.26.17"
+    "@floating-ui/react": "npm:0.26.18"
     "@junipero/hooks": "npm:3.6.0"
     "@junipero/react": "npm:3.6.2"
     "@junipero/transitions": "npm:3.6.2"
