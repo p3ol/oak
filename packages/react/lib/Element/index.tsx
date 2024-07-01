@@ -17,20 +17,22 @@ import type {
 } from '@oakjs/core';
 import {
   type DroppableRef,
+  type ModalRef,
   Draggable,
   Droppable,
   Tooltip,
   classNames,
 } from '@junipero/react';
 
+import type { EditableRef } from '../Editable';
 import type { OakRef, ReactComponentObject } from '../types';
 import { copyToClipboard } from '../utils';
 import { useBuilder } from '../hooks';
 import DisplayableSettings from '../DisplayableSettings';
-import Editable, { type EditableRef } from '../Editable';
 import Icon from '../Icon';
 import Option from '../Option';
 import Text from '../Text';
+import Editable from '../Editable';
 
 export interface ElementProps extends ComponentPropsWithoutRef<any> {
   element?: ElementObject;
@@ -53,6 +55,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
 }, ref) => {
   const innerRef = useRef<DroppableRef>();
   const editableRef = useRef<EditableRef>();
+  const modalRef: MutableRefObject<ModalRef> = useRef();
   const [editableOpened, setEditableOpened] = useState(false);
   const { builder, addons } = useBuilder();
 
@@ -84,15 +87,6 @@ const Element = forwardRef<ElementRef, ElementProps>(({
     }
 
     builder.moveElement?.(data, element, { parent, position });
-  };
-
-  const onEdit_ = (e: MouseEvent<HTMLAnchorElement>) => {
-    e?.preventDefault();
-    editableRef.current?.toggle();
-  };
-
-  const onEditableToggle_ = ({ opened }: { opened: boolean }) => {
-    setEditableOpened(opened);
   };
 
   const onPrintDebug = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -239,12 +233,13 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                 element={element}
                 component={component}
                 ref={editableRef}
-                onToggle={onEditableToggle_}
+                modalRef={modalRef}
+                setOpened={setEditableOpened}
+                opened={editableOpened}
               >
                 <Option
                   option={{ icon: 'pen' }}
                   className="edit"
-                  onClick={onEdit_}
                   name={<Text name="core.tooltips.edit">Edit</Text>}
                 />
               </Editable>
