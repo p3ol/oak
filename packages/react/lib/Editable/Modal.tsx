@@ -1,6 +1,7 @@
 import {
   type MutableRefObject,
   type ReactElement,
+  type MouseEvent,
   cloneElement,
   forwardRef,
 } from 'react';
@@ -43,7 +44,7 @@ const ModalEditable = forwardRef<
 }, ref) => {
   const { floatingsRef } = useBuilder();
 
-  const onClick = (e: any) => {
+  const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
     modalRef.current?.open();
   };

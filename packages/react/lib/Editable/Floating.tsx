@@ -1,6 +1,7 @@
 import {
   type MutableRefObject,
   type ReactElement,
+  type MouseEvent,
   Children,
   cloneElement,
   useImperativeHandle,
@@ -155,7 +156,7 @@ const FloatingEditable = forwardRef<
     dispatch({ visible: false });
   };
 
-  const onClick = (e: any) => {
+  const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     (ref as MutableRefObject<EditableRef>).current?.toggle();
     setOpened(opened);
