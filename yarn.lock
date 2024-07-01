@@ -3412,20 +3412,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/react@npm:0.26.16":
-  version: 0.26.16
-  resolution: "@floating-ui/react@npm:0.26.16"
-  dependencies:
-    "@floating-ui/react-dom": "npm:^2.1.0"
-    "@floating-ui/utils": "npm:^0.2.0"
-    tabbable: "npm:^6.0.0"
-  peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 10/4d5216ba10c05f08a94730c0899578ead75a6cdfa9e531461e8d7ef7fea43d6b5818869c38a3c30c36f2e557c0af58b52b2325248d19029e2a89f34bfcc8c421
-  languageName: node
-  linkType: hard
-
 "@floating-ui/react@npm:0.26.17":
   version: 0.26.17
   resolution: "@floating-ui/react@npm:0.26.17"
@@ -3437,6 +3423,20 @@ __metadata:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
   checksum: 10/bceabe5a2f515fffaae85b4f652cc3ab8f9066ae09e8d094308932321454340465fa3b2605a0a38a2e999f31e4edf3ed5b741c4656a9a7996b5fb7ad732a5da2
+  languageName: node
+  linkType: hard
+
+"@floating-ui/react@npm:0.26.18":
+  version: 0.26.18
+  resolution: "@floating-ui/react@npm:0.26.18"
+  dependencies:
+    "@floating-ui/react-dom": "npm:^2.1.0"
+    "@floating-ui/utils": "npm:^0.2.3"
+    tabbable: "npm:^6.0.0"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10/070d91761bd74f64cdd7041597da843515191a2855a4b42c51319fef068de0850a7e6f8bd6070e01cc4549cc346e44d402faeb83fe2df4405960d07538b11932
   languageName: node
   linkType: hard
 
@@ -3458,6 +3458,13 @@ __metadata:
   version: 0.2.1
   resolution: "@floating-ui/utils@npm:0.2.1"
   checksum: 10/33c9ab346e7b05c5a1e6a95bc902aafcfc2c9d513a147e2491468843bd5607531b06d0b9aa56aa491cbf22a6c2495c18ccfc4c0344baec54a689a7bb8e4898d6
+  languageName: node
+  linkType: hard
+
+"@floating-ui/utils@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@floating-ui/utils@npm:0.2.3"
+  checksum: 10/234c3862426cffc1551eafad60a8ad4c5325f36ff985aea671089646a574c6672ef81e54e26282b935d22d84306e13c24ff57a18f1ac564e19ae99b6ce1299fa
   languageName: node
   linkType: hard
 
@@ -3880,68 +3887,61 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/core@npm:3.6.0":
-  version: 3.6.0
-  resolution: "@junipero/core@npm:3.6.0"
-  checksum: 10/a220e56b3150684f5cb892ee88142d8d86f7dc68ccee42709138f1ab51f914982764405da2db01b9080cebfccd902d759b209d13b881790a58e08d69ccf827f2
+"@junipero/core@npm:3.7.0, @junipero/core@npm:^3.7.0":
+  version: 3.7.0
+  resolution: "@junipero/core@npm:3.7.0"
+  checksum: 10/9fdfd7f85eee14b72d73926e4fff267f123b1f97e4cfcdca3c73e953cb41dd95f21b5058aa4d555535f0a09104defccc79190b831733113044ef554431f0ca79
   languageName: node
   linkType: hard
 
-"@junipero/core@npm:3.6.3, @junipero/core@npm:^3.6.0":
-  version: 3.6.3
-  resolution: "@junipero/core@npm:3.6.3"
-  checksum: 10/428905e1d763831b9e47bae02852fc81b6759320ab24c96b835a94e41a3752c2204c9b4ff36f936cc9f07194c6f0c7df198c8a130e33141fd91359713f31046f
-  languageName: node
-  linkType: hard
-
-"@junipero/hooks@npm:3.6.0, @junipero/hooks@npm:^3.6.0":
-  version: 3.6.0
-  resolution: "@junipero/hooks@npm:3.6.0"
+"@junipero/hooks@npm:3.7.0, @junipero/hooks@npm:^3.7.0":
+  version: 3.7.0
+  resolution: "@junipero/hooks@npm:3.7.0"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/499701192c6f855525d7a991cc29886382ea437e25e11119e94208af59316010d1470a358984418321c9a49ce52e29cf9247b6088f3b964347f7258346a9bf63
+  checksum: 10/1270a92e10e0be4e734becf4788b60f8b37c65f53746469c54b38395635f74e1200024b28d39ce70e8f446871d2d14b68989e5403d14c9fe086944f09937ad4c
   languageName: node
   linkType: hard
 
-"@junipero/react@npm:3.6.2":
-  version: 3.6.2
-  resolution: "@junipero/react@npm:3.6.2"
+"@junipero/react@npm:3.7.0":
+  version: 3.7.0
+  resolution: "@junipero/react@npm:3.7.0"
   dependencies:
-    "@floating-ui/react": "npm:0.26.16"
-    "@junipero/core": "npm:^3.6.0"
-    "@junipero/hooks": "npm:^3.6.0"
+    "@floating-ui/react": "npm:0.26.18"
+    "@junipero/core": "npm:^3.7.0"
+    "@junipero/hooks": "npm:^3.7.0"
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10/b7f1fb247280f922641539f48bd3066a18c418b019e7f14ce9361af6b67457c67144d3fd35c3da3888f6f3e210153120d8d5fc227654e31fd427f8906727a2cc
+  checksum: 10/588a7a8a62a20ef145c89a4bab7bc77e12dba5db904fddf024644a5410b1db9af594bd05f1712b54c1fd7bc995a34360befc9af9907eff51fe32a880ae53ab56
   languageName: node
   linkType: hard
 
-"@junipero/tailwind-plugin@npm:3.6.3":
-  version: 3.6.3
-  resolution: "@junipero/tailwind-plugin@npm:3.6.3"
+"@junipero/tailwind-plugin@npm:3.7.0":
+  version: 3.7.0
+  resolution: "@junipero/tailwind-plugin@npm:3.7.0"
   peerDependencies:
     "@junipero/core": ^3.0.0
     tailwindcss: ^3.0.0
-  checksum: 10/70a5375efde6c0a0b19247022706d3b1bc72a26dc9fd7e769d1aed97381c6eda51ef880e5fb6ec23bc5f9c879c2cfeb56f0c13b4fae5858a51ef9b4254450018
+  checksum: 10/188a06a1f489b2b41d423e4b2f7e27388ce15d20b970386029c1c1da7e3adbeba7a3b5851e5e8ec9564da65a75b70f851842e14c4512a81ff8b5c1de2e037c11
   languageName: node
   linkType: hard
 
-"@junipero/theme@npm:3.5.5":
-  version: 3.5.5
-  resolution: "@junipero/theme@npm:3.5.5"
-  checksum: 10/b45bceaed02c637564f3884eaaf54164dff05a78a226a379b88f7f870a70045d751f043a65e34f86ef42c7f3954cfd142e7c0a23c6cb95ce72be5421c7c777fe
+"@junipero/theme@npm:3.7.0":
+  version: 3.7.0
+  resolution: "@junipero/theme@npm:3.7.0"
+  checksum: 10/83c4ffe8f25eed54ddfc39371f63d2c2f5165fd88950189d917f3026e169c4456a9390c34e8274f10ac8cc7d293ca25d37fafaa0ebffe4f83941b75f7e8a18a5
   languageName: node
   linkType: hard
 
-"@junipero/transitions@npm:3.6.2":
-  version: 3.6.2
-  resolution: "@junipero/transitions@npm:3.6.2"
+"@junipero/transitions@npm:3.7.0":
+  version: 3.7.0
+  resolution: "@junipero/transitions@npm:3.7.0"
   peerDependencies:
     "@junipero/react": ^3.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/8353cd1f0332cfb26a0c5e162ea2b423436b931e40e9c68a4a48d129e09b8509bacb57a233d664d4d9086d5acbb3a21d5007cb07f06a7142e06cd49a5c5ce31b
+  checksum: 10/f19d32c831eb1ae11794a41907d5641653b316796b035c7a511c68a77dadd7ad9304df351aabb42bba2a7318cf29e957e5bac4664057d4c758a7eac62f3a7ed8
   languageName: node
   linkType: hard
 
@@ -4620,7 +4620,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/core@workspace:packages/core"
   dependencies:
-    "@junipero/core": "npm:3.6.0"
+    "@junipero/core": "npm:3.7.0"
     uuid: "npm:10.0.0"
   languageName: unknown
   linkType: soft
@@ -4630,9 +4630,9 @@ __metadata:
   resolution: "@oakjs/react@workspace:packages/react"
   dependencies:
     "@floating-ui/react": "npm:0.26.17"
-    "@junipero/hooks": "npm:3.6.0"
-    "@junipero/react": "npm:3.6.2"
-    "@junipero/transitions": "npm:3.6.2"
+    "@junipero/hooks": "npm:3.7.0"
+    "@junipero/react": "npm:3.7.0"
+    "@junipero/transitions": "npm:3.7.0"
     uuid: "npm:10.0.0"
   peerDependencies:
     react: ^18.0.0
@@ -4667,7 +4667,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/theme@workspace:packages/theme"
   dependencies:
-    "@junipero/theme": "npm:3.5.5"
+    "@junipero/theme": "npm:3.7.0"
   languageName: unknown
   linkType: soft
 
@@ -9104,47 +9104,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:7.13.1":
-  version: 7.13.1
-  resolution: "@typescript-eslint/parser@npm:7.13.1"
+"@typescript-eslint/parser@npm:7.14.1":
+  version: 7.14.1
+  resolution: "@typescript-eslint/parser@npm:7.14.1"
   dependencies:
-    "@typescript-eslint/scope-manager": "npm:7.13.1"
-    "@typescript-eslint/types": "npm:7.13.1"
-    "@typescript-eslint/typescript-estree": "npm:7.13.1"
-    "@typescript-eslint/visitor-keys": "npm:7.13.1"
+    "@typescript-eslint/scope-manager": "npm:7.14.1"
+    "@typescript-eslint/types": "npm:7.14.1"
+    "@typescript-eslint/typescript-estree": "npm:7.14.1"
+    "@typescript-eslint/visitor-keys": "npm:7.14.1"
     debug: "npm:^4.3.4"
   peerDependencies:
     eslint: ^8.56.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/a76cfcf97c289110403b50a377e925f29cda74340de0526f68b0c34199ce643d9c31803e492217e0f3df28361d3019ced4806f974ea70529c559b26b70cec7ef
+  checksum: 10/f521462a7005cab5e4923937dcf36713d9438ded175b53332ae469d91cc9eb18cb3a23768b3c52063464280baae83f6b66db28cebb2e262d6d869d1a898b23f3
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:7.13.1":
-  version: 7.13.1
-  resolution: "@typescript-eslint/scope-manager@npm:7.13.1"
+"@typescript-eslint/scope-manager@npm:7.14.1":
+  version: 7.14.1
+  resolution: "@typescript-eslint/scope-manager@npm:7.14.1"
   dependencies:
-    "@typescript-eslint/types": "npm:7.13.1"
-    "@typescript-eslint/visitor-keys": "npm:7.13.1"
-  checksum: 10/fea9ab8f72ace1dd55d835037efe038c70021275581855820cdb7fc4b01e8afb51723856537adff1fdb0ea3899c1f8b593fd75c34b5087ca2ef2f7c72e610050
+    "@typescript-eslint/types": "npm:7.14.1"
+    "@typescript-eslint/visitor-keys": "npm:7.14.1"
+  checksum: 10/600a7beb96f5b96f675125285137339c2438b5b26db203a66eef52dd409e8c0db0dafb22c94547dfb963f8efdf63b0fb59e05655e2dcf84d54624863365a59e7
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:7.13.1":
-  version: 7.13.1
-  resolution: "@typescript-eslint/types@npm:7.13.1"
-  checksum: 10/006a5518608184c1d017b27fb4f66ce28bc75f89e2380ac42969ebdf0dc726af1cfcdf4ba36ce2858e9f6907d6f4295d3453859d7e9a35bc7855d4ebc900955d
+"@typescript-eslint/types@npm:7.14.1":
+  version: 7.14.1
+  resolution: "@typescript-eslint/types@npm:7.14.1"
+  checksum: 10/608057582bb195bd746a7bfb7c04dac4be1d4602b8fa681b2d1d50b564362b681dc2ca293b13cc4c7acc454f3a09f1ea2580415347efb7853e5df8ba34b7acdb
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:7.13.1":
-  version: 7.13.1
-  resolution: "@typescript-eslint/typescript-estree@npm:7.13.1"
+"@typescript-eslint/typescript-estree@npm:7.14.1":
+  version: 7.14.1
+  resolution: "@typescript-eslint/typescript-estree@npm:7.14.1"
   dependencies:
-    "@typescript-eslint/types": "npm:7.13.1"
-    "@typescript-eslint/visitor-keys": "npm:7.13.1"
+    "@typescript-eslint/types": "npm:7.14.1"
+    "@typescript-eslint/visitor-keys": "npm:7.14.1"
     debug: "npm:^4.3.4"
     globby: "npm:^11.1.0"
     is-glob: "npm:^4.0.3"
@@ -9154,17 +9154,17 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/5c68b5faa962e5f984067aa91770486af817858d2fa35b54a44fa4d5c0c612ba23b52b191d8051d9e4439e5425251e32861c81239e9400a29de057f8360537fb
+  checksum: 10/f75b956f7981712d3f85498f9d9fcc2243d79d6fe71b24bc688a7c43d2a4248f73ecfb78f9d58501fde87fc44b02e26c46f9ea2ae51eb8450db79ca169f91ef9
   languageName: node
   linkType: hard
 
-"@typescript-eslint/visitor-keys@npm:7.13.1":
-  version: 7.13.1
-  resolution: "@typescript-eslint/visitor-keys@npm:7.13.1"
+"@typescript-eslint/visitor-keys@npm:7.14.1":
+  version: 7.14.1
+  resolution: "@typescript-eslint/visitor-keys@npm:7.14.1"
   dependencies:
-    "@typescript-eslint/types": "npm:7.13.1"
+    "@typescript-eslint/types": "npm:7.14.1"
     eslint-visitor-keys: "npm:^3.4.3"
-  checksum: 10/811e9642851359b5197d45a9878143c4c608aaef887a20c26f57f8b012ce9e316d232b82a311bdd52a2af0c8b8da5d4bd9401ce565fc7bdb43cd44556e76d225
+  checksum: 10/42246f33cb3f9185c0b467c9a534e34a674e4fc08ba982a03aaa77dc1e569e916f1fca9ce9cd14c4df91f416e6e917bff51f98b8d8ca26ec5f67c253e8646bde
   languageName: node
   linkType: hard
 
@@ -21699,8 +21699,8 @@ __metadata:
     "@ckeditor/ckeditor5-ui": "npm:41.4.2"
     "@ckeditor/ckeditor5-utils": "npm:41.4.2"
     "@ckeditor/ckeditor5-watchdog": "npm:41.4.2"
-    "@junipero/core": "npm:3.6.3"
-    "@junipero/tailwind-plugin": "npm:3.6.3"
+    "@junipero/core": "npm:3.7.0"
+    "@junipero/tailwind-plugin": "npm:3.7.0"
     "@percy/storybook": "npm:6.0.0"
     "@poool/eslint-config": "npm:3.0.1"
     "@poool/eslint-config-react": "npm:3.0.1"
@@ -21729,7 +21729,7 @@ __metadata:
     "@types/node": "npm:20.14.7"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
-    "@typescript-eslint/parser": "npm:7.13.1"
+    "@typescript-eslint/parser": "npm:7.14.1"
     autoprefixer: "npm:10.4.19"
     ckeditor5: "npm:41.4.2"
     css-loader: "npm:7.1.2"
