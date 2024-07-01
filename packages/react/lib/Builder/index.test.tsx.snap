@@ -281,17 +281,21 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
               <div
                 class="options oak-flex oak-items-center oak-gap-0.5"
               >
-                <a
-                  class="option oak-flex oak-items-center oak-justify-center edit"
-                  draggable="false"
-                  href="#"
-                >
-                  <i
-                    class="icon junipero-icons !oak-text-lg"
-                  >
-                    pen
-                  </i>
-                </a>
+                <div>
+                  <div>
+                    <a
+                      class="option oak-flex oak-items-center oak-justify-center edit"
+                      draggable="false"
+                      href="#"
+                    >
+                      <i
+                        class="icon junipero-icons !oak-text-lg"
+                      >
+                        pen
+                      </i>
+                    </a>
+                  </div>
+                </div>
                 <a
                   class="option oak-flex oak-items-center oak-justify-center remove"
                   draggable="false"
@@ -357,17 +361,21 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
               pause
             </i>
           </a>
-          <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
-            draggable="false"
-            href="#"
-          >
-            <i
-              class="icon junipero-icons !oak-text-lg"
-            >
-              pen
-            </i>
-          </a>
+          <div>
+            <div>
+              <a
+                class="option oak-flex oak-items-center oak-justify-center edit"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-lg"
+                >
+                  pen
+                </i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -540,17 +548,21 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
               copy_file
             </i>
           </a>
-          <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
-            draggable="false"
-            href="#"
-          >
-            <i
-              class="icon junipero-icons !oak-text-lg"
-            >
-              pen
-            </i>
-          </a>
+          <div>
+            <div>
+              <a
+                class="option oak-flex oak-items-center oak-justify-center edit"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-lg"
+                >
+                  pen
+                </i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -686,17 +698,21 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
                           copy_file
                         </i>
                       </a>
-                      <a
-                        class="option oak-flex oak-items-center oak-justify-center edit"
-                        draggable="false"
-                        href="#"
-                      >
-                        <i
-                          class="icon junipero-icons !oak-text-lg"
-                        >
-                          pen
-                        </i>
-                      </a>
+                      <div>
+                        <div>
+                          <a
+                            class="option oak-flex oak-items-center oak-justify-center edit"
+                            draggable="false"
+                            href="#"
+                          >
+                            <i
+                              class="icon junipero-icons !oak-text-lg"
+                            >
+                              pen
+                            </i>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -740,17 +756,21 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
               <div
                 class="options oak-flex oak-items-center oak-gap-0.5"
               >
-                <a
-                  class="option oak-flex oak-items-center oak-justify-center edit"
-                  draggable="false"
-                  href="#"
-                >
-                  <i
-                    class="icon junipero-icons !oak-text-lg"
-                  >
-                    pen
-                  </i>
-                </a>
+                <div>
+                  <div>
+                    <a
+                      class="option oak-flex oak-items-center oak-justify-center edit"
+                      draggable="false"
+                      href="#"
+                    >
+                      <i
+                        class="icon junipero-icons !oak-text-lg"
+                      >
+                        pen
+                      </i>
+                    </a>
+                  </div>
+                </div>
                 <a
                   class="option oak-flex oak-items-center oak-justify-center remove"
                   draggable="false"
@@ -816,17 +836,21 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
               pause
             </i>
           </a>
-          <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
-            draggable="false"
-            href="#"
-          >
-            <i
-              class="icon junipero-icons !oak-text-lg"
-            >
-              pen
-            </i>
-          </a>
+          <div>
+            <div>
+              <a
+                class="option oak-flex oak-items-center oak-justify-center edit"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-lg"
+                >
+                  pen
+                </i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -1100,17 +1124,21 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
                     copy_file
                   </i>
                 </a>
-                <a
-                  class="option oak-flex oak-items-center oak-justify-center edit"
-                  draggable="false"
-                  href="#"
-                >
-                  <i
-                    class="icon junipero-icons !oak-text-lg"
-                  >
-                    pen
-                  </i>
-                </a>
+                <div>
+                  <div>
+                    <a
+                      class="option oak-flex oak-items-center oak-justify-center edit"
+                      draggable="false"
+                      href="#"
+                    >
+                      <i
+                        class="icon junipero-icons !oak-text-lg"
+                      >
+                        pen
+                      </i>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1154,17 +1182,21 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
         <div
           class="options oak-flex oak-items-center oak-gap-0.5"
         >
-          <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
-            draggable="false"
-            href="#"
-          >
-            <i
-              class="icon junipero-icons !oak-text-lg"
-            >
-              pen
-            </i>
-          </a>
+          <div>
+            <div>
+              <a
+                class="option oak-flex oak-items-center oak-justify-center edit"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-lg"
+                >
+                  pen
+                </i>
+              </a>
+            </div>
+          </div>
           <a
             class="option oak-flex oak-items-center oak-justify-center remove"
             draggable="false"
@@ -1230,17 +1262,21 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
         pause
       </i>
     </a>
-    <a
-      class="option oak-flex oak-items-center oak-justify-center edit"
-      draggable="false"
-      href="#"
-    >
-      <i
-        class="icon junipero-icons !oak-text-lg"
-      >
-        pen
-      </i>
-    </a>
+    <div>
+      <div>
+        <a
+          class="option oak-flex oak-items-center oak-justify-center edit"
+          draggable="false"
+          href="#"
+        >
+          <i
+            class="icon junipero-icons !oak-text-lg"
+          >
+            pen
+          </i>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -1388,17 +1424,21 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
                 copy_file
               </i>
             </a>
-            <a
-              class="option oak-flex oak-items-center oak-justify-center edit"
-              draggable="false"
-              href="#"
-            >
-              <i
-                class="icon junipero-icons !oak-text-lg"
-              >
-                pen
-              </i>
-            </a>
+            <div>
+              <div>
+                <a
+                  class="option oak-flex oak-items-center oak-justify-center edit"
+                  draggable="false"
+                  href="#"
+                >
+                  <i
+                    class="icon junipero-icons !oak-text-lg"
+                  >
+                    pen
+                  </i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -1684,17 +1724,21 @@ exports[`<Builder /> should render: Base content 1`] = `
               copy_file
             </i>
           </a>
-          <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
-            draggable="false"
-            href="#"
-          >
-            <i
-              class="icon junipero-icons !oak-text-lg"
-            >
-              pen
-            </i>
-          </a>
+          <div>
+            <div>
+              <a
+                class="option oak-flex oak-items-center oak-justify-center edit"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-lg"
+                >
+                  pen
+                </i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -1764,17 +1808,21 @@ exports[`<Builder /> should render: Base content 1`] = `
               copy_file
             </i>
           </a>
-          <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
-            draggable="false"
-            href="#"
-          >
-            <i
-              class="icon junipero-icons !oak-text-lg"
-            >
-              pen
-            </i>
-          </a>
+          <div>
+            <div>
+              <a
+                class="option oak-flex oak-items-center oak-justify-center edit"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-lg"
+                >
+                  pen
+                </i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
