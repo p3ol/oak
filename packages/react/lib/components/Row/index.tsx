@@ -103,6 +103,7 @@ const Row = ({
             key={i}
             depth={depth}
             element={col}
+            parent={element.cols}
             onPrepend={onDivide.bind(null, i, true)}
             onAppend={onDivide.bind(null, i, false)}
             onRemove={onRemoveCol.bind(null, i)}
