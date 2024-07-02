@@ -26,6 +26,8 @@ export interface EditableProps extends SpecialComponentPropsWithoutRef {
     boundary?: Boundary;
   };
   onToggle?: (state: { opened: boolean }) => void;
+  setOpened?: (opened: boolean) => void;
+  opened?: boolean;
 }
 
 export declare interface FloatingRef extends OakRef {
@@ -34,6 +36,7 @@ export declare interface FloatingRef extends OakRef {
   toggle?: () => void;
   opened?: boolean;
   innerRef?: MutableRefObject<any>;
+  editableType?: 'floating' | 'modal';
 }
 
 export declare interface EditableRef extends OakRef {
@@ -54,18 +57,17 @@ const Editable = forwardRef<EditableRef, EditableProps>(({
   modalRef,
   setOpened,
   opened,
+  editableType,
 }, ref) => (
   <>
-    {modalRef ? (
-      <div>
-        <ModalEditable
-          ref={ref}
-          children={children}
-          modalRef={modalRef}
-          element={element}
-          component={component}
-        />
-      </div>
+    { editableType === 'modal' ? (
+      <ModalEditable
+        ref={ref}
+        children={children}
+        modalRef={modalRef}
+        element={element}
+        component={component}
+      />
     ) : (
       <FloatingEditable
         ref={ref}
@@ -77,7 +79,7 @@ const Editable = forwardRef<EditableRef, EditableProps>(({
         setOpened={setOpened}
         opened={opened}
       />
-    )}
+    ) }
   </>
 ));
 

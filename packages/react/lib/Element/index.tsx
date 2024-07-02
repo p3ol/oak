@@ -57,7 +57,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   const editableRef = useRef<EditableRef>();
   const modalRef: MutableRefObject<ModalRef> = useRef();
   const [editableOpened, setEditableOpened] = useState(false);
-  const { builder, addons } = useBuilder();
+  const { builder, addons, editableType = 'floating' } = useBuilder();
 
   useImperativeHandle(ref, () => ({
     innerRef,
@@ -236,6 +236,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                 modalRef={modalRef}
                 setOpened={setEditableOpened}
                 opened={editableOpened}
+                editableType={editableType}
               >
                 <Option
                   option={{ icon: 'pen' }}
