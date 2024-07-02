@@ -2,11 +2,12 @@ import {
   type ComponentPropsWithoutRef,
   type Key,
   type MouseEvent,
+  type MutableRefObject,
   useMemo,
   useRef,
 } from 'react';
 import type { ComponentObject, ComponentOverrideObject, ElementObject } from '@oakjs/core';
-import { Droppable, Tooltip, classNames } from '@junipero/react';
+import { type ModalRef, Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Catalogue, { type CatalogueRef } from '../../Catalogue';
@@ -35,9 +36,15 @@ const Col = ({
   onRemove,
 }: ColProps) => {
   const editableRef = useRef<EditableRef>();
+  const modalRef: MutableRefObject<ModalRef> = useRef();
   const prependCatalogueRef = useRef<CatalogueRef>();
   const appendCatalogueRef = useRef<CatalogueRef>();
-  const { builder, floatingsRef, addons } = useBuilder();
+  const {
+    builder,
+    floatingsRef,
+    addons,
+    editableType = 'floating',
+  } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent?.(element.type)
   ), [element.type]);
@@ -58,11 +65,6 @@ const Col = ({
   const onRemove_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     onRemove?.();
-  };
-
-  const onEdit_ = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    editableRef.current?.toggle();
   };
 
   const onPrepend_ = (component: ComponentObject) => {
@@ -286,11 +288,12 @@ const Col = ({
               ref={editableRef}
               element={element}
               component={component}
+              modalRef={modalRef}
+              editableType={editableType}
             >
               <Option
                 className="edit"
                 option={{ icon: 'pen' }}
-                onClick={onEdit_}
                 name={<Text name="core.tooltips.edit">Edit</Text>}
               />
             </Editable>
