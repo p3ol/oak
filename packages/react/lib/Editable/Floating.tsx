@@ -1,3 +1,8 @@
+import type {
+  ComponentObject,
+  ComponentSettingsFormObject,
+  ElementObject,
+} from '@oakjs/core';
 import {
   type MutableRefObject,
   type ReactElement,
@@ -10,11 +15,6 @@ import {
   useRef,
   forwardRef,
 } from 'react';
-import type {
-  ComponentObject,
-  ComponentSettingsFormObject,
-  ElementObject,
-} from '@oakjs/core';
 import { createPortal } from 'react-dom';
 import {
   type SpecialComponentPropsWithoutRef,

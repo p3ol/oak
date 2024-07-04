@@ -1,12 +1,11 @@
+import type { ComponentObject, ComponentOverrideObject, ElementObject } from '@oakjs/core';
 import {
   type ComponentPropsWithoutRef,
   type Key,
   type MouseEvent,
-  type MutableRefObject,
   useMemo,
   useRef,
 } from 'react';
-import type { ComponentObject, ComponentOverrideObject, ElementObject } from '@oakjs/core';
 import { type ModalRef, Droppable, Tooltip, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';

@@ -1,12 +1,12 @@
+import type {
+  ComponentObject,
+  ElementObject,
+} from '@oakjs/core';
 import {
   type MutableRefObject,
   type ReactElement,
   forwardRef,
 } from 'react';
-import type {
-  ComponentObject,
-  ElementObject,
-} from '@oakjs/core';
 import {
   type ModalRef,
   type SpecialComponentPropsWithoutRef,
