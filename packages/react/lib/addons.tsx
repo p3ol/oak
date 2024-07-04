@@ -21,6 +21,7 @@ import { type ImageFieldProps, ImageField } from './fields';
 import {
   Button,
   Col,
+  Clickable,
   EmptySpace,
   Foldable,
   Image,
@@ -201,6 +202,15 @@ export const foldableComponent = (
   ...props,
 });
 
+export const clickableComponent = (
+  props?: ReactComponentObject
+): ReactComponentObject => ({
+  ...coreAddons.clickableComponent(),
+  render: Clickable,
+  options: [dragOption(), backgroundColorOption()],
+  ...props,
+});
+
 export const baseFields = (): ReactFieldObject[] => [
   textField(),
   textareaField(),
@@ -220,6 +230,7 @@ export const baseComponents = (): ReactComponentObject[] => [
   imageComponent(),
   buttonComponent(),
   foldableComponent(),
+  clickableComponent(),
 ];
 
 export const coreComponentsGroup = (): ComponentsGroupObject => ({

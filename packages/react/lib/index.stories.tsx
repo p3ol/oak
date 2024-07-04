@@ -23,6 +23,7 @@ const baseContent: ElementObject[] = [
   ] },
   { type: 'image', url: 'https://avatars.githubusercontent.com/u/20414672' },
   { type: 'foldable' },
+  { type: 'clickable', content: [{ type: 'text', content: 'Click me' }] },
 ];
 
 export const basic = () => (
