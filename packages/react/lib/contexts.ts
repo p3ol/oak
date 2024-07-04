@@ -32,7 +32,6 @@ export declare type BuilderContextValue = {
   }): Promise<ImageUploadCallbackResult>;
   rootRef?: MutableRefObject<HTMLDivElement>;
   floatingsRef?: MutableRefObject<HTMLDivElement>;
-  editableType?: 'floating' | 'modal';
 };
 
 export const BuilderContext = createContext<BuilderContextValue>({});

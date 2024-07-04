@@ -39,12 +39,7 @@ const Col = ({
   const modalRef: MutableRefObject<ModalRef> = useRef();
   const prependCatalogueRef = useRef<CatalogueRef>();
   const appendCatalogueRef = useRef<CatalogueRef>();
-  const {
-    builder,
-    floatingsRef,
-    addons,
-    editableType = 'floating',
-  } = useBuilder();
+  const { builder, floatingsRef, addons } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent?.(element.type)
   ), [element.type]);
@@ -289,7 +284,7 @@ const Col = ({
               element={element}
               component={component}
               modalRef={modalRef}
-              editableType={editableType}
+              editableType={builder?.options?.editableType}
             >
               <Option
                 className="edit"
