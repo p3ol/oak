@@ -36,7 +36,7 @@ const Col = ({
   onRemove,
 }: ColProps) => {
   const editableRef = useRef<EditableRef>();
-  const modalRef: MutableRefObject<ModalRef> = useRef();
+  const modalRef = useRef<ModalRef>();
   const prependCatalogueRef = useRef<CatalogueRef>();
   const appendCatalogueRef = useRef<CatalogueRef>();
   const { builder, floatingsRef, addons } = useBuilder();

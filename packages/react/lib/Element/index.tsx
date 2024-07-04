@@ -55,7 +55,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
 }, ref) => {
   const innerRef = useRef<DroppableRef>();
   const editableRef = useRef<EditableRef>();
-  const modalRef: MutableRefObject<ModalRef> = useRef();
+  const modalRef = useRef<ModalRef>();
   const [editableOpened, setEditableOpened] = useState(false);
   const { builder, addons } = useBuilder();
 

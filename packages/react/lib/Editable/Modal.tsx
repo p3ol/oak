@@ -16,21 +16,14 @@ import {
 import { slideInLeftModal } from '@junipero/transitions';
 
 import type { EditableRef } from '.';
-import type { OakRef } from '../types';
-import Form from './Form';
 import { useBuilder } from '../hooks';
+import Form from './Form';
 
 export interface ModalEditableProps extends SpecialComponentPropsWithoutRef {
   children: ReactElement;
   element: ElementObject;
   component: ComponentObject;
   modalRef?: MutableRefObject<any>;
-}
-
-export declare interface FloatingRef extends OakRef {
-  open: () => void;
-  close: () => void;
-  innerRef: MutableRefObject<any>;
 }
 
 const ModalEditable = forwardRef<

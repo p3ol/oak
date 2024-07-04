@@ -21,7 +21,7 @@ export interface EditableProps extends SpecialComponentPropsWithoutRef {
   children: ReactElement;
   element: ElementObject;
   component: ComponentObject;
-  modalRef?: MutableRefObject<ModalRef>;
+  modalRef?: ModalRef;
   floatingOptions?: UseFloatingOptions & {
     boundary?: Boundary;
   };
@@ -30,22 +30,12 @@ export interface EditableProps extends SpecialComponentPropsWithoutRef {
   opened?: boolean;
 }
 
-export declare interface FloatingRef extends OakRef {
-  open?: () => void;
-  close?: () => void;
-  toggle?: () => void;
-  opened?: boolean;
-  innerRef?: MutableRefObject<any>;
-  editableType?: 'floating' | 'modal';
-}
-
 export declare interface EditableRef extends OakRef {
   open?: () => void;
   close?: () => void;
   toggle?: () => void;
   forceClose?: () => void;
-  innerRef?: MutableRefObject<FloatingRef | HTMLDivElement | null>;
-  current?: FloatingRef | HTMLDivElement | null;
+  innerRef?: MutableRefObject<OakRef | HTMLDivElement | null>;
 }
 
 const Editable = forwardRef<EditableRef, EditableProps>(({

@@ -61,14 +61,6 @@ export declare interface FloatingRef extends OakRef {
   innerRef: MutableRefObject<any>;
 }
 
-export declare interface FloatingEditableRef extends OakRef {
-  open: () => void;
-  close: () => void;
-  forceClose: () => void;
-  toggle: () => void;
-  innerRef: MutableRefObject<FloatingRef | HTMLDivElement>;
-}
-
 const FloatingEditable = forwardRef<
   EditableRef,
   FloatingEditableProps
