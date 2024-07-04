@@ -4,6 +4,11 @@ export {
 } from './Button';
 
 export {
+  default as Clickable,
+  type ClickableProps,
+} from './Clickable';
+
+export {
   default as Col,
   type ColProps,
 } from './Col';
