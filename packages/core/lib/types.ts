@@ -30,9 +30,7 @@ export declare interface ComponentSettingsFieldKeyTuple {
 export declare interface FieldObject {
   type: string;
   props?: object;
-  render?(props: any, opts?: {
-    setting: ComponentSettingsFieldObject;
-  }): any;
+  render?(props: any, opts?: any): any; // TODO fix this
   deserialize?(val: string): any;
   onChange?<T = any>(
     field: FieldContent<T>,
@@ -47,8 +45,10 @@ export declare interface ComponentOverrideObject {
   fields?: ComponentSettingsFieldObject[];
   construct?(opts?: { builder?: Builder }): ElementObject;
   deserialize?(opts?: { builder?: Builder }): ElementObject;
-  render?(props?: any): any;
-  sanitize?(elmt?: ElementObject): any;
+  render?(props?: any, opts?: any): any; // TODO fix this
+  sanitize?(elmt?: ElementObject, opts?: {
+    builder: Builder;
+  }): ElementObject;
   duplicate?(elmt?: ElementObject): ElementObject;
   priority?: number;
   editable?: boolean;

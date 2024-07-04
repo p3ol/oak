@@ -151,7 +151,7 @@ export class Field {
   static FIND_PREDICATE = (type: string) => (f: Field) => f.type === type;
 
   type: string;
-  render: (props: any) => any;
+  render: FieldObject['render'];
   props: object;
 
   constructor (props: FieldObject) {
@@ -181,15 +181,13 @@ export class ComponentOverride extends Override {
   id: string;
   targets: string[];
   fields: ComponentSettingsFieldObject[];
-  render: Function;
+  render: ComponentOverrideObject['render'];
   construct: (
     opts: { builder: Builder, baseElement?: ElementObject }
   ) => ElementObject;
-  sanitize: (
-    element: ElementObject, { builder }: { builder: Builder}
-  ) => ElementObject;
-  duplicate: Function; //TODO fix it
-  deserialize: Function; //TODO fix it
+  sanitize: ComponentOverrideObject['sanitize'];
+  duplicate: ComponentOverrideObject['duplicate'];
+  deserialize: ComponentOverrideObject['deserialize'];
   priority: number;
   serialize: Function; //TODO fix it
   getContainers: (element: ElementObject) => ElementObject[][];
@@ -210,16 +208,32 @@ export class ComponentOverride extends Override {
     this.priority = props.priority || 0;
     this.editable = props.editable;
   }
+
+  toObject (): ComponentOverrideObject {
+    return {
+      type: 'component',
+      id: this.id,
+      targets: this.targets,
+      fields: this.fields,
+      render: this.render,
+      sanitize: this.sanitize,
+      construct: this.construct,
+      duplicate: this.duplicate,
+      deserialize: this.deserialize,
+      priority: this.priority,
+      editable: this.editable,
+    };
+  }
 }
 
 export class FieldOverride extends Override {
   id: string;
   targets: Array<any>;
-  render: Function;
+  render: FieldOverrideObject['render'];
   props: object;
   construct: Function;
   priority: number;
-  onChange: Function;
+  onChange: FieldOverrideObject['onChange'];
 
   constructor (props: FieldOverrideObject) {
     super();
@@ -232,6 +246,19 @@ export class FieldOverride extends Override {
     this.props = props.props || {};
     this.construct = props.construct;
     this.onChange = props.onChange;
+  }
+
+  toObject (): FieldOverrideObject {
+    return {
+      type: 'field',
+      id: this.id,
+      targets: this.targets,
+      render: this.render,
+      priority: this.priority,
+      props: this.props,
+      construct: this.construct,
+      onChange: this.onChange,
+    };
   }
 }
 
@@ -246,10 +273,11 @@ export class SettingOverride extends Override {
   description: string | GetTextCallback;
   displayable: boolean;
   valueType: string;
-  condition: Function;
+  condition: SettingOverrideObject['condition'];
   priority: number;
-  fields: ComponentSettingsFieldObject[];
+  fields: ComponentSettingsField[];
   props: object;
+  info: string | GetTextCallback;
 
   constructor (props: SettingOverrideObject) {
     super();
@@ -267,10 +295,32 @@ export class SettingOverride extends Override {
     this.valueType = props.valueType;
     this.condition = props.condition;
     this.priority = props.priority || 0;
+    this.info = props.info;
     this.fields = (props.fields || []).map((
       f: ComponentSettingsFieldObject
     ) => new ComponentSettingsField(f));
     this.props = props.props;
+  }
+
+  toObject (): SettingOverrideObject {
+    return {
+      type: 'setting',
+      key: this.key,
+      targets: this.targets,
+      id: this.id,
+      placeholder: this.placeholder,
+      default: this.default,
+      options: this.options,
+      label: this.label,
+      description: this.description,
+      displayable: this.displayable,
+      valueType: this.valueType,
+      condition: this.condition,
+      priority: this.priority,
+      info: this.info,
+      fields: this.fields.map(f => f.toObject()),
+      props: this.props,
+    };
   }
 }
 
