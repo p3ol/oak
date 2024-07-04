@@ -1,7 +1,3 @@
-import {
-  type MutableRefObject,
-  useMemo,
-} from 'react';
 import type {
   ComponentObject,
   ComponentSettingsFieldObject,
@@ -12,9 +8,14 @@ import type {
 import type {
   SpecialComponentPropsWithoutRef,
 } from '@junipero/react';
+import {
+  type MutableRefObject,
+  useMemo,
+} from 'react';
 
+import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
-import { EditableRef } from '.';
+import { assignDefined } from '../utils';
 
 export interface FieldProps extends SpecialComponentPropsWithoutRef {
   setting: ComponentSettingsFieldObject;
@@ -47,11 +48,12 @@ const Field = ({
     builder.getField(overrides?.field?.type || fieldSetting?.type)
   ), [overrides, fieldSetting, addons]);
 
-  const setting = useMemo(() => ({
-    ...fieldSetting,
-    ...overrides.settings,
-    ...overrides.field,
-  }), [fieldSetting, overrides, addons]);
+  const setting = useMemo(() => assignDefined<typeof fieldSetting>(
+    { type: fieldSetting.type },
+    fieldSetting,
+    overrides.settings?.toObject?.() || overrides.settings || {},
+    overrides.field?.toObject?.() || overrides.field || {},
+  ), [fieldSetting, overrides, addons]);
 
   const fieldProps = {
     id: setting.id,
