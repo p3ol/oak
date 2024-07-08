@@ -305,6 +305,15 @@ export const withNonEditableComponents = () => (
   />
 );
 
+export const withModalEditable = () => (
+  <Builder
+    addons={[baseAddon()]}
+    value={baseContent}
+    onChange={action('change')}
+    options={{ debug: true, editableType: 'modal' }}
+  />
+);
+
 export const withSettingOverrides = () => (
   <Builder
     addons={[baseAddon(), {
