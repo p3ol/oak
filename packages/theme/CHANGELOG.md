@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.1](https://github.com/p3ol/oak/compare/v3.7.0...v3.7.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* various modal editable style issues ([29dc187](https://github.com/p3ol/oak/commit/29dc187476e7a219780666d1443ccea3bd8fe997))
+
+
+
+
+
 # [3.7.0](https://github.com/p3ol/oak/compare/v3.6.10...v3.7.0) (2024-07-08)
 
 
