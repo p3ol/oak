@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/p3ol/oak/compare/v3.6.10...v3.7.0) (2024-07-08)
+
+
+### Features
+
+* add new clickable component ([f9bd61d](https://github.com/p3ol/oak/commit/f9bd61d3d2fdf968ed5ecc125d24cdcf7175a468))
+* **deps:** update poool junipero monorepo to v3.7.0 ([eb81056](https://github.com/p3ol/oak/commit/eb810561d68c8072c08ccfb6e3420aedf6f15b11))
+* **editable:** update for display panel modal ([8f727cb](https://github.com/p3ol/oak/commit/8f727cb8c3ecd554d32268278c8f3a3a68dedcdd))
+
+
+
+
+
 ## [3.6.9](https://github.com/p3ol/oak/compare/v3.6.8...v3.6.9) (2024-06-19)
 
 **Note:** Version bump only for package @oakjs/theme

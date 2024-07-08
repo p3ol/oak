@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/p3ol/oak/compare/v3.6.10...v3.7.0) (2024-07-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to v0.26.18 ([e7f1448](https://github.com/p3ol/oak/commit/e7f1448f789851a48dcdd7a93d50c4d1b32856ec))
+* **deps:** update dependency @floating-ui/react to v0.26.19 ([12b39ba](https://github.com/p3ol/oak/commit/12b39ba68d8e9ecb94c17876d2aff2335ab103b0))
+* **editable:** clean code ([1434707](https://github.com/p3ol/oak/commit/1434707bb06132e9b5601c73428d31a697cb97d6))
+* **editable:** clean import ([e223fd0](https://github.com/p3ol/oak/commit/e223fd0a1f4ebe2bb2c59d2e5853b6223b7612c2))
+* **editable:** clean type of onclick function ([40c1747](https://github.com/p3ol/oak/commit/40c17476b288e64bdb35f042d2b2e956ebae7035))
+* **react:** correctly apply settings overrides ([4e27d9e](https://github.com/p3ol/oak/commit/4e27d9eacd282ab1e61d5c20184cfa88019d4b7e))
+* **react:** correctly render displayable properties ([1a04cbb](https://github.com/p3ol/oak/commit/1a04cbb0de25aae6d84614dcb934fc7c01797858))
+
+
+### Features
+
+* add new clickable component ([f9bd61d](https://github.com/p3ol/oak/commit/f9bd61d3d2fdf968ed5ecc125d24cdcf7175a468))
+* **deps:** update poool junipero monorepo to v3.7.0 ([eb81056](https://github.com/p3ol/oak/commit/eb810561d68c8072c08ccfb6e3420aedf6f15b11))
+* **editable:** add editable-type props in context builder ([b3b6c62](https://github.com/p3ol/oak/commit/b3b6c629f85264cd6338ab522613dcb0092fb958))
+* **editable:** add story for editable modal ([73393fc](https://github.com/p3ol/oak/commit/73393fcac71474b8b942017c98d2d76482e295ee))
+* **editable:** retrieve editable-type in option of builder ([01b5e0c](https://github.com/p3ol/oak/commit/01b5e0c3d00896e30ac195527b4a35ed6ab28526))
+* **editable:** update for display panel modal ([8f727cb](https://github.com/p3ol/oak/commit/8f727cb8c3ecd554d32268278c8f3a3a68dedcdd))
+* **react:** add background preview to col component ([360e2b2](https://github.com/p3ol/oak/commit/360e2b2d83ac957a6e532411ef5af65638da8000))
+
+
+
+
+
 ## [3.6.10](https://github.com/p3ol/oak/compare/v3.6.9...v3.6.10) (2024-06-20)
 
 

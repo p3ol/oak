@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/p3ol/oak/compare/v3.6.10...v3.7.0) (2024-07-08)
+
+
+### Bug Fixes
+
+* **core:** missing to object methods ([a49c50b](https://github.com/p3ol/oak/commit/a49c50be091eb8ce7d50d002bd44107fe9bbfd23))
+* move editable to the right ([bb4c1c8](https://github.com/p3ol/oak/commit/bb4c1c8a23254e9485949089e4d6a98392ceb89e))
+
+
+### Features
+
+* add new clickable component ([f9bd61d](https://github.com/p3ol/oak/commit/f9bd61d3d2fdf968ed5ecc125d24cdcf7175a468))
+* **deps:** update poool junipero monorepo to v3.7.0 ([eb81056](https://github.com/p3ol/oak/commit/eb810561d68c8072c08ccfb6e3420aedf6f15b11))
+* **editable:** retrieve editable-type in option of builder ([01b5e0c](https://github.com/p3ol/oak/commit/01b5e0c3d00896e30ac195527b4a35ed6ab28526))
+
+
+
+
+
 ## [3.6.9](https://github.com/p3ol/oak/compare/v3.6.8...v3.6.9) (2024-06-19)
 
 **Note:** Version bump only for package @oakjs/core
