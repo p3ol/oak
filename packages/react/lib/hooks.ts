@@ -10,7 +10,18 @@ import {
   useEffectAfterMount,
 } from '@junipero/react';
 
+import type { EditableType } from './types';
 import { BuilderContext } from './contexts';
+
+export interface UseRootBuilderProps {
+  activeTextSheet?: string;
+  content?: ElementObject[];
+  defaultContent?: ElementObject[];
+  editableType?: EditableType;
+  onChange?: (content: ElementObject[]) => void;
+  onEvent?: (eventName: string, ...args: any[]) => void;
+  addons?: AddonObject[];
+}
 
 export interface RootBuilderState {
   content: ElementObject[];
@@ -18,23 +29,18 @@ export interface RootBuilderState {
   addons: AddonObject[];
   canUndo: boolean;
   canRedo: boolean;
+  editableType?: EditableType;
 }
 
 export const useRootBuilder = ({
   activeTextSheet,
   content,
   defaultContent,
+  editableType,
   onChange,
   onEvent,
   ...opts
-}: {
-  activeTextSheet?: string;
-  content?: Array<ElementObject>;
-  defaultContent?: Array<ElementObject>;
-  onChange?: (content: Array<ElementObject>) => void;
-  onEvent?: (eventName: string, ...args: any[]) => void;
-  addons?: AddonObject[],
-} = {}) => {
+}: UseRootBuilderProps = {}) => {
   const builder = useMemo(() => (
     new Builder({
       ...opts,
@@ -49,6 +55,7 @@ export const useRootBuilder = ({
     addons: opts.addons,
     canUndo: false,
     canRedo: false,
+    editableType,
   });
 
   // Allow to change the content from outside

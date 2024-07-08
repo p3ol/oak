@@ -1562,6 +1562,531 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
 </div>
 `;
 
+exports[`<Builder /> should allow to render editable inside a modal: Catalogue opened 1`] = `
+<div
+  class="floatings"
+>
+  <div
+    class="catalogue-menu"
+    data-placement="bottom"
+    style="position: absolute; top: 0px; left: 0px;"
+    tabindex="-1"
+  >
+    <div
+      class="groups"
+    >
+      <div
+        class="junipero tabs"
+      >
+        <ul
+          class="titles"
+        >
+          <li
+            class="title active"
+          >
+            <a
+              href="#"
+            >
+              Core components
+            </a>
+          </li>
+        </ul>
+        <div
+          class="content"
+        >
+          <div
+            class="tab"
+          >
+            <div
+              class="group oak-grid oak-grid-cols-2 oak-gap-2"
+            >
+              <a
+                class="component component-row oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  row
+                </i>
+                <span
+                  class="name"
+                >
+                  Row
+                </span>
+              </a>
+              <a
+                class="component component-empty-space oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  blank_space
+                </i>
+                <span
+                  class="name"
+                >
+                  Blank space
+                </span>
+              </a>
+              <a
+                class="component component-title oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  title
+                </i>
+                <span
+                  class="name"
+                >
+                  Title
+                </span>
+              </a>
+              <a
+                class="component component-text oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  multiline
+                </i>
+                <span
+                  class="name"
+                >
+                  Text
+                </span>
+              </a>
+              <a
+                class="component component-image oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  image
+                </i>
+                <span
+                  class="name"
+                >
+                  Image
+                </span>
+              </a>
+              <a
+                class="component component-button oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  button
+                </i>
+                <span
+                  class="name"
+                >
+                  Button
+                </span>
+              </a>
+              <a
+                class="component component-foldable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  foldable
+                </i>
+                <span
+                  class="name"
+                >
+                  Foldable
+                </span>
+              </a>
+              <a
+                class="component component-clickable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                draggable="false"
+                href="#"
+              >
+                <i
+                  class="icon junipero-icons !oak-text-2xl"
+                >
+                  clickable
+                </i>
+                <span
+                  class="name"
+                >
+                  Clickable
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Builder /> should allow to render editable inside a modal: Title editable 1`] = `
+<div>
+  <div
+    class="oak builder"
+  >
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button disabled"
+        disabled=""
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
+      class="elements oak-flex oak-flex-col oak-gap-4"
+    >
+      <div
+        class="add-element oak-flex oak-justify-center"
+      >
+        <div
+          class="catalogue"
+        >
+          <a
+            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            draggable="false"
+          >
+            <i
+              class="icon junipero-icons"
+            >
+              add
+            </i>
+          </a>
+        </div>
+      </div>
+      <div
+        class="oak element oak-flex-none type-title draggable"
+        draggable="true"
+      >
+        <div
+          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            title
+          </i>
+          <div
+            class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+          >
+            <h6
+              class="junipero oak-m-0"
+            >
+              Title
+            </h6>
+            <div
+              class="element-content oak-flex-auto"
+            >
+              <h1
+                class="junipero oak-m-0 sanitize-html !oak-text-4xl"
+              >
+                This is a title
+              </h1>
+            </div>
+            <div
+              class="displayable-settings junipero extra !oak-text-alternate-text-color"
+            >
+              <span
+                class="property"
+              >
+                <span
+                  class="key"
+                >
+                  Type
+                  : 
+                </span>
+                <span
+                  class="value"
+                >
+                  Title 1 (h1)
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="options oak-flex oak-items-center"
+        >
+          <a
+            class="option oak-flex oak-items-center oak-justify-center remove"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              close
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              copy
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center copy"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              copy_file
+            </i>
+          </a>
+          <div>
+            <a
+              class="option oak-flex oak-items-center oak-justify-center edit"
+              draggable="false"
+              href="#"
+            >
+              <i
+                class="icon junipero-icons !oak-text-lg"
+              >
+                pen
+              </i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="add-element oak-flex oak-justify-center"
+      >
+        <div
+          class="catalogue"
+        >
+          <a
+            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            draggable="false"
+          >
+            <i
+              class="icon junipero-icons"
+            >
+              add
+            </i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        class="junipero button disabled"
+        disabled=""
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        class="junipero button disabled"
+        disabled=""
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
+      class="floatings"
+    >
+      <div
+        class="junipero modal opened panel editable"
+      >
+        <div
+          class="wrapper"
+          tabindex="0"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="form"
+            >
+              <div
+                class="form-title junipero oak-flex oak-py-2 oak-px-5"
+              >
+                Title options
+              </div>
+              <div
+                class="junipero tabs"
+              >
+                <ul
+                  class="titles"
+                >
+                  <li
+                    class="title active"
+                  >
+                    <a
+                      href="#"
+                    >
+                      Settings
+                    </a>
+                  </li>
+                  <li
+                    class="title"
+                  >
+                    <a
+                      href="#"
+                    >
+                      Styling
+                    </a>
+                  </li>
+                  <li
+                    class="title"
+                  >
+                    <a
+                      href="#"
+                    >
+                      Responsive
+                    </a>
+                  </li>
+                </ul>
+                <div
+                  class="content"
+                >
+                  <div
+                    class="tab"
+                  >
+                    <div
+                      class="fields oak-flex oak-flex-col oak-gap-4"
+                    >
+                      <div
+                        class="field"
+                      >
+                        <label
+                          class="junipero label oak-flex oak-items-center oak-gap-2"
+                        >
+                          Type
+                        </label>
+                        <div
+                          class="junipero dropdown select-field pristine valid searchable"
+                        >
+                          <div
+                            class="field dropdown-toggle"
+                          >
+                            <input
+                              readonly=""
+                              type="text"
+                              value="Title 1 (h1)"
+                            />
+                            <div
+                              class="icons"
+                            >
+                              <svg
+                                class="junipero icon arrows"
+                                height="13"
+                                viewBox="0 0 8 13"
+                                width="8"
+                              >
+                                <path
+                                  d="M1 4.5L4 1.5L7 4.5"
+                                />
+                                <path
+                                  d="M1 8.5L4 11.5L7 8.5"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="field"
+                      >
+                        <label
+                          class="junipero label oak-flex oak-items-center oak-gap-2"
+                        >
+                          Content
+                        </label>
+                        <div
+                          class="junipero text-field pristine valid"
+                        >
+                          <textarea
+                            class="field"
+                            rows="5"
+                            tag="textarea"
+                          >
+                            This is a title
+                          </textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="buttons oak-flex oak-items-center oak-justify-end oak-gap-2 oak-p-5"
+              >
+                <button
+                  class="junipero button subtle"
+                  type="button"
+                >
+                  Cancel
+                </button>
+                <button
+                  class="junipero button primary"
+                  type="button"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`<Builder /> should render: Base content 1`] = `
 <div>
   <div

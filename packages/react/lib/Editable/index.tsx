@@ -16,6 +16,7 @@ import { type Boundary, UseFloatingOptions } from '@floating-ui/react';
 import type { OakRef } from '../types';
 import FloatingEditable from './Floating';
 import ModalEditable from './Modal';
+import { useBuilder } from '../hooks';
 
 export interface EditableProps extends SpecialComponentPropsWithoutRef {
   children: ReactElement;
@@ -47,31 +48,30 @@ const Editable = forwardRef<EditableRef, EditableProps>(({
   modalRef,
   setOpened,
   opened,
-  editableType,
-}, ref) => (
-  <>
-    { editableType === 'modal' ? (
-      <ModalEditable
-        ref={ref}
-        children={children}
-        modalRef={modalRef}
-        element={element}
-        component={component}
-      />
-    ) : (
-      <FloatingEditable
-        ref={ref}
-        children={children}
-        element={element}
-        onToggle={onToggle}
-        component={component}
-        floatingOptions={floatingOptions}
-        setOpened={setOpened}
-        opened={opened}
-      />
-    ) }
-  </>
-));
+}, ref) => {
+  const { editableType } = useBuilder();
+
+  return editableType === 'modal' ? (
+    <ModalEditable
+      ref={ref}
+      children={children}
+      modalRef={modalRef}
+      element={element}
+      component={component}
+    />
+  ) : (
+    <FloatingEditable
+      ref={ref}
+      children={children}
+      element={element}
+      onToggle={onToggle}
+      component={component}
+      floatingOptions={floatingOptions}
+      setOpened={setOpened}
+      opened={opened}
+    />
+  );
+});
 
 Editable.displayName = 'Editable';
 

@@ -283,7 +283,6 @@ const Col = ({
               element={element}
               component={component}
               modalRef={modalRef}
-              editableType={builder?.options?.editableType}
             >
               <Option
                 className="edit"

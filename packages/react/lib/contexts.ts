@@ -10,7 +10,7 @@ import type {
   ElementObject,
 } from '@oakjs/core';
 
-import type { ImageUploadCallbackResult } from './types';
+import type { EditableType, ImageUploadCallbackResult } from './types';
 
 export declare type BuilderContextValue = {
   builder?: Builder;
@@ -32,6 +32,7 @@ export declare type BuilderContextValue = {
   }): Promise<ImageUploadCallbackResult>;
   rootRef?: MutableRefObject<HTMLDivElement>;
   floatingsRef?: MutableRefObject<HTMLDivElement>;
+  editableType?: EditableType;
 };
 
 export const BuilderContext = createContext<BuilderContextValue>({});

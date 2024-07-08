@@ -24,6 +24,8 @@ export declare interface OakRef {
   isOak: boolean;
 }
 
+export declare type EditableType = 'floating' | 'modal';
+
 export declare interface ImageUploadCallbackResult {
   url: string;
   name: string;

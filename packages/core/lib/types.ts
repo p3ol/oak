@@ -226,7 +226,6 @@ export declare interface BuilderObject {
   content?: ElementObject[];
   addons?: AddonObject[];
   onChange?(content: ElementObject[]): void;
-  editableType?: 'floating' | 'modal';
 }
 
 export declare type ElementSettingsComplexKey = {

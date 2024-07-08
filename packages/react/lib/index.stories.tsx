@@ -310,7 +310,8 @@ export const withModalEditable = () => (
     addons={[baseAddon()]}
     value={baseContent}
     onChange={action('change')}
-    options={{ debug: true, editableType: 'modal' }}
+    editableType="modal"
+    options={{ debug: true }}
   />
 );
 

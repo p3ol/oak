@@ -112,4 +112,30 @@ describe('<Builder />', () => {
 
     unmount();
   });
+
+  it('should allow to render editable inside a modal', () => {
+    const { container, unmount } = render(
+      <Builder
+        addons={[baseAddon()]}
+        editableType="modal"
+      />
+    );
+
+    const floatings = container.querySelector<HTMLElement>('.floatings');
+    const catalogue = container.querySelector<HTMLElement>('.catalogue');
+
+    // Open catalogue
+    fireEvent.click(within(catalogue).getByText('add'));
+    expect(floatings).toMatchSnapshot('Catalogue opened');
+
+    // Add a title
+    fireEvent.click(within(floatings).getByText('Title'));
+
+    // Edit title
+    fireEvent.click(within(container).getByText('pen'));
+
+    expect(container).toMatchSnapshot('Title editable');
+
+    unmount();
+  });
 });

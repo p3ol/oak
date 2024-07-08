@@ -22,14 +22,12 @@ export class BuilderOptions {
   generateId: () => string | number;
   historyLimit: number;
   overrideStrategy: 'last' | 'merge';
-  editableType: 'floating' | 'modal';
 
   constructor (props?: BuilderObject) {
     this.debug = props?.debug ?? false;
     this.generateId = props?.generateId;
     this.historyLimit = props?.historyLimit ?? 20;
     this.overrideStrategy = props?.overrideStrategy || 'last';
-    this.editableType = props?.editableType || 'floating';
   }
 }
 

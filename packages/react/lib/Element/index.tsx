@@ -236,7 +236,6 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                 modalRef={modalRef}
                 setOpened={setEditableOpened}
                 opened={editableOpened}
-                editableType={builder?.options?.editableType}
               >
                 <Option
                   option={{ icon: 'pen' }}

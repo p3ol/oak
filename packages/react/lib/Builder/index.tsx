@@ -21,7 +21,7 @@ import {
   Builder as CoreBuilder,
 } from '@oakjs/core';
 
-import type { ImageUploadCallbackResult, OakRef } from '../types';
+import type { EditableType, ImageUploadCallbackResult, OakRef } from '../types';
 import { type BuilderContextValue, BuilderContext } from '../contexts';
 import { useRootBuilder } from '../hooks';
 import Element from '../Element';
@@ -43,6 +43,7 @@ export declare interface BuilderProps extends SpecialComponentPropsWithoutRef {
   bottomHistoryButtonsEnabled?: boolean;
   defaultValue?: Array<ElementObject>;
   historyEnabled?: boolean;
+  editableType?: EditableType;
   options?: BuilderOptions;
   rootBoundary?: MutableRefObject<any> | string | Element | DocumentFragment;
   topHistoryButtonsContainer?: string | HTMLElement | DocumentFragment;
@@ -73,7 +74,14 @@ const Builder = forwardRef<BuilderRef, BuilderProps>(({
   const innerRef = useRef<HTMLDivElement>();
   const catalogueRef = useRef<CatalogueRef>();
   const floatingsRef = useRef<HTMLDivElement>();
-  const { builder, content, addons, canUndo, canRedo } = useRootBuilder({
+  const {
+    builder,
+    content,
+    addons,
+    canUndo,
+    canRedo,
+    editableType,
+  } = useRootBuilder({
     content: value,
     defaultContent: defaultValue,
     addons: addonsProp,
@@ -98,7 +106,8 @@ const Builder = forwardRef<BuilderRef, BuilderProps>(({
     onImageUpload,
     rootRef: innerRef,
     floatingsRef,
-  }), [builder, content, addons, rootBoundary, onImageUpload]);
+    editableType,
+  }), [builder, content, addons, rootBoundary, onImageUpload, editableType]);
 
   const onAppend = (component: ComponentObject) => {
     catalogueRef.current?.close();
