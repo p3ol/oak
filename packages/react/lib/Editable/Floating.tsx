@@ -172,7 +172,7 @@ const FloatingEditable = forwardRef<
       }) }
       { state.visible && createPortal((
         <div
-          className="editable editableFloating"
+          className="floating editable"
           style={{
             position: strategy,
             top: y ?? 0,

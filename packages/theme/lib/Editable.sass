@@ -2,6 +2,8 @@
   --background-color: var(--oak-floating-background-color)
   --border-color: var(--oak-field-border-color)
 
+  z-index: 20
+
   .form-title
     background-color: var(--oak-main-color)
     color: var(--oak-reverse-text-color)
@@ -38,27 +40,25 @@
     max-height: 300px
     overflow: auto
 
-// Floating
-.oak .editableFloating
-  min-width: 600px
-  width: 600px
-  max-width: 800px
-  background: var(--background-color)
-  border-radius: 5px
-  z-index: 20
-  position: relative
-  box-shadow: 0 0 0 2px var(--border-color)
+  &.floating
+    min-width: 600px
+    width: 600px
+    max-width: 800px
+    background: var(--background-color)
+    border-radius: 5px
+    position: relative
+    box-shadow: 0 0 0 2px var(--border-color)
 
-  .form-title
-    border-radius: 5px 5px 0 0
+    .form-title
+      border-radius: 5px 5px 0 0
 
-// Modal
-.oak .editable.junipero.modal
-    z-index: 11 !important
-    .wrapper > .content
-      padding: 0 !important 
-    
+  &.modal
+    & > .wrapper > .content
+      padding: 0
+
     .buttons
       position: sticky
       bottom: 0
-      background-color: var(--oak-inner-background-color)
+
+    .junipero.tabs .titles
+      border-radius: 0

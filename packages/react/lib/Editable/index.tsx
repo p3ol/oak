@@ -14,9 +14,9 @@ import {
 import { type Boundary, UseFloatingOptions } from '@floating-ui/react';
 
 import type { OakRef } from '../types';
+import { useBuilder } from '../hooks';
 import FloatingEditable from './Floating';
 import ModalEditable from './Modal';
-import { useBuilder } from '../hooks';
 
 export interface EditableProps extends SpecialComponentPropsWithoutRef {
   children: ReactElement;
