@@ -190,6 +190,7 @@ export class ComponentOverride extends Override {
   serialize: Function; //TODO fix it
   getContainers: (element: ElementObject) => ElementObject[][];
   editable: boolean;
+  disallow: string[];
 
   constructor (props: ComponentOverrideObject) {
     super();
@@ -205,6 +206,7 @@ export class ComponentOverride extends Override {
     this.deserialize = props.deserialize;
     this.priority = props.priority || 0;
     this.editable = props.editable;
+    this.disallow = props.disallow || [];
   }
 
   toObject (): ComponentOverrideObject {
