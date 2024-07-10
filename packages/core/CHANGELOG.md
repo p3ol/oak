@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.2](https://github.com/p3ol/oak/compare/v3.7.1...v3.7.2) (2024-07-10)
+
+
+### Bug Fixes
+
+* **core:** correctly pass disallow component prop to overrides ([aedbd15](https://github.com/p3ol/oak/commit/aedbd15afef0b8363479e4e0134a6d99d940043e))
+
+
+
+
+
 # [3.7.0](https://github.com/p3ol/oak/compare/v3.6.10...v3.7.0) (2024-07-08)
 
 
