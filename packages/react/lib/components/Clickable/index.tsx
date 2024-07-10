@@ -1,5 +1,9 @@
-import type { ComponentPropsWithoutRef } from 'react';
-import type { ComponentObject, ElementObject } from '@oakjs/core';
+import type {
+  ComponentObject,
+  ComponentOverride,
+  ElementObject,
+} from '@oakjs/core';
+import { type ComponentPropsWithoutRef, useCallback, useMemo } from 'react';
 import { Droppable, omit, classNames } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
@@ -23,18 +27,32 @@ const Clickable = ({
   depth = 0,
   ...rest
 }: ClickableProps) => {
-  const { builder } = useBuilder();
+  const { builder, addons } = useBuilder();
+  const override = useMemo(() => (
+    builder.getOverride('component', component?.id) as ComponentOverride
+  ), [builder, component, addons]);
+  const parentOverride = useMemo(() => (
+    builder.getOverride('component', parentComponent?.id) as ComponentOverride
+  ), [builder, parentComponent, addons]);
 
-  const onDropElement = (
+  const onDropElement = useCallback(() => (
     position: 'before' | 'after',
     sibling: ElementObject
   ) => {
-    if (parentComponent?.disallow?.includes?.(sibling.type)) {
+    if (
+      component?.disallow?.includes?.(sibling.type) ||
+      override?.disallow?.includes?.(sibling.type) ||
+      parentComponent?.disallow?.includes?.(sibling.type) ||
+      parentOverride?.disallow?.includes?.(sibling.type)
+    ) {
       return;
     }
 
     builder.moveElement(sibling, element, { parent, position });
-  };
+  }, [
+    builder, element, parent, component, override, parentComponent,
+    parentOverride,
+  ]);
 
   return (
     <div

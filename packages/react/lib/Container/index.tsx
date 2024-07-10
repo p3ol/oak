@@ -1,5 +1,10 @@
-import { type ComponentPropsWithoutRef, useRef } from 'react';
 import type { Component, ComponentObject, ElementObject } from '@oakjs/core';
+import {
+  type ComponentPropsWithoutRef,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import { Droppable, classNames } from '@junipero/react';
 
 import { useBuilder } from '../hooks';
@@ -24,7 +29,10 @@ const Container = ({
 }: ContainerProps) => {
   const prependCatalogueRef = useRef<CatalogueRef>();
   const appendCatalogueRef = useRef<CatalogueRef>();
-  const { builder } = useBuilder();
+  const { builder, addons } = useBuilder();
+  const override = useMemo(() => (
+    builder.getOverride('component', component?.id) as ComponentObject
+  ), [component, builder, addons]);
 
   const onPrepend = (c: Component | ComponentObject) => {
     prependCatalogueRef.current?.close();
@@ -44,8 +52,11 @@ const Container = ({
     });
   };
 
-  const onDrop = (data: ElementObject) => {
-    if (component?.disallow?.includes?.(data.type)) {
+  const onDrop = useCallback((data: ElementObject) => {
+    if (
+      component?.disallow?.includes?.(data.type) ||
+      override?.disallow?.includes?.(data.type)
+    ) {
       return;
     }
 
@@ -53,7 +64,7 @@ const Container = ({
       parent: content,
       position: 'after',
     });
-  };
+  }, [builder, content, element, component, override]);
 
   const onPasteBefore = (elmt: ElementObject) => {
     prependCatalogueRef.current?.close();

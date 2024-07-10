@@ -1,5 +1,14 @@
-import type { ComponentPropsWithoutRef, Key } from 'react';
-import type { ComponentObject, ElementObject } from '@oakjs/core';
+import type {
+  ComponentObject,
+  ComponentOverride,
+  ElementObject,
+} from '@oakjs/core';
+import {
+  type ComponentPropsWithoutRef,
+  type Key,
+  useCallback,
+  useMemo,
+} from 'react';
 import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
@@ -20,7 +29,10 @@ const Row = ({
   depth = 0,
   ...rest
 }: RowProps) => {
-  const { builder } = useBuilder();
+  const { builder, addons } = useBuilder();
+  const parentOverride = useMemo(() => (
+    builder.getOverride('component', parentComponent?.id) as ComponentOverride
+  ), [parentComponent, builder, addons]);
 
   const onDivide = (index: number, isBefore: boolean) => {
     if (!element.cols || element.cols.length <= 0) {
@@ -62,16 +74,19 @@ const Row = ({
     }
   };
 
-  const onDropElement = (
+  const onDropElement = useCallback((
     position: 'before' | 'after',
     sibling: ElementObject
   ) => {
-    if (parentComponent?.disallow?.includes?.(sibling.type)) {
+    if (
+      parentComponent?.disallow?.includes?.(sibling.type) ||
+      parentOverride?.disallow?.includes?.(sibling.type)
+    ) {
       return;
     }
 
     builder.moveElement(sibling, element, { parent, position });
-  };
+  }, [builder, element, parent, parentComponent, parentOverride]);
 
   return (
     <div

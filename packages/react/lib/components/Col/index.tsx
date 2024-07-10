@@ -1,8 +1,14 @@
-import type { ComponentObject, ComponentOverrideObject, ElementObject } from '@oakjs/core';
+import type {
+  ComponentObject,
+  ComponentOverride,
+  ComponentOverrideObject,
+  ElementObject,
+} from '@oakjs/core';
 import {
   type ComponentPropsWithoutRef,
   type Key,
   type MouseEvent,
+  useCallback,
   useMemo,
   useRef,
 } from 'react';
@@ -43,8 +49,8 @@ const Col = ({
     builder.getComponent?.(element.type)
   ), [element.type]);
   const override = useMemo(() => (
-    builder.getOverride('component', element?.type)
-  ), [element?.type, addons]);
+    builder.getOverride('component', element?.type) as ComponentOverride
+  ), [builder, element?.type, addons]);
 
   const onPrependCol_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -79,8 +85,11 @@ const Col = ({
     });
   };
 
-  const onDrop_ = (data: ComponentObject) => {
-    if (component?.disallow?.includes?.(data.type)) {
+  const onDrop_ = useCallback((data: ComponentObject) => {
+    if (
+      component?.disallow?.includes?.(data.type) ||
+      override?.disallow?.includes?.(data.type)
+    ) {
       return;
     }
 
@@ -88,7 +97,7 @@ const Col = ({
       parent: element.content as ElementObject[],
       position: 'after',
     });
-  };
+  }, [builder, element, component, override]);
 
   const onPasteBefore_ = (elmt: ElementObject) => {
     prependCatalogueRef.current?.close();

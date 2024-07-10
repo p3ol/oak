@@ -237,29 +237,23 @@ export const withMultipleCustomSettingsAndFields = () => (
   />
 );
 
-export const disallowSomeChildren = () => {
-  const addon = baseAddon();
-
-  return (
-    <div>
-      <div>You should not be able to add a text inside a col</div>
-      <Builder
-        addons={[{
-          ...addon,
-          components: addon.components.map(c => c.id === 'core' ? {
-            ...c,
-            components: (c as ComponentTabOject).components.map(c_ =>
-              c_.id === 'col' ? { ...c_, disallow: ['text'] } : c_
-            ),
-          } : c),
-        } as AddonObject]}
-        value={baseContent}
-        options={{ debug: true }}
-        onChange={action('change')}
-      />
-    </div>
-  );
-};
+export const disallowSomeChildren = () => (
+  <div>
+    <div>You should not be able to add a text inside a col</div>
+    <Builder
+      addons={[baseAddon(), {
+        overrides: [{
+          type: 'component',
+          targets: ['col'],
+          disallow: ['text'],
+        }],
+      } as AddonObject]}
+      value={baseContent}
+      options={{ debug: true }}
+      onChange={action('change')}
+    />
+  </div>
+);
 
 export const withMergeOverrides = () => (
   <Builder

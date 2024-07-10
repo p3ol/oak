@@ -1,3 +1,8 @@
+import type {
+  ComponentObject,
+  ComponentOverride,
+  ElementObject,
+} from '@oakjs/core';
 import {
   type MouseEvent,
   type MutableRefObject,
@@ -8,7 +13,6 @@ import {
   useReducer,
   useRef,
 } from 'react';
-import type { ComponentObject, ElementObject } from '@oakjs/core';
 import { createPortal } from 'react-dom';
 import {
   type StateReducer,
@@ -72,7 +76,10 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
   ...rest
 }, ref) => {
   const innerRef = useRef<HTMLDivElement>();
-  const { builder, floatingsRef } = useBuilder();
+  const { builder, floatingsRef, addons } = useBuilder();
+  const override = useMemo(() => (
+    builder.getOverride('component', component?.id) as ComponentOverride
+  ), [builder, component, addons]);
   const [state, dispatch] = useReducer<
     StateReducer<CatalogueState>
   >(mockState, {
@@ -163,14 +170,16 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
       .filter(g => g.usable !== false)
       .map(g => ({
         ...g,
-        components: g.components.filter((c: ComponentObject) =>
+        components: g.components.filter((c: ComponentObject) => (
           c.usable !== false &&
-          (!component || !component.disallow ||
-            !component.disallow.includes(c.id))
-        ),
+            (!component || !component.disallow ||
+              !component.disallow.includes(c.id)) &&
+            (!override || !override.disallow ||
+              !override.disallow.includes(c.id))
+        )),
       }))
       .filter(g => g.components.length)
-  ), [availableGroups]);
+  ), [availableGroups, component, override]);
 
   return (
     <div

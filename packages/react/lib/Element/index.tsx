@@ -1,3 +1,10 @@
+import type {
+  ComponentObject,
+  ComponentOverride,
+  ComponentOverrideObject,
+  ElementObject,
+  FieldOverrideObject,
+} from '@oakjs/core';
 import {
   type ComponentPropsWithoutRef,
   type MouseEvent,
@@ -8,13 +15,8 @@ import {
   useRef,
   useState,
   useImperativeHandle,
+  useCallback,
 } from 'react';
-import type {
-  ComponentObject,
-  ComponentOverrideObject,
-  ElementObject,
-  FieldOverrideObject,
-} from '@oakjs/core';
 import {
   type DroppableRef,
   type ModalRef,
@@ -69,7 +71,10 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   ), [element?.type, addons]);
   const override = useMemo(() => (
     builder.getOverride('component', element?.type)
-  ), [element?.type, addons]);
+  ), [element?.type, builder, addons]);
+  const parentOverride = useMemo(() => (
+    builder.getOverride('component', parentComponent?.id) as ComponentOverride
+  ), [parentComponent, builder, addons]);
 
   const onDelete_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
@@ -81,13 +86,16 @@ const Element = forwardRef<ElementRef, ElementProps>(({
     builder.duplicateElement(element, { parent });
   };
 
-  const onDrop_ = (data: any, position: ('before' | 'after')) => {
-    if (parentComponent?.disallow?.includes?.(data.type)) {
+  const onDrop_ = useCallback((data: any, position: ('before' | 'after')) => {
+    if (
+      parentComponent?.disallow?.includes?.(data.type) ||
+      parentOverride?.disallow?.includes?.(data.type)
+    ) {
       return;
     }
 
     builder.moveElement?.(data, element, { parent, position });
-  };
+  }, [builder, element, parent, parentComponent, parentOverride]);
 
   const onPrintDebug = (e: MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();

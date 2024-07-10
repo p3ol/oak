@@ -222,13 +222,14 @@ export class ComponentOverride extends Override {
       deserialize: this.deserialize,
       priority: this.priority,
       editable: this.editable,
+      disallow: this.disallow,
     };
   }
 }
 
 export class FieldOverride extends Override {
   id: string;
-  targets: Array<any>;
+  targets: string[];
   render: FieldOverrideObject['render'];
   props: object;
   construct: Function;
