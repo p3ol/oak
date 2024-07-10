@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.4](https://github.com/p3ol/oak/compare/v3.7.3...v3.7.4) (2024-07-10)
+
+
+### Bug Fixes
+
+* **react:** correctly handle disallow from overrides ([0c216aa](https://github.com/p3ol/oak/commit/0c216aa2739b9b2ecf364af33d4b5601b41c8571))
+
+
+
+
+
 ## [3.7.3](https://github.com/p3ol/oak/compare/v3.7.2...v3.7.3) (2024-07-10)
 
 **Note:** Version bump only for package oak
