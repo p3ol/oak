@@ -15,6 +15,7 @@ exports[`Overrides should allow to add overrides 1`] = `
   ComponentOverride {
     "construct": undefined,
     "deserialize": undefined,
+    "disallow": [],
     "duplicate": undefined,
     "editable": undefined,
     "fields": [],
@@ -36,6 +37,7 @@ exports[`Overrides should allow to get an override 1`] = `
 ComponentOverride {
   "construct": undefined,
   "deserialize": undefined,
+  "disallow": [],
   "duplicate": undefined,
   "editable": undefined,
   "fields": [],
@@ -55,6 +57,7 @@ ComponentOverride {
 exports[`Overrides should alow to merge overrides 1`] = `
 {
   "construct": [Function],
+  "disallow": [],
   "fields": [],
   "priority": 0,
   "targets": [
