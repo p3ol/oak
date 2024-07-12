@@ -3913,10 +3913,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/core@npm:3.7.0, @junipero/core@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "@junipero/core@npm:3.7.0"
-  checksum: 10/9fdfd7f85eee14b72d73926e4fff267f123b1f97e4cfcdca3c73e953cb41dd95f21b5058aa4d555535f0a09104defccc79190b831733113044ef554431f0ca79
+"@junipero/core@npm:3.7.1, @junipero/core@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "@junipero/core@npm:3.7.1"
+  checksum: 10/e2869778ba393cf63c83e45cb6741dabaca18a9965d125926f63f7294fea6b207413eaf4c8e11369e1f52fd236a8f4f5f098b6be34a856154e74b25ba4d16679
   languageName: node
   linkType: hard
 
@@ -3929,27 +3929,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/react@npm:3.7.0":
-  version: 3.7.0
-  resolution: "@junipero/react@npm:3.7.0"
+"@junipero/react@npm:3.7.1":
+  version: 3.7.1
+  resolution: "@junipero/react@npm:3.7.1"
   dependencies:
     "@floating-ui/react": "npm:0.26.18"
-    "@junipero/core": "npm:^3.7.0"
+    "@junipero/core": "npm:^3.7.1"
     "@junipero/hooks": "npm:^3.7.0"
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10/588a7a8a62a20ef145c89a4bab7bc77e12dba5db904fddf024644a5410b1db9af594bd05f1712b54c1fd7bc995a34360befc9af9907eff51fe32a880ae53ab56
+  checksum: 10/45e02b0d94a2c3d5c63e60fbc1d87e0111be2dbd42672138b6ed441ec28c0f766dcd38f6e5919b20df9aa33be42ccf1eaae30ae754fd3a5b99de68d4fb7106ce
   languageName: node
   linkType: hard
 
-"@junipero/tailwind-plugin@npm:3.7.0":
-  version: 3.7.0
-  resolution: "@junipero/tailwind-plugin@npm:3.7.0"
+"@junipero/tailwind-plugin@npm:3.7.1":
+  version: 3.7.1
+  resolution: "@junipero/tailwind-plugin@npm:3.7.1"
   peerDependencies:
     "@junipero/core": ^3.0.0
     tailwindcss: ^3.0.0
-  checksum: 10/188a06a1f489b2b41d423e4b2f7e27388ce15d20b970386029c1c1da7e3adbeba7a3b5851e5e8ec9564da65a75b70f851842e14c4512a81ff8b5c1de2e037c11
+  checksum: 10/1e643056171d2ac9a3fbb7cb18b2c42bfc246a54ef6d4a6635442f304bd1d33bf2a465cfeb43171f77befc7c6334cae0bc446c5ff51e77842880ebe92816ece7
   languageName: node
   linkType: hard
 
@@ -3960,14 +3960,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/transitions@npm:3.7.0":
-  version: 3.7.0
-  resolution: "@junipero/transitions@npm:3.7.0"
+"@junipero/transitions@npm:3.7.1":
+  version: 3.7.1
+  resolution: "@junipero/transitions@npm:3.7.1"
   peerDependencies:
     "@junipero/react": ^3.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/f19d32c831eb1ae11794a41907d5641653b316796b035c7a511c68a77dadd7ad9304df351aabb42bba2a7318cf29e957e5bac4664057d4c758a7eac62f3a7ed8
+  checksum: 10/52c7f3237ae70981f012a68ef7463a857dfdbe6fe1c90ef2254342a9aae750ab5f07f6fdd098f1368872902e080ef38db465413874162403dfbaa11d86475d3e
   languageName: node
   linkType: hard
 
@@ -4769,7 +4769,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/core@workspace:packages/core"
   dependencies:
-    "@junipero/core": "npm:3.7.0"
+    "@junipero/core": "npm:3.7.1"
     uuid: "npm:10.0.0"
   languageName: unknown
   linkType: soft
@@ -4780,8 +4780,8 @@ __metadata:
   dependencies:
     "@floating-ui/react": "npm:0.26.19"
     "@junipero/hooks": "npm:3.7.0"
-    "@junipero/react": "npm:3.7.0"
-    "@junipero/transitions": "npm:3.7.0"
+    "@junipero/react": "npm:3.7.1"
+    "@junipero/transitions": "npm:3.7.1"
     uuid: "npm:10.0.0"
   peerDependencies:
     react: ^18.0.0
@@ -21752,8 +21752,8 @@ __metadata:
     "@ckeditor/ckeditor5-ui": "npm:41.4.2"
     "@ckeditor/ckeditor5-utils": "npm:41.4.2"
     "@ckeditor/ckeditor5-watchdog": "npm:41.4.2"
-    "@junipero/core": "npm:3.7.0"
-    "@junipero/tailwind-plugin": "npm:3.7.0"
+    "@junipero/core": "npm:3.7.1"
+    "@junipero/tailwind-plugin": "npm:3.7.1"
     "@percy/storybook": "npm:6.0.0"
     "@poool/eslint-config": "npm:3.0.1"
     "@poool/eslint-config-react": "npm:3.0.1"
