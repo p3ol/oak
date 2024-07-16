@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.5](https://github.com/p3ol/oak/compare/v3.7.4...v3.7.5) (2024-07-16)
+
+
+### Bug Fixes
+
+* **core:** add missing target to button & clickable components ([9885840](https://github.com/p3ol/oak/commit/9885840336a79395422c71ba94639733973af61e))
+* upgrade various deps ([48cf2bc](https://github.com/p3ol/oak/commit/48cf2bc25a98a01cc119dac7baad812b6897db1d))
+
+
+
+
+
 ## [3.7.4](https://github.com/p3ol/oak/compare/v3.7.3...v3.7.4) (2024-07-10)
 
 
