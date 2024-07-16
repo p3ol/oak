@@ -609,11 +609,36 @@ export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
       type: 'text',
       key: 'url',
       default: '',
+      placeholder: 'https://example.com',
       displayable: true,
       label: (
         t: GetTextCallback
-      ) => t('core.components.button.settings.url.title', 'URL link'),
+      ) => t('core.components.button.settings.url.title', 'Link URL'),
       condition: (element: ElementObject) => element.action === 'link',
+    }, {
+      type: 'select',
+      key: 'target',
+      default: '_self',
+      displayable: true,
+      placeholder: 'https://example.com',
+      label: (t: GetTextCallback) => t(
+        'core.components.button.settings.target.title',
+        'Target'
+      ),
+      condition: (element: ElementObject) => element.action === 'link',
+      options: [{
+        title: (t: GetTextCallback) => t(
+          'core.components.button.settings.target.self',
+          'Same window'
+        ),
+        value: '_self',
+      }, {
+        title: (t: GetTextCallback) => t(
+          'core.components.button.settings.target.blank',
+          'New window'
+        ),
+        value: '_blank',
+      }],
     }, {
       type: 'text',
       key: 'event',
@@ -635,12 +660,12 @@ export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
       options: [{
         title: (
           t: GetTextCallback
-        ) => t('core.components.button.settings.type.button', 'Button'),
+        ) => t('core.components.button.settings.type.button', '<button>'),
         value: 'button',
       }, {
         title: (
           t: GetTextCallback
-        ) => t('core.components.button.settings.type.links', 'Link'),
+        ) => t('core.components.button.settings.type.links', '<a>'),
         value: 'link',
       }],
     }],
@@ -770,12 +795,36 @@ export const clickableComponent = (
       type: 'text',
       key: 'url',
       default: '',
+      placeholder: 'https://example.com',
       displayable: true,
       label: (t: GetTextCallback) => t(
         'core.components.clickable.settings.url.title',
         'Link URL'
       ),
       condition: (element: ElementObject) => element.action === 'link',
+    }, {
+      type: 'select',
+      key: 'target',
+      default: '_self',
+      displayable: true,
+      label: (t: GetTextCallback) => t(
+        'core.components.clickable.settings.target.title',
+        'Link target'
+      ),
+      condition: (element: ElementObject) => element.action === 'link',
+      options: [{
+        title: (t: GetTextCallback) => t(
+          'core.components.clickable.settings.target.self',
+          'Same window'
+        ),
+        value: '_self',
+      }, {
+        title: (t: GetTextCallback) => t(
+          'core.components.clickable.settings.target.blank',
+          'New window'
+        ),
+        value: '_blank',
+      }],
     }, {
       type: 'text',
       key: 'event',
