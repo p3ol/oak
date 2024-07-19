@@ -22,6 +22,8 @@ jobs:
         run: yarn install
       - name: Eslint check
         run: yarn lint
+      - name: Types check
+        run: yarn tsc
   test:
     name: Unit tests
     runs-on: ubuntu-latest
