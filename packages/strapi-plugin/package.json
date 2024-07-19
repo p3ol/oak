@@ -31,7 +31,7 @@
     "@remirror/react": "2.0.35",
     "@strapi/design-system": "1.19.0",
     "@strapi/icons": "1.19.0",
-    "remirror": "2.0.39",
+    "remirror": "2.0.40",
     "styled-components": "6.1.12"
   },
   "strapi": {
