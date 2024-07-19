@@ -27,11 +27,11 @@
     "@oakjs/ckeditor5-build-custom": "^3.7.5",
     "@oakjs/react": "^3.7.5",
     "@oakjs/theme": "^3.7.3",
-    "@remirror/pm": "2.0.8",
+    "@remirror/pm": "2.0.9",
     "@remirror/react": "2.0.35",
     "@strapi/design-system": "1.19.0",
     "@strapi/icons": "1.19.0",
-    "remirror": "2.0.39",
+    "remirror": "2.0.40",
     "styled-components": "6.1.12"
   },
   "strapi": {
