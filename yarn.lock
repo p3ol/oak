@@ -21132,7 +21132,7 @@ __metadata:
     storybook-dark-mode: "npm:4.0.2"
     style-loader: "npm:4.0.0"
     swc-loader: "npm:0.2.6"
-    tailwindcss: "npm:3.4.5"
+    tailwindcss: "npm:3.4.6"
     terser-webpack-plugin: "npm:5.3.10"
     typescript: "npm:5.5.3"
     webpack: "npm:5.93.0"
@@ -22411,9 +22411,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:3.4.5":
-  version: 3.4.5
-  resolution: "tailwindcss@npm:3.4.5"
+"tailwindcss@npm:3.4.6":
+  version: 3.4.6
+  resolution: "tailwindcss@npm:3.4.6"
   dependencies:
     "@alloc/quick-lru": "npm:^5.2.0"
     arg: "npm:^5.0.2"
@@ -22440,7 +22440,7 @@ __metadata:
   bin:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
-  checksum: 10/6da53de94e076f4b663a190917a939c026ad5cb0e039691fecd011f1dea8e694c7b8cbbf8f1f781120fe8e467742ea36e1946987d791c4f56e46676543c293bc
+  checksum: 10/bd550628cc2a5e80b0543738320ff1e3377e1eb8b4ea6aa3774d479b4e88926eb18828416570859dbe38b12af0e4ea2f97deda5a6449d1f0985936046fcc7a47
   languageName: node
   linkType: hard
 
