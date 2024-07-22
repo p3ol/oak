@@ -4525,16 +4525,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@percy/storybook@npm:6.0.0":
-  version: 6.0.0
-  resolution: "@percy/storybook@npm:6.0.0"
+"@percy/storybook@npm:6.0.1":
+  version: 6.0.1
+  resolution: "@percy/storybook@npm:6.0.1"
   dependencies:
     "@percy/cli-command": "npm:^1.28.5"
     cross-spawn: "npm:^7.0.3"
     qs: "npm:^6.11.0"
   bin:
     percy-storybook: bin/percy-storybook.cjs
-  checksum: 10/b49c2b90c260c2ad286228ea8e2cf0a275cad5ef09f37a77f10ed511e367d6129460def3a45233bfb325aaf904e9daf557171972462e17e935adbf4bdc47c161
+  checksum: 10/197ccff55021815c6cde4819f9db85a5626aa85e5f2d2de16ea0bd97985f3547d5a1ebcc927933c91baecd4068bfbc24896d2718b032e0a605528dea30b1c10d
   languageName: node
   linkType: hard
 
@@ -19778,7 +19778,7 @@ __metadata:
     "@ckeditor/ckeditor5-watchdog": "npm:41.4.2"
     "@junipero/core": "npm:3.7.1"
     "@junipero/tailwind-plugin": "npm:3.7.1"
-    "@percy/storybook": "npm:6.0.0"
+    "@percy/storybook": "npm:6.0.1"
     "@poool/eslint-config": "npm:3.0.1"
     "@poool/eslint-config-react": "npm:3.0.1"
     "@poool/eslint-plugin": "npm:3.0.0"
