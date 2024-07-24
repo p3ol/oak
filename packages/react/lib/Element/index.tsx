@@ -110,7 +110,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   };
 
   const rendered = (
-    (override as FieldOverrideObject | ComponentOverrideObject)?.render ||
+    (override as ComponentOverrideObject)?.render ||
     component?.render
   )?.({
     element,
@@ -195,6 +195,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
           <div
             className={classNames(
               'options oak-flex oak-items-center',
+              { innerContent: component?.hasCustomInnerContent },
               { opened: editableOpened }
             )}
           >
