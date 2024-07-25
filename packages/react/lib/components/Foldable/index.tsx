@@ -40,8 +40,6 @@ const Foldable = ({
     sibling: ElementObject
   ) => {
     if (
-      component?.disallow?.includes?.(sibling.type) ||
-      override?.disallow?.includes?.(sibling.type) ||
       parentComponent?.disallow?.includes?.(sibling.type) ||
       parentOverride?.disallow?.includes?.(sibling.type)
     ) {
