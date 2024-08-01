@@ -195,7 +195,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
           <div
             className={classNames(
               'options oak-flex oak-items-center',
-              { innerContent: component?.hasCustomInnerContent },
+              { 'oak-has-inner-content': component?.hasCustomInnerContent },
               { opened: editableOpened }
             )}
           >
