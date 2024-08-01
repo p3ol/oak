@@ -20099,7 +20099,7 @@ __metadata:
     rollup: "npm:4.19.2"
     rollup-plugin-postcss: "npm:4.0.2"
     sass: "npm:1.77.8"
-    sass-loader: "npm:14.2.1"
+    sass-loader: "npm:16.0.0"
     storybook: "npm:8.2.7"
     storybook-dark-mode: "npm:4.0.2"
     style-loader: "npm:4.0.0"
@@ -20234,9 +20234,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:14.2.1":
-  version: 14.2.1
-  resolution: "sass-loader@npm:14.2.1"
+"sass-loader@npm:16.0.0":
+  version: 16.0.0
+  resolution: "sass-loader@npm:16.0.0"
   dependencies:
     neo-async: "npm:^2.6.2"
   peerDependencies:
@@ -20256,7 +20256,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10/9cb864fd8d4c4f73d05f6cedae9ff4500f15fa742385e1f1cffcc0f994270810288fe99009f233ac6516fdc497570ce21f53c63f079c70e841c1e5bf994bc27d
+  checksum: 10/4294ba7f9e1903019081b63ecb07c2f4d43595f2e1656a8c3aa78b9490223ecc5f3440a455cf45475ffb8427365f567233e9fca9443f7f8e0df1c629072d0166
   languageName: node
   linkType: hard
 
