@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.7](https://github.com/p3ol/oak/compare/v3.7.6...v3.7.7) (2024-08-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to v0.26.20 ([72b4e14](https://github.com/p3ol/oak/commit/72b4e14475e6d93b709eedb6ded42b32628ffdbd))
+* **deps:** update poool junipero monorepo to v3.7.3 ([b23fff5](https://github.com/p3ol/oak/commit/b23fff574b17b2ebc25c1a19ee7cd30dcfa7c430))
+* **drag-drop:** remove the verification on disallow for siblings on drop ([da68891](https://github.com/p3ol/oak/commit/da688919f5b34e46ccee77069fc0676af1ca28bf))
+* **oak-elements:** set options ont top left for every components that have a custom inner content ([f06c8d3](https://github.com/p3ol/oak/commit/f06c8d30a3f808d5ad14b1c16f13a834b8f2fb6a))
+* **options:** rename className for innerContent ([a22171a](https://github.com/p3ol/oak/commit/a22171a9ec90da3e6805d2a9f3b43516f09639e5))
+
+
+
+
+
 ## [3.7.6](https://github.com/p3ol/oak/compare/v3.7.5...v3.7.6) (2024-07-19)
 
 
