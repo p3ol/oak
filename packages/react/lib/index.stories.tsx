@@ -324,3 +324,18 @@ export const withSettingOverrides = () => (
     onChange={action('change')}
   />
 );
+
+export const withDisallowedComponents = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'component',
+        targets: ['foldable', 'clickable'],
+        disallow: ['text'],
+      }],
+    }]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
