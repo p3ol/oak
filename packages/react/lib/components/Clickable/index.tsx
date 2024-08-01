@@ -35,13 +35,11 @@ const Clickable = ({
     builder.getOverride('component', parentComponent?.id) as ComponentOverride
   ), [builder, parentComponent, addons]);
 
-  const onDropElement = useCallback(() => (
+  const onDropElement = useCallback((
     position: 'before' | 'after',
     sibling: ElementObject
   ) => {
     if (
-      component?.disallow?.includes?.(sibling.type) ||
-      override?.disallow?.includes?.(sibling.type) ||
       parentComponent?.disallow?.includes?.(sibling.type) ||
       parentOverride?.disallow?.includes?.(sibling.type)
     ) {

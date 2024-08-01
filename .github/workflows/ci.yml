@@ -20,6 +20,8 @@ jobs:
           cache: yarn
       - name: Install deps
         run: yarn install
+      - name: Build core package
+        run: yarn p:core build
       - name: Eslint check
         run: yarn lint
       - name: Types check
