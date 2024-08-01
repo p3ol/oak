@@ -327,7 +327,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
           />
         </div>
         <div
-          class="options oak-flex oak-items-center"
+          class="options oak-flex oak-items-center oak-has-inner-content"
         >
           <a
             class="option oak-flex oak-items-center oak-justify-center remove"
@@ -786,7 +786,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
           />
         </div>
         <div
-          class="options oak-flex oak-items-center"
+          class="options oak-flex oak-items-center oak-has-inner-content"
         >
           <a
             class="option oak-flex oak-items-center oak-justify-center remove"
@@ -1200,7 +1200,7 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
     />
   </div>
   <div
-    class="options oak-flex oak-items-center"
+    class="options oak-flex oak-items-center oak-has-inner-content"
   >
     <a
       class="option oak-flex oak-items-center oak-justify-center remove"
