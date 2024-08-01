@@ -71,7 +71,7 @@
     "@storybook/theming": "8.2.4",
     "@swc/core": "1.7.4",
     "@swc/jest": "0.2.36",
-    "@testing-library/dom": "10.3.2",
+    "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.4.6",
     "@testing-library/react": "16.0.0",
     "@types/jest": "29.5.12",
