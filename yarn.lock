@@ -1836,9 +1836,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ckeditor/ckeditor5-dev-translations@npm:40.2.3, @ckeditor/ckeditor5-dev-translations@npm:^40.2.3":
-  version: 40.2.3
-  resolution: "@ckeditor/ckeditor5-dev-translations@npm:40.2.3"
+"@ckeditor/ckeditor5-dev-translations@npm:40.5.0, @ckeditor/ckeditor5-dev-translations@npm:^40.5.0":
+  version: 40.5.0
+  resolution: "@ckeditor/ckeditor5-dev-translations@npm:40.5.0"
   dependencies:
     "@babel/parser": "npm:^7.18.9"
     "@babel/traverse": "npm:^7.18.9"
@@ -1846,15 +1846,15 @@ __metadata:
     pofile: "npm:^1.0.9"
     rimraf: "npm:^3.0.2"
     webpack-sources: "npm:^2.0.1"
-  checksum: 10/c63d0cbd4f3cdc50cc4bc6058bdc066c38cbddac34fc13270cad3e8566cf5623de6a51e140ab8f254ee5db0899168d868508cb3c04d671d2b949690bfda8ff6f
+  checksum: 10/d72074264d43ef64869e665dd9786dd7a4c471f9c4d380ab4c36540deb442e898927cba374047602c0f4254cae98d3fe2ebebb2626ad760ca8ba96117e062269
   languageName: node
   linkType: hard
 
-"@ckeditor/ckeditor5-dev-utils@npm:40.2.3":
-  version: 40.2.3
-  resolution: "@ckeditor/ckeditor5-dev-utils@npm:40.2.3"
+"@ckeditor/ckeditor5-dev-utils@npm:40.5.0":
+  version: 40.5.0
+  resolution: "@ckeditor/ckeditor5-dev-utils@npm:40.5.0"
   dependencies:
-    "@ckeditor/ckeditor5-dev-translations": "npm:^40.2.3"
+    "@ckeditor/ckeditor5-dev-translations": "npm:^40.5.0"
     chalk: "npm:^3.0.0"
     cli-cursor: "npm:^3.1.0"
     cli-spinners: "npm:^2.6.1"
@@ -1876,7 +1876,7 @@ __metadata:
     style-loader: "npm:^2.0.0"
     terser-webpack-plugin: "npm:^4.2.3"
     through2: "npm:^3.0.1"
-  checksum: 10/cbeb5435ae926f912862b1c9a219c1a52143fcce0aa6d82b656770797675edb9875330fdcef210aa733e0cc5c403d8bc01b52bc9dfd3ad88ec649d6f93076e0b
+  checksum: 10/a4b782f1e6622fe7a4d92d51cf2cc095e00a53049b49c7af04d402a391e160d5ac66a419505850b9b8546e1d26f42c4739ad83381a6b282cabce4b1334defa05
   languageName: node
   linkType: hard
 
@@ -20025,8 +20025,8 @@ __metadata:
     "@ckeditor/ckeditor5-basic-styles": "npm:41.4.2"
     "@ckeditor/ckeditor5-block-quote": "npm:41.4.2"
     "@ckeditor/ckeditor5-core": "npm:41.4.2"
-    "@ckeditor/ckeditor5-dev-translations": "npm:40.2.3"
-    "@ckeditor/ckeditor5-dev-utils": "npm:40.2.3"
+    "@ckeditor/ckeditor5-dev-translations": "npm:40.5.0"
+    "@ckeditor/ckeditor5-dev-utils": "npm:40.5.0"
     "@ckeditor/ckeditor5-editor-classic": "npm:41.4.2"
     "@ckeditor/ckeditor5-editor-multi-root": "npm:41.4.2"
     "@ckeditor/ckeditor5-engine": "npm:41.4.2"
