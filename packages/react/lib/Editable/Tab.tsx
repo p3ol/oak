@@ -68,10 +68,6 @@ const Tab = ({
           a: ComponentSettingsFieldObject,
           b: ComponentSettingsFieldObject
         ) => getFieldPriority(b) - getFieldPriority(a))
-        .filter((f: ComponentSettingsFieldObject) =>
-          !f.condition ||
-          f.condition(element, { component, builder })
-        )
         .map((setting: ComponentSettingsFieldObject, i: Key) => (
           <Setting
             key={i}

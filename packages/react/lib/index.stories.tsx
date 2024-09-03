@@ -317,6 +317,20 @@ export const withSettingOverrides = () => (
         targets: ['*'],
         key: 'responsive.xl',
         info: 'Test',
+      }, {
+        type: 'setting',
+        key: 'styles.borderWidth',
+        targets: ['*'],
+        fields: [],
+        fieldType: 'text',
+      }, {
+        type: 'setting',
+        key: 'styles.borderColor',
+        targets: ['*'],
+        fields: [],
+        fieldType: 'color',
+        condition: (element: ElementObject) =>
+          element?.styles?.borderWidth,
       }],
     }]}
     value={baseContent}
@@ -332,6 +346,22 @@ export const withDisallowedComponents = () => (
         type: 'component',
         targets: ['foldable', 'clickable'],
         disallow: ['text'],
+      }],
+    }]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
+export const withDisabledSettings = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'setting',
+        key: 'styles.borderWidth',
+        targets: ['*'],
+        condition: () => false,
       }],
     }]}
     value={baseContent}

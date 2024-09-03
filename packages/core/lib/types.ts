@@ -82,6 +82,7 @@ export declare interface SettingOverrideObject {
   placeholder?: string | GetTextCallback;
   default?: any;
   displayable?: boolean;
+  fieldType?: string;
   valueType?: string;
   priority?: number;
   options?: Array<any>;

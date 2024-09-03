@@ -897,6 +897,8 @@ export const stylingSettings = (
   ...props,
   fields: [...(props?.fields || []), {
     type: 'field',
+    key: 'styles.padding',
+    priority: 90,
     label: (
       t: GetTextCallback
     ) => t('core.styling.paddings.title', 'Inside spacing (padding)'),
@@ -927,6 +929,8 @@ export const stylingSettings = (
     }],
   }, {
     type: 'field',
+    key: 'styles.margin',
+    priority: 80,
     label: (
       t: GetTextCallback
     ) => t('core.styling.margins.title', 'Outside spacing (margin)'),
@@ -955,6 +959,8 @@ export const stylingSettings = (
     }],
   }, {
     type: 'field',
+    key: 'styles.borderWidth',
+    priority: 70,
     label: (
       t: GetTextCallback
     ) => t('core.styling.borders.title', 'Border size'),
@@ -985,6 +991,8 @@ export const stylingSettings = (
     }],
   }, {
     type: 'field',
+    key: 'styles.borderColor',
+    priority: 60,
     label: (
       t: GetTextCallback
     ) => t('core.styling.borders.color', 'Border color'),
@@ -1020,6 +1028,8 @@ export const stylingSettings = (
     }],
   }, {
     type: 'field',
+    key: 'styles.borderStyle',
+    priority: 50,
     condition: (element: ElementObject) =>
       element?.styles?.borderTop ||
       element?.styles?.borderRight ||
@@ -1063,6 +1073,8 @@ export const stylingSettings = (
     }],
   }, {
     type: 'field',
+    key: 'styles.borderRadius',
+    priority: 40,
     label: (
       t: GetTextCallback
     ) => t('core.styling.borderRadius.title', 'Border radius'),
@@ -1093,6 +1105,8 @@ export const stylingSettings = (
     }],
   }, {
     type: 'field',
+    key: 'styles.background',
+    priority: 30,
     label: (
       t: GetTextCallback
     ) => t('core.styling.background.image.title', 'Background image'),
@@ -1228,8 +1242,11 @@ export const stylingSettings = (
     placeholder: '#FFF',
     type: 'color',
     key: 'styles.backgroundColor',
+    priority: 20,
   }, {
     type: 'field',
+    key: 'styles.boxShadow',
+    priority: 10,
     label: (
       t: GetTextCallback
     ) => t('core.styling.shadow.title', 'Box shadow'),
@@ -1270,6 +1287,7 @@ export const stylingSettings = (
     type: 'text',
     placeholder: 'my-button',
     key: 'settings.className',
+    priority: 0,
   }],
 });
 
@@ -1278,6 +1296,7 @@ export const responsiveSettings = (
 ): ComponentSettingsFieldObject => ({
   id: 'responsive',
   type: 'tab',
+  key: 'responsive',
   title: (t: GetTextCallback) => t('core.responsive.title', 'Responsive'),
   ...props,
   fields: [...(props?.fields || []), {
