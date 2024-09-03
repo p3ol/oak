@@ -1301,6 +1301,7 @@ export const responsiveSettings = (
   ...props,
   fields: [...(props?.fields || []), {
     key: 'responsive.xl',
+    priority: 40,
     type: 'select',
     label: (
       t: GetTextCallback
@@ -1319,6 +1320,7 @@ export const responsiveSettings = (
   }, {
     key: 'responsive.lg',
     type: 'select',
+    priority: 30,
     label: (
       t: GetTextCallback
     ) => t('core.responsive.lg', 'Large screens (desktop)'),
@@ -1336,6 +1338,7 @@ export const responsiveSettings = (
   }, {
     key: 'responsive.md',
     type: 'select',
+    priority: 20,
     label: (
       t: GetTextCallback
     ) => t('core.responsive.md', 'Medium screens (tablet)'),
@@ -1353,6 +1356,7 @@ export const responsiveSettings = (
   }, {
     key: 'responsive.sm',
     type: 'select',
+    priority: 10,
     label: (
       t: GetTextCallback
     ) => t('core.responsive.sm', 'Small screens (phones)'),
@@ -1370,6 +1374,7 @@ export const responsiveSettings = (
   }, {
     key: 'responsive.xs',
     type: 'select',
+    priority: 1,
     label: (
       t: GetTextCallback
     ) => t('core.responsive.xs', 'Extra-small screens (old phones)'),
