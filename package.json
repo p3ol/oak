@@ -102,7 +102,7 @@
     "rollup": "4.19.2",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.77.8",
-    "sass-loader": "14.2.1",
+    "sass-loader": "16.0.1",
     "storybook": "8.2.7",
     "storybook-dark-mode": "4.0.2",
     "style-loader": "4.0.0",
