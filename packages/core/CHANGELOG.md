@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.8](https://github.com/p3ol/oak/compare/v3.7.7...v3.7.8) (2024-09-09)
+
+
+### Bug Fixes
+
+* also adds default priorities to responsive settings ([37e15d0](https://github.com/p3ol/oak/commit/37e15d0ee27d62efc5f79ceb61164a65d3d8fac1))
+* correctly allow field type override ([9501038](https://github.com/p3ol/oak/commit/9501038a7db69c4eae5dcd338b87a97bc43ebfaa))
+
+
+
+
+
 ## [3.7.5](https://github.com/p3ol/oak/compare/v3.7.4...v3.7.5) (2024-07-16)
 
 
