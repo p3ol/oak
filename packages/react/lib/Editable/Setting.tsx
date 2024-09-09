@@ -55,6 +55,15 @@ const Setting = ({
     (override?.fields || setting.fields).length > 0
   ), [setting, override]);
 
+  const condition = override?.condition || setting.condition;
+
+  if (
+    condition &&
+    !condition(element, { component, builder })
+  ) {
+    return null;
+  }
+
   return (
     <div className="field">
       <FieldControl>

@@ -204,7 +204,7 @@ export class ComponentOverride extends Override {
     this.construct = props.construct;
     this.duplicate = props.duplicate;
     this.deserialize = props.deserialize;
-    this.priority = props.priority || 0;
+    this.priority = props.priority;
     this.editable = props.editable;
     this.disallow = props.disallow || [];
   }
@@ -243,7 +243,7 @@ export class FieldOverride extends Override {
     this.id = props.id;
     this.targets = props.targets || [];
     this.render = props.render;
-    this.priority = props.priority || 0;
+    this.priority = props.priority;
     this.props = props.props || {};
     this.construct = props.construct;
     this.onChange = props.onChange;
@@ -273,6 +273,7 @@ export class SettingOverride extends Override {
   label: string | GetTextCallback;
   description: string | GetTextCallback;
   displayable: boolean;
+  fieldType: string;
   valueType: string;
   condition: SettingOverrideObject['condition'];
   priority: number;
@@ -293,9 +294,10 @@ export class SettingOverride extends Override {
     this.label = props.label;
     this.description = props.description;
     this.displayable = props.displayable;
+    this.fieldType = props.fieldType;
     this.valueType = props.valueType;
     this.condition = props.condition;
-    this.priority = props.priority || 0;
+    this.priority = props.priority;
     this.info = props.info;
     this.fields = (props.fields || []).map((
       f: ComponentSettingsFieldObject
@@ -315,6 +317,7 @@ export class SettingOverride extends Override {
       label: this.label,
       description: this.description,
       displayable: this.displayable,
+      fieldType: this.fieldType,
       valueType: this.valueType,
       condition: this.condition,
       priority: this.priority,
@@ -378,7 +381,7 @@ export class ComponentSettingsTab {
 
     this.type = 'tab';
     this.id = props.id;
-    this.priority = props.priority || 0;
+    this.priority = props.priority;
     this.title = props.title;
     this.condition = props.condition;
     this.fields = (props.fields || []).map(f =>
@@ -443,7 +446,7 @@ export class ComponentSettingsField {
     this.displayable = props.displayable;
     this.valueType = props.valueType;
     this.condition = props.condition;
-    this.priority = props.priority || 0;
+    this.priority = props.priority;
     this.fields = (props.fields || []).map(f => new ComponentSettingsField(f));
     this.props = props.props;
   }

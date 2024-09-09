@@ -4,6 +4,7 @@ import type {
   ElementObject,
   FieldObject,
   FieldOverride,
+  SettingOverride,
 } from '@oakjs/core';
 import type {
   SpecialComponentPropsWithoutRef,
@@ -45,7 +46,11 @@ const Field = ({
   }), [element, fieldSetting, addons]);
 
   const field = useMemo(() => (
-    builder.getField(overrides?.field?.type || fieldSetting?.type)
+    builder.getField(
+      (overrides?.settings as SettingOverride)?.fieldType ||
+      overrides?.field?.type ||
+      fieldSetting?.type
+    )
   ), [overrides, fieldSetting, addons]);
 
   const setting = useMemo(() => assignDefined<typeof fieldSetting>(
