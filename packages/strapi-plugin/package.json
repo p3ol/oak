@@ -32,7 +32,7 @@
     "@strapi/design-system": "1.19.0",
     "@strapi/icons": "1.19.0",
     "remirror": "2.0.40",
-    "styled-components": "6.1.12"
+    "styled-components": "6.1.13"
   },
   "strapi": {
     "name": "oak",
