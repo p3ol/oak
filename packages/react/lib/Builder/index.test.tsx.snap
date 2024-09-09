@@ -6,6 +6,7 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
 >
   <div
     class="catalogue-menu"
+    data-floating-ui-focusable=""
     data-placement="bottom"
     style="position: absolute; top: 0px; left: 0px;"
     tabindex="-1"
@@ -1568,6 +1569,7 @@ exports[`<Builder /> should allow to render editable inside a modal: Catalogue o
 >
   <div
     class="catalogue-menu"
+    data-floating-ui-focusable=""
     data-placement="bottom"
     style="position: absolute; top: 0px; left: 0px;"
     tabindex="-1"

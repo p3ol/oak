@@ -40,6 +40,7 @@ exports[`<Catalogue /> should allow to add elements to the builder: Opened 1`] =
     </div>
     <div
       class="catalogue-menu"
+      data-floating-ui-focusable=""
       data-placement="bottom"
       style="position: absolute; top: 0px; left: 0px;"
       tabindex="-1"
