@@ -584,6 +584,7 @@ export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
       label: (
         t: GetTextCallback
       ) => t('core.components.button.settings.content.title', 'Content'),
+      priority: 50,
     }, {
       type: 'select',
       key: 'action',
@@ -605,6 +606,7 @@ export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
         ),
         value: 'event',
       }],
+      priority: 40,
     }, {
       type: 'text',
       key: 'url',
@@ -615,6 +617,7 @@ export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
         t: GetTextCallback
       ) => t('core.components.button.settings.url.title', 'Link URL'),
       condition: (element: ElementObject) => element.action === 'link',
+      priority: 30,
     }, {
       type: 'select',
       key: 'target',
@@ -639,6 +642,7 @@ export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
         ),
         value: '_blank',
       }],
+      priority: 20,
     }, {
       type: 'text',
       key: 'event',
@@ -649,6 +653,7 @@ export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
         'Javascript event name'
       ),
       condition: (element: ElementObject) => element.action === 'event',
+      priority: 10,
     }, {
       type: 'select',
       key: 'settings.buttonType',
@@ -668,6 +673,7 @@ export const buttonComponent = (props?: ComponentObject): ComponentObject => ({
         ) => t('core.components.button.settings.type.links', '<a>'),
         value: 'link',
       }],
+      priority: 1,
     }],
   },
   editable: true,

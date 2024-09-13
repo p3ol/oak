@@ -43,15 +43,29 @@ const DisplayableSettings = ({
       : setting.priority || 0;
   };
 
-  const displayableSettings = useMemo(() => (
-    builder
-      .getComponentDisplayableSettings(element, { component })
+  const displayableSettings = useMemo(() => {
+    const settings = builder
+      .getComponentDisplayableSettings(element, { component });
+
+    return settings
+      // Append fields that are only defined inside the component override
+      .concat(override?.fields?.filter(f => (
+        !settings.find(s =>
+          s.type !== 'tab' &&
+          (s as ComponentSettingsFieldObject).key === f.key)
+      )) || [])
       .filter(s => !s.condition || s.condition(element))
       .sort((a, b) =>
         getSettingPriority(b as SettingOverrideObject) -
         getSettingPriority(a as SettingOverrideObject)
-      )
-  ), [element, component]);
+      );
+  }, [
+    element,
+    // Only checking on element prevents from updating the render when a sub
+    // property of the element changes
+    Object.values(element),
+    component,
+  ]);
 
   if (displayableSettings.length <= 0) {
     return null;

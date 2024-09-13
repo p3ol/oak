@@ -237,6 +237,37 @@ export const withMultipleCustomSettingsAndFields = () => (
   />
 );
 
+export const withComponentOverride = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        id: 'buttonOverride',
+        type: 'component',
+        targets: ['button'],
+        fields: [{
+          key: 'action',
+          type: 'select',
+          options: [
+            { value: 'link', title: 'Open a link' },
+            { value: 'third-party', title: 'Open a third-party service' },
+          ],
+        }, {
+          key: 'thirdPartyService',
+          type: 'text',
+          label: 'Third party service ID',
+          priority: 2,
+          displayable: true,
+          condition: (element: ElementObject) =>
+            element.action === 'third-party',
+        }],
+      }],
+    } as AddonObject]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
 export const disallowSomeChildren = () => (
   <div>
     <div>You should not be able to add a text inside a col</div>
