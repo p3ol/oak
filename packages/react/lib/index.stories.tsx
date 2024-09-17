@@ -369,3 +369,109 @@ export const withDisabledSettings = () => (
     onChange={action('change')}
   />
 );
+
+export const withMultipleCatalogueTabs = () => (
+  <Builder
+    addons={[baseAddon(), {
+      components: [{
+        type: 'group',
+        id: 'tab-1',
+        name: 'Tab 1',
+        components: [{
+          type: 'component',
+          group: 'tab-1',
+          id: 'tab-1-title',
+          name: 'Tab 1 Title',
+          construct: () => ({ type: 'tab-1-title', content: 'Tab 1 Title' }),
+        }],
+      }, {
+        type: 'group',
+        id: 'tab-2',
+        name: 'Tab 2',
+        components: [{
+          type: 'component',
+          group: 'tab-2',
+          id: 'tab-2-title',
+          name: 'Tab 2 Title',
+          construct: () => ({ type: 'tab-2-title', content: 'Tab 2 Title' }),
+        }],
+      }, {
+        type: 'group',
+        id: 'tab-3',
+        name: 'Tab 3',
+        components: [{
+          type: 'component',
+          group: 'tab-3',
+          id: 'tab-3-title',
+          name: 'Tab 3 Title',
+          construct: () => ({ type: 'tab-3-title', content: 'Tab 3 Title' }),
+        }],
+      }, {
+        type: 'group',
+        id: 'tab-4',
+        name: 'Tab 4',
+        components: [{
+          type: 'component',
+          group: 'tab-4',
+          id: 'tab-4-title',
+          name: 'Tab 4 Title',
+          construct: () => ({ type: 'tab-4-title', content: 'Tab 4 Title' }),
+        }],
+      }],
+    } as AddonObject]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
+export const withMultipleEditableTabs = () => (
+  <Builder
+    addons={[baseAddon(), {
+      settings: [{
+        type: 'tab',
+        id: 'tab-1',
+        title: 'Tab 1',
+      }, {
+        type: 'tab',
+        id: 'tab-2',
+        title: 'Tab 2',
+      }, {
+        type: 'tab',
+        id: 'tab-3',
+        title: 'Tab 3',
+      }, {
+        type: 'tab',
+        id: 'tab-4',
+        title: 'Tab 4',
+      }, {
+        type: 'tab',
+        id: 'tab-5',
+        title: 'Tab 5',
+      }, {
+        type: 'tab',
+        id: 'tab-6',
+        title: 'Tab 6',
+      }, {
+        type: 'tab',
+        id: 'tab-7',
+        title: 'Tab 7',
+      }, {
+        type: 'tab',
+        id: 'tab-8',
+        title: 'Tab 8',
+      }, {
+        type: 'tab',
+        id: 'tab-9',
+        title: 'Tab 9',
+      }, {
+        type: 'tab',
+        id: 'tab-10',
+        title: 'Tab 10',
+      }],
+    } as AddonObject]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
