@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.10](https://github.com/p3ol/oak/compare/v3.7.9...v3.7.10) (2024-09-17)
+
+
+### Bug Fixes
+
+* **theme:** allow to scroll inside catalogue's tabs ([0177e74](https://github.com/p3ol/oak/commit/0177e748cd9ad4a2760bbd79dfaccf8e89f051df))
+
+
+
+
+
 ## [3.7.9](https://github.com/p3ol/oak/compare/v3.7.8...v3.7.9) (2024-09-11)
 
 
