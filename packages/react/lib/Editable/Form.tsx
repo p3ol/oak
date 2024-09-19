@@ -26,10 +26,10 @@ import {
 } from '@junipero/react';
 
 import type { EditableRef } from './index';
+import { EditableFormContext } from '../contexts';
 import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Tab from './Tab';
-import { EditableFormContext } from '../contexts';
 
 export declare interface FormProps extends ComponentPropsWithoutRef<'div'> {
   placement?: string;

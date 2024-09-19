@@ -7,12 +7,10 @@ import type {
   FieldOverride,
   FieldOverrideObject,
 } from '@oakjs/core';
-import { type MutableRefObject, useMemo, useState } from 'react';
+import { type MutableRefObject, useMemo } from 'react';
 import {
   type FieldContent,
   Abstract,
-  ArrowDown,
-  ArrowRight,
   FieldControl,
   Label,
   Tooltip,
@@ -47,7 +45,6 @@ const Setting = ({
   onSettingCustomChange,
 }: SettingProps) => {
   const { builder } = useBuilder();
-  const [open, setOpen] = useState(false);
 
   const override = useMemo(() => (
     builder.getOverride('setting', element.type, { setting }) as SettingOverride
