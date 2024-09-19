@@ -7,10 +7,12 @@ import type {
   FieldOverride,
   FieldOverrideObject,
 } from '@oakjs/core';
-import { type MutableRefObject, useMemo } from 'react';
+import { type MutableRefObject, useMemo, useState } from 'react';
 import {
   type FieldContent,
   Abstract,
+  ArrowDown,
+  ArrowRight,
   FieldControl,
   Label,
   Tooltip,
@@ -45,6 +47,7 @@ const Setting = ({
   onSettingCustomChange,
 }: SettingProps) => {
   const { builder } = useBuilder();
+  const [open, setOpen] = useState(false);
 
   const override = useMemo(() => (
     builder.getOverride('setting', element.type, { setting }) as SettingOverride
@@ -65,11 +68,11 @@ const Setting = ({
   }
 
   return (
-    <div className="field">
+    <div className="field oak-px-[20px]">
       <FieldControl>
         { (override?.label || setting.label) && (
           <Label
-            className="oak-flex oak-items-center oak-gap-2"
+            className="oak-flex oak-items-center oak-gap-2 !oak-pt-0"
           >
             <Text>{ (override?.label || setting.label) as string }</Text>
             { (override?.info || setting.info) && (

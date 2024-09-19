@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import type {
   ComponentObject,
   ComponentOverride,
@@ -13,6 +14,7 @@ import {
   type ComponentPropsWithoutRef,
   useReducer,
   MutableRefObject,
+  useCallback,
 } from 'react';
 import {
   type StateReducer,
@@ -27,6 +29,7 @@ import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Tab from './Tab';
+import { EditableFormContext } from '../contexts';
 
 export declare interface FormProps extends ComponentPropsWithoutRef<'div'> {
   placement?: string;
@@ -39,6 +42,7 @@ export declare interface FormProps extends ComponentPropsWithoutRef<'div'> {
 
 export declare interface FormState {
   element: ElementObject;
+  seed: string | number;
 }
 
 const Form = ({
@@ -59,6 +63,7 @@ const Form = ({
 
   const [state, dispatch] = useReducer<StateReducer<FormState>>(mockState, {
     element: deserialize(cloneDeep(element)),
+    seed: uuid(),
   });
 
   const onUpdate_ = (elmt: ElementObject) => {
@@ -68,7 +73,7 @@ const Form = ({
   const onSettingChange_ = (name: string, field: FieldContent) => {
     builder.setElementSettings(state.element, name,
       field.checked ?? field.value);
-    dispatch({ element: state.element });
+    dispatch({ element: state.element, seed: uuid() });
   };
 
   const onSettingCustomChange_ = (
@@ -78,7 +83,10 @@ const Form = ({
   ) => {
     const changes = renderer
       .onChange(name, field, state.element);
-    dispatch({ element: Object.assign(state.element, changes) });
+    dispatch({
+      element: Object.assign(state.element, changes),
+      seed: uuid(),
+    });
   };
 
   const onSave_ = () => {
@@ -87,7 +95,10 @@ const Form = ({
   };
 
   const onCancel_ = () => {
-    dispatch({ element: deserialize(cloneDeep(element)) });
+    dispatch({
+      element: deserialize(cloneDeep(element)),
+      seed: uuid(),
+    });
     onCancel();
   };
 
@@ -95,65 +106,79 @@ const Form = ({
     ComponentSettingsTabObject | ComponentSettingsFormObject
   > = builder.getAvailableSettings();
 
+  const getContext = useCallback(() => ({
+    element: state.element,
+    seed: state.seed,
+    setSeed: (seed: string | number) => dispatch({ seed }),
+  }), [state.element, state.seed]);
+
   return (
-    <div
-      className={classNames('form', className)}
-      data-placement={placement}
-      { ...rest }
-    >
-      <div className="form-title junipero oak-flex oak-py-2 oak-px-5">
-        { component.settings?.title ? (
-          <Text>{ component.settings?.title }</Text>
-        ) : (
-          <Text name="core.components.default.settings.title">
-            Element options
-          </Text>
-        ) }
-      </div>
-      <Tabs
-        tabs={tabs
-          .concat(
-            (component.settings?.fields || [])
-              .filter((f: FieldObject) => f.type === 'tab')
-          )
-          .sort((
-            a: ComponentSettingsTabObject,
-            b: ComponentSettingsTabObject,
-          ) => (b.priority || 0) - (a.priority || 0))
-          .filter((tab: ComponentSettingsTabObject) => tab.type === 'tab' &&
-            (!tab.condition ||
-              tab.condition(state.element, { component, builder })))
-          .map((tab: ComponentSettingsTabObject, t) => ({
-            title: <Text>{ tab.title }</Text>,
-            content: (
-              <Tab
-                key={tab.id || t}
-                tab={tab}
-                component={component}
-                element={state.element}
-                overrides={overrides}
-                editableRef={editableRef}
-                onUpdate={onUpdate_}
-                onSettingChange={onSettingChange_}
-                onSettingCustomChange={onSettingCustomChange_}
-              />
-            ),
-          }))
-        }
-      />
+    <EditableFormContext.Provider value={getContext()}>
       <div
-        className={classNames(
-          'buttons oak-flex oak-items-center oak-justify-end oak-gap-2 oak-p-5',
-        )}
+        className={classNames('form', className)}
+        data-placement={placement}
+        { ...rest }
       >
-        <Button type="button" className="subtle" onClick={onCancel_}>
-          <Text name="core.settings.cancel">Cancel</Text>
-        </Button>
-        <Button type="button" className="primary" onClick={onSave_}>
-          <Text name="core.settings.save">Save</Text>
-        </Button>
+        <div
+          className={classNames(
+            'form-title junipero oak-flex oak-py-2 oak-px-5 oak-sticky',
+            'oak-top-0 oak-z-10',
+          )}
+        >
+          { component.settings?.title ? (
+            <Text>{ component.settings?.title }</Text>
+          ) : (
+            <Text name="core.components.default.settings.title">
+              Element options
+            </Text>
+          ) }
+        </div>
+        <Tabs
+          tabs={tabs
+            .concat(
+              (component.settings?.fields || [])
+                .filter((f: FieldObject) => f.type === 'tab')
+            )
+            .sort((
+              a: ComponentSettingsTabObject,
+              b: ComponentSettingsTabObject,
+            ) => (b.priority || 0) - (a.priority || 0))
+            .filter((tab: ComponentSettingsTabObject) => tab.type === 'tab' &&
+              (!tab.condition ||
+                tab.condition(state.element, { component, builder })))
+            .map((tab: ComponentSettingsTabObject, t) => ({
+              title: <Text>{ tab.title }</Text>,
+              content: (
+                <Tab
+                  key={tab.id || t}
+                  tab={tab}
+                  component={component}
+                  element={state.element}
+                  overrides={overrides}
+                  editableRef={editableRef}
+                  onUpdate={onUpdate_}
+                  onSettingChange={onSettingChange_}
+                  onSettingCustomChange={onSettingCustomChange_}
+                />
+              ),
+            }))
+          }
+        />
+        <div
+          className={classNames(
+            'buttons oak-flex oak-items-center oak-justify-end oak-gap-2',
+            'oak-p-5 oak-z-20',
+          )}
+        >
+          <Button type="button" className="subtle" onClick={onCancel_}>
+            <Text name="core.settings.cancel">Cancel</Text>
+          </Button>
+          <Button type="button" className="primary" onClick={onSave_}>
+            <Text name="core.settings.save">Save</Text>
+          </Button>
+        </div>
       </div>
-    </div>
+    </EditableFormContext.Provider>
   );
 };
 

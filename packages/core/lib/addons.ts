@@ -1,3 +1,5 @@
+import { get } from '@junipero/core';
+
 import type {
   AddonObject,
   ComponentObject,
@@ -894,407 +896,451 @@ const BORDER_STYLE_OPTIONS: ComponentSettingsFieldOptionObject[] = [{
   value: 'outset',
 }];
 
+export const stylingSettingsFields = (
+  keyPrefix: string = 'styles'
+): ComponentSettingsFieldObject[] => [{
+  type: 'field',
+  key: keyPrefix + '.padding',
+  priority: 90,
+  label: (
+    t: GetTextCallback
+  ) => t('core.styling.paddings.title', 'Inside spacing (padding)'),
+  fields: [{
+    type: 'text',
+    key: keyPrefix + '.paddingTop',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.paddings.top', 'Top'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.paddingRight',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.paddings.right', 'Right'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.paddingBottom',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.paddings.bottom', 'Bottom'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.paddingLeft',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.paddings.left', 'Left'),
+  }],
+}, {
+  type: 'field',
+  key: keyPrefix + '.margin',
+  priority: 80,
+  label: (
+    t: GetTextCallback
+  ) => t('core.styling.margins.title', 'Outside spacing (margin)'),
+  fields: [{
+    type: 'text',
+    key: keyPrefix + '.marginTop',
+    placeholder: (t: GetTextCallback) => t('core.styling.margins.top', 'Top'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.marginRight',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.margins.right', 'Right'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.marginBottom',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.margins.bottom', 'Bottom'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.marginLeft',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.margins.left', 'Left'),
+  }],
+}, {
+  type: 'field',
+  key: keyPrefix + '.borderWidth',
+  priority: 70,
+  label: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.title', 'Border size'),
+  fields: [{
+    type: 'text',
+    key: keyPrefix + '.borderTop',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.top', 'Top'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.borderRight',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.right', 'Right'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.borderBottom',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.bottom', 'Bottom'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.borderLeft',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.left', 'Left'),
+  }],
+}, {
+  type: 'field',
+  key: keyPrefix + '.borderColor',
+  priority: 60,
+  label: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.color', 'Border color'),
+  condition: (element: ElementObject) =>
+    get(element, keyPrefix)?.borderTop ||
+    get(element, keyPrefix)?.borderRight ||
+    get(element, keyPrefix)?.borderBottom ||
+    get(element, keyPrefix)?.borderLeft,
+  fields: [{
+    type: 'color',
+    key: keyPrefix + '.borderTopColor',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.topColor', '#000'),
+  }, {
+    type: 'color',
+    key: keyPrefix + '.borderRightColor',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.rightColor', '#000'),
+  }, {
+    type: 'color',
+    key: keyPrefix + '.borderBottomColor',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.bottomColor', '#000'),
+  }, {
+    type: 'color',
+    key: keyPrefix + '.borderLeftColor',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.leftColor', '#000'),
+  }],
+}, {
+  type: 'field',
+  key: keyPrefix + '.borderStyle',
+  priority: 50,
+  condition: (element: ElementObject) =>
+    get(element, keyPrefix)?.borderTop ||
+    get(element, keyPrefix)?.borderRight ||
+    get(element, keyPrefix)?.borderBottom ||
+    get(element, keyPrefix)?.borderLeft,
+  label: (
+    t: GetTextCallback
+  ) => t('core.styling.borders.style', 'Border style'),
+  fields: [{
+    type: 'select',
+    key: keyPrefix + '.borderTopStyle',
+    default: 'solid',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.topStyle', 'Top'),
+    options: BORDER_STYLE_OPTIONS,
+  }, {
+    type: 'select',
+    key: keyPrefix + '.borderRightStyle',
+    default: 'solid',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.rightStyle', 'Right'),
+    options: BORDER_STYLE_OPTIONS,
+  }, {
+    type: 'select',
+    key: keyPrefix + '.borderBottomStyle',
+    default: 'solid',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.bottomStyle', 'Bottom'),
+    options: BORDER_STYLE_OPTIONS,
+  }, {
+    type: 'select',
+    key: keyPrefix + '.borderLeftStyle',
+    default: 'solid',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borders.leftStyle', 'Left'),
+    options: BORDER_STYLE_OPTIONS,
+  }],
+}, {
+  type: 'field',
+  key: keyPrefix + '.borderRadius',
+  priority: 40,
+  label: (
+    t: GetTextCallback
+  ) => t('core.styling.borderRadius.title', 'Border radius'),
+  fields: [{
+    type: 'text',
+    key: keyPrefix + '.borderTopLeftRadius',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borderRadius.topLeft', 'Top left'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.borderTopRightRadius',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borderRadius.topRight', 'Top right'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.borderBottomRightRadius',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borderRadius.bottomRight', 'Bottom right'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.borderBottomLeftRadius',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.borderRadius.bottomLeft', 'Bottom left'),
+  }],
+}, {
+  type: 'field',
+  key: keyPrefix + '.background',
+  priority: 30,
+  label: (
+    t: GetTextCallback
+  ) => t('core.styling.background.image.title', 'Background image'),
+  fields: [{
+    key: keyPrefix + '.backgroundImage',
+    type: 'image',
+    props: {
+      iconOnly: true,
+    },
+  }, {
+    label: (
+      t: GetTextCallback
+    ) => t('core.styling.background.size.title', 'Size'),
+    key: keyPrefix + '.backgroundSize',
+    type: 'select',
+    default: 'default',
+    placeholder: (t: GetTextCallback) =>
+      t('core.styling.background.size.title', 'Background size'),
+    options: [{
+      title: (
+        t: GetTextCallback
+      ) => t('core.styling.background.size.default', 'Default'),
+      value: 'default',
+    }, {
+      title: (
+        t: GetTextCallback
+      ) => t('core.styling.background.size.cover', 'Fill'),
+      value: 'cover',
+    }, {
+      title: (
+        t: GetTextCallback
+      ) => t('core.styling.background.size.contain', 'Fit'),
+      value: 'contain',
+    }],
+  }, {
+    label: (
+      t: GetTextCallback
+    ) => t('core.styling.background.position.title', 'Position'),
+    key: keyPrefix + '.backgroundPosition',
+    type: 'select',
+    default: 'center',
+    placeholder: (t: GetTextCallback) =>
+      t('core.styling.background.position.title', 'Background position'),
+    options: [{
+      title: (
+        t: GetTextCallback
+      ) => t('core.styling.background.position.center', 'Centered'),
+      value: 'center',
+    }, {
+      title: (
+        t: GetTextCallback
+      ) => t('core.styling.background.position.top', 'Top'),
+      value: 'top',
+    }, {
+      title: (
+        t: GetTextCallback
+      ) => t('core.styling.background.position.right', 'Right'),
+      value: 'right',
+    }, {
+      title: (
+        t: GetTextCallback
+      ) => t('core.styling.background.position.bottom', 'Bottom'),
+      value: 'bottom',
+    }, {
+      title: (
+        t: GetTextCallback
+      ) => t('core.styling.background.position.left', 'Left'),
+      value: 'left',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.position.centerTop', 'Center top'),
+      value: 'center top',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.position.centerBottom', 'Center bottom'),
+      value: 'center bottom',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.position.leftCenter', 'Center left'),
+      value: 'left center',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.position.leftTop', 'Top left'),
+      value: 'left top',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.position.leftBottom', 'Bottom left'),
+      value: 'left bottom',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.position.rightCenter', 'Center right'),
+      value: 'right center',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.position.rightTop', 'Top right'),
+      value: 'right top',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.position.rightBottom', 'Bottom right'),
+      value: 'right bottom',
+    }],
+  }, {
+    label: (
+      t: GetTextCallback
+    ) => t('core.styling.background.repeat.title', 'Repeat'),
+    key: keyPrefix + '.backgroundRepeat',
+    type: 'select',
+    default: 'no-repeat',
+    placeholder: (t: GetTextCallback) =>
+      t('core.styling.background.repeat.title', 'Background repeat'),
+    options: [{
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.repeat.noRepeat', 'No repeat'),
+      value: 'no-repeat',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.repeat.repeatX', 'Repeat horizontally'),
+      value: 'repeat-x',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.styling.background.repeat.repeatY', 'Repeat vertically'),
+      value: 'repeat-y',
+    }, {
+      title: (t: GetTextCallback) => t('core.styling.background.repeat.both',
+        'Repeat horizontally & vertically'),
+      value: 'repeat',
+    },
+    ],
+  }],
+}, {
+  label: (t: GetTextCallback) =>
+    t('core.styling.background.color.title', 'Background color'),
+  placeholder: '#FFF',
+  type: 'color',
+  key: keyPrefix + '.backgroundColor',
+  priority: 20,
+}, {
+  type: 'field',
+  key: keyPrefix + '.boxShadow',
+  priority: 10,
+  label: (
+    t: GetTextCallback
+  ) => t('core.styling.shadow.title', 'Box shadow'),
+  fields: [{
+    type: 'text',
+    key: keyPrefix + '.boxShadowX',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.shadow.x', 'X'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.boxShadowY',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.shadow.y', 'Y'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.boxShadowBlur',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.shadow.blur', 'Blur'),
+  }, {
+    type: 'text',
+    key: keyPrefix + '.boxShadowSpread',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.shadow.spread', 'Spread'),
+  }, {
+    type: 'color',
+    key: keyPrefix + '.boxShadowColor',
+    placeholder: (
+      t: GetTextCallback
+    ) => t('core.styling.shadow.color', '#000'),
+  }],
+}];
+
 export const stylingSettings = (
-  props?: ComponentSettingsFieldObject
+  props?: ComponentSettingsFieldObject,
 ): ComponentSettingsFieldObject => ({
   id: 'styling',
   type: 'tab',
   title: (t: GetTextCallback) => t('core.styling.title', 'Styling'),
   ...props,
-  fields: [...(props?.fields || []), {
-    type: 'field',
-    key: 'styles.padding',
-    priority: 90,
-    label: (
-      t: GetTextCallback
-    ) => t('core.styling.paddings.title', 'Inside spacing (padding)'),
-    fields: [{
+  fields: [
+    ...(props?.fields || []),
+    ...stylingSettingsFields('styles'),
+    {
+      label: (t: GetTextCallback) =>
+        t('core.styling.className.title', 'Additional CSS class'),
       type: 'text',
-      key: 'styles.paddingTop',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.paddings.top', 'Top'),
-    }, {
-      type: 'text',
-      key: 'styles.paddingRight',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.paddings.right', 'Right'),
-    }, {
-      type: 'text',
-      key: 'styles.paddingBottom',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.paddings.bottom', 'Bottom'),
-    }, {
-      type: 'text',
-      key: 'styles.paddingLeft',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.paddings.left', 'Left'),
-    }],
-  }, {
-    type: 'field',
-    key: 'styles.margin',
-    priority: 80,
-    label: (
-      t: GetTextCallback
-    ) => t('core.styling.margins.title', 'Outside spacing (margin)'),
-    fields: [{
-      type: 'text',
-      key: 'styles.marginTop',
-      placeholder: (t: GetTextCallback) => t('core.styling.margins.top', 'Top'),
-    }, {
-      type: 'text',
-      key: 'styles.marginRight',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.margins.right', 'Right'),
-    }, {
-      type: 'text',
-      key: 'styles.marginBottom',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.margins.bottom', 'Bottom'),
-    }, {
-      type: 'text',
-      key: 'styles.marginLeft',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.margins.left', 'Left'),
-    }],
-  }, {
-    type: 'field',
-    key: 'styles.borderWidth',
-    priority: 70,
-    label: (
-      t: GetTextCallback
-    ) => t('core.styling.borders.title', 'Border size'),
-    fields: [{
-      type: 'text',
-      key: 'styles.borderTop',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.top', 'Top'),
-    }, {
-      type: 'text',
-      key: 'styles.borderRight',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.right', 'Right'),
-    }, {
-      type: 'text',
-      key: 'styles.borderBottom',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.bottom', 'Bottom'),
-    }, {
-      type: 'text',
-      key: 'styles.borderLeft',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.left', 'Left'),
-    }],
-  }, {
-    type: 'field',
-    key: 'styles.borderColor',
-    priority: 60,
-    label: (
-      t: GetTextCallback
-    ) => t('core.styling.borders.color', 'Border color'),
-    condition: (element: ElementObject) =>
-      element?.styles?.borderTop ||
-      element?.styles?.borderRight ||
-      element?.styles?.borderBottom ||
-      element?.styles?.borderLeft,
-    fields: [{
-      type: 'color',
-      key: 'styles.borderTopColor',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.topColor', '#000'),
-    }, {
-      type: 'color',
-      key: 'styles.borderRightColor',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.rightColor', '#000'),
-    }, {
-      type: 'color',
-      key: 'styles.borderBottomColor',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.bottomColor', '#000'),
-    }, {
-      type: 'color',
-      key: 'styles.borderLeftColor',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.leftColor', '#000'),
-    }],
-  }, {
-    type: 'field',
-    key: 'styles.borderStyle',
-    priority: 50,
-    condition: (element: ElementObject) =>
-      element?.styles?.borderTop ||
-      element?.styles?.borderRight ||
-      element?.styles?.borderBottom ||
-      element?.styles?.borderLeft,
-    label: (
-      t: GetTextCallback
-    ) => t('core.styling.borders.style', 'Border style'),
-    fields: [{
-      type: 'select',
-      key: 'styles.borderTopStyle',
-      default: 'solid',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.topStyle', 'Top'),
-      options: BORDER_STYLE_OPTIONS,
-    }, {
-      type: 'select',
-      key: 'styles.borderRightStyle',
-      default: 'solid',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.rightStyle', 'Right'),
-      options: BORDER_STYLE_OPTIONS,
-    }, {
-      type: 'select',
-      key: 'styles.borderBottomStyle',
-      default: 'solid',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.bottomStyle', 'Bottom'),
-      options: BORDER_STYLE_OPTIONS,
-    }, {
-      type: 'select',
-      key: 'styles.borderLeftStyle',
-      default: 'solid',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borders.leftStyle', 'Left'),
-      options: BORDER_STYLE_OPTIONS,
-    }],
-  }, {
-    type: 'field',
-    key: 'styles.borderRadius',
-    priority: 40,
-    label: (
-      t: GetTextCallback
-    ) => t('core.styling.borderRadius.title', 'Border radius'),
-    fields: [{
-      type: 'text',
-      key: 'styles.borderTopLeftRadius',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borderRadius.topLeft', 'Top left'),
-    }, {
-      type: 'text',
-      key: 'styles.borderTopRightRadius',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borderRadius.topRight', 'Top right'),
-    }, {
-      type: 'text',
-      key: 'styles.borderBottomRightRadius',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borderRadius.bottomRight', 'Bottom right'),
-    }, {
-      type: 'text',
-      key: 'styles.borderBottomLeftRadius',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.borderRadius.bottomLeft', 'Bottom left'),
-    }],
-  }, {
-    type: 'field',
-    key: 'styles.background',
-    priority: 30,
-    label: (
-      t: GetTextCallback
-    ) => t('core.styling.background.image.title', 'Background image'),
-    fields: [{
-      key: 'styles.backgroundImage',
-      type: 'image',
-      props: {
-        iconOnly: true,
-      },
-    }, {
-      label: (
-        t: GetTextCallback
-      ) => t('core.styling.background.size.title', 'Size'),
-      key: 'styles.backgroundSize',
-      type: 'select',
-      default: 'default',
-      placeholder: (t: GetTextCallback) =>
-        t('core.styling.background.size.title', 'Background size'),
-      options: [{
-        title: (
-          t: GetTextCallback
-        ) => t('core.styling.background.size.default', 'Default'),
-        value: 'default',
-      }, {
-        title: (
-          t: GetTextCallback
-        ) => t('core.styling.background.size.cover', 'Fill'),
-        value: 'cover',
-      }, {
-        title: (
-          t: GetTextCallback
-        ) => t('core.styling.background.size.contain', 'Fit'),
-        value: 'contain',
-      }],
-    }, {
-      label: (
-        t: GetTextCallback
-      ) => t('core.styling.background.position.title', 'Position'),
-      key: 'styles.backgroundPosition',
-      type: 'select',
-      default: 'center',
-      placeholder: (t: GetTextCallback) =>
-        t('core.styling.background.position.title', 'Background position'),
-      options: [{
-        title: (
-          t: GetTextCallback
-        ) => t('core.styling.background.position.center', 'Centered'),
-        value: 'center',
-      }, {
-        title: (
-          t: GetTextCallback
-        ) => t('core.styling.background.position.top', 'Top'),
-        value: 'top',
-      }, {
-        title: (
-          t: GetTextCallback
-        ) => t('core.styling.background.position.right', 'Right'),
-        value: 'right',
-      }, {
-        title: (
-          t: GetTextCallback
-        ) => t('core.styling.background.position.bottom', 'Bottom'),
-        value: 'bottom',
-      }, {
-        title: (
-          t: GetTextCallback
-        ) => t('core.styling.background.position.left', 'Left'),
-        value: 'left',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.position.centerTop', 'Center top'),
-        value: 'center top',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.position.centerBottom', 'Center bottom'),
-        value: 'center bottom',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.position.leftCenter', 'Center left'),
-        value: 'left center',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.position.leftTop', 'Top left'),
-        value: 'left top',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.position.leftBottom', 'Bottom left'),
-        value: 'left bottom',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.position.rightCenter', 'Center right'),
-        value: 'right center',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.position.rightTop', 'Top right'),
-        value: 'right top',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.position.rightBottom', 'Bottom right'),
-        value: 'right bottom',
-      }],
-    }, {
-      label: (
-        t: GetTextCallback
-      ) => t('core.styling.background.repeat.title', 'Repeat'),
-      key: 'styles.backgroundRepeat',
-      type: 'select',
-      default: 'no-repeat',
-      placeholder: (t: GetTextCallback) =>
-        t('core.styling.background.repeat.title', 'Background repeat'),
-      options: [{
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.repeat.noRepeat', 'No repeat'),
-        value: 'no-repeat',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.repeat.repeatX', 'Repeat horizontally'),
-        value: 'repeat-x',
-      }, {
-        title: (t: GetTextCallback) =>
-          t('core.styling.background.repeat.repeatY', 'Repeat vertically'),
-        value: 'repeat-y',
-      }, {
-        title: (t: GetTextCallback) => t('core.styling.background.repeat.both',
-          'Repeat horizontally & vertically'),
-        value: 'repeat',
-      },
+      placeholder: 'my-button',
+      key: 'settings.className',
+      priority: 0,
+    },
+    {
+      id: 'styles.hover',
+      type: 'group',
+      label: (t: GetTextCallback) =>
+        t('core.styling.hover.title', 'Hover styles'),
+      fields: [
+        ...stylingSettingsFields('styles.hover'),
+        {
+          label: (t: GetTextCallback) =>
+            t('core.styling.hover.className.title', 'Hover CSS class'),
+          type: 'text',
+          placeholder: 'my-button--hover',
+          key: 'settings.hoverClassName',
+          priority: 0,
+        },
       ],
-    }],
-  }, {
-    label: (t: GetTextCallback) =>
-      t('core.styling.background.color.title', 'Background color'),
-    placeholder: '#FFF',
-    type: 'color',
-    key: 'styles.backgroundColor',
-    priority: 20,
-  }, {
-    type: 'field',
-    key: 'styles.boxShadow',
-    priority: 10,
-    label: (
-      t: GetTextCallback
-    ) => t('core.styling.shadow.title', 'Box shadow'),
-    fields: [{
-      type: 'text',
-      key: 'styles.boxShadowX',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.shadow.x', 'X'),
-    }, {
-      type: 'text',
-      key: 'styles.boxShadowY',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.shadow.y', 'Y'),
-    }, {
-      type: 'text',
-      key: 'styles.boxShadowBlur',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.shadow.blur', 'Blur'),
-    }, {
-      type: 'text',
-      key: 'styles.boxShadowSpread',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.shadow.spread', 'Spread'),
-    }, {
-      type: 'color',
-      key: 'styles.boxShadowColor',
-      placeholder: (
-        t: GetTextCallback
-      ) => t('core.styling.shadow.color', '#000'),
-    }],
-  }, {
-    label: (t: GetTextCallback) =>
-      t('core.styling.className.title', 'Additional CSS class'),
-    type: 'text',
-    placeholder: 'my-button',
-    key: 'settings.className',
-    priority: 0,
-  }],
+    },
+    {
+      id: 'styles.active',
+      type: 'group',
+      label: (t: GetTextCallback) =>
+        t('core.styling.active.title', 'Active styles'),
+      condition: (element: ElementObject) =>
+        element?.type === 'button',
+      fields: [
+        ...stylingSettingsFields('styles.active'),
+        {
+          label: (t: GetTextCallback) =>
+            t('core.styling.active.className.title', 'Active CSS class'),
+          type: 'text',
+          placeholder: 'my-button--active',
+          key: 'settings.activeClassName',
+          priority: 0,
+        },
+      ],
+    },
+  ],
 });
 
 export const responsiveSettings = (

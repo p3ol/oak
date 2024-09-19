@@ -11,7 +11,7 @@
   .form
     .junipero.tabs
       & > .content
-        padding-top: 10px
+        padding: 0
 
     .field
       .junipero.text-field,
@@ -40,6 +40,20 @@
     max-height: 300px
     overflow: auto
 
+  .fields-group
+    .fields-group-toggle
+      background-color: var(--oak-background-main-color)
+
+      svg path
+        stroke: var(--oak-text-color)
+
+      &.open
+        background-color: var(--oak-main-color)
+        color: var(--oak-reverse-text-color)
+
+        svg path
+          stroke: var(--oak-reverse-text-color)
+
   &.floating
     min-width: 600px
     width: 600px
@@ -61,5 +75,6 @@
       bottom: 0
       background-color: var(--oak-inner-background-color)
 
-    .junipero.tabs .titles
-      border-radius: 0
+    .junipero.tabs
+      .titles
+        border-radius: 0

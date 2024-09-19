@@ -1954,7 +1954,7 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
               class="form"
             >
               <div
-                class="form-title junipero oak-flex oak-py-2 oak-px-5"
+                class="form-title junipero oak-flex oak-py-2 oak-px-5 oak-sticky oak-top-0 oak-z-10"
               >
                 Title options
               </div>
@@ -1999,13 +1999,13 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
                     class="tab"
                   >
                     <div
-                      class="fields oak-flex oak-flex-col oak-gap-4"
+                      class="fields oak-py-2 oak-flex oak-flex-col oak-gap-4"
                     >
                       <div
-                        class="field"
+                        class="field oak-px-[20px]"
                       >
                         <label
-                          class="junipero label oak-flex oak-items-center oak-gap-2"
+                          class="junipero label oak-flex oak-items-center oak-gap-2 !oak-pt-0"
                         >
                           Type
                         </label>
@@ -2041,10 +2041,10 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
                         </div>
                       </div>
                       <div
-                        class="field"
+                        class="field oak-px-[20px]"
                       >
                         <label
-                          class="junipero label oak-flex oak-items-center oak-gap-2"
+                          class="junipero label oak-flex oak-items-center oak-gap-2 !oak-pt-0"
                         >
                           Content
                         </label>
@@ -2065,7 +2065,7 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
                 </div>
               </div>
               <div
-                class="buttons oak-flex oak-items-center oak-justify-end oak-gap-2 oak-p-5"
+                class="buttons oak-flex oak-items-center oak-justify-end oak-gap-2 oak-p-5 oak-z-20"
               >
                 <button
                   class="junipero button subtle"

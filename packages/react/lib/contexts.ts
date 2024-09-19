@@ -36,3 +36,11 @@ export declare type BuilderContextValue = {
 };
 
 export const BuilderContext = createContext<BuilderContextValue>({});
+
+export declare type EditableFormContextValue = {
+  element?: ElementObject;
+  seed?: string | number;
+  setSeed?(seed: string | number): void;
+}
+
+export const EditableFormContext = createContext<EditableFormContextValue>({});

@@ -245,7 +245,11 @@ export const baseAddon = (): AddonObject => ({
   overrides: [{
     type: 'setting',
     targets: ['*'],
-    key: 'styles.backgroundImage',
+    key: [
+      'styles.backgroundImage',
+      'styles.hover.backgroundImage',
+      'styles.active.backgroundImage',
+    ],
     props: {
       iconOnly: true,
       className: 'oak-mr-4 oak-relative oak-top-[2px]',
