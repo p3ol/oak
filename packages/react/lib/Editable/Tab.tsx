@@ -1,5 +1,5 @@
-import type { Key, MutableRefObject } from 'react';
-import type {
+import { type Key, type MutableRefObject, useMemo } from 'react';
+import {
   ComponentObject,
   ComponentSettingsTabObject,
   ComponentSettingsFieldObject,
@@ -42,6 +42,9 @@ const Tab = ({
   onSettingCustomChange,
 }: TabProps) => {
   const { builder } = useBuilder();
+  const componentOverride = useMemo(() => (
+    builder.getOverride('component', element.type) as ComponentOverride
+  ), [element.type]);
 
   const getFieldPriority = (field: ComponentSettingsFieldObject) => {
     const fieldOverride = {
@@ -59,6 +62,13 @@ const Tab = ({
   return (
     <div className="fields oak-flex oak-flex-col oak-gap-4">
       { (component.settings?.fields || [])
+        // Append fields that are only defined inside the component override
+        .concat(componentOverride?.fields?.filter(f =>
+          !component.settings?.fields?.find(s =>
+            s.type !== 'tab' &&
+            (s as ComponentSettingsFieldObject).key === f.key
+          )
+        ) || [])
         .filter((field: ComponentSettingsFieldObject) =>
           (tab.id === 'general' && !field.tab) ||
           field.tab === tab.id
