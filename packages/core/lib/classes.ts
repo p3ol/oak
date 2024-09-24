@@ -52,8 +52,8 @@ export class Component {
   usable: boolean;
   editable: boolean;
   disallow: any;
-  options: any;
-  settings: any;
+  options?: ComponentOption[];
+  settings?: ComponentSettingsForm;
   deserialize: (opts: { builder: Builder }) => ElementObject;
   serialize: Function; //TODO
 
@@ -100,7 +100,7 @@ export class Component {
       droppable: this.droppable,
       usable: this.usable,
       editable: this.editable,
-      options: this.options,
+      options: this.options?.map(o => o.toObject?.() ?? o),
       disallow: this.disallow,
       render: this.render,
       sanitize: this.sanitize,
@@ -178,7 +178,7 @@ export class Override {
 export class ComponentOverride extends Override {
   id: string;
   targets: string[];
-  fields: ComponentSettingsFieldObject[];
+  fields: ComponentSettingsField[];
   render: ComponentOverrideObject['render'];
   construct: (
     opts: { builder: Builder, baseElement?: ElementObject }
@@ -192,13 +192,13 @@ export class ComponentOverride extends Override {
   editable: boolean;
   disallow: string[];
 
-  constructor (props: ComponentOverrideObject) {
+  constructor (props: ComponentOverrideObject | ComponentOverride) {
     super();
 
     this.type = 'component';
     this.id = props.id;
     this.targets = props.targets || [];
-    this.fields = props.fields || [];
+    this.fields = (props.fields || []).map(f => new ComponentSettingsField(f));
     this.render = props.render;
     this.sanitize = props.sanitize;
     this.construct = props.construct;
@@ -214,7 +214,7 @@ export class ComponentOverride extends Override {
       type: 'component',
       id: this.id,
       targets: this.targets,
-      fields: this.fields,
+      fields: this.fields?.map(f => f.toObject?.() ?? f),
       render: this.render,
       sanitize: this.sanitize,
       construct: this.construct,
@@ -330,11 +330,18 @@ export class SettingOverride extends Override {
 
 export class ComponentOption {
   icon: any;
-  render: Function;
+  render: any;
 
   constructor (props: ComponentOptionObject) {
     this.icon = props.icon;
     this.render = props.render;
+  }
+
+  toObject (): ComponentOptionObject {
+    return {
+      icon: this.icon,
+      render: this.render,
+    };
   }
 }
 

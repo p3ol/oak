@@ -164,14 +164,18 @@ export default class Builder extends Emitter {
 
   getComponentDisplayableSettings (
     element: ElementObject,
-    { component }: { component: ComponentObject}
+    { component, override }: {
+      component: ComponentObject;
+      override?: ComponentOverrideObject | ComponentOverride;
+    },
   ): Array<ComponentSettingsTabObject | ComponentSettingsFieldObject> {
     const component_ = new Component(component);
+    const override_ = new ComponentOverride(override ?? {});
 
     return [
       ...this.#components
         .getDisplayableSettings?.(
-          element, { component: component_ }
+          element, { component: component_, override: override_ }
         ) || [],
       ...this.#settings.getDisplayable?.(element) || [],
     ];
