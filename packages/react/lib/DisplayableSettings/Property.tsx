@@ -8,6 +8,7 @@ import type {
 } from '@oakjs/core';
 import { get, classNames } from '@junipero/react';
 
+import { assignDefined } from '../utils';
 import Text from '../Text';
 
 interface PropertyProps extends ComponentPropsWithoutRef<'span'> {
@@ -23,10 +24,10 @@ const Property = ({
   className,
   ...rest
 }: PropertyProps) => {
-  const field = useMemo<ComponentSettingsFieldObject>(() => ({
-    ...setting,
-    ...override?.fields?.find(f => f.key === setting.key) || {},
-  }), [setting, override]);
+  const field = useMemo<ComponentSettingsFieldObject>(() => assignDefined(
+    setting,
+    override?.fields?.find(f => f.key === setting.key) || {},
+  ), [setting, override]);
 
   const value = useMemo(() => (
     get(element, field.key as string, field.default)
