@@ -45,15 +45,9 @@ const DisplayableSettings = ({
 
   const displayableSettings = useMemo(() => {
     const settings = builder
-      .getComponentDisplayableSettings(element, { component });
+      .getComponentDisplayableSettings(element, { component, override });
 
     return settings
-      // Append fields that are only defined inside the component override
-      .concat(override?.fields?.filter(f => (
-        !settings.find(s =>
-          s.type !== 'tab' &&
-          (s as ComponentSettingsFieldObject).key === f.key)
-      )) || [])
       .filter(s => !s.condition || s.condition(element))
       .sort((a, b) =>
         getSettingPriority(b as SettingOverrideObject) -

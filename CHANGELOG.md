@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.12](https://github.com/p3ol/oak/compare/v3.7.11...v3.7.12) (2024-09-24)
+
+
+### Bug Fixes
+
+* **theme:** forgot dark mode once again ([df0686c](https://github.com/p3ol/oak/commit/df0686c2b162453c7413bba7bb22e84cefc50889))
+
+
+
+
+
+## [3.7.11](https://github.com/p3ol/oak/compare/v3.7.10...v3.7.11) (2024-09-24)
+
+
+### Bug Fixes
+
+* correctly handle custom fields from component overrides ([1fec064](https://github.com/p3ol/oak/commit/1fec06425102b735d39d2815b04400837f30cd49))
+* missing tags field helper ([254eeb1](https://github.com/p3ol/oak/commit/254eeb1f7de4895211098224c5bc00ee65875df7))
+* prevent incorrect displayable settings ([a0b842f](https://github.com/p3ol/oak/commit/a0b842f6e8316052c588ae84b796356a900db6fe))
+* **theme:** broken tags field ([72f64b7](https://github.com/p3ol/oak/commit/72f64b7644753ad4a300319772473f2198042267))
+* upgrade various deps ([67f46fd](https://github.com/p3ol/oak/commit/67f46fd85170e238738ebcf7cbb8b213612ca44f))
+
+
+
+
+
 ## [3.7.10](https://github.com/p3ol/oak/compare/v3.7.9...v3.7.10) (2024-09-17)
 
 

@@ -165,7 +165,7 @@ export const withMultipleCustomSettings = () => {
           settings: [
             { id: 'foo', key: 'settings.foo', label: 'Foo', type: 'text',
               displayable: true },
-            { id: 'bar', key: 'settings.bar', label: 'Bar', type: 'text' },
+            { id: 'bar', key: 'settings.bar', label: 'Bar', type: 'tags' },
           ],
           overrides: [{
             id: 'titleOverride',
