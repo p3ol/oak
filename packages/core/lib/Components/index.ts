@@ -1,11 +1,13 @@
 import type {
   ComponentObject,
+  ComponentSettingsFieldObject,
   ComponentsGroupObject,
   ElementObject,
   GetTextCallback,
 } from '../types';
 import {
   Component,
+  ComponentOverride,
   ComponentSettingsField,
   ComponentSettingsTab,
   ComponentsGroup,
@@ -206,9 +208,10 @@ export default class Components extends Emitter implements IComponents {
 
   getDisplayableSettings (
     element: ElementObject,
-    { fields, component }: {
+    { fields, component, override }: {
       fields?: Array<ComponentSettingsField | ComponentSettingsTab>;
       component?: Component;
+      override?: ComponentOverride;
     } = {}
   ) {
     const displayable: Array<ComponentSettingsField> = [];
@@ -222,6 +225,14 @@ export default class Components extends Emitter implements IComponents {
 
       fields = component?.settings.fields;
     }
+
+    // Append fields that are only defined inside the component override
+    fields = fields.concat(override?.fields?.filter(f => (
+      !component?.settings?.fields.find(s =>
+        s.type !== 'tab' &&
+        (s as ComponentSettingsField).key === f.key
+      )
+    )) || []);
 
     for (const setting of fields) {
       if (Array.isArray(setting.fields)) {

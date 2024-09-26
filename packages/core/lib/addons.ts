@@ -33,6 +33,12 @@ export const selectField = (props?: FieldObject): FieldObject => ({
   ...props,
 });
 
+export const tagsField = (props?: FieldObject): FieldObject => ({
+  type: 'tags',
+  render: () => null,
+  ...props,
+});
+
 export const colorField = (props?: FieldObject): FieldObject => ({
   type: 'color',
   render: () => null,

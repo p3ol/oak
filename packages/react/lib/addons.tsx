@@ -80,6 +80,20 @@ export const selectField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...props,
 });
 
+export const tagsField = (props?: ReactFieldObject): ReactFieldObject => ({
+  ...coreAddons.tagsField(),
+  render: (fieldProps: SelectFieldProps, { setting, editableRef, t } = {}) => (
+    selectField().render({
+      multiple: true,
+      allowArbitraryItems: true,
+      noOptionsEnabled: false,
+      clearable: true,
+      ...fieldProps,
+    }, { setting, editableRef, t })
+  ),
+  ...props,
+});
+
 export const colorField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.colorField(),
   render: (fieldProps: ColorFieldProps, { setting, editableRef, t } = {}) => (
@@ -215,6 +229,7 @@ export const baseFields = (): ReactFieldObject[] => [
   textField(),
   textareaField(),
   selectField(),
+  tagsField(),
   colorField(),
   imageField(),
   dateField(),
