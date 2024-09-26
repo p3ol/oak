@@ -11,7 +11,7 @@ import {
 } from '@junipero/react';
 
 import type { EditableType } from './types';
-import { BuilderContext } from './contexts';
+import { BuilderContext, EditableFormContext } from './contexts';
 
 export interface UseRootBuilderProps {
   activeTextSheet?: string;
@@ -150,3 +150,4 @@ export const useRootBuilder = ({
 };
 
 export const useBuilder = () => useContext(BuilderContext);
+export const useEditableForm = () => useContext(EditableFormContext);

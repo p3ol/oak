@@ -65,11 +65,11 @@ const Setting = ({
   }
 
   return (
-    <div className="field">
+    <div className="field oak-px-[20px]">
       <FieldControl>
         { (override?.label || setting.label) && (
           <Label
-            className="oak-flex oak-items-center oak-gap-2"
+            className="oak-flex oak-items-center oak-gap-2 !oak-pt-0"
           >
             <Text>{ (override?.label || setting.label) as string }</Text>
             { (override?.info || setting.info) && (

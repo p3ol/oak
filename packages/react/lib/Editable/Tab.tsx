@@ -1,4 +1,9 @@
-import { type Key, type MutableRefObject, useMemo } from 'react';
+import {
+  type Key,
+  type MutableRefObject,
+  type ComponentPropsWithoutRef,
+  useMemo,
+} from 'react';
 import {
   ComponentObject,
   ComponentSettingsTabObject,
@@ -10,14 +15,15 @@ import {
   FieldObject,
   FieldOverrideObject,
 } from '@oakjs/core';
-import { type FieldContent, cloneDeep } from '@junipero/react';
+import { type FieldContent, cloneDeep, classNames } from '@junipero/react';
 
 import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
 import Setting from './Setting';
+import SettingsGroup from './SettingsGroup';
 
-export interface TabProps {
-  tab: ComponentSettingsTabObject;
+export interface TabProps extends ComponentPropsWithoutRef<'div'> {
+  tab: ComponentSettingsTabObject | ComponentSettingsFieldObject;
   component: ComponentObject;
   element: ElementObject;
   overrides?: ComponentOverride | SettingOverride | FieldOverride;
@@ -37,11 +43,13 @@ const Tab = ({
   element,
   overrides,
   editableRef,
+  className,
   onUpdate,
   onSettingChange,
   onSettingCustomChange,
+  ...rest
 }: TabProps) => {
-  const { builder } = useBuilder();
+  const { builder, editableType } = useBuilder();
   const componentOverride = useMemo(() => (
     builder.getOverride('component', element.type) as ComponentOverride
   ), [element.type]);
@@ -60,7 +68,16 @@ const Tab = ({
   };
 
   return (
-    <div className="fields oak-flex oak-flex-col oak-gap-4">
+    <div
+      { ...rest }
+      className={classNames(
+        'fields oak-py-2 oak-flex oak-flex-col oak-gap-4',
+        {
+          'oak-max-h-[500px] oak-overflow-y-auto': editableType !== 'modal',
+        },
+        className,
+      )}
+    >
       { (component.settings?.fields || [])
         // Append fields that are only defined inside the component override
         .concat(componentOverride?.fields?.filter(f =>
@@ -74,27 +91,45 @@ const Tab = ({
           field.tab === tab.id
         )
         .concat(tab.fields)
+        .filter((field: ComponentSettingsFieldObject) =>
+          !field.condition ||
+          field.condition(element, { component, builder })
+        )
         .sort((
           a: ComponentSettingsFieldObject,
           b: ComponentSettingsFieldObject
         ) => getFieldPriority(b) - getFieldPriority(a))
-        .map((setting: ComponentSettingsFieldObject, i: Key) => (
-          <Setting
-            key={i}
-            setting={setting}
-            component={component}
-            element={element}
-            editableRef={editableRef}
-            onSettingChange={onSettingChange}
-            onSettingCustomChange={onSettingCustomChange}
-          />
-        )) }
-      { tab?.renderForm?.({
-        element: cloneDeep(element),
-        component,
-        overrides,
-        update: onUpdate,
-      }) }
+        .map((setting: ComponentSettingsFieldObject, i: Key) =>
+          setting.type === 'group' ? (
+            <SettingsGroup
+              key={i}
+              setting={setting}
+              component={component}
+              element={element}
+              editableRef={editableRef}
+              onSettingChange={onSettingChange}
+              onSettingCustomChange={onSettingCustomChange}
+              onUpdate={onUpdate}
+            />
+          ) : (
+            <Setting
+              key={i}
+              setting={setting}
+              component={component}
+              element={element}
+              editableRef={editableRef}
+              onSettingChange={onSettingChange}
+              onSettingCustomChange={onSettingCustomChange}
+            />
+          )
+        ) }
+      { tab?.type === 'tab' &&
+        (tab as ComponentSettingsTabObject).renderForm?.({
+          element: cloneDeep(element),
+          component,
+          overrides,
+          update: onUpdate,
+        }) }
     </div>
   );
 };

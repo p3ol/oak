@@ -137,7 +137,7 @@ export default class Overrides extends Emitter implements IOverrides {
         switch (output) {
           case 'field': {
             const newComponentField = (override as ComponentOverride)?.fields
-              ?.find(f => f.key === setting?.key);
+              ?.find(f => [].concat(f.key).includes(setting?.key));
 
             return Object.assign(
               { type: newComponentField?.type || setting.type },
@@ -152,7 +152,7 @@ export default class Overrides extends Emitter implements IOverrides {
       }
       case 'setting':
         return overrides?.find((o: SettingOverride) => (
-          o.key === setting?.key
+          [].concat(o.key).includes(setting?.key)
         )) as SettingOverride;
       default:
         return strategy === 'merge' ? this.merge(overrides) : overrides[0];
