@@ -21,17 +21,17 @@
     "build": "true"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-react": "9.2.0",
+    "@ckeditor/ckeditor5-react": "9.3.0",
     "@oakjs/addon-ckeditor5-react": "^3.7.13",
     "@oakjs/addon-remirror": "^3.7.13",
     "@oakjs/ckeditor5-build-custom": "^3.7.13",
     "@oakjs/react": "^3.7.13",
     "@oakjs/theme": "^3.7.12",
-    "@remirror/pm": "2.0.9",
-    "@remirror/react": "2.0.35",
+    "@remirror/pm": "3.0.0",
+    "@remirror/react": "3.0.1",
     "@strapi/design-system": "1.19.0",
     "@strapi/icons": "1.19.0",
-    "remirror": "2.0.40",
+    "remirror": "3.0.1",
     "styled-components": "6.1.13"
   },
   "strapi": {
