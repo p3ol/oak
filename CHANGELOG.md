@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/p3ol/oak/compare/v3.7.13...v3.8.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* upgrade various deps ([0d4d100](https://github.com/p3ol/oak/commit/0d4d10031db6e14a399209cfa089ce38c99109b0))
+* upgrade various deps ([825c9a1](https://github.com/p3ol/oak/commit/825c9a1c8bd19fe8ea85d0e8aa20f2d25b201f0d))
+
+
+### Features
+
+* add hover & active styling settings ([50c907c](https://github.com/p3ol/oak/commit/50c907c01bfcc9aae54d1f611c3d1388bfc70c51))
+* upgrade ckeditor to v43 ([6fbca70](https://github.com/p3ol/oak/commit/6fbca70f1c7a41954f7052223e91858cc5e172fc))
+
+
+
+
+
 ## [3.7.13](https://github.com/p3ol/oak/compare/v3.7.12...v3.7.13) (2024-09-25)
 
 

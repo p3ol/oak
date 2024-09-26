@@ -3,7 +3,7 @@
     "packages/*"
   ],
   "npmClient": "yarn",
-  "version": "3.7.13",
+  "version": "3.8.0",
   "command": {
     "publish": {
       "conventionalCommits": true
