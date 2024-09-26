@@ -7078,7 +7078,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:22.6.1, @types/node@npm:^22.0.0":
+"@types/node@npm:22.7.2":
+  version: 22.7.2
+  resolution: "@types/node@npm:22.7.2"
+  dependencies:
+    undici-types: "npm:~6.19.2"
+  checksum: 10/78cfa59bfa7a7d287aede017400006059c07e0220c9eed3ab380409972711f5a2d972f8a86d6adaf2343bc66a6e9619a4dfbc71e86a2335f54bb9cd59ff0ce11
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^22.0.0":
   version: 22.6.1
   resolution: "@types/node@npm:22.6.1"
   dependencies:
@@ -18997,7 +19006,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:6.5.0"
     "@testing-library/react": "npm:16.0.1"
     "@types/jest": "npm:29.5.13"
-    "@types/node": "npm:22.6.1"
+    "@types/node": "npm:22.7.2"
     "@types/react": "npm:18.3.9"
     "@types/react-dom": "npm:18.3.0"
     "@typescript-eslint/parser": "npm:8.7.0"
