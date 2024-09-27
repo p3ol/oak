@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.1](https://github.com/p3ol/oak/compare/v3.8.0...v3.8.1) (2024-09-27)
+
+
+### Bug Fixes
+
+* broken settings overrides ([267b3c2](https://github.com/p3ol/oak/commit/267b3c25ebe805b1c7fd6527bd2dbc1ecc463f28))
+* only display hover styles for button component ([2248dce](https://github.com/p3ol/oak/commit/2248dcebd0c4580e171cf303f2995da31fff7e00))
+
+
+
+
+
 # [3.8.0](https://github.com/p3ol/oak/compare/v3.7.13...v3.8.0) (2024-09-26)
 
 
