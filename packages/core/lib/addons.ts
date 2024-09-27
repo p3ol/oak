@@ -1315,6 +1315,8 @@ export const stylingSettings = (
       type: 'group',
       label: (t: GetTextCallback) =>
         t('core.styling.hover.title', 'Hover styles'),
+      condition: (element: ElementObject) =>
+        element?.type === 'button',
       fields: [
         ...stylingSettingsFields('styles.hover'),
         {
