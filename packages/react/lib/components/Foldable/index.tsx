@@ -76,7 +76,7 @@ const Foldable = ({
                 )}
               >
                 <Text name="core.components.foldable.sectionsTitle.seeMore">
-                    Label when collapsed
+                  Label when collapsed
                 </Text>
               </div>
               <Container
@@ -94,7 +94,7 @@ const Foldable = ({
                 )}
               >
                 <Text name="core.components.foldable.sectionsTitle.seeLess">
-                    Label when expanded
+                  Label when expanded
                 </Text>
               </div>
               <Container
@@ -112,7 +112,7 @@ const Foldable = ({
                 )}
               >
                 <Text name="core.components.foldable.sectionsTitle.content">
-                    Content
+                  Content
                 </Text>
               </div>
               <Container

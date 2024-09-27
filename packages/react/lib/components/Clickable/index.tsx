@@ -76,7 +76,7 @@ const Clickable = ({
                 )}
               >
                 <Text name="core.components.clickable.sectionsTitle.content">
-                    Clickable content
+                  Clickable content
                 </Text>
               </div>
               <Container
