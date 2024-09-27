@@ -516,11 +516,13 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
           <div
             class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
           >
-            <h6
-              class="junipero oak-m-0"
-            >
-              Text
-            </h6>
+            <div>
+              <h6
+                class="junipero oak-inline oak-m-0"
+              >
+                Text
+              </h6>
+            </div>
             <div
               class="element-content oak-flex-auto"
             >
@@ -643,11 +645,13 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
                       <div
                         class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
                       >
-                        <h6
-                          class="junipero oak-m-0"
-                        >
-                          Title
-                        </h6>
+                        <div>
+                          <h6
+                            class="junipero oak-inline oak-m-0"
+                          >
+                            Title
+                          </h6>
+                        </div>
                         <div
                           class="element-content oak-flex-auto"
                         >
@@ -1068,11 +1072,13 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
                 <div
                   class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
                 >
-                  <h6
-                    class="junipero oak-m-0"
-                  >
-                    Title
-                  </h6>
+                  <div>
+                    <h6
+                      class="junipero oak-inline oak-m-0"
+                    >
+                      Title
+                    </h6>
+                  </div>
                   <div
                     class="element-content oak-flex-auto"
                   >
@@ -1367,11 +1373,13 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
             <div
               class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
             >
-              <h6
-                class="junipero oak-m-0"
-              >
-                Title
-              </h6>
+              <div>
+                <h6
+                  class="junipero oak-inline oak-m-0"
+                >
+                  Title
+                </h6>
+              </div>
               <div
                 class="element-content oak-flex-auto"
               >
@@ -1839,11 +1847,13 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
           <div
             class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
           >
-            <h6
-              class="junipero oak-m-0"
-            >
-              Title
-            </h6>
+            <div>
+              <h6
+                class="junipero oak-inline oak-m-0"
+              >
+                Title
+              </h6>
+            </div>
             <div
               class="element-content oak-flex-auto"
             >
@@ -2189,11 +2199,13 @@ exports[`<Builder /> should render: Base content 1`] = `
           <div
             class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
           >
-            <h6
-              class="junipero oak-m-0"
-            >
-              Title
-            </h6>
+            <div>
+              <h6
+                class="junipero oak-inline oak-m-0"
+              >
+                Title
+              </h6>
+            </div>
             <div
               class="element-content oak-flex-auto"
             >
@@ -2288,11 +2300,13 @@ exports[`<Builder /> should render: Base content 1`] = `
           <div
             class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
           >
-            <h6
-              class="junipero oak-m-0"
-            >
-              Text
-            </h6>
+            <div>
+              <h6
+                class="junipero oak-inline oak-m-0"
+              >
+                Text
+              </h6>
+            </div>
             <div
               class="element-content oak-flex-auto"
             >
