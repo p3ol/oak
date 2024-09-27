@@ -178,7 +178,7 @@ export class Override {
 export class ComponentOverride extends Override {
   id: string;
   targets: string[];
-  fields: ComponentSettingsFieldObject[];
+  fields?: ComponentSettingsFieldObject[];
   render: ComponentOverrideObject['render'];
   construct: (
     opts: { builder: Builder, baseElement?: ElementObject }
@@ -198,7 +198,7 @@ export class ComponentOverride extends Override {
     this.type = 'component';
     this.id = props.id;
     this.targets = props.targets || [];
-    this.fields = props.fields || [];
+    this.fields = props.fields;
     this.render = props.render;
     this.sanitize = props.sanitize;
     this.construct = props.construct;
@@ -277,7 +277,7 @@ export class SettingOverride extends Override {
   valueType: string;
   condition: SettingOverrideObject['condition'];
   priority: number;
-  fields: ComponentSettingsFieldObject[];
+  fields?: ComponentSettingsFieldObject[];
   props: object;
   info: string | GetTextCallback;
 
@@ -299,7 +299,7 @@ export class SettingOverride extends Override {
     this.condition = props.condition;
     this.priority = props.priority;
     this.info = props.info;
-    this.fields = props.fields || [];
+    this.fields = props.fields;
     this.props = props.props;
   }
 

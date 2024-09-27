@@ -1,22 +1,22 @@
 import type {
-  ComponentObject,
-  ComponentSettingsFieldObject,
-  ElementObject,
-  FieldObject,
-  FieldOverride,
-  SettingOverride,
-} from '@oakjs/core';
-import type {
   SpecialComponentPropsWithoutRef,
 } from '@junipero/react';
 import {
   type MutableRefObject,
   useMemo,
 } from 'react';
+import {
+  type ComponentObject,
+  type ComponentSettingsFieldObject,
+  type ElementObject,
+  type FieldObject,
+  type FieldOverride,
+  type SettingOverride,
+  assignDefined,
+} from '@oakjs/core';
 
 import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
-import { assignDefined } from '../utils';
 
 export interface FieldProps extends SpecialComponentPropsWithoutRef {
   setting: ComponentSettingsFieldObject;
