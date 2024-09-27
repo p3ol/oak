@@ -375,6 +375,17 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
             </i>
           </a>
           <a
+            class="option oak-flex oak-items-center oak-justify-center option"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              expand_less
+            </i>
+          </a>
+          <a
             class="option oak-flex oak-items-center oak-justify-center edit"
             draggable="false"
             href="#"
@@ -834,6 +845,17 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
             </i>
           </a>
           <a
+            class="option oak-flex oak-items-center oak-justify-center option"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              expand_less
+            </i>
+          </a>
+          <a
             class="option oak-flex oak-items-center oak-justify-center edit"
             draggable="false"
             href="#"
@@ -1245,6 +1267,17 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
         class="icon junipero-icons !oak-text-lg"
       >
         pause
+      </i>
+    </a>
+    <a
+      class="option oak-flex oak-items-center oak-justify-center option"
+      draggable="false"
+      href="#"
+    >
+      <i
+        class="icon junipero-icons !oak-text-lg"
+      >
+        expand_less
       </i>
     </a>
     <a
