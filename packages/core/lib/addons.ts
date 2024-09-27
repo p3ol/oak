@@ -1311,7 +1311,7 @@ export const stylingSettings = (
       priority: 0,
     },
     {
-      id: 'styles.hover',
+      key: 'styles.hover',
       type: 'group',
       label: (t: GetTextCallback) =>
         t('core.styling.hover.title', 'Hover styles'),
@@ -1330,7 +1330,7 @@ export const stylingSettings = (
       ],
     },
     {
-      id: 'styles.active',
+      key: 'styles.active',
       type: 'group',
       label: (t: GetTextCallback) =>
         t('core.styling.active.title', 'Active styles'),
