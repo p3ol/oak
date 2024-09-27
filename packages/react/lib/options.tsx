@@ -93,7 +93,7 @@ export const collapseOption = (): ReactComponentOptionObject => ({
         name={(
           <Text
             name={`core.tooltips.expand.${collapsed ? 'more' : 'less'}`}
-            default={collapsed ? 'Expand more' : 'Expand less'}
+            default={collapsed ? 'Expand' : 'Collapse'}
           />
         )}
       />

@@ -54,59 +54,44 @@ const Clickable = ({
 
   return (
     <>
-      { element.collapsed
-        ? (
-          <div
-            { ...omit(rest, ['builder', 'component']) }
-            className={classNames(
-              'wrapper',
-              depth % 2 === 0 ? 'even' : 'odd',
-              className,
-            )}
-          >
-            <Text name="core.components.clickable.collapsed">
-              Collapsed clickable (expand to see inner content)
-            </Text>
-          </div>
-        ) : (
-          <div
-            { ...omit(rest, ['builder']) }
-            className={classNames(
-              'wrapper',
-              depth % 2 === 0 ? 'even' : 'odd',
-              className,
-            )}
-            data-depth={depth}
-          >
-            <Droppable onDrop={onDropElement.bind(null, 'before')}>
-              <div className="drop-zone before" />
-            </Droppable>
-            <div className="sections oak-flex oak-flex-col oak-gap-4 oak-p-4">
-              <div className="section">
-                <div
-                  className={classNames(
-                    'title junipero secondary',
-                    '!oak-text-alternate-text-color'
-                  )}
-                >
-                  <Text name="core.components.clickable.sectionsTitle.content">
+      { !element.collapsed && (
+        <div
+          { ...omit(rest, ['builder']) }
+          className={classNames(
+            'wrapper',
+            depth % 2 === 0 ? 'even' : 'odd',
+            className,
+          )}
+          data-depth={depth}
+        >
+          <Droppable onDrop={onDropElement.bind(null, 'before')}>
+            <div className="drop-zone before" />
+          </Droppable>
+          <div className="sections oak-flex oak-flex-col oak-gap-4 oak-p-4">
+            <div className="section">
+              <div
+                className={classNames(
+                  'title junipero secondary',
+                  '!oak-text-alternate-text-color'
+                )}
+              >
+                <Text name="core.components.clickable.sectionsTitle.content">
                     Clickable content
-                  </Text>
-                </div>
-                <Container
-                  depth={depth + 1}
-                  element={element}
-                  content={element.content as ElementObject[]}
-                  component={component}
-                />
+                </Text>
               </div>
+              <Container
+                depth={depth + 1}
+                element={element}
+                content={element.content as ElementObject[]}
+                component={component}
+              />
             </div>
-            <Droppable onDrop={onDropElement.bind(null, 'after')}>
-              <div className="drop-zone after" />
-            </Droppable>
           </div>
-        )
-      }
+          <Droppable onDrop={onDropElement.bind(null, 'after')}>
+            <div className="drop-zone after" />
+          </Droppable>
+        </div>
+      )}
     </>
   );
 };

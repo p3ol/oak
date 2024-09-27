@@ -158,10 +158,24 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                     'oak-gap-2 oak-justify-between'
                   )}
                 >
-                  <h6 className="junipero oak-m-0">
-                    <Text>{ component?.name as string }</Text>
-                  </h6>
-                  { rendered && (
+                  <div>
+                    <h6 className="junipero oak-inline oak-m-0">
+                      <Text>{ component?.name as string }</Text>
+                    </h6>
+                    { element.collapsed && (
+                      <span
+                        className={classNames(
+                          'junipero extra',
+                          '!oak-text-alternate-text-color oak-ml-1'
+                        )}
+                      >
+                        <Text name="core.components.collapsed">
+                          (expand to see inner content)
+                        </Text>
+                      </span>
+                    )}
+                  </div>
+                  { !element.collapsed && rendered && (
                     <div className="element-content oak-flex-auto">
                       { rendered }
                     </div>
