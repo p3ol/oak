@@ -102,7 +102,7 @@ const Tab = ({
         .map((setting: ComponentSettingsFieldObject, i: Key) =>
           setting.type === 'group' ? (
             <SettingsGroup
-              key={i}
+              key={setting.key as Key}
               setting={setting}
               component={component}
               element={element}
@@ -113,7 +113,7 @@ const Tab = ({
             />
           ) : (
             <Setting
-              key={i}
+              key={setting.key as Key}
               setting={setting}
               component={component}
               element={element}
