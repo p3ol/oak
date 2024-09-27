@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.2](https://github.com/p3ol/oak/compare/v3.8.1...v3.8.2) (2024-09-27)
+
+
+### Bug Fixes
+
+* fields sorting breaking rule of hooks ([cee5819](https://github.com/p3ol/oak/commit/cee5819e45d261a4f7160e95e71539f68cb28490))
+
+
+
+
+
 # [3.8.0](https://github.com/p3ol/oak/compare/v3.7.13...v3.8.0) (2024-09-26)
 
 
