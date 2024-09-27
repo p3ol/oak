@@ -1,6 +1,7 @@
 import type {
   ComponentObject,
   ComponentSettingsFieldObject,
+  ComponentSettingsTabObject,
   ComponentsGroupObject,
   ElementObject,
   GetTextCallback,
@@ -209,7 +210,12 @@ export default class Components extends Emitter implements IComponents {
   getDisplayableSettings (
     element: ElementObject,
     { fields, component, override }: {
-      fields?: Array<ComponentSettingsField | ComponentSettingsTab>;
+      fields?: Array<
+        ComponentSettingsField |
+        ComponentSettingsFieldObject |
+        ComponentSettingsTab |
+        ComponentSettingsTabObject
+      >;
       component?: Component;
       override?: ComponentOverride;
     } = {}
@@ -230,7 +236,7 @@ export default class Components extends Emitter implements IComponents {
     fields = fields.concat(override?.fields?.filter(f => (
       !component?.settings?.fields.find(s =>
         s.type !== 'tab' &&
-        (s as ComponentSettingsField).key === f.key
+        (s as ComponentSettingsFieldObject).key === f.key
       )
     )) || []);
 
