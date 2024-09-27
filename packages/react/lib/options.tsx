@@ -75,6 +75,32 @@ export const dragOption = (): ComponentOptionObject => ({
   render: (props: DragOptionProps) => <DragOption {...props} />,
 });
 
+export const collapseOption = (): ReactComponentOptionObject => ({
+
+  render: ({ className, element }) => {
+    const [collapsed, setCollapsed] = useState(element.collapsed ?? false);
+
+    const onClick = () => {
+      element.collapsed = !collapsed;
+      setCollapsed(!collapsed);
+    };
+
+    return (
+      <Option
+        onClick={onClick}
+        option={{ icon: collapsed ? 'expand_more' : 'expand_less' }}
+        className={classNames(className)}
+        name={(
+          <Text
+            name={`core.tooltips.expand.${collapsed ? 'more' : 'less'}`}
+            default={collapsed ? 'Expand more' : 'Expand less'}
+          />
+        )}
+      />
+    );
+  },
+});
+
 export const backgroundColorOption = (): ReactComponentOptionObject => ({
   render: ({ element = {} }) =>
     (element.styles?.backgroundColor || element.styles?.backgroundImage) && (

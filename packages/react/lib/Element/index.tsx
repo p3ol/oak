@@ -139,58 +139,59 @@ const Element = forwardRef<ElementRef, ElementProps>(({
             className
           )}
         >
-          { component?.hasCustomInnerContent ? rendered : component ? (
-            <div
-              className={classNames(
-                'inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch',
-                depth % 2 === 0 ? 'even' : 'odd',
-              )}
-            >
-              <Icon
-                children={typeof component?.icon === 'function'
-                  ? component.icon.bind(null, component)
-                  : component?.icon}
-              />
+          { component?.hasCustomInnerContent && !element.collapsed
+            ? rendered : component ? (
               <div
                 className={classNames(
-                  'element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2',
-                  'oak-justify-between'
+                  'inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch',
+                  depth % 2 === 0 ? 'even' : 'odd',
                 )}
               >
-                <h6 className="junipero oak-m-0">
-                  <Text>{ component?.name as string }</Text>
-                </h6>
-                { rendered && (
-                  <div className="element-content oak-flex-auto">
-                    { rendered }
-                  </div>
-                ) }
-
-                <DisplayableSettings
-                  element={element}
-                  component={component}
-                  override={override as ComponentOverrideObject}
+                <Icon
+                  children={typeof component?.icon === 'function'
+                    ? component.icon.bind(null, component)
+                    : component?.icon}
                 />
-              </div>
-            </div>
-          ) : (
-            <div
-              className={classNames(
-                'inner oak-flex oak-gap-2 oak-p-4',
-                depth % 2 === 0 ? 'even' : 'odd'
-              )}
-            >
-              <Icon>help_circle</Icon>
-              <div className="element-info">
-                <h6 className="junipero oak-m-0 oak-mb-2">
-                  <Text name="core.components.unknown">Unknown</Text>
-                </h6>
-                <div className="element-content">
-                  { JSON.stringify(element) }
+                <div
+                  className={classNames(
+                    'element-info oak-flex-auto oak-flex oak-flex-col',
+                    'oak-gap-2 oak-justify-between'
+                  )}
+                >
+                  <h6 className="junipero oak-m-0">
+                    <Text>{ component?.name as string }</Text>
+                  </h6>
+                  { rendered && (
+                    <div className="element-content oak-flex-auto">
+                      { rendered }
+                    </div>
+                  ) }
+
+                  <DisplayableSettings
+                    element={element}
+                    component={component}
+                    override={override as ComponentOverrideObject}
+                  />
                 </div>
               </div>
-            </div>
-          ) }
+            ) : (
+              <div
+                className={classNames(
+                  'inner oak-flex oak-gap-2 oak-p-4',
+                  depth % 2 === 0 ? 'even' : 'odd'
+                )}
+              >
+                <Icon>help_circle</Icon>
+                <div className="element-info">
+                  <h6 className="junipero oak-m-0 oak-mb-2">
+                    <Text name="core.components.unknown">Unknown</Text>
+                  </h6>
+                  <div className="element-content">
+                    { JSON.stringify(element) }
+                  </div>
+                </div>
+              </div>
+            ) }
 
           <div
             className={classNames(

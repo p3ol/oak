@@ -13,6 +13,7 @@ import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
+import Text from '../../Text';
 
 export interface RowProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
@@ -89,46 +90,64 @@ const Row = ({
   }, [builder, element, parent, parentComponent, parentOverride]);
 
   return (
-    <div
-      { ...omit(rest, ['builder', 'component']) }
-      className={classNames(
-        'wrapper',
-        depth % 2 === 0 ? 'even' : 'odd',
-        className,
-      )}
-    >
-      <Droppable onDrop={onDropElement.bind(null, 'before')}>
-        <div className="drop-zone before" />
-      </Droppable>
-      <div
-        className={classNames(
-          'row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2',
-          element.settings?.flexDirection &&
-            'oak-flex-' + element.settings.flexDirection,
-          element.settings?.alignItems
-            ? 'oak-items-' + element.settings.alignItems
-            : /col/.test(element.settings?.flexDirection)
-              ? 'oak-items-stretch' : 'oak-items-start',
-          element.settings?.justifyContent &&
-            'oak-justify-' + element.settings.justifyContent,
+    <>
+      { element.collapsed
+        ? (
+          <div
+            { ...omit(rest, ['builder', 'component']) }
+            className={classNames(
+              'wrapper',
+              depth % 2 === 0 ? 'even' : 'odd',
+              className,
+            )}
+          >
+            <Text name="core.components.row.collapsed">
+              Collapsed row (expand to see inner content)
+            </Text>
+          </div>
+        ) : (
+          <div
+            { ...omit(rest, ['builder', 'component']) }
+            className={classNames(
+              'wrapper',
+              depth % 2 === 0 ? 'even' : 'odd',
+              className,
+            )}
+          >
+            <Droppable onDrop={onDropElement.bind(null, 'before')}>
+              <div className="drop-zone before" />
+            </Droppable>
+            <div
+              className={classNames(
+                'row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2',
+                element.settings?.flexDirection &&
+              'oak-flex-' + element.settings.flexDirection,
+                element.settings?.alignItems
+                  ? 'oak-items-' + element.settings.alignItems
+                  : /col/.test(element.settings?.flexDirection)
+                    ? 'oak-items-stretch' : 'oak-items-start',
+                element.settings?.justifyContent &&
+              'oak-justify-' + element.settings.justifyContent,
+              )}
+            >
+              { element?.cols?.map((col: ElementObject, i: Key) => (
+                <Col
+                  key={i}
+                  depth={depth}
+                  element={col}
+                  parent={element.cols}
+                  onPrepend={onDivide.bind(null, i, true)}
+                  onAppend={onDivide.bind(null, i, false)}
+                  onRemove={onRemoveCol.bind(null, i)}
+                />
+              )) }
+            </div>
+            <Droppable onDrop={onDropElement.bind(null, 'after')}>
+              <div className="drop-zone after" />
+            </Droppable>
+          </div>
         )}
-      >
-        { element?.cols?.map((col: ElementObject, i: Key) => (
-          <Col
-            key={i}
-            depth={depth}
-            element={col}
-            parent={element.cols}
-            onPrepend={onDivide.bind(null, i, true)}
-            onAppend={onDivide.bind(null, i, false)}
-            onRemove={onRemoveCol.bind(null, i)}
-          />
-        )) }
-      </div>
-      <Droppable onDrop={onDropElement.bind(null, 'after')}>
-        <div className="drop-zone after" />
-      </Droppable>
-    </div>
+    </>
   );
 };
 
