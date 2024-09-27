@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.4](https://github.com/p3ol/oak/compare/v3.8.3...v3.8.4) (2024-09-27)
+
+
+### Bug Fixes
+
+* correctly condition settings groups ([7c39323](https://github.com/p3ol/oak/commit/7c39323e06e3355566077d594c5fb953fc19d286))
+
+
+
+
+
 ## [3.8.3](https://github.com/p3ol/oak/compare/v3.8.2...v3.8.3) (2024-09-27)
 
 
