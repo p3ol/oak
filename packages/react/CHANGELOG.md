@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.5](https://github.com/p3ol/oak/compare/v3.8.4...v3.8.5) (2024-10-09)
+
+
+### Bug Fixes
+
+* **fields-setting:** remove key from file override ([98a1d5e](https://github.com/p3ol/oak/commit/98a1d5e68b4cf93fa46c0d6a5fd667156d90c07b))
+
+
+
+
+
 ## [3.8.4](https://github.com/p3ol/oak/compare/v3.8.3...v3.8.4) (2024-09-27)
 
 
