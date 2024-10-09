@@ -1,6 +1,3 @@
-import type {
-  SpecialComponentPropsWithoutRef,
-} from '@junipero/react';
 import {
   type MutableRefObject,
   useMemo,
@@ -14,6 +11,10 @@ import {
   type SettingOverride,
   assignDefined,
 } from '@oakjs/core';
+import {
+  type SpecialComponentPropsWithoutRef,
+  omit,
+} from '@junipero/react';
 
 import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
@@ -56,15 +57,19 @@ const Field = ({
   const setting = useMemo(() => assignDefined<typeof fieldSetting>(
     { type: fieldSetting.type },
     fieldSetting,
-    overrides.settings?.toObject?.() || overrides.settings || {},
-    overrides.field?.toObject?.() || overrides.field || {},
+    omit(overrides.settings?.toObject?.() || overrides.settings || {}, ['key']),
+    omit(overrides.field?.toObject?.() || overrides.field || {}, ['key']),
   ), [fieldSetting, overrides, addons]);
 
   const fieldProps = {
     id: setting.id,
     name: setting.name,
     disabled: setting.disabled,
-    value: builder.getElementSettings(element, setting.key, setting.default),
+    value: builder.getElementSettings(
+      element,
+      fieldSetting.key,
+      setting.default
+    ),
     required: setting.required,
     onChange: (overrides?.field as FieldOverride)?.onChange
       ? onCustomChange.bind(null, setting.key, overrides.field)
@@ -80,7 +85,7 @@ const Field = ({
 
   return (
     (overrides.field as FieldOverride)?.render || field?.render)?.(fieldProps, {
-    onChange: onChange.bind(null, setting.key),
+    onChange: onChange.bind(null, fieldSetting.key),
     field,
     setting,
     overrides: overrides.field,
