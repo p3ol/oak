@@ -109,6 +109,11 @@ const Element = forwardRef<ElementRef, ElementProps>(({
     copyToClipboard(JSON.stringify(element));
   };
 
+  const unfoldBlock = (e: MouseEvent<HTMLElement>) => {
+    e?.preventDefault();
+    builder.setElement(element.id, { collapsed: false });
+  };
+
   const rendered = (
     (override as ComponentOverrideObject)?.render ||
     component?.render
@@ -168,6 +173,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                           'junipero extra',
                           '!oak-text-alternate-text-color oak-ml-1'
                         )}
+                        onClick={unfoldBlock}
                       >
                         <Text name="core.components.collapsed">
                           (expand to see inner content)

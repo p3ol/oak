@@ -1,4 +1,12 @@
-import { ComponentPropsWithoutRef, DragEvent, MouseEvent, MutableRefObject, useRef, useState } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  DragEvent,
+  MouseEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Draggable, DraggableRef, classNames } from '@junipero/react';
 import type { ComponentOptionObject, ElementObject } from '@oakjs/core';
 
@@ -80,7 +88,12 @@ export const collapseOption = (): ReactComponentOptionObject => ({
   render: ({ className, element }) => {
     const [collapsed, setCollapsed] = useState(element.collapsed ?? false);
 
-    const onClick = () => {
+    useEffect(() => {
+      setCollapsed(element.collapsed);
+    }, [element.collapsed]);
+
+    const onClick = (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
       element.collapsed = !collapsed;
       setCollapsed(!collapsed);
     };
