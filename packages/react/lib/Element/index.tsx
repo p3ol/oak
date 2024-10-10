@@ -111,7 +111,10 @@ const Element = forwardRef<ElementRef, ElementProps>(({
 
   const unfoldBlock = (e: MouseEvent<HTMLElement>) => {
     e?.preventDefault();
-    builder.setElement(element.id, { collapsed: false });
+
+    if (element.collapsed) {
+      builder.setElement(element.id, { collapsed: false });
+    }
   };
 
   const rendered = (
@@ -150,7 +153,9 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                 className={classNames(
                   'inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch',
                   depth % 2 === 0 ? 'even' : 'odd',
+                  { 'oak-cursor-pointer': element.collapsed },
                 )}
+                onClick={unfoldBlock}
               >
                 <Icon
                   children={typeof component?.icon === 'function'
@@ -173,7 +178,6 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                           'junipero extra',
                           '!oak-text-alternate-text-color oak-ml-1'
                         )}
-                        onClick={unfoldBlock}
                       >
                         <Text name="core.components.collapsed">
                           (expand to see inner content)
