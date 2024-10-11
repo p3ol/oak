@@ -198,7 +198,9 @@ export class ComponentOverride extends Override {
     this.type = 'component';
     this.id = props.id;
     this.targets = props.targets || [];
-    this.fields = (props.fields || []).map(f => new ComponentSettingsField(f));
+    this.fields = (props.fields || []).map((
+      f: ComponentSettingsFieldObject
+    ) => new ComponentSettingsField(f, true));
     this.render = props.render;
     this.sanitize = props.sanitize;
     this.construct = props.construct;
@@ -301,7 +303,7 @@ export class SettingOverride extends Override {
     this.info = props.info;
     this.fields = (props.fields || []).map((
       f: ComponentSettingsFieldObject
-    ) => new ComponentSettingsField(f));
+    ) => new ComponentSettingsField(f, true));
     this.props = props.props;
   }
 
@@ -434,8 +436,8 @@ export class ComponentSettingsField {
   fields: Array<any>;
   props: object;
 
-  constructor (props: ComponentSettingsFieldObject) {
-    if (!props.fields && !props.type) {
+  constructor (props: ComponentSettingsFieldObject, isOverride?: boolean) {
+    if (!props.fields && !props.type && !isOverride) {
       throw new Error('ComponentSettingsField must have a type (or be ' +
         'a group of fields)');
     }
@@ -454,7 +456,9 @@ export class ComponentSettingsField {
     this.valueType = props.valueType;
     this.condition = props.condition;
     this.priority = props.priority;
-    this.fields = (props.fields || []).map(f => new ComponentSettingsField(f));
+    this.fields = (props.fields || []).map((
+      f: ComponentSettingsFieldObject
+    ) => new ComponentSettingsField(f, isOverride));
     this.props = props.props;
   }
 
