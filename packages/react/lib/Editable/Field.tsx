@@ -17,6 +17,7 @@ import {
 import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
 import { assignDefined } from '../utils';
+import DynamicComponent from '../DynamicComponent';
 
 export interface FieldProps extends SpecialComponentPropsWithoutRef {
   setting: ComponentSettingsFieldObject;
@@ -79,16 +80,24 @@ const Field = ({
   }
 
   return (
-    (overrides.field as FieldOverride)?.render || field?.render)?.(fieldProps, {
-    onChange: onChange.bind(null, setting.key),
-    field,
-    setting,
-    overrides: overrides.field,
-    element,
-    editableRef,
-    floatingsRef,
-    t: builder.getText.bind(builder),
-  }) || null;
+    <DynamicComponent
+      renderer={
+        (overrides.field as FieldOverride)?.render ||
+        field?.render
+      }
+      { ...fieldProps }
+      fieldOptions={{
+        onChange: onChange.bind(null, setting.key),
+        field,
+        setting,
+        overrides: overrides.field,
+        element,
+        editableRef,
+        floatingsRef,
+        t: builder.getText.bind(builder),
+      }}
+    />
+  );
 };
 
 Field.displayName = 'Field';

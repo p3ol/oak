@@ -32,32 +32,35 @@ export declare interface ImageUploadCallbackResult {
   [key: string]: any;
 }
 
+export declare interface CommonFieldProps {
+  fieldOptions?: {
+    setting?: ComponentSettingsFieldObject;
+    editableRef?: MutableRefObject<EditableRef>;
+    element?: ElementObject | ElementObject[];
+    t?: GetTextCallback;
+  };
+}
+
 export declare interface ReactFieldObject extends FieldObject {
   render?(
-    props:
-      | TextFieldProps
-      | SelectFieldProps
-      | ColorFieldProps
-      | DateFieldProps
-      | ImageFieldProps
-      | ToggleProps,
-    opts?: {
-      setting?: ComponentSettingsFieldObject;
-      editableRef?: MutableRefObject<EditableRef>;
-      element?: ElementObject | ElementObject[];
-      t?: GetTextCallback;
-    },
+    props: (
+      TextFieldProps | SelectFieldProps | ColorFieldProps | DateFieldProps |
+      ImageFieldProps | ToggleProps
+    ) & CommonFieldProps,
   ): ReactNode;
+}
+
+export declare interface CommonComponentProps {
+  componentOptions?: {
+    t?: GetTextCallback;
+  };
 }
 
 export declare interface ReactComponentObject
   extends Omit<ComponentObject, 'options'> {
   options?: ReactComponentOptionObject[];
   render?(
-    props: ComponentProps<any>,
-    opts?: {
-      t?: GetTextCallback;
-    },
+    props: ComponentProps<any> & CommonComponentProps,
   ): ReactNode;
 }
 

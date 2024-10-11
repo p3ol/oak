@@ -127,17 +127,20 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   }, [elementCollapsed, setElementCollapsed]);
 
   const rendered = (
-    (override as ComponentOverrideObject)?.render ||
-    component?.render
-  )?.({
-    element,
-    component,
-    parentComponent,
-    parent,
-    builder,
-    depth,
-    className: element.className,
-  }) || null;
+    <DynamicComponent
+      renderer={
+        (override as ComponentOverrideObject)?.render ||
+        component?.render
+      }
+      element={element}
+      component={component}
+      parentComponent={parentComponent}
+      parent={parent}
+      builder={builder}
+      depth={depth}
+      className={element.className}
+    />
+  );
 
   return (
     <ElementContext.Provider value={getElementContext()}>
@@ -256,7 +259,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
               />
               { (component?.options || []).map((o, i) => (
                 <DynamicComponent
-                  render={o.render}
+                  renderer={o.render}
                   key={i}
                   option={o}
                   className="option"

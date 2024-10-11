@@ -85,7 +85,6 @@ export const dragOption = (): ComponentOptionObject => ({
 });
 
 export const collapseOption = (): ReactComponentOptionObject => ({
-
   render: ({ className }) => {
     const { collapsed, toggleCollapse } = useElement();
 

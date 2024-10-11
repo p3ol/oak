@@ -15,7 +15,7 @@ import {
 import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
 
-import type { ReactComponentObject, ReactFieldObject } from './types';
+import type { CommonFieldProps, ReactComponentObject, ReactFieldObject } from './types';
 import { dragOption, backgroundColorOption, collapseOption } from './options';
 import { type ImageFieldProps, ImageField } from './fields';
 import {
@@ -30,16 +30,20 @@ import {
   Title,
 } from './components';
 import Text from './Text';
+import DynamicComponent from './DynamicComponent';
 
 export const textField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.textField(),
-  render: (fieldProps: TextFieldProps, { setting, t } = {}) => (
+  render: ({
+    fieldOptions = {},
+    ...fieldProps
+  }: TextFieldProps & CommonFieldProps) => (
     <TextField
       { ...fieldProps }
-      { ...setting.placeholder && {
-        placeholder: t(setting.placeholder),
+      { ...fieldOptions.setting?.placeholder && {
+        placeholder: fieldOptions.t(fieldOptions.setting.placeholder),
       } }
-      type={setting.valueType || 'text'}
+      type={fieldOptions.setting?.valueType || 'text'}
     />
   ),
   ...props,
@@ -47,15 +51,18 @@ export const textField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const textareaField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.textareaField(),
-  render: (fieldProps: TextFieldProps, { setting, t } = {}) => (
+  render: ({
+    fieldOptions = {},
+    ...fieldProps
+  }: TextFieldProps & CommonFieldProps) => (
     <TextField
       { ...fieldProps }
       tag="textarea"
       rows={fieldProps.rows || 5}
-      { ...setting.placeholder && {
-        placeholder: t(setting.placeholder),
+      { ...fieldOptions.setting?.placeholder && {
+        placeholder: fieldOptions.t(fieldOptions.setting.placeholder),
       } }
-      type={setting.valueType || 'text'}
+      type={fieldOptions.setting?.valueType || 'text'}
     />
   ),
   ...props,
@@ -63,18 +70,23 @@ export const textareaField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const selectField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.selectField(),
-  render: (fieldProps: SelectFieldProps, { setting, editableRef, t } = {}) => (
+  render: ({
+    fieldOptions = {},
+    ...fieldProps
+  }: SelectFieldProps & CommonFieldProps) => (
     <SelectField
       clearable={false}
       { ...fieldProps }
-      options={setting.options}
-      { ...setting.placeholder && {
-        placeholder: t(setting.placeholder),
+      options={fieldOptions.setting?.options}
+      { ...fieldOptions.setting?.placeholder && {
+        placeholder: fieldOptions.t?.(fieldOptions.setting.placeholder),
       } }
       animateMenu={slideInDownMenu}
-      parseTitle={setting.parseTitle || (o => o?.title ? t(o.title) : o)}
-      parseValue={setting.parseValue || (o => o?.value ?? o)}
-      container={editableRef.current?.innerRef.current as HTMLDivElement}
+      parseTitle={fieldOptions.setting?.parseTitle ||
+        (o => o?.title ? fieldOptions.t?.(o.title) : o)}
+      parseValue={fieldOptions.setting?.parseValue || (o => o?.value ?? o)}
+      container={fieldOptions.editableRef?.current
+        ?.innerRef.current as HTMLDivElement}
     />
   ),
   ...props,
@@ -82,27 +94,36 @@ export const selectField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const tagsField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.tagsField(),
-  render: (fieldProps: SelectFieldProps, { setting, editableRef, t } = {}) => (
-    selectField().render({
-      multiple: true,
-      allowArbitraryItems: true,
-      noOptionsEnabled: false,
-      clearable: true,
-      ...fieldProps,
-    }, { setting, editableRef, t })
+  render: ({
+    fieldOptions = {},
+    ...fieldProps
+  }: SelectFieldProps & CommonFieldProps) => (
+    <DynamicComponent
+      renderer={selectField().render}
+      multiple={true}
+      allowArbitraryItems={true}
+      noOptionsEnabled={false}
+      clearable={true}
+      { ...fieldProps }
+      fieldOptions={fieldOptions}
+    />
   ),
   ...props,
 });
 
 export const colorField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.colorField(),
-  render: (fieldProps: ColorFieldProps, { setting, editableRef, t } = {}) => (
+  render: ({
+    fieldOptions = {},
+    ...fieldProps
+  }: ColorFieldProps & CommonFieldProps) => (
     <ColorField
       { ...fieldProps }
-      { ...setting.placeholder && {
-        placeholder: t(setting.placeholder),
+      { ...fieldOptions.setting?.placeholder && {
+        placeholder: fieldOptions.t?.(fieldOptions.setting?.placeholder),
       } }
-      container={editableRef.current?.innerRef.current as HTMLDivElement}
+      container={fieldOptions.editableRef?.current
+        ?.innerRef.current as HTMLDivElement}
     />
   ),
   ...props,
@@ -110,13 +131,19 @@ export const colorField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const imageField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.imageField(),
-  render: (fieldProps: ImageFieldProps, { setting, element }) => (
+  render: ({
+    fieldOptions = {},
+    ...fieldProps
+  }: ImageFieldProps & CommonFieldProps) => (
     <ImageField
       { ...fieldProps }
-      className={classNames(fieldProps?.className, setting?.props?.className)}
-      iconOnly={setting?.props?.iconOnly}
-      setting={setting}
-      element={element}
+      className={classNames(
+        fieldProps?.className,
+        fieldOptions.setting?.props?.className
+      )}
+      iconOnly={fieldOptions.setting?.props?.iconOnly}
+      setting={fieldOptions.setting}
+      element={fieldOptions.element}
     />
   ),
   ...props,
@@ -124,13 +151,17 @@ export const imageField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const dateField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.dateField(),
-  render: (fieldProps: DateFieldProps, { setting, editableRef, t } = {}) => (
+  render: ({
+    fieldOptions = {},
+    ...fieldProps
+  }: DateFieldProps & CommonFieldProps) => (
     <DateField
       { ...fieldProps }
-      { ...setting.placeholder && {
-        placeholder: t(setting.placeholder),
+      { ...fieldOptions.setting?.placeholder && {
+        placeholder: fieldOptions.t?.(fieldOptions.setting.placeholder),
       } }
-      container={editableRef.current?.innerRef.current as HTMLDivElement}
+      container={fieldOptions.editableRef?.current
+        ?.innerRef.current as HTMLDivElement}
     />
   ),
   ...props,
@@ -138,12 +169,15 @@ export const dateField = (props?: ReactFieldObject): ReactFieldObject => ({
 
 export const toggleField = (props?: ReactFieldObject): ReactFieldObject => ({
   ...coreAddons.toggleField(),
-  render: (fieldProps: ToggleProps, { setting } = {}) => (
+  render: ({
+    fieldOptions = {},
+    ...fieldProps
+  }: ToggleProps & CommonFieldProps) => (
     <Toggle { ...fieldProps } checked={fieldProps.value}>
       <Text>
         { fieldProps.value
-          ? setting.checkedLabel
-          : setting.uncheckedLabel }
+          ? fieldOptions.setting?.checkedLabel
+          : fieldOptions.setting?.uncheckedLabel }
       </Text>
     </Toggle>
   ),
