@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.1](https://github.com/p3ol/oak/compare/v3.9.0...v3.9.1) (2024-10-11)
+
+
+### Bug Fixes
+
+* **react:** fix types ([7e609a3](https://github.com/p3ol/oak/commit/7e609a3537df83ac2d1d7bc3bb29cb5d44cdf613))
+
+
+
+
+
 # [3.9.0](https://github.com/p3ol/oak/compare/v3.8.5...v3.9.0) (2024-10-11)
 
 
