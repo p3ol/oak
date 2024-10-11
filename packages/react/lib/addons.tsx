@@ -16,7 +16,7 @@ import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
 
 import type { ReactComponentObject, ReactFieldObject } from './types';
-import { dragOption, backgroundColorOption } from './options';
+import { dragOption, backgroundColorOption, collapseOption } from './options';
 import { type ImageFieldProps, ImageField } from './fields';
 import {
   Button,
@@ -155,7 +155,7 @@ export const rowComponent = (
 ): ReactComponentObject => ({
   ...coreAddons.rowComponent(),
   render: Row,
-  options: [dragOption(), backgroundColorOption()],
+  options: [dragOption(), collapseOption(), backgroundColorOption()],
   ...props,
 });
 
@@ -211,7 +211,7 @@ export const foldableComponent = (
   props?: ReactComponentObject
 ): ReactComponentObject => ({
   ...coreAddons.foldableComponent(),
-  options: [dragOption()],
+  options: [dragOption(), collapseOption()],
   render: Foldable,
   ...props,
 });
@@ -221,7 +221,7 @@ export const clickableComponent = (
 ): ReactComponentObject => ({
   ...coreAddons.clickableComponent(),
   render: Clickable,
-  options: [dragOption(), backgroundColorOption()],
+  options: [dragOption(), collapseOption(), backgroundColorOption()],
   ...props,
 });
 

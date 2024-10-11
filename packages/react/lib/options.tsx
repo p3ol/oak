@@ -1,11 +1,20 @@
-import { ComponentPropsWithoutRef, DragEvent, MouseEvent, MutableRefObject, useRef, useState } from 'react';
-import { Draggable, DraggableRef, classNames } from '@junipero/react';
+import {
+  type ComponentPropsWithoutRef,
+  type DragEvent,
+  type MouseEvent,
+  type MutableRefObject,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
+import { type DraggableRef, Draggable, classNames } from '@junipero/react';
 import type { ComponentOptionObject, ElementObject } from '@oakjs/core';
 
 import type { EditableRef } from './Editable';
-import Option, { OptionRef } from './Option';
+import type { ReactComponentOptionObject } from './types';
+import Option from './Option';
 import Text from './Text';
-import { ReactComponentOptionObject } from './types';
+import { useElement } from './hooks';
 
 export interface DragOptionProps extends ComponentPropsWithoutRef<'a'> {
   element: ElementObject | ElementObject[];
@@ -73,6 +82,32 @@ export const DragOption = ({
 
 export const dragOption = (): ComponentOptionObject => ({
   render: (props: DragOptionProps) => <DragOption {...props} />,
+});
+
+export const collapseOption = (): ReactComponentOptionObject => ({
+
+  render: ({ className }) => {
+    const { collapsed, toggleCollapse } = useElement();
+
+    const onClick = useCallback((e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      toggleCollapse?.();
+    }, [collapsed, toggleCollapse]);
+
+    return (
+      <Option
+        onClick={onClick}
+        option={{ icon: collapsed ? 'expand_more' : 'expand_less' }}
+        className={classNames(className)}
+        name={(
+          <Text
+            name={`core.tooltips.expand.${collapsed ? 'more' : 'less'}`}
+            default={collapsed ? 'Expand' : 'Collapse'}
+          />
+        )}
+      />
+    );
+  },
 });
 
 export const backgroundColorOption = (): ReactComponentOptionObject => ({

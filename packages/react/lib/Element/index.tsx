@@ -3,13 +3,11 @@ import type {
   ComponentOverride,
   ComponentOverrideObject,
   ElementObject,
-  FieldOverrideObject,
 } from '@oakjs/core';
 import {
   type ComponentPropsWithoutRef,
   type MouseEvent,
   type MutableRefObject,
-  Fragment,
   forwardRef,
   useMemo,
   useRef,
@@ -28,6 +26,7 @@ import {
 
 import type { EditableRef } from '../Editable';
 import type { OakRef, ReactComponentObject } from '../types';
+import { type ElementContextValue, ElementContext } from '../contexts';
 import { copyToClipboard } from '../utils';
 import { useBuilder } from '../hooks';
 import DisplayableSettings from '../DisplayableSettings';
@@ -35,6 +34,7 @@ import Icon from '../Icon';
 import Option from '../Option';
 import Text from '../Text';
 import Editable from '../Editable';
+import DynamicComponent from '../DynamicComponent';
 
 export interface ElementProps extends ComponentPropsWithoutRef<any> {
   element?: ElementObject;
@@ -59,6 +59,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   const editableRef = useRef<EditableRef>();
   const modalRef = useRef<ModalRef>();
   const [editableOpened, setEditableOpened] = useState(false);
+  const [elementCollapsed, setElementCollapsed] = useState(false);
   const { builder, addons } = useBuilder();
 
   useImperativeHandle(ref, () => ({
@@ -75,6 +76,14 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   const parentOverride = useMemo(() => (
     builder.getOverride('component', parentComponent?.id) as ComponentOverride
   ), [parentComponent, builder, addons]);
+
+  const getElementContext = useCallback((): ElementContextValue => {
+    return {
+      element,
+      collapsed: elementCollapsed,
+      toggleCollapse: () => setElementCollapsed(v => !v),
+    };
+  }, [element, elementCollapsed, setElementCollapsed]);
 
   const onDelete_ = (e: MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
@@ -109,6 +118,14 @@ const Element = forwardRef<ElementRef, ElementProps>(({
     copyToClipboard(JSON.stringify(element));
   };
 
+  const unfoldBlock = useCallback((e: MouseEvent<HTMLElement>) => {
+    e?.preventDefault();
+
+    if (elementCollapsed) {
+      setElementCollapsed(false);
+    }
+  }, [elementCollapsed, setElementCollapsed]);
+
   const rendered = (
     (override as ComponentOverrideObject)?.render ||
     component?.render
@@ -123,155 +140,176 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   }) || null;
 
   return (
-    <Droppable
-      ref={innerRef}
-      disabled={component?.droppable === false}
-      onDrop={onDrop_}
-    >
-      <Draggable
-        data={element}
-        disabled={component?.draggable === false || editableOpened}
+    <ElementContext.Provider value={getElementContext()}>
+      <Droppable
+        ref={innerRef}
+        disabled={component?.droppable === false}
+        onDrop={onDrop_}
       >
-        <div
-          className={classNames(
-            'oak element oak-flex-none',
-            'type-' + (component?.id || 'unknown'),
-            className
-          )}
+        <Draggable
+          data={element}
+          disabled={component?.draggable === false || editableOpened}
         >
-          { component?.hasCustomInnerContent ? rendered : component ? (
-            <div
-              className={classNames(
-                'inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch',
-                depth % 2 === 0 ? 'even' : 'odd',
-              )}
-            >
-              <Icon
-                children={typeof component?.icon === 'function'
-                  ? component.icon.bind(null, component)
-                  : component?.icon}
-              />
-              <div
-                className={classNames(
-                  'element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2',
-                  'oak-justify-between'
-                )}
-              >
-                <h6 className="junipero oak-m-0">
-                  <Text>{ component?.name as string }</Text>
-                </h6>
-                { rendered && (
-                  <div className="element-content oak-flex-auto">
-                    { rendered }
-                  </div>
-                ) }
-
-                <DisplayableSettings
-                  element={element}
-                  component={component}
-                  override={override as ComponentOverrideObject}
-                />
-              </div>
-            </div>
-          ) : (
-            <div
-              className={classNames(
-                'inner oak-flex oak-gap-2 oak-p-4',
-                depth % 2 === 0 ? 'even' : 'odd'
-              )}
-            >
-              <Icon>help_circle</Icon>
-              <div className="element-info">
-                <h6 className="junipero oak-m-0 oak-mb-2">
-                  <Text name="core.components.unknown">Unknown</Text>
-                </h6>
-                <div className="element-content">
-                  { JSON.stringify(element) }
-                </div>
-              </div>
-            </div>
-          ) }
-
           <div
             className={classNames(
-              'options oak-flex oak-items-center',
-              { 'oak-has-inner-content': component?.hasCustomInnerContent },
-              { opened: editableOpened }
+              'oak element oak-flex-none',
+              'type-' + (component?.id || 'unknown'),
+              className
             )}
           >
-            <Option
-              option={{ icon: 'close' }}
-              className="remove"
-              onClick={onDelete_}
-              name={<Text name="core.tooltips.remove">Remove</Text> }
-            />
-            <Option
-              option={{ icon: 'copy' }}
-              className="duplicate"
-              onClick={onDuplicate_}
-              name={(
-                <Text name="core.tooltips.duplicate">Duplicate</Text>
+            { component?.hasCustomInnerContent && !elementCollapsed
+              ? rendered : component ? (
+                <div
+                  className={classNames(
+                    'inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch',
+                    depth % 2 === 0 ? 'even' : 'odd',
+                    { 'oak-cursor-pointer': elementCollapsed },
+                  )}
+                  onClick={unfoldBlock}
+                >
+                  <Icon
+                    children={typeof component?.icon === 'function'
+                      ? component.icon.bind(null, component)
+                      : component?.icon}
+                  />
+                  <div
+                    className={classNames(
+                      'element-info oak-flex-auto oak-flex oak-flex-col',
+                      'oak-gap-2 oak-justify-between'
+                    )}
+                  >
+                    <div>
+                      <h6 className="junipero oak-inline oak-m-0">
+                        <Text>{ component?.name as string }</Text>
+                      </h6>
+                      { elementCollapsed && (
+                        <span
+                          className={classNames(
+                            'junipero extra',
+                            '!oak-text-alternate-text-color oak-ml-1'
+                          )}
+                        >
+                          <Text name="core.components.collapsed">
+                            (expand to see inner content)
+                          </Text>
+                        </span>
+                      )}
+                    </div>
+                    { !elementCollapsed && rendered && (
+                      <div className="element-content oak-flex-auto">
+                        { rendered }
+                      </div>
+                    ) }
+
+                    <DisplayableSettings
+                      element={element}
+                      component={component}
+                      override={override as ComponentOverrideObject}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className={classNames(
+                    'inner oak-flex oak-gap-2 oak-p-4',
+                    depth % 2 === 0 ? 'even' : 'odd'
+                  )}
+                >
+                  <Icon>help_circle</Icon>
+                  <div className="element-info">
+                    <h6 className="junipero oak-m-0 oak-mb-2">
+                      <Text name="core.components.unknown">Unknown</Text>
+                    </h6>
+                    <div className="element-content">
+                      { JSON.stringify(element) }
+                    </div>
+                  </div>
+                </div>
+              ) }
+
+            <div
+              className={classNames(
+                'options oak-flex oak-items-center',
+                { 'oak-has-inner-content': component?.hasCustomInnerContent },
+                { opened: editableOpened }
               )}
-            />
-            <Option
-              option={{ icon: 'copy_file' }}
-              className="copy"
-              onClick={onCopy_}
-              name={<Text name="core.tooltips.copy">Copy</Text>}
-            />
-            { (component?.options || []).map((o, i) => (
-              <Fragment key={i}>
-                { o?.render?.({
-                  option: o,
-                  className: 'option',
-                  element,
-                  elementInnerRef: innerRef,
-                  editableRef,
-                  parent,
-                  component,
-                  builder,
-                  index: i,
-                }) }
-              </Fragment>
-            )) }
-            { (
-              (override as ComponentOverrideObject)?.editable ??
-              component?.editable
-            ) && (
-              <Editable
-                element={element}
-                component={component}
-                ref={editableRef}
-                modalRef={modalRef}
-                setOpened={setEditableOpened}
-                opened={editableOpened}
-              >
-                <Option
-                  option={{ icon: 'pen' }}
-                  className="edit"
-                  name={<Text name="core.tooltips.edit">Edit</Text>}
+            >
+              <Option
+                option={{ icon: 'close' }}
+                className="remove"
+                onClick={onDelete_}
+                name={<Text name="core.tooltips.remove">Remove</Text> }
+              />
+              <Option
+                option={{ icon: 'copy' }}
+                className="duplicate"
+                onClick={onDuplicate_}
+                name={(
+                  <Text name="core.tooltips.duplicate">Duplicate</Text>
+                )}
+              />
+              <Option
+                option={{ icon: 'copy_file' }}
+                className="copy"
+                onClick={onCopy_}
+                name={<Text name="core.tooltips.copy">Copy</Text>}
+              />
+              { (component?.options || []).map((o, i) => (
+                <DynamicComponent
+                  render={o.render}
+                  key={i}
+                  option={o}
+                  className="option"
+                  element={element}
+                  elementInnerRef={innerRef}
+                  editableRef={editableRef}
+                  parent={parent}
+                  component={component}
+                  builder={builder}
+                  index={i}
                 />
-              </Editable>
+              ))}
+              { ((override as ComponentOverrideObject)?.editable ??
+                component?.editable
+              ) && (
+                <Editable
+                  element={element}
+                  component={component}
+                  ref={editableRef}
+                  modalRef={modalRef}
+                  setOpened={setEditableOpened}
+                  opened={editableOpened}
+                >
+                  <Option
+                    option={{ icon: 'pen' }}
+                    className="edit"
+                    name={<Text name="core.tooltips.edit">Edit</Text>}
+                  />
+                </Editable>
+              ) }
+            </div>
+            { builder.options.debug && (
+              <Tooltip
+                className="extra"
+                text="Print debug in console"
+                placement="left"
+              >
+                <span
+                  className="debug oak-cursor-pointer"
+                  onClick={onPrintDebug}
+                >
+                  <Icon
+                    className="!oak-text-sm !oak-text-alternate-text-color"
+                  >
+                    settings
+                  </Icon>
+                </span>
+              </Tooltip>
             ) }
           </div>
-          { builder.options.debug && (
-            <Tooltip
-              className="extra"
-              text="Print debug in console"
-              placement="left"
-            >
-              <span className="debug oak-cursor-pointer" onClick={onPrintDebug}>
-                <Icon
-                  className="!oak-text-sm !oak-text-alternate-text-color"
-                >
-                  settings
-                </Icon>
-              </span>
-            </Tooltip>
-          ) }
-        </div>
-      </Draggable>
-    </Droppable>
+        </Draggable>
+      </Droppable>
+    </ElementContext.Provider>
   );
 });
 
