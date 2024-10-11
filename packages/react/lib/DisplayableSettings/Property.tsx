@@ -1,14 +1,14 @@
 import { type ComponentPropsWithoutRef, useMemo } from 'react';
-import type {
-  ComponentOverride,
-  ComponentOverrideObject,
-  ComponentSettingsFieldObject,
-  ComponentSettingsFieldOptionObject,
-  ElementObject,
+import {
+  type ComponentOverride,
+  type ComponentOverrideObject,
+  type ComponentSettingsFieldObject,
+  type ComponentSettingsFieldOptionObject,
+  type ElementObject,
+  assignDefined,
 } from '@oakjs/core';
 import { get, classNames } from '@junipero/react';
 
-import { assignDefined } from '../utils';
 import Text from '../Text';
 
 interface PropertyProps extends ComponentPropsWithoutRef<'span'> {

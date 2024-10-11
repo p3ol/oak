@@ -178,7 +178,7 @@ export class Override {
 export class ComponentOverride extends Override {
   id: string;
   targets: string[];
-  fields: ComponentSettingsField[];
+  fields?: ComponentSettingsFieldObject[];
   render: ComponentOverrideObject['render'];
   construct: (
     opts: { builder: Builder, baseElement?: ElementObject }
@@ -198,9 +198,7 @@ export class ComponentOverride extends Override {
     this.type = 'component';
     this.id = props.id;
     this.targets = props.targets || [];
-    this.fields = (props.fields || []).map((
-      f: ComponentSettingsFieldObject
-    ) => new ComponentSettingsField(f, true));
+    this.fields = props.fields;
     this.render = props.render;
     this.sanitize = props.sanitize;
     this.construct = props.construct;
@@ -216,7 +214,7 @@ export class ComponentOverride extends Override {
       type: 'component',
       id: this.id,
       targets: this.targets,
-      fields: this.fields?.map(f => f.toObject?.() ?? f),
+      fields: this.fields,
       render: this.render,
       sanitize: this.sanitize,
       construct: this.construct,
@@ -279,7 +277,7 @@ export class SettingOverride extends Override {
   valueType: string;
   condition: SettingOverrideObject['condition'];
   priority: number;
-  fields: ComponentSettingsField[];
+  fields?: ComponentSettingsFieldObject[];
   props: object;
   info: string | GetTextCallback;
 
@@ -301,9 +299,7 @@ export class SettingOverride extends Override {
     this.condition = props.condition;
     this.priority = props.priority;
     this.info = props.info;
-    this.fields = (props.fields || []).map((
-      f: ComponentSettingsFieldObject
-    ) => new ComponentSettingsField(f, true));
+    this.fields = props.fields;
     this.props = props.props;
   }
 
@@ -324,7 +320,7 @@ export class SettingOverride extends Override {
       condition: this.condition,
       priority: this.priority,
       info: this.info,
-      fields: this.fields.map(f => f.toObject()),
+      fields: this.fields,
       props: this.props,
     };
   }

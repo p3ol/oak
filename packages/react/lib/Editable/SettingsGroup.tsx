@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import type { SettingOverride } from '@oakjs/core';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowDown, ArrowRight, classNames } from '@junipero/react';
 
 import type { SettingProps } from './Setting';
@@ -15,7 +16,7 @@ const SettingsGroup = ({
   onSettingCustomChange,
   onUpdate,
 }: SettingProps & Pick<TabProps, 'onUpdate'>) => {
-  const { editableType } = useBuilder();
+  const { editableType, builder } = useBuilder();
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLDivElement>();
 
@@ -24,6 +25,19 @@ const SettingsGroup = ({
       toggleRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [open]);
+
+  const override = useMemo(() => (
+    builder.getOverride('setting', element.type, { setting }) as SettingOverride
+  ), [element, setting]);
+
+  const condition = override?.condition || setting.condition;
+
+  if (
+    condition &&
+    !condition(element, { component, builder })
+  ) {
+    return null;
+  }
 
   return (
     <div className="fields-group oak-flex oak-flex-col oak-gap-4">

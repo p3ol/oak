@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.5](https://github.com/p3ol/oak/compare/v3.8.4...v3.8.5) (2024-10-09)
+
+
+### Bug Fixes
+
+* **fields-setting:** remove key from file override ([98a1d5e](https://github.com/p3ol/oak/commit/98a1d5e68b4cf93fa46c0d6a5fd667156d90c07b))
+
+
+
+
+
+## [3.8.4](https://github.com/p3ol/oak/compare/v3.8.3...v3.8.4) (2024-09-27)
+
+
+### Bug Fixes
+
+* correctly condition settings groups ([7c39323](https://github.com/p3ol/oak/commit/7c39323e06e3355566077d594c5fb953fc19d286))
+
+
+
+
+
+## [3.8.3](https://github.com/p3ol/oak/compare/v3.8.2...v3.8.3) (2024-09-27)
+
+
+### Bug Fixes
+
+* don't overwrite overrides' fields with wrong fields overrides ([e06e129](https://github.com/p3ol/oak/commit/e06e129fbf4476ebe20961e5cb6316e9b52c834e))
+
+
+
+
+
+## [3.8.2](https://github.com/p3ol/oak/compare/v3.8.1...v3.8.2) (2024-09-27)
+
+
+### Bug Fixes
+
+* fields sorting breaking rule of hooks ([cee5819](https://github.com/p3ol/oak/commit/cee5819e45d261a4f7160e95e71539f68cb28490))
+
+
+
+
+
 # [3.8.0](https://github.com/p3ol/oak/compare/v3.7.13...v3.8.0) (2024-09-26)
 
 

@@ -11,6 +11,7 @@ import {
   FieldOverride,
   SettingOverride,
 } from '../classes';
+import { assignDefined } from '../utils';
 import Emitter from '../Emitter';
 import Builder from '../Builder';
 
@@ -178,15 +179,8 @@ export default class Overrides extends Emitter implements IOverrides {
   merge (
     overrides: Array<ComponentOverride | FieldOverride | SettingOverride>
   ): FieldOverride | ComponentOverride | SettingOverride {
-    return overrides.reduce((res, override) => {
-      Object.keys(override).forEach((key: string) => {
-        if (
-          (override as any)[key] === null ||
-          (override as any)[key as any] === undefined) {
-          delete (override as any)[key];
-        }
-      });
-      Object.assign(res, override);
+    return overrides.reverse().reduce((res, override) => {
+      assignDefined(res, override.toObject?.());
 
       return res;
     }, {} as FieldOverride | ComponentOverride | SettingOverride);
