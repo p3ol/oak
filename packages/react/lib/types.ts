@@ -3,10 +3,17 @@ import type {
   Builder,
   ComponentObject,
   ComponentOptionObject,
+  ComponentOverride,
+  ComponentOverrideObject,
   ComponentSettingsFieldObject,
   ElementObject,
+  FieldContent,
   FieldObject,
+  FieldOverride,
+  FieldOverrideObject,
   GetTextCallback,
+  SettingOverride,
+  SettingOverrideObject,
 } from '@oakjs/core';
 import type {
   ColorFieldProps,
@@ -34,9 +41,15 @@ export declare interface ImageUploadCallbackResult {
 
 export declare interface CommonFieldProps {
   fieldOptions?: {
+    onChange?: (name: string, field: FieldContent) => void;
     setting?: ComponentSettingsFieldObject;
     editableRef?: MutableRefObject<EditableRef>;
+    floatingsRef?: MutableRefObject<HTMLDivElement>;
     element?: ElementObject | ElementObject[];
+    field?: FieldObject;
+    overrides?: ComponentOverrideObject | FieldOverrideObject |
+      SettingOverrideObject | ComponentOverride | FieldOverride |
+      SettingOverride;
     t?: GetTextCallback;
   };
 }
