@@ -2943,7 +2943,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oakjs/addon-ckeditor5-react@npm:^3.8.5, @oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react":
+"@oakjs/addon-ckeditor5-react@npm:^3.9.0, @oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react":
   version: 0.0.0-use.local
   resolution: "@oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react"
   dependencies:
@@ -2957,7 +2957,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/addon-remirror@npm:^3.8.5, @oakjs/addon-remirror@workspace:packages/addon-remirror":
+"@oakjs/addon-remirror@npm:^3.9.0, @oakjs/addon-remirror@workspace:packages/addon-remirror":
   version: 0.0.0-use.local
   resolution: "@oakjs/addon-remirror@workspace:packages/addon-remirror"
   dependencies:
@@ -2972,7 +2972,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/ckeditor5-build-custom@npm:^3.8.5, @oakjs/ckeditor5-build-custom@workspace:*, @oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom":
+"@oakjs/ckeditor5-build-custom@npm:^3.9.0, @oakjs/ckeditor5-build-custom@workspace:*, @oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom":
   version: 0.0.0-use.local
   resolution: "@oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom"
   dependencies:
@@ -2993,7 +2993,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/react@npm:^3.8.5, @oakjs/react@workspace:*, @oakjs/react@workspace:packages/react":
+"@oakjs/react@npm:^3.9.0, @oakjs/react@workspace:*, @oakjs/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@oakjs/react@workspace:packages/react"
   dependencies:
@@ -3013,10 +3013,10 @@ __metadata:
   resolution: "@oakjs/strapi-plugin@workspace:packages/strapi-plugin"
   dependencies:
     "@ckeditor/ckeditor5-react": "npm:9.3.0"
-    "@oakjs/addon-ckeditor5-react": "npm:^3.8.5"
-    "@oakjs/addon-remirror": "npm:^3.8.5"
-    "@oakjs/ckeditor5-build-custom": "npm:^3.8.5"
-    "@oakjs/react": "npm:^3.8.5"
+    "@oakjs/addon-ckeditor5-react": "npm:^3.9.0"
+    "@oakjs/addon-remirror": "npm:^3.9.0"
+    "@oakjs/ckeditor5-build-custom": "npm:^3.9.0"
+    "@oakjs/react": "npm:^3.9.0"
     "@oakjs/theme": "npm:^3.8.0"
     "@remirror/pm": "npm:3.0.0"
     "@remirror/react": "npm:3.0.1"

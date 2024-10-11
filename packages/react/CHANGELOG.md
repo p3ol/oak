@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/p3ol/oak/compare/v3.8.5...v3.9.0) (2024-10-11)
+
+
+### Bug Fixes
+
+* **react:** correctly render element, options & fields ([ada4d56](https://github.com/p3ol/oak/commit/ada4d564e0086f469b7214912b390b5a1c3a8875))
+
+
+### Features
+
+* **collapse-blocks:** use context instead of value in element ([2a0d252](https://github.com/p3ol/oak/commit/2a0d252c0d7a96cfdbabb36ff4db639c36aa5da5))
+* indent ([512df56](https://github.com/p3ol/oak/commit/512df56e9762c6ad51f852b0ab142998dbefad32))
+* **react:** add a collapse option for inner content blocks on builder ([70cb6eb](https://github.com/p3ol/oak/commit/70cb6eb30f38c0e940bcc97039c30afddd5ec699))
+* **react:** add unfold from element himself ([08df68d](https://github.com/p3ol/oak/commit/08df68dd03b71d961a4f9ddb328c568968ce0491))
+* **react:** make the whole element clickable and add cursor: pointer ([8a86c5e](https://github.com/p3ol/oak/commit/8a86c5e3e25c8ad5b4b330425e302ba13d7455f1))
+* rework wordings and display ([e2772aa](https://github.com/p3ol/oak/commit/e2772aa8735b0478ce1420039bb33822daf3dbd8))
+* update snapshots ([f92a6c4](https://github.com/p3ol/oak/commit/f92a6c452d3b6870d12b1e62210efcf39e62c67c))
+* update test snapshots ([5335e05](https://github.com/p3ol/oak/commit/5335e0582fd98d332d398247219a4fa66717e315))
+
+
+
+
+
 ## [3.8.5](https://github.com/p3ol/oak/compare/v3.8.4...v3.8.5) (2024-10-09)
 
 
