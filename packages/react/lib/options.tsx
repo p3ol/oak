@@ -1,19 +1,20 @@
 import {
-  ComponentPropsWithoutRef,
-  DragEvent,
-  MouseEvent,
-  MutableRefObject,
-  useEffect,
+  type ComponentPropsWithoutRef,
+  type DragEvent,
+  type MouseEvent,
+  type MutableRefObject,
+  useCallback,
   useRef,
   useState,
 } from 'react';
-import { Draggable, DraggableRef, classNames } from '@junipero/react';
+import { type DraggableRef, Draggable, classNames } from '@junipero/react';
 import type { ComponentOptionObject, ElementObject } from '@oakjs/core';
 
 import type { EditableRef } from './Editable';
-import Option, { OptionRef } from './Option';
+import type { ReactComponentOptionObject } from './types';
+import Option from './Option';
 import Text from './Text';
-import { ReactComponentOptionObject } from './types';
+import { useElement } from './hooks';
 
 export interface DragOptionProps extends ComponentPropsWithoutRef<'a'> {
   element: ElementObject | ElementObject[];
@@ -85,18 +86,13 @@ export const dragOption = (): ComponentOptionObject => ({
 
 export const collapseOption = (): ReactComponentOptionObject => ({
 
-  render: ({ className, element }) => {
-    const [collapsed, setCollapsed] = useState(element.collapsed ?? false);
+  render: ({ className }) => {
+    const { collapsed, toggleCollapse } = useElement();
 
-    useEffect(() => {
-      setCollapsed(element.collapsed);
-    }, [element.collapsed]);
-
-    const onClick = (e: MouseEvent<HTMLElement>) => {
+    const onClick = useCallback((e: MouseEvent<HTMLElement>) => {
       e.preventDefault();
-      element.collapsed = !collapsed;
-      setCollapsed(!collapsed);
-    };
+      toggleCollapse?.();
+    }, [collapsed, toggleCollapse]);
 
     return (
       <Option

@@ -44,3 +44,11 @@ export declare type EditableFormContextValue = {
 }
 
 export const EditableFormContext = createContext<EditableFormContextValue>({});
+
+export declare interface ElementContextValue {
+  element?: ElementObject;
+  collapsed?: boolean;
+  toggleCollapse?: () => void;
+}
+
+export const ElementContext = createContext<ElementContextValue>({});
