@@ -200,6 +200,8 @@ export class ComponentOverride extends Override {
   usable?: boolean;
   duplicable?: boolean;
   copyable?: boolean;
+  draggable?: boolean;
+  droppable?: boolean;
   disallow: string[];
 
   constructor (props: ComponentOverrideObject | ComponentOverride) {
@@ -219,6 +221,8 @@ export class ComponentOverride extends Override {
     this.usable = props.usable;
     this.duplicable = props.duplicable;
     this.copyable = props.copyable;
+    this.draggable = props.draggable;
+    this.droppable = props.droppable;
     this.disallow = props.disallow || [];
   }
 
@@ -235,6 +239,11 @@ export class ComponentOverride extends Override {
       deserialize: this.deserialize,
       priority: this.priority,
       editable: this.editable,
+      usable: this.usable,
+      duplicable: this.duplicable,
+      copyable: this.copyable,
+      draggable: this.draggable,
+      droppable: this.droppable,
       disallow: this.disallow,
     };
   }

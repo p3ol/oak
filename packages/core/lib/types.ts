@@ -58,6 +58,8 @@ export declare interface ComponentOverrideObject {
   editable?: boolean;
   duplicable?: boolean;
   copyable?: boolean;
+  draggable?: boolean;
+  droppable?: boolean;
   disallow?: string[];
 }
 
