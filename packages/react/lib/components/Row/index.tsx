@@ -1,6 +1,7 @@
 import type {
   ComponentObject,
   ComponentOverride,
+  ComponentOverrideObject,
   ElementObject,
 } from '@oakjs/core';
 import {
@@ -13,17 +14,20 @@ import { Droppable, classNames, omit } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
 import Col from '../Col';
-import Text from '../../Text';
 
 export interface RowProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
   parent: Array<ElementObject>;
   parentComponent: ComponentObject;
+  component?: ComponentObject;
+  override?: ComponentOverrideObject;
   depth?: number;
 }
 
 const Row = ({
   element,
+  component,
+  override,
   parent,
   parentComponent,
   className,
@@ -122,6 +126,8 @@ const Row = ({
                 depth={depth}
                 element={col}
                 parent={element.cols}
+                parentComponent={component}
+                parentOverride={override}
                 onPrepend={onDivide.bind(null, i, true)}
                 onAppend={onDivide.bind(null, i, false)}
                 onRemove={onRemoveCol.bind(null, i)}

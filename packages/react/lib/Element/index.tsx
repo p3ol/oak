@@ -131,6 +131,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
       renderer={override?.render || component?.render}
       element={element}
       component={component}
+      override={override}
       parentComponent={parentComponent}
       parent={parent}
       builder={builder}
@@ -141,19 +142,11 @@ const Element = forwardRef<ElementRef, ElementProps>(({
 
   return (
     <ElementContext.Provider value={getElementContext()}>
-      <Droppable
-        ref={innerRef}
-        disabled={
-          component?.droppable === false ||
-          override?.droppable === false
-        }
-        onDrop={onDrop_}
-      >
+      <Droppable ref={innerRef} onDrop={onDrop_}>
         <Draggable
           data={element}
           disabled={
-            component?.draggable === false ||
-            override?.draggable === false ||
+            (override?.draggable ?? component?.draggable) === false ||
             editableOpened
           }
         >

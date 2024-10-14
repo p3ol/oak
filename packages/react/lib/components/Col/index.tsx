@@ -25,6 +25,8 @@ import Text from '../../Text';
 export interface ColProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
   parent: ElementObject[];
+  parentComponent?: ComponentObject;
+  parentOverride?: ComponentOverrideObject;
   depth?: number;
   onPrepend?: () => void;
   onAppend?: () => void;
@@ -34,6 +36,8 @@ export interface ColProps extends ComponentPropsWithoutRef<'div'> {
 const Col = ({
   element,
   className,
+  parentComponent,
+  parentOverride,
   parent = [],
   depth = 0,
   onPrepend,
@@ -149,7 +153,18 @@ const Col = ({
         </a>
       </Tooltip>
 
-      <Droppable disabled={element.content.length > 0} onDrop={onDrop_}>
+      <Droppable
+        disabled={
+          element.content.length > 0 ||
+          (
+            override?.droppable ??
+            component?.droppable ??
+            parentComponent?.droppable ??
+            parentOverride?.droppable
+          ) === false
+        }
+        onDrop={onDrop_}
+      >
         <div
           className="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
         >
@@ -283,10 +298,7 @@ const Col = ({
               }}
             />
           )}
-          { (
-            (override as ComponentOverrideObject)?.editable ??
-            component.editable
-          ) && (
+          { (override?.editable ?? component.editable) && (
             <Editable
               ref={editableRef}
               element={element}
