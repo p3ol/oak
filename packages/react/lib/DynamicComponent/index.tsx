@@ -1,7 +1,9 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
+import type { CommonFieldProps } from '../types';
+
 export declare interface DynamicComponentProps
-  extends ComponentPropsWithoutRef<any> {
+  extends ComponentPropsWithoutRef<any>, CommonFieldProps {
     renderer: React.FC<any>;
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/addon-ckeditor5-react",
-  "version": "3.8.5",
+  "version": "3.9.1",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-addon-ckeditor.cjs.js",
   "module": "dist/esm/index.js",
@@ -23,7 +23,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@oakjs/ckeditor5-build-custom": "^3.8.5"
+    "@oakjs/ckeditor5-build-custom": "^3.9.1"
   },
   "devDependencies": {
     "@oakjs/ckeditor5-build-custom": "workspace:*",
