@@ -167,15 +167,21 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
 
   const groups = useMemo(() => (
     availableGroups
-      .filter(g => g.usable !== false)
+      .filter(g =>
+        g.usable !== false &&
+        (builder?.getOverride('component', g.id) as ComponentOverride)
+          ?.usable !== false
+      )
       .map(g => ({
         ...g,
         components: g.components.filter((c: ComponentObject) => (
           c.usable !== false &&
-            (!component || !component.disallow ||
-              !component.disallow.includes(c.id)) &&
-            (!override || !override.disallow ||
-              !override.disallow.includes(c.id))
+          (builder?.getOverride('component', c.id) as ComponentOverride)
+            ?.usable !== false &&
+          (!component || !component.disallow ||
+            !component.disallow.includes(c.id)) &&
+          (!override || !override.disallow ||
+            !override.disallow.includes(c.id))
         )),
       }))
       .filter(g => g.components.length)

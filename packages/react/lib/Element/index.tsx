@@ -243,20 +243,28 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                 onClick={onDelete_}
                 name={<Text name="core.tooltips.remove">Remove</Text> }
               />
-              <Option
-                option={{ icon: 'copy' }}
-                className="duplicate"
-                onClick={onDuplicate_}
-                name={(
-                  <Text name="core.tooltips.duplicate">Duplicate</Text>
-                )}
-              />
-              <Option
-                option={{ icon: 'copy_file' }}
-                className="copy"
-                onClick={onCopy_}
-                name={<Text name="core.tooltips.copy">Copy</Text>}
-              />
+              { ((override as ComponentOverrideObject)?.duplicable ??
+                component?.duplicable
+              ) && (
+                <Option
+                  option={{ icon: 'copy' }}
+                  className="duplicate"
+                  onClick={onDuplicate_}
+                  name={(
+                    <Text name="core.tooltips.duplicate">Duplicate</Text>
+                  )}
+                />
+              ) }
+              { ((override as ComponentOverrideObject)?.copyable ??
+                component?.copyable
+              ) && (
+                <Option
+                  option={{ icon: 'copy_file' }}
+                  className="copy"
+                  onClick={onCopy_}
+                  name={<Text name="core.tooltips.copy">Copy</Text>}
+                />
+              ) }
               { (component?.options || []).map((o, i) => (
                 <DynamicComponent
                   renderer={o.render}
@@ -271,7 +279,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                   builder={builder}
                   index={i}
                 />
-              ))}
+              )) }
               { ((override as ComponentOverrideObject)?.editable ??
                 component?.editable
               ) && (
