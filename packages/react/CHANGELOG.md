@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.10.0](https://github.com/p3ol/oak/compare/v3.9.1...v3.10.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* correctly handle non droppable ([a330e99](https://github.com/p3ol/oak/commit/a330e9914381f5a76c020a7369ab0e080ab552a1))
+* upgrade various deps ([f23b00b](https://github.com/p3ol/oak/commit/f23b00b6c9cca4d850bc2bf5418bbd8ab2ab821c))
+
+
+### Features
+
+* allow to disallow duplication & copy ([6f47b1d](https://github.com/p3ol/oak/commit/6f47b1de621270cd24b6326d29ac1206cbc35012))
+* also allow to override draggable & droppable ([08b34d9](https://github.com/p3ol/oak/commit/08b34d9cf1a0e277c6577a714777337a8668260b))
+
+
+
+
+
 ## [3.9.1](https://github.com/p3ol/oak/compare/v3.9.0...v3.9.1) (2024-10-11)
 
 

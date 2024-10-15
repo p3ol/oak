@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.10.0](https://github.com/p3ol/oak/compare/v3.9.1...v3.10.0) (2024-10-15)
+
+
+### Features
+
+* also allow to override draggable & droppable ([08b34d9](https://github.com/p3ol/oak/commit/08b34d9cf1a0e277c6577a714777337a8668260b))
+
+
+
+
+
 # [3.8.0](https://github.com/p3ol/oak/compare/v3.7.13...v3.8.0) (2024-09-26)
 
 
