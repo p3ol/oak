@@ -14,8 +14,12 @@ exports[`Overrides should allow to add overrides 1`] = `
   },
   ComponentOverride {
     "construct": undefined,
+    "copyable": undefined,
     "deserialize": undefined,
     "disallow": [],
+    "draggable": undefined,
+    "droppable": undefined,
+    "duplicable": undefined,
     "duplicate": undefined,
     "editable": undefined,
     "fields": [],
@@ -29,6 +33,7 @@ exports[`Overrides should allow to add overrides 1`] = `
       "foo",
     ],
     "type": "component",
+    "usable": undefined,
   },
 ]
 `;
@@ -36,8 +41,12 @@ exports[`Overrides should allow to add overrides 1`] = `
 exports[`Overrides should allow to get an override 1`] = `
 ComponentOverride {
   "construct": undefined,
+  "copyable": undefined,
   "deserialize": undefined,
   "disallow": [],
+  "draggable": undefined,
+  "droppable": undefined,
+  "duplicable": undefined,
   "duplicate": undefined,
   "editable": undefined,
   "fields": [],
@@ -51,6 +60,7 @@ ComponentOverride {
     "foo",
   ],
   "type": "component",
+  "usable": undefined,
 }
 `;
 
