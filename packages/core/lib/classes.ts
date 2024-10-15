@@ -45,19 +45,24 @@ export class Component {
   duplicate: (elmt?: ElementObject) => ElementObject;
   icon: any;
   getContainers: (element: ElementObject) => ElementObject[][];
-  name: string;
+  name: string | GetTextCallback;
   hasCustomInnerContent: boolean;
   draggable: boolean;
   droppable: boolean;
   usable: boolean;
   editable: boolean;
+  duplicable: boolean;
+  copyable: boolean;
   disallow: any;
   options?: ComponentOption[];
   settings?: ComponentSettingsForm;
-  deserialize: (opts: { builder: Builder }) => ElementObject;
+  deserialize: (
+    element?: ElementObject,
+    opts?: { builder: Builder }
+  ) => ElementObject;
   serialize: Function; //TODO
 
-  constructor (props: any) {
+  constructor (props: ComponentObject) {
     if (!props.id) {
       throw new Error('Component must have an id');
     }
@@ -77,6 +82,8 @@ export class Component {
     this.droppable = props.droppable ?? true;
     this.usable = props.usable ?? true;
     this.editable = props.editable ?? true;
+    this.duplicable = props.duplicable ?? true;
+    this.copyable = props.copyable ?? true;
     this.disallow = props.disallow || [];
     this.serialize = props.serialize;
     this.options = (props.options || []).map((
@@ -189,7 +196,12 @@ export class ComponentOverride extends Override {
   priority: number;
   serialize: Function; //TODO fix it
   getContainers: (element: ElementObject) => ElementObject[][];
-  editable: boolean;
+  editable?: boolean;
+  usable?: boolean;
+  duplicable?: boolean;
+  copyable?: boolean;
+  draggable?: boolean;
+  droppable?: boolean;
   disallow: string[];
 
   constructor (props: ComponentOverrideObject | ComponentOverride) {
@@ -206,6 +218,11 @@ export class ComponentOverride extends Override {
     this.deserialize = props.deserialize;
     this.priority = props.priority;
     this.editable = props.editable;
+    this.usable = props.usable;
+    this.duplicable = props.duplicable;
+    this.copyable = props.copyable;
+    this.draggable = props.draggable;
+    this.droppable = props.droppable;
     this.disallow = props.disallow || [];
   }
 
@@ -222,6 +239,11 @@ export class ComponentOverride extends Override {
       deserialize: this.deserialize,
       priority: this.priority,
       editable: this.editable,
+      usable: this.usable,
+      duplicable: this.duplicable,
+      copyable: this.copyable,
+      draggable: this.draggable,
+      droppable: this.droppable,
       disallow: this.disallow,
     };
   }

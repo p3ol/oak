@@ -71,7 +71,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
     builder.getComponent(element?.type)
   ), [element?.type, addons]);
   const override = useMemo(() => (
-    builder.getOverride('component', element?.type)
+    builder.getOverride('component', element?.type) as ComponentOverride
   ), [element?.type, builder, addons]);
   const parentOverride = useMemo(() => (
     builder.getOverride('component', parentComponent?.id) as ComponentOverride
@@ -128,12 +128,10 @@ const Element = forwardRef<ElementRef, ElementProps>(({
 
   const rendered = (
     <DynamicComponent
-      renderer={
-        (override as ComponentOverrideObject)?.render ||
-        component?.render
-      }
+      renderer={override?.render || component?.render}
       element={element}
       component={component}
+      override={override}
       parentComponent={parentComponent}
       parent={parent}
       builder={builder}
@@ -144,14 +142,13 @@ const Element = forwardRef<ElementRef, ElementProps>(({
 
   return (
     <ElementContext.Provider value={getElementContext()}>
-      <Droppable
-        ref={innerRef}
-        disabled={component?.droppable === false}
-        onDrop={onDrop_}
-      >
+      <Droppable ref={innerRef} onDrop={onDrop_}>
         <Draggable
           data={element}
-          disabled={component?.draggable === false || editableOpened}
+          disabled={
+            (override?.draggable ?? component?.draggable) === false ||
+            editableOpened
+          }
         >
           <div
             className={classNames(
@@ -207,7 +204,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                     <DisplayableSettings
                       element={element}
                       component={component}
-                      override={override as ComponentOverrideObject}
+                      override={override}
                     />
                   </div>
                 </div>
@@ -243,20 +240,24 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                 onClick={onDelete_}
                 name={<Text name="core.tooltips.remove">Remove</Text> }
               />
-              <Option
-                option={{ icon: 'copy' }}
-                className="duplicate"
-                onClick={onDuplicate_}
-                name={(
-                  <Text name="core.tooltips.duplicate">Duplicate</Text>
-                )}
-              />
-              <Option
-                option={{ icon: 'copy_file' }}
-                className="copy"
-                onClick={onCopy_}
-                name={<Text name="core.tooltips.copy">Copy</Text>}
-              />
+              { (override?.duplicable ?? component?.duplicable) && (
+                <Option
+                  option={{ icon: 'copy' }}
+                  className="duplicate"
+                  onClick={onDuplicate_}
+                  name={(
+                    <Text name="core.tooltips.duplicate">Duplicate</Text>
+                  )}
+                />
+              ) }
+              { (override?.copyable ?? component?.copyable) && (
+                <Option
+                  option={{ icon: 'copy_file' }}
+                  className="copy"
+                  onClick={onCopy_}
+                  name={<Text name="core.tooltips.copy">Copy</Text>}
+                />
+              ) }
               { (component?.options || []).map((o, i) => (
                 <DynamicComponent
                   renderer={o.render}
@@ -271,10 +272,8 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                   builder={builder}
                   index={i}
                 />
-              ))}
-              { ((override as ComponentOverrideObject)?.editable ??
-                component?.editable
-              ) && (
+              )) }
+              { (override?.editable ?? component?.editable) && (
                 <Editable
                   element={element}
                   component={component}

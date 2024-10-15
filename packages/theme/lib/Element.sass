@@ -109,7 +109,7 @@
 
     &.opened
       visibility: visible
-  
+
   .options.oak-has-inner-content
     position: absolute
     bottom: 100%
@@ -126,11 +126,13 @@
       &:last-child
         border-radius: 0 5px 0 0
 
+      &:first-child:last-child
+        border-radius: 5px
+
     &.dragging
       .drop-zone
         display: none
         height: 0
-
 
   .debug
     position: absolute

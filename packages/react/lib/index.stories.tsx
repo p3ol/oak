@@ -526,3 +526,22 @@ export const withImageUpdload = () => (
     onChange={action('change')}
   />
 );
+
+export const withNonDuplicableOrCopyableComponents = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'component',
+        targets: ['title'],
+        editable: false,
+        usable: false,
+        duplicable: false,
+        copyable: false,
+        draggable: false,
+      }],
+    }]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);

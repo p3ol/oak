@@ -44,14 +44,22 @@ export declare interface ComponentOverrideObject {
   targets?: string[];
   fields?: ComponentSettingsFieldObject[];
   construct?(opts?: { builder?: Builder }): ElementObject;
-  deserialize?(opts?: { builder?: Builder }): ElementObject;
+  deserialize?(
+    elmt?: ElementObject,
+    opts?: { builder?: Builder }
+  ): ElementObject;
   render?(props?: any, opts?: any): any; // TODO fix this
   sanitize?(elmt?: ElementObject, opts?: {
     builder: Builder;
   }): ElementObject;
   duplicate?(elmt?: ElementObject): ElementObject;
   priority?: number;
+  usable?: boolean;
   editable?: boolean;
+  duplicable?: boolean;
+  copyable?: boolean;
+  draggable?: boolean;
+  droppable?: boolean;
   disallow?: string[];
 }
 
@@ -172,11 +180,16 @@ export declare interface ComponentObject {
   droppable?: boolean;
   usable?: boolean;
   editable?: boolean;
+  duplicable?: boolean;
+  copyable?: boolean;
   options?: ComponentOptionObject[];
   settings?: ComponentSettingsFormObject | ComponentSettingsTabObject;
   disallow?: string[];
   render?(props?: any): any;
-  deserialize?: Function;
+  deserialize?: (
+    elmt?: ElementObject,
+    opts?: { builder: Builder }
+  ) => ElementObject;
   serialize?: Function;
   sanitize?(
     element: ElementObject, { builder }: { builder: Builder }

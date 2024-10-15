@@ -85,7 +85,13 @@ const Container = ({
   };
 
   return (
-    <Droppable disabled={content.length > 0} onDrop={onDrop}>
+    <Droppable
+      disabled={
+        content.length > 0 ||
+        (override?.droppable ?? component?.droppable) === false
+      }
+      onDrop={onDrop}
+    >
       <div
         { ...rest }
         className={classNames(
