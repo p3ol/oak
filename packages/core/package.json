@@ -44,5 +44,6 @@
       "require": "./dist/oak-core.cjs.js",
       "types": "./dist/types/addons.d.ts"
     }
-  }
+  },
+  "gitHead": "d75c061fe25d641c27268b3995ede1b047369787"
 }

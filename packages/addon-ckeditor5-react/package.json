@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@oakjs/ckeditor5-build-custom": "workspace:*",
-    "@oakjs/react": "workspace:*"
+    "@oakjs/react": "3.10.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
@@ -51,5 +51,6 @@
       "types": "./dist/types/addons.d.ts"
     },
     "./dist/*": "./dist/*"
-  }
+  },
+  "gitHead": "d75c061fe25d641c27268b3995ede1b047369787"
 }

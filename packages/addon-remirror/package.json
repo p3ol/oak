@@ -25,7 +25,7 @@
     "remirror": "^2.0.0"
   },
   "devDependencies": {
-    "@oakjs/react": "workspace:*"
+    "@oakjs/react": "3.10.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
@@ -37,5 +37,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "b263a7b5481bfbe20d43c09bf829c501834399e4"
+  "gitHead": "d75c061fe25d641c27268b3995ede1b047369787"
 }
