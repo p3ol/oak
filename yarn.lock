@@ -2962,7 +2962,7 @@ __metadata:
   resolution: "@oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react"
   dependencies:
     "@oakjs/ckeditor5-build-custom": "workspace:*"
-    "@oakjs/react": "workspace:*"
+    "@oakjs/react": "npm:3.10.0"
   peerDependencies:
     "@ckeditor/ckeditor5-react": ^6.0.0 || ^7.0.0
     "@oakjs/react": ^3.0.0
@@ -2975,7 +2975,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/addon-remirror@workspace:packages/addon-remirror"
   dependencies:
-    "@oakjs/react": "workspace:*"
+    "@oakjs/react": "npm:3.10.0"
   peerDependencies:
     "@oakjs/react": ^3.0.0
     "@remirror/pm": ^2.0.0
@@ -2990,7 +2990,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/ckeditor5-build-custom@workspace:packages/ckeditor5-build-custom"
   dependencies:
-    "@oakjs/react": "workspace:*"
+    "@oakjs/react": "npm:3.10.0"
   peerDependencies:
     "@oakjs/react": ^3.0.0
     react: ^18.0.0
@@ -3007,7 +3007,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/react@npm:^3.10.0, @oakjs/react@workspace:*, @oakjs/react@workspace:packages/react":
+"@oakjs/react@npm:3.10.0, @oakjs/react@npm:^3.10.0, @oakjs/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@oakjs/react@workspace:packages/react"
   dependencies:
@@ -6778,12 +6778,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:22.7.5":
-  version: 22.7.5
-  resolution: "@types/node@npm:22.7.5"
+"@types/node@npm:22.7.6":
+  version: 22.7.6
+  resolution: "@types/node@npm:22.7.6"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/e8ba102f8c1aa7623787d625389be68d64e54fcbb76d41f6c2c64e8cf4c9f4a2370e7ef5e5f1732f3c57529d3d26afdcb2edc0101c5e413a79081449825c57ac
+  checksum: 10/46a8d6bcd61098ece36f790c4bd500537cf78fe075dbfe48f1e07a29efa6cba18cff3b2564aed80fb183244f5d9a95a63b09e27c9f5181ed927ac16ef493bd95
   languageName: node
   linkType: hard
 
@@ -18605,7 +18605,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:6.5.0"
     "@testing-library/react": "npm:16.0.1"
     "@types/jest": "npm:29.5.13"
-    "@types/node": "npm:22.7.5"
+    "@types/node": "npm:22.7.6"
     "@types/react": "npm:18.3.11"
     "@types/react-dom": "npm:18.3.1"
     "@typescript-eslint/parser": "npm:8.9.0"
