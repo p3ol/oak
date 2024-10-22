@@ -24,7 +24,7 @@ const Container = ({
   element,
   component,
   className,
-  droppable,
+  droppable = true,
   content = [],
   depth = 0,
   ...rest
@@ -92,7 +92,7 @@ const Container = ({
     <Droppable
       disabled={
         content.length > 0 ||
-        (override?.droppable ?? droppable ?? component?.droppable) === false
+        (override?.droppable ?? droppable) === false
       }
       onDrop={onDrop}
     >

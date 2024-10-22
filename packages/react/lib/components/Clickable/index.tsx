@@ -84,7 +84,6 @@ const Clickable = ({
                 element={element}
                 content={element.content as ElementObject[]}
                 component={component}
-                droppable={true}
               />
             </div>
           </div>

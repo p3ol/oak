@@ -83,7 +83,6 @@ const Foldable = ({
                 element={element}
                 content={element.seeMore}
                 component={component}
-                droppable={true}
               />
             </div>
             <div className="section">
@@ -102,7 +101,6 @@ const Foldable = ({
                 element={element}
                 content={element.seeLess}
                 component={component}
-                droppable={true}
               />
             </div>
             <div className="section">
@@ -121,7 +119,6 @@ const Foldable = ({
                 element={element}
                 content={element.content as ElementObject[]}
                 component={component}
-                droppable={true}
               />
             </div>
           </div>

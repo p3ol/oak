@@ -148,8 +148,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
         ref={innerRef}
         onDrop={onDrop_}
         disabled={
-          component?.droppable === false ||
-          override?.droppable === false
+          (override?.droppable ?? component?.droppable) === false
         }
       >
         <Draggable

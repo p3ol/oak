@@ -161,8 +161,8 @@ const Col = ({
           (
             override?.droppable ??
             component?.droppable ??
-            parentComponent?.droppable ??
-            parentOverride?.droppable
+            parentOverride?.droppable ??
+            parentComponent?.droppable
           ) === false
         }
         onDrop={onDrop_}
