@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.1](https://github.com/p3ol/oak/compare/v3.10.0...v3.10.1) (2024-10-22)
+
+
+### Bug Fixes
+
+* correctly handle drag & drop ([07ebcd0](https://github.com/p3ol/oak/commit/07ebcd0bd0a3bf202eed5d33ef50267af9574022))
+* upgrade various deps ([c29eeff](https://github.com/p3ol/oak/commit/c29eeff71a9db299242bfe963689d37258e50ea6))
+
+
+
+
+
 # [3.10.0](https://github.com/p3ol/oak/compare/v3.9.1...v3.10.0) (2024-10-15)
 
 

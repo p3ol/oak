@@ -2,7 +2,7 @@
   "name": "@oakjs/ckeditor5-build-custom",
   "author": "CKSource",
   "description": "A custom CKEditor 5 build made by the CKEditor 5 online builder.",
-  "version": "3.10.0",
+  "version": "3.10.1",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "dist/ckeditor.js",
   "types": "dist/types/index.d.ts",
@@ -18,7 +18,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@oakjs/react": "3.10.0"
+    "@oakjs/react": "^3.10.1"
   },
   "scripts": {
     "build": "yarn build:code && yarn build:dts",
