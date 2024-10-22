@@ -37,16 +37,16 @@ const Clickable = ({
 
   const onDropElement = useCallback((
     position: 'before' | 'after',
-    sibling: ElementObject
+    data: ElementObject,
   ) => {
     if (
-      parentComponent?.disallow?.includes?.(sibling.type) ||
-      parentOverride?.disallow?.includes?.(sibling.type)
+      parentComponent?.disallow?.includes?.(data.type) ||
+      parentOverride?.disallow?.includes?.(data.type)
     ) {
       return;
     }
 
-    builder.moveElement(sibling, element, { parent, position });
+    builder.moveElement?.(data, element, { parent, position });
   }, [
     builder, element, parent, component, override, parentComponent,
     parentOverride,
@@ -84,6 +84,7 @@ const Clickable = ({
                 element={element}
                 content={element.content as ElementObject[]}
                 component={component}
+                droppable={true}
               />
             </div>
           </div>
