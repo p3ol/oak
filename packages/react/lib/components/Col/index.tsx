@@ -89,7 +89,9 @@ const Col = ({
     });
   };
 
-  const onDrop_ = useCallback((data: ComponentObject) => {
+  const onDrop_ = useCallback((
+    data: ElementObject,
+  ) => {
     if (
       component?.disallow?.includes?.(data.type) ||
       override?.disallow?.includes?.(data.type)
@@ -159,8 +161,8 @@ const Col = ({
           (
             override?.droppable ??
             component?.droppable ??
-            parentComponent?.droppable ??
-            parentOverride?.droppable
+            parentOverride?.droppable ??
+            parentComponent?.droppable
           ) === false
         }
         onDrop={onDrop_}

@@ -17,12 +17,14 @@ export declare interface ContainerProps
   content?: Array<ElementObject>;
   component?: ComponentObject | Component;
   depth?: number;
+  droppable?: boolean;
 }
 
 const Container = ({
   element,
   component,
   className,
+  droppable = true,
   content = [],
   depth = 0,
   ...rest
@@ -52,7 +54,9 @@ const Container = ({
     });
   };
 
-  const onDrop = useCallback((data: ElementObject) => {
+  const onDrop = useCallback((
+    data: ElementObject,
+  ) => {
     if (
       component?.disallow?.includes?.(data.type) ||
       override?.disallow?.includes?.(data.type)
@@ -88,7 +92,7 @@ const Container = ({
     <Droppable
       disabled={
         content.length > 0 ||
-        (override?.droppable ?? component?.droppable) === false
+        (override?.droppable ?? droppable) === false
       }
       onDrop={onDrop}
     >
