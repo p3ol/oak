@@ -43,7 +43,7 @@ const ModalEditable = forwardRef<
   };
 
   return (
-    <div>
+    <>
       { cloneElement(children, { onClick }) }
       <Modal
         ref={modalRef}
@@ -60,7 +60,7 @@ const ModalEditable = forwardRef<
           editableRef={ref as MutableRefObject<EditableRef>}
         />
       </Modal>
-    </div>
+    </>
   );
 });
 
