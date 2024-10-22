@@ -16,7 +16,7 @@
     "node": ">= 18"
   },
   "dependencies": {
-    "@junipero/theme": "3.7.0"
+    "@junipero/theme": "3.9.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
