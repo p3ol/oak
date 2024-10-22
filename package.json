@@ -40,7 +40,7 @@
     "@ckeditor/ckeditor5-link": "43.2.0",
     "@ckeditor/ckeditor5-list": "43.2.0",
     "@ckeditor/ckeditor5-paragraph": "43.2.0",
-    "@ckeditor/ckeditor5-react": "9.3.0",
+    "@ckeditor/ckeditor5-react": "9.3.1",
     "@ckeditor/ckeditor5-remove-format": "43.2.0",
     "@ckeditor/ckeditor5-table": "43.2.0",
     "@ckeditor/ckeditor5-theme-lark": "43.2.0",
