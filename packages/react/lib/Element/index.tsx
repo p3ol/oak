@@ -1,7 +1,6 @@
 import type {
   ComponentObject,
   ComponentOverride,
-  ComponentOverrideObject,
   ElementObject,
 } from '@oakjs/core';
 import {
@@ -54,7 +53,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
   parentComponent,
   className,
   depth = 0,
-}, ref) => {
+}: ElementProps, ref) => {
   const innerRef = useRef<DroppableRef>();
   const editableRef = useRef<EditableRef>();
   const modalRef = useRef<ModalRef>();
@@ -95,7 +94,10 @@ const Element = forwardRef<ElementRef, ElementProps>(({
     builder.duplicateElement(element, { parent });
   };
 
-  const onDrop_ = useCallback((data: any, position: ('before' | 'after')) => {
+  const onDrop_ = useCallback((
+    data: ElementObject,
+    position: 'before' | 'after',
+  ) => {
     if (
       parentComponent?.disallow?.includes?.(data.type) ||
       parentOverride?.disallow?.includes?.(data.type)
@@ -142,7 +144,13 @@ const Element = forwardRef<ElementRef, ElementProps>(({
 
   return (
     <ElementContext.Provider value={getElementContext()}>
-      <Droppable ref={innerRef} onDrop={onDrop_}>
+      <Droppable
+        ref={innerRef}
+        onDrop={onDrop_}
+        disabled={
+          (override?.droppable ?? component?.droppable) === false
+        }
+      >
         <Draggable
           data={element}
           disabled={

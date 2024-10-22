@@ -37,16 +37,16 @@ const Foldable = ({
 
   const onDropElement = useCallback((
     position: 'before' | 'after',
-    sibling: ElementObject
+    data: ElementObject,
   ) => {
     if (
-      parentComponent?.disallow?.includes?.(sibling.type) ||
-      parentOverride?.disallow?.includes?.(sibling.type)
+      parentComponent?.disallow?.includes?.(data.type) ||
+      parentOverride?.disallow?.includes?.(data.type)
     ) {
       return;
     }
 
-    builder.moveElement(sibling, element, { parent, position });
+    builder.moveElement?.(data, element, { parent, position });
   }, [
     builder, element, parent, component, override, parentComponent,
     parentOverride,
@@ -71,8 +71,7 @@ const Foldable = ({
             <div className="section">
               <div
                 className={classNames(
-                  'title junipero secondary',
-                  '!oak-text-alternate-text-color'
+                  'title junipero secondary !oak-text-alternate-text-color'
                 )}
               >
                 <Text name="core.components.foldable.sectionsTitle.seeMore">
