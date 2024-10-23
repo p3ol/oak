@@ -86,15 +86,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-plugin@npm:7.25.7":
-  version: 7.25.7
-  resolution: "@babel/eslint-plugin@npm:7.25.7"
+"@babel/eslint-plugin@npm:7.25.9":
+  version: 7.25.9
+  resolution: "@babel/eslint-plugin@npm:7.25.9"
   dependencies:
     eslint-rule-composer: "npm:^0.3.0"
   peerDependencies:
     "@babel/eslint-parser": ^7.11.0
     eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
-  checksum: 10/184f4b45a89e7dbeadfff872a02dd2e622fd13b57160fa8e0ed0a0e892b54eac2ad031414e495d55f6f150dcee0ce57883783139e1968153b14a49e9ee3e94cb
+  checksum: 10/08ba33f7656bcead5256bdc9b7b26e58c7485f8b7d6d469a6033d7c5aebc577810fb4c946af75ea8610add7f6b71ec13fd3f63a2b63913ab11d31e20b3599604
   languageName: node
   linkType: hard
 
@@ -18546,7 +18546,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@babel/eslint-plugin": "npm:7.25.7"
+    "@babel/eslint-plugin": "npm:7.25.9"
     "@ckeditor/ckeditor5-alignment": "npm:43.2.0"
     "@ckeditor/ckeditor5-basic-styles": "npm:43.2.0"
     "@ckeditor/ckeditor5-block-quote": "npm:43.2.0"
