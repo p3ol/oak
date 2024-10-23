@@ -1920,19 +1920,17 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
               copy_file
             </i>
           </a>
-          <div>
-            <a
-              class="option oak-flex oak-items-center oak-justify-center edit"
-              draggable="false"
-              href="#"
+          <a
+            class="option oak-flex oak-items-center oak-justify-center edit"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
             >
-              <i
-                class="icon junipero-icons !oak-text-lg"
-              >
-                pen
-              </i>
-            </a>
-          </div>
+              pen
+            </i>
+          </a>
         </div>
       </div>
       <div
