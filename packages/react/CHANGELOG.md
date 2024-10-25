@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.5](https://github.com/p3ol/oak/compare/v3.10.4...v3.10.5) (2024-10-25)
+
+
+### Bug Fixes
+
+* make col droppable again ([d9a9439](https://github.com/p3ol/oak/commit/d9a9439402ea1318f7ea5b7c1f1625b3e5be6353))
+
+
+
+
+
 ## [3.10.4](https://github.com/p3ol/oak/compare/v3.10.3...v3.10.4) (2024-10-25)
 
 
