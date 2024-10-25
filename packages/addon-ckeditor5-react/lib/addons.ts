@@ -1,6 +1,5 @@
 import type { ReactFieldObject, AddonObject } from '@oakjs/react';
 import { omit } from '@oakjs/react';
-import ClassicEditor from '@oakjs/ckeditor5-build-custom';
 
 import Field, { CKEditorFieldProps } from './Field';
 
@@ -13,7 +12,7 @@ export const ckeditorField = ({
   render: Field,
   ...omit(props, ['onChange']),
   props: {
-    editor: editor || ClassicEditor,
+    editor,
     config: {
       ...config,
       link: {
