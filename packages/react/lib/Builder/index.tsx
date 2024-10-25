@@ -49,6 +49,10 @@ export declare interface BuilderProps extends SpecialComponentPropsWithoutRef {
   topHistoryButtonsContainer?: string | HTMLElement | DocumentFragment;
   topHistoryButtonsEnabled?: boolean;
   value?: Array<ElementObject>;
+  polyfills?: {
+    DOMParser: typeof DOMParser;
+    XMLSerializer: typeof XMLSerializer;
+  };
   onChange?(content: Array<ElementObject>): void;
   onImageUpload?(event: FormEvent, opts: {
     element?: ElementObject;
@@ -66,6 +70,7 @@ const Builder = forwardRef<BuilderRef, BuilderProps>(({
   onImageUpload,
   topHistoryButtonsContainer,
   bottomHistoryButtonsContainer,
+  polyfills,
   historyEnabled = true,
   topHistoryButtonsEnabled = true,
   bottomHistoryButtonsEnabled = true,
@@ -107,7 +112,11 @@ const Builder = forwardRef<BuilderRef, BuilderProps>(({
     rootRef: innerRef,
     floatingsRef,
     editableType,
-  }), [builder, content, addons, rootBoundary, onImageUpload, editableType]);
+    polyfills,
+  }), [
+    builder, content, addons, rootBoundary, onImageUpload, polyfills,
+    editableType,
+  ]);
 
   const onAppend = (component: ComponentObject) => {
     catalogueRef.current?.close();

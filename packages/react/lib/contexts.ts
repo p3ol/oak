@@ -33,6 +33,10 @@ export declare type BuilderContextValue = {
   rootRef?: MutableRefObject<HTMLDivElement>;
   floatingsRef?: MutableRefObject<HTMLDivElement>;
   editableType?: EditableType;
+  polyfills?: {
+    DOMParser: typeof DOMParser;
+    XMLSerializer: typeof XMLSerializer;
+  };
 };
 
 export const BuilderContext = createContext<BuilderContextValue>({});
