@@ -1,16 +1,20 @@
 import type { ElementObject } from '@oakjs/core';
+import { useContext } from 'react';
 import {
   type SpecialComponentPropsWithoutRef,
   classNames,
 } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
+import { BuilderContext, type BuilderContextValue } from '../../contexts';
 
 export interface TitleProps extends SpecialComponentPropsWithoutRef {
   element: ElementObject;
 }
 
 const Title = ({ element, className }: TitleProps) => {
+  const { polyfills } = useContext<BuilderContextValue>(BuilderContext);
+
   const Tag = element.headingLevel || 'h1';
   const sizes: { [key: string]: string } = {
     h1: '!oak-text-4xl',
@@ -21,7 +25,9 @@ const Title = ({ element, className }: TitleProps) => {
     h6: '!oak-text-md',
   };
 
-  if (!element.content) return null;
+  if (!element.content) {
+    return null;
+  }
 
   return (
     <Tag
@@ -31,7 +37,10 @@ const Title = ({ element, className }: TitleProps) => {
         className
       )}
       dangerouslySetInnerHTML={
-        { __html: sanitizeHTML(element.content as string) }
+        { __html: sanitizeHTML(element.content as string, {
+          parser: polyfills?.DOMParser,
+          serializer: polyfills?.XMLSerializer,
+        }) }
       }
     />
   );
