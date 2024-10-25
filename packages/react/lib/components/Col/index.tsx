@@ -25,7 +25,6 @@ import Text from '../../Text';
 export interface ColProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
   parent: ElementObject[];
-  parentComponent?: ComponentObject;
   parentOverride?: ComponentOverrideObject;
   depth?: number;
   onPrepend?: () => void;
@@ -36,7 +35,6 @@ export interface ColProps extends ComponentPropsWithoutRef<'div'> {
 const Col = ({
   element,
   className,
-  parentComponent,
   parentOverride,
   parent = [],
   depth = 0,
@@ -161,8 +159,7 @@ const Col = ({
           (
             override?.droppable ??
             component?.droppable ??
-            parentOverride?.droppable ??
-            parentComponent?.droppable
+            parentOverride?.droppable
           ) === false
         }
         onDrop={onDrop_}

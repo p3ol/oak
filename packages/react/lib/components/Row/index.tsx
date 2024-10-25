@@ -126,7 +126,6 @@ const Row = ({
                 depth={depth}
                 element={col}
                 parent={element.cols}
-                parentComponent={component}
                 parentOverride={override}
                 onPrepend={onDivide.bind(null, i, true)}
                 onAppend={onDivide.bind(null, i, false)}

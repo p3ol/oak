@@ -260,7 +260,6 @@ export const colComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'col',
   type: 'component',
   draggable: false,
-  droppable: false,
   construct: ({ builder } = {}) => ({
     type: 'col',
     content: [],
