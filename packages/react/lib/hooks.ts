@@ -12,6 +12,7 @@ import {
 
 import type { EditableType } from './types';
 import {
+  type BuilderContextValue,
   BuilderContext,
   EditableFormContext,
   ElementContext,
@@ -153,6 +154,6 @@ export const useRootBuilder = ({
   return { builder, ...state };
 };
 
-export const useBuilder = () => useContext(BuilderContext);
+export const useBuilder = () => useContext<BuilderContextValue>(BuilderContext);
 export const useEditableForm = () => useContext(EditableFormContext);
 export const useElement = () => useContext(ElementContext);

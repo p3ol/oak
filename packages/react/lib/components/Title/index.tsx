@@ -1,19 +1,18 @@
 import type { ElementObject } from '@oakjs/core';
-import { useContext } from 'react';
 import {
   type SpecialComponentPropsWithoutRef,
   classNames,
 } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
-import { BuilderContext, type BuilderContextValue } from '../../contexts';
+import { useBuilder } from '../../hooks';
 
 export interface TitleProps extends SpecialComponentPropsWithoutRef {
   element: ElementObject;
 }
 
 const Title = ({ element, className }: TitleProps) => {
-  const { polyfills } = useContext<BuilderContextValue>(BuilderContext);
+  const { polyfills } = useBuilder();
 
   const Tag = element.headingLevel || 'h1';
   const sizes: { [key: string]: string } = {

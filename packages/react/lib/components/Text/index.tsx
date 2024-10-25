@@ -1,9 +1,9 @@
-import { type ComponentPropsWithoutRef, useContext } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import type { ElementObject } from '@oakjs/core';
 import { classNames } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
-import { BuilderContext, type BuilderContextValue } from '../../contexts';
+import { useBuilder } from '../../hooks';
 
 export interface TextComponentProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
@@ -13,7 +13,7 @@ const Text = ({
   element,
   className,
 }: TextComponentProps) => {
-  const { polyfills } = useContext<BuilderContextValue>(BuilderContext);
+  const { polyfills } = useBuilder();
 
   if (!element.content) {
     return null;

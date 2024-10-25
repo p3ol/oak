@@ -1,9 +1,9 @@
+import type { ComponentPropsWithoutRef } from 'react';
 import type { ElementObject } from '@oakjs/core';
-import { type ComponentPropsWithoutRef, useContext } from 'react';
 import { Button, classNames } from '@junipero/react';
 
 import { sanitizeHTML } from '../../utils';
-import { BuilderContext, type BuilderContextValue } from '../../contexts';
+import { useBuilder } from '../../hooks';
 
 export interface ButtonProps extends ComponentPropsWithoutRef<typeof Button> {
   element: ElementObject;
@@ -13,7 +13,7 @@ const Button_ = ({
   element,
   className,
 }: ButtonProps) => {
-  const { polyfills } = useContext<BuilderContextValue>(BuilderContext);
+  const { polyfills } = useBuilder();
 
   if (!element.content) {
     return null;
