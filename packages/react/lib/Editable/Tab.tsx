@@ -91,10 +91,6 @@ const Tab = ({
           field.tab === tab.id
         )
         .concat(tab.fields)
-        .filter((field: ComponentSettingsFieldObject) =>
-          !field.condition ||
-          field.condition(element, { component, builder })
-        )
         .sort((
           a: ComponentSettingsFieldObject,
           b: ComponentSettingsFieldObject

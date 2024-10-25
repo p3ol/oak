@@ -545,3 +545,29 @@ export const withNonDuplicableOrCopyableComponents = () => (
     onChange={action('change')}
   />
 );
+
+export const withSharedSettings = () => (
+  <Builder
+    addons={[baseAddon(), {
+      settings: [{
+        key: 'settings.flexWrap',
+        label: 'Flex wrap',
+        type: 'select',
+        options: ['nowrap', 'wrap', 'wrap-reverse'],
+        condition: (element: ElementObject) => element.type === 'row',
+        default: 'nowrap',
+      }],
+    }, {
+      overrides: [{
+        type: 'setting',
+        targets: ['row', 'foldable'],
+        key: 'settings.flexWrap',
+        condition: (element: ElementObject) =>
+          ['row', 'foldable'].includes(element.type),
+      }],
+    }]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
