@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.4](https://github.com/p3ol/oak/compare/v3.10.3...v3.10.4) (2024-10-25)
+
+
+### Bug Fixes
+
+* **ckeditor5-react:** prevent ckeditor from loading on server side ([2d1fe1c](https://github.com/p3ol/oak/commit/2d1fe1cd1b6130c2386e58d6badf47e079504c28))
+* **react:** allow to use polyfills to parse html ([c057a75](https://github.com/p3ol/oak/commit/c057a75f830eab7b47de9e8098b6b7c711b7f8e2))
+
+
+
+
+
 ## [3.10.3](https://github.com/p3ol/oak/compare/v3.10.2...v3.10.3) (2024-10-25)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.4](https://github.com/p3ol/oak/compare/v3.10.3...v3.10.4) (2024-10-25)
+
+
+### Bug Fixes
+
+* **react:** allow to use polyfills to parse html ([c057a75](https://github.com/p3ol/oak/commit/c057a75f830eab7b47de9e8098b6b7c711b7f8e2))
+
+
+
+
+
 ## [3.10.3](https://github.com/p3ol/oak/compare/v3.10.2...v3.10.3) (2024-10-25)
 
 
