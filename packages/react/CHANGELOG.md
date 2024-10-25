@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.3](https://github.com/p3ol/oak/compare/v3.10.2...v3.10.3) (2024-10-25)
+
+
+### Bug Fixes
+
+* **react:** don't pre-filter fields they are already filtered deeper ([142681c](https://github.com/p3ol/oak/commit/142681cf7b6233e5641408ac16f79f59afa25bdc))
+
+
+
+
+
 ## [3.10.2](https://github.com/p3ol/oak/compare/v3.10.1...v3.10.2) (2024-10-22)
 
 
