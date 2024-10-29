@@ -2952,8 +2952,8 @@ __metadata:
   peerDependencies:
     "@ckeditor/ckeditor5-react": ^6.0.0 || ^7.0.0
     "@oakjs/react": ^3.0.0
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
@@ -2966,8 +2966,8 @@ __metadata:
     "@oakjs/react": ^3.0.0
     "@remirror/pm": ^2.0.0
     "@remirror/react": ^2.0.0
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
     remirror: ^2.0.0
   languageName: unknown
   linkType: soft
@@ -2979,8 +2979,8 @@ __metadata:
     "@oakjs/react": "npm:^3.10.5"
   peerDependencies:
     "@oakjs/react": ^3.0.0
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
@@ -3003,8 +3003,8 @@ __metadata:
     "@junipero/transitions": "npm:3.9.0"
     uuid: "npm:10.0.0"
   peerDependencies:
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
@@ -14433,7 +14433,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.0.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -17806,15 +17806,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.3.1":
-  version: 18.3.1
-  resolution: "react-dom@npm:18.3.1"
+"react-dom@npm:19.0.0-rc-02c0e824-20241028":
+  version: 19.0.0-rc-02c0e824-20241028
+  resolution: "react-dom@npm:19.0.0-rc-02c0e824-20241028"
   dependencies:
-    loose-envify: "npm:^1.1.0"
-    scheduler: "npm:^0.23.2"
+    scheduler: "npm:0.25.0-rc-02c0e824-20241028"
   peerDependencies:
-    react: ^18.3.1
-  checksum: 10/3f4b73a3aa083091173b29812b10394dd06f4ac06aff410b74702cfb3aa29d7b0ced208aab92d5272919b612e5cda21aeb1d54191848cf6e46e9e354f3541f81
+    react: 19.0.0-rc-02c0e824-20241028
+  checksum: 10/c0e3cba6c47aba27031854a09d5f7aca65f2be2112a8ed76a4899640eafb4a841f606ebacdbf24e59b118a4036295ba63bd56e77ef2fb1ab34c79e3eb5f623d0
   languageName: node
   linkType: hard
 
@@ -17931,12 +17930,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.3.1":
-  version: 18.3.1
-  resolution: "react@npm:18.3.1"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10/261137d3f3993eaa2368a83110466fc0e558bc2c7f7ae7ca52d94f03aac945f45146bd85e5f481044db1758a1dbb57879e2fcdd33924e2dde1bdc550ce73f7bf
+"react@npm:19.0.0-rc-02c0e824-20241028":
+  version: 19.0.0-rc-02c0e824-20241028
+  resolution: "react@npm:19.0.0-rc-02c0e824-20241028"
+  checksum: 10/8d1b8b9c3e3cc2fa4a351e8e87cd2e49394f489a109ab91d9b3fec87817bc82c3e0e698661f022ff9a75edafd0340f334122cafd1d4f87e5eafb1a9fe3289cdb
   languageName: node
   linkType: hard
 
@@ -18619,8 +18616,8 @@ __metadata:
     lerna-changelog: "npm:2.2.0"
     postcss: "npm:8.4.47"
     postcss-loader: "npm:8.1.1"
-    react: "npm:18.3.1"
-    react-dom: "npm:18.3.1"
+    react: "npm:19.0.0-rc-02c0e824-20241028"
+    react-dom: "npm:19.0.0-rc-02c0e824-20241028"
     remirror: "npm:3.0.1"
     rollup: "npm:4.24.0"
     rollup-plugin-postcss: "npm:4.0.2"
@@ -18809,12 +18806,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.23.2":
-  version: 0.23.2
-  resolution: "scheduler@npm:0.23.2"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10/e8d68b89d18d5b028223edf090092846868a765a591944760942b77ea1f69b17235f7e956696efbb62c8130ab90af7e0949bfb8eba7896335507317236966bc9
+"scheduler@npm:0.25.0-rc-02c0e824-20241028":
+  version: 0.25.0-rc-02c0e824-20241028
+  resolution: "scheduler@npm:0.25.0-rc-02c0e824-20241028"
+  checksum: 10/c2f1169bc0894babab0ca4af29e3e3382cfbdbbe8946456b87b9386647eebe72e13ab2397358dc503842f94581a1e8fb5b7bacb2ed0c4977a78a13354dc1e5b8
   languageName: node
   linkType: hard
 
