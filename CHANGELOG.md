@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0-beta.0](https://github.com/p3ol/oak/compare/v3.10.5...v3.11.0-beta.0) (2024-10-29)
+
+
+### Bug Fixes
+
+* upgrade various deps ([00dbd10](https://github.com/p3ol/oak/commit/00dbd102b0fe2b58e579756b63ad9300b5199e2d))
+
+
+### Features
+
+* handle react 19 ([fe75825](https://github.com/p3ol/oak/commit/fe75825c0ac7df4d0e8ff8a01da8838c77487c51))
+
+
+
+
+
 ## [3.10.5](https://github.com/p3ol/oak/compare/v3.10.4...v3.10.5) (2024-10-25)
 
 
