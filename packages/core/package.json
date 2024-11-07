@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@junipero/core": "3.7.1",
-    "uuid": "10.0.0"
+    "uuid": "11.0.2"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
