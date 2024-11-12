@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.8](https://github.com/p3ol/oak/compare/v3.10.7...v3.10.8) (2024-11-12)
+
+
+### Bug Fixes
+
+* title with expand option ([b43bb9d](https://github.com/p3ol/oak/commit/b43bb9d16c27257611ead5e9ad9631c60995a97b))
+
+
+
+
+
 ## [3.10.7](https://github.com/p3ol/oak/compare/v3.10.6...v3.10.7) (2024-11-12)
 
 

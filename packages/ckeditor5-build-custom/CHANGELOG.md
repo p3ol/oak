@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.8](https://github.com/p3ol/oak/compare/v3.10.7...v3.10.8) (2024-11-12)
+
+**Note:** Version bump only for package @oakjs/ckeditor5-build-custom
+
+
+
+
+
 ## [3.10.7](https://github.com/p3ol/oak/compare/v3.10.6...v3.10.7) (2024-11-12)
 
 **Note:** Version bump only for package @oakjs/ckeditor5-build-custom
