@@ -186,7 +186,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
                       'oak-gap-2 oak-justify-between'
                     )}
                   >
-                    <div>
+                    <div className="oak-flex oak-items-center">
                       <h6 className="junipero oak-inline oak-m-0">
                         <Text>{ component?.name as string }</Text>
                       </h6>
