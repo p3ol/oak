@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.7](https://github.com/p3ol/oak/compare/v3.10.6...v3.10.7) (2024-11-12)
+
+
+### Bug Fixes
+
+* date field value not being a date ([ad2ddef](https://github.com/p3ol/oak/commit/ad2ddefe37c285eb417cb450da4e1a972c943f91))
+
+
+
+
+
 ## [3.10.6](https://github.com/p3ol/oak/compare/v3.10.5...v3.10.6) (2024-11-07)
 
 
