@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.6](https://github.com/p3ol/oak/compare/v3.10.5...v3.10.6) (2024-11-07)
+
+
+### Bug Fixes
+
+* add root node to html sanitizer ([2f4c967](https://github.com/p3ol/oak/commit/2f4c967ddaffb28d65676dd9066b9c98f3e374b9))
+* upgrade various deps ([3f01c8a](https://github.com/p3ol/oak/commit/3f01c8a202bd69a45a73ae2748bcef98e8bf1c6a))
+
+
+
+
+
 ## [3.10.5](https://github.com/p3ol/oak/compare/v3.10.4...v3.10.5) (2024-10-25)
 
 

@@ -7,7 +7,7 @@ export const sanitizeHTML = (content: string, opts?: {
 }) => {
   try {
     const parsed = new (opts?.parser || DOMParser)()
-      .parseFromString(content, 'text/html');
+      .parseFromString(`<body>${content}</body>`, 'text/html');
 
     // Remove script & style tags
     ['script', 'style', 'iframe', 'object', 'video', 'audio'].forEach(t => {
