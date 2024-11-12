@@ -162,6 +162,10 @@ export const dateField = (props?: ReactFieldObject): ReactFieldObject => ({
       } }
       container={fieldOptions.editableRef?.current
         ?.innerRef.current as HTMLDivElement}
+      value={
+        typeof fieldProps.value === 'string'
+          ? new Date(fieldProps.value) : fieldProps.value
+      }
     />
   ),
   ...props,
