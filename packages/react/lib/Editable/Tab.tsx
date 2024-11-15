@@ -21,6 +21,7 @@ import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
 import Setting from './Setting';
 import SettingsGroup from './SettingsGroup';
+import { areArraysEqual } from '../utils';
 
 export interface TabProps extends ComponentPropsWithoutRef<'div'> {
   tab: ComponentSettingsTabObject | ComponentSettingsFieldObject;
@@ -83,7 +84,11 @@ const Tab = ({
         .concat(componentOverride?.fields?.filter(f =>
           !component.settings?.fields?.find(s =>
             s.type !== 'tab' &&
-            (s as ComponentSettingsFieldObject).key === f.key
+            ((s as ComponentSettingsFieldObject).key === f.key ||
+            areArraysEqual(
+              (s as ComponentSettingsFieldObject).key as string[],
+              f.key as string[]
+            ))
           )
         ) || [])
         .filter((field: ComponentSettingsFieldObject) =>
