@@ -9,6 +9,7 @@ import { action } from '@storybook/addon-actions';
 
 import Builder, { type BuilderRef } from './Builder';
 import { baseAddon } from './addons';
+import { ImageField } from './fields';
 
 export default { title: 'React/Builder' };
 
@@ -366,6 +367,56 @@ export const withSettingOverrides = () => (
     }]}
     value={baseContent}
     options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
+export const withMergeMultipleLevelsOverrides = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [
+        {
+          type: 'component',
+          targets: ['image'],
+          fields: [{
+            type: 'image',
+            key: ['url', 'name'],
+            props: {
+              accept: [
+                'image/jpeg', 'image/jpg',
+              ],
+            },
+          }],
+        },
+        {
+          type: 'field',
+          targets: ['image'],
+          render: ImageField,
+          props: {
+            yoo: 'yoo',
+            accept: [
+              'image/jpeg', 'image/jpg', 'image/png',
+            ],
+          },
+        },
+        {
+          type: 'setting',
+          key: 'styles.backgroundImage',
+          targets: ['*'],
+          fields: [],
+          fieldType: 'image',
+          props: {
+            iconOnly: true,
+            className: 'oak-mr-4 oak-relative oak-top-[2px]',
+            accept: [
+              'image/jpeg', 'image/jpg', 'image/png',
+              'image/svg+xml', 'image/gif',
+            ],
+          },
+        }],
+    }]}
+    value={baseContent}
+    options={{ debug: true, overrideStrategy: 'merge' }}
     onChange={action('change')}
   />
 );
