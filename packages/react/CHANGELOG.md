@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.10.9](https://github.com/p3ol/oak/compare/v3.10.8...v3.10.9) (2024-11-18)
+
+
+### Bug Fixes
+
+* **react:** correctly apply overrides targeting single or multiple field keys ([46d8fef](https://github.com/p3ol/oak/commit/46d8fefcc75f2a4a400b70093d38c73e98b8e3ac))
+* **react:** correctly apply setting overrides ([e05c48c](https://github.com/p3ol/oak/commit/e05c48cff1f030760d4ad9501a50b6a94642ffbf))
+* **react:** correctly handle field with multiple keys for component overrides ([4685ef6](https://github.com/p3ol/oak/commit/4685ef6087cc417154d7c9f9c8efc9c9ff162533))
+
+
+
+
+
 ## [3.10.8](https://github.com/p3ol/oak/compare/v3.10.7...v3.10.8) (2024-11-12)
 
 
