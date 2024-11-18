@@ -85,7 +85,7 @@
     "eslint": "8.57.1",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-n": "17.13.0",
+    "eslint-plugin-n": "17.13.2",
     "eslint-plugin-promise": "7.1.0",
     "eslint-plugin-react": "7.37.2",
     "jest": "29.7.0",
