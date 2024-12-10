@@ -6,7 +6,7 @@ import type {
 import {
   type ComponentPropsWithoutRef,
   type MouseEvent,
-  type MutableRefObject,
+  type RefObject,
   forwardRef,
   useMemo,
   useRef,
@@ -35,7 +35,12 @@ import Text from '../Text';
 import Editable from '../Editable';
 import DynamicComponent from '../DynamicComponent';
 
+export interface ElementRef extends OakRef {
+  innerRef: RefObject<DroppableRef>;
+}
+
 export interface ElementProps extends ComponentPropsWithoutRef<any> {
+  ref?: RefObject<ElementRef>;
   element?: ElementObject;
   parent?: ElementObject[];
   parentComponent?: ComponentObject;
@@ -43,20 +48,17 @@ export interface ElementProps extends ComponentPropsWithoutRef<any> {
   depth?: number;
 }
 
-export interface ElementRef extends OakRef {
-  innerRef: MutableRefObject<DroppableRef>;
-}
-
-const Element = forwardRef<ElementRef, ElementProps>(({
+const Element = ({
+  ref,
   element,
   parent,
   parentComponent,
   className,
   depth = 0,
-}: ElementProps, ref) => {
-  const innerRef = useRef<DroppableRef>();
-  const editableRef = useRef<EditableRef>();
-  const modalRef = useRef<ModalRef>();
+}: ElementProps) => {
+  const innerRef = useRef<DroppableRef>(null);
+  const editableRef = useRef<EditableRef>(null);
+  const modalRef = useRef<ModalRef>(null);
   const [editableOpened, setEditableOpened] = useState(false);
   const [elementCollapsed, setElementCollapsed] = useState(false);
   const { builder, addons } = useBuilder();
@@ -321,7 +323,7 @@ const Element = forwardRef<ElementRef, ElementProps>(({
       </Droppable>
     </ElementContext.Provider>
   );
-});
+};
 
 Element.displayName = 'Element';
 

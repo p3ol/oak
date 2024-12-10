@@ -1,11 +1,13 @@
-import type { ComponentProps, MutableRefObject, ReactNode } from 'react';
+import type { ComponentProps, RefObject, ReactNode } from 'react';
 import type {
+  AddonObject,
   Builder,
   ComponentObject,
   ComponentOptionObject,
   ComponentOverride,
   ComponentOverrideObject,
   ComponentSettingsFieldObject,
+  ComponentTabOject,
   ElementObject,
   FieldContent,
   FieldObject,
@@ -43,8 +45,8 @@ export declare interface CommonFieldProps {
   fieldOptions?: {
     onChange?: (name: string, field: FieldContent) => void;
     setting?: ComponentSettingsFieldObject;
-    editableRef?: MutableRefObject<EditableRef>;
-    floatingsRef?: MutableRefObject<HTMLDivElement>;
+    editableRef?: RefObject<EditableRef>;
+    floatingsRef?: RefObject<HTMLDivElement>;
     element?: ElementObject | ElementObject[];
     field?: FieldObject;
     overrides?: ComponentOverrideObject | FieldOverrideObject |
@@ -88,8 +90,34 @@ export declare interface ReactComponentOptionObject
       parent: ElementObject[];
       component: ReactComponentObject;
       index: number;
-      elementInnerRef: MutableRefObject<DroppableRef>;
-      editableRef: MutableRefObject<EditableRef>;
+      elementInnerRef: RefObject<DroppableRef>;
+      editableRef: RefObject<EditableRef>;
     },
   ): ReactNode;
+}
+
+export declare interface ReactComponentOverrideObject
+  extends ComponentOverrideObject {
+  render?(
+    props: ComponentProps<any> & CommonComponentProps,
+  ): ReactNode;
+}
+
+export declare interface ReactFieldOverrideObject extends FieldOverrideObject {
+  render?(
+    props: (
+      TextFieldProps | SelectFieldProps | ColorFieldProps | DateFieldProps |
+      ImageFieldProps | ToggleProps
+    ) & CommonFieldProps,
+  ): ReactNode;
+}
+
+export declare interface ReactAddonObject extends AddonObject {
+  components?: (ReactComponentObject | ComponentTabOject)[];
+  fields?: ReactFieldObject[];
+  overrides?: (
+    ReactComponentOverrideObject |
+    ReactFieldOverrideObject |
+    SettingOverrideObject
+  )[];
 }

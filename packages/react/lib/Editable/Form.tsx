@@ -12,12 +12,11 @@ import type {
 } from '@oakjs/core';
 import {
   type ComponentPropsWithoutRef,
+  RefObject,
   useReducer,
-  MutableRefObject,
   useCallback,
 } from 'react';
 import {
-  type StateReducer,
   Button,
   Tabs,
   classNames,
@@ -37,7 +36,7 @@ export declare interface FormProps extends ComponentPropsWithoutRef<'div'> {
   component: ComponentObject;
   onSave: () => void;
   onCancel: () => void;
-  editableRef?: MutableRefObject<EditableRef>;
+  editableRef?: RefObject<EditableRef>;
 }
 
 export declare interface FormState {
@@ -61,7 +60,9 @@ const Form = ({
     component?.deserialize ||
     ((e: ElementObject) => e);
 
-  const [state, dispatch] = useReducer<StateReducer<FormState>>(mockState, {
+  const [state, dispatch] = useReducer<
+    FormState, [Partial<FormState>]
+  >(mockState, {
     element: deserialize(cloneDeep(element)),
     seed: uuid(),
   });

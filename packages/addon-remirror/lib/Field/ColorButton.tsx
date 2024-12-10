@@ -15,7 +15,7 @@ import type { Extensions } from '../types';
 import MenuButton, { type MenuButtonProps } from './MenuButton';
 
 const ColorButton = (props: MenuButtonProps) => {
-  const fieldRef = useRef<ColorFieldRef>();
+  const fieldRef = useRef<ColorFieldRef>(null);
   const { setTextColor } = useCommands();
   const { textColor } = useActive<Extensions>();
   const chain = useChainedCommands();

@@ -1,9 +1,8 @@
 import {
   type ComponentPropsWithoutRef,
   type MouseEvent,
-  type MutableRefObject,
+  type RefObject,
   type ReactNode,
-  forwardRef,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -21,23 +20,25 @@ import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 
 export interface OptionProps extends ComponentPropsWithoutRef<'a'> {
+  ref?: RefObject<OptionRef>;
   iconClassName?: string;
   option?: {
     icon: string | ReactNode | (() => ReactNode | ReactNode)
   };
   renderIcon?: () => ReactNode;
   draggable?: boolean;
-  name?: ReactNode | JSX.Element;
+  name?: ReactNode;
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
   tooltipProps?: Partial<TooltipProps>;
 }
 
 export interface OptionRef extends OakRef {
-  innerRef: MutableRefObject<HTMLElement>;
-  tooltipRef: MutableRefObject<TooltipRef>;
+  innerRef: RefObject<HTMLElement>;
+  tooltipRef: RefObject<TooltipRef>;
 }
 
-const Option = forwardRef<OptionRef, OptionProps>(({
+const Option = ({
+  ref,
   className,
   iconClassName,
   option,
@@ -47,10 +48,10 @@ const Option = forwardRef<OptionRef, OptionProps>(({
   onClick,
   tooltipProps,
   ...rest
-}, ref) => {
+}: OptionProps) => {
   const { rootRef, rootBoundary, floatingsRef } = useBuilder();
-  const innerRef = useRef<HTMLElement>();
-  const tooltipRef = useRef<TooltipRef>();
+  const innerRef = useRef<HTMLElement>(null);
+  const tooltipRef = useRef<TooltipRef>(null);
 
   useImperativeHandle(ref, () => ({
     isOak: true,
@@ -59,7 +60,7 @@ const Option = forwardRef<OptionRef, OptionProps>(({
   }), [innerRef.current]);
 
   const floatingOptions = useMemo<{ boundary: Boundary }>(() => ({
-    boundary: (rootBoundary as MutableRefObject<any>)?.current ||
+    boundary: (rootBoundary as RefObject<any>)?.current ||
       rootRef?.current,
   }), []);
 
@@ -103,7 +104,7 @@ const Option = forwardRef<OptionRef, OptionProps>(({
       { inner }
     </Tooltip>
   ) : inner;
-});
+};
 
 Option.displayName = 'Option';
 

@@ -10,7 +10,7 @@ import { ckeditorFieldAddon } from './addons';
 
 export default { title: 'React/With addon: CKEditor' };
 
-const baseContent: ElementObject = [
+const baseContent: ElementObject[] = [
   { type: 'text', content: 'This is a title' },
 ];
 
