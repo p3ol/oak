@@ -3,15 +3,16 @@ import type {
   ElementObject,
 } from '@oakjs/core';
 import {
-  type MutableRefObject,
+  type RefObject,
   type ReactElement,
   type MouseEvent,
+  type ComponentPropsWithoutRef,
   cloneElement,
-  forwardRef,
 } from 'react';
 import {
-  Modal,
+  type ModalRef,
   type SpecialComponentPropsWithoutRef,
+  Modal,
 } from '@junipero/react';
 import { slideInLeftModal } from '@junipero/transitions';
 
@@ -20,21 +21,20 @@ import { useBuilder } from '../hooks';
 import Form from './Form';
 
 export interface ModalEditableProps extends SpecialComponentPropsWithoutRef {
-  children: ReactElement;
+  ref?: RefObject<EditableRef>;
+  children: ReactElement<ComponentPropsWithoutRef<any>>;
   element: ElementObject;
   component: ComponentObject;
-  modalRef?: MutableRefObject<any>;
+  modalRef?: RefObject<ModalRef>;
 }
 
-const ModalEditable = forwardRef<
-  EditableRef,
-  ModalEditableProps
->(({
+const ModalEditable = ({
+  ref,
   element,
   component,
   modalRef,
   children,
-}, ref) => {
+}: ModalEditableProps) => {
   const { floatingsRef } = useBuilder();
 
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -57,12 +57,12 @@ const ModalEditable = forwardRef<
           component={component}
           onSave={() => modalRef.current?.close()}
           onCancel={() => modalRef.current?.close()}
-          editableRef={ref as MutableRefObject<EditableRef>}
+          editableRef={ref}
         />
       </Modal>
     </>
   );
-});
+};
 
 ModalEditable.displayName = 'ModalEditable';
 

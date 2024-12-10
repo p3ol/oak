@@ -1,5 +1,5 @@
 import {
-  type MutableRefObject,
+  type RefObject,
   useMemo,
 } from 'react';
 import {
@@ -26,7 +26,7 @@ export interface FieldProps extends SpecialComponentPropsWithoutRef {
   component: ComponentObject;
   onChange: (key: string, value: any) => void;
   onCustomChange: (key: string, field: FieldObject, value: any) => void;
-  editableRef: MutableRefObject<EditableRef>;
+  editableRef: RefObject<EditableRef>;
 }
 
 const Field = ({

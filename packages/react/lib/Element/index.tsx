@@ -7,7 +7,6 @@ import {
   type ComponentPropsWithoutRef,
   type MouseEvent,
   type RefObject,
-  forwardRef,
   useMemo,
   useRef,
   useState,
