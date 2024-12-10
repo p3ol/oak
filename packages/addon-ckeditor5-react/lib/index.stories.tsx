@@ -27,7 +27,11 @@ const addon: AddonObject = {
 
 export const basic = () => (
   <Builder
-    addons={[baseAddon(), ckeditorFieldAddon(), addon]}
+    addons={[baseAddon(), ckeditorFieldAddon({
+      config: {
+        licenseKey: 'GPL',
+      },
+    }), addon]}
     value={baseContent}
     rootBoundary={document.documentElement}
     options={{ debug: true }}
