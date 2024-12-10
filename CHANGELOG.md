@@ -3,17 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.11.0-beta.0](https://github.com/p3ol/oak/compare/v3.10.5...v3.11.0-beta.0) (2024-10-29)
+## [3.10.9](https://github.com/p3ol/oak/compare/v3.10.8...v3.10.9) (2024-11-18)
 
 
 ### Bug Fixes
 
-* upgrade various deps ([00dbd10](https://github.com/p3ol/oak/commit/00dbd102b0fe2b58e579756b63ad9300b5199e2d))
+* **react:** correctly apply overrides targeting single or multiple field keys ([46d8fef](https://github.com/p3ol/oak/commit/46d8fefcc75f2a4a400b70093d38c73e98b8e3ac))
+* **react:** correctly apply setting overrides ([e05c48c](https://github.com/p3ol/oak/commit/e05c48cff1f030760d4ad9501a50b6a94642ffbf))
+* **react:** correctly handle field with multiple keys for component overrides ([4685ef6](https://github.com/p3ol/oak/commit/4685ef6087cc417154d7c9f9c8efc9c9ff162533))
 
 
-### Features
 
-* handle react 19 ([fe75825](https://github.com/p3ol/oak/commit/fe75825c0ac7df4d0e8ff8a01da8838c77487c51))
+
+
+## [3.10.8](https://github.com/p3ol/oak/compare/v3.10.7...v3.10.8) (2024-11-12)
+
+
+### Bug Fixes
+
+* title with expand option ([b43bb9d](https://github.com/p3ol/oak/commit/b43bb9d16c27257611ead5e9ad9631c60995a97b))
+
+
+
+
+
+## [3.10.7](https://github.com/p3ol/oak/compare/v3.10.6...v3.10.7) (2024-11-12)
+
+
+### Bug Fixes
+
+* date field value not being a date ([ad2ddef](https://github.com/p3ol/oak/commit/ad2ddefe37c285eb417cb450da4e1a972c943f91))
+* date menu ([c235b74](https://github.com/p3ol/oak/commit/c235b74f82133e6e9665cb44d4c846647bb4278f))
+
+
+
+
+
+## [3.10.6](https://github.com/p3ol/oak/compare/v3.10.5...v3.10.6) (2024-11-07)
+
+
+### Bug Fixes
+
+* add root node to html sanitizer ([2f4c967](https://github.com/p3ol/oak/commit/2f4c967ddaffb28d65676dd9066b9c98f3e374b9))
+* upgrade various deps ([3f01c8a](https://github.com/p3ol/oak/commit/3f01c8a202bd69a45a73ae2748bcef98e8bf1c6a))
 
 
 

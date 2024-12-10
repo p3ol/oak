@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/react",
-  "version": "3.11.0-beta.0",
+  "version": "3.10.9",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-react.cjs.js",
   "module": "dist/esm/index.js",
@@ -24,7 +24,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@floating-ui/react": "0.26.25",
+    "@floating-ui/react": "0.26.27",
     "@junipero/hooks": "3.10.0-beta.0",
     "@junipero/react": "3.10.0-beta.0",
     "@junipero/transitions": "3.10.0-beta.0",

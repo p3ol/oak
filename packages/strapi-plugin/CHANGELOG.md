@@ -3,12 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.11.0-beta.0](https://github.com/p3ol/oak/compare/v3.10.5...v3.11.0-beta.0) (2024-10-29)
+## [3.10.9](https://github.com/p3ol/oak/compare/v3.10.8...v3.10.9) (2024-11-18)
+
+**Note:** Version bump only for package @oakjs/strapi-plugin
 
 
-### Bug Fixes
 
-* upgrade various deps ([00dbd10](https://github.com/p3ol/oak/commit/00dbd102b0fe2b58e579756b63ad9300b5199e2d))
+
+
+## [3.10.8](https://github.com/p3ol/oak/compare/v3.10.7...v3.10.8) (2024-11-12)
+
+**Note:** Version bump only for package @oakjs/strapi-plugin
+
+
+
+
+
+## [3.10.7](https://github.com/p3ol/oak/compare/v3.10.6...v3.10.7) (2024-11-12)
+
+**Note:** Version bump only for package @oakjs/strapi-plugin
+
+
+
+
+
+## [3.10.6](https://github.com/p3ol/oak/compare/v3.10.5...v3.10.6) (2024-11-07)
+
+**Note:** Version bump only for package @oakjs/strapi-plugin
 
 
 

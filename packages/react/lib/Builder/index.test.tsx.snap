@@ -516,7 +516,9 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
           <div
             class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
           >
-            <div>
+            <div
+              class="oak-flex oak-items-center"
+            >
               <h6
                 class="junipero oak-inline oak-m-0"
               >
@@ -645,7 +647,9 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
                       <div
                         class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
                       >
-                        <div>
+                        <div
+                          class="oak-flex oak-items-center"
+                        >
                           <h6
                             class="junipero oak-inline oak-m-0"
                           >
@@ -1072,7 +1076,9 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
                 <div
                   class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
                 >
-                  <div>
+                  <div
+                    class="oak-flex oak-items-center"
+                  >
                     <h6
                       class="junipero oak-inline oak-m-0"
                     >
@@ -1373,7 +1379,9 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
             <div
               class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
             >
-              <div>
+              <div
+                class="oak-flex oak-items-center"
+              >
                 <h6
                   class="junipero oak-inline oak-m-0"
                 >
@@ -1847,7 +1855,9 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
           <div
             class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
           >
-            <div>
+            <div
+              class="oak-flex oak-items-center"
+            >
               <h6
                 class="junipero oak-inline oak-m-0"
               >
@@ -2197,7 +2207,9 @@ exports[`<Builder /> should render: Base content 1`] = `
           <div
             class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
           >
-            <div>
+            <div
+              class="oak-flex oak-items-center"
+            >
               <h6
                 class="junipero oak-inline oak-m-0"
               >
@@ -2298,7 +2310,9 @@ exports[`<Builder /> should render: Base content 1`] = `
           <div
             class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
           >
-            <div>
+            <div
+              class="oak-flex oak-items-center"
+            >
               <h6
                 class="junipero oak-inline oak-m-0"
               >

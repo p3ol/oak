@@ -83,7 +83,9 @@ const Tab = ({
         .concat(componentOverride?.fields?.filter(f =>
           !component.settings?.fields?.find(s =>
             s.type !== 'tab' &&
-            (s as ComponentSettingsFieldObject).key === f.key
+            ((s as ComponentSettingsFieldObject).key === f.key ||
+            [].concat((s as ComponentSettingsFieldObject).key)
+              .some(k => [].concat(f.key).includes(k)))
           )
         ) || [])
         .filter((field: ComponentSettingsFieldObject) =>

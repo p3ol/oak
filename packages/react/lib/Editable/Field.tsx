@@ -58,8 +58,8 @@ const Field = ({
   const setting = useMemo(() => assignDefined<typeof fieldSetting>(
     { type: fieldSetting.type },
     fieldSetting,
-    omit(overrides.settings?.toObject?.() || overrides.settings || {}, ['key']),
     omit(overrides.field?.toObject?.() || overrides.field || {}, ['key']),
+    omit(overrides.settings?.toObject?.() || overrides.settings || {}, ['key']),
   ), [fieldSetting, overrides, addons]);
 
   const fieldProps = {
@@ -77,6 +77,7 @@ const Field = ({
       : onChange.bind(null, setting.key),
     ...field?.props,
     ...(overrides.field as FieldOverride)?.props,
+    ...(overrides.settings as FieldOverride)?.props,
   };
 
   if (setting.condition &&
