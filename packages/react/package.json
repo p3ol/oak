@@ -24,11 +24,11 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@floating-ui/react": "0.26.27",
+    "@floating-ui/react": "0.27.0",
     "@junipero/hooks": "3.10.0-beta.0",
     "@junipero/react": "3.10.0-beta.0",
     "@junipero/transitions": "3.10.0-beta.0",
-    "uuid": "11.0.2"
+    "uuid": "11.0.3"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
