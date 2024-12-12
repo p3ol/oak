@@ -1,6 +1,6 @@
 import {
   type Key,
-  type MutableRefObject,
+  type RefObject,
   type ComponentPropsWithoutRef,
   useMemo,
 } from 'react';
@@ -27,7 +27,7 @@ export interface TabProps extends ComponentPropsWithoutRef<'div'> {
   component: ComponentObject;
   element: ElementObject;
   overrides?: ComponentOverride | SettingOverride | FieldOverride;
-  editableRef?: MutableRefObject<EditableRef>;
+  editableRef?: RefObject<EditableRef>;
   onSettingChange?(name: string, field: FieldContent): void;
   onSettingCustomChange?(
     name: string,

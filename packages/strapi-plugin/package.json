@@ -14,14 +14,14 @@
   },
   "peerDependencies": {
     "@strapi/strapi": "^4.4.0",
-    "react": "^17.0.2 || ^18.0.0",
-    "react-dom": "^17.0.2 || ^18.0.0"
+    "react": "^17.0.2 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.2 || ^18.0.0 || ^19.0.0"
   },
   "scripts": {
     "build": "true"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-react": "9.3.1",
+    "@ckeditor/ckeditor5-react": "9.4.0",
     "@oakjs/addon-ckeditor5-react": "^3.10.9",
     "@oakjs/addon-remirror": "^3.10.9",
     "@oakjs/ckeditor5-build-custom": "^3.10.9",

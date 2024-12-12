@@ -4,20 +4,19 @@ import type {
   ElementObject,
 } from '@oakjs/core';
 import {
-  type MutableRefObject,
+  type RefObject,
   type ReactElement,
   type MouseEvent,
+  type ComponentPropsWithRef,
   Children,
   cloneElement,
   useImperativeHandle,
   useMemo,
   useReducer,
   useRef,
-  forwardRef,
 } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  type SpecialComponentPropsWithoutRef,
   mockState,
   classNames,
   ensureNode,
@@ -38,13 +37,14 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 
-import type { OakRef } from '../types';
+import type { OakRef, SpecialComponentPropsWithRef } from '../types';
 import type { EditableRef } from '.';
 import { useBuilder } from '../hooks';
 import Form from './Form';
 
-export interface FloatingEditableProps extends SpecialComponentPropsWithoutRef {
-  children: ReactElement;
+export interface FloatingEditableProps
+  extends SpecialComponentPropsWithRef<any, EditableRef> {
+  children: ReactElement<ComponentPropsWithRef<any>>;
   element: ElementObject;
   component: ComponentObject;
   floatingOptions?: UseFloatingOptions & {
@@ -58,13 +58,16 @@ export declare interface FloatingRef extends OakRef {
   close: () => void;
   toggle: () => void;
   opened: boolean;
-  innerRef: MutableRefObject<any>;
+  innerRef: RefObject<any>;
 }
 
-const FloatingEditable = forwardRef<
-  EditableRef,
-  FloatingEditableProps
->(({
+export declare interface FloatingEditableState {
+  opened?: boolean;
+  visible?: boolean;
+}
+
+const FloatingEditable = ({
+  ref,
   children,
   floatingOptions,
   element,
@@ -72,10 +75,12 @@ const FloatingEditable = forwardRef<
   onToggle,
   setOpened,
   opened,
-}, ref) => {
-  const innerRef = useRef<FloatingRef | HTMLDivElement>();
+}: FloatingEditableProps) => {
+  const innerRef = useRef<FloatingRef | HTMLDivElement>(null);
   const { rootBoundary, floatingsRef } = useBuilder();
-  const [state, dispatch] = useReducer(mockState, {
+  const [state, dispatch] = useReducer<
+    FloatingEditableState, [Partial<FloatingEditableState>]
+  >(mockState, {
     opened: false,
     visible: false,
   });
@@ -96,18 +101,18 @@ const FloatingEditable = forwardRef<
       offset(5),
       ...(floatingSettings?.shift?.enabled !== false ? [shift({
         boundary: floatingOptions?.boundary ||
-          (rootBoundary as MutableRefObject<any>)?.current,
+          (rootBoundary as RefObject<any>)?.current,
         limiter: limitShift(),
         ...floatingSettings.shift || {},
       })] : []),
       ...(floatingSettings?.autoPlacement?.enabled !== false ? [autoPlacement({
         boundary: floatingOptions?.boundary ||
-          (rootBoundary as MutableRefObject<any>)?.current,
+          (rootBoundary as RefObject<any>)?.current,
         ...floatingSettings.autoPlacement || {},
       })] : []),
       ...(floatingSettings?.flip?.enabled !== false ? [flip({
         boundary: floatingOptions?.boundary ||
-          (rootBoundary as MutableRefObject<any>)?.current,
+          (rootBoundary as RefObject<any>)?.current,
         ...floatingSettings.flip || {},
       })] : []),
       ...floatingSettings.middleware || [],
@@ -150,7 +155,7 @@ const FloatingEditable = forwardRef<
 
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    (ref as MutableRefObject<EditableRef>).current?.toggle();
+    (ref as RefObject<EditableRef>).current?.toggle();
     setOpened(opened);
   };
 
@@ -195,14 +200,14 @@ const FloatingEditable = forwardRef<
               placement={context.placement}
               onSave={close}
               onCancel={close}
-              editableRef={ref as MutableRefObject<EditableRef>}
+              editableRef={ref as RefObject<EditableRef>}
             />
           ), { opened: state.opened, onExited: onAnimationExit }) }
         </div>
       ), ensureNode(floatingsRef.current)) }
     </>
   );
-});
+};
 
 FloatingEditable.displayName = 'Editable';
 

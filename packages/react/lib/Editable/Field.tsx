@@ -1,5 +1,6 @@
 import {
-  type MutableRefObject,
+  type ComponentPropsWithoutRef,
+  type RefObject,
   useMemo,
 } from 'react';
 import {
@@ -11,22 +12,19 @@ import {
   type SettingOverride,
   assignDefined,
 } from '@oakjs/core';
-import {
-  type SpecialComponentPropsWithoutRef,
-  omit,
-} from '@junipero/react';
+import { omit } from '@junipero/react';
 
 import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
 import DynamicComponent from '../DynamicComponent';
 
-export interface FieldProps extends SpecialComponentPropsWithoutRef {
+export interface FieldProps extends ComponentPropsWithoutRef<any> {
   setting: ComponentSettingsFieldObject;
   element: ElementObject;
   component: ComponentObject;
   onChange: (key: string, value: any) => void;
   onCustomChange: (key: string, field: FieldObject, value: any) => void;
-  editableRef: MutableRefObject<EditableRef>;
+  editableRef: RefObject<EditableRef>;
 }
 
 const Field = ({

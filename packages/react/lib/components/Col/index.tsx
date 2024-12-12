@@ -42,10 +42,10 @@ const Col = ({
   onAppend,
   onRemove,
 }: ColProps) => {
-  const editableRef = useRef<EditableRef>();
-  const modalRef = useRef<ModalRef>();
-  const prependCatalogueRef = useRef<CatalogueRef>();
-  const appendCatalogueRef = useRef<CatalogueRef>();
+  const editableRef = useRef<EditableRef>(null);
+  const modalRef = useRef<ModalRef>(null);
+  const prependCatalogueRef = useRef<CatalogueRef>(null);
+  const appendCatalogueRef = useRef<CatalogueRef>(null);
   const { builder, floatingsRef, addons } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent?.(element.type)

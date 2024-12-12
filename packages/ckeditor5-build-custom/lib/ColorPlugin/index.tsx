@@ -97,7 +97,7 @@ export default class ColorPlugin extends Plugin {
 
   async createReactRoot (element: HTMLElement) {
     try {
-      if (version.startsWith('18')) {
+      if (Number(version.split('.')[0]) >= 18) {
         const { createRoot } = await import('react-dom/client');
 
         return createRoot(element);
@@ -108,6 +108,7 @@ export default class ColorPlugin extends Plugin {
       );
     }
 
+    // @ts-expect-error react <= 17 fallback
     const { render } = await import('react-dom');
 
     return {

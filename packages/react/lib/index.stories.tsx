@@ -1,10 +1,9 @@
 import type {
   AddonObject,
   ComponentSettingsFieldObject,
-  ComponentTabOject,
   ElementObject,
 } from '@oakjs/core';
-import { useEffect, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
 import Builder, { type BuilderRef } from './Builder';
@@ -62,7 +61,7 @@ export const controlled = () => {
 };
 
 export const uncontrolled = () => {
-  const builderRef = useRef<BuilderRef>();
+  const builderRef = useRef<BuilderRef>(null);
 
   const addElement = () => {
     builderRef.current?.builder.addElement({
@@ -88,7 +87,7 @@ export const uncontrolled = () => {
 };
 
 export const withCustomTexts = () => {
-  const builderRef = useRef<BuilderRef>();
+  const builderRef = useRef<BuilderRef>(null);
 
   useEffect(() => {
     builderRef.current?.builder.setActiveTextSheet('fr');
@@ -116,7 +115,7 @@ export const withCustomTexts = () => {
 };
 
 export const withMultipleLanguages = () => {
-  const builderRef = useRef<BuilderRef>();
+  const builderRef = useRef<BuilderRef>(null);
   const [locale, setLocale] = useState('fr');
 
   const texts = [
@@ -560,17 +559,15 @@ export const withMultipleEditableTabs = () => (
 
 export const withImageUpdload = () => (
   <Builder
-    onImageUpload={
-      (e: Event) => {
-        action('upload')(e);
+    onImageUpload={(e: FormEvent) => {
+      action('upload')(e);
 
-        return {
-          name: 'capture.png',
-          // eslint-disable-next-line max-len
-          url: 'https://storage.googleapis.com/poool-dev-cdn/uploads/57f3c14d0b26241cde521669/original/Capture%20d%E2%80%99e%CC%81cran%202023-03-16%20a%CC%80%2010.32.11.png',
-        };
-      }
-    }
+      return {
+        name: 'capture.png',
+        // eslint-disable-next-line max-len
+        url: 'https://storage.googleapis.com/poool-dev-cdn/uploads/57f3c14d0b26241cde521669/original/Capture%20d%E2%80%99e%CC%81cran%202023-03-16%20a%CC%80%2010.32.11.png',
+      };
+    }}
     addons={[baseAddon()]}
     value={baseContent}
     options={{ debug: true }}
@@ -604,7 +601,11 @@ export const withSharedSettings = () => (
         key: 'settings.flexWrap',
         label: 'Flex wrap',
         type: 'select',
-        options: ['nowrap', 'wrap', 'wrap-reverse'],
+        options: [
+          { title: 'No wrap', value: 'nowrap' },
+          { title: 'Wrap', value: 'wrap' },
+          { title: 'Wrap Reverse', value: 'wrap-reverse' },
+        ],
         condition: (element: ElementObject) => element.type === 'row',
         default: 'nowrap',
       }],

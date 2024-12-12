@@ -20,15 +20,15 @@
     "node": ">= 18"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@floating-ui/react": "0.26.27",
-    "@junipero/hooks": "3.7.0",
-    "@junipero/react": "3.9.0",
-    "@junipero/transitions": "3.9.0",
-    "uuid": "11.0.2"
+    "@floating-ui/react": "0.27.0",
+    "@junipero/hooks": "3.10.0",
+    "@junipero/react": "3.10.1",
+    "@junipero/transitions": "3.10.1",
+    "uuid": "11.0.3"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

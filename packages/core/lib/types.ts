@@ -69,7 +69,7 @@ export declare interface FieldOverrideObject {
   targets?: string[];
   props?: Record<string, any>;
   id?: string;
-  render?(): any;
+  render?(props?: any): any;
   priority?: number;
   onChange?<T = any>(
     name: string,

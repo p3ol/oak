@@ -1,28 +1,18 @@
-import type {
-  ComponentObject,
-  ElementObject,
-} from '@oakjs/core';
-import {
-  type MutableRefObject,
-  type ReactElement,
-  forwardRef,
-} from 'react';
-import {
-  type ModalRef,
-  type SpecialComponentPropsWithoutRef,
-} from '@junipero/react';
-import { type Boundary, UseFloatingOptions } from '@floating-ui/react';
+import type { RefObject } from 'react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
+import type { ModalRef } from '@junipero/react';
+import type { Boundary, UseFloatingOptions } from '@floating-ui/react';
 
-import type { OakRef } from '../types';
+import type { OakRef, SpecialComponentPropsWithRef } from '../types';
 import { useBuilder } from '../hooks';
 import FloatingEditable from './Floating';
 import ModalEditable from './Modal';
 
-export interface EditableProps extends SpecialComponentPropsWithoutRef {
-  children: ReactElement;
+export interface EditableProps
+  extends SpecialComponentPropsWithRef<any, EditableRef> {
   element: ElementObject;
   component: ComponentObject;
-  modalRef?: ModalRef;
+  modalRef?: RefObject<ModalRef>;
   floatingOptions?: UseFloatingOptions & {
     boundary?: Boundary;
   };
@@ -36,10 +26,11 @@ export declare interface EditableRef extends OakRef {
   close?: () => void;
   toggle?: () => void;
   forceClose?: () => void;
-  innerRef?: MutableRefObject<OakRef | HTMLDivElement | null>;
+  innerRef?: RefObject<OakRef | HTMLDivElement | null>;
 }
 
-const Editable = forwardRef<EditableRef, EditableProps>(({
+const Editable = ({
+  ref,
   children,
   floatingOptions,
   element,
@@ -48,7 +39,7 @@ const Editable = forwardRef<EditableRef, EditableProps>(({
   modalRef,
   setOpened,
   opened,
-}, ref) => {
+}: EditableProps) => {
   const { editableType } = useBuilder();
 
   return editableType === 'modal' ? (
@@ -71,7 +62,7 @@ const Editable = forwardRef<EditableRef, EditableProps>(({
       opened={opened}
     />
   );
-});
+};
 
 Editable.displayName = 'Editable';
 

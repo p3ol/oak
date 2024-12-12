@@ -5,9 +5,8 @@ import type {
 } from '@oakjs/core';
 import {
   type MouseEvent,
-  type MutableRefObject,
+  type RefObject,
   type ComponentPropsWithoutRef,
-  forwardRef,
   useImperativeHandle,
   useMemo,
   useReducer,
@@ -15,7 +14,6 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  type StateReducer,
   Tabs,
   Tab,
   classNames,
@@ -45,11 +43,12 @@ export declare interface CatalogueRef extends OakRef {
   close: () => void;
   toggle: () => void;
   opened: boolean;
-  innerRef: MutableRefObject<HTMLDivElement>;
+  innerRef: RefObject<HTMLDivElement>;
 }
 
 export declare interface CatalogueProps
-  extends ComponentPropsWithoutRef<'div'> {
+  extends Omit<ComponentPropsWithoutRef<'div'>, 'onToggle'> {
+  ref?: RefObject<CatalogueRef>;
   component?: ComponentObject;
   placement?: string;
   floatingOptions?: UseFloatingOptions & {
@@ -65,7 +64,8 @@ export declare interface CatalogueState {
   clipboard?: ElementObject;
 }
 
-const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
+const Catalogue = ({
+  ref,
   component,
   className,
   placement = 'bottom',
@@ -74,14 +74,14 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
   onAppend,
   onPaste,
   ...rest
-}, ref) => {
-  const innerRef = useRef<HTMLDivElement>();
+}: CatalogueProps) => {
+  const innerRef = useRef<HTMLDivElement>(null);
   const { builder, floatingsRef, addons } = useBuilder();
   const override = useMemo(() => (
     builder.getOverride('component', component?.id) as ComponentOverride
   ), [builder, component, addons]);
   const [state, dispatch] = useReducer<
-    StateReducer<CatalogueState>
+    CatalogueState, [Partial<CatalogueState>]
   >(mockState, {
     opened: false,
     clipboard: null,
@@ -278,7 +278,7 @@ const Catalogue = forwardRef<CatalogueRef, CatalogueProps>(({
       { opened: state.opened }), ensureNode(floatingsRef?.current)) }
     </div>
   );
-});
+};
 
 Catalogue.displayName = 'Catalogue';
 

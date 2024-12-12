@@ -5,7 +5,6 @@ import {
   Builder,
 } from '@oakjs/core';
 import {
-  type StateReducer,
   mockState,
   useEffectAfterMount,
 } from '@junipero/react';
@@ -53,7 +52,7 @@ export const useRootBuilder = ({
     })
   ), []);
   const [state, dispatch] = useReducer<
-    StateReducer<RootBuilderState>
+    RootBuilderState, [Partial<RootBuilderState>]
   >(mockState, {
     content: builder.getContent(),
     activeTextSheet: null,

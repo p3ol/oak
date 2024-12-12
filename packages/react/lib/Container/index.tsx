@@ -29,8 +29,8 @@ const Container = ({
   depth = 0,
   ...rest
 }: ContainerProps) => {
-  const prependCatalogueRef = useRef<CatalogueRef>();
-  const appendCatalogueRef = useRef<CatalogueRef>();
+  const prependCatalogueRef = useRef<CatalogueRef>(null);
+  const appendCatalogueRef = useRef<CatalogueRef>(null);
   const { builder, addons } = useBuilder();
   const override = useMemo(() => (
     builder.getOverride('component', component?.id) as ComponentObject
