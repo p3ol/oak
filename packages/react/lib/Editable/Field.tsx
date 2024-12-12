@@ -1,4 +1,5 @@
 import {
+  type ComponentPropsWithoutRef,
   type RefObject,
   useMemo,
 } from 'react';
@@ -11,16 +12,13 @@ import {
   type SettingOverride,
   assignDefined,
 } from '@oakjs/core';
-import {
-  type SpecialComponentPropsWithoutRef,
-  omit,
-} from '@junipero/react';
+import { omit } from '@junipero/react';
 
 import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
 import DynamicComponent from '../DynamicComponent';
 
-export interface FieldProps extends SpecialComponentPropsWithoutRef {
+export interface FieldProps extends ComponentPropsWithoutRef<any> {
   setting: ComponentSettingsFieldObject;
   element: ElementObject;
   component: ComponentObject;

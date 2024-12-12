@@ -7,7 +7,6 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  SpecialComponentPropsWithoutRef,
   classNames,
   ensureNode,
 } from '@junipero/react';
@@ -23,6 +22,7 @@ import type {
   EditableType,
   ImageUploadCallbackResult,
   ReactAddonObject,
+  SpecialComponentPropsWithRef,
   OakRef,
 } from '../types';
 import { type BuilderContextValue, BuilderContext } from '../contexts';
@@ -39,8 +39,8 @@ export declare interface BuilderRef extends OakRef {
   close?: () => void
 }
 
-export declare interface BuilderProps extends SpecialComponentPropsWithoutRef {
-  ref?: RefObject<BuilderRef>;
+export declare interface BuilderProps
+  extends SpecialComponentPropsWithRef<any, BuilderRef> {
   activeTextSheet?: string;
   addons: Array<ReactAddonObject>;
   bottomHistoryButtonsContainer?: string | HTMLElement | DocumentFragment;

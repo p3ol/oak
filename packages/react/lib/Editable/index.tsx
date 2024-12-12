@@ -1,28 +1,15 @@
-import type {
-  RefObject,
-  ReactElement,
-} from 'react';
-import type {
-  ComponentObject,
-  ElementObject,
-} from '@oakjs/core';
-import type {
-  ModalRef,
-  SpecialComponentPropsWithoutRef,
-} from '@junipero/react';
-import type {
-  Boundary,
-  UseFloatingOptions,
-} from '@floating-ui/react';
+import type { RefObject } from 'react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
+import type { ModalRef } from '@junipero/react';
+import type { Boundary, UseFloatingOptions } from '@floating-ui/react';
 
-import type { OakRef } from '../types';
+import type { OakRef, SpecialComponentPropsWithRef } from '../types';
 import { useBuilder } from '../hooks';
 import FloatingEditable from './Floating';
 import ModalEditable from './Modal';
 
-export interface EditableProps extends SpecialComponentPropsWithoutRef {
-  ref?: RefObject<EditableRef>;
-  children: ReactElement;
+export interface EditableProps
+  extends SpecialComponentPropsWithRef<any, EditableRef> {
   element: ElementObject;
   component: ComponentObject;
   modalRef?: RefObject<ModalRef>;

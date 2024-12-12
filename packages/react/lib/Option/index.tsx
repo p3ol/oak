@@ -13,17 +13,19 @@ import {
   type TooltipProps,
   Tooltip,
   classNames,
+  JuniperoInnerRef,
+  JuniperoRef,
 } from '@junipero/react';
 
-import type { OakRef } from '../types';
+import type { OakRef, SpecialComponentPropsWithRef } from '../types';
 import { useBuilder } from '../hooks';
 import Icon from '../Icon';
 
-export interface OptionProps extends ComponentPropsWithoutRef<'a'> {
-  ref?: RefObject<OptionRef>;
+export interface OptionProps
+  extends SpecialComponentPropsWithRef<'a', OptionRef> {
   iconClassName?: string;
   option?: {
-    icon: string | ReactNode | (() => ReactNode | ReactNode)
+    icon: ReactNode | (() => ReactNode)
   };
   renderIcon?: () => ReactNode;
   draggable?: boolean;
@@ -33,7 +35,7 @@ export interface OptionProps extends ComponentPropsWithoutRef<'a'> {
 }
 
 export interface OptionRef extends OakRef {
-  innerRef: RefObject<HTMLElement>;
+  innerRef: RefObject<JuniperoRef | JuniperoInnerRef>;
   tooltipRef: RefObject<TooltipRef>;
 }
 
@@ -50,7 +52,7 @@ const Option = ({
   ...rest
 }: OptionProps) => {
   const { rootRef, rootBoundary, floatingsRef } = useBuilder();
-  const innerRef = useRef<HTMLElement>(null);
+  const innerRef = useRef<JuniperoRef | JuniperoInnerRef>(null);
   const tooltipRef = useRef<TooltipRef>(null);
 
   useImperativeHandle(ref, () => ({

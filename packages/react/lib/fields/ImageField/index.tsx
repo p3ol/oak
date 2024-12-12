@@ -181,7 +181,6 @@ const ImageField = ({
         </>
       ) : (
         <TouchableZone
-          disabled={state.loading}
           onClick={iconOnly && state.value?.url ? onReset : onOpenFileDialog}
           className={classNames({ '!oak-w-full': !iconOnly })}
           { ...(iconOnly && {

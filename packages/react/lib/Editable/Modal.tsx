@@ -1,28 +1,15 @@
-import type {
-  ComponentObject,
-  ElementObject,
-} from '@oakjs/core';
-import {
-  type RefObject,
-  type ReactElement,
-  type MouseEvent,
-  type ComponentPropsWithoutRef,
-  cloneElement,
-} from 'react';
-import {
-  type ModalRef,
-  type SpecialComponentPropsWithoutRef,
-  Modal,
-} from '@junipero/react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
+import { type RefObject, type MouseEvent, cloneElement } from 'react';
+import { type ModalRef, Modal } from '@junipero/react';
 import { slideInLeftModal } from '@junipero/transitions';
 
+import type { SpecialComponentPropsWithRef } from '../types';
 import type { EditableRef } from '.';
 import { useBuilder } from '../hooks';
 import Form from './Form';
 
-export interface ModalEditableProps extends SpecialComponentPropsWithoutRef {
-  ref?: RefObject<EditableRef>;
-  children: ReactElement<ComponentPropsWithoutRef<any>>;
+export interface ModalEditableProps
+  extends SpecialComponentPropsWithRef<any, EditableRef> {
   element: ElementObject;
   component: ComponentObject;
   modalRef?: RefObject<ModalRef>;

@@ -17,7 +17,6 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  type SpecialComponentPropsWithoutRef,
   mockState,
   classNames,
   ensureNode,
@@ -38,13 +37,13 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 
-import type { OakRef } from '../types';
+import type { OakRef, SpecialComponentPropsWithRef } from '../types';
 import type { EditableRef } from '.';
 import { useBuilder } from '../hooks';
 import Form from './Form';
 
-export interface FloatingEditableProps extends SpecialComponentPropsWithoutRef {
-  ref?: RefObject<EditableRef>;
+export interface FloatingEditableProps
+  extends SpecialComponentPropsWithRef<any, EditableRef> {
   children: ReactElement<ComponentPropsWithRef<any>>;
   element: ElementObject;
   component: ComponentObject;

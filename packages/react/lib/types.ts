@@ -1,4 +1,10 @@
-import type { ComponentProps, RefObject, ReactNode } from 'react';
+import type {
+  ComponentProps,
+  RefObject,
+  ReactNode,
+  ElementType,
+  ComponentPropsWithoutRef,
+} from 'react';
 import type {
   AddonObject,
   Builder,
@@ -31,6 +37,13 @@ import type { ImageFieldProps } from './fields';
 
 export declare interface OakRef {
   isOak: boolean;
+}
+
+export declare type SpecialComponentPropsWithRef<
+  T extends ElementType = any,
+  R extends OakRef = any
+> = ComponentPropsWithoutRef<T> & {
+  ref?: RefObject<R>;
 }
 
 export declare type EditableType = 'floating' | 'modal';
