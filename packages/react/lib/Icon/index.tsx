@@ -1,6 +1,4 @@
-import type {
-  ComponentPropsWithRef,
-} from 'react';
+import type { ComponentPropsWithRef } from 'react';
 import { classNames } from '@junipero/react';
 
 const Icon = ({
