@@ -20,7 +20,7 @@
     "node": ">= 18"
   },
   "dependencies": {
-    "@junipero/core": "3.10.0-beta.0",
+    "@junipero/core": "3.10.0",
     "uuid": "11.0.3"
   },
   "scripts": {
