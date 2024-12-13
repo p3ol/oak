@@ -2,7 +2,7 @@ import {
   type ComponentPropsWithoutRef,
   type DragEvent,
   type MouseEvent,
-  type MutableRefObject,
+  type RefObject,
   useCallback,
   useRef,
   useState,
@@ -18,14 +18,17 @@ import { useElement } from './hooks';
 
 export interface DragOptionProps extends ComponentPropsWithoutRef<'a'> {
   element: ElementObject | ElementObject[];
-  elementInnerRef: MutableRefObject<HTMLElement>;
-  editableRef: MutableRefObject<EditableRef>;
+  elementInnerRef: RefObject<HTMLElement>;
+  editableRef: RefObject<EditableRef>;
 }
 
 export const DragOption = ({
-  element, elementInnerRef, editableRef, className,
+  element,
+  elementInnerRef,
+  editableRef,
+  className,
 }: DragOptionProps) => {
-  const optionRef = useRef<DraggableRef>();
+  const optionRef = useRef<DraggableRef>(null);
   const [hasTooltip, setHasTooltip] = useState(true);
 
   const onBeforeDragStart = (e: DragEvent) => {

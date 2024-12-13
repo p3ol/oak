@@ -11,7 +11,6 @@ import type {
   ElementObject,
 } from '@oakjs/core';
 import {
-  type StateReducer,
   type FieldContent,
   TouchableZone,
   Spinner,
@@ -57,7 +56,7 @@ const ImageField = ({
 }: ImageFieldProps) => {
   const { onImageUpload } = useBuilder();
   const [state, dispatch] = useReducer<
-    StateReducer<ImageFieldState>
+    ImageFieldState, [Partial<ImageFieldState>]
   >(mockState, {
     value: {
       ...value,
@@ -182,7 +181,6 @@ const ImageField = ({
         </>
       ) : (
         <TouchableZone
-          disabled={state.loading}
           onClick={iconOnly && state.value?.url ? onReset : onOpenFileDialog}
           className={classNames({ '!oak-w-full': !iconOnly })}
           { ...(iconOnly && {

@@ -10,7 +10,7 @@ import { ckeditorFieldAddon } from './addons';
 
 export default { title: 'React/With addon: CKEditor' };
 
-const baseContent: ElementObject = [
+const baseContent: ElementObject[] = [
   { type: 'text', content: 'This is a title' },
 ];
 
@@ -27,7 +27,11 @@ const addon: AddonObject = {
 
 export const basic = () => (
   <Builder
-    addons={[baseAddon(), ckeditorFieldAddon(), addon]}
+    addons={[baseAddon(), ckeditorFieldAddon({
+      config: {
+        licenseKey: 'GPL',
+      },
+    }), addon]}
     value={baseContent}
     rootBoundary={document.documentElement}
     options={{ debug: true }}

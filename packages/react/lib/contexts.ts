@@ -1,6 +1,6 @@
 import {
   type ChangeEvent,
-  type MutableRefObject,
+  type RefObject,
   createContext,
 } from 'react';
 import type {
@@ -17,21 +17,21 @@ export declare type BuilderContextValue = {
   content?: ElementObject[];
   addons?: AddonObject[];
   rootBoundary?:
-    MutableRefObject<HTMLElement> |
-    string |
-    Element |
-    DocumentFragment;
+    | RefObject<HTMLElement>
+    | string
+    | Element
+    | DocumentFragment;
   boundary?:
-    MutableRefObject<HTMLElement> |
+    RefObject<HTMLElement> |
     string |
     Element |
     DocumentFragment;
   onImageUpload?(event: ChangeEvent<HTMLInputElement>, opts?: {
     element?: ElementObject;
     setting?: ComponentSettingsFieldObject;
-  }): Promise<ImageUploadCallbackResult>;
-  rootRef?: MutableRefObject<HTMLDivElement>;
-  floatingsRef?: MutableRefObject<HTMLDivElement>;
+  }): ImageUploadCallbackResult | Promise<ImageUploadCallbackResult>;
+  rootRef?: RefObject<HTMLDivElement>;
+  floatingsRef?: RefObject<HTMLDivElement>;
   editableType?: EditableType;
   polyfills?: {
     DOMParser: typeof DOMParser;

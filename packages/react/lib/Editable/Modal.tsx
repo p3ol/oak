@@ -1,40 +1,27 @@
-import type {
-  ComponentObject,
-  ElementObject,
-} from '@oakjs/core';
-import {
-  type MutableRefObject,
-  type ReactElement,
-  type MouseEvent,
-  cloneElement,
-  forwardRef,
-} from 'react';
-import {
-  Modal,
-  type SpecialComponentPropsWithoutRef,
-} from '@junipero/react';
+import type { ComponentObject, ElementObject } from '@oakjs/core';
+import { type RefObject, type MouseEvent, cloneElement } from 'react';
+import { type ModalRef, Modal } from '@junipero/react';
 import { slideInLeftModal } from '@junipero/transitions';
 
+import type { SpecialComponentPropsWithRef } from '../types';
 import type { EditableRef } from '.';
 import { useBuilder } from '../hooks';
 import Form from './Form';
 
-export interface ModalEditableProps extends SpecialComponentPropsWithoutRef {
-  children: ReactElement;
+export interface ModalEditableProps
+  extends SpecialComponentPropsWithRef<any, EditableRef> {
   element: ElementObject;
   component: ComponentObject;
-  modalRef?: MutableRefObject<any>;
+  modalRef?: RefObject<ModalRef>;
 }
 
-const ModalEditable = forwardRef<
-  EditableRef,
-  ModalEditableProps
->(({
+const ModalEditable = ({
+  ref,
   element,
   component,
   modalRef,
   children,
-}, ref) => {
+}: ModalEditableProps) => {
   const { floatingsRef } = useBuilder();
 
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -57,12 +44,12 @@ const ModalEditable = forwardRef<
           component={component}
           onSave={() => modalRef.current?.close()}
           onCancel={() => modalRef.current?.close()}
-          editableRef={ref as MutableRefObject<EditableRef>}
+          editableRef={ref}
         />
       </Modal>
     </>
   );
-});
+};
 
 ModalEditable.displayName = 'ModalEditable';
 

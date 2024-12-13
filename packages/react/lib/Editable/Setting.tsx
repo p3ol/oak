@@ -7,7 +7,11 @@ import type {
   FieldOverride,
   FieldOverrideObject,
 } from '@oakjs/core';
-import { type MutableRefObject, useMemo } from 'react';
+import {
+  type ComponentPropsWithoutRef,
+  type RefObject,
+  useMemo,
+} from 'react';
 import {
   type FieldContent,
   Abstract,
@@ -23,11 +27,11 @@ import Text from '../Text';
 import Icon from '../Icon';
 import Field from './Field';
 
-export interface SettingProps {
+export interface SettingProps extends ComponentPropsWithoutRef<any> {
   setting: ComponentSettingsFieldObject;
   component: ComponentObject;
   element: ElementObject;
-  editableRef?: MutableRefObject<EditableRef>;
+  editableRef?: RefObject<EditableRef>;
   onSettingChange?(name: string, field: FieldContent): void;
   onSettingCustomChange?(
     name: string,

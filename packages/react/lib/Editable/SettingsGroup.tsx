@@ -18,7 +18,7 @@ const SettingsGroup = ({
 }: SettingProps & Pick<TabProps, 'onUpdate'>) => {
   const { editableType, builder } = useBuilder();
   const [open, setOpen] = useState(false);
-  const toggleRef = useRef<HTMLDivElement>();
+  const toggleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (open) {

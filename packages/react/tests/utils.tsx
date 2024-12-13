@@ -1,15 +1,17 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
+import { RefObject, useCallback, useImperativeHandle, useRef } from 'react';
 
-import type { BuilderProps, BuilderRef } from '../lib/Builder';
+import type { BuilderProps } from '../lib/Builder';
 import { type BuilderContextValue, BuilderContext } from '../lib/contexts';
 import { useRootBuilder } from '../lib/hooks';
 import Element from '../lib/Element';
+import { CatalogueRef } from '../lib';
 
-export const BuilderLite = forwardRef<BuilderRef, BuilderProps>(({
+export const BuilderLite = ({
+  ref,
   children,
   ...opts
-}, ref) => {
-  const innerRef = useRef<HTMLDivElement>();
+}: BuilderProps) => {
+  const innerRef = useRef<HTMLDivElement>(null);
   const { content, builder } = useRootBuilder(opts);
 
   useImperativeHandle(ref, () => ({
@@ -17,7 +19,7 @@ export const BuilderLite = forwardRef<BuilderRef, BuilderProps>(({
     content,
     isOak: true,
     innerRef,
-    catalogueRef: null,
+    catalogueRef: null as RefObject<CatalogueRef>, // don't know
   }));
 
   const getContext = useCallback((): BuilderContextValue => ({
@@ -42,4 +44,4 @@ export const BuilderLite = forwardRef<BuilderRef, BuilderProps>(({
       </BuilderContext.Provider>
     </div>
   );
-});
+};

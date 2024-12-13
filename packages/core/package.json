@@ -20,8 +20,8 @@
     "node": ">= 18"
   },
   "dependencies": {
-    "@junipero/core": "3.7.1",
-    "uuid": "11.0.2"
+    "@junipero/core": "3.10.0",
+    "uuid": "11.0.3"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
