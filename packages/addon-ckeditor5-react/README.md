@@ -49,7 +49,11 @@ export default () => {
 
   return (
     <Builder
-      addons={[baseAddon(), ckeditorFieldAddon(), myAddon()]}
+      addons={[baseAddon(), ckeditorFieldAddon({
+        config: {
+          licenseKey: 'GPL',
+        },
+      }), myAddon()]}
       value={content}
       onChange={setContent}
     />
