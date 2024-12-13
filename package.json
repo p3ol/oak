@@ -101,7 +101,7 @@
     "remirror": "3.0.1",
     "rollup": "4.28.1",
     "rollup-plugin-postcss": "4.0.2",
-    "sass": "1.82.0",
+    "sass": "1.83.0",
     "sass-loader": "16.0.4",
     "storybook": "8.4.7",
     "storybook-dark-mode": "4.0.2",
