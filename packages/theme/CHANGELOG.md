@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0](https://github.com/p3ol/oak/compare/v3.10.9...v3.11.0) (2024-12-16)
+
+
+### Bug Fixes
+
+* update junipero version ([2d3aa1d](https://github.com/p3ol/oak/commit/2d3aa1d8f5002e63e1632d4bf386b16ecbe29f31))
+
+
+
+# [3.11.0-beta.0](https://github.com/p3ol/oak/compare/v3.10.5...v3.11.0-beta.0) (2024-10-29)
+
+
+### Bug Fixes
+
+* upgrade various deps ([00dbd10](https://github.com/p3ol/oak/commit/00dbd102b0fe2b58e579756b63ad9300b5199e2d))
+
+
+
+
+
 ## [3.10.7](https://github.com/p3ol/oak/compare/v3.10.6...v3.10.7) (2024-11-12)
 
 

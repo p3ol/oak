@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0](https://github.com/p3ol/oak/compare/v3.10.9...v3.11.0) (2024-12-16)
+
+
+### Bug Fixes
+
+* **react:** various type issues ([2d84333](https://github.com/p3ol/oak/commit/2d843336cbffcce598b043925ddc774229ce2fcc))
+* update junipero version ([2d3aa1d](https://github.com/p3ol/oak/commit/2d3aa1d8f5002e63e1632d4bf386b16ecbe29f31))
+* upgrade a lot of deps ([2f162dd](https://github.com/p3ol/oak/commit/2f162ddfe10e2b384e4644d4828c532919158b88))
+* upgrade various deps ([883baa5](https://github.com/p3ol/oak/commit/883baa541a7ab9a083f3a9b47c2fdc9cf58ab33d))
+
+
+
+# [3.11.0-beta.0](https://github.com/p3ol/oak/compare/v3.10.5...v3.11.0-beta.0) (2024-10-29)
+
+
+### Bug Fixes
+
+* upgrade various deps ([00dbd10](https://github.com/p3ol/oak/commit/00dbd102b0fe2b58e579756b63ad9300b5199e2d))
+
+
+### Features
+
+* handle react 19 ([fe75825](https://github.com/p3ol/oak/commit/fe75825c0ac7df4d0e8ff8a01da8838c77487c51))
+
+
+
+
+
 ## [3.10.9](https://github.com/p3ol/oak/compare/v3.10.8...v3.10.9) (2024-11-18)
 
 

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0](https://github.com/p3ol/oak/compare/v3.10.9...v3.11.0) (2024-12-16)
+
+
+
+# [3.11.0-beta.0](https://github.com/p3ol/oak/compare/v3.10.5...v3.11.0-beta.0) (2024-10-29)
+
+
+### Features
+
+* handle react 19 ([fe75825](https://github.com/p3ol/oak/commit/fe75825c0ac7df4d0e8ff8a01da8838c77487c51))
+
+
+
+
+
 ## [3.10.9](https://github.com/p3ol/oak/compare/v3.10.8...v3.10.9) (2024-11-18)
 
 **Note:** Version bump only for package @oakjs/addon-ckeditor5-react
