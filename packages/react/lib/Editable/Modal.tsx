@@ -44,7 +44,7 @@ const ModalEditable = ({
           component={component}
           onSave={() => modalRef.current?.close()}
           onCancel={() => modalRef.current?.close()}
-          editableRef={ref}
+          editableRef={ref as RefObject<EditableRef>}
         />
       </Modal>
     </>

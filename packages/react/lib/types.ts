@@ -1,6 +1,7 @@
 import type {
   ComponentProps,
   RefObject,
+  Ref,
   ReactNode,
   ElementType,
   ComponentPropsWithoutRef,
@@ -43,7 +44,7 @@ export declare type SpecialComponentPropsWithRef<
   T extends ElementType = any,
   R extends OakRef = any
 > = ComponentPropsWithoutRef<T> & {
-  ref?: RefObject<R>;
+  ref?: Ref<R>;
 }
 
 export declare type EditableType = 'floating' | 'modal';
