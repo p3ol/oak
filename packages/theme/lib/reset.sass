@@ -1,4 +1,6 @@
-@import "tailwindcss/utilities"
+@use "sass:meta"
+
+@include meta.load-css("../../../node_modules/tailwindcss/utilities")
 
 *
   --oak-main-color: var(--junipero-velvet)

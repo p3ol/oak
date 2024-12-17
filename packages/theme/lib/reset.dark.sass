@@ -1,3 +1,5 @@
+@use "sass:meta"
+
 *
   --oak-background-main-color: var(--junipero-dark-velvet-disabled)
   --oak-shadow-color: transparent
@@ -16,19 +18,19 @@
   --oak-hover-main-color: var(--junipero-dark-velvet-disabled)
 
 .oak
-  @import "@junipero/theme/dist/css/reset.dark.min"
-  @import "@junipero/theme/dist/css/icons.dark.min"
-  @import "@junipero/theme/dist/css/Label.dark.min"
-  @import "@junipero/theme/dist/css/TextField.dark.min"
-  @import "@junipero/theme/dist/css/Calendar.dark.min"
-  @import "@junipero/theme/dist/css/Toggle.dark.min"
-  @import "@junipero/theme/dist/css/Tooltip.dark.min"
-  @import "@junipero/theme/dist/css/Dropdown.dark.min"
-  @import "@junipero/theme/dist/css/DateField.dark.min"
-  @import "@junipero/theme/dist/css/SelectField.dark.min"
-  @import "@junipero/theme/dist/css/Button.dark.min"
-  @import "@junipero/theme/dist/css/Tabs.dark.min"
-  @import "@junipero/theme/dist/css/ColorField.dark.min"
-  @import "@junipero/theme/dist/css/TouchableZone.dark.min"
-  @import "@junipero/theme/dist/css/Modal.dark.min"
-  @import "@junipero/theme/dist/css/Tag.dark.min"
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/reset.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/icons.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Label.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/TextField.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Calendar.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Toggle.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Tooltip.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Dropdown.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/DateField.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/SelectField.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Button.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Tabs.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/ColorField.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/TouchableZone.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Modal.dark.min")
+  @include meta.load-css("../../../node_modules/@junipero/theme/dist/css/Tag.dark.min")
