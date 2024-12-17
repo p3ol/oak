@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.2](https://github.com/p3ol/oak/compare/v3.11.1...v3.11.2) (2024-12-17)
+
+
+### Bug Fixes
+
+* **react:** type issues ([ae56c84](https://github.com/p3ol/oak/commit/ae56c843308eb8b5187c8b5476e73a0122aee978))
+
+
+
+
+
 ## [3.11.1](https://github.com/p3ol/oak/compare/v3.11.0...v3.11.1) (2024-12-17)
 
 **Note:** Version bump only for package oak
