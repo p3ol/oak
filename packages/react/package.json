@@ -26,8 +26,8 @@
   "dependencies": {
     "@floating-ui/react": "0.27.1",
     "@junipero/hooks": "3.10.0",
-    "@junipero/react": "3.10.1",
-    "@junipero/transitions": "3.10.1",
+    "@junipero/react": "3.10.3",
+    "@junipero/transitions": "3.10.3",
     "uuid": "11.0.3"
   },
   "scripts": {

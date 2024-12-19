@@ -2416,9 +2416,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/react@npm:3.10.1":
-  version: 3.10.1
-  resolution: "@junipero/react@npm:3.10.1"
+"@junipero/react@npm:3.10.3":
+  version: 3.10.3
+  resolution: "@junipero/react@npm:3.10.3"
   dependencies:
     "@floating-ui/react": "npm:0.27.0"
     "@junipero/core": "npm:^3.10.0"
@@ -2426,7 +2426,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
     react-dom: ^18.0.0 || ^19.0.0
-  checksum: 10/21df386c474868f5b976740aca07dca86d128c2d30c71c21f1ee3bda92d6adfc58438cb28f2171627dd76f423ea52cba73e005f708dce5f8aa0de7a490d3105c
+  checksum: 10/a11c3c89edb86ee3fac0080a96fd4798326f8803bffa53f380c97a1bb38973be0850b588c54e8b3a03c3e27dd543133f8ca02661875fb2a937753819f7446005
   languageName: node
   linkType: hard
 
@@ -2440,21 +2440,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/theme@npm:3.10.0":
-  version: 3.10.0
-  resolution: "@junipero/theme@npm:3.10.0"
-  checksum: 10/f0b22144ac97d2d19b6bbcac668ce26f3b0378e99e0071dd482895cd2af115ed40b1d15e0b260afaed089544de813d370e5afba3cb5f9122cf41a72c25df6253
+"@junipero/theme@npm:3.10.2":
+  version: 3.10.2
+  resolution: "@junipero/theme@npm:3.10.2"
+  checksum: 10/e8eaac07d2566f08e45e753f284e896653302e0b11da71c2ea7506e44ad20f226eb549cc94ec229e9c25537dcce8c00821ddeeba96ee3c26b3e3a21a37ff8b12
   languageName: node
   linkType: hard
 
-"@junipero/transitions@npm:3.10.1":
-  version: 3.10.1
-  resolution: "@junipero/transitions@npm:3.10.1"
+"@junipero/transitions@npm:3.10.3":
+  version: 3.10.3
+  resolution: "@junipero/transitions@npm:3.10.3"
   peerDependencies:
     "@junipero/react": ^3.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/0d42217b8b270f502c092512c7243c0eba37e9926cb728674e4f9f5952d3047e9dc3a5a3c47a04d71231bf9ef487c0a89aaa08b19e2f3a47b0166a25853f596c
+  checksum: 10/1b0ca459bf4b52d17d24179e7dd59d335f2ac854bde964c7b91303e3d511d37282bd860ce3e3ff184fd374292b986cf8ed69496d17dbe729d7a168c53fea263d
   languageName: node
   linkType: hard
 
@@ -3037,8 +3037,8 @@ __metadata:
   dependencies:
     "@floating-ui/react": "npm:0.27.1"
     "@junipero/hooks": "npm:3.10.0"
-    "@junipero/react": "npm:3.10.1"
-    "@junipero/transitions": "npm:3.10.1"
+    "@junipero/react": "npm:3.10.3"
+    "@junipero/transitions": "npm:3.10.3"
     uuid: "npm:11.0.3"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
@@ -3073,7 +3073,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/theme@workspace:packages/theme"
   dependencies:
-    "@junipero/theme": "npm:3.10.0"
+    "@junipero/theme": "npm:3.10.2"
   languageName: unknown
   linkType: soft
 
