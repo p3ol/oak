@@ -29,9 +29,14 @@ const Property = ({
     override?.fields?.find(f => f.key === setting.key) || {},
   ), [setting, override]);
 
-  const value = useMemo(() => (
-    get(element, field.key as string, field.default)
-  ), [element, Object.values(element), field]);
+  const value = useMemo(() => {
+    console.log(field.default);
+
+    return (
+      get(element, field.key as string, typeof field.default === 'function'
+        ? field.default(element) : field.default)
+    );
+  }, [element, Object.values(element), field]);
 
   const option = useMemo(() => (
     field.options?.find((o: ComponentSettingsFieldOptionObject) => (

@@ -67,7 +67,8 @@ const Field = ({
     value: builder.getElementSettings(
       element,
       fieldSetting.key,
-      setting.default
+      typeof setting.default === 'function'
+        ? setting.default(element) : setting.default,
     ),
     required: setting.required,
     onChange: (overrides?.field as FieldOverride)?.onChange
