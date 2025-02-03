@@ -30,7 +30,8 @@ const Property = ({
   ), [setting, override]);
 
   const value = useMemo(() => (
-    get(element, field.key as string, field.default)
+    get(element, field.key as string, typeof field.default === 'function'
+      ? field.default(element) : field.default)
   ), [element, Object.values(element), field]);
 
   const option = useMemo(() => (

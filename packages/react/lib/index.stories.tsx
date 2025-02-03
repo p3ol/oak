@@ -623,3 +623,32 @@ export const withSharedSettings = () => (
     onChange={action('change')}
   />
 );
+
+export const withFunctionAsDefault = () => {
+  return (
+    <div>
+      <Builder
+        addons={[baseAddon(), {
+          settings: [{
+            key: 'settings.foo',
+            label: 'Foo',
+            type: 'select',
+            options: [
+              { title: 'One', value: 1 },
+              { title: 'Two', value: 2 },
+            ],
+            default: (element: ElementObject) => {
+
+              return element.type === 'row' ? 1 : 2;
+            },
+            condition: () => {
+
+              return true;
+            },
+          }],
+        }]}
+        options={{ debug: true }}
+      />
+    </div>
+  );
+};
