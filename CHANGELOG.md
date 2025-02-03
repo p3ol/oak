@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.12.0](https://github.com/p3ol/oak/compare/v3.11.2...v3.12.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* update various deps ([35577a9](https://github.com/p3ol/oak/commit/35577a9de01741dd91d978db80fd7a9bd05bb5a0))
+
+
+### Features
+
+* **settings:** allow to pass function to default value prop ([c899cf1](https://github.com/p3ol/oak/commit/c899cf1921f40a1e1de04fd31329a6264adf95f4))
+* **settinhs:** remove useless log ([441fec4](https://github.com/p3ol/oak/commit/441fec4952a7ce539d4dd154f52a307422d2c979))
+
+
+
+
+
 ## [3.11.2](https://github.com/p3ol/oak/compare/v3.11.1...v3.11.2) (2024-12-17)
 
 
