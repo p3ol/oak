@@ -100,7 +100,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "remirror": "3.0.1",
-    "rollup": "4.34.1",
+    "rollup": "4.34.9",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.83.4",
     "sass-loader": "16.0.4",
