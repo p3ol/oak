@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.2](https://github.com/p3ol/oak/compare/v3.12.1...v3.12.2) (2025-04-15)
+
+
+### Bug Fixes
+
+* **react:** remove xmlns attribute in serialized string ([b9eae32](https://github.com/p3ol/oak/commit/b9eae3220a35caa99d2fb9e21f62f78fd51d592f))
+
+
+
+
+
 ## [3.12.1](https://github.com/p3ol/oak/compare/v3.12.0...v3.12.1) (2025-03-13)
 
 
