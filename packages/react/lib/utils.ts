@@ -1,6 +1,10 @@
 export const copyToClipboard = (value: string) =>
   globalThis.navigator.clipboard.writeText(value);
 
+const getElements = (doc: Document, tagName: string) => {
+  return Array.from(doc.getElementsByTagName(tagName) || []);
+};
+
 export const sanitizeHTML = (content: string, opts?: {
   parser?: typeof DOMParser;
   serializer?: typeof XMLSerializer;
@@ -8,10 +12,6 @@ export const sanitizeHTML = (content: string, opts?: {
   try {
     const parsed = new (opts?.parser || DOMParser)()
       .parseFromString(`<body>${content}</body>`, 'text/html');
-
-    const getElements = (doc: Document, tagName: string) => {
-      return Array.from(doc.getElementsByTagName(tagName) || []);
-    };
 
     // Remove script & style tags
     ['script', 'style', 'iframe', 'object', 'video', 'audio'].forEach(t => {
