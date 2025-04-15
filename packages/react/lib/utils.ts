@@ -9,14 +9,21 @@ export const sanitizeHTML = (content: string, opts?: {
     const parsed = new (opts?.parser || DOMParser)()
       .parseFromString(`<body>${content}</body>`, 'text/html');
 
+    const getElements = (doc: Document, tagName: string) => {
+      return Array.from(doc.getElementsByTagName(tagName) || []);
+    };
+
     // Remove script & style tags
     ['script', 'style', 'iframe', 'object', 'video', 'audio'].forEach(t => {
-      Array.from(parsed.getElementsByTagName(t))
-        .forEach(item => item.parentNode.removeChild(item));
+      getElements(parsed, t).forEach(item => {
+        if (item.parentNode) {
+          item.parentNode.removeChild(item);
+        }
+      });
     });
 
     // Disable all links
-    Array.from(parsed.getElementsByTagName('a')).forEach(item => {
+    getElements(parsed, 'a').forEach(item => {
       if (item.hasAttribute('href')) {
         item.removeAttribute('href');
         item.removeAttribute('target');
@@ -24,7 +31,9 @@ export const sanitizeHTML = (content: string, opts?: {
       }
     });
 
-    return new (opts?.serializer || XMLSerializer)().serializeToString(parsed);
+    return new (opts?.serializer || XMLSerializer)()
+      .serializeToString(parsed)
+      .replace(/\sxmlns="[^"]*"/g, '');
   } catch (e) {
     console.error(e);
 
