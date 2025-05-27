@@ -10,10 +10,11 @@ import {
 import { get, classNames } from '@junipero/react';
 
 import Text from '../Text';
+import { ReactComponentSettingsFieldObject } from '../types';
 
 interface PropertyProps extends ComponentPropsWithoutRef<'span'> {
   element: ElementObject;
-  field: ComponentSettingsFieldObject;
+  field: ReactComponentSettingsFieldObject;
   override?: ComponentOverrideObject | ComponentOverride;
 }
 

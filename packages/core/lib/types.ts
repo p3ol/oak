@@ -142,7 +142,7 @@ export declare interface ComponentSettingsFieldObject {
     component: ComponentObject;
     builder: Builder;
   }): boolean;
-  display?: (value: any) => string;
+  display?: (value: any) => any;
   disabled?: boolean;
   required?: boolean;
 }
