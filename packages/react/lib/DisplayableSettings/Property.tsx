@@ -28,7 +28,6 @@ const Property = ({
     setting,
     override?.fields?.find(f => f.key === setting.key) || {},
   ), [setting, override]);
-
   const value = useMemo(() => (
     get(element, field.key as string, typeof field.default === 'function'
       ? field.default(element) : field.default)
@@ -50,7 +49,7 @@ const Property = ({
         { option?.title ? (
           <Text>{ option.title }</Text>
         ) : (
-          <Text>{ value }</Text>
+          <Text>{ setting.display(value) }</Text>
         ) }
       </span>
     </span>

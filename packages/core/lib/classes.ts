@@ -453,6 +453,7 @@ export class ComponentSettingsField {
   priority: number;
   fields: Array<any>;
   props: object;
+  display: (value: any) => string;
 
   constructor (props: ComponentSettingsFieldObject, isOverride?: boolean) {
     if (!props.fields && !props.type && !isOverride) {
@@ -474,6 +475,7 @@ export class ComponentSettingsField {
     this.valueType = props.valueType;
     this.condition = props.condition;
     this.priority = props.priority;
+    this.display = props.display || ((value: any) => value);
     this.fields = (props.fields || []).map((
       f: ComponentSettingsFieldObject
     ) => new ComponentSettingsField(f, isOverride));

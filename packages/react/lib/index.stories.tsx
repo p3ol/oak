@@ -645,7 +645,28 @@ export const withFunctionAsDefault = () => {
 
               return true;
             },
-          }],
+          } as ComponentSettingsFieldObject],
+        }]}
+        options={{ debug: true }}
+      />
+    </div>
+  );
+};
+
+export const withCustomFieldDisplayfunction = () => {
+  return (
+    <div>
+      <Builder
+        addons={[baseAddon(), {
+          settings: [{
+            key: 'settings.foo',
+            label: 'Foo',
+            type: 'date',
+            default: () => new Date(),
+            displayable: true,
+            display: (value: any) => (value as Date).toISOString(),
+            condition: () => true,
+          } as ComponentSettingsFieldObject],
         }]}
         options={{ debug: true }}
       />
