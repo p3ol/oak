@@ -1,10 +1,12 @@
-import type {
-  AddonObject,
-  ComponentSettingsFieldObject,
-  ElementObject,
+import {
+  stylingSettingsFields,
+  type AddonObject,
+  type ComponentSettingsFieldObject,
+  type ElementObject,
 } from '@oakjs/core';
 import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import { Button } from '@junipero/react';
 
 import Builder, { type BuilderRef } from './Builder';
 import { baseAddon } from './addons';
@@ -671,5 +673,47 @@ export const withCustomFieldDisplayfunction = () => {
         options={{ debug: true }}
       />
     </div>
+  );
+};
+
+export const withExtendedSettings = () => (
+  <Builder
+    addons={[
+      baseAddon(),
+      {
+        settings: stylingSettingsFields('styles.checked'),
+      },
+    ]
+
+    }
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
+export const withCatalogueUpdate = () => {
+  const [addons, setAddons] = useState([]);
+
+  const updateAddons = () => {
+    if (addons.length) {
+      setAddons([]);
+    } else {
+      setAddons([baseAddon()]);
+    }
+  };
+
+  return (
+    <>
+      <Button onClick={updateAddons}>
+        Update Addons
+      </Button>
+      <Builder
+        addons={addons}
+        value={baseContent}
+        options={{ debug: true }}
+        onChange={action('change')}
+      />
+    </>
   );
 };

@@ -163,7 +163,7 @@ const Catalogue = ({
 
   const availableGroups = useMemo(() => (
     builder.getAvailableComponents()
-  ), [builder]);
+  ), [builder, addons]);
 
   const groups = useMemo(() => (
     availableGroups
