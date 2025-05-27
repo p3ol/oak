@@ -559,6 +559,22 @@ export const withMultipleEditableTabs = () => (
   />
 );
 
+export const withDisableTabs = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'setting',
+        targets: ['*'],
+        key: 'responsive',
+        condition: () => false,
+      }],
+    } as AddonObject]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
 export const withImageUpdload = () => (
   <Builder
     onImageUpload={(e: FormEvent) => {
