@@ -696,3 +696,36 @@ export const withCatalogueUpdate = () => {
     </>
   );
 };
+
+export const withRemovingField = () => {
+  return (
+    <div>
+      <Builder
+        editableType="modal"
+        value={[{
+          type: 'clickable',
+          action: 'link',
+          url: '',
+          content: [],
+          id: 'eb1c798b-1dc7-4968-95d9-e4faf0e38bd6',
+        }]}
+        addons={[baseAddon(), {
+          overrides: [{
+            type: 'component',
+            targets: ['button', 'clickable'],
+            fields: [{
+              key: 'url',
+              type: null,
+              condition: (element: ElementObject) => true,
+            }, {
+              key: 'target',
+              type: null,
+              condition: (element: ElementObject) => false,
+            }],
+          }],
+        }]}
+        options={{ debug: true }}
+      />
+    </div>
+  );
+};
