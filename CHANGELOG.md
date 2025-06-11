@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.4](https://github.com/p3ol/oak/compare/v3.12.3...v3.12.4) (2025-06-11)
+
+
+### Bug Fixes
+
+* better override fallback ([c0a795d](https://github.com/p3ol/oak/commit/c0a795dc22ce6a9aa8ee82217d8b9c2bfe3c1d60))
+* **react:** allow to override tabs ([3e37775](https://github.com/p3ol/oak/commit/3e37775f6d6b35b8cbd05d53a71b1f114fea27b1))
+
+
+
+
+
 ## [3.12.3](https://github.com/p3ol/oak/compare/v3.12.2...v3.12.3) (2025-06-11)
 
 
