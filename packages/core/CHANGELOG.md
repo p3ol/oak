@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.3](https://github.com/p3ol/oak/compare/v3.12.2...v3.12.3) (2025-06-11)
+
+
+### Bug Fixes
+
+* force setting type to null if useless ([6ed6202](https://github.com/p3ol/oak/commit/6ed6202251eb5410be6c8f9ba540558b4f6a77e2))
+* set field type optionnal, as it can be usefull just to hide it ([facdf17](https://github.com/p3ol/oak/commit/facdf170908519a505be59cd9ec237341f284b44))
+
+
+
+
+
 # [3.12.0](https://github.com/p3ol/oak/compare/v3.11.2...v3.12.0) (2025-02-03)
 
 
