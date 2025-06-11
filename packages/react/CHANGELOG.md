@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.3](https://github.com/p3ol/oak/compare/v3.12.2...v3.12.3) (2025-06-11)
+
+
+### Bug Fixes
+
+* add story ([392c5f1](https://github.com/p3ol/oak/commit/392c5f1124798e1a086e41c8c62589448422e41a))
+* force setting type to null if useless ([6ed6202](https://github.com/p3ol/oak/commit/6ed6202251eb5410be6c8f9ba540558b4f6a77e2))
+* **settings:** add component overrides on setting display condition ([fa6b314](https://github.com/p3ol/oak/commit/fa6b314c7e4701a8d959ae058cf5bae8a8d3eee9))
+
+
+
+
+
 ## [3.12.2](https://github.com/p3ol/oak/compare/v3.12.1...v3.12.2) (2025-04-15)
 
 

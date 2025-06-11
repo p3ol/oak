@@ -116,7 +116,7 @@ export declare interface ComponentSettingsFieldOptionObject {
 export declare interface ComponentSettingsFieldObject {
   name?: string;
   priority?: number;
-  type: string;
+  type: string | null;
   key?: string | string[];
   tab?: string;
   id?: string;
