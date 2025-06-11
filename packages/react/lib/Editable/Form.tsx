@@ -150,9 +150,11 @@ const Form = ({
                 'setting', element.type, { setting: { key: tab.id } }
               ) as SettingOverrideObject;
 
-              return (override || tab).type === 'tab' && (
-                !(override || tab).condition ||
-                (override || tab).condition(state.element, {
+              const condition = override?.condition ||
+                tab.condition;
+
+              return tab.type === 'tab' && (
+                !condition || condition(state.element, {
                   component, builder,
                 })
               );
