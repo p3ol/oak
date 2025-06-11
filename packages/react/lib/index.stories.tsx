@@ -715,9 +715,11 @@ export const withRemovingField = () => {
             targets: ['button', 'clickable'],
             fields: [{
               key: 'url',
+              type: null,
               condition: (element: ElementObject) => true,
             }, {
               key: 'target',
+              type: null,
               condition: (element: ElementObject) => false,
             }],
           }],
