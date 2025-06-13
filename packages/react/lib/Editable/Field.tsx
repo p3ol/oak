@@ -75,6 +75,7 @@ const Field = ({
       ? onCustomChange.bind(null, setting.key, overrides.field)
       : onChange.bind(null, setting.key),
     ...field?.props,
+    ...setting?.props,
     ...(overrides.field as FieldOverride)?.props,
     ...(overrides.settings as FieldOverride)?.props,
   };
