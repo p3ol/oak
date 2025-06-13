@@ -624,6 +624,10 @@ export const withSharedSettings = () => (
           { title: 'Wrap', value: 'wrap' },
           { title: 'Wrap Reverse', value: 'wrap-reverse' },
         ],
+        props: {
+          clearable: true,
+          searchable: false,
+        },
         condition: (element: ElementObject) => element.type === 'row',
         default: 'nowrap',
       }],
