@@ -117,6 +117,11 @@ export declare interface ReactComponentOverrideObject
   ): ReactNode;
 }
 
+export declare interface ReactComponentSettingsFieldObject
+  extends ComponentSettingsFieldObject {
+  display?: (value: any) => ReactNode;
+}
+
 export declare interface ReactFieldOverrideObject extends FieldOverrideObject {
   render?(
     props: (
