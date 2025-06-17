@@ -559,6 +559,22 @@ export const withMultipleEditableTabs = () => (
   />
 );
 
+export const withDisableTabs = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'setting',
+        targets: ['*'],
+        key: 'responsive',
+        condition: () => false,
+      }],
+    } as AddonObject]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
 export const withImageUpdload = () => (
   <Builder
     onImageUpload={(e: FormEvent) => {
@@ -608,6 +624,10 @@ export const withSharedSettings = () => (
           { title: 'Wrap', value: 'wrap' },
           { title: 'Wrap Reverse', value: 'wrap-reverse' },
         ],
+        props: {
+          clearable: true,
+          searchable: false,
+        },
         condition: (element: ElementObject) => element.type === 'row',
         default: 'nowrap',
       }],
@@ -715,5 +735,38 @@ export const withCatalogueUpdate = () => {
         onChange={action('change')}
       />
     </>
+  );
+};
+
+export const withRemovingField = () => {
+  return (
+    <div>
+      <Builder
+        editableType="modal"
+        value={[{
+          type: 'clickable',
+          action: 'link',
+          url: '',
+          content: [],
+          id: 'eb1c798b-1dc7-4968-95d9-e4faf0e38bd6',
+        }]}
+        addons={[baseAddon(), {
+          overrides: [{
+            type: 'component',
+            targets: ['button', 'clickable'],
+            fields: [{
+              key: 'url',
+              type: null,
+              condition: (element: ElementObject) => true,
+            }, {
+              key: 'target',
+              type: null,
+              condition: (element: ElementObject) => false,
+            }],
+          }],
+        }]}
+        options={{ debug: true }}
+      />
+    </div>
   );
 };
