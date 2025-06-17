@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.5](https://github.com/p3ol/oak/compare/v3.12.4...v3.12.5) (2025-06-17)
+
+
+### Bug Fixes
+
+* missing field props from setting addon ([c7a034a](https://github.com/p3ol/oak/commit/c7a034afa02b525af13226e782adeb1c5b6151e5))
+
+
+
+
+
 ## [3.12.4](https://github.com/p3ol/oak/compare/v3.12.3...v3.12.4) (2025-06-11)
 
 
