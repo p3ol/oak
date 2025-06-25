@@ -480,6 +480,13 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
         t: GetTextCallback
       ) => t('core.components.image.settings.image.title', 'Image'),
     }, {
+      type: 'text',
+      key: 'settings.alt',
+      label: (t: GetTextCallback) => t(
+        'core.components.image.settings.image.alt.title',
+        'Image alternative text'
+      ),
+    }, {
       type: 'select',
       key: 'settings.size',
       label: (t: GetTextCallback) => t(
