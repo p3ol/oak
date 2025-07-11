@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.5](https://github.com/p3ol/oak/compare/v3.12.4...v3.12.5) (2025-06-17)
+
+
+### Bug Fixes
+
+* missing field props from setting addon ([c7a034a](https://github.com/p3ol/oak/commit/c7a034afa02b525af13226e782adeb1c5b6151e5))
+
+
+
+
+
+## [3.12.4](https://github.com/p3ol/oak/compare/v3.12.3...v3.12.4) (2025-06-11)
+
+
+### Bug Fixes
+
+* better override fallback ([c0a795d](https://github.com/p3ol/oak/commit/c0a795dc22ce6a9aa8ee82217d8b9c2bfe3c1d60))
+* **react:** allow to override tabs ([3e37775](https://github.com/p3ol/oak/commit/3e37775f6d6b35b8cbd05d53a71b1f114fea27b1))
+
+
+
+
+
+## [3.12.3](https://github.com/p3ol/oak/compare/v3.12.2...v3.12.3) (2025-06-11)
+
+
+### Bug Fixes
+
+* add story ([392c5f1](https://github.com/p3ol/oak/commit/392c5f1124798e1a086e41c8c62589448422e41a))
+* force setting type to null if useless ([6ed6202](https://github.com/p3ol/oak/commit/6ed6202251eb5410be6c8f9ba540558b4f6a77e2))
+* **settings:** add component overrides on setting display condition ([fa6b314](https://github.com/p3ol/oak/commit/fa6b314c7e4701a8d959ae058cf5bae8a8d3eee9))
+
+
+
+
+
+## [3.12.2](https://github.com/p3ol/oak/compare/v3.12.1...v3.12.2) (2025-04-15)
+
+
+### Bug Fixes
+
+* **react:** remove xmlns attribute in serialized string ([b9eae32](https://github.com/p3ol/oak/commit/b9eae3220a35caa99d2fb9e21f62f78fd51d592f))
+
+
+
+
+
+## [3.12.1](https://github.com/p3ol/oak/compare/v3.12.0...v3.12.1) (2025-03-13)
+
+
+### Bug Fixes
+
+* add story ([d810acb](https://github.com/p3ol/oak/commit/d810acbee27c94b7a2e3f3623ec55dbd47b901d4))
+* **catalogue:** refresh catalogue when addon change ([c678f8a](https://github.com/p3ol/oak/commit/c678f8aa7ea55b5ad7f3938b42c9c5e8c8b04ef8))
+
+
+
+
+
 # [3.12.0](https://github.com/p3ol/oak/compare/v3.11.2...v3.12.0) (2025-02-03)
 
 

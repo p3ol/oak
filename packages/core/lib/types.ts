@@ -116,7 +116,7 @@ export declare interface ComponentSettingsFieldOptionObject {
 export declare interface ComponentSettingsFieldObject {
   name?: string;
   priority?: number;
-  type: string;
+  type: string | null;
   key?: string | string[];
   tab?: string;
   id?: string;
@@ -142,6 +142,7 @@ export declare interface ComponentSettingsFieldObject {
     component: ComponentObject;
     builder: Builder;
   }): boolean;
+  display?: (value: any) => any;
   disabled?: boolean;
   required?: boolean;
 }

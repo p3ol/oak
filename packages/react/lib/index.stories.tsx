@@ -1,10 +1,12 @@
-import type {
-  AddonObject,
-  ComponentSettingsFieldObject,
-  ElementObject,
+import {
+  stylingSettingsFields,
+  type AddonObject,
+  type ComponentSettingsFieldObject,
+  type ElementObject,
 } from '@oakjs/core';
 import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import { Button } from '@junipero/react';
 
 import Builder, { type BuilderRef } from './Builder';
 import { baseAddon } from './addons';
@@ -557,6 +559,22 @@ export const withMultipleEditableTabs = () => (
   />
 );
 
+export const withDisableTabs = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'setting',
+        targets: ['*'],
+        key: 'responsive',
+        condition: () => false,
+      }],
+    } as AddonObject]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
 export const withImageUpdload = () => (
   <Builder
     onImageUpload={(e: FormEvent) => {
@@ -606,6 +624,10 @@ export const withSharedSettings = () => (
           { title: 'Wrap', value: 'wrap' },
           { title: 'Wrap Reverse', value: 'wrap-reverse' },
         ],
+        props: {
+          clearable: true,
+          searchable: false,
+        },
         condition: (element: ElementObject) => element.type === 'row',
         default: 'nowrap',
       }],
@@ -645,6 +667,102 @@ export const withFunctionAsDefault = () => {
 
               return true;
             },
+          } as ComponentSettingsFieldObject],
+        }]}
+        options={{ debug: true }}
+      />
+    </div>
+  );
+};
+
+export const withCustomFieldDisplayfunction = () => {
+  return (
+    <div>
+      <Builder
+        addons={[baseAddon(), {
+          settings: [{
+            key: 'settings.foo',
+            label: 'Foo',
+            type: 'date',
+            default: () => new Date(),
+            displayable: true,
+            display: (value: any) => (value as Date).toISOString(),
+            condition: () => true,
+          } as ComponentSettingsFieldObject],
+        }]}
+        options={{ debug: true }}
+      />
+    </div>
+  );
+};
+
+export const withExtendedSettings = () => (
+  <Builder
+    addons={[
+      baseAddon(),
+      {
+        settings: stylingSettingsFields('styles.checked'),
+      },
+    ]
+
+    }
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
+export const withCatalogueUpdate = () => {
+  const [addons, setAddons] = useState([]);
+
+  const updateAddons = () => {
+    if (addons.length) {
+      setAddons([]);
+    } else {
+      setAddons([baseAddon()]);
+    }
+  };
+
+  return (
+    <>
+      <Button onClick={updateAddons}>
+        Update Addons
+      </Button>
+      <Builder
+        addons={addons}
+        value={baseContent}
+        options={{ debug: true }}
+        onChange={action('change')}
+      />
+    </>
+  );
+};
+
+export const withRemovingField = () => {
+  return (
+    <div>
+      <Builder
+        editableType="modal"
+        value={[{
+          type: 'clickable',
+          action: 'link',
+          url: '',
+          content: [],
+          id: 'eb1c798b-1dc7-4968-95d9-e4faf0e38bd6',
+        }]}
+        addons={[baseAddon(), {
+          overrides: [{
+            type: 'component',
+            targets: ['button', 'clickable'],
+            fields: [{
+              key: 'url',
+              type: null,
+              condition: (element: ElementObject) => true,
+            }, {
+              key: 'target',
+              type: null,
+              condition: (element: ElementObject) => false,
+            }],
           }],
         }]}
         options={{ debug: true }}

@@ -54,12 +54,20 @@ const Setting = ({
     builder.getOverride('setting', element.type, { setting }) as SettingOverride
   ), [element, setting]);
 
+  const componentOverrides = useMemo<ComponentSettingsFieldObject>(() => (
+    builder.getOverride('component', element.type, {
+      output: 'field', setting,
+    }) as ComponentSettingsFieldObject
+  ), [element, setting]);
+
   const hasSubfields = useMemo(() => (
     Array.isArray(override?.fields || setting.fields) &&
     (override?.fields || setting.fields).length > 0
   ), [setting, override]);
 
-  const condition = override?.condition || setting.condition;
+  const condition = override?.condition ||
+    componentOverrides?.condition ||
+    setting.condition;
 
   if (
     condition &&

@@ -9,6 +9,7 @@ import type {
   FieldObject,
   FieldOverride,
   FieldOverrideObject,
+  SettingOverrideObject,
 } from '@oakjs/core';
 import {
   type ComponentPropsWithoutRef,
@@ -144,9 +145,20 @@ const Form = ({
               a: ComponentSettingsTabObject,
               b: ComponentSettingsTabObject,
             ) => (b.priority || 0) - (a.priority || 0))
-            .filter((tab: ComponentSettingsTabObject) => tab.type === 'tab' &&
-              (!tab.condition ||
-                tab.condition(state.element, { component, builder })))
+            .filter((tab: ComponentSettingsTabObject) => {
+              const override = builder.getOverride(
+                'setting', element.type, { setting: { key: tab.id } }
+              ) as SettingOverrideObject;
+
+              const condition = override?.condition ||
+                tab.condition;
+
+              return tab.type === 'tab' && (
+                !condition || condition(state.element, {
+                  component, builder,
+                })
+              );
+            })
             .map((tab: ComponentSettingsTabObject, t) => ({
               title: <Text>{ tab.title }</Text>,
               content: (
