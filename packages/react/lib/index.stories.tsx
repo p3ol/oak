@@ -5,7 +5,7 @@ import {
   type ElementObject,
 } from '@oakjs/core';
 import { type FormEvent, useEffect, useRef, useState } from 'react';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { Button } from '@junipero/react';
 
 import Builder, { type BuilderRef } from './Builder';

@@ -1,20 +1,24 @@
-import path from 'node:path';
+import { createRequire } from "node:module";
+import path, { dirname, join } from 'node:path';
 
 import type { RuleSetRule } from 'webpack';
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import { styles } from '@ckeditor/ckeditor5-dev-utils';
 
+const require = createRequire(import.meta.url);
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}
+
 const config: StorybookConfig = {
   stories: [
-    '../packages/react/lib/index.stories.{js,tsx}',
     '../packages/*/lib/**/*.stories.{js,tsx}',
   ],
   addons: [
-    '@storybook/addon-storysource',
-    '@storybook/addon-actions',
-    '@storybook/addon-themes',
+    getAbsolutePath("@storybook/addon-themes"),
     {
-      name: '@storybook/addon-styling-webpack',
+      name: getAbsolutePath("@storybook/addon-styling-webpack"),
       options: {
         rules: [
           {
@@ -39,17 +43,19 @@ const config: StorybookConfig = {
         ],
       },
     },
-    '@storybook/addon-webpack5-compiler-swc',
+    getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
+    getAbsolutePath("@storybook/addon-docs"),
   ],
-  framework: '@storybook/react-webpack5',
+  framework: getAbsolutePath("@storybook/react-webpack5"),
   webpackFinal: config => {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
-      '@oakjs/core': path.resolve('./packages/core/lib'),
-      '@oakjs/react': path.resolve('./packages/react/lib'),
-      '@oakjs/ckeditor5-build-custom': path.resolve('./packages/ckeditor5-build-custom/lib'),
-      '@poool/oak/lib': path.resolve('./packages/oak/lib'),
-      '@poool/oak': path.resolve('./packages/oak/lib')
+      '@oakjs/core': path.resolve(__dirname, '../packages/core/lib'),
+      '@oakjs/react': path.resolve(__dirname, '../packages/react/lib'),
+      '@oakjs/ckeditor5-build-custom': path
+        .resolve(__dirname, '../packages/ckeditor5-build-custom/lib'),
+      '@poool/oak/lib': path.resolve(__dirname, '../packages/oak/lib'),
+      '@poool/oak': path.resolve(__dirname, '../packages/oak/lib')
     };
 
     // CKEditor config
@@ -112,7 +118,6 @@ const config: StorybookConfig = {
         ...config.jsc?.parser,
         syntax: 'typescript',
         tsx: true,
-        jsx: true,
       },
     },
   }),
