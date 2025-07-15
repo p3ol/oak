@@ -49,9 +49,10 @@ const Col = ({
   const { builder, floatingsRef, addons } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent?.(element.type)
-  ), [element.type]);
+  ), [element.type, builder]);
   const override = useMemo(() => (
     builder.getOverride('component', element?.type) as ComponentOverride
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [builder, element?.type, addons]);
 
   const onPrependCol_ = (e: MouseEvent<HTMLAnchorElement>) => {

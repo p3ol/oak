@@ -7,13 +7,14 @@ const Icon = ({
   children,
   ...rest
 }: ComponentPropsWithRef<any>) =>
-  typeof children === 'function' ? (children as Function)({ ref }) : (
+  typeof children === 'function' ? children({ ref }) : (
     <i
       className={classNames('icon junipero-icons', className)}
-      children={children}
       ref={ref}
       { ...rest }
-    />
+    >
+      { children }
+    </i>
   );
 
 Icon.displayName = 'Icon';

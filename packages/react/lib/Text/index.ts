@@ -18,7 +18,7 @@ const Text = ({
   const handler = name || children;
 
   return typeof handler === 'function'
-    ? (handler as Function)(builder.getText.bind(builder))
+    ? handler(builder.getText.bind(builder))
     : builder.getText?.(
       handler as string, (def || children || null) as string) || def || null;
 };

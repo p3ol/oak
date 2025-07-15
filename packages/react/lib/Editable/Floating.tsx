@@ -2,6 +2,7 @@ import type {
   ComponentObject,
   ComponentSettingsFormObject,
   ElementObject,
+  FloatingSettings,
 } from '@oakjs/core';
 import {
   type RefObject,
@@ -84,13 +85,13 @@ const FloatingEditable = ({
     opened: false,
     visible: false,
   });
-  const floatingSettings = useMemo(() => (
+  const floatingSettings = useMemo<FloatingSettings>(() => (
     (typeof (component?.settings as ComponentSettingsFormObject
     )?.floatingSettings === 'function'
       ? ((component.settings as ComponentSettingsFormObject
-      ).floatingSettings as Function)()
+      ).floatingSettings as (() => FloatingSettings))()
       : (component?.settings as ComponentSettingsFormObject
-      )?.floatingSettings) || {}
+      )?.floatingSettings as FloatingSettings) || {}
   ), [component]);
   const { x, y, refs, strategy, context } = useFloating({
     open: state.opened,

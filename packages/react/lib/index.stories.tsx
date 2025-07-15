@@ -582,7 +582,7 @@ export const withImageUpdload = () => (
 
       return {
         name: 'capture.png',
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/js/max-len
         url: 'https://storage.googleapis.com/poool-dev-cdn/uploads/57f3c14d0b26241cde521669/original/Capture%20d%E2%80%99e%CC%81cran%202023-03-16%20a%CC%80%2010.32.11.png',
       };
     }}

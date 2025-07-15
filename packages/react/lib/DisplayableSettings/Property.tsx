@@ -32,7 +32,14 @@ const Property = ({
   const value = useMemo(() => (
     get(element, field.key as string, typeof field.default === 'function'
       ? field.default(element) : field.default)
-  ), [element, Object.values(element), field]);
+  ), [
+    element,
+    // Only checking on element prevents from updating the render when a sub
+    // property of the element changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    Object.values(element),
+    field,
+  ]);
 
   const option = useMemo(() => (
     field.options?.find((o: ComponentSettingsFieldOptionObject) => (

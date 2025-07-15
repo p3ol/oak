@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, Fragment, useMemo } from 'react';
+import { type ComponentPropsWithoutRef, Fragment, useCallback, useMemo } from 'react';
 import type {
   Component,
   ComponentObject,
@@ -30,7 +30,7 @@ const DisplayableSettings = ({
 }: DisplayableSettingsProps) => {
   const { builder } = useBuilder();
 
-  const getSettingPriority = (setting: SettingOverrideObject) => {
+  const getSettingPriority = useCallback((setting: SettingOverrideObject) => {
     const fieldOverride = {
       ...builder.getOverride('setting', element.type, { setting }),
       ...builder.getOverride('component', element.type, {
@@ -41,7 +41,7 @@ const DisplayableSettings = ({
     return Number.isSafeInteger(fieldOverride?.priority)
       ? fieldOverride.priority
       : setting.priority || 0;
-  };
+  }, [builder, element.type]);
 
   const displayableSettings = useMemo(() => {
     const settings = builder
@@ -57,8 +57,9 @@ const DisplayableSettings = ({
     element,
     // Only checking on element prevents from updating the render when a sub
     // property of the element changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     Object.values(element),
-    component,
+    component, builder, override, getSettingPriority,
   ]);
 
   if (displayableSettings.length <= 0) {

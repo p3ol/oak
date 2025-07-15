@@ -19,7 +19,13 @@ Object.defineProperty(globalThis.navigator, 'clipboard', {
 });
 
 globalThis.ResizeObserver = class ResizeObserver {
-  observe () {}
-  unobserve () {}
-  disconnect () {}
+  observe () {
+    // No-op for testing purposes
+  }
+  unobserve () {
+    // No-op for testing purposes
+  }
+  disconnect () {
+    // No-op for testing purposes
+  }
 };

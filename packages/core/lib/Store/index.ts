@@ -32,13 +32,13 @@ export declare abstract class IStore {
   isSameElement(elementId: ElementId, siblingId: ElementId): boolean;
 
   /** Get the content of the store */
-  get(): Array<ElementObject>;
+  get(): ElementObject[];
 
   /**
    * Set the content of the store.
    * If the emit option is set to false, the store will not emit a change event.
    */
-  set(content: Array<ElementObject>, options?: { emit?: boolean }): void;
+  set(content: ElementObject[], options?: { emit?: boolean }): void;
 
   /**
    * Sanitize an element object (adds missing properties, ids, etc.)
@@ -63,9 +63,9 @@ export declare abstract class IStore {
   } & StoreFindOptions & StoreSanitizeOptions>): ElementObject;
 
   /** Adds multiple elements to the store */
-  addElements(elements: Array<ElementObject>, options?: Partial<{
+  addElements(elements: ElementObject[], options?: Partial<{
     position?: 'before' | 'after';
-  } & StoreFindOptions & StoreSanitizeOptions>): Array<ElementObject>;
+  } & StoreFindOptions & StoreSanitizeOptions>): ElementObject[];
 
   /** Finds an element in the store */
   getElement(id: ElementId, options?: StoreFindDeepOptions): ElementObject;
@@ -99,7 +99,7 @@ export declare abstract class IStore {
   findNearestParent(
     id: ElementId,
     options?: StoreFindOptions
-  ): Array<ElementObject>;
+  ): ElementObject[];
 
   /** Recursively checks if an element is inside a parent */
   contains(id: ElementId, options?: StoreFindOptions): boolean;
@@ -107,14 +107,14 @@ export declare abstract class IStore {
   /** Retrieves the setting value of an element */
   getElementSettings(
     element: ElementObject,
-    key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>,
+    key: string | string[] | ComponentSettingsFieldKeyTuple[],
     def?: any
   ): any;
 
   /** Sets the setting value of an element */
   setElementSettings(
     element: ElementObject,
-    key: string | Array<string> | Array<ComponentSettingsFieldKeyTuple>,
+    key: string | string[] | ComponentSettingsFieldKeyTuple[],
     value: any
   ): void;
 
@@ -157,11 +157,14 @@ export default class Store extends Emitter implements IStore {
     return this.#content;
   }
 
-  set (content: Array<ElementObject>, { emit = true } = {}) {
+  set (content: ElementObject[], { emit = true } = {}) {
     this.#content = (Array.isArray(content) ? content : [])
       .map(e => this.sanitize(e, { withDefaults: true }));
 
-    emit && this.emit('content.update', this.#content);
+    if (emit) {
+      this.emit('content.update', this.#content);
+    }
+
     this.commit();
   }
 
@@ -218,7 +221,7 @@ export default class Store extends Emitter implements IStore {
     baseElement,
     ...opts
   }: {
-    component?: ComponentObject,
+    component?: Component | ComponentObject,
     override?: ComponentOverride | ComponentOverrideObject,
     baseElement?: ElementObject,
     [_: string]: any
@@ -260,12 +263,9 @@ export default class Store extends Emitter implements IStore {
     position = 'after',
     component,
     ...opts
-  }: {
-    parent?: Array<ElementObject>,
-    position?: 'before' | 'after',
-    component?: ComponentObject,
-    [_: string]: any
-  } = {}) {
+  }: Partial<{
+    position?: 'before' | 'after';
+  } & StoreFindOptions & StoreSanitizeOptions> = {}) {
     this.#builder.logger.log('Adding element:', element, { parent, position });
 
     // If component is provided, we construct the element from it
@@ -289,7 +289,7 @@ export default class Store extends Emitter implements IStore {
     return element;
   }
 
-  addElements (elements: Array<ElementObject>, {
+  addElements (elements: ElementObject[], {
     parent = this.#content,
     position = 'after',
     ...opts
@@ -354,7 +354,7 @@ export default class Store extends Emitter implements IStore {
   removeElement (
     id: ElementId,
     { parent = this.#content, deep }: {
-      parent?: Array<ElementObject>,
+      parent?: ElementObject[],
       deep?: boolean
     } = {}
   ) {
@@ -399,7 +399,7 @@ export default class Store extends Emitter implements IStore {
     newContent: Partial<ElementObject>,
     { element: e, parent = this.#content, deep }: {
     element?: ElementObject,
-    parent?: Array<ElementObject>,
+    parent?: ElementObject[],
     deep?: boolean
   } = {}) {
     if (!this.isIdValid(id)) {
@@ -429,7 +429,7 @@ export default class Store extends Emitter implements IStore {
     element?: ElementObject,
     sibling?: ElementObject,
     { parent = this.#content, position }: {
-      parent?: Array<ElementObject>,
+      parent?: ElementObject[],
       position?: 'before' | 'after'
     } = {}
   ) {
@@ -488,7 +488,7 @@ export default class Store extends Emitter implements IStore {
   findNearestParent (
     id: ElementId,
     { parent = this.#content } = {}
-  ): Array<ElementObject> {
+  ): ElementObject[] {
     // First check if element in inside direct parent to avoid trying to
     // find every component & override for every nested level
     for (const e of parent) {
@@ -528,7 +528,7 @@ export default class Store extends Emitter implements IStore {
 
   contains (
     id: ElementId,
-    { parent = this.#content }: { parent?: ElementObject | Array<any> } = {}
+    { parent = this.#content }: { parent?: ElementObject | any[] } = {}
   ) {
     // Force parent to be an array to be able to loop over it
     // -----

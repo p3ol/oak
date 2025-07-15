@@ -4,7 +4,7 @@ import {
   type ComponentPropsWithoutRef,
   useMemo,
 } from 'react';
-import {
+import type {
   ComponentObject,
   ComponentSettingsTabObject,
   ComponentSettingsFieldObject,
@@ -52,7 +52,7 @@ const Tab = ({
   const { builder, editableType } = useBuilder();
   const componentOverride = useMemo(() => (
     builder.getOverride('component', element.type) as ComponentOverride
-  ), [element.type]);
+  ), [element.type, builder]);
 
   const getFieldPriority = (field: ComponentSettingsFieldObject) => {
     const fieldOverride = {
@@ -97,7 +97,7 @@ const Tab = ({
           a: ComponentSettingsFieldObject,
           b: ComponentSettingsFieldObject
         ) => getFieldPriority(b) - getFieldPriority(a))
-        .map((setting: ComponentSettingsFieldObject, i: Key) =>
+        .map((setting: ComponentSettingsFieldObject) =>
           setting.type === 'group' ? (
             <SettingsGroup
               key={setting.key as Key}

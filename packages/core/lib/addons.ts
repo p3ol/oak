@@ -209,7 +209,7 @@ export const rowComponent = (props?: ComponentObject): ComponentObject => ({
 
     return {
       ...element,
-      cols: !element.cols || !element.cols.length
+      cols: !element.cols?.length
         ? [builder.createElement('col', { component: colComponent })]
         : element.cols,
     };
@@ -241,9 +241,10 @@ const COL_SIZES = Array.from({ length: 12 }).map((_, i) => ({
   value: i + 1,
 })).reverse();
 
-const COL_RESPONSIVE_SETTINGS: Array<
-  { title: string | any, value: string | number}
-> = [{
+const COL_RESPONSIVE_SETTINGS: {
+  title: string | GetTextCallback;
+  value: string | number
+}[] = [{
   title: (t: GetTextCallback) => t('core.responsive.fluid', 'Flexible'),
   value: 'fluid',
 }, {
@@ -1458,7 +1459,7 @@ export const responsiveSettings = (
   }],
 });
 
-export const baseFields = (): Array<FieldObject> => [
+export const baseFields = (): FieldObject[] => [
   textField(),
   textareaField(),
   selectField(),
@@ -1468,7 +1469,7 @@ export const baseFields = (): Array<FieldObject> => [
   toggleField(),
 ];
 
-export const baseComponents = (): Array<ComponentObject> => [
+export const baseComponents = (): ComponentObject[] => [
   rowComponent(),
   colComponent(),
   emptySpaceComponent(),
@@ -1480,7 +1481,7 @@ export const baseComponents = (): Array<ComponentObject> => [
   clickableComponent(),
 ];
 
-export const baseSettings = (): Array<ComponentSettingsFieldObject> => [
+export const baseSettings = (): ComponentSettingsFieldObject[] => [
   stylingSettings(),
   responsiveSettings(),
 ];

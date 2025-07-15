@@ -52,7 +52,7 @@ const CKEditorField = ({
   return (
     <div className={classNames('ckeditor-field', className)}>
       <CKEditor
-        // @ts-ignore CK editor is weird anyway
+        // @ts-expect-error CK editor is weird anyway
         editor={editor || defaultEditor?.classicEditor}
         config={config}
         data={value}

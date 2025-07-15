@@ -45,22 +45,24 @@ const Editable = ({
   return editableType === 'modal' ? (
     <ModalEditable
       ref={ref}
-      children={children}
       modalRef={modalRef}
       element={element}
       component={component}
-    />
+    >
+      { children }
+    </ModalEditable>
   ) : (
     <FloatingEditable
       ref={ref}
-      children={children}
       element={element}
       onToggle={onToggle}
       component={component}
       floatingOptions={floatingOptions}
       setOpened={setOpened}
       opened={opened}
-    />
+    >
+      { children }
+    </FloatingEditable>
   );
 };
 

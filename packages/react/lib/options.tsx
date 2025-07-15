@@ -88,13 +88,13 @@ export const dragOption = (): ComponentOptionObject => ({
 });
 
 export const collapseOption = (): ReactComponentOptionObject => ({
-  render: ({ className }) => {
+  render: function CollapseOption ({ className }) {
     const { collapsed, toggleCollapse } = useElement();
 
     const onClick = useCallback((e: MouseEvent<HTMLElement>) => {
       e.preventDefault();
       toggleCollapse?.();
-    }, [collapsed, toggleCollapse]);
+    }, [toggleCollapse]);
 
     return (
       <Option

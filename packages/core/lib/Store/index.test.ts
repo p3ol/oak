@@ -67,13 +67,13 @@ describe('Store', () => {
           component: titleComponent({
             sanitize: element => ({
               ...element,
-              content: element.content + ', a not so great one',
+              content: element.content.toString() + ', a not so great one',
             }),
           }),
           override: new ComponentOverride({
             sanitize: element => ({
               ...element,
-              content: element.content + ', a really great one',
+              content: element.content.toString() + ', a really great one',
             }),
           }),
         }

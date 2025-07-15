@@ -4,7 +4,7 @@ import { BuilderLite } from '../../tests/utils';
 import Catalogue from './index';
 
 describe('<Catalogue />', () => {
-  it('should allow to add elements to the builder', async () => {
+  it('should allow to add elements to the builder', () => {
     const onAppend = jest.fn();
     const { container, unmount } = render(
       <BuilderLite

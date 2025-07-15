@@ -67,7 +67,7 @@ describe('<Builder />', () => {
     unmount();
   });
 
-  it('should allow to add content from catalogue', async () => {
+  it('should allow to add content from catalogue', () => {
     const { container, unmount } = render(
       <Builder
         addons={[baseAddon()]}

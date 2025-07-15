@@ -31,8 +31,8 @@ const RemirrorField = ({
     RemirrorEventListener<Extensions>
   >(({ state }) => {
     setState(state);
-    onChange({ value: prosemirrorNodeToHtml(state.doc) });
-  }, [setState]);
+    onChange?.({ value: prosemirrorNodeToHtml(state.doc) });
+  }, [setState, onChange]);
 
   return (
     <div className={classNames('remirror-field', className)} { ...rest }>

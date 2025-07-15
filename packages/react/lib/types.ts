@@ -1,5 +1,4 @@
 import type {
-  ComponentProps,
   RefObject,
   Ref,
   ReactNode,
@@ -89,7 +88,7 @@ export declare interface ReactComponentObject
   extends Omit<ComponentObject, 'options'> {
   options?: ReactComponentOptionObject[];
   render?(
-    props: ComponentProps<any> & CommonComponentProps,
+    props: ComponentPropsWithoutRef<any> & CommonComponentProps,
   ): ReactNode;
 }
 
@@ -113,7 +112,7 @@ export declare interface ReactComponentOptionObject
 export declare interface ReactComponentOverrideObject
   extends ComponentOverrideObject {
   render?(
-    props: ComponentProps<any> & CommonComponentProps,
+    props: ComponentPropsWithoutRef<any> & CommonComponentProps,
   ): ReactNode;
 }
 

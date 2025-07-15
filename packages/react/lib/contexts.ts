@@ -12,7 +12,7 @@ import type {
 
 import type { EditableType, ImageUploadCallbackResult } from './types';
 
-export declare type BuilderContextValue = {
+export declare interface BuilderContextValue {
   builder?: Builder;
   content?: ElementObject[];
   addons?: AddonObject[];
@@ -41,7 +41,7 @@ export declare type BuilderContextValue = {
 
 export const BuilderContext = createContext<BuilderContextValue>({});
 
-export declare type EditableFormContextValue = {
+export declare interface EditableFormContextValue {
   element?: ElementObject;
   seed?: string | number;
   setSeed?(seed: string | number): void;

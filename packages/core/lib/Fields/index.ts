@@ -19,7 +19,7 @@ export declare abstract class IFields {
   remove(type: string): void;
 
   /** Get all fields */
-  all(): Array<Field>;
+  all(): Field[];
 }
 
 export default class Fields extends Emitter implements IFields {

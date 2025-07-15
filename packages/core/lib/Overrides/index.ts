@@ -54,11 +54,11 @@ export declare abstract class IOverrides {
   remove (id: string): void;
 
   /** Merges overrides into a single non-typed object */
-  merge(overrides: Array<ComponentOverride | FieldOverride | SettingOverride>):
+  merge(overrides: (ComponentOverride | FieldOverride | SettingOverride)[]):
     ComponentOverride | FieldOverride | SettingOverride;
 
   /** Returns all available overrides */
-  all(): Array<ComponentOverride | FieldOverride | SettingOverride>;
+  all(): (ComponentOverride | FieldOverride | SettingOverride)[];
 }
 
 export default class Overrides extends Emitter implements IOverrides {
@@ -68,7 +68,7 @@ export default class Overrides extends Emitter implements IOverrides {
     SettingOverride
   ) => id ? o.id === id : null;
 
-  #overrides: Array<FieldOverride | ComponentOverride | SettingOverride> = [];
+  #overrides: (FieldOverride | ComponentOverride | SettingOverride)[] = [];
   #builder: Builder = null;
 
   constructor ({ builder }: { builder?: Builder } = {}) {
@@ -87,13 +87,13 @@ export default class Overrides extends Emitter implements IOverrides {
 
     switch (override.type) {
       case 'component':
-        override_ = new ComponentOverride(override as ComponentOverrideObject);
+        override_ = new ComponentOverride(override);
         break;
       case 'field':
-        override_ = new FieldOverride(override as FieldOverrideObject);
+        override_ = new FieldOverride(override);
         break;
       case 'setting':
-        override_ = new SettingOverride(override as SettingOverrideObject);
+        override_ = new SettingOverride(override);
         break;
     }
 
@@ -177,7 +177,7 @@ export default class Overrides extends Emitter implements IOverrides {
   }
 
   merge (
-    overrides: Array<ComponentOverride | FieldOverride | SettingOverride>
+    overrides: (ComponentOverride | FieldOverride | SettingOverride)[]
   ): FieldOverride | ComponentOverride | SettingOverride {
     return overrides.reverse().reduce((res, override) => {
       assignDefined(res, override.toObject?.());

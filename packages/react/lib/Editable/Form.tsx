@@ -104,9 +104,10 @@ const Form = ({
     onCancel();
   };
 
-  const tabs: Array<
-    ComponentSettingsTabObject | ComponentSettingsFormObject
-  > = builder.getAvailableSettings();
+  const tabs: (
+    ComponentSettingsTabObject |
+    ComponentSettingsFormObject
+  )[] = builder.getAvailableSettings();
 
   const getContext = useCallback(() => ({
     element: state.element,

@@ -34,7 +34,7 @@ export declare abstract class ITexts {
 }
 
 export default class Texts extends Emitter implements ITexts {
-  #sheets: Array<TextsSheetObject> = [];
+  #sheets: TextsSheetObject[] = [];
   #activeSheet: number = null;
   #builder: Builder = null;
 

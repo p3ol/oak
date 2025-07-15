@@ -11,9 +11,9 @@ export declare abstract class IEmitter {
 }
 
 export default class Emitter implements IEmitter {
-  #subscribers: Map<symbol, Function> = new Map();
+  #subscribers = new Map<symbol, EmitterCallback>();
 
-  subscribe (cb: Function) {
+  subscribe (cb: EmitterCallback) {
     const key = Symbol('store-subscriber');
     this.#subscribers.set(key, cb);
 

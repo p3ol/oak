@@ -12,7 +12,7 @@ import Container from '../../Container';
 
 export interface ClickableProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
-  parent: Array<ElementObject>;
+  parent: ElementObject[];
   component: ComponentObject;
   parentComponent: ComponentObject;
   depth?: number;
@@ -28,11 +28,9 @@ const Clickable = ({
   ...rest
 }: ClickableProps) => {
   const { builder, addons } = useBuilder();
-  const override = useMemo(() => (
-    builder.getOverride('component', component?.id) as ComponentOverride
-  ), [builder, component, addons]);
   const parentOverride = useMemo(() => (
     builder.getOverride('component', parentComponent?.id) as ComponentOverride
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [builder, parentComponent, addons]);
 
   const onDropElement = useCallback((
@@ -48,8 +46,8 @@ const Clickable = ({
 
     builder.moveElement?.(data, element, { parent, position });
   }, [
-    builder, element, parent, component, override, parentComponent,
-    parentOverride,
+    element, parent, parentComponent,
+    parentOverride, builder,
   ]);
 
   return (

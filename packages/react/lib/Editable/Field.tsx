@@ -43,7 +43,8 @@ const Field = ({
     }),
     settings: builder
       .getOverride('setting', element.type, { setting: fieldSetting }),
-  }), [element, fieldSetting, addons]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), [element, fieldSetting, builder, addons]);
 
   const field = useMemo(() => (
     builder.getField(
@@ -51,14 +52,16 @@ const Field = ({
       overrides?.field?.type ||
       fieldSetting?.type
     )
-  ), [overrides, fieldSetting, addons]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  ), [overrides, fieldSetting, builder, addons]);
 
   const setting = useMemo(() => assignDefined<typeof fieldSetting>(
     { type: fieldSetting.type },
     fieldSetting,
     omit(overrides.field?.toObject?.() || overrides.field || {}, ['key']),
     omit(overrides.settings?.toObject?.() || overrides.settings || {}, ['key']),
-  ), [fieldSetting, overrides, addons]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  ), [fieldSetting, builder, overrides, addons]);
 
   const fieldProps = {
     id: setting.id,

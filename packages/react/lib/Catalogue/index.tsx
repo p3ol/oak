@@ -79,6 +79,7 @@ const Catalogue = ({
   const { builder, floatingsRef, addons } = useBuilder();
   const override = useMemo(() => (
     builder.getOverride('component', component?.id) as ComponentOverride
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [builder, component, addons]);
   const [state, dispatch] = useReducer<
     CatalogueState, [Partial<CatalogueState>]
@@ -135,7 +136,7 @@ const Catalogue = ({
       } else if (builder.getComponent(element.type)) {
         clipboard = element;
       }
-    } catch (e) {}
+    } catch {}
 
     dispatch({ clipboard });
   };
@@ -163,6 +164,7 @@ const Catalogue = ({
 
   const availableGroups = useMemo(() => (
     builder.getAvailableComponents()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [builder, addons]);
 
   const groups = useMemo(() => (
@@ -178,14 +180,12 @@ const Catalogue = ({
           c.usable !== false &&
           (builder?.getOverride('component', c.id) as ComponentOverride)
             ?.usable !== false &&
-          (!component || !component.disallow ||
-            !component.disallow.includes(c.id)) &&
-          (!override || !override.disallow ||
-            !override.disallow.includes(c.id))
+          (!component?.disallow?.includes(c.id)) &&
+          (!override?.disallow?.includes(c.id))
         )),
       }))
       .filter(g => g.components.length)
-  ), [availableGroups, component, override]);
+  ), [availableGroups, component, builder, override]);
 
   return (
     <div
@@ -242,12 +242,11 @@ const Catalogue = ({
                           'oak-gap-2 junipero'
                         )}
                       >
-                        <Icon
-                          className="!oak-text-2xl"
-                          children={typeof component.icon === 'function'
+                        <Icon className="!oak-text-2xl">
+                          { typeof component.icon === 'function'
                             ? component.icon.bind(null, component)
-                            : component.icon}
-                        />
+                            : component.icon }
+                        </Icon>
                         <span className="name">
                           <Text>{ component.name as string }</Text>
                         </span>

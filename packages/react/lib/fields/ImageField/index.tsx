@@ -140,7 +140,7 @@ const ImageField = ({
 
   const getName = () =>
     state.value.name ||
-    (typeof state.value.url === 'string' && /data:/.test(state.value.url)
+    (typeof state.value.url === 'string' && state.value.url.startsWith('data:')
       ? 'Local image' : state.value.url?.toString()) ||
     'No image';
 

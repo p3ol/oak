@@ -17,7 +17,7 @@ import Col from '../Col';
 
 export interface RowProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
-  parent: Array<ElementObject>;
+  parent: ElementObject[];
   parentComponent: ComponentObject;
   component?: ComponentObject;
   override?: ComponentOverrideObject;
@@ -26,7 +26,6 @@ export interface RowProps extends ComponentPropsWithoutRef<'div'> {
 
 const Row = ({
   element,
-  component,
   override,
   parent,
   parentComponent,
@@ -37,6 +36,7 @@ const Row = ({
   const { builder, addons } = useBuilder();
   const parentOverride = useMemo(() => (
     builder.getOverride('component', parentComponent?.id) as ComponentOverride
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [parentComponent, builder, addons]);
 
   const onDivide = (index: number, isBefore: boolean) => {

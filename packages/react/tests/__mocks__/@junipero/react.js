@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-/* eslint-disable import/export */
 const Transition = ({ in: inProp, onExited, children }) => {
   useEffect(() => {
     if (!inProp) {

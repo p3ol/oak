@@ -13,7 +13,7 @@ const Title = ({ element, className }: TitleProps) => {
   const { polyfills } = useBuilder();
 
   const Tag = element.headingLevel || 'h1';
-  const sizes: { [key: string]: string } = {
+  const sizes: Record<string, string> = {
     h1: '!oak-text-4xl',
     h2: '!oak-text-3xl',
     h3: '!oak-text-2xl',

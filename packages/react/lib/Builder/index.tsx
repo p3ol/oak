@@ -33,7 +33,7 @@ import HistoryButtons from './HistoryButtons';
 
 export declare interface BuilderRef extends OakRef {
   builder: CoreBuilder;
-  content: Array<ElementObject>;
+  content: ElementObject[];
   catalogueRef: RefObject<CatalogueRef>;
   innerRef: RefObject<HTMLDivElement>;
   close?: () => void
@@ -42,22 +42,22 @@ export declare interface BuilderRef extends OakRef {
 export declare interface BuilderProps
   extends SpecialComponentPropsWithRef<any, BuilderRef> {
   activeTextSheet?: string;
-  addons: Array<ReactAddonObject>;
+  addons: ReactAddonObject[];
   bottomHistoryButtonsContainer?: string | HTMLElement | DocumentFragment;
   bottomHistoryButtonsEnabled?: boolean;
-  defaultValue?: Array<ElementObject>;
+  defaultValue?: ElementObject[];
   historyEnabled?: boolean;
   editableType?: EditableType;
   options?: Partial<BuilderOptions>;
   rootBoundary?: RefObject<any> | string | Element | DocumentFragment;
   topHistoryButtonsContainer?: string | HTMLElement | DocumentFragment;
   topHistoryButtonsEnabled?: boolean;
-  value?: Array<ElementObject>;
+  value?: ElementObject[];
   polyfills?: {
     DOMParser: typeof DOMParser;
     XMLSerializer: typeof XMLSerializer;
   };
-  onChange?(content: Array<ElementObject>): void;
+  onChange?(content: ElementObject[]): void;
   onImageUpload?(event: FormEvent, opts: {
     element?: ElementObject;
     setting?: ComponentSettingsFieldObject;

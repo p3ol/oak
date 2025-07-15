@@ -12,7 +12,7 @@ import Container from '../../Container';
 
 export interface FoldableProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
-  parent: Array<ElementObject>;
+  parent: ElementObject[];
   component: ComponentObject;
   parentComponent: ComponentObject;
   depth?: number;
@@ -28,11 +28,9 @@ const Foldable = ({
   ...rest
 }: FoldableProps) => {
   const { builder, addons } = useBuilder();
-  const override = useMemo(() => (
-    builder.getOverride('component', component?.id) as ComponentOverride
-  ), [component, builder, addons]);
   const parentOverride = useMemo(() => (
     builder.getOverride('component', parentComponent?.id) as ComponentOverride
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [parentComponent, builder, addons]);
 
   const onDropElement = useCallback((
@@ -48,8 +46,8 @@ const Foldable = ({
 
     builder.moveElement?.(data, element, { parent, position });
   }, [
-    builder, element, parent, component, override, parentComponent,
-    parentOverride,
+    element, parent, parentComponent,
+    parentOverride, builder,
   ]);
 
   return (

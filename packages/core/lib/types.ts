@@ -1,18 +1,38 @@
+import type {
+  AutoPlacementOptions,
+  FlipOptions,
+  Middleware,
+  Placement,
+  ShiftOptions,
+} from '@floating-ui/react';
+
 import type { Component, ComponentOverride } from './classes';
 import type Builder from './Builder';
 
-export declare interface GetTextCallback {
-  (key: string | GetTextCallback, def?: any): any;
-}
+export type GetTextCallback = (key: string | GetTextCallback, def?: any) => any;
 
 export declare type EmitterCallback = (...args: any[]) => void;
 
 export declare type ElementId = string | number;
 
+export declare interface FloatingSettings {
+  placement?: Placement;
+  shift?: ShiftOptions & {
+    enabled?: boolean;
+  };
+  autoPlacement?: AutoPlacementOptions & {
+    enabled?: boolean;
+  };
+  flip?: FlipOptions & {
+    enabled?: boolean;
+  };
+  middleware?: Middleware[];
+}
+
 export declare interface ElementObject {
   id?: ElementId;
   type?: string;
-  content?: string | Function | ElementObject[];
+  content?: string | ((content: string) => any) | ElementObject[];
   [_: string]: any;
 }
 
@@ -65,7 +85,10 @@ export declare interface ComponentOverrideObject {
 
 export declare interface FieldOverrideObject {
   type: 'field';
-  construct?: Function; //TODO fix it
+  construct?(opts?: {
+    builder?: Builder;
+    element?: ElementObject;
+  }): ElementObject;
   targets?: string[];
   props?: Record<string, any>;
   id?: string;
@@ -93,7 +116,7 @@ export declare interface SettingOverrideObject {
   fieldType?: string;
   valueType?: string;
   priority?: number;
-  options?: Array<any>;
+  options?: any[];
   fields?: (ComponentSettingsFieldObject)[];
   props?: Record<string, any>;
   parseTitle?(value: any): string;
@@ -152,6 +175,7 @@ export declare interface ComponentSettingsTabObject {
   type?: string;
   priority?: number;
   title?: string | GetTextCallback;
+  floatingSettings?: FloatingSettings | (() => FloatingSettings);
   fields?: (ComponentSettingsFieldObject)[];
   condition?(element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
@@ -162,7 +186,7 @@ export declare interface ComponentSettingsTabObject {
 
 export declare class ComponentSettingsFormObject {
   title?: string | GetTextCallback;
-  floatingSettings?: Record<string, any> | Function;
+  floatingSettings?: FloatingSettings | (() => FloatingSettings);
   defaults?: any;
   fields?: (
     ComponentSettingsTabObject |
@@ -191,7 +215,10 @@ export declare interface ComponentObject {
     elmt?: ElementObject,
     opts?: { builder: Builder }
   ) => ElementObject;
-  serialize?: Function;
+  serialize?: (
+    element: Partial<ElementObject>,
+    opts?: { builder: Builder }
+  ) => ElementObject;
   sanitize?(
     element: ElementObject, { builder }: { builder: Builder }
   ): ElementObject
@@ -244,7 +271,7 @@ export declare interface BuilderObject {
   onChange?(content: ElementObject[]): void;
 }
 
-export declare type ElementSettingsComplexKey = {
+export declare interface ElementSettingsComplexKey {
   from: string,
   to: string,
   default?: string
@@ -253,28 +280,26 @@ export declare type ElementSettingsComplexKey = {
 export declare type ElementSettingsKeyObject =
   | string
   | ElementSettingsComplexKey
-  | Array<string | ElementSettingsComplexKey>;
+  | (string | ElementSettingsComplexKey)[];
 
 export declare interface StoreSanitizeOptions {
-  component?: Component;
+  component?: Component | ComponentObject;
   override?: ComponentOverride;
   resetIds?: boolean;
 }
 
 export declare interface StoreFindOptions {
-  parent?: Array<ElementObject>;
+  parent?: ElementObject[];
 }
 
 export declare type StoreFindDeepOptions = Partial<StoreFindOptions & {
   deep?: boolean;
 }>;
 
-export declare type FieldContent<T = any> = {
+export declare interface FieldContent<T = any> {
   valid?: boolean;
   checked?: boolean;
   value?: T;
 }
 
-export declare interface EventCallback {
-  (eventName: string, ...args: any[]): void;
-}
+export type EventCallback = (eventName: string, ...args: any[]) => void;

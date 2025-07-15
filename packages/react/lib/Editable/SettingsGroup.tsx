@@ -28,7 +28,7 @@ const SettingsGroup = ({
 
   const override = useMemo(() => (
     builder.getOverride('setting', element.type, { setting }) as SettingOverride
-  ), [element, setting]);
+  ), [element, setting, builder]);
 
   const condition = override?.condition || setting.condition;
 

@@ -60,7 +60,10 @@ export class Component {
     element?: ElementObject,
     opts?: { builder: Builder }
   ) => ElementObject;
-  serialize: Function; //TODO
+  serialize: (
+    element: Partial<ElementObject>,
+    opts?: { builder: Builder }
+  ) => ElementObject;
 
   constructor (props: ComponentObject) {
     if (!props.id) {
@@ -194,7 +197,10 @@ export class ComponentOverride extends Override {
   duplicate: ComponentOverrideObject['duplicate'];
   deserialize: ComponentOverrideObject['deserialize'];
   priority: number;
-  serialize: Function; //TODO fix it
+  serialize: (
+    element: Partial<ElementObject>,
+    opts?: { builder: Builder }
+  ) => ElementObject;
   getContainers: (element: ElementObject) => ElementObject[][];
   editable?: boolean;
   usable?: boolean;
@@ -254,7 +260,10 @@ export class FieldOverride extends Override {
   targets: string[];
   render: FieldOverrideObject['render'];
   props: object;
-  construct: Function;
+  construct: (opts?: {
+    builder?: Builder;
+    element?: ElementObject;
+  }) => ElementObject;
   priority: number;
   onChange: FieldOverrideObject['onChange'];
 
@@ -369,7 +378,7 @@ export class ComponentSettingsForm {
   title: string | GetTextCallback;
   floatingSettings: any;
   defaults: object;
-  fields: Array<ComponentSettingsField | ComponentSettingsTab>;
+  fields: (ComponentSettingsField | ComponentSettingsTab)[];
 
   constructor (props: ComponentSettingsFormObject) {
     this.title = props.title;
@@ -398,7 +407,7 @@ export class ComponentSettingsTab {
     component: Component | ComponentObject;
     builder: Builder;
   }) => boolean;
-  fields: Array<any>;
+  fields: any[];
   displayable: boolean | ((...rest: any) => false);
 
   constructor (props: ComponentSettingsTabObject) {
@@ -437,7 +446,7 @@ export class ComponentSettingsField {
   id: string;
   placeholder: string | GetTextCallback;
   default: any;
-  options: Array<any>;
+  options: any[];
   label: string | GetTextCallback;
   info: string | GetTextCallback;
   description: string | GetTextCallback;
@@ -451,7 +460,7 @@ export class ComponentSettingsField {
     builder: Builder;
   }) => boolean;
   priority: number;
-  fields: Array<any>;
+  fields: any[];
   props: object;
   display: (value: any) => any;
 

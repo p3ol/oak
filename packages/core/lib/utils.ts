@@ -1,6 +1,6 @@
-export function assignDefined<T extends any> (
+export function assignDefined<T> (
   target: T,
-  ...sources: Array<any>
+  ...sources: any[]
 ): T {
   for (const source of sources) {
     if (!source) {
@@ -9,7 +9,7 @@ export function assignDefined<T extends any> (
 
     for (const key in source) {
       if (typeof source[key] !== 'undefined') {
-        // @ts-ignore it's obviously any
+        // @ts-expect-error it's obviously any
         target[key] = source[key];
       }
     }

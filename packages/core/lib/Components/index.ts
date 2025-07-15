@@ -44,7 +44,7 @@ export default class Components extends Emitter implements IComponents {
   static COMPONENTS_GROUP_OTHER = 'other';
 
   #builder: Builder = null;
-  #groups: Array<ComponentsGroup> = null;
+  #groups: ComponentsGroup[] = null;
   #defaultGroup: ComponentsGroup = null; // Other tab
 
   constructor ({ builder }: { builder?: Builder} = {}) {
@@ -129,7 +129,7 @@ export default class Components extends Emitter implements IComponents {
           component as ComponentsGroupObject
         ).components || []).map(component => new Component(component));
 
-        this.#groups[mutateMethod](group as ComponentsGroup);
+        this.#groups[mutateMethod](group);
         this.emit('groups.add', group);
       }
 
@@ -210,22 +210,20 @@ export default class Components extends Emitter implements IComponents {
   getDisplayableSettings (
     element: ElementObject,
     { fields, component, override }: {
-      fields?: Array<
-        ComponentSettingsField |
+      fields?: (ComponentSettingsField |
         ComponentSettingsFieldObject |
         ComponentSettingsTab |
-        ComponentSettingsTabObject
-      >;
+        ComponentSettingsTabObject)[];
       component?: Component;
       override?: ComponentOverride;
     } = {}
   ) {
-    const displayable: Array<ComponentSettingsField> = [];
+    const displayable: ComponentSettingsField[] = [];
 
     if (!fields) {
       component = component || this.getComponent(element.type);
 
-      if (!component?.settings || !component?.settings.fields) {
+      if (!component?.settings?.fields) {
         return displayable;
       }
 

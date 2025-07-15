@@ -34,7 +34,7 @@ export declare abstract class ISettings {
   ): void;
   remove(id: string): boolean;
 
-  all(): Array<ComponentSettingsTab | ComponentSettingsField>;
+  all(): (ComponentSettingsTab | ComponentSettingsField)[];
 }
 
 export default class Settings extends Emitter implements ISettings {
@@ -46,7 +46,7 @@ export default class Settings extends Emitter implements ISettings {
   static SETTINGS_TAB_RESPONSIVE = 'responsive';
 
   #builder: Builder = null;
-  #tabs: Array<ComponentSettingsTab> = null;
+  #tabs: ComponentSettingsTab[] = null;
 
   constructor ({ builder }: { builder?: Builder } = {}) {
     super();
@@ -120,7 +120,7 @@ export default class Settings extends Emitter implements ISettings {
 
     const setting_ = new ComponentSettingsField(
       setting as ComponentSettingsFieldObject
-    ) as ComponentSettingsField;
+    );
 
     const tab = setting_.tab && this.hasTab(setting_.tab)
       ? this.getTab(setting_.tab)
@@ -179,8 +179,8 @@ export default class Settings extends Emitter implements ISettings {
 
   getDisplayable (
     element: ElementObject,
-    { fields = this.#tabs }: { fields?: Array<ComponentSettingsTab>} = {}
-  ): Array<ComponentSettingsField | ComponentSettingsTab> {
+    { fields = this.#tabs }: { fields?: ComponentSettingsTab[]} = {}
+  ): (ComponentSettingsField | ComponentSettingsTab)[] {
     const displayable = [];
 
     for (const setting of fields) {

@@ -14,7 +14,7 @@ import Catalogue, { type CatalogueRef } from '../Catalogue';
 export declare interface ContainerProps
   extends Omit<ComponentPropsWithoutRef<'div'>, 'content'> {
   element?: ElementObject;
-  content?: Array<ElementObject>;
+  content?: ElementObject[];
   component?: ComponentObject | Component;
   depth?: number;
   droppable?: boolean;
@@ -34,6 +34,7 @@ const Container = ({
   const { builder, addons } = useBuilder();
   const override = useMemo(() => (
     builder.getOverride('component', component?.id) as ComponentObject
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [component, builder, addons]);
 
   const onPrepend = (c: Component | ComponentObject) => {

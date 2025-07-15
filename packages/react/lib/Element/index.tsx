@@ -69,12 +69,15 @@ const Element = ({
 
   const component = useMemo<ReactComponentObject>(() => (
     builder.getComponent(element?.type)
-  ), [element?.type, addons]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  ), [element?.type, addons, builder]);
   const override = useMemo(() => (
     builder.getOverride('component', element?.type) as ComponentOverride
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [element?.type, builder, addons]);
   const parentOverride = useMemo(() => (
     builder.getOverride('component', parentComponent?.id) as ComponentOverride
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [parentComponent, builder, addons]);
 
   const getElementContext = useCallback((): ElementContextValue => {
@@ -176,11 +179,11 @@ const Element = ({
                   )}
                   onClick={unfoldBlock}
                 >
-                  <Icon
-                    children={typeof component?.icon === 'function'
+                  <Icon>
+                    { typeof component?.icon === 'function'
                       ? component.icon.bind(null, component)
                       : component?.icon}
-                  />
+                  </Icon>
                   <div
                     className={classNames(
                       'element-info oak-flex-auto oak-flex oak-flex-col',

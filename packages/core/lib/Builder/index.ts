@@ -41,7 +41,7 @@ export default class Builder extends Emitter {
   #texts: Texts = null;
   #store: Store = null;
   #settings: Settings = null;
-  #addons: Array<AddonObject> = [];
+  #addons: AddonObject[] = [];
 
   constructor (opts: {
     addons?: AddonObject[],
@@ -90,7 +90,7 @@ export default class Builder extends Emitter {
     };
   }
 
-  setAddons (addons: Array<AddonObject>): void {
+  setAddons (addons: AddonObject[]): void {
     this.#addons?.forEach(addon => {
       this.logger.log('Removing builder addon:', addon);
       this.removeAddon(addon);
@@ -149,7 +149,7 @@ export default class Builder extends Emitter {
     });
   }
 
-  getAvailableComponents (): Array<ComponentsGroupObject> {
+  getAvailableComponents (): ComponentsGroupObject[] {
     const {
       groups,
       defaultGroup,
@@ -168,7 +168,7 @@ export default class Builder extends Emitter {
       component: ComponentObject;
       override?: ComponentOverrideObject | ComponentOverride;
     },
-  ): Array<ComponentSettingsTabObject | ComponentSettingsFieldObject> {
+  ): (ComponentSettingsTabObject | ComponentSettingsFieldObject)[] {
     const component_ = new Component(component);
     const override_ = new ComponentOverride(override ?? {});
 
@@ -198,7 +198,7 @@ export default class Builder extends Emitter {
   }
 
   mergeOverrides (
-    overrides: Array<ComponentOverrideObject | FieldOverrideObject>
+    overrides: (ComponentOverrideObject | FieldOverrideObject)[]
   ) {
     const ovrrides_ = overrides.map(override => {
       if (override.type === 'component') {
@@ -215,7 +215,7 @@ export default class Builder extends Emitter {
     return this.#store.get();
   }
 
-  setContent (content: Array<ElementObject>, options: { emit?: boolean }) {
+  setContent (content: ElementObject[], options: { emit?: boolean }) {
     this.#store.set(content, options);
   }
 
@@ -229,7 +229,7 @@ export default class Builder extends Emitter {
   }
 
   addElement (element: ElementObject, options?: {
-    parent?: Array<ElementObject>,
+    parent?: ElementObject[],
     position?: 'before' | 'after',
     component?: ComponentObject,
     [_: string]: any
@@ -237,8 +237,8 @@ export default class Builder extends Emitter {
     return this.#store.addElement(element, options);
   }
 
-  addElements (elements: Array<ElementObject>, options?:{
-    parent?: Array<ElementObject>,
+  addElements (elements: ElementObject[], options?:{
+    parent?: ElementObject[],
     position?: 'before' | 'after',
     component?: ComponentObject,
     [_: string]: any
@@ -272,7 +272,7 @@ export default class Builder extends Emitter {
     element: ElementObject,
     sibling: ElementObject,
     options?: {
-      parent?: Array<ElementObject>,
+      parent?: ElementObject[],
       position?: 'before' | 'after'
     }
   ) {

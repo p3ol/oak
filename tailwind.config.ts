@@ -77,7 +77,7 @@ const config: Config = {
         ...fromPairs(Object.entries(theme('flexBasis')).map(([k, v]) => [
           `.basis-${e(k)}`,
           {
-            'flex-basis': /\/12$/.test(k)
+            'flex-basis': k.endsWith('/12')
               ? `calc(${v} - (var(--tw-gap) - (var(--tw-gap) * (${k}))))`
               : `calc(${v} - (var(--tw-gap) / 2))`,
           },

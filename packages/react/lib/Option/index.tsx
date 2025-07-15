@@ -1,5 +1,4 @@
 import {
-  type ComponentPropsWithoutRef,
   type MouseEvent,
   type RefObject,
   type ReactNode,
@@ -59,12 +58,12 @@ const Option = ({
     isOak: true,
     innerRef,
     tooltipRef,
-  }), [innerRef.current]);
+  }));
 
   const floatingOptions = useMemo<{ boundary: Boundary }>(() => ({
     boundary: (rootBoundary as RefObject<any>)?.current ||
       rootRef?.current,
-  }), []);
+  }), [rootBoundary, rootRef]);
 
   const onClick_ = (e: MouseEvent<HTMLAnchorElement>) => {
     tooltipRef?.current?.close();
@@ -85,9 +84,10 @@ const Option = ({
       { renderIcon ? renderIcon() : (
         <Icon
           className={classNames('!oak-text-lg', iconClassName)}
-          children={typeof option?.icon === 'function'
-            ? option?.icon?.() : option?.icon}
-        />
+        >
+          { typeof option?.icon === 'function'
+            ? option?.icon?.() : option?.icon }
+        </Icon>
       ) }
     </a>
   );
