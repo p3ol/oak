@@ -50,7 +50,7 @@
     "@ckeditor/ckeditor5-watchdog": "44.1.0",
     "@junipero/core": "3.10.4",
     "@junipero/tailwind-plugin": "3.10.4",
-    "@percy/storybook": "6.0.3",
+    "@percy/storybook": "6.0.4",
     "@poool/eslint-config": "3.0.1",
     "@poool/eslint-config-react": "3.0.1",
     "@poool/eslint-plugin": "3.0.0",
