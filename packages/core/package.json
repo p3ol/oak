@@ -20,11 +20,11 @@
     "node": ">= 18"
   },
   "dependencies": {
-    "@junipero/core": "3.10.4",
+    "@junipero/core": "3.10.5",
     "uuid": "11.1.0"
   },
   "devDependencies": {
-    "@floating-ui/react": "0.27.3"
+    "@floating-ui/react": "0.27.13"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
