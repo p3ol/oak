@@ -489,6 +489,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.27.0":
+  version: 7.27.6
+  resolution: "@babel/runtime@npm:7.27.6"
+  checksum: 10/cc957a12ba3781241b83d528eb69ddeb86ca5ac43179a825e83aa81263a6b3eb88c57bed8a937cdeacfc3192e07ec24c73acdfea4507d0c0428c8e23d6322bfe
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.22.5, @babel/template@npm:^7.24.7, @babel/template@npm:^7.3.3":
   version: 7.24.7
   resolution: "@babel/template@npm:7.24.7"
@@ -3053,7 +3060,7 @@ __metadata:
     "@remirror/react": "npm:3.0.1"
     "@strapi/design-system": "npm:1.19.0"
     "@strapi/icons": "npm:1.19.0"
-    remirror: "npm:3.0.1"
+    remirror: "npm:3.0.2"
     styled-components: "npm:6.1.14"
   peerDependencies:
     "@strapi/strapi": ^4.4.0
@@ -4550,11 +4557,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-markdown@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-markdown@npm:3.0.1"
+"@remirror/extension-markdown@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-markdown@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@remirror/core": "npm:3.0.1"
     "@remirror/messages": "npm:3.0.0"
     "@types/marked": "npm:^4.3.1"
@@ -4563,12 +4570,12 @@ __metadata:
     turndown: "npm:^7.1.2"
     turndown-plugin-gfm: "npm:^1.0.2"
   peerDependencies:
-    "@remirror/extension-react-tables": 3.0.1
-    "@remirror/pm": ^3.0.0
+    "@remirror/extension-react-tables": 3.0.2
+    "@remirror/pm": ^3.0.1
   peerDependenciesMeta:
     "@remirror/extension-react-tables":
       optional: true
-  checksum: 10/920a8b70562c5ccc8e1fbddd42176bb509ac40423f84e724db0f7f3b7ea08950625fb4cd4da8cadfb0fe868971992599782e572f4f2f8d34cb0d518eb540d8cc
+  checksum: 10/51f6c163c4c2874c63764c80498576b3b6c25569d3caba987a7199478ab28e874ec1868c6e62f0a270fe415baeacba5ef25a4311bfb53ed48fd3964813aa6ae3
   languageName: node
   linkType: hard
 
@@ -18506,11 +18513,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remirror@npm:3.0.1":
-  version: 3.0.1
-  resolution: "remirror@npm:3.0.1"
+"remirror@npm:3.0.2":
+  version: 3.0.2
+  resolution: "remirror@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@remirror/core": "npm:3.0.1"
     "@remirror/core-constants": "npm:3.0.0"
     "@remirror/core-helpers": "npm:4.0.0"
@@ -18546,7 +18553,7 @@ __metadata:
     "@remirror/extension-italic": "npm:3.0.1"
     "@remirror/extension-link": "npm:3.0.1"
     "@remirror/extension-list": "npm:3.0.1"
-    "@remirror/extension-markdown": "npm:3.0.1"
+    "@remirror/extension-markdown": "npm:3.0.2"
     "@remirror/extension-mention": "npm:3.0.1"
     "@remirror/extension-mention-atom": "npm:3.0.1"
     "@remirror/extension-node-formatting": "npm:3.0.1"
@@ -18573,12 +18580,12 @@ __metadata:
     "@types/refractor": "npm:^3.0.2"
     refractor: "npm:^3.6.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
+    "@remirror/pm": ^3.0.1
     prettier: ^3.2.0
   peerDependenciesMeta:
     prettier:
       optional: true
-  checksum: 10/1faea7858c6da92424af50df8a3703ae00bca7456b95221807827100c477116ffe82b06db521d717f162cb3793efb04853b8e3b574d0d1feb4ab72284893f901
+  checksum: 10/57342d15c95378b2f75532d08077156abe96c3b8a561a77caee1e66595b439a4a69827c72eecb7e7a3aedebf2c4f0d084713a6a6c7a30a52cf7b872e2d1a47e1
   languageName: node
   linkType: hard
 
@@ -18956,7 +18963,7 @@ __metadata:
     postcss-loader: "npm:8.1.1"
     react: "npm:19.0.0"
     react-dom: "npm:19.0.0"
-    remirror: "npm:3.0.1"
+    remirror: "npm:3.0.2"
     rollup: "npm:4.34.1"
     rollup-plugin-postcss: "npm:4.0.2"
     sass: "npm:1.83.4"
