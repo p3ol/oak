@@ -3,8 +3,8 @@ import type { ViewEditableElement } from '@ckeditor/ckeditor5-engine';
 import { type ReactElement, version } from 'react';
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { createDropdown } from '@ckeditor/ckeditor5-ui';
-import FontColorCommand from '@ckeditor/ckeditor5-font/src/fontcolor/fontcolorcommand.js';
-import icon from '@ckeditor/ckeditor5-font/theme/icons/font-color.svg';
+import { FontColorCommand } from '@ckeditor/ckeditor5-font';
+import icon from '@ckeditor/ckeditor5-icons/theme/icons/font-color.svg';
 
 import type Editor from '..';
 import Field from './Field';
