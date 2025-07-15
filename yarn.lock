@@ -3259,8 +3259,8 @@ __metadata:
     "@oakjs/ckeditor5-build-custom": "npm:^3.12.5"
     "@oakjs/react": "npm:^3.12.5"
     "@oakjs/theme": "npm:^3.12.0"
-    "@remirror/pm": "npm:3.0.0"
-    "@remirror/react": "npm:3.0.1"
+    "@remirror/pm": "npm:3.0.1"
+    "@remirror/react": "npm:3.0.2"
     "@strapi/design-system": "npm:1.19.0"
     "@strapi/icons": "npm:1.19.0"
     remirror: "npm:3.0.2"
@@ -4861,11 +4861,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-react-component@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-react-component@npm:3.0.1"
+"@remirror/extension-react-component@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-react-component@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@remirror/core": "npm:3.0.1"
     "@remirror/core-constants": "npm:3.0.0"
     "@remirror/core-helpers": "npm:4.0.0"
@@ -4874,7 +4874,7 @@ __metadata:
     "@remirror/messages": "npm:3.0.0"
     nanoevents: "npm:^5.1.13"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
+    "@remirror/pm": ^3.0.1
     "@types/react": ^16.14.0 || ^17 || ^18
     "@types/react-dom": ^16.9.0 || ^17 || ^18
     react: ^16.14.0 || ^17 || ^18
@@ -4884,7 +4884,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 10/93147d7225bd08bd997c00110e5a193bc6e929456e90fe74f3f5bc58c4b0fce8d0625c4bf876efbe20e0ec9b8a9a3a533785ded14ed5ffa4b2ff9e7054d1c3a2
+  checksum: 10/a7baba9833e30307707336144eb4afeb63e87610658bb030e02fc7047e29c4a021543bea954ccdb229c0ab796a7f2549aa2989bdcd48e6f7503e3ac66f90048c
   languageName: node
   linkType: hard
 
@@ -5070,30 +5070,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/pm@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@remirror/pm@npm:3.0.0"
+"@remirror/pm@npm:3.0.1":
+  version: 3.0.1
+  resolution: "@remirror/pm@npm:3.0.1"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@remirror/core-constants": "npm:3.0.0"
     "@remirror/core-helpers": "npm:4.0.0"
     prosemirror-collab: "npm:^1.3.1"
-    prosemirror-commands: "npm:^1.5.2"
-    prosemirror-dropcursor: "npm:^1.8.1"
+    prosemirror-commands: "npm:^1.7.1"
+    prosemirror-dropcursor: "npm:^1.8.2"
     prosemirror-gapcursor: "npm:^1.3.2"
     prosemirror-history: "npm:^1.4.1"
-    prosemirror-inputrules: "npm:^1.4.0"
+    prosemirror-inputrules: "npm:^1.5.0"
     prosemirror-keymap: "npm:^1.2.2"
-    prosemirror-model: "npm:^1.22.1"
+    prosemirror-model: "npm:^1.25.1"
     prosemirror-paste-rules: "npm:3.0.0"
-    prosemirror-schema-list: "npm:^1.4.1"
+    prosemirror-schema-list: "npm:^1.5.1"
     prosemirror-state: "npm:^1.4.3"
     prosemirror-suggest: "npm:3.0.0"
-    prosemirror-tables: "npm:^1.3.7"
+    prosemirror-tables: "npm:^1.7.1"
     prosemirror-trailing-node: "npm:3.0.0"
-    prosemirror-transform: "npm:^1.9.0"
-    prosemirror-view: "npm:^1.33.8"
-  checksum: 10/7df4ba9442199646eff710701b51eb946402ef8fdf4d515f6a877200b5b1fc71b7e74e671b65dbe872ec77fa11386bf60c9e7b3a8eba8fd0e8830d1a0fa253f1
+    prosemirror-transform: "npm:^1.10.4"
+    prosemirror-view: "npm:^1.39.2"
+  checksum: 10/1a0a605ce2d9bc64c02433aafbf3addd368e1edbf6a1d8164117839cdd7fcc3a53981dc7ef9371e7b08fad70ce5222332c4d023c001ebbdc92d3c58e32413221
   languageName: node
   linkType: hard
 
@@ -5142,17 +5142,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/preset-react@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/preset-react@npm:3.0.1"
+"@remirror/preset-react@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/preset-react@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@remirror/core": "npm:3.0.1"
     "@remirror/extension-placeholder": "npm:3.0.1"
-    "@remirror/extension-react-component": "npm:3.0.1"
+    "@remirror/extension-react-component": "npm:3.0.2"
     "@remirror/react-utils": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
+    "@remirror/pm": ^3.0.1
     "@types/react": ^16.14.0 || ^17 || ^18
     "@types/react-dom": ^16.9.0 || ^17 || ^18
     react: ^16.14.0 || ^17 || ^18
@@ -5162,7 +5162,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 10/c6d118875e65b414c59b54fa1ebb15ef78587c931bbfc92970317c1cd387dc6739903fe7bb37a7835bd0ba59f80c490f84ac3f567dd3f57d4e5ebb1b8ff18f75
+  checksum: 10/98b4e34da402c0912bd78c2676eb115bd9400f133179f571de7b9b7a1149a9bf699bf30527ab0fe689e682e05cccac9498b567d4fafa06420b24512ad9919dc5
   languageName: node
   linkType: hard
 
@@ -5199,18 +5199,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/react-components@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/react-components@npm:3.0.1"
+"@remirror/react-components@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/react-components@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@floating-ui/react": "npm:^0.24.3"
     "@remirror/core": "npm:3.0.1"
     "@remirror/extension-positioner": "npm:3.0.1"
     "@remirror/icons": "npm:3.0.0"
     "@remirror/messages": "npm:3.0.0"
-    "@remirror/react-core": "npm:3.0.1"
-    "@remirror/react-hooks": "npm:3.0.1"
+    "@remirror/react-core": "npm:3.0.2"
+    "@remirror/react-hooks": "npm:3.0.2"
     "@remirror/react-utils": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
     "@seznam/compose-react-refs": "npm:^1.0.6"
@@ -5220,7 +5220,7 @@ __metadata:
     multishift: "npm:2.0.10"
     react-color: "npm:^2.19.3"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
+    "@remirror/pm": ^3.0.1
     "@types/react": ^16.14.0 || ^17 || ^18
     "@types/react-dom": ^16.9.0 || ^17 || ^18
     react: ^16.14.0 || ^17 || ^18
@@ -5230,20 +5230,20 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 10/de0ac6bb89afb85ec2b2c69fddc8b18bb30ba482a4f4ee7872c3ceaa652b04b27920660055bdc8631e02679bcfe5db433934dd5de792f54cbc048de1274dc351
+  checksum: 10/430949921c1fe27012643c583d0d46cc769ca594b1eebe1f9b297707a55af70d2091e0fd42af4397e0f2616cccc5fc42903beb2975775cf88a31858e30de86d0
   languageName: node
   linkType: hard
 
-"@remirror/react-core@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/react-core@npm:3.0.1"
+"@remirror/react-core@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/react-core@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@remirror/core": "npm:3.0.1"
     "@remirror/extension-positioner": "npm:3.0.1"
-    "@remirror/extension-react-component": "npm:3.0.1"
+    "@remirror/extension-react-component": "npm:3.0.2"
     "@remirror/preset-core": "npm:3.0.1"
-    "@remirror/preset-react": "npm:3.0.1"
+    "@remirror/preset-react": "npm:3.0.2"
     "@remirror/react-renderer": "npm:3.0.1"
     "@remirror/react-utils": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
@@ -5252,7 +5252,7 @@ __metadata:
     resize-observer-polyfill: "npm:^1.5.1"
     tiny-warning: "npm:^1.0.3"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
+    "@remirror/pm": ^3.0.1
     "@types/react": ^16.14.0 || ^17 || ^18
     "@types/react-dom": ^16.9.0 || ^17 || ^18
     react: ^16.14.0 || ^17 || ^18
@@ -5262,15 +5262,15 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 10/07377461581063064ec8e0d67c3c472a99a302cbabff9a4b7e270f218cf922f9f083fb1ecf430ff68465acf5509914d8e843826d6f2f7743275c7fecc6570704
+  checksum: 10/ef6ac77a6784aff7e7700ef1b23ec7544f3b604962f913c8c8d5ed0b95ca355d3b90070742b3a84f61dabc4f33715f529f7698d5797d267eb3b3f67fab557b92
   languageName: node
   linkType: hard
 
-"@remirror/react-hooks@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/react-hooks@npm:3.0.1"
+"@remirror/react-hooks@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/react-hooks@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@remirror/core": "npm:3.0.1"
     "@remirror/core-constants": "npm:3.0.0"
     "@remirror/core-helpers": "npm:4.0.0"
@@ -5280,13 +5280,13 @@ __metadata:
     "@remirror/extension-mention": "npm:3.0.1"
     "@remirror/extension-mention-atom": "npm:3.0.1"
     "@remirror/extension-positioner": "npm:3.0.1"
-    "@remirror/react-core": "npm:3.0.1"
+    "@remirror/react-core": "npm:3.0.2"
     "@remirror/react-utils": "npm:3.0.0"
     multishift: "npm:2.0.10"
     use-isomorphic-layout-effect: "npm:^1.1.2"
     use-previous: "npm:^1.2.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
+    "@remirror/pm": ^3.0.1
     "@types/react": ^16.14.0 || ^17 || ^18
     "@types/react-dom": ^16.9.0 || ^17 || ^18
     react: ^16.14.0 || ^17 || ^18
@@ -5300,7 +5300,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/332cef9c697ba1a945a9df9e0205d7214be2957f48825b66f8709d3f8187acb5b9f3b8861397ecae478d25c37a477d07096f6f608f049e4f31963ff1ae0d2411
+  checksum: 10/07d4103734771cdbe769f33f7a68bf326b5cc114f329cf424670f026550534e01c23cc81cc3bb561279de24d6892a5f7c0974790d6a7d15db55bcfc85d8772be
   languageName: node
   linkType: hard
 
@@ -5338,18 +5338,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/react@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/react@npm:3.0.1"
+"@remirror/react@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/react@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
+    "@babel/runtime": "npm:^7.27.0"
     "@remirror/extension-placeholder": "npm:3.0.1"
     "@remirror/extension-positioner": "npm:3.0.1"
-    "@remirror/extension-react-component": "npm:3.0.1"
-    "@remirror/preset-react": "npm:3.0.1"
-    "@remirror/react-components": "npm:3.0.1"
-    "@remirror/react-core": "npm:3.0.1"
-    "@remirror/react-hooks": "npm:3.0.1"
+    "@remirror/extension-react-component": "npm:3.0.2"
+    "@remirror/preset-react": "npm:3.0.2"
+    "@remirror/react-components": "npm:3.0.2"
+    "@remirror/react-core": "npm:3.0.2"
+    "@remirror/react-hooks": "npm:3.0.2"
     "@remirror/react-renderer": "npm:3.0.1"
     "@remirror/react-utils": "npm:3.0.0"
   peerDependencies:
@@ -5362,7 +5362,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 10/da2973e5663ee7556f1c8e8da110f408760eb1e04493aac64f919dd0ca8b45870eb15c5607d1a4caf98efa8f22bc601bb87bc277cb076d0c8057e10132748390
+  checksum: 10/3234fe90fbad46074c7aafa5ea26e92e000aad05190f9f782f59cdd2489bd3912ec302035f0593a81ec7794d2065c78f65ea496de3d3d1109e7201f4bb03168c
   languageName: node
   linkType: hard
 
@@ -5400,9 +5400,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:28.0.2":
-  version: 28.0.2
-  resolution: "@rollup/plugin-commonjs@npm:28.0.2"
+"@rollup/plugin-commonjs@npm:28.0.6":
+  version: 28.0.6
+  resolution: "@rollup/plugin-commonjs@npm:28.0.6"
   dependencies:
     "@rollup/pluginutils": "npm:^5.0.1"
     commondir: "npm:^1.0.1"
@@ -5416,13 +5416,13 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: 10/07365e28628e65bacae714dc6ebfbadaa11bdd8291ec27f6633bf5a20f73faa9e6b4b0c6f65a05e3deac0d42f61c83174f8d5a38e4cb93e83112a1fca4d60a09
+  checksum: 10/0c46acc1d2efe107555c32c36c67965669bded206b4d4d940e0f30b374f03952c16fa5198d890da967d0c7301d863a95f0f00321fc0a9ccfc147ca5d09109073
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:16.0.0":
-  version: 16.0.0
-  resolution: "@rollup/plugin-node-resolve@npm:16.0.0"
+"@rollup/plugin-node-resolve@npm:16.0.1":
+  version: 16.0.1
+  resolution: "@rollup/plugin-node-resolve@npm:16.0.1"
   dependencies:
     "@rollup/pluginutils": "npm:^5.0.1"
     "@types/resolve": "npm:1.20.2"
@@ -5434,7 +5434,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: 10/018a97667d68bd78d6b1de5597680dcc5785f9339a936984a5715ad2cd7c6f2c85fb9448552b94e6903db35e2d3b218b54e5e9ca048257f2d3bdea2e05d886c7
+  checksum: 10/88fee8c003a5730cca2c06edd200ec6a46c7ab28bed3a99aea6d3070f34f980f575fcbea906946579e41b0be6fd7a2fbc24cdf0ca24f172a555f130726915d8b
   languageName: node
   linkType: hard
 
@@ -6712,21 +6712,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:19.0.3":
-  version: 19.0.3
-  resolution: "@types/react-dom@npm:19.0.3"
+"@types/react-dom@npm:19.1.6":
+  version: 19.1.6
+  resolution: "@types/react-dom@npm:19.1.6"
   peerDependencies:
     "@types/react": ^19.0.0
-  checksum: 10/815907f7adaa078acbf1d1ae7b6bf69cebe86bd301b8b9744e392bc0f16feb31bfb9fe0bfa2681d7d86678c83d52dedba5ed9bc7776736d4050cdd426b8b2d2b
+  checksum: 10/b5b20b7f0797f34c5a11915b74dcf8b3b7a9da9fea90279975ce6f150ca5d31bb069dbb0838638a5e9e168098aa4bb4a6f61d078efa1bbb55d7f0bdfe47bb142
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:19.0.8":
+"@types/react@npm:*":
   version: 19.0.8
   resolution: "@types/react@npm:19.0.8"
   dependencies:
     csstype: "npm:^3.0.2"
   checksum: 10/1080d5b96ee0b4395f8f167ae6952f570088ee03bdce69f8237aab82c32d9bd2b71106f787bac17ba351acc4aba5e3454bafca51f2eb11d1562073b821e63d15
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:19.1.8":
+  version: 19.1.8
+  resolution: "@types/react@npm:19.1.8"
+  dependencies:
+    csstype: "npm:^3.0.2"
+  checksum: 10/a3e6fe0f60f22828ef887f30993aa147b71532d7b1219dd00d246277eb7a9ca01ec533096237fa21ca1bccb3653373b4e8e59e5ae59f9c793058384bbc1f4d5c
   languageName: node
   linkType: hard
 
@@ -17991,25 +18000,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-commands@npm:^1.5.2":
-  version: 1.5.2
-  resolution: "prosemirror-commands@npm:1.5.2"
+"prosemirror-commands@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "prosemirror-commands@npm:1.7.1"
   dependencies:
     prosemirror-model: "npm:^1.0.0"
     prosemirror-state: "npm:^1.0.0"
-    prosemirror-transform: "npm:^1.0.0"
-  checksum: 10/73c9a30f6d76d87df98a007ad96ec1b616981d0f9040af15631aa66bcf22b088acf701b3f3d47676a7760afa32ce2f35145e7471124e7605383f87b4245f0acd
+    prosemirror-transform: "npm:^1.10.2"
+  checksum: 10/60efe77a9a6b9f06d66442980946f49a4804c24a7aca06ee4d55333a6c55d0f1e3189613bc27f31d16496133969a454f29f071caa8ef2d38126aefbc36f81c4a
   languageName: node
   linkType: hard
 
-"prosemirror-dropcursor@npm:^1.8.1":
-  version: 1.8.1
-  resolution: "prosemirror-dropcursor@npm:1.8.1"
+"prosemirror-dropcursor@npm:^1.8.2":
+  version: 1.8.2
+  resolution: "prosemirror-dropcursor@npm:1.8.2"
   dependencies:
     prosemirror-state: "npm:^1.0.0"
     prosemirror-transform: "npm:^1.1.0"
     prosemirror-view: "npm:^1.1.0"
-  checksum: 10/a2584dfbbeed3d7f703c1f7f174396ebf85f29e4f31a43e08cb9c7596d6d0b82f1bc73d0bbcd7c25e421d875ef0dc7f0c9918287fffa5267b6c65e89659444d0
+  checksum: 10/02349c56152d0261c61d462b07684bb8179ab0ea488ab333dadcc9181b9ec8d5aa625feb2c54088090bd8f4e540321219938a0642d8ed043fea8a11f371ef058
   languageName: node
   linkType: hard
 
@@ -18037,17 +18046,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-inputrules@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "prosemirror-inputrules@npm:1.4.0"
+"prosemirror-inputrules@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "prosemirror-inputrules@npm:1.5.0"
   dependencies:
     prosemirror-state: "npm:^1.0.0"
     prosemirror-transform: "npm:^1.0.0"
-  checksum: 10/04453d06a4bb3540e3df254e46bcafd4faaf73cd72f4486a804af598a084ee9cddb9fedd23a09c34c79ed98182b151461f447e4f5920bdd7465327975c773bca
+  checksum: 10/b5125bf95078b9f4ea02eca9a114fe4fdedc2ea6dac1df21dc0bf6eb7595d39471698cb6362a34c4e9642003ffc5792180624175ebd45b181e2687b3c9a74f40
   languageName: node
   linkType: hard
 
-"prosemirror-keymap@npm:^1.0.0, prosemirror-keymap@npm:^1.1.2, prosemirror-keymap@npm:^1.2.2":
+"prosemirror-keymap@npm:^1.0.0, prosemirror-keymap@npm:^1.2.2":
   version: 1.2.2
   resolution: "prosemirror-keymap@npm:1.2.2"
   dependencies:
@@ -18057,12 +18066,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-model@npm:^1.0.0, prosemirror-model@npm:^1.20.0, prosemirror-model@npm:^1.21.0, prosemirror-model@npm:^1.22.1, prosemirror-model@npm:^1.8.1":
+"prosemirror-model@npm:^1.0.0, prosemirror-model@npm:^1.20.0, prosemirror-model@npm:^1.21.0, prosemirror-model@npm:^1.22.1":
   version: 1.22.2
   resolution: "prosemirror-model@npm:1.22.2"
   dependencies:
     orderedmap: "npm:^2.0.0"
   checksum: 10/2387495e227144b306a72dd578cc495abab65e894f46564c3e6c1d3c8b831411af73095d26d6c6f743b96369d54c3815dccc7ea800964aac5d5efb09358172d4
+  languageName: node
+  linkType: hard
+
+"prosemirror-model@npm:^1.25.0, prosemirror-model@npm:^1.25.1":
+  version: 1.25.2
+  resolution: "prosemirror-model@npm:1.25.2"
+  dependencies:
+    orderedmap: "npm:^2.0.0"
+  checksum: 10/de708e22b52b97081ae8012c37136e3a39552a13b64b9fadeddca1c4bb3d7b865f390123cbe1fee7e98c6b7d85776a292be9fdc5140b6ebbe9f60987de980345
   languageName: node
   linkType: hard
 
@@ -18095,18 +18113,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-schema-list@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "prosemirror-schema-list@npm:1.4.1"
+"prosemirror-schema-list@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "prosemirror-schema-list@npm:1.5.1"
   dependencies:
     prosemirror-model: "npm:^1.0.0"
     prosemirror-state: "npm:^1.0.0"
     prosemirror-transform: "npm:^1.7.3"
-  checksum: 10/a1d58811ad17d99cc426ed898c725b2e245512d57a26723cd7fb933fad70b5def3eb619f201090c50351eef9b5d129e6479996b02c639a669e4e751a1c71e40e
+  checksum: 10/eaf308093ecbce7fc7d0e3c3653faa120afb3679bdb20c99f79c75c90b4f57d61c6580ea162dd0af274013e98c5d4529ecbe6b9bd7e66e7d6d6b5be6aae0f052
   languageName: node
   linkType: hard
 
-"prosemirror-state@npm:^1.0.0, prosemirror-state@npm:^1.2.2, prosemirror-state@npm:^1.3.1, prosemirror-state@npm:^1.4.3":
+"prosemirror-state@npm:^1.0.0, prosemirror-state@npm:^1.2.2, prosemirror-state@npm:^1.4.3":
   version: 1.4.3
   resolution: "prosemirror-state@npm:1.4.3"
   dependencies:
@@ -18134,16 +18152,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-tables@npm:^1.3.7":
-  version: 1.3.7
-  resolution: "prosemirror-tables@npm:1.3.7"
+"prosemirror-tables@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "prosemirror-tables@npm:1.7.1"
   dependencies:
-    prosemirror-keymap: "npm:^1.1.2"
-    prosemirror-model: "npm:^1.8.1"
-    prosemirror-state: "npm:^1.3.1"
-    prosemirror-transform: "npm:^1.2.1"
-    prosemirror-view: "npm:^1.13.3"
-  checksum: 10/f315f386cd8ca914126aa0c5ce0046a9bd7cb740f5cf028661520809855dbecfc51b765da9db5ed3d34127d019ece03305af537255549a6461516f51ee20a056
+    prosemirror-keymap: "npm:^1.2.2"
+    prosemirror-model: "npm:^1.25.0"
+    prosemirror-state: "npm:^1.4.3"
+    prosemirror-transform: "npm:^1.10.3"
+    prosemirror-view: "npm:^1.39.1"
+  checksum: 10/69259298146924ec4497a21a326c3b88b3d90ef6103f4f60c40d5ddca800bc2bffe389dac0b7ce954ef285ea886b081a22a480e72980ce7fcd0e82f74766f8ad
   languageName: node
   linkType: hard
 
@@ -18161,7 +18179,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-transform@npm:^1.0.0, prosemirror-transform@npm:^1.1.0, prosemirror-transform@npm:^1.2.1, prosemirror-transform@npm:^1.7.3, prosemirror-transform@npm:^1.9.0":
+"prosemirror-transform@npm:^1.0.0, prosemirror-transform@npm:^1.1.0, prosemirror-transform@npm:^1.7.3":
   version: 1.9.0
   resolution: "prosemirror-transform@npm:1.9.0"
   dependencies:
@@ -18170,7 +18188,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-view@npm:^1.0.0, prosemirror-view@npm:^1.1.0, prosemirror-view@npm:^1.13.3, prosemirror-view@npm:^1.27.0, prosemirror-view@npm:^1.31.0, prosemirror-view@npm:^1.33.8":
+"prosemirror-transform@npm:^1.10.2, prosemirror-transform@npm:^1.10.3, prosemirror-transform@npm:^1.10.4":
+  version: 1.10.4
+  resolution: "prosemirror-transform@npm:1.10.4"
+  dependencies:
+    prosemirror-model: "npm:^1.21.0"
+  checksum: 10/a5835bdd7e66e455f52115d63b48a1b9c6a0741fdefa277894c7ed4f5baf3570b226a135b11036abaa7fe7c5e98de466692779d356e65302b8e929a13a1c4391
+  languageName: node
+  linkType: hard
+
+"prosemirror-view@npm:^1.0.0, prosemirror-view@npm:^1.1.0, prosemirror-view@npm:^1.27.0, prosemirror-view@npm:^1.31.0, prosemirror-view@npm:^1.33.8":
   version: 1.33.9
   resolution: "prosemirror-view@npm:1.33.9"
   dependencies:
@@ -18178,6 +18205,17 @@ __metadata:
     prosemirror-state: "npm:^1.0.0"
     prosemirror-transform: "npm:^1.1.0"
   checksum: 10/6dbe6f5d67286e537f2fed775c23e6227280ca1b1da38afac07ba50d567a474b56a35d9c350a6c2a934bc01a42423ddb13ee007658affd7f67bd75ab528c2e3f
+  languageName: node
+  linkType: hard
+
+"prosemirror-view@npm:^1.39.1, prosemirror-view@npm:^1.39.2":
+  version: 1.40.0
+  resolution: "prosemirror-view@npm:1.40.0"
+  dependencies:
+    prosemirror-model: "npm:^1.20.0"
+    prosemirror-state: "npm:^1.0.0"
+    prosemirror-transform: "npm:^1.1.0"
+  checksum: 10/44200bfcadd011e2eaeeacf8dd54e7ec68e24b203c3b1b55624c4ef06281667b02e965a02178624b150d5f2b07eab77e3d5abd382f3d9fdadad30183805070f4
   languageName: node
   linkType: hard
 
@@ -18328,18 +18366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0":
-  version: 19.0.0
-  resolution: "react-dom@npm:19.0.0"
-  dependencies:
-    scheduler: "npm:^0.25.0"
-  peerDependencies:
-    react: ^19.0.0
-  checksum: 10/aa64a2f1991042f516260e8b0eca0ae777b6c8f1aa2b5ae096e80bbb6ac9b005aef2bca697969841d34f7e1819556263476bdfea36c35092e8d9aefde3de2d9a
-  languageName: node
-  linkType: hard
-
-"react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0":
+"react-dom@npm:19.1.0, react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0":
   version: 19.1.0
   resolution: "react-dom@npm:19.1.0"
   dependencies:
@@ -18439,13 +18466,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10/80c58fd6aac3594e351e2e7b048d8a5b09508adb21031a38b3c40911fe58295572eddc640d4b20a7be364842c8ed1120fe30097e22ea055316b375b88d4ff02a
-  languageName: node
-  linkType: hard
-
-"react@npm:19.0.0":
-  version: 19.0.0
-  resolution: "react@npm:19.0.0"
-  checksum: 10/2490969c503f644703c88990d20e4011fa6119ddeca451e9de48f6d7ab058d670d2852a5fcd3aa3cd90a923ab2815d532637bd4a814add402ae5c0d4f129ee71
   languageName: node
   linkType: hard
 
@@ -19207,11 +19227,11 @@ __metadata:
     "@poool/eslint-config": "npm:4.1.0"
     "@poool/eslint-config-react": "npm:4.1.1"
     "@poool/eslint-plugin": "npm:3.0.0"
-    "@remirror/pm": "npm:3.0.0"
-    "@remirror/react": "npm:3.0.1"
+    "@remirror/pm": "npm:3.0.1"
+    "@remirror/react": "npm:3.0.2"
     "@rollup/plugin-alias": "npm:5.1.1"
-    "@rollup/plugin-commonjs": "npm:28.0.2"
-    "@rollup/plugin-node-resolve": "npm:16.0.0"
+    "@rollup/plugin-commonjs": "npm:28.0.6"
+    "@rollup/plugin-node-resolve": "npm:16.0.1"
     "@rollup/plugin-swc": "npm:0.4.0"
     "@rollup/plugin-terser": "npm:0.4.4"
     "@storybook/addon-docs": "npm:9.0.17"
@@ -19226,8 +19246,8 @@ __metadata:
     "@testing-library/react": "npm:16.3.0"
     "@types/jest": "npm:29.5.14"
     "@types/node": "npm:24.0.14"
-    "@types/react": "npm:19.0.8"
-    "@types/react-dom": "npm:19.0.3"
+    "@types/react": "npm:19.1.8"
+    "@types/react-dom": "npm:19.1.6"
     "@typescript-eslint/parser": "npm:8.37.0"
     autoprefixer: "npm:10.4.21"
     ckeditor5: "npm:46.0.0"
@@ -19245,8 +19265,8 @@ __metadata:
     lerna-changelog: "npm:2.2.0"
     postcss: "npm:8.5.6"
     postcss-loader: "npm:8.1.1"
-    react: "npm:19.0.0"
-    react-dom: "npm:19.0.0"
+    react: "npm:19.1.0"
+    react-dom: "npm:19.1.0"
     remirror: "npm:3.0.2"
     rollup: "npm:4.45.1"
     rollup-plugin-postcss: "npm:4.0.2"
@@ -19434,13 +19454,6 @@ __metadata:
   dependencies:
     xmlchars: "npm:^2.2.0"
   checksum: 10/97b50daf6ca3a153e89842efa18a862e446248296622b7473c169c84c823ee8a16e4a43bac2f73f11fc8cb9168c73fbb0d73340f26552bac17970e9052367aa9
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:^0.25.0":
-  version: 0.25.0
-  resolution: "scheduler@npm:0.25.0"
-  checksum: 10/e661e38503ab29a153429a99203fefa764f28b35c079719eb5efdd2c1c1086522f6653d8ffce388209682c23891a6d1d32fa6badf53c35fb5b9cd0c55ace42de
   languageName: node
   linkType: hard
 

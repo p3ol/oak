@@ -11,6 +11,7 @@ export const Basic = () => (
     editor={CustomEditor}
     data="Hello from CKEditor 5!"
     config={{
+      licenseKey: 'GPL',
       toolbar: {
         items: [
           'undo',
