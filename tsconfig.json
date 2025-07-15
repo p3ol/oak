@@ -19,8 +19,9 @@
     },
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "packages/**/*.tsx?",
+    "*.ts",
+    ".storybook/**/*",
   ],
   "exclude": [
     "node_modules",

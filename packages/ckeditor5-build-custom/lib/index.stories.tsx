@@ -6,7 +6,7 @@ export default {
   title: 'CKEditor5 / Custom Build',
 };
 
-export const basic = () => (
+export const Basic = () => (
   <CKEditor
     editor={CustomEditor}
     data="Hello from CKEditor 5!"

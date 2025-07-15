@@ -28,7 +28,7 @@ const baseContent: ElementObject[] = [
   { type: 'clickable', content: [{ type: 'text', content: 'Click me' }] },
 ];
 
-export const basic = () => (
+export const Basic = () => (
   <Builder
     addons={[baseAddon()]}
     value={baseContent}
@@ -37,7 +37,7 @@ export const basic = () => (
   />
 );
 
-export const controlled = () => {
+export const Controlled = () => {
   const [value, setValue] = useState(baseContent);
 
   const addElement = () => {
@@ -62,7 +62,7 @@ export const controlled = () => {
   );
 };
 
-export const uncontrolled = () => {
+export const Uncontrolled = () => {
   const builderRef = useRef<BuilderRef>(null);
 
   const addElement = () => {
@@ -88,7 +88,7 @@ export const uncontrolled = () => {
   );
 };
 
-export const withCustomTexts = () => {
+export const WithCustomTexts = () => {
   const builderRef = useRef<BuilderRef>(null);
 
   useEffect(() => {
@@ -116,7 +116,7 @@ export const withCustomTexts = () => {
   );
 };
 
-export const withMultipleLanguages = () => {
+export const WithMultipleLanguages = () => {
   const builderRef = useRef<BuilderRef>(null);
   const [locale, setLocale] = useState('fr');
 
@@ -156,7 +156,7 @@ export const withMultipleLanguages = () => {
   );
 };
 
-export const withMultipleCustomSettings = () => {
+export const WithMultipleCustomSettings = () => {
   const [addons, setAddons] = useState(true);
 
   return (
@@ -200,7 +200,7 @@ export const withMultipleCustomSettings = () => {
   );
 };
 
-export const withMultipleCustomSettingsAndFields = () => (
+export const WithMultipleCustomSettingsAndFields = () => (
   <Builder
     addons={[baseAddon(), {
       fields: [{
@@ -239,7 +239,7 @@ export const withMultipleCustomSettingsAndFields = () => (
   />
 );
 
-export const withComponentOverride = () => (
+export const WithComponentOverride = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [{
@@ -270,7 +270,7 @@ export const withComponentOverride = () => (
   />
 );
 
-export const disallowSomeChildren = () => (
+export const DisallowSomeChildren = () => (
   <div>
     <div>You should not be able to add a text inside a col</div>
     <Builder
@@ -288,7 +288,7 @@ export const disallowSomeChildren = () => (
   </div>
 );
 
-export const withMergeOverrides = () => (
+export const WithMergeOverrides = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [{
@@ -317,7 +317,7 @@ export const withMergeOverrides = () => (
   />
 );
 
-export const withNonEditableComponents = () => (
+export const WithNonEditableComponents = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [{
@@ -332,7 +332,7 @@ export const withNonEditableComponents = () => (
   />
 );
 
-export const withModalEditable = () => (
+export const WithModalEditable = () => (
   <Builder
     addons={[baseAddon()]}
     value={baseContent}
@@ -342,7 +342,7 @@ export const withModalEditable = () => (
   />
 );
 
-export const withSettingOverrides = () => (
+export const WithSettingOverrides = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [{
@@ -372,7 +372,7 @@ export const withSettingOverrides = () => (
   />
 );
 
-export const withMergeMultipleLevelsOverrides = () => (
+export const WithMergeMultipleLevelsOverrides = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [
@@ -422,7 +422,7 @@ export const withMergeMultipleLevelsOverrides = () => (
   />
 );
 
-export const withDisallowedComponents = () => (
+export const WithDisallowedComponents = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [{
@@ -437,7 +437,7 @@ export const withDisallowedComponents = () => (
   />
 );
 
-export const withDisabledSettings = () => (
+export const WithDisabledSettings = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [{
@@ -453,7 +453,7 @@ export const withDisabledSettings = () => (
   />
 );
 
-export const withMultipleCatalogueTabs = () => (
+export const WithMultipleCatalogueTabs = () => (
   <Builder
     addons={[baseAddon(), {
       components: [{
@@ -508,7 +508,7 @@ export const withMultipleCatalogueTabs = () => (
   />
 );
 
-export const withMultipleEditableTabs = () => (
+export const WithMultipleEditableTabs = () => (
   <Builder
     addons={[baseAddon(), {
       settings: [{
@@ -559,7 +559,7 @@ export const withMultipleEditableTabs = () => (
   />
 );
 
-export const withDisableTabs = () => (
+export const WithDisableTabs = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [{
@@ -575,7 +575,7 @@ export const withDisableTabs = () => (
   />
 );
 
-export const withImageUpdload = () => (
+export const WithImageUpdload = () => (
   <Builder
     onImageUpload={(e: FormEvent) => {
       action('upload')(e);
@@ -593,7 +593,7 @@ export const withImageUpdload = () => (
   />
 );
 
-export const withNonDuplicableOrCopyableComponents = () => (
+export const WithNonDuplicableOrCopyableComponents = () => (
   <Builder
     addons={[baseAddon(), {
       overrides: [{
@@ -612,7 +612,7 @@ export const withNonDuplicableOrCopyableComponents = () => (
   />
 );
 
-export const withSharedSettings = () => (
+export const WithSharedSettings = () => (
   <Builder
     addons={[baseAddon(), {
       settings: [{
@@ -646,7 +646,7 @@ export const withSharedSettings = () => (
   />
 );
 
-export const withFunctionAsDefault = () => {
+export const WithFunctionAsDefault = () => {
   return (
     <div>
       <Builder
@@ -675,7 +675,7 @@ export const withFunctionAsDefault = () => {
   );
 };
 
-export const withCustomFieldDisplayfunction = () => {
+export const WithCustomFieldDisplayfunction = () => {
   return (
     <div>
       <Builder
@@ -696,7 +696,7 @@ export const withCustomFieldDisplayfunction = () => {
   );
 };
 
-export const withExtendedSettings = () => (
+export const WithExtendedSettings = () => (
   <Builder
     addons={[
       baseAddon(),
@@ -712,7 +712,7 @@ export const withExtendedSettings = () => (
   />
 );
 
-export const withCatalogueUpdate = () => {
+export const WithCatalogueUpdate = () => {
   const [addons, setAddons] = useState([]);
 
   const updateAddons = () => {
@@ -738,7 +738,7 @@ export const withCatalogueUpdate = () => {
   );
 };
 
-export const withRemovingField = () => {
+export const WithRemovingField = () => {
   return (
     <div>
       <Builder
@@ -757,11 +757,11 @@ export const withRemovingField = () => {
             fields: [{
               key: 'url',
               type: null,
-              condition: (element: ElementObject) => true,
+              condition: () => true,
             }, {
               key: 'target',
               type: null,
-              condition: (element: ElementObject) => false,
+              condition: () => false,
             }],
           }],
         }]}

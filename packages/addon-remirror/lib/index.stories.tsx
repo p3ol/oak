@@ -25,7 +25,7 @@ const addon: AddonObject = {
   }],
 };
 
-export const basic = () => (
+export const Basic = () => (
   <Builder
     addons={[baseAddon(), remirrorFieldAddon(), addon]}
     value={baseContent}

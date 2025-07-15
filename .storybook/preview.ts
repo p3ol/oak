@@ -15,7 +15,7 @@ const preview: Preview = {
   ],
   parameters: {
     docs: {
-      codePanel: true
+      codePanel: true,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {

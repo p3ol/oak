@@ -43,7 +43,7 @@ const CKEditorField = ({
 
   const onChange_ = useCallback((_: EventInfo, ed: Editor) => {
     onChange?.({ value: ed.getData() });
-  }, []);
+  }, [onChange]);
 
   if (!editor && !defaultEditor) {
     return null;

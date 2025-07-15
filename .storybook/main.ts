@@ -1,14 +1,15 @@
-import { createRequire } from "node:module";
+import { createRequire } from 'node:module';
 import path, { dirname, join } from 'node:path';
 
 import type { RuleSetRule } from 'webpack';
 import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { Config as SWCConfig } from '@swc/core';
 import { styles } from '@ckeditor/ckeditor5-dev-utils';
 
 const require = createRequire(import.meta.url);
 
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, "package.json")));
+function getAbsolutePath (value: string): any {
+  return dirname(require.resolve(join(value, 'package.json')));
 }
 
 const config: StorybookConfig = {
@@ -16,9 +17,9 @@ const config: StorybookConfig = {
     '../packages/*/lib/**/*.stories.{js,tsx}',
   ],
   addons: [
-    getAbsolutePath("@storybook/addon-themes"),
+    getAbsolutePath('@storybook/addon-themes'),
     {
-      name: getAbsolutePath("@storybook/addon-styling-webpack"),
+      name: getAbsolutePath('@storybook/addon-styling-webpack'),
       options: {
         rules: [
           {
@@ -43,10 +44,10 @@ const config: StorybookConfig = {
         ],
       },
     },
-    getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
-    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
+    getAbsolutePath('@storybook/addon-docs'),
   ],
-  framework: getAbsolutePath("@storybook/react-webpack5"),
+  framework: getAbsolutePath('@storybook/react-webpack5'),
   webpackFinal: config => {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
@@ -55,7 +56,7 @@ const config: StorybookConfig = {
       '@oakjs/ckeditor5-build-custom': path
         .resolve(__dirname, '../packages/ckeditor5-build-custom/lib'),
       '@poool/oak/lib': path.resolve(__dirname, '../packages/oak/lib'),
-      '@poool/oak': path.resolve(__dirname, '../packages/oak/lib')
+      '@poool/oak': path.resolve(__dirname, '../packages/oak/lib'),
     };
 
     // CKEditor config
@@ -66,9 +67,9 @@ const config: StorybookConfig = {
       type: 'asset/source',
     });
 
-    // @ts-ignore webpack is weird bro
+    // @ts-expect-error webpack is weird bro
     const cssRule: RuleSetRule = config.module.rules.find((r => (
-        r && (r as RuleSetRule).test &&
+      r && (r as RuleSetRule).test &&
         (r as RuleSetRule).test?.toString() === '/\\.css$/'
     ))) || ({} as RuleSetRule);
     cssRule.exclude = /@ckeditor/;
@@ -103,7 +104,7 @@ const config: StorybookConfig = {
 
     return config;
   },
-  swc: config => ({
+  swc: (config: SWCConfig) => ({
     ...config,
     jsc: {
       ...config.jsc,
