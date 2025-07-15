@@ -31,8 +31,8 @@
     "@remirror/react": "3.0.1",
     "@strapi/design-system": "1.19.0",
     "@strapi/icons": "1.19.0",
-    "remirror": "3.0.1",
-    "styled-components": "6.1.14"
+    "remirror": "3.0.2",
+    "styled-components": "6.1.19"
   },
   "strapi": {
     "name": "oak",

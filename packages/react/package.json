@@ -28,7 +28,7 @@
     "@junipero/hooks": "3.10.4",
     "@junipero/react": "3.10.4",
     "@junipero/transitions": "3.10.4",
-    "uuid": "11.0.5"
+    "uuid": "11.1.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
