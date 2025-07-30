@@ -6,7 +6,6 @@ import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { FontColor, FontSize } from '@ckeditor/ckeditor5-font';
 import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
 import { Indent } from '@ckeditor/ckeditor5-indent';
-import {  } from '@ckeditor/ckeditor5-basic-styles';
 import { Link } from '@ckeditor/ckeditor5-link';
 import { List } from '@ckeditor/ckeditor5-list';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
