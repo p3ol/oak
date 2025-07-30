@@ -24,10 +24,10 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@floating-ui/react": "0.27.13",
-    "@junipero/hooks": "3.10.5",
-    "@junipero/react": "3.10.5",
-    "@junipero/transitions": "3.10.5",
+    "@floating-ui/react": "0.27.15",
+    "@junipero/hooks": "3.11.0",
+    "@junipero/react": "3.11.0",
+    "@junipero/transitions": "3.11.0",
     "uuid": "11.1.0"
   },
   "scripts": {
