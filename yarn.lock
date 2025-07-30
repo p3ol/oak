@@ -3541,7 +3541,7 @@ __metadata:
     "@oakjs/ckeditor5-build-custom": "workspace:*"
     "@oakjs/react": "workspace:*"
   peerDependencies:
-    "@ckeditor/ckeditor5-react": ^6.0.0 || ^7.0.0
+    "@ckeditor/ckeditor5-react": ^6.0.0 || ^7.0.0 || ^11.0.0
     "@oakjs/react": ^3.0.0
     react: ^18.0.0 || ^19.0.0
     react-dom: ^18.0.0 || ^19.0.0
