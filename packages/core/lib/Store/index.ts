@@ -134,7 +134,7 @@ export declare abstract class IStore {
 
 export default class Store extends Emitter implements IStore {
   #content: ElementObject[] = [];
-  #history: ElementObject[] = [];
+  #history: ElementObject[][] = [];
   #historyIndex: number = 0;
   #builder: Builder = null;
 

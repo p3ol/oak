@@ -1,3 +1,4 @@
+import type { Node } from '@remirror/pm/model';
 import { type ComponentPropsWithoutRef, useCallback } from 'react';
 import { type FieldContent, classNames } from '@oakjs/react';
 import { type RemirrorEventListener, prosemirrorNodeToHtml } from 'remirror';
@@ -31,7 +32,7 @@ const RemirrorField = ({
     RemirrorEventListener<Extensions>
   >(({ state }) => {
     setState(state);
-    onChange?.({ value: prosemirrorNodeToHtml(state.doc) });
+    onChange?.({ value: prosemirrorNodeToHtml(state.doc as Node) });
   }, [setState, onChange]);
 
   return (
