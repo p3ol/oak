@@ -14,7 +14,7 @@
   "license": "MIT",
   "sideEffects": false,
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20"
   },
   "peerDependencies": {
     "@ckeditor/ckeditor5-react": ">=6.0.0 <=11.0.0",

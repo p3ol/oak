@@ -10,7 +10,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20"
   },
   "peerDependencies": {
     "@oakjs/react": "^3.0.0",
