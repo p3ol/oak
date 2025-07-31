@@ -83,8 +83,8 @@ const Tab = ({
         .concat(componentOverride?.fields?.filter(f =>
           !component.settings?.fields?.find(s =>
             s.type !== 'tab' &&
-            ((s as ComponentSettingsFieldObject).key === f.key ||
-            [].concat((s as ComponentSettingsFieldObject).key)
+            // @ts-expect-error ts & eslint fuckups
+            (s.key === f.key || [].concat(s.key)
               .some(k => [].concat(f.key).includes(k)))
           )
         ) || [])
