@@ -3541,7 +3541,7 @@ __metadata:
     "@oakjs/ckeditor5-build-custom": "workspace:*"
     "@oakjs/react": "workspace:*"
   peerDependencies:
-    "@ckeditor/ckeditor5-react": ^6.0.0 || ^7.0.0
+    "@ckeditor/ckeditor5-react": ">=6.0.0 <=11.0.0"
     "@oakjs/react": ^3.0.0
     react: ^18.0.0 || ^19.0.0
     react-dom: ^18.0.0 || ^19.0.0
@@ -3617,7 +3617,7 @@ __metadata:
     remirror: "npm:3.0.2"
     styled-components: "npm:6.1.19"
   peerDependencies:
-    "@strapi/strapi": ^4.4.0
+    "@strapi/strapi": ^4.4.0 <5.0.0
     react: ^17.0.2 || ^18.0.0 || ^19.0.0
     react-dom: ^17.0.2 || ^18.0.0 || ^19.0.0
   languageName: unknown
