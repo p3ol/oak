@@ -5,6 +5,7 @@ import {
   type ColorFieldProps,
   type ToggleProps,
   type DateFieldProps,
+  type SelectFieldOptionObject,
   TextField,
   SelectField,
   ColorField,
@@ -15,7 +16,11 @@ import {
 import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
 
-import type { CommonFieldProps, ReactComponentObject, ReactFieldObject } from './types';
+import type {
+  CommonFieldProps,
+  ReactComponentObject,
+  ReactFieldObject,
+} from './types';
 import { dragOption, backgroundColorOption, collapseOption } from './options';
 import { type ImageFieldProps, ImageField } from './fields';
 import {
@@ -83,8 +88,10 @@ export const selectField = (props?: ReactFieldObject): ReactFieldObject => ({
       } }
       animateMenu={slideInDownMenu}
       parseTitle={fieldOptions.setting?.parseTitle ||
-        (o => o?.title ? fieldOptions.t?.(o.title) : o)}
-      parseValue={fieldOptions.setting?.parseValue || (o => o?.value ?? o)}
+        ((o: SelectFieldOptionObject) =>
+          o?.title ? fieldOptions.t?.(o.title) : o)}
+      parseValue={fieldOptions.setting?.parseValue ||
+        ((o: SelectFieldOptionObject) => o?.value ?? o)}
       container={fieldOptions.editableRef?.current
         ?.innerRef.current as HTMLDivElement}
     />

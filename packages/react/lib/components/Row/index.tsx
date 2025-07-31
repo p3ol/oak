@@ -1,4 +1,5 @@
 import type {
+  Builder,
   ComponentObject,
   ComponentOverride,
   ComponentOverrideObject,
@@ -19,6 +20,7 @@ export interface RowProps extends ComponentPropsWithoutRef<'div'> {
   element: ElementObject;
   parent: ElementObject[];
   parentComponent: ComponentObject;
+  builder: Builder;
   component?: ComponentObject;
   override?: ComponentOverrideObject;
   depth?: number;

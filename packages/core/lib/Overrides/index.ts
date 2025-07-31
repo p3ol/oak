@@ -144,7 +144,8 @@ export default class Overrides extends Emitter implements IOverrides {
               { type: newComponentField?.type || setting.type },
               this.#builder.getOverride('field',
                 newComponentField?.type || setting?.type),
-              omit(newComponentField || {}, ['type', 'key'])
+              omit(newComponentField || {} as ComponentSettingsFieldObject,
+                ['type', 'key'])
             ) as FieldOverride;
           }
           default:

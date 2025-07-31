@@ -40,28 +40,31 @@ const Field = ({
   const overrides = useMemo(() => ({
     field: builder.getOverride('component', element.type, {
       output: 'field', setting: fieldSetting,
-    }),
-    settings: builder
-      .getOverride('setting', element.type, { setting: fieldSetting }),
+    }) as FieldOverride,
+    settings: builder.getOverride('setting', element.type, {
+      setting: fieldSetting,
+    }) as SettingOverride,
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [element, fieldSetting, builder, addons]);
 
   const field = useMemo(() => (
     builder.getField(
-      (overrides?.settings as SettingOverride)?.fieldType ||
+      overrides?.settings?.fieldType ||
       overrides?.field?.type ||
       fieldSetting?.type
     )
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  ), [overrides, fieldSetting, builder, addons]);
+  ), [overrides, fieldSetting, builder]);
 
   const setting = useMemo(() => assignDefined<typeof fieldSetting>(
     { type: fieldSetting.type },
     fieldSetting,
-    omit(overrides.field?.toObject?.() || overrides.field || {}, ['key']),
-    omit(overrides.settings?.toObject?.() || overrides.settings || {}, ['key']),
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  ), [fieldSetting, builder, overrides, addons]);
+    overrides.field?.toObject?.() || overrides.field || {} as FieldOverride,
+    omit(
+      overrides.settings?.toObject?.() || overrides.settings ||
+        {} as SettingOverride,
+      ['key']
+    ),
+  ), [fieldSetting, overrides]);
 
   const fieldProps = {
     id: setting.id,
@@ -74,13 +77,13 @@ const Field = ({
         ? setting.default(element) : setting.default,
     ),
     required: setting.required,
-    onChange: (overrides?.field as FieldOverride)?.onChange
+    onChange: overrides?.field?.onChange
       ? onCustomChange.bind(null, setting.key, overrides.field)
       : onChange.bind(null, setting.key),
     ...field?.props,
     ...setting?.props,
-    ...(overrides.field as FieldOverride)?.props,
-    ...(overrides.settings as FieldOverride)?.props,
+    ...overrides.field?.props,
+    ...overrides.settings?.props,
   };
 
   if (setting.condition &&
@@ -91,7 +94,7 @@ const Field = ({
   return (
     <DynamicComponent
       renderer={
-        (overrides.field as FieldOverride)?.render ||
+        overrides.field?.render ||
         field?.render
       }
       { ...fieldProps }

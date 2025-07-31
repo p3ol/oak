@@ -1,4 +1,5 @@
 import type {
+  Builder,
   ComponentObject,
   ComponentOverride,
   ElementObject,
@@ -15,6 +16,7 @@ export interface ClickableProps extends ComponentPropsWithoutRef<'div'> {
   parent: ElementObject[];
   component: ComponentObject;
   parentComponent: ComponentObject;
+  builder: Builder;
   depth?: number;
 }
 
