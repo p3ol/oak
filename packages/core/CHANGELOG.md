@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.13.0](https://github.com/p3ol/oak/compare/v3.12.5...v3.13.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **core:** types ([1fb865f](https://github.com/p3ol/oak/commit/1fb865f3270af289fe627201e011d56359ab7f5c))
+* migrate to eslint 9 ([fdd642c](https://github.com/p3ol/oak/commit/fdd642c757bf1c8c2c3e71a9b51069a005b31317))
+* type issues ([4b448ba](https://github.com/p3ol/oak/commit/4b448baf6d780866f0da5e9b89d803534948c3ef))
+* type issues ([59df745](https://github.com/p3ol/oak/commit/59df745294f0b2265e51e15b651d2196dc71783d))
+* update various deps ([a2e1309](https://github.com/p3ol/oak/commit/a2e1309d9cb106fb391af6a92ebaca4ba11d9696))
+* upgrade various deps ([afe9fe0](https://github.com/p3ol/oak/commit/afe9fe06bf13fae2e79426a6236d28723773d22b))
+
+
+### Features
+
+* add alt setting to image block ([4fdeb65](https://github.com/p3ol/oak/commit/4fdeb65729a9eb64981237f34e063c17643e286d))
+* bump node requirement to v22 ([ba9de95](https://github.com/p3ol/oak/commit/ba9de95da47ae53a49b362f598f92f5922bead84))
+* extends ComponentOverrideObject interface with reactNode display return type ([c0267bd](https://github.com/p3ol/oak/commit/c0267bd6a618b782a795138f328bedfdcdd8b358))
+* **fields:** add a field custom display function to personalize field display on component ([7180f01](https://github.com/p3ol/oak/commit/7180f019ea65f9802272642b63e5a166d6d431dc))
+* update snapshots ([873fc6a](https://github.com/p3ol/oak/commit/873fc6ab9ad933eff749e2f81ee29bb38b2a33ee))
+
+
+
+
+
 ## [3.12.3](https://github.com/p3ol/oak/compare/v3.12.2...v3.12.3) (2025-06-11)
 
 

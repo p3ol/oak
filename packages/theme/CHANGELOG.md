@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.13.0](https://github.com/p3ol/oak/compare/v3.12.5...v3.13.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* update various deps ([a2e1309](https://github.com/p3ol/oak/commit/a2e1309d9cb106fb391af6a92ebaca4ba11d9696))
+
+
+### Features
+
+* bump node requirement to v22 ([ba9de95](https://github.com/p3ol/oak/commit/ba9de95da47ae53a49b362f598f92f5922bead84))
+
+
+
+
+
 # [3.12.0](https://github.com/p3ol/oak/compare/v3.11.2...v3.12.0) (2025-02-03)
 
 

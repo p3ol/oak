@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.13.0](https://github.com/p3ol/oak/compare/v3.12.5...v3.13.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **ckeditor:** required ckeditor version range ([d08b781](https://github.com/p3ol/oak/commit/d08b78120dafec728c4b7e7ccfb800266b229d70))
+* migrate to eslint 9 ([fdd642c](https://github.com/p3ol/oak/commit/fdd642c757bf1c8c2c3e71a9b51069a005b31317))
+
+
+### Features
+
+* bump node requirement to v22 ([ba9de95](https://github.com/p3ol/oak/commit/ba9de95da47ae53a49b362f598f92f5922bead84))
+
+
+
+
+
 ## [3.12.5](https://github.com/p3ol/oak/compare/v3.12.4...v3.12.5) (2025-06-17)
 
 **Note:** Version bump only for package @oakjs/addon-ckeditor5-react

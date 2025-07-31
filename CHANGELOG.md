@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.13.0](https://github.com/p3ol/oak/compare/v3.12.5...v3.13.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **ckeditor:** required ckeditor version range ([d08b781](https://github.com/p3ol/oak/commit/d08b78120dafec728c4b7e7ccfb800266b229d70))
+* **core:** types ([1fb865f](https://github.com/p3ol/oak/commit/1fb865f3270af289fe627201e011d56359ab7f5c))
+* lockfile ([da3b4ce](https://github.com/p3ol/oak/commit/da3b4ceea9868155e084ccee5e1912cd7874a60b))
+* migrate to eslint 9 ([fdd642c](https://github.com/p3ol/oak/commit/fdd642c757bf1c8c2c3e71a9b51069a005b31317))
+* **strapi:** required strapi version range ([98a7fa7](https://github.com/p3ol/oak/commit/98a7fa72babe3b003d12012b8dbc1c15185b386b))
+* type issues ([4b448ba](https://github.com/p3ol/oak/commit/4b448baf6d780866f0da5e9b89d803534948c3ef))
+* type issues ([59df745](https://github.com/p3ol/oak/commit/59df745294f0b2265e51e15b651d2196dc71783d))
+* update various deps ([a2e1309](https://github.com/p3ol/oak/commit/a2e1309d9cb106fb391af6a92ebaca4ba11d9696))
+* upgrade various deps ([6b124a3](https://github.com/p3ol/oak/commit/6b124a31e4cbfd49b76e9bc41e5795dd1c2b68dd))
+* upgrade various deps ([1889988](https://github.com/p3ol/oak/commit/1889988e03c456ee0fa03b660715b1be7cee8e06))
+* upgrade various deps ([afe9fe0](https://github.com/p3ol/oak/commit/afe9fe06bf13fae2e79426a6236d28723773d22b))
+
+
+### Features
+
+* add alt setting to image block ([4fdeb65](https://github.com/p3ol/oak/commit/4fdeb65729a9eb64981237f34e063c17643e286d))
+* bump node requirement to v22 ([ba9de95](https://github.com/p3ol/oak/commit/ba9de95da47ae53a49b362f598f92f5922bead84))
+* extends ComponentOverrideObject interface with reactNode display return type ([c0267bd](https://github.com/p3ol/oak/commit/c0267bd6a618b782a795138f328bedfdcdd8b358))
+* **fields:** add a field custom display function to personalize field display on component ([7180f01](https://github.com/p3ol/oak/commit/7180f019ea65f9802272642b63e5a166d6d431dc))
+* update snapshots ([873fc6a](https://github.com/p3ol/oak/commit/873fc6ab9ad933eff749e2f81ee29bb38b2a33ee))
+* upgrade to ckeditor 46 ([032eacb](https://github.com/p3ol/oak/commit/032eacbb6ef22b1e556708a42456d90de789d4cd))
+
+
+
+
+
 ## [3.12.5](https://github.com/p3ol/oak/compare/v3.12.4...v3.12.5) (2025-06-17)
 
 

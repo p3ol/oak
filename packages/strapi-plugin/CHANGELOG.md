@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.13.0](https://github.com/p3ol/oak/compare/v3.12.5...v3.13.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* migrate to eslint 9 ([fdd642c](https://github.com/p3ol/oak/commit/fdd642c757bf1c8c2c3e71a9b51069a005b31317))
+* **strapi:** required strapi version range ([98a7fa7](https://github.com/p3ol/oak/commit/98a7fa72babe3b003d12012b8dbc1c15185b386b))
+* upgrade various deps ([1889988](https://github.com/p3ol/oak/commit/1889988e03c456ee0fa03b660715b1be7cee8e06))
+
+
+### Features
+
+* bump node requirement to v22 ([ba9de95](https://github.com/p3ol/oak/commit/ba9de95da47ae53a49b362f598f92f5922bead84))
+* upgrade to ckeditor 46 ([032eacb](https://github.com/p3ol/oak/commit/032eacbb6ef22b1e556708a42456d90de789d4cd))
+
+
+
+
+
 ## [3.12.5](https://github.com/p3ol/oak/compare/v3.12.4...v3.12.5) (2025-06-17)
 
 **Note:** Version bump only for package @oakjs/strapi-plugin

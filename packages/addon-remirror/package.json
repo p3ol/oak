@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/addon-remirror",
-  "version": "3.12.5",
+  "version": "3.13.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "main": "dist/oak-addon-remirror.cjs.js",
   "module": "dist/esm/index.js",

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.13.0](https://github.com/p3ol/oak/compare/v3.12.5...v3.13.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* upgrade various deps ([1889988](https://github.com/p3ol/oak/commit/1889988e03c456ee0fa03b660715b1be7cee8e06))
+
+
+### Features
+
+* bump node requirement to v22 ([ba9de95](https://github.com/p3ol/oak/commit/ba9de95da47ae53a49b362f598f92f5922bead84))
+* upgrade to ckeditor 46 ([032eacb](https://github.com/p3ol/oak/commit/032eacbb6ef22b1e556708a42456d90de789d4cd))
+
+
+
+
+
 ## [3.12.5](https://github.com/p3ol/oak/compare/v3.12.4...v3.12.5) (2025-06-17)
 
 **Note:** Version bump only for package @oakjs/ckeditor5-build-custom
