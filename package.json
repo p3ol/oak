@@ -55,7 +55,7 @@
     "@poool/eslint-config-react": "4.1.1",
     "@poool/eslint-plugin": "3.0.0",
     "@remirror/pm": "3.0.1",
-    "@remirror/react": "3.0.2",
+    "@remirror/react": "3.0.3",
     "@rollup/plugin-alias": "5.1.1",
     "@rollup/plugin-commonjs": "28.0.6",
     "@rollup/plugin-node-resolve": "16.0.1",
