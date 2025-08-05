@@ -3614,7 +3614,7 @@ __metadata:
     "@remirror/react": "npm:3.0.2"
     "@strapi/design-system": "npm:1.19.0"
     "@strapi/icons": "npm:1.19.0"
-    remirror: "npm:3.0.2"
+    remirror: "npm:3.0.3"
     styled-components: "npm:6.1.19"
   peerDependencies:
     "@strapi/strapi": ^4.4.0 <5.0.0
@@ -4687,161 +4687,180 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/dom@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/dom@npm:3.0.1"
+"@remirror/core@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/core@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/preset-core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core-constants": "npm:3.0.0"
+    "@remirror/core-helpers": "npm:4.0.0"
+    "@remirror/core-types": "npm:3.0.0"
+    "@remirror/core-utils": "npm:3.0.0"
+    "@remirror/icons": "npm:3.0.0"
+    "@remirror/messages": "npm:3.0.0"
+    nanoevents: "npm:^5.1.13"
+    tiny-warning: "npm:^1.0.3"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/24b8aa245c6ee7c7356b2a4c6cf7d42831a9031605d98a347ad768863c5bbb06c07a0a6e09705e4d6ff00fade6ca04847a32d20059fcc24b52903ae3172718b4
+    "@remirror/pm": ^3.0.1
+  checksum: 10/d615dcd88a17372e8488c5372bdcbb01094f81af0f44065284062579776dca5fa61f1dc13949fcc8c2a13c1e36fe9a3d8f6380afb061182639c657c1b6abea1f
   languageName: node
   linkType: hard
 
-"@remirror/extension-annotation@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-annotation@npm:3.0.1"
+"@remirror/dom@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/dom@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-positioner": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/preset-core": "npm:3.0.2"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/c86506e3c8ceace4b4f9bd87d2ee3e789c0ccf6458fc56f1f92ad8baa42554769eb49033e6f1da3b2316f0b2230caee6016944195dbbc7febaddb765511afd3e
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-annotation@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-annotation@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-positioner": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/ecc3a6f0eff4b531f34bdd379bbddc4ec8ab4aa6ae3a73c7d3baaae46bd467f78860e1ac0fe1a0fa6fed34fe2c57ef620467a44a6204225875a64db80dfb8596
+    "@remirror/pm": ^3.0.1
+  checksum: 10/64a9403959dadea740a5f35a5f775c4f8238d0713d885e73a9c5e94a0b81a8f19d281774f0a6189155dd807f681bb055057849d2e62a9b04c0b3b473668526f5
   languageName: node
   linkType: hard
 
-"@remirror/extension-bidi@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-bidi@npm:3.0.1"
+"@remirror/extension-bidi@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-bidi@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@types/direction": "npm:^1.0.0"
     direction: "npm:^1.0.4"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/db813c2978c7bce0c4346bae18f16783f149505ebcb58334c37e5f4e5ed3f11460d0c6c8323f99ebae6d27052db465ccf4dbd1410e95d26c9c55cc8aeaee4d8f
+    "@remirror/pm": ^3.0.1
+  checksum: 10/4f3797248ada971b1dcc6c82f11ef7992e0ed177b4b04bd18466cbaad7a3cc6ea94a7096eb1a4a0022b8032eb6d258400e396a08f48cf5268d66ce19beb67932
   languageName: node
   linkType: hard
 
-"@remirror/extension-blockquote@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-blockquote@npm:3.0.1"
+"@remirror/extension-blockquote@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-blockquote@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/d232ae8e17ac3e589fbc6362dcbac45c965b6b92f52fe94f88689af164fbf9f973d6ab0faa772a30991193a9b8b2371a193f0cf332a8fedbacf9f7fa8433db3a
+    "@remirror/pm": ^3.0.1
+  checksum: 10/95d499402a5eb27949a0a401e9096b42188446054110de33f9f8e831aa4c0baa7fd61dcbacadf0999e034ae604eb9e9512d625c2a7b3414d2c1b5ef6b8c9674f
   languageName: node
   linkType: hard
 
-"@remirror/extension-bold@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-bold@npm:3.0.1"
+"@remirror/extension-bold@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-bold@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/8b9f1b8bab777607ccb7618b9a4b42b45975e761dbc936913076cebb07d53607d1c66d4045e883953f30ba6c6d834d489a306f7fdfef27988edc339830dfb861
+    "@remirror/pm": ^3.0.1
+  checksum: 10/61fd4cbd206857cbb8401a96036dbac6ae7896cecea9a510104277125888e49fce3d19c1d1a00ed824922a5577a4e5ae41373f1a8ca6da02d0d5214a22021586
   languageName: node
   linkType: hard
 
-"@remirror/extension-callout@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-callout@npm:3.0.1"
+"@remirror/extension-callout@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-callout@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/454884ac9e314043e60126301d15b098fe84ab2032bae64a77c85a3cd3ac9d5450f6a1ac10805848c6475ff14fd068775d87375cbe905aad3e69b888f2f869f8
+    "@remirror/pm": ^3.0.1
+  checksum: 10/3f5588e3561673a1264fafe46d63cf3338c43b4da8df68312920c0834ac0f2ea672c39279822904615da9be24eb6c0239f1bf70fc90ba7c964b500f2407ce9da
   languageName: node
   linkType: hard
 
-"@remirror/extension-code-block@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-code-block@npm:3.0.1"
+"@remirror/extension-code-block@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-code-block@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-positioner": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-positioner": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
     "@types/refractor": "npm:^3.0.2"
     refractor: "npm:^3.6.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
+    "@remirror/pm": ^3.0.1
     prettier: ^3.2.0
   peerDependenciesMeta:
     "@types/refractor":
       optional: true
     prettier:
       optional: true
-  checksum: 10/b5fe113745075a5375f8a37c1c6be5f0ab1ab605409c40f4ae02909634a7e903abe2ec23ab7195f8637a70c73e40c2bf6c3f5ff7d505a97ad49303a0987ed44d
+  checksum: 10/07075722c8a3bd10c421bb580f44ae915548fe8a6072bc579c4efcb6e39ccacde8d25ac82346c495992b1d0ec6cc643d4e839ed015e44b48edf02e973b55a75a
   languageName: node
   linkType: hard
 
-"@remirror/extension-code@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-code@npm:3.0.1"
+"@remirror/extension-code@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-code@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/88e0ea79070f69aa5416415d9a3b8a1e6f1e6fd2fca1542aeedbd452f34414b0b0721cbebb161d95e3134c9b801ba5ee44097af5fcd965bca1d3b85e74e4b963
+    "@remirror/pm": ^3.0.1
+  checksum: 10/aa8e83f8b6ddb37d6f96807d51d7460c721710f52b4cbebf1c1c92e3411066733388a6e4a688a51192b4e06d0c8974bbfe570269a8c46f59a8c9b68fbd98f058
   languageName: node
   linkType: hard
 
-"@remirror/extension-collaboration@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-collaboration@npm:3.0.1"
+"@remirror/extension-collaboration@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-collaboration@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/a589bdadd91177db2738f0089dda60c2d2a13304ba7b098fe78771206ef8beb4885a54686f5baa6e470082ec42083532743edef042daa468f848d546c1cb06f1
+    "@remirror/pm": ^3.0.1
+  checksum: 10/4d0410ab0c3b8817a0335487326ce14a6b5c90dd1058dc611f31aeb36aa43c241805f38aa0e37ad5b673ca23a6cb258c006cb5ee9fb11618cf69337c41406703
   languageName: node
   linkType: hard
 
-"@remirror/extension-columns@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-columns@npm:3.0.1"
+"@remirror/extension-columns@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-columns@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/ed48a701e645b4b4cc884855aa8c926fc73f5a76059659190c4df73aa06901a668b44ddddcc9d3d353b6a5d5f350a6fa8b371862d69e3cc3efee69d9cbc4fc96
+    "@remirror/pm": ^3.0.1
+  checksum: 10/29cc85859413a25de4d24f02e96dcd4313baeb6e5db75ccb50e7788a9d73f57e9d841d6d0abd71cab0850ecd34ba53a6d84142fd02f11d26a160088ceabf6383
   languageName: node
   linkType: hard
 
-"@remirror/extension-diff@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-diff@npm:3.0.1"
+"@remirror/extension-diff@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-diff@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/2ac9b9c4dcaacd764db58b19e15849fa0668f8d279eec79b350815cdf159fd82ba8d00768ad8d6a0d019c487a7e6ee501ae2114d23d17477da721648de70bced
+    "@remirror/pm": ^3.0.1
+  checksum: 10/25d4e3fda31b5a179e1fe783abc75b7f83591d41f9b6ad4dc223252ba4e6843f04aa168bb2d97d7e3970a2f0d16866de9d8e3508ee1a7e3e141b270ac1351a50
   languageName: node
   linkType: hard
 
@@ -4858,32 +4877,45 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-drop-cursor@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-drop-cursor@npm:3.0.1"
+"@remirror/extension-doc@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-doc@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/33ebd4f8cf2c6e2db4d8a4105df9c207d6b094e25e07cd1af72b793ff2e8ed165c48574f160b77742a48177108ed4023bbf5e084fe0e7b2afde803dffb5c6cd7
+    "@remirror/pm": ^3.0.1
+  checksum: 10/6ac2e9cf35515d6d06c22471a6cceacd0829227a3ccf2d37ad9b9d2b5ee2618d476743525ad86ab1cbe504eafdcdf9ba746ca4dab1c02603300fd67042ce7a99
   languageName: node
   linkType: hard
 
-"@remirror/extension-embed@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-embed@npm:3.0.1"
+"@remirror/extension-drop-cursor@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-drop-cursor@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/e82aa1e820eabca482d448bcafbe373395f9249b11a936b0d0b05121e2b2c0bb41643b4b141184db826ae5b31ddd09fbd3dd682df4bf7dd05073243112f36469
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-embed@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-embed@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@types/querystringify": "npm:^2.0.0"
     prosemirror-resizable-view: "npm:^3.0.0"
     querystringify: "npm:^2.2.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/d21e26d2db3c97375ff63fee726159def2f7826700f3f6bea93c776cea49960673f55378587f292bcd8b7de1901fea16637a4723441bdadd8672809ff55d3a38
+    "@remirror/pm": ^3.0.1
+  checksum: 10/1d9523948d87a8d1dcd1bc9c17e04720675be688c3a7c5f95e97ff0d04e3f3b93d4de1b3813116e9e383b80d8a7f30ba5474d016f86c3caaf5dfd73f0f201651
   languageName: node
   linkType: hard
 
@@ -4907,30 +4939,50 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-entity-reference@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-entity-reference@npm:3.0.1"
+"@remirror/extension-emoji@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-emoji@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-events": "npm:3.0.1"
-    "@remirror/extension-positioner": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@ocavue/svgmoji-cjs": "npm:^0.1.1"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+    "@remirror/theme": "npm:3.0.0"
+    emojibase: "npm:^6.1.0"
+    emojibase-data: "npm:^6.2.0"
+    emojibase-regex: "npm:^6.0.1"
+    escape-string-regexp: "npm:^4.0.0"
+    svgmoji: "npm:^3.2.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/79cdef284d74f6ea7c4e4e3e80ca58a6ebbc8cc48f00ab950f931898efbb880f0ebea08cf611003304cff4b0afc93a874a8c8afe9db3c0ac2b0652fe25a27fc0
+    "@remirror/pm": ^3.0.1
+  checksum: 10/8fe96297445769ec8132e571d4f5a2c648f45d2551608ff822cc23e11da34b375edb60cc7ea6b9ca74ce437dacb528e2f4286c1346199bc5d829a5882292db7c
   languageName: node
   linkType: hard
 
-"@remirror/extension-epic-mode@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-epic-mode@npm:3.0.1"
+"@remirror/extension-entity-reference@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-entity-reference@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
+    "@remirror/extension-positioner": "npm:3.0.2"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/78ac3b2c0074fa4de767b079c7c1c836978521faabe5187748b5474da5cb6f9b62fc6e2f636e9629d49934bb1c51de8dbda9d3d430d3b911333124e7a143dedb
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-epic-mode@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-epic-mode@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/6a470bc7659ed494a58cfdf2042b2d3a95ca6599e755fe0cc382059e2ab1331effc3677f79b3a777189ad684f4c3093494cb838c0b1bb80c994c4094a027dd18
+    "@remirror/pm": ^3.0.1
+  checksum: 10/3a6fc9c51f15e3ea0b042488945ec9ceebf3a1dd83bee05e933773818de0ed4e12ef14de9120cc3233cd195c3246a1adc510f6c4524063bd9d47ba5376c3959e
   languageName: node
   linkType: hard
 
@@ -4947,44 +4999,57 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-find@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@remirror/extension-find@npm:1.0.1"
+"@remirror/extension-events@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-events@npm:3.0.2"
   dependencies:
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/8d3344a92f4aeba51dae841e9e531ff0147f423756c1ff5ee80f3ecee23d759e3f0bee86c9908589a4bf17f70a09bfaa419fdc964752dcd5574be300290c286c
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-find@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@remirror/extension-find@npm:1.0.2"
+  dependencies:
+    "@remirror/core": "npm:3.0.2"
     "@types/string.prototype.matchall": "npm:^4.0.1"
     escape-string-regexp: "npm:^4.0.0"
     string.prototype.matchall: "npm:^4.0.8"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/3663f548b65ad782f1ae332160c45352efd11a93a27b9068894062ee86ce3b73d46fc6037372caebf2feaa6e0574cb87465dcb5e367cd26c2b39607fc27bb70b
+    "@remirror/pm": ^3.0.1
+  checksum: 10/ac92f670dcac883c4b1743f273d59c12f22ee23a42bceb800a68e4e3d44b541d0c48309a51c90af8d5be056b57d2875421db44bb82446a586d3d094254640397
   languageName: node
   linkType: hard
 
-"@remirror/extension-font-family@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-font-family@npm:3.0.1"
+"@remirror/extension-font-family@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-font-family@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/ed03990b4e0429a1ff1fb85cc91089eaf2f64e4471f746197240b357c9c640ac94992a3896686593b8764a8541e6e86744278035fb0aa45e5ea5c2b2cc28fd23
+    "@remirror/pm": ^3.0.1
+  checksum: 10/1c73a0e541207636a40a8a57edddbee547feca10686e4f6b31688639689cca6f76ad6e5863b26c79997d6c16656e73fcc6219e678b474a7bb011d57614ca8889
   languageName: node
   linkType: hard
 
-"@remirror/extension-font-size@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-font-size@npm:3.0.1"
+"@remirror/extension-font-size@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-font-size@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     round: "npm:^2.0.1"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/b27fb97c11bcf954cd1a627a44c6bd8aa09dbaff9dfbe5403c36289cf1fefb9704a82316716b73ecab984b4364d3c7634e0deea2a2c0cc18b25e40162d451737
+    "@remirror/pm": ^3.0.1
+  checksum: 10/2b613bf098a354a64e54267c679e4c9e7e8b4d72238c3cb783ff0ac23743616ba16712d6a34afdce1605eaddbd00e227e0ee79fe035d6b97314b3c4f56c7e1c8
   languageName: node
   linkType: hard
 
@@ -5001,29 +5066,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-hard-break@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-hard-break@npm:3.0.1"
+"@remirror/extension-gap-cursor@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-gap-cursor@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/de950d7e38a461fbc21325595a059af35904e951e7779c48a0255c1d8feb15743af75d45f83fcf5d5269c1c0ded526572cae4b0f521ab527b93c0b0fedc66241
+    "@remirror/pm": ^3.0.1
+  checksum: 10/a90b2e495247ed25145623fb3c3ecbb3879c40eb9ae328affa2ae1a8a1c718975a5937eafcff9aa8bc40984f6514df231c432a9c1f1a5ebd3b44585f6e4ee92c
   languageName: node
   linkType: hard
 
-"@remirror/extension-heading@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-heading@npm:3.0.1"
+"@remirror/extension-hard-break@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-hard-break@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/fa2c2d9f407c411c5a7760cbb89c09160c6607ea4b551c882ad46ed11a9da7670b54a44b8b291c846578864da52857a09c9f68a94998e4c83e8d56e45e55de14
+    "@remirror/pm": ^3.0.1
+  checksum: 10/1449997b7df363b027d12f7295d5ca1019a1bb4499677721127088ec4c770613ea9d7373f936c4938e558b4e609b451e4f740836c153ea0a2c8706dbd497eb88
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-heading@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-heading@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/4b4b270713f46046d9e14e3aab01b0bc3301ab756787995540504b9c3bfc37561ff06825a9782ad19f5f798313145545590cb1ccf80a7d14438f0859807e53e3
   languageName: node
   linkType: hard
 
@@ -5040,83 +5118,96 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-horizontal-rule@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-horizontal-rule@npm:3.0.1"
+"@remirror/extension-history@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-history@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/af9be5e5e768038e5308c5b124b6b5433e1dd632d801ff7fac9bf058cdcc641b250e44fbdb5321148cfd35716558407beee554ef1dbb4825a42aef566904021c
+    "@remirror/pm": ^3.0.1
+  checksum: 10/a5928ffe1c1a9b2a8179f5c19b64223d47573faff5fcb111eabcb5dd44b422bf533e17cad2f1b58661e9d8b1634099fc5f45beb3c9d8e4395a6ead7482473a2f
   languageName: node
   linkType: hard
 
-"@remirror/extension-image@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-image@npm:3.0.1"
+"@remirror/extension-horizontal-rule@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-horizontal-rule@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/54582640a03940843924f5b4a1eb2cefe3cf61e6e85ff1a5214319aacb13e6ad495f86f3af32db5e7d295e8293a2b769567460477d1be8b542080d7baa36542a
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-image@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-image@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
     prosemirror-resizable-view: "npm:^3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/db3de0b7d307debdf71c8faf24cf32fa2c927bf474e7862ec35b45b4379e1af083223c4afc92a03de61ce641db06cba120242a8f0ec88dcda96cd48fd8533710
+    "@remirror/pm": ^3.0.1
+  checksum: 10/edc336a6239dd9560d929c7f356b096b56c567f1d9063c03e3c3be0949d79787ec0f6b98bb21a06f217cfb28a19c2e402a587f0f5fd115e38230df5ae46f37e5
   languageName: node
   linkType: hard
 
-"@remirror/extension-italic@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-italic@npm:3.0.1"
+"@remirror/extension-italic@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-italic@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/2274632586b84ef9b592697307bddcdd477f29eed40f537cf1211d5f5d3585b96f370eae3445de6be536ae13c44c627d935d09cea29d927230bc443dcfef5598
+    "@remirror/pm": ^3.0.1
+  checksum: 10/1edbb5c8728285b99f315cb19ff4b10610d1bb4c70dbe49a9b6efc7837611e066ace81f3442e5f2e1907081b08a1c09a8706c8e049a771946e4f402ed9fb248e
   languageName: node
   linkType: hard
 
-"@remirror/extension-link@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-link@npm:3.0.1"
+"@remirror/extension-link@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-link@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-events": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     extract-domain: "npm:2.2.1"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/3b02d5408074f869c93692b2a84f7a712968723d1e38143c3a422c3071997e98f8dae8f9e11521bb0e0542d20b611b466a41981f7e7754f2eb4f85f99904b9ee
+    "@remirror/pm": ^3.0.1
+  checksum: 10/52c991c1c4f1f0193821b0387c17571a13ba0fd9dba91a2351ce50cd0f1db9f8c6664f536445e2c1378eee5a89aba9572c73b67024627c23f7f625bf2d2813f4
   languageName: node
   linkType: hard
 
-"@remirror/extension-list@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-list@npm:3.0.1"
+"@remirror/extension-list@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-list@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-events": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/8dbd02a45e94b5f3beb1744e63d9bc33bb71516000dfae17d6ceed848e4c31bb948b1f024473d8e19c76435422244ffd6a9142f30e11065f72608dc58dcad2a6
+    "@remirror/pm": ^3.0.1
+  checksum: 10/e306f3c919e7b9653eb7a44dfbdc9154c120ef2ee7df7f3be2d5b1d8130751c62a72ed5c20b4e2bae4c3f1ef2fae9f8dbfe05c8881ecfc1c4c1a57ca5c0ef77a
   languageName: node
   linkType: hard
 
-"@remirror/extension-markdown@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@remirror/extension-markdown@npm:3.0.2"
+"@remirror/extension-markdown@npm:3.0.3":
+  version: 3.0.3
+  resolution: "@remirror/extension-markdown@npm:3.0.3"
   dependencies:
     "@babel/runtime": "npm:^7.27.0"
-    "@remirror/core": "npm:3.0.1"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@types/marked": "npm:^4.3.1"
     "@types/turndown": "npm:^5.0.1"
@@ -5124,12 +5215,12 @@ __metadata:
     turndown: "npm:^7.1.2"
     turndown-plugin-gfm: "npm:^1.0.2"
   peerDependencies:
-    "@remirror/extension-react-tables": 3.0.2
+    "@remirror/extension-react-tables": 3.0.3
     "@remirror/pm": ^3.0.1
   peerDependenciesMeta:
     "@remirror/extension-react-tables":
       optional: true
-  checksum: 10/51f6c163c4c2874c63764c80498576b3b6c25569d3caba987a7199478ab28e874ec1868c6e62f0a270fe415baeacba5ef25a4311bfb53ed48fd3964813aa6ae3
+  checksum: 10/00802589f7aae265a94179b3ce30b7d6ae0f9cae784a151fa12bd0e6407e5e19625d7b15ecfa85d5c41618752a5178a3e5f87fa5fe00667cac7ae4928fc9a7e9
   languageName: node
   linkType: hard
 
@@ -5148,6 +5239,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remirror/extension-mention-atom@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-mention-atom@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+    "@remirror/theme": "npm:3.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/181ab2e32cdc57fa7563206190ff1208bc8ca86b23f44e7878e85392d46137f340fa88c3dec9e708de21b201edc25baaec1624648ba0b5252a9ccabaa5c009cf
+  languageName: node
+  linkType: hard
+
 "@remirror/extension-mention@npm:3.0.1":
   version: 3.0.1
   resolution: "@remirror/extension-mention@npm:3.0.1"
@@ -5163,16 +5269,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-node-formatting@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-node-formatting@npm:3.0.1"
+"@remirror/extension-mention@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-mention@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+    escape-string-regexp: "npm:^4.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/1e64090693c13e0b590a1d4bf3385e9fd651bab86721303e865fe10831e6a57b286dfbd3c39f13996af5a2410ead642a29ba9fde281b6007b975de6a1e567c60
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-node-formatting@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-node-formatting@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/22022273ed6e2eb42fd50e767f70098ac52c69d362e8627213d0dfba1a58e3b52fec8badec67a4f17ce11bb448ef2495a15e81b02feefac25ca26eb3d012bf18
+    "@remirror/pm": ^3.0.1
+  checksum: 10/68e8a117bc98f19af98538e17fa0947dcc7baa87c3c14847b82934399e72233bb63889191ffb00c9ed054dd8e52031cb358bbe685671a3571ba9b0365fb247a1
   languageName: node
   linkType: hard
 
@@ -5186,6 +5307,19 @@ __metadata:
   peerDependencies:
     "@remirror/pm": ^3.0.0
   checksum: 10/52ca27954c8d259f32beaa0f2530fd1a90e44520a34a1157e809e3557d756ecdf576a49f932d702d201582e7abaff4e060fbabc7216d1724cdf9f2869ab87a8b
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-paragraph@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-paragraph@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/d0cee2731397e5d0581a1ef5f29a81ea284f30990db3be0bcb049212d5af4962ff8523678e7675e1e178c3dab62132d40b2a88ee9854c6e4f200e122d296a7a1
   languageName: node
   linkType: hard
 
@@ -5203,6 +5337,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remirror/extension-placeholder@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-placeholder@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+    "@remirror/theme": "npm:3.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/eca41ca5c4bca7047b96da5814cdbae6406d40f1a0a772c62583fdfef1fb3c9d50790b79913a443b5d62f3073dd030387965e81d078be926902d11f652ff85f1
+  languageName: node
+  linkType: hard
+
 "@remirror/extension-positioner@npm:3.0.1":
   version: 3.0.1
   resolution: "@remirror/extension-positioner@npm:3.0.1"
@@ -5216,6 +5364,22 @@ __metadata:
   peerDependencies:
     "@remirror/pm": ^3.0.0
   checksum: 10/023c8ff587ac290a0ff58430575a4de572b7c5dc792e416ada150baa2aa6619e2818f3cf44fda91ed7338793e2a52957c4249a9128477a171870e2754503bf77
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-positioner@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-positioner@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+    "@remirror/theme": "npm:3.0.0"
+    nanoevents: "npm:^5.1.13"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/3d436cd804508f0f618f742cf75dc28dc37784da4fea4191e7d84fff0db10c56636cfdecf7a6c7ef4c443886bd774191c1b949c3e5a4ce9e2a2bccb3aac25724
   languageName: node
   linkType: hard
 
@@ -5246,112 +5410,112 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-shortcuts@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-shortcuts@npm:3.0.1"
+"@remirror/extension-shortcuts@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-shortcuts@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/abcba2a8e5a4baa45b3c76fe11d555001839672ce9a99c5c2eb6aa96d0809a5dd02c5e386619bd12ff0023514f75cb471c8f1072611c1a4ac4b7b2a606ee4a38
+    "@remirror/pm": ^3.0.1
+  checksum: 10/0dab05403eb43fccb02a4f86763ad079cbb0b3c2b7f716d9b09be95bdac62d4930e000e0338194a4f98bad7a8dc7ecdcd20b0fca1802cbfd73655f526263f0f5
   languageName: node
   linkType: hard
 
-"@remirror/extension-strike@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-strike@npm:3.0.1"
+"@remirror/extension-strike@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-strike@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/bfde65f6fde7052f2f87172730d95675ae719beb091f38451b287f9f6c49ad4528b13877d75330cad24acc6e44f4d3f365eed3eb6e781fba0a12888cb529d5b1
+    "@remirror/pm": ^3.0.1
+  checksum: 10/ac4ae65d87bc03be6c2b232eea8d8aa4da15f6eea7f8cf5f785e3359c9ca762d6a4bbb9a8ad8a5cac855a2559c7f1f35ee4fe75f0444e46146c4f9fc299cfa19
   languageName: node
   linkType: hard
 
-"@remirror/extension-sub@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-sub@npm:3.0.1"
+"@remirror/extension-sub@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-sub@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/70788d5e4c058cefa83017728eee2ce75c82e250698a58237961f0a3463e2b40e80a39150b04eb5a719cc6bd607e13860976ecdcfd5e6cc9d8509d46123e244e
+    "@remirror/pm": ^3.0.1
+  checksum: 10/038c1f9aab3df2dd58b125a7312f2eba6c10bcff6849978f98ead62743e664f2ab07d8dc4e762b60c55f95d3189679ecd334903d8a5467b9576be997e4547e4c
   languageName: node
   linkType: hard
 
-"@remirror/extension-sup@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-sup@npm:3.0.1"
+"@remirror/extension-sup@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-sup@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/a1ceb50652446d1c348b7e9013dd2a17cc3314e6677da681caf766201a2658b9c56828b3df5a5ea6d401cb315ca3c336b7cf9badc3542a49bc0b96035f5c494a
+    "@remirror/pm": ^3.0.1
+  checksum: 10/6dfb16b30c0cdf8ced1d2f189eb4f05ce878e75ce1335b5a7a0e4c9b4cb213a164d5657337d1634bda7cb4a842e1d8004ba61709ad807fbce9a35c9e66782e4b
   languageName: node
   linkType: hard
 
-"@remirror/extension-tables@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-tables@npm:3.0.1"
+"@remirror/extension-tables@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-tables@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-events": "npm:3.0.1"
-    "@remirror/extension-positioner": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
+    "@remirror/extension-positioner": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/f8a88b832894d28d7e2731269c386f43a8664a60aa8026e74d09fc199804beb68274099939301f50c4501253979b72e021bbede8328b1a568f641b6c5fedf5b1
+    "@remirror/pm": ^3.0.1
+  checksum: 10/ff476d4774045f3501dc6e4623e92d26190968e938394bcc860e4db042c0de97e56e1c26740513a1c48564a351d9aebc5735e45f2a5c9da98986376ed6b59df8
   languageName: node
   linkType: hard
 
-"@remirror/extension-text-case@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-text-case@npm:3.0.1"
+"@remirror/extension-text-case@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-text-case@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/a86738600f19c314622d698c66287841023a1a1e9a8449247bf28b26e71ace2b9327e6146adad1ae75a09fd6e2adb7942d27ea1247d9fddc504020a5280fa8c4
+    "@remirror/pm": ^3.0.1
+  checksum: 10/9c50b1b3a991ab313d3cfb79ba89d41af474bed4da17dd4ecc808e1da57d128c1ded521231744bc53035a6ff15a88cbd3a817af6c124eca6b891482c1c16880a
   languageName: node
   linkType: hard
 
-"@remirror/extension-text-color@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-text-color@npm:3.0.1"
+"@remirror/extension-text-color@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-text-color@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
     "@remirror/theme": "npm:3.0.0"
     color2k: "npm:^2.0.2"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/4cae8755a8ff6559a590cc242328537e79b5d44e9ce65da177a0a7b3790a7aa578de7c2265354b2d2bb68a1fff6c04c452525d1429fa1824db0c522e5eae49ad
+    "@remirror/pm": ^3.0.1
+  checksum: 10/caee37899a441d24b990068ee0e3921fc8a91d072eb62b61c332a3c57778e5a7383ebed80d525fe617b4761e1116461f3298323dd8984e4974d4de09e6f649b4
   languageName: node
   linkType: hard
 
-"@remirror/extension-text-highlight@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-text-highlight@npm:3.0.1"
+"@remirror/extension-text-highlight@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-text-highlight@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-text-color": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-text-color": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/99fecf4eed2f04dee7542c34977462fd57c2108670a74e2d2d873077695e52ac9ed4f10f96a3e6f8328e8ccee752b11f6a64de98bd36f6c13c584abef054d4b1
+    "@remirror/pm": ^3.0.1
+  checksum: 10/31ae17ec27ef12e048c6678e969aff217a2b746800f395efd8c7367d11f524d4d149cf214d2e894c1d6a36073bcd4bc67bd730dc0bc43a5c1c4e6970b59912e4
   languageName: node
   linkType: hard
 
@@ -5368,42 +5532,55 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/extension-trailing-node@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-trailing-node@npm:3.0.1"
+"@remirror/extension-text@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-text@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/79e9262a880118bc9cbb1add8f2f9af08a9fab9d6f97fb247c39d5d89b05172fc37c0c4520a942a773b94ca2214d98d1c5877304213637fe73ede9bcb537ccf0
+    "@remirror/pm": ^3.0.1
+  checksum: 10/06b269f668cd719d94cf7d7922d30af84aaa9e6b99d8553724bc9b2e7e0dbad4240540b51f744d5d1916e870ba6aab37aa9d024476b5deeddb3e6cea0f7bcfec
   languageName: node
   linkType: hard
 
-"@remirror/extension-underline@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-underline@npm:3.0.1"
+"@remirror/extension-trailing-node@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-trailing-node@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/c8a6b35926f40026f15f3df6895672ec9ada44792cdb89bf90bd67b44db27495430864b40ea68ea34d2a55b8cbcbbe84202c8cdd2feba4e0471ca7a2cc80aacc
+    "@remirror/pm": ^3.0.1
+  checksum: 10/dc9e11d31729c46633398b1e61a24716db7b0f29b58c8a48eb4020a1cb48ef7bec638c4714bd6372a7ad13b9b445b13bad60c2c61ac756577a086fad2c3dae12
   languageName: node
   linkType: hard
 
-"@remirror/extension-whitespace@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/extension-whitespace@npm:3.0.1"
+"@remirror/extension-underline@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-underline@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/messages": "npm:3.0.0"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/69ca47d41f63633bf928333540512dbaa76c470f86093240682994fcbb27006aa0a24ebf78e153b364f25213b6f3c85df905996da86d640a518a1a585d55a3bc
+    "@remirror/pm": ^3.0.1
+  checksum: 10/6afb8441180772af971cbbeb7aa839e00f0e6bbf91f57344eb028f59c6cba5eb49a31cb65b9ba298e310f6e68647a2b673b08004e17999505055653a1eee5c70
+  languageName: node
+  linkType: hard
+
+"@remirror/extension-whitespace@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/extension-whitespace@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/messages": "npm:3.0.0"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/09cbfb013e979cc9e9b55000d6c67b6e978e41fac7d1fe55a1833157331fd7c43811fc355a3c7959885addd15ccb4d6b228a0f4904c425733d21ef6d3b155802
   languageName: node
   linkType: hard
 
@@ -5474,29 +5651,48 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/preset-formatting@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/preset-formatting@npm:3.0.1"
+"@remirror/preset-core@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/preset-core@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-bold": "npm:3.0.1"
-    "@remirror/extension-columns": "npm:3.0.1"
-    "@remirror/extension-font-size": "npm:3.0.1"
-    "@remirror/extension-heading": "npm:3.0.1"
-    "@remirror/extension-italic": "npm:3.0.1"
-    "@remirror/extension-node-formatting": "npm:3.0.1"
-    "@remirror/extension-strike": "npm:3.0.1"
-    "@remirror/extension-sub": "npm:3.0.1"
-    "@remirror/extension-sup": "npm:3.0.1"
-    "@remirror/extension-text-case": "npm:3.0.1"
-    "@remirror/extension-text-color": "npm:3.0.1"
-    "@remirror/extension-text-highlight": "npm:3.0.1"
-    "@remirror/extension-underline": "npm:3.0.1"
-    "@remirror/extension-whitespace": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-doc": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
+    "@remirror/extension-gap-cursor": "npm:3.0.2"
+    "@remirror/extension-history": "npm:3.0.2"
+    "@remirror/extension-paragraph": "npm:3.0.2"
+    "@remirror/extension-positioner": "npm:3.0.2"
+    "@remirror/extension-text": "npm:3.0.2"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/81c7e56b39689d12c70778d41ef0b2e0bde7d7948e2381a8893fe4b83ac24e37df82b804f63e709a35f1eef1f0b49d5fb0874fb961e916e6328b86c8a3958a3b
+    "@remirror/pm": ^3.0.1
+  checksum: 10/65a3bc7ed78debfa091be7fa1f0bd34d319f50d73fcce2f59a7bfe28c36c6a1f775dfaa9ccbc177b6241f6996bf701e78ce57347ef4b69ea3e49cb91ce1cf6b3
+  languageName: node
+  linkType: hard
+
+"@remirror/preset-formatting@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/preset-formatting@npm:3.0.2"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-bold": "npm:3.0.2"
+    "@remirror/extension-columns": "npm:3.0.2"
+    "@remirror/extension-font-size": "npm:3.0.2"
+    "@remirror/extension-heading": "npm:3.0.2"
+    "@remirror/extension-italic": "npm:3.0.2"
+    "@remirror/extension-node-formatting": "npm:3.0.2"
+    "@remirror/extension-strike": "npm:3.0.2"
+    "@remirror/extension-sub": "npm:3.0.2"
+    "@remirror/extension-sup": "npm:3.0.2"
+    "@remirror/extension-text-case": "npm:3.0.2"
+    "@remirror/extension-text-color": "npm:3.0.2"
+    "@remirror/extension-text-highlight": "npm:3.0.2"
+    "@remirror/extension-underline": "npm:3.0.2"
+    "@remirror/extension-whitespace": "npm:3.0.2"
+  peerDependencies:
+    "@remirror/pm": ^3.0.1
+  checksum: 10/5d49a3800241bd5cf978d1598570edcf935c169b585fa2548662266ec490edcbdf625862603b6517b8a0fc65c23d3de27a2961e862fcc8de6213dd8042b5fe1b
   languageName: node
   linkType: hard
 
@@ -5524,36 +5720,36 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remirror/preset-wysiwyg@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@remirror/preset-wysiwyg@npm:3.0.1"
+"@remirror/preset-wysiwyg@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@remirror/preset-wysiwyg@npm:3.0.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.3"
-    "@remirror/core": "npm:3.0.1"
-    "@remirror/extension-bidi": "npm:3.0.1"
-    "@remirror/extension-blockquote": "npm:3.0.1"
-    "@remirror/extension-bold": "npm:3.0.1"
-    "@remirror/extension-code": "npm:3.0.1"
-    "@remirror/extension-code-block": "npm:3.0.1"
-    "@remirror/extension-drop-cursor": "npm:3.0.1"
-    "@remirror/extension-embed": "npm:3.0.1"
-    "@remirror/extension-find": "npm:1.0.1"
-    "@remirror/extension-gap-cursor": "npm:3.0.1"
-    "@remirror/extension-hard-break": "npm:3.0.1"
-    "@remirror/extension-heading": "npm:3.0.1"
-    "@remirror/extension-horizontal-rule": "npm:3.0.1"
-    "@remirror/extension-image": "npm:3.0.1"
-    "@remirror/extension-italic": "npm:3.0.1"
-    "@remirror/extension-link": "npm:3.0.1"
-    "@remirror/extension-list": "npm:3.0.1"
-    "@remirror/extension-shortcuts": "npm:3.0.1"
-    "@remirror/extension-strike": "npm:3.0.1"
-    "@remirror/extension-trailing-node": "npm:3.0.1"
-    "@remirror/extension-underline": "npm:3.0.1"
-    "@remirror/preset-core": "npm:3.0.1"
+    "@babel/runtime": "npm:^7.27.0"
+    "@remirror/core": "npm:3.0.2"
+    "@remirror/extension-bidi": "npm:3.0.2"
+    "@remirror/extension-blockquote": "npm:3.0.2"
+    "@remirror/extension-bold": "npm:3.0.2"
+    "@remirror/extension-code": "npm:3.0.2"
+    "@remirror/extension-code-block": "npm:3.0.2"
+    "@remirror/extension-drop-cursor": "npm:3.0.2"
+    "@remirror/extension-embed": "npm:3.0.2"
+    "@remirror/extension-find": "npm:1.0.2"
+    "@remirror/extension-gap-cursor": "npm:3.0.2"
+    "@remirror/extension-hard-break": "npm:3.0.2"
+    "@remirror/extension-heading": "npm:3.0.2"
+    "@remirror/extension-horizontal-rule": "npm:3.0.2"
+    "@remirror/extension-image": "npm:3.0.2"
+    "@remirror/extension-italic": "npm:3.0.2"
+    "@remirror/extension-link": "npm:3.0.2"
+    "@remirror/extension-list": "npm:3.0.2"
+    "@remirror/extension-shortcuts": "npm:3.0.2"
+    "@remirror/extension-strike": "npm:3.0.2"
+    "@remirror/extension-trailing-node": "npm:3.0.2"
+    "@remirror/extension-underline": "npm:3.0.2"
+    "@remirror/preset-core": "npm:3.0.2"
   peerDependencies:
-    "@remirror/pm": ^3.0.0
-  checksum: 10/3b5ef42ad034dec873d37bd4d446ec1d4934e904f70080560eb6acc61a784e4e68b4a6160246c90cee75a9a209bc286646e92a526b39b38fbac21244d1ebda84
+    "@remirror/pm": ^3.0.1
+  checksum: 10/94b4a6d94515bf21a244c773e8e86d3c2c0a169eec40ab990662be853be92d625e2f83e772b558e76f7789e3524a2a11f75640debe987ffc08beed227288a89f
   languageName: node
   linkType: hard
 
@@ -19504,69 +19700,69 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remirror@npm:3.0.2":
-  version: 3.0.2
-  resolution: "remirror@npm:3.0.2"
+"remirror@npm:3.0.3":
+  version: 3.0.3
+  resolution: "remirror@npm:3.0.3"
   dependencies:
     "@babel/runtime": "npm:^7.27.0"
-    "@remirror/core": "npm:3.0.1"
+    "@remirror/core": "npm:3.0.2"
     "@remirror/core-constants": "npm:3.0.0"
     "@remirror/core-helpers": "npm:4.0.0"
     "@remirror/core-types": "npm:3.0.0"
     "@remirror/core-utils": "npm:3.0.0"
-    "@remirror/dom": "npm:3.0.1"
-    "@remirror/extension-annotation": "npm:3.0.1"
-    "@remirror/extension-bidi": "npm:3.0.1"
-    "@remirror/extension-blockquote": "npm:3.0.1"
-    "@remirror/extension-bold": "npm:3.0.1"
-    "@remirror/extension-callout": "npm:3.0.1"
-    "@remirror/extension-code": "npm:3.0.1"
-    "@remirror/extension-code-block": "npm:3.0.1"
-    "@remirror/extension-collaboration": "npm:3.0.1"
-    "@remirror/extension-columns": "npm:3.0.1"
-    "@remirror/extension-diff": "npm:3.0.1"
-    "@remirror/extension-doc": "npm:3.0.1"
-    "@remirror/extension-drop-cursor": "npm:3.0.1"
-    "@remirror/extension-embed": "npm:3.0.1"
-    "@remirror/extension-emoji": "npm:3.0.1"
-    "@remirror/extension-entity-reference": "npm:3.0.1"
-    "@remirror/extension-epic-mode": "npm:3.0.1"
-    "@remirror/extension-events": "npm:3.0.1"
-    "@remirror/extension-find": "npm:1.0.1"
-    "@remirror/extension-font-family": "npm:3.0.1"
-    "@remirror/extension-font-size": "npm:3.0.1"
-    "@remirror/extension-gap-cursor": "npm:3.0.1"
-    "@remirror/extension-hard-break": "npm:3.0.1"
-    "@remirror/extension-heading": "npm:3.0.1"
-    "@remirror/extension-history": "npm:3.0.1"
-    "@remirror/extension-horizontal-rule": "npm:3.0.1"
-    "@remirror/extension-image": "npm:3.0.1"
-    "@remirror/extension-italic": "npm:3.0.1"
-    "@remirror/extension-link": "npm:3.0.1"
-    "@remirror/extension-list": "npm:3.0.1"
-    "@remirror/extension-markdown": "npm:3.0.2"
-    "@remirror/extension-mention": "npm:3.0.1"
-    "@remirror/extension-mention-atom": "npm:3.0.1"
-    "@remirror/extension-node-formatting": "npm:3.0.1"
-    "@remirror/extension-paragraph": "npm:3.0.1"
-    "@remirror/extension-placeholder": "npm:3.0.1"
-    "@remirror/extension-positioner": "npm:3.0.1"
-    "@remirror/extension-shortcuts": "npm:3.0.1"
-    "@remirror/extension-strike": "npm:3.0.1"
-    "@remirror/extension-sub": "npm:3.0.1"
-    "@remirror/extension-sup": "npm:3.0.1"
-    "@remirror/extension-tables": "npm:3.0.1"
-    "@remirror/extension-text": "npm:3.0.1"
-    "@remirror/extension-text-case": "npm:3.0.1"
-    "@remirror/extension-text-color": "npm:3.0.1"
-    "@remirror/extension-text-highlight": "npm:3.0.1"
-    "@remirror/extension-trailing-node": "npm:3.0.1"
-    "@remirror/extension-underline": "npm:3.0.1"
-    "@remirror/extension-whitespace": "npm:3.0.1"
+    "@remirror/dom": "npm:3.0.2"
+    "@remirror/extension-annotation": "npm:3.0.2"
+    "@remirror/extension-bidi": "npm:3.0.2"
+    "@remirror/extension-blockquote": "npm:3.0.2"
+    "@remirror/extension-bold": "npm:3.0.2"
+    "@remirror/extension-callout": "npm:3.0.2"
+    "@remirror/extension-code": "npm:3.0.2"
+    "@remirror/extension-code-block": "npm:3.0.2"
+    "@remirror/extension-collaboration": "npm:3.0.2"
+    "@remirror/extension-columns": "npm:3.0.2"
+    "@remirror/extension-diff": "npm:3.0.2"
+    "@remirror/extension-doc": "npm:3.0.2"
+    "@remirror/extension-drop-cursor": "npm:3.0.2"
+    "@remirror/extension-embed": "npm:3.0.2"
+    "@remirror/extension-emoji": "npm:3.0.2"
+    "@remirror/extension-entity-reference": "npm:3.0.2"
+    "@remirror/extension-epic-mode": "npm:3.0.2"
+    "@remirror/extension-events": "npm:3.0.2"
+    "@remirror/extension-find": "npm:1.0.2"
+    "@remirror/extension-font-family": "npm:3.0.2"
+    "@remirror/extension-font-size": "npm:3.0.2"
+    "@remirror/extension-gap-cursor": "npm:3.0.2"
+    "@remirror/extension-hard-break": "npm:3.0.2"
+    "@remirror/extension-heading": "npm:3.0.2"
+    "@remirror/extension-history": "npm:3.0.2"
+    "@remirror/extension-horizontal-rule": "npm:3.0.2"
+    "@remirror/extension-image": "npm:3.0.2"
+    "@remirror/extension-italic": "npm:3.0.2"
+    "@remirror/extension-link": "npm:3.0.2"
+    "@remirror/extension-list": "npm:3.0.2"
+    "@remirror/extension-markdown": "npm:3.0.3"
+    "@remirror/extension-mention": "npm:3.0.2"
+    "@remirror/extension-mention-atom": "npm:3.0.2"
+    "@remirror/extension-node-formatting": "npm:3.0.2"
+    "@remirror/extension-paragraph": "npm:3.0.2"
+    "@remirror/extension-placeholder": "npm:3.0.2"
+    "@remirror/extension-positioner": "npm:3.0.2"
+    "@remirror/extension-shortcuts": "npm:3.0.2"
+    "@remirror/extension-strike": "npm:3.0.2"
+    "@remirror/extension-sub": "npm:3.0.2"
+    "@remirror/extension-sup": "npm:3.0.2"
+    "@remirror/extension-tables": "npm:3.0.2"
+    "@remirror/extension-text": "npm:3.0.2"
+    "@remirror/extension-text-case": "npm:3.0.2"
+    "@remirror/extension-text-color": "npm:3.0.2"
+    "@remirror/extension-text-highlight": "npm:3.0.2"
+    "@remirror/extension-trailing-node": "npm:3.0.2"
+    "@remirror/extension-underline": "npm:3.0.2"
+    "@remirror/extension-whitespace": "npm:3.0.2"
     "@remirror/icons": "npm:3.0.0"
-    "@remirror/preset-core": "npm:3.0.1"
-    "@remirror/preset-formatting": "npm:3.0.1"
-    "@remirror/preset-wysiwyg": "npm:3.0.1"
+    "@remirror/preset-core": "npm:3.0.2"
+    "@remirror/preset-formatting": "npm:3.0.2"
+    "@remirror/preset-wysiwyg": "npm:3.0.2"
     "@remirror/theme": "npm:3.0.0"
     "@types/refractor": "npm:^3.0.2"
     refractor: "npm:^3.6.0"
@@ -19576,7 +19772,7 @@ __metadata:
   peerDependenciesMeta:
     prettier:
       optional: true
-  checksum: 10/57342d15c95378b2f75532d08077156abe96c3b8a561a77caee1e66595b439a4a69827c72eecb7e7a3aedebf2c4f0d084713a6a6c7a30a52cf7b872e2d1a47e1
+  checksum: 10/76e58c6c9978df35d5ba29e1d78e043f2d064697f36dfa21ff2bc02d9d3912e5c0f9065df399123e0ad032f248def7330e3d62f4f3854fee687be25623c07184
   languageName: node
   linkType: hard
 
@@ -19938,7 +20134,7 @@ __metadata:
     postcss-loader: "npm:8.1.1"
     react: "npm:19.1.1"
     react-dom: "npm:19.1.1"
-    remirror: "npm:3.0.2"
+    remirror: "npm:3.0.3"
     rollup: "npm:4.46.2"
     rollup-plugin-postcss: "npm:4.0.2"
     sass: "npm:1.89.2"
