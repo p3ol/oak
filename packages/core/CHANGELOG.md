@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.13.1](https://github.com/p3ol/oak/compare/v3.13.0...v3.13.1) (2025-09-08)
+
+
+### Bug Fixes
+
+* **core:** missing image fields priorities ([a9318c6](https://github.com/p3ol/oak/commit/a9318c66d3d8c3e528a18392e715b93f3a6f422f))
+
+
+
+
+
 # [3.13.0](https://github.com/p3ol/oak/compare/v3.12.5...v3.13.0) (2025-07-31)
 
 
