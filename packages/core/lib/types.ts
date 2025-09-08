@@ -111,7 +111,7 @@ export declare interface SettingOverrideObject {
   info?: string | GetTextCallback;
   description?: string | GetTextCallback;
   placeholder?: string | GetTextCallback;
-  default?: any;
+  default?: ComponentSettingDefaultValue;
   displayable?: boolean;
   fieldType?: string;
   valueType?: string;
@@ -136,6 +136,15 @@ export declare interface ComponentSettingsFieldOptionObject {
   };
 }
 
+export declare type ComponentSettingDefaultValue =
+  | string
+  | number
+  | boolean
+  | any[]
+  | Record<string, any>
+  | ((elmt: ElementObject, opts?: { builder?: Builder }) =>
+      ComponentSettingDefaultValue);
+
 export declare interface ComponentSettingsFieldObject {
   name?: string;
   priority?: number;
@@ -148,7 +157,7 @@ export declare interface ComponentSettingsFieldObject {
   description?: string | GetTextCallback;
   title?: string | GetTextCallback;
   placeholder?: string | GetTextCallback;
-  default?: any;
+  default?: ComponentSettingDefaultValue;
   options?: ComponentSettingsFieldOptionObject[] | Record<string, any>[];
   displayable?: boolean | ((element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;

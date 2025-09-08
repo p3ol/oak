@@ -481,13 +481,6 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
         t: GetTextCallback
       ) => t('core.components.image.settings.image.title', 'Image'),
     }, {
-      type: 'text',
-      key: 'settings.alt',
-      label: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.alt.title',
-        'Image alternative text'
-      ),
-    }, {
       type: 'select',
       key: 'settings.size',
       label: (t: GetTextCallback) => t(
@@ -1459,6 +1452,55 @@ export const responsiveSettings = (
   }],
 });
 
+export const accessibilitySettings = (
+  props?: ComponentSettingsFieldObject
+): ComponentSettingsFieldObject => ({
+  id: 'accessibility',
+  type: 'tab',
+  key: 'accessibility',
+  title: (t: GetTextCallback) => t('core.accessibility.title', 'Accessibility'),
+  ...props,
+  fields: [...(props?.fields || []), {
+    label: (t: GetTextCallback) =>
+      t('core.accessibility.dir.title', 'Text direction'),
+    type: 'select',
+    key: 'settings.dir',
+    default: 'ltr',
+    options: [{
+      title: (t: GetTextCallback) =>
+        t('core.accessibility.dir.ltr', 'Left to right'),
+      value: 'ltr',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.accessibility.dir.rtl', 'Right to left'),
+      value: 'rtl',
+    }],
+    condition: (element: ElementObject) =>
+      ['title', 'text', 'button', 'textarea'].includes(element.type),
+    priority: 30,
+  }, {
+    type: 'text',
+    key: 'settings.alt',
+    label: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.alt.title',
+      'Image alternative text'
+    ),
+    condition: (element: ElementObject) => element.type === 'image',
+    priority: 20,
+  }, {
+    type: 'textarea',
+    key: 'settings.description',
+    label: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.description.title',
+      'Image description'
+    ),
+    condition: (element: ElementObject) => element.type === 'image',
+    priority: 10,
+  }],
+  condition: (element: ElementObject) =>
+    ['title', 'text', 'textarea', 'button', 'image'].includes(element.type),
+});
+
 export const baseFields = (): FieldObject[] => [
   textField(),
   textareaField(),
@@ -1484,6 +1526,7 @@ export const baseComponents = (): ComponentObject[] => [
 export const baseSettings = (): ComponentSettingsFieldObject[] => [
   stylingSettings(),
   responsiveSettings(),
+  accessibilitySettings(),
 ];
 
 export const coreComponentsGroup = (
