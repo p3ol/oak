@@ -480,6 +480,7 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
       label: (
         t: GetTextCallback
       ) => t('core.components.image.settings.image.title', 'Image'),
+      priority: 70,
     }, {
       type: 'text',
       key: 'settings.alt',
@@ -487,6 +488,15 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
         'core.components.image.settings.image.alt.title',
         'Image alternative text'
       ),
+      priority: 60,
+    }, {
+      type: 'textarea',
+      key: 'settings.description',
+      label: (t: GetTextCallback) => t(
+        'core.components.image.settings.image.description.title',
+        'Image description'
+      ),
+      priority: 50,
     }, {
       type: 'select',
       key: 'settings.size',
@@ -515,6 +525,7 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
         ),
         value: 'custom',
       }],
+      priority: 40,
     }, {
       type: 'text',
       key: 'settings.width',
@@ -529,6 +540,7 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
         'core.components.image.settings.image.size.width',
         'Image width'
       ),
+      priority: 30,
     }, {
       type: 'text',
       key: 'settings.height',
@@ -543,6 +555,7 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
         'core.components.image.settings.image.size.height',
         'Image height'
       ),
+      priority: 20,
     }, {
       type: 'select',
       key: 'settings.textAlign',
@@ -571,6 +584,7 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
         ),
         value: 'right',
       }],
+      priority: 10,
     }],
   },
   construct: () => ({
