@@ -28,7 +28,7 @@
     "@oakjs/react": "^3.13.0",
     "@oakjs/theme": "^3.13.0",
     "@remirror/pm": "3.0.1",
-    "@remirror/react": "3.0.2",
+    "@remirror/react": "3.0.3",
     "@strapi/design-system": "1.19.0",
     "@strapi/icons": "1.19.0",
     "remirror": "3.0.2",
