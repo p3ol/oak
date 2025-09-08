@@ -268,6 +268,7 @@ export declare interface BuilderObject {
   overrideStrategy?: 'last' | 'merge';
   content?: ElementObject[];
   addons?: AddonObject[];
+  defaults?: Record<string, any>;
   onChange?(content: ElementObject[]): void;
 }
 
