@@ -1524,8 +1524,9 @@ export const accessibilitySettings = (
       ['button', 'clickable'].includes(element.type),
     priority: 10,
   }],
-  condition: (element: ElementObject) =>
-    ['title', 'text', 'textarea', 'button', 'image'].includes(element.type),
+  condition: (element: ElementObject) => [
+    'title', 'text', 'textarea', 'button', 'clickable', 'image',
+  ].includes(element.type),
 });
 
 export const baseFields = (): FieldObject[] => [
