@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`<Builder /> should allow to add content from catalogue: Catalogue opened 1`] = `
 <div
@@ -2040,6 +2040,15 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
                       href="#"
                     >
                       Responsive
+                    </a>
+                  </li>
+                  <li
+                    class="title"
+                  >
+                    <a
+                      href="#"
+                    >
+                      Accessibility
                     </a>
                   </li>
                 </ul>
