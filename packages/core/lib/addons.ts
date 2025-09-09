@@ -1501,6 +1501,28 @@ export const accessibilitySettings = (
     ),
     condition: (element: ElementObject) => element.type === 'image',
     priority: 10,
+  }, {
+    type: 'select',
+    key: 'settings.role',
+    label: (t: GetTextCallback) => t(
+      'core.accessibility.role.title', 'ARIA role'),
+    default: elmt => elmt.type === 'button' ? 'button' : '',
+    options: [{
+      title: (t: GetTextCallback) => t(
+        'core.accessibility.role.none', 'None'),
+      value: '',
+    }, {
+      title: (t: GetTextCallback) => t(
+        'core.accessibility.role.button', 'Button'),
+      value: 'button',
+    }, {
+      title: (t: GetTextCallback) => t(
+        'core.accessibility.role.link', 'Link'),
+      value: 'link',
+    }],
+    condition: (element: ElementObject) =>
+      ['button', 'clickable'].includes(element.type),
+    priority: 10,
   }],
   condition: (element: ElementObject) =>
     ['title', 'text', 'textarea', 'button', 'image'].includes(element.type),
