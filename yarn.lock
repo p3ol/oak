@@ -19941,7 +19941,7 @@ __metadata:
     remirror: "npm:3.0.2"
     rollup: "npm:4.46.2"
     rollup-plugin-postcss: "npm:4.0.2"
-    sass: "npm:1.89.2"
+    sass: "npm:1.92.1"
     sass-loader: "npm:16.0.5"
     storybook: "npm:9.0.18"
     style-loader: "npm:4.0.0"
@@ -20109,9 +20109,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.89.2":
-  version: 1.89.2
-  resolution: "sass@npm:1.89.2"
+"sass@npm:1.92.1":
+  version: 1.92.1
+  resolution: "sass@npm:1.92.1"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     chokidar: "npm:^4.0.0"
@@ -20122,7 +20122,7 @@ __metadata:
       optional: true
   bin:
     sass: sass.js
-  checksum: 10/7e9044f3c88b23580731de321cdf4c53fe6139395e2241fce7ff353c60a7cc8fe36b5eedc9701e092d2975f2c124e886379bb9ceab27b5ed053548f202b992b3
+  checksum: 10/ded47fd238d20a826bf3c5d129b4849100abae6fafe525a082d936b5793d7fd59a914134a302f0a6780efb5b26fdc2d1f1bfa37d8a9302ba632cad5e67675eec
   languageName: node
   linkType: hard
 
