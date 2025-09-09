@@ -21,10 +21,10 @@
   },
   "dependencies": {
     "@junipero/core": "3.11.0",
-    "uuid": "11.1.0"
+    "uuid": "13.0.0"
   },
   "devDependencies": {
-    "@floating-ui/react": "0.27.15"
+    "@floating-ui/react": "0.27.16"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
