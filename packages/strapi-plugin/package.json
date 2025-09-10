@@ -8,6 +8,9 @@
     "directory": "packages/strapi-plugin"
   },
   "author": "Ugo Stephant <ugo@poool.fr>",
+  "contributors": [
+    "Maxime Da Silva <maximed@poool.fr>"
+  ],
   "license": "MIT",
   "engines": {
     "node": ">= 20"
