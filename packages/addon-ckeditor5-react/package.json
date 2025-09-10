@@ -2,8 +2,8 @@
   "name": "@oakjs/addon-ckeditor5-react",
   "version": "3.13.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/oak-addon-ckeditor.cjs.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -19,21 +19,19 @@
   "peerDependencies": {
     "@ckeditor/ckeditor5-react": ">=6.0.0 <=11.0.0",
     "@oakjs/react": "^3.0.0",
+    "ckeditor5": "^46.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
-  "dependencies": {
-    "@oakjs/ckeditor5-build-custom": "^3.13.0"
-  },
   "devDependencies": {
-    "@oakjs/ckeditor5-build-custom": "workspace:*",
     "@oakjs/react": "workspace:*"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
-    "build": "yarn clean && yarn build:code && yarn build:dts",
-    "build:code": "yarn run -T rollup --configPlugin @rollup/plugin-swc -c",
+    "build": "yarn clean && yarn build:code && yarn build:dts && yarn build:styles",
+    "build:code": "yarn run -T tsup",
     "build:dts": "yarn run -T tsc --project ./tsconfig.build.json",
+    "build:styles": "node --import=tsx scripts/build-styles.ts",
     "test": "jest"
   },
   "publishConfig": {
@@ -41,14 +39,14 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/oak-addon-ckeditor.cjs.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./addons": {
-      "import": "./dist/esm/addons.js",
-      "require": "./dist/oak-addon-ckeditor.cjs.js",
-      "types": "./dist/types/addons.d.ts"
+      "types": "./dist/types/addons.d.ts",
+      "import": "./dist/addons.mjs",
+      "require": "./dist/index.js"
     },
     "./dist/*": "./dist/*"
   },

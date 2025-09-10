@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es6",
     "moduleResolution": "bundler",
     "noImplicitAny": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "types": ["jest", "node", "react", "react-dom"],
     "module": "esnext",
@@ -11,20 +12,17 @@
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "ES2022"],
-    "paths": {
-      "@oakjs/core": ["./packages/core"],
-      "@oakjs/react": ["./packages/react"],
-      "@oakjs/ckeditor5-custom-build": ["./packages/ckeditor5-custom-build"],
-      "@tests-utils": ["./packages/oak/tests/utils.js"],
-    },
   },
   "include": [
-    "packages/**/*.tsx?",
-    "*.ts",
-    ".storybook/**/*",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/global.d.ts",
+    ".storybook/*.ts",
+    "global.d.ts",
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    ".turbo"
   ]
 }

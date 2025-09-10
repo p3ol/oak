@@ -1,34 +1,31 @@
 /* eslint-disable no-console */
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
 
-const fse = require('fs-extra');
-const sass = require('sass');
-const postcss = require('postcss');
-const autoprefixer = require('autoprefixer');
-const tailwindcss = require('tailwindcss');
+import fse from 'fs-extra';
+import sass from 'sass';
+import postcss from 'postcss';
+import autoprefixer from 'autoprefixer';
 
-const libName = 'oak';
+export interface CompileOptions {
+  input: string;
+  output: string;
+}
 
-const compile = async ({ input, output }) => {
+const compile = async ({ input, output }: CompileOptions) => {
   console.log('Compiling',
     `${input.split('/').pop()} -> ${output.split('/').pop()}`);
 
   const { css, sourceMap } = await sass.compileAsync(input, {
-    syntax: 'indented',
     style: 'compressed',
     sourceMap: true,
     sourceMapIncludeSources: true,
     loadPaths: [
       path.resolve('./lib/utils'),
-      path.resolve('../../node_modules'),
     ],
   });
 
   const { css: prefixedCss } = await postcss([
-    tailwindcss({
-      config: path.resolve(__dirname, '../tailwind.config.ts'),
-    }),
     autoprefixer(),
   ]).process(css, {
     from: input,
@@ -44,13 +41,15 @@ const compile = async ({ input, output }) => {
     prefixedCss + `\n/*# sourceMappingURL=${output.split('/').pop()}.map */`,
   );
 
-  sourceMap.sources = sourceMap.sources
-    .map(s => s.replace(/file:\/{3}(?:.+)\/(.+)\.sass/, '$1.sass'));
+  if (sourceMap) {
+    sourceMap.sources = sourceMap.sources
+      .map(s => s.replace(/file:\/{3}(?:.+)\/(.+)\.sass/, '$1.sass'));
 
-  await fse.outputFile(
-    output + '.map',
-    JSON.stringify(sourceMap) || '',
-  );
+    await fse.outputFile(
+      output + '.map',
+      JSON.stringify(sourceMap) || '',
+    );
+  }
 };
 
 (async () => {
@@ -73,6 +72,6 @@ const compile = async ({ input, output }) => {
   // index
   await compile({
     input: path.resolve('./lib/index.sass'),
-    output: path.resolve(`./dist/${libName}.min.css`),
+    output: path.resolve('./dist/oak.min.css'),
   });
 })();

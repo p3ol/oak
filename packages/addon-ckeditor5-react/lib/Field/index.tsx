@@ -1,14 +1,18 @@
-import type { EditorConfig } from '@ckeditor/ckeditor5-core';
-import type { EventInfo } from '@ckeditor/ckeditor5-utils';
-import type ClassicEditor from '@oakjs/ckeditor5-build-custom';
-import type { Editor } from '@oakjs/ckeditor5-build-custom';
-import { type ComponentPropsWithoutRef, useCallback, useEffect, useState } from 'react';
+import type { EditorConfig, EventInfo } from 'ckeditor5';
+import {
+  type ComponentPropsWithoutRef,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import {
   type FieldContent,
   type ElementObject,
   classNames,
 } from '@oakjs/react';
+
+import Editor, { type ClassicEditor } from '../Editor';
 
 export interface CKEditorFieldProps extends ComponentPropsWithoutRef<any> {
   editor?: Editor;
@@ -30,8 +34,7 @@ const CKEditorField = ({
 
   const loadEditor = useCallback(async () => {
     setDefaultEditor({
-      classicEditor: (await import('@oakjs/ckeditor5-build-custom'))
-        ?.default,
+      classicEditor: Editor,
     });
   }, []);
 

@@ -1,3 +1,5 @@
+declare module '@ckeditor/ckeditor5-icons/theme/icons/font-color.svg';
+
 declare module '@ckeditor/ckeditor5-dev-translations';
 
 declare module '@ckeditor/ckeditor5-dev-utils' {

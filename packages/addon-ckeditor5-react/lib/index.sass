@@ -1,3 +1,7 @@
+@use 'sass:meta';
+
+@include meta.load-css('../../../node_modules/ckeditor5/dist/ckeditor5-editor.css');
+
 .ckeditor-field .ck.ck-editor
   --border-color: var(--oak-field-border-color)
   --background-color: var(--oak-floating-background-color)

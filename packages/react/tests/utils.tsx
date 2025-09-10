@@ -1,10 +1,10 @@
 import { RefObject, useCallback, useImperativeHandle, useRef } from 'react';
 
 import type { BuilderProps } from '../lib/Builder';
+import type { CatalogueRef } from '../lib';
 import { type BuilderContextValue, BuilderContext } from '../lib/contexts';
 import { useRootBuilder } from '../lib/hooks';
 import Element from '../lib/Element';
-import { CatalogueRef } from '../lib';
 
 export const BuilderLite = ({
   ref,

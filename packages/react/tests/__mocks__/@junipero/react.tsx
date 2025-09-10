@@ -1,6 +1,7 @@
+import type { TransitionProps } from '@junipero/react';
 import { useEffect } from 'react';
 
-const Transition = ({ in: inProp, onExited, children }) => {
+const Transition = ({ in: inProp, onExited, children }: TransitionProps) => {
   useEffect(() => {
     if (!inProp) {
       onExited?.();

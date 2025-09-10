@@ -1,7 +1,7 @@
+import type { Config } from 'tailwindcss/types/config';
+import { fromPairs } from '@junipero/core';
 import junipero from '@junipero/tailwind-plugin';
 import plugin from 'tailwindcss/plugin';
-import { fromPairs } from '@junipero/core';
-import { Config } from 'tailwindcss/types/config';
 
 const config: Config = {
   prefix: 'oak-',

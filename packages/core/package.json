@@ -2,8 +2,8 @@
   "name": "@oakjs/core",
   "version": "3.13.1",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/oak-core.cjs.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
   "scripts": {
     "clean": "rm -rf ./dist || true",
     "build": "yarn clean && yarn build:code && yarn build:dts",
-    "build:code": "yarn run -T rollup --configPlugin @rollup/plugin-swc -c",
+    "build:code": "yarn run -T tsup",
     "build:dts": "yarn run -T tsc --project ./tsconfig.build.json",
     "test": "jest"
   },
@@ -38,14 +38,14 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/oak-core.cjs.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./addons": {
-      "import": "./dist/esm/addons.js",
-      "require": "./dist/oak-core.cjs.js",
-      "types": "./dist/types/addons.d.ts"
+      "types": "./dist/types/addons.d.ts",
+      "import": "./dist/addons.mjs",
+      "require": "./dist/addons.js"
     }
   },
   "gitHead": "d75c061fe25d641c27268b3995ede1b047369787"

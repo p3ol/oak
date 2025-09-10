@@ -1,9 +1,9 @@
+import { defineConfig } from 'eslint/config';
 import storybook from 'eslint-plugin-storybook';
-import tseslint from 'typescript-eslint';
 import pooolint from '@poool/eslint-config-react';
 import globals from 'globals';
 
-export default tseslint.config(
+export default defineConfig(
   { ignores: [
     'dist',
     '**/dist',
@@ -24,7 +24,7 @@ export default tseslint.config(
       },
     },
   },
-  ...pooolint.configs.recommended,
+  pooolint.configs.recommended,
   {
     rules: {
       'new-cap': ['warn', {
