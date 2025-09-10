@@ -71,6 +71,7 @@ const config: StorybookConfig = {
   webpackFinal: config => {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
+      '@oakjs/core': path.resolve(__dirname, '../packages/core/lib'),
       '@oakjs/react': path.resolve(__dirname, '../packages/react/lib'),
     };
 
