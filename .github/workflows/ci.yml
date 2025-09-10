@@ -36,6 +36,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          check-latest: true
           cache: yarn
       - name: Install deps
         run: yarn install
@@ -57,6 +58,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          check-latest: true
           cache: yarn
       - name: Install deps
         run: yarn install

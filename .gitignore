@@ -117,3 +117,6 @@ dist
 
 # Turbo
 .turbo
+
+# Storybook
+storybook-static
