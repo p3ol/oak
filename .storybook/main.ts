@@ -68,6 +68,14 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-docs'),
   ],
   framework: getAbsolutePath('@storybook/react-webpack5'),
+  webpackFinal: config => {
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      '@oakjs/react': path.resolve(__dirname, '../packages/react/lib'),
+    };
+
+    return config;
+  },
   swc: (config: SWCConfig) => ({
     ...config,
     jsc: {
