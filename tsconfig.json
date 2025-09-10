@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "base": "./",
     "paths": {
-      "@oakjs/react": ["./packages/react/lib"]
+      "@oakjs/react": ["./packages/react/lib/index.ts"]
     },
     "target": "es6",
     "moduleResolution": "bundler",
