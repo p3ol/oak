@@ -27,6 +27,7 @@
     "@junipero/core": "3.11.0",
     "@junipero/tailwind-plugin": "3.11.0",
     "@percy/storybook": "9.0.0",
+    "@poool/eslint-config": "5.0.6",
     "@poool/eslint-config-react": "5.0.6",
     "@remirror/pm": "3.0.1",
     "@remirror/react": "3.0.3",
