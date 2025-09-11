@@ -6,6 +6,7 @@ import fse from 'fs-extra';
 import sass from 'sass';
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
+import tailwindcss from 'tailwindcss';
 
 export interface CompileOptions {
   input: string;
@@ -22,10 +23,14 @@ const compile = async ({ input, output }: CompileOptions) => {
     sourceMapIncludeSources: true,
     loadPaths: [
       path.resolve('./lib/utils'),
+      path.resolve('../../node_modules'),
     ],
   });
 
   const { css: prefixedCss } = await postcss([
+    tailwindcss({
+      config: path.resolve(__dirname, '../tailwind.config.ts'),
+    }),
     autoprefixer(),
   ]).process(css, {
     from: input,
