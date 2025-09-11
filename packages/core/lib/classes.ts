@@ -22,12 +22,14 @@ export class BuilderOptions {
   generateId: () => string | number;
   historyLimit: number;
   overrideStrategy: 'last' | 'merge';
+  defaults: Record<string, any>;
 
   constructor (props?: BuilderObject) {
     this.debug = props?.debug ?? false;
     this.generateId = props?.generateId;
     this.historyLimit = props?.historyLimit ?? 20;
     this.overrideStrategy = props?.overrideStrategy || 'last';
+    this.defaults = props?.defaults || {};
   }
 }
 

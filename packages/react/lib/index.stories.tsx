@@ -88,6 +88,22 @@ export const Uncontrolled = () => {
   );
 };
 
+export const WithCustomDefaults = () => (
+  <Builder
+    addons={[baseAddon(), {
+      overrides: [{
+        type: 'setting',
+        targets: ['*'],
+        key: 'settings.dir',
+        default: (_, { builder }) => builder.options.defaults?.dir || 'ltr',
+      }],
+    }]}
+    value={baseContent}
+    options={{ debug: true, defaults: { dir: 'rtl' } }}
+    onChange={action('change')}
+  />
+);
+
 export const WithCustomTexts = () => {
   const builderRef = useRef<BuilderRef>(null);
 

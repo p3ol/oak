@@ -480,22 +480,6 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
       label: (
         t: GetTextCallback
       ) => t('core.components.image.settings.image.title', 'Image'),
-      priority: 70,
-    }, {
-      type: 'text',
-      key: 'settings.alt',
-      label: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.alt.title',
-        'Image alternative text'
-      ),
-      priority: 60,
-    }, {
-      type: 'textarea',
-      key: 'settings.description',
-      label: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.description.title',
-        'Image description'
-      ),
       priority: 50,
     }, {
       type: 'select',
@@ -1473,6 +1457,78 @@ export const responsiveSettings = (
   }],
 });
 
+export const accessibilitySettings = (
+  props?: ComponentSettingsFieldObject
+): ComponentSettingsFieldObject => ({
+  id: 'accessibility',
+  type: 'tab',
+  key: 'accessibility',
+  title: (t: GetTextCallback) => t('core.accessibility.title', 'Accessibility'),
+  ...props,
+  fields: [...(props?.fields || []), {
+    label: (t: GetTextCallback) =>
+      t('core.accessibility.dir.title', 'Text direction'),
+    type: 'select',
+    key: 'settings.dir',
+    default: 'ltr',
+    options: [{
+      title: (t: GetTextCallback) =>
+        t('core.accessibility.dir.ltr', 'Left to right'),
+      value: 'ltr',
+    }, {
+      title: (t: GetTextCallback) =>
+        t('core.accessibility.dir.rtl', 'Right to left'),
+      value: 'rtl',
+    }],
+    condition: (element: ElementObject) =>
+      ['title', 'text', 'button', 'textarea'].includes(element.type),
+    priority: 30,
+  }, {
+    type: 'text',
+    key: 'settings.alt',
+    label: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.alt.title',
+      'Image alternative text'
+    ),
+    condition: (element: ElementObject) => element.type === 'image',
+    priority: 20,
+  }, {
+    type: 'textarea',
+    key: 'settings.description',
+    label: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.description.title',
+      'Image description'
+    ),
+    condition: (element: ElementObject) => element.type === 'image',
+    priority: 10,
+  }, {
+    type: 'select',
+    key: 'settings.role',
+    label: (t: GetTextCallback) => t(
+      'core.accessibility.role.title', 'ARIA role'),
+    default: elmt => elmt.type === 'button' ? 'button' : '',
+    options: [{
+      title: (t: GetTextCallback) => t(
+        'core.accessibility.role.none', 'None'),
+      value: '',
+    }, {
+      title: (t: GetTextCallback) => t(
+        'core.accessibility.role.button', 'Button'),
+      value: 'button',
+    }, {
+      title: (t: GetTextCallback) => t(
+        'core.accessibility.role.link', 'Link'),
+      value: 'link',
+    }],
+    condition: (element: ElementObject) =>
+      ['button', 'clickable'].includes(element.type),
+    priority: 10,
+  }],
+  condition: (element: ElementObject) => [
+    'title', 'text', 'textarea', 'button', 'clickable', 'image',
+  ].includes(element.type),
+});
+
 export const baseFields = (): FieldObject[] => [
   textField(),
   textareaField(),
@@ -1498,6 +1554,7 @@ export const baseComponents = (): ComponentObject[] => [
 export const baseSettings = (): ComponentSettingsFieldObject[] => [
   stylingSettings(),
   responsiveSettings(),
+  accessibilitySettings(),
 ];
 
 export const coreComponentsGroup = (

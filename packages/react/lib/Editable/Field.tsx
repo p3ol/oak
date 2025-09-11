@@ -74,7 +74,7 @@ const Field = ({
       element,
       fieldSetting.key,
       typeof setting.default === 'function'
-        ? setting.default(element) : setting.default,
+        ? setting.default(element, { builder }) : setting.default,
     ),
     required: setting.required,
     onChange: overrides?.field?.onChange

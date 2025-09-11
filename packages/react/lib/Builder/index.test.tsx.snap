@@ -2042,6 +2042,15 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
                       Responsive
                     </a>
                   </li>
+                  <li
+                    class="title"
+                  >
+                    <a
+                      href="#"
+                    >
+                      Accessibility
+                    </a>
+                  </li>
                 </ul>
                 <div
                   class="content"
