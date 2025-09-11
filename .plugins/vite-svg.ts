@@ -1,8 +1,13 @@
-export default function rolldownSvg () {
+import fs from 'node:fs/promises';
+
+export default function viteSvg () {
   return {
     name: 'svg',
-    transform (code: string, id: string) {
-      if (id.endsWith('.svg')) {
+    enforce: 'pre',
+    async load (id: string) {
+
+      if (/\.(svg)$/.test(id)) {
+        const code = await fs.readFile(id, 'utf-8');
         const escaped = code
           .replace(/"/g, '\\"')
           .replace(/\r?\n/g, ' ')

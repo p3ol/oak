@@ -1,4 +1,5 @@
 import {
+  type EditorConfig,
   ClassicEditor,
   Alignment,
   BlockQuote,
@@ -45,7 +46,7 @@ class Editor extends ClassicEditor {
     ColorPlugin,
   ];
 
-  static defaultConfig = {
+  static defaultConfig: EditorConfig = {
     toolbar: {
       items: [
         'undo',

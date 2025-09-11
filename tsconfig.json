@@ -8,7 +8,7 @@
     "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "resolveJsonModule": true,
-    "types": ["node", "react", "react-dom", "vitest/globals"],
+    "types": ["node", "react", "react-dom", "vite/client", "vitest/globals"],
     "module": "esnext",
     "noEmit": true,
     "skipLibCheck": true,

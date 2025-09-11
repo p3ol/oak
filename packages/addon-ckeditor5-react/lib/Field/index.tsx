@@ -12,10 +12,10 @@ import {
   classNames,
 } from '@oakjs/react';
 
-import Editor, { type ClassicEditor } from '../Editor';
+import type { ClassicEditor } from '../Editor';
 
 export interface CKEditorFieldProps extends ComponentPropsWithoutRef<any> {
-  editor?: Editor;
+  editor?: ClassicEditor;
   config?: EditorConfig;
   value?: string;
   onChange?(field: FieldContent<string>, element?: ElementObject): void;
@@ -33,6 +33,8 @@ const CKEditorField = ({
   }>();
 
   const loadEditor = useCallback(async () => {
+    const Editor = (await import('../Editor')).default;
+
     setDefaultEditor({
       classicEditor: Editor,
     });
@@ -44,7 +46,7 @@ const CKEditorField = ({
     }
   }, [editor, defaultEditor, loadEditor]);
 
-  const onChange_ = useCallback((_: EventInfo, ed: Editor) => {
+  const onChange_ = useCallback((_: EventInfo, ed: ClassicEditor) => {
     onChange?.({ value: ed.getData() });
   }, [onChange]);
 

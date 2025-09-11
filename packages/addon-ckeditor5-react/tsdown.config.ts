@@ -1,15 +1,11 @@
 import { defineConfig } from 'tsdown';
 
-import svg from '../../.plugins/rolldown-svg.ts';
 import pkg from './package.json' with { type: 'json' };
 
 export default defineConfig([
   {
     entry: ['./lib/index.ts', './lib/addons.ts'],
     outDir: 'dist',
-    plugins: [
-      svg(),
-    ],
     format: ['cjs', 'esm'],
     target: pkg.targets,
     platform: 'browser',
@@ -20,6 +16,9 @@ export default defineConfig([
       'ckeditor5',
       '@ckeditor/ckeditor5-react',
     ],
+    loader: {
+      '.svg': 'text',
+    },
     sourcemap: true,
     dts: false,
   },

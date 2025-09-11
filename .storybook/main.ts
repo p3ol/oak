@@ -4,6 +4,8 @@ import path from 'node:path';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 
+import viteSvg from '../.plugins/vite-svg';
+
 const require = createRequire(import.meta.url);
 
 function getAbsolutePath (value: string): any {
@@ -28,6 +30,9 @@ const config: StorybookConfig = {
           '@oakjs/react': path.resolve(__dirname, '../packages/react/lib'),
         },
       },
+      plugins: [
+        viteSvg(),
+      ],
     });
   },
 };
