@@ -2,8 +2,9 @@
   "name": "@oakjs/react",
   "version": "3.13.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -25,16 +26,16 @@
   },
   "dependencies": {
     "@floating-ui/react": "0.27.16",
-    "@junipero/hooks": "3.11.0",
-    "@junipero/react": "3.11.0",
-    "@junipero/transitions": "3.11.0",
+    "@junipero/hooks": "3.12.0",
+    "@junipero/react": "3.12.0",
+    "@junipero/transitions": "3.12.0",
     "@oakjs/core": "^3.13.1",
     "uuid": "13.0.0"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
     "build": "yarn clean && yarn build:code && yarn build:dts",
-    "build:code": "yarn run -T tsup",
+    "build:code": "yarn run -T tsdown",
     "build:dts": "yarn run -T tsc --project ./tsconfig.build.json",
     "test": "jest"
   },
@@ -44,19 +45,27 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./addons": {
       "types": "./dist/types/addons.d.ts",
-      "import": "./dist/addons.mjs",
-      "require": "./dist/addons.js"
+      "import": "./dist/addons.js",
+      "require": "./dist/addons.cjs"
     },
     "./options": {
       "types": "./dist/types/options.d.ts",
-      "import": "./dist/options.mjs",
-      "require": "./dist/options.js"
+      "import": "./dist/options.js",
+      "require": "./dist/options.cjs"
     }
   },
+  "targets": [
+    "chrome109",
+    "edge138",
+    "firefox140",
+    "safari18",
+    "opera80",
+    "node20"
+  ],
   "gitHead": "d75c061fe25d641c27268b3995ede1b047369787"
 }

@@ -1,8 +1,10 @@
+import { vi } from 'vitest';
+
 import Components from './index';
 
 describe('Components', () => {
   it('should allow to manage components', () => {
-    const cb = jest.fn();
+    const cb = vi.fn();
     const components = new Components();
     components.subscribe(cb);
 
@@ -20,7 +22,7 @@ describe('Components', () => {
   });
 
   it('should allow to add a new group and add components', () => {
-    const cb = jest.fn();
+    const cb = vi.fn();
     const components = new Components();
     components.subscribe(cb);
 

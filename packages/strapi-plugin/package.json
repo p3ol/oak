@@ -20,9 +20,6 @@
     "react": "^17.0.2 || ^18.0.0 || ^19.0.0",
     "react-dom": "^17.0.2 || ^18.0.0 || ^19.0.0"
   },
-  "scripts": {
-    "build": "true"
-  },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "11.0.0",
     "@oakjs/addon-ckeditor5-react": "^3.13.0",

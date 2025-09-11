@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Builder /> should allow to add content from catalogue: Catalogue opened 1`] = `
+exports[`<Builder /> > should allow to add content from catalogue > Catalogue opened 1`] = `
 <div
   class="floatings"
 >
@@ -176,7 +176,7 @@ exports[`<Builder /> should allow to add content from catalogue: Catalogue opene
 </div>
 `;
 
-exports[`<Builder /> should allow to add content from catalogue: Content with row 1`] = `
+exports[`<Builder /> > should allow to add content from catalogue > Content with row 1`] = `
 <div>
   <div
     class="oak builder"
@@ -185,8 +185,10 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -196,8 +198,10 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -421,8 +425,10 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -432,8 +438,10 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -450,7 +458,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with ro
 </div>
 `;
 
-exports[`<Builder /> should allow to add content from catalogue: Content with text and row 1`] = `
+exports[`<Builder /> > should allow to add content from catalogue > Content with text and row 1`] = `
 <div>
   <div
     class="oak builder"
@@ -459,7 +467,9 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="false"
         class="junipero button"
+        role="button"
         type="button"
       >
         <i
@@ -469,8 +479,10 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -899,7 +911,9 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="false"
         class="junipero button"
+        role="button"
         type="button"
       >
         <i
@@ -909,8 +923,10 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -927,7 +943,7 @@ exports[`<Builder /> should allow to add content from catalogue: Content with te
 </div>
 `;
 
-exports[`<Builder /> should allow to add content from catalogue: Empty content 1`] = `
+exports[`<Builder /> > should allow to add content from catalogue > Empty content 1`] = `
 <div>
   <div
     class="oak builder"
@@ -936,8 +952,10 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -947,8 +965,10 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -984,8 +1004,10 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -995,8 +1017,10 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -1013,7 +1037,7 @@ exports[`<Builder /> should allow to add content from catalogue: Empty content 1
 </div>
 `;
 
-exports[`<Builder /> should allow to add content from catalogue: Row with title 1`] = `
+exports[`<Builder /> > should allow to add content from catalogue > Row with title 1`] = `
 <div
   class="oak element oak-flex-none type-row"
   draggable="false"
@@ -1307,7 +1331,7 @@ exports[`<Builder /> should allow to add content from catalogue: Row with title 
 </div>
 `;
 
-exports[`<Builder /> should allow to add content programmatically: Content with title 1`] = `
+exports[`<Builder /> > should allow to add content programmatically > Content with title 1`] = `
 <div>
   <div>
     <button
@@ -1322,7 +1346,9 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         class="oak-flex oak-gap-2"
       >
         <button
+          aria-disabled="false"
           class="junipero button"
+          role="button"
           type="button"
         >
           <i
@@ -1332,8 +1358,10 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
           </i>
         </button>
         <button
+          aria-disabled="true"
           class="junipero button disabled"
           disabled=""
+          role="button"
           type="button"
         >
           <i
@@ -1490,7 +1518,9 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
         class="oak-flex oak-gap-2"
       >
         <button
+          aria-disabled="false"
           class="junipero button"
+          role="button"
           type="button"
         >
           <i
@@ -1500,8 +1530,10 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
           </i>
         </button>
         <button
+          aria-disabled="true"
           class="junipero button disabled"
           disabled=""
+          role="button"
           type="button"
         >
           <i
@@ -1519,7 +1551,7 @@ exports[`<Builder /> should allow to add content programmatically: Content with 
 </div>
 `;
 
-exports[`<Builder /> should allow to add content programmatically: Empty content 1`] = `
+exports[`<Builder /> > should allow to add content programmatically > Empty content 1`] = `
 <div>
   <div>
     <button
@@ -1534,8 +1566,10 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
         class="oak-flex oak-gap-2"
       >
         <button
+          aria-disabled="true"
           class="junipero button disabled"
           disabled=""
+          role="button"
           type="button"
         >
           <i
@@ -1545,8 +1579,10 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
           </i>
         </button>
         <button
+          aria-disabled="true"
           class="junipero button disabled"
           disabled=""
+          role="button"
           type="button"
         >
           <i
@@ -1582,8 +1618,10 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
         class="oak-flex oak-gap-2"
       >
         <button
+          aria-disabled="true"
           class="junipero button disabled"
           disabled=""
+          role="button"
           type="button"
         >
           <i
@@ -1593,8 +1631,10 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
           </i>
         </button>
         <button
+          aria-disabled="true"
           class="junipero button disabled"
           disabled=""
+          role="button"
           type="button"
         >
           <i
@@ -1612,7 +1652,7 @@ exports[`<Builder /> should allow to add content programmatically: Empty content
 </div>
 `;
 
-exports[`<Builder /> should allow to render editable inside a modal: Catalogue opened 1`] = `
+exports[`<Builder /> > should allow to render editable inside a modal > Catalogue opened 1`] = `
 <div
   class="floatings"
 >
@@ -1788,7 +1828,7 @@ exports[`<Builder /> should allow to render editable inside a modal: Catalogue o
 </div>
 `;
 
-exports[`<Builder /> should allow to render editable inside a modal: Title editable 1`] = `
+exports[`<Builder /> > should allow to render editable inside a modal > Title editable 1`] = `
 <div>
   <div
     class="oak builder"
@@ -1797,8 +1837,10 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -1808,8 +1850,10 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -1966,8 +2010,10 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -1977,8 +2023,10 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -1992,7 +2040,7 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
       class="floatings"
     >
       <div
-        class="junipero modal opened panel editable"
+        class="junipero modal opened panel editable jp-slide-in-left-modal-enter"
       >
         <div
           class="wrapper"
@@ -2071,11 +2119,14 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
                         </label>
                         <div
                           class="junipero dropdown select-field pristine valid searchable"
+                          id="junipero-select-field-«r24»"
                         >
                           <div
                             class="field dropdown-toggle"
+                            id="junipero-select-field-«r24»-toggle"
                           >
                             <input
+                              id="junipero-select-field-«r24»-field"
                               readonly=""
                               type="text"
                               value="Title 1 (h1)"
@@ -2129,12 +2180,14 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
               >
                 <button
                   class="junipero button subtle"
+                  role="button"
                   type="button"
                 >
                   Cancel
                 </button>
                 <button
                   class="junipero button primary"
+                  role="button"
                   type="button"
                 >
                   Save
@@ -2149,7 +2202,7 @@ exports[`<Builder /> should allow to render editable inside a modal: Title edita
 </div>
 `;
 
-exports[`<Builder /> should render: Base content 1`] = `
+exports[`<Builder /> > should render > Base content 1`] = `
 <div>
   <div
     class="oak builder"
@@ -2158,8 +2211,10 @@ exports[`<Builder /> should render: Base content 1`] = `
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -2169,8 +2224,10 @@ exports[`<Builder /> should render: Base content 1`] = `
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -2411,8 +2468,10 @@ exports[`<Builder /> should render: Base content 1`] = `
       class="oak-flex oak-gap-2"
     >
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i
@@ -2422,8 +2481,10 @@ exports[`<Builder /> should render: Base content 1`] = `
         </i>
       </button>
       <button
+        aria-disabled="true"
         class="junipero button disabled"
         disabled=""
+        role="button"
         type="button"
       >
         <i

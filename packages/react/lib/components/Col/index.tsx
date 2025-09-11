@@ -170,6 +170,7 @@ const Col = ({
         >
           { element.content.length > 0 && (
             <Catalogue
+              element={element}
               component={component}
               ref={prependCatalogueRef}
               onAppend={onPrepend_}
@@ -197,6 +198,7 @@ const Col = ({
 
           <Catalogue
             ref={appendCatalogueRef}
+            element={element}
             component={component}
             onAppend={onAppend_}
             onPaste={onPasteAfter_}

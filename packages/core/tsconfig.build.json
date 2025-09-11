@@ -8,5 +8,5 @@
     "outDir": "dist/types",
     "baseUrl": "."
   },
-  "exclude": ["tests", "**/*.test.ts", "tsup.config.ts"]
+  "exclude": ["tests", "**/*.test.ts", "tsdown.config.ts"]
 }

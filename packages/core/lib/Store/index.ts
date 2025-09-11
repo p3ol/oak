@@ -20,68 +20,68 @@ import Emitter from '../Emitter';
 import Builder from '../Builder';
 
 export declare abstract class IStore {
-  constructor(options?: { builder: Builder });
+  constructor (options?: { builder: Builder });
 
   /**
    * Check if an element id is valid.
    * An Element ID is a string or a number, and cannot be empty.
    */
-  isIdValid(id: string | number): boolean;
+  isIdValid (id: string | number): boolean;
 
   /** Check if two element ids are the same */
-  isSameElement(elementId: ElementId, siblingId: ElementId): boolean;
+  isSameElement (elementId: ElementId, siblingId: ElementId): boolean;
 
   /** Get the content of the store */
-  get(): ElementObject[];
+  get (): ElementObject[];
 
   /**
    * Set the content of the store.
    * If the emit option is set to false, the store will not emit a change event.
    */
-  set(content: ElementObject[], options?: { emit?: boolean }): void;
+  set (content: ElementObject[], options?: { emit?: boolean }): void;
 
   /**
    * Sanitize an element object (adds missing properties, ids, etc.)
    * If the resetIds option is set to true, the element id will be reset even
    * if it already exists.
    */
-  sanitize(
+  sanitize (
     element: ElementObject,
     options?: StoreSanitizeOptions
   ): ElementObject;
 
   /** Creates a new element object based on an existing component (or not) */
-  createElement(type: string, options?: Partial<{
+  createElement (type: string, options?: Partial<{
     baseElement?: ElementObject;
     component?: ComponentObject;
     override?: ComponentOverrideObject;
   } & StoreSanitizeOptions>): ElementObject;
 
   /** Adds an element to the store */
-  addElement(element: ElementObject, options?: Partial<{
+  addElement (element: ElementObject, options?: Partial<{
     position?: 'before' | 'after';
   } & StoreFindOptions & StoreSanitizeOptions>): ElementObject;
 
   /** Adds multiple elements to the store */
-  addElements(elements: ElementObject[], options?: Partial<{
+  addElements (elements: ElementObject[], options?: Partial<{
     position?: 'before' | 'after';
   } & StoreFindOptions & StoreSanitizeOptions>): ElementObject[];
 
   /** Finds an element in the store */
-  getElement(id: ElementId, options?: StoreFindDeepOptions): ElementObject;
+  getElement (id: ElementId, options?: StoreFindDeepOptions): ElementObject;
 
   /** Removes an element from the the store */
-  removeElement(id: ElementId, options?: StoreFindDeepOptions): boolean;
+  removeElement (id: ElementId, options?: StoreFindDeepOptions): boolean;
 
   /** Updates an element in the store with new props */
-  setElement(
+  setElement (
     id: ElementId,
     newContent: object,
     options?: StoreFindDeepOptions
   ): ElementObject;
 
   /** Moves an element next to a sibling (inside the same parent or not) */
-  moveElement(
+  moveElement (
     element: ElementObject,
     sibling: ElementObject,
     options?: Partial<StoreFindOptions & {
@@ -90,46 +90,46 @@ export declare abstract class IStore {
   ): ElementObject;
 
   /** Duplicate an element */
-  duplicateElement(
+  duplicateElement (
     element: ElementObject,
     options?: StoreFindOptions
   ): ElementObject;
 
   /** Recursively finds the nearest parent of an element */
-  findNearestParent(
+  findNearestParent (
     id: ElementId,
     options?: StoreFindOptions
   ): ElementObject[];
 
   /** Recursively checks if an element is inside a parent */
-  contains(id: ElementId, options?: StoreFindOptions): boolean;
+  contains (id: ElementId, options?: StoreFindOptions): boolean;
 
   /** Retrieves the setting value of an element */
-  getElementSettings(
+  getElementSettings (
     element: ElementObject,
     key: string | string[] | ComponentSettingsFieldKeyTuple[],
     def?: any
   ): any;
 
   /** Sets the setting value of an element */
-  setElementSettings(
+  setElementSettings (
     element: ElementObject,
     key: string | string[] | ComponentSettingsFieldKeyTuple[],
     value: any
   ): void;
 
   /** Commit changes into history */
-  commit(): void;
+  commit (): void;
 
   /** Undo the last change */
-  undo(): void;
+  undo (): void;
 
   /** Redo the last change */
-  redo(): void;
+  redo (): void;
 
-  canUndo(): boolean;
-  canRedo(): boolean;
-  resetHistory(): void;
+  canUndo (): boolean;
+  canRedo (): boolean;
+  resetHistory (): void;
 }
 
 export default class Store extends Emitter implements IStore {
@@ -398,10 +398,11 @@ export default class Store extends Emitter implements IStore {
     id: ElementId,
     newContent: Partial<ElementObject>,
     { element: e, parent = this.#content, deep }: {
-    element?: ElementObject,
-    parent?: ElementObject[],
-    deep?: boolean
-  } = {}) {
+      element?: ElementObject,
+      parent?: ElementObject[],
+      deep?: boolean
+    } = {}
+  ) {
     if (!this.isIdValid(id)) {
       return;
     }

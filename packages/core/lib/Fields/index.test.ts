@@ -1,8 +1,10 @@
+import { vi } from 'vitest';
+
 import Fields from './index';
 
 describe('Fields', () => {
   it('should allow to manage fields', () => {
-    const cb = jest.fn();
+    const cb = vi.fn();
     const fields = new Fields();
     fields.subscribe(cb);
 

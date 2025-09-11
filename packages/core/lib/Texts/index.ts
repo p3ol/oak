@@ -6,31 +6,31 @@ import Emitter from '../Emitter';
 import Builder from '../Builder';
 
 export declare abstract class ITexts {
-  constructor(options?: { builder: Builder });
+  constructor (options?: { builder: Builder });
 
   /** Retrieves a text sheet using its id */
-  getSheet(id: string): TextsSheet;
+  getSheet (id: string): TextsSheet;
 
   /** Adds a new texts sheet */
-  addSheet(sheet: TextsSheetObject | TextsSheet): TextsSheet;
+  addSheet (sheet: TextsSheetObject | TextsSheet): TextsSheet;
 
   /** Updates an existing text sheet */
-  setSheet(sheet: TextsSheet): TextsSheet;
+  setSheet (sheet: TextsSheet): TextsSheet;
 
   /** Removes a text sheet */
-  removeSheet(id: string): boolean;
+  removeSheet (id: string): boolean;
 
   /** Retrieves the current active sheet id */
-  getActiveSheet(): string;
+  getActiveSheet (): string;
 
   /** Sets the current active sheet id */
-  setActiveSheet(id: string): void;
+  setActiveSheet (id: string): void;
 
   /** Retrieves a text from the current active sheet */
-  get(key: string | GetTextCallback, def?: any): any;
+  get (key: string | GetTextCallback, def?: any): any;
 
   /** Updates a text key in the current active sheet */
-  set(key: string, value: any): void;
+  set (key: string, value: any): void;
 }
 
 export default class Texts extends Emitter implements ITexts {

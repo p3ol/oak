@@ -1,11 +1,16 @@
+import { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { BuilderLite } from '../../tests/utils';
-import Catalogue from './index';
+import Catalogue, { type CatalogueRef } from './index';
 
 describe('<Catalogue />', () => {
   it('should allow to add elements to the builder', () => {
-    const onAppend = jest.fn();
+    const ref = createRef<CatalogueRef>();
+    const onAppend = vi.fn(() => {
+      ref.current?.close();
+    });
     const { container, unmount } = render(
       <BuilderLite
         addons={[{
@@ -18,7 +23,7 @@ describe('<Catalogue />', () => {
           }],
         }]}
       >
-        <Catalogue onAppend={onAppend} />
+        <Catalogue ref={ref} onAppend={onAppend} />
       </BuilderLite>
     );
 

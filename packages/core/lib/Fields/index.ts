@@ -4,22 +4,22 @@ import Emitter from '../Emitter';
 import Builder from '../Builder';
 
 export declare abstract class IFields {
-  constructor(options?: { builder: Builder });
+  constructor (options?: { builder: Builder });
 
   /** Checkes if a field exists */
-  has(type: string): boolean;
+  has (type: string): boolean;
 
   /** Get a field by its type */
-  get(type: string): Field;
+  get (type: string): Field;
 
   /** Add a new field definition */
-  add(field: FieldObject | Field): Field;
+  add (field: FieldObject | Field): Field;
 
   /** Remove a field definition */
-  remove(type: string): void;
+  remove (type: string): void;
 
   /** Get all fields */
-  all(): Field[];
+  all (): Field[];
 }
 
 export default class Fields extends Emitter implements IFields {

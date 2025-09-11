@@ -41,10 +41,10 @@ export declare interface OakRef {
 
 export declare type SpecialComponentPropsWithRef<
   T extends ElementType = any,
-  R extends OakRef = any
+  R extends OakRef = any,
 > = ComponentPropsWithoutRef<T> & {
   ref?: Ref<R>;
-}
+};
 
 export declare type EditableType = 'floating' | 'modal';
 

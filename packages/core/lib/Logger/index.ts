@@ -1,9 +1,9 @@
 import type Builder from '../Builder';
 
 export declare abstract class ILogger {
-  constructor(options?: { builder: Builder });
-  log(...args: any[]): void;
-  warn(...args: any[]): void;
+  constructor (options?: { builder: Builder });
+  log (...args: any[]): void;
+  warn (...args: any[]): void;
 }
 
 export default class Logger implements ILogger {

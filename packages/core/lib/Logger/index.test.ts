@@ -1,16 +1,18 @@
+import { vi } from 'vitest';
+
 import Builder from '../Builder';
 import Logger from './index';
 
 /* eslint-disable no-console */
 describe('Logger', () => {
-  let logSpy: ReturnType<typeof jest.spyOn>;
-  let warnSpy: ReturnType<typeof jest.spyOn>;
+  let logSpy: ReturnType<typeof vi.spyOn>;
+  let warnSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    logSpy = jest.spyOn(console, 'log');
+    logSpy = vi.spyOn(console, 'log');
     logSpy.mockImplementation(() => {});
 
-    warnSpy = jest.spyOn(console, 'warn');
+    warnSpy = vi.spyOn(console, 'warn');
     warnSpy.mockImplementation(() => {});
   });
 

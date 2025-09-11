@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Components should allow to add a new group and add components 1`] = `
+exports[`Components > should allow to add a new group and add components 1`] = `
 {
   "defaultGroup": ComponentsGroup {
     "components": [],

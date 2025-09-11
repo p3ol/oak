@@ -1,10 +1,9 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Settings should allow to add a new tab and add settings to it 1`] = `
+exports[`Settings > should allow to add a new tab and add settings to it 1`] = `
 [
   ComponentSettingsTab {
     "condition": undefined,
-    "displayable": undefined,
     "fields": [],
     "id": "general",
     "priority": undefined,
@@ -13,7 +12,6 @@ exports[`Settings should allow to add a new tab and add settings to it 1`] = `
   },
   ComponentSettingsTab {
     "condition": undefined,
-    "displayable": undefined,
     "fields": [
       ComponentSettingsField {
         "condition": undefined,

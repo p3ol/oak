@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Store .createElement() should allow to create an element: Title 1`] = `
+exports[`Store > .createElement() > should allow to create an element > Title 1`] = `
 {
   "content": "This is a title",
   "headingLevel": "h1",
@@ -9,7 +9,7 @@ exports[`Store .createElement() should allow to create an element: Title 1`] = `
 }
 `;
 
-exports[`Store .createElement() should allow to create an element: Title with custom construct 1`] = `
+exports[`Store > .createElement() > should allow to create an element > Title with custom construct 1`] = `
 {
   "content": "This is a great title",
   "headingLevel": "h1",
@@ -18,7 +18,7 @@ exports[`Store .createElement() should allow to create an element: Title with cu
 }
 `;
 
-exports[`Store .findNearestParent() should allow to find the nearest parent of an element: col.content 1`] = `
+exports[`Store > .findNearestParent() > should allow to find the nearest parent of an element > col.content 1`] = `
 [
   {
     "content": "This is another title",
@@ -29,7 +29,7 @@ exports[`Store .findNearestParent() should allow to find the nearest parent of a
 ]
 `;
 
-exports[`Store .findNearestParent() should allow to find the nearest parent of an element: content 1`] = `
+exports[`Store > .findNearestParent() > should allow to find the nearest parent of an element > content 1`] = `
 [
   {
     "cols": [
@@ -56,7 +56,7 @@ exports[`Store .findNearestParent() should allow to find the nearest parent of a
 ]
 `;
 
-exports[`Store .findNearestParent() should allow to find the nearest parent of an element: row.cols 1`] = `
+exports[`Store > .findNearestParent() > should allow to find the nearest parent of an element > row.cols 1`] = `
 [
   {
     "content": [
@@ -74,7 +74,15 @@ exports[`Store .findNearestParent() should allow to find the nearest parent of a
 ]
 `;
 
-exports[`Store .getElement() should allow to get an element with custom containers: Deep element 1`] = `
+exports[`Store > .getElement() > should allow to get an element > Shallow element 1`] = `
+{
+  "content": "This is a title",
+  "id": 0,
+  "type": "title",
+}
+`;
+
+exports[`Store > .getElement() > should allow to get an element with custom containers > Deep element 1`] = `
 {
   "content": "This is another title",
   "headingLevel": "h1",
@@ -83,15 +91,7 @@ exports[`Store .getElement() should allow to get an element with custom containe
 }
 `;
 
-exports[`Store .getElement() should allow to get an element: Shallow element 1`] = `
-{
-  "content": "This is a title",
-  "id": 0,
-  "type": "title",
-}
-`;
-
-exports[`Store .sanitize() should allow to sanitize an element: Add id & default props from component 1`] = `
+exports[`Store > .sanitize() > should allow to sanitize an element > Add id & default props from component 1`] = `
 {
   "content": "This is a title",
   "headingLevel": "h1",
@@ -100,7 +100,7 @@ exports[`Store .sanitize() should allow to sanitize an element: Add id & default
 }
 `;
 
-exports[`Store .sanitize() should allow to sanitize an element: Add id 1`] = `
+exports[`Store > .sanitize() > should allow to sanitize an element > Add id 1`] = `
 {
   "content": "This is a title",
   "id": 0,
@@ -108,7 +108,7 @@ exports[`Store .sanitize() should allow to sanitize an element: Add id 1`] = `
 }
 `;
 
-exports[`Store .sanitize() should allow to sanitize an element: Allow custom sanitize on component or override level 1`] = `
+exports[`Store > .sanitize() > should allow to sanitize an element > Allow custom sanitize on component or override level 1`] = `
 {
   "content": "This is a title, a really great one",
   "headingLevel": "h1",
@@ -117,7 +117,7 @@ exports[`Store .sanitize() should allow to sanitize an element: Allow custom san
 }
 `;
 
-exports[`Store .sanitize() should allow to sanitize elements with custom containers: Deeply sanitize 1`] = `
+exports[`Store > .sanitize() > should allow to sanitize elements with custom containers > Deeply sanitize 1`] = `
 {
   "cols": [
     {
@@ -142,7 +142,7 @@ exports[`Store .sanitize() should allow to sanitize elements with custom contain
 }
 `;
 
-exports[`Store should allow to manage a set of elements: Base content 1`] = `
+exports[`Store > should allow to manage a set of elements > Base content 1`] = `
 [
   {
     "content": "This is a title",
@@ -157,7 +157,7 @@ exports[`Store should allow to manage a set of elements: Base content 1`] = `
 ]
 `;
 
-exports[`Store should allow to manage a set of elements: With button & title swapped 1`] = `
+exports[`Store > should allow to manage a set of elements > With button & title swapped 1`] = `
 [
   {
     "content": "This is a new button",
@@ -172,7 +172,7 @@ exports[`Store should allow to manage a set of elements: With button & title swa
 ]
 `;
 
-exports[`Store should allow to manage a set of elements: With button 1`] = `
+exports[`Store > should allow to manage a set of elements > With button 1`] = `
 [
   {
     "content": "This is a title",
@@ -187,7 +187,7 @@ exports[`Store should allow to manage a set of elements: With button 1`] = `
 ]
 `;
 
-exports[`Store should allow to manage a set of elements: With button duplicated 1`] = `
+exports[`Store > should allow to manage a set of elements > With button duplicated 1`] = `
 [
   {
     "content": "This is a new button",
@@ -207,7 +207,7 @@ exports[`Store should allow to manage a set of elements: With button duplicated 
 ]
 `;
 
-exports[`Store should allow to manage a set of elements: With button updated 1`] = `
+exports[`Store > should allow to manage a set of elements > With button updated 1`] = `
 [
   {
     "content": "This is a title",
@@ -222,7 +222,7 @@ exports[`Store should allow to manage a set of elements: With button updated 1`]
 ]
 `;
 
-exports[`Store should allow to manage a set of elements: Without text 1`] = `
+exports[`Store > should allow to manage a set of elements > Without text 1`] = `
 [
   {
     "content": "This is a title",

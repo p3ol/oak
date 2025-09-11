@@ -2,8 +2,9 @@
   "name": "@oakjs/addon-ckeditor5-react",
   "version": "3.13.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -32,7 +33,7 @@
   "scripts": {
     "clean": "rm -rf ./dist || true",
     "build": "yarn clean && yarn build:code && yarn build:dts && yarn build:styles",
-    "build:code": "yarn run -T tsup",
+    "build:code": "yarn run -T tsdown",
     "build:dts": "yarn run -T tsc --project ./tsconfig.build.json",
     "build:styles": "node --import=tsx scripts/build-styles.ts",
     "test": "jest"
@@ -43,15 +44,23 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./addons": {
       "types": "./dist/types/addons.d.ts",
-      "import": "./dist/addons.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/addons.js",
+      "require": "./dist/index.cjs"
     },
     "./dist/*": "./dist/*"
   },
+  "targets": [
+    "chrome109",
+    "edge138",
+    "firefox140",
+    "safari18",
+    "opera80",
+    "node20"
+  ],
   "gitHead": "d75c061fe25d641c27268b3995ede1b047369787"
 }

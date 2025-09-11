@@ -1,11 +1,14 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from 'tsdown';
+
+import pkg from './package.json' with { type: 'json' };
 
 export default defineConfig([
   {
     entry: ['./lib/index.ts', './lib/addons.tsx', './lib/options.tsx'],
     outDir: 'dist',
-    banner: {},
-    format: ['iife', 'cjs', 'esm'],
+    target: pkg.targets,
+    format: ['cjs', 'esm'],
+    platform: 'browser',
     external: [
       'react',
       'react-dom',
@@ -16,5 +19,6 @@ export default defineConfig([
       '@oak/core',
     ],
     sourcemap: true,
+    dts: false,
   },
 ]);

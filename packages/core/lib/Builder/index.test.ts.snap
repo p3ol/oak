@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Builder should allow to add addons: Components 1`] = `
+exports[`Builder > should allow to add addons > Components 1`] = `
 [
   ComponentsGroup {
     "components": [
@@ -42,7 +42,7 @@ exports[`Builder should allow to add addons: Components 1`] = `
 ]
 `;
 
-exports[`Builder should allow to add addons: Fields 1`] = `
+exports[`Builder > should allow to add addons > Fields 1`] = `
 [
   Field {
     "props": {},
@@ -52,7 +52,7 @@ exports[`Builder should allow to add addons: Fields 1`] = `
 ]
 `;
 
-exports[`Builder should create a builder: Base content 1`] = `
+exports[`Builder > should create a builder > Base content 1`] = `
 [
   {
     "content": "This is a title",
@@ -68,7 +68,7 @@ exports[`Builder should create a builder: Base content 1`] = `
 ]
 `;
 
-exports[`Builder should create a builder: With button & title swapped 1`] = `
+exports[`Builder > should create a builder > With button & title swapped 1`] = `
 [
   {
     "content": "This is a new button",
@@ -84,7 +84,7 @@ exports[`Builder should create a builder: With button & title swapped 1`] = `
 ]
 `;
 
-exports[`Builder should create a builder: With button 1`] = `
+exports[`Builder > should create a builder > With button 1`] = `
 [
   {
     "content": "This is a title",
@@ -100,7 +100,7 @@ exports[`Builder should create a builder: With button 1`] = `
 ]
 `;
 
-exports[`Builder should create a builder: With button duplicated 1`] = `
+exports[`Builder > should create a builder > With button duplicated 1`] = `
 [
   {
     "content": "This is a new button",
@@ -121,7 +121,7 @@ exports[`Builder should create a builder: With button duplicated 1`] = `
 ]
 `;
 
-exports[`Builder should create a builder: With button updated 1`] = `
+exports[`Builder > should create a builder > With button updated 1`] = `
 [
   {
     "content": "This is a title",
@@ -137,7 +137,7 @@ exports[`Builder should create a builder: With button updated 1`] = `
 ]
 `;
 
-exports[`Builder should create a builder: Without text 1`] = `
+exports[`Builder > should create a builder > Without text 1`] = `
 [
   {
     "content": "This is a title",

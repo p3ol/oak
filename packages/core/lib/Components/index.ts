@@ -22,18 +22,18 @@ export declare abstract class IComponents {
   static COMPONENTS_GROUP_CORE: string;
   static COMPONENTS_GROUP_OTHER: string;
 
-  constructor(options?: { builder: Builder });
+  constructor (options?: { builder: Builder });
 
-  hasGroup(id: string): boolean;
-  getGroup(id: string): ComponentsGroup;
+  hasGroup (id: string): boolean;
+  getGroup (id: string): ComponentsGroup;
 
-  hasComponent(id: string, opts?: { groupId?: string }): boolean;
-  getComponent(id: string, opts?: { groupId?: string }): Component;
+  hasComponent (id: string, opts?: { groupId?: string }): boolean;
+  getComponent (id: string, opts?: { groupId?: string }): Component;
 
-  add(component: object, opts?: { mode?: string }): void;
-  remove(id: string): void;
-  getAll(): object;
-  toJSON(): object;
+  add (component: object, opts?: { mode?: string }): void;
+  remove (id: string): void;
+  getAll (): object;
+  toJSON (): object;
 }
 
 export default class Components extends Emitter implements IComponents {

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Container /> should allow to prepend elements inside a container: With element added before 1`] = `
+exports[`<Container /> > should allow to prepend elements inside a container > With element added before 1`] = `
 {
   "content": [
     {
@@ -19,7 +19,21 @@ exports[`<Container /> should allow to prepend elements inside a container: With
 }
 `;
 
-exports[`<Container /> should render 1`] = `
+exports[`<Container /> > should render > With element added 1`] = `
+{
+  "content": [
+    {
+      "content": "This is some fancy text content",
+      "id": 0,
+      "type": "text",
+    },
+  ],
+  "id": "1",
+  "type": "foldable",
+}
+`;
+
+exports[`<Container /> > should render 1`] = `
 <div>
   <div>
     <div
@@ -43,18 +57,4 @@ exports[`<Container /> should render 1`] = `
     </div>
   </div>
 </div>
-`;
-
-exports[`<Container /> should render: With element added 1`] = `
-{
-  "content": [
-    {
-      "content": "This is some fancy text content",
-      "id": 0,
-      "type": "text",
-    },
-  ],
-  "id": "1",
-  "type": "foldable",
-}
 `;

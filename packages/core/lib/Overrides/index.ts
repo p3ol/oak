@@ -16,10 +16,10 @@ import Emitter from '../Emitter';
 import Builder from '../Builder';
 
 export declare abstract class IOverrides {
-  constructor(options?: { builder: Builder });
+  constructor (options?: { builder: Builder });
 
   /** Adds a new component or field override */
-  add(
+  add (
     override: ComponentOverride | ComponentOverrideObject | FieldOverride |
       FieldOverrideObject | SettingOverride | SettingOverrideObject
   ): ComponentOverride | FieldOverride | SettingOverride;
@@ -45,7 +45,7 @@ export declare abstract class IOverrides {
    *   render: () => ...,
    * }
    * */
-  get(type: 'component' | 'field' | 'setting', target: string, options?: {
+  get (type: 'component' | 'field' | 'setting', target: string, options?: {
     output?: 'field',
     setting?: ComponentSettingsFieldObject,
   }): ComponentOverride | FieldOverride | SettingOverride;
@@ -54,11 +54,11 @@ export declare abstract class IOverrides {
   remove (id: string): void;
 
   /** Merges overrides into a single non-typed object */
-  merge(overrides: (ComponentOverride | FieldOverride | SettingOverride)[]):
+  merge (overrides: (ComponentOverride | FieldOverride | SettingOverride)[]):
     ComponentOverride | FieldOverride | SettingOverride;
 
   /** Returns all available overrides */
-  all(): (ComponentOverride | FieldOverride | SettingOverride)[];
+  all (): (ComponentOverride | FieldOverride | SettingOverride)[];
 }
 
 export default class Overrides extends Emitter implements IOverrides {

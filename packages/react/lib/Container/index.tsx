@@ -112,6 +112,7 @@ const Container = ({
             ref={prependCatalogueRef}
             component={component}
             onAppend={onPrepend}
+            element={element}
             onPaste={onPasteBefore}
             className="oak-inline-flex oak-self-center small"
           />
@@ -134,6 +135,7 @@ const Container = ({
 
         <Catalogue
           ref={appendCatalogueRef}
+          element={element}
           component={component}
           onAppend={onAppend}
           onPaste={onPasteAfter}

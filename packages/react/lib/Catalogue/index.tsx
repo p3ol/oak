@@ -31,6 +31,7 @@ import {
   offset,
   shift,
   flip,
+  autoUpdate,
 } from '@floating-ui/react';
 
 import type { OakRef } from '../types';
@@ -50,6 +51,7 @@ export declare interface CatalogueProps
   extends Omit<ComponentPropsWithoutRef<'div'>, 'onToggle'> {
   ref?: RefObject<CatalogueRef>;
   component?: ComponentObject;
+  element?: ElementObject;
   placement?: string;
   floatingOptions?: UseFloatingOptions & {
     boundary?: Boundary;
@@ -67,6 +69,7 @@ export declare interface CatalogueState {
 const Catalogue = ({
   ref,
   component,
+  element,
   className,
   placement = 'bottom',
   floatingOptions,
@@ -90,6 +93,7 @@ const Catalogue = ({
   const { x, y, refs, strategy, context } = useFloating({
     open: state.opened,
     onOpenChange: o => o ? open() : close(),
+    whileElementsMounted: autoUpdate,
     middleware: [
       offset(16),
       flip({
@@ -213,6 +217,7 @@ const Catalogue = ({
         <div
           ref={refs.setFloating}
           className="catalogue-menu"
+          data-elementid={element?.id}
           style={{
             position: strategy,
             top: y ?? 0,

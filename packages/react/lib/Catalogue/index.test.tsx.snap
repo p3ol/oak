@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Catalogue /> should allow to add elements to the builder: Closed 1`] = `
+exports[`<Catalogue /> > should allow to add elements to the builder > Closed 1`] = `
 <div>
   <div>
     <div
@@ -21,7 +21,7 @@ exports[`<Catalogue /> should allow to add elements to the builder: Closed 1`] =
 </div>
 `;
 
-exports[`<Catalogue /> should allow to add elements to the builder: Opened 1`] = `
+exports[`<Catalogue /> > should allow to add elements to the builder > Opened 1`] = `
 <div>
   <div>
     <div

@@ -1,13 +1,13 @@
 import type { EmitterCallback } from '../types';
 
 export declare abstract class IEmitter {
-  constructor();
+  constructor ();
 
   /** Subscribes to events and return an unsubscribe callback */
-  subscribe(cb: EmitterCallback): EmitterCallback;
+  subscribe (cb: EmitterCallback): EmitterCallback;
 
   /** Emits an event */
-  emit(eventName: string, ...args: any[]): void;
+  emit (eventName: string, ...args: any[]): void;
 }
 
 export default class Emitter implements IEmitter {

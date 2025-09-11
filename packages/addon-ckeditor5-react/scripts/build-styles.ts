@@ -2,7 +2,7 @@
 import path from 'node:path';
 
 import fse from 'fs-extra';
-import sass from 'sass';
+import * as sass from 'sass';
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 

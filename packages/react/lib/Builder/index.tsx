@@ -47,6 +47,7 @@ export declare interface BuilderProps
   bottomHistoryButtonsEnabled?: boolean;
   defaultValue?: ElementObject[];
   historyEnabled?: boolean;
+  id?: string;
   editableType?: EditableType;
   options?: Partial<BuilderOptions>;
   rootBoundary?: RefObject<any> | string | Element | DocumentFragment;
@@ -66,6 +67,7 @@ export declare interface BuilderProps
 
 const Builder = ({
   ref,
+  id,
   className,
   defaultValue,
   value,
@@ -145,6 +147,7 @@ const Builder = ({
   return (
     <BuilderContext.Provider value={getContext()}>
       <div
+        id={id}
         ref={innerRef}
         className={classNames(
           'oak builder',

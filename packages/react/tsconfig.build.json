@@ -12,7 +12,7 @@
     "tests",
     "**/*.test.ts",
     "**/*.test.tsx",
-    "tsup.config.ts",
+    "tsdown.config.ts",
     "**/*.stories.tsx",
   ]
 }

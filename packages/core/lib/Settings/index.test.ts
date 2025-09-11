@@ -1,9 +1,11 @@
+import { vi } from 'vitest';
+
 import type { ComponentSettingsFieldObject } from '../types';
 import Settings from './index';
 
 describe('Settings', () => {
   it('should allow to manage settings', () => {
-    const cb = jest.fn();
+    const cb = vi.fn();
     const settings = new Settings();
     settings.subscribe(cb);
 
@@ -22,7 +24,7 @@ describe('Settings', () => {
   });
 
   it('should allow to add a new tab and add settings to it', () => {
-    const cb = jest.fn();
+    const cb = vi.fn();
     const settings = new Settings();
     settings.subscribe(cb);
 

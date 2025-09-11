@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 import type { ElementObject } from '../types';
 import { baseAddon } from '../addons';
 import Builder from './index';
@@ -47,7 +49,7 @@ describe('Builder', () => {
       addons: [baseAddon()],
     });
 
-    const listener = jest.fn();
+    const listener = vi.fn();
     const unsubscribe = builder.subscribe(listener);
 
     builder.addElement({ type: 'title', content: 'This is a title' });

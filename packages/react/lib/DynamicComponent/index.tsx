@@ -4,7 +4,7 @@ import type { CommonFieldProps } from '../types';
 
 export declare interface DynamicComponentProps
   extends ComponentPropsWithoutRef<any>, CommonFieldProps {
-    renderer: React.FC<any>;
+  renderer: React.FC<any>;
 }
 
 const DynamicComponent = ({

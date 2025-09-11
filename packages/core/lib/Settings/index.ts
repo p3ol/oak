@@ -18,23 +18,23 @@ export declare abstract class ISettings {
   static SETTINGS_TAB_STYLING: string;
   static SETTINGS_TAB_RESPONSIVE: string;
 
-  constructor(options?: { builder: Builder });
+  constructor (options?: { builder: Builder });
 
-  hasTab(id: string): boolean;
-  getTab(id: string): ComponentSettingsTab;
+  hasTab (id: string): boolean;
+  getTab (id: string): ComponentSettingsTab;
 
-  hasSetting(id: string, opts?: { tabId?: string }): boolean;
-  getSetting(id: string, opts?: { tabId?: string }): ComponentSettingsField;
+  hasSetting (id: string, opts?: { tabId?: string }): boolean;
+  getSetting (id: string, opts?: { tabId?: string }): ComponentSettingsField;
 
-  add(
+  add (
     setting: ComponentSettingsTab |
       ComponentSettingsTabObject |
       ComponentSettingsField |
       ComponentSettingsFieldObject
   ): void;
-  remove(id: string): boolean;
+  remove (id: string): boolean;
 
-  all(): (ComponentSettingsTab | ComponentSettingsField)[];
+  all (): (ComponentSettingsTab | ComponentSettingsField)[];
 }
 
 export default class Settings extends Emitter implements ISettings {

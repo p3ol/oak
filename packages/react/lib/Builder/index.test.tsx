@@ -118,6 +118,7 @@ describe('<Builder />', () => {
       <Builder
         addons={[baseAddon()]}
         editableType="modal"
+        options={getOptions()}
       />
     );
 
