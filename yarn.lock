@@ -2452,7 +2452,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oakjs/addon-ckeditor5-react@npm:^3.14.0, @oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react":
+"@oakjs/addon-ckeditor5-react@npm:^3.14.1, @oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react":
   version: 0.0.0-use.local
   resolution: "@oakjs/addon-ckeditor5-react@workspace:packages/addon-ckeditor5-react"
   dependencies:
@@ -2523,7 +2523,7 @@ __metadata:
   resolution: "@oakjs/strapi-plugin@workspace:packages/strapi-plugin"
   dependencies:
     "@ckeditor/ckeditor5-react": "npm:11.0.0"
-    "@oakjs/addon-ckeditor5-react": "npm:^3.14.0"
+    "@oakjs/addon-ckeditor5-react": "npm:^3.14.1"
     "@oakjs/addon-remirror": "npm:^3.14.0"
     "@oakjs/ckeditor5-build-custom": "npm:^3.13.0"
     "@oakjs/react": "npm:^3.14.0"

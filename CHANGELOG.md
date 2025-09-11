@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.1](https://github.com/p3ol/oak/compare/v3.14.0...v3.14.1) (2025-09-11)
+
+
+### Bug Fixes
+
+* ckeditor ssr errors ([fd528d8](https://github.com/p3ol/oak/commit/fd528d8ff4ad1efa71145d91bd0108d657e49500))
+
+
+
+
+
 # [3.14.0](https://github.com/p3ol/oak/compare/v3.13.1...v3.14.0) (2025-09-11)
 
 
