@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.2](https://github.com/p3ol/oak/compare/v3.14.1...v3.14.2) (2025-09-11)
+
+
+### Bug Fixes
+
+* **theme:** missing tailwind ([6b1d837](https://github.com/p3ol/oak/commit/6b1d837e76b11aa32396723e884ad799804a8649))
+
+
+
+
+
 ## [3.14.1](https://github.com/p3ol/oak/compare/v3.14.0...v3.14.1) (2025-09-11)
 
 
