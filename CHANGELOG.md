@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.14.0](https://github.com/p3ol/oak/compare/v3.13.1...v3.14.0) (2025-09-11)
+
+
+### Bug Fixes
+
+* bad condition ([a2cbb3e](https://github.com/p3ol/oak/commit/a2cbb3e6129e0092da06f88acff64c500a2ce04b))
+* upgrade various deps ([9281b2f](https://github.com/p3ol/oak/commit/9281b2f7722babbdd078e0d0f1feee568adbeaa3))
+
+
+### Features
+
+* add new accessibility tab ([e527e9b](https://github.com/p3ol/oak/commit/e527e9b7d37cd50054e293e9ae678be3c75944a6))
+* add role for buttons & clickables ([138bb73](https://github.com/p3ol/oak/commit/138bb737cf1f66378ff37b7083545403f50a64a3))
+* **core:** allow to add defaults to builder ([417a2b9](https://github.com/p3ol/oak/commit/417a2b9ba9316a05d5ead7180ef39923778fb855))
+
+
+
+
+
 ## [3.13.1](https://github.com/p3ol/oak/compare/v3.13.0...v3.13.1) (2025-09-08)
 
 

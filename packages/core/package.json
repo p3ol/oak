@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/core",
-  "version": "3.13.1",
+  "version": "3.14.0",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "type": "module",
   "main": "dist/index.cjs",

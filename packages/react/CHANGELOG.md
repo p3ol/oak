@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.14.0](https://github.com/p3ol/oak/compare/v3.13.1...v3.14.0) (2025-09-11)
+
+
+### Bug Fixes
+
+* upgrade various deps ([9281b2f](https://github.com/p3ol/oak/commit/9281b2f7722babbdd078e0d0f1feee568adbeaa3))
+
+
+### Features
+
+* add new accessibility tab ([e527e9b](https://github.com/p3ol/oak/commit/e527e9b7d37cd50054e293e9ae678be3c75944a6))
+
+
+
+
+
 # [3.13.0](https://github.com/p3ol/oak/compare/v3.12.5...v3.13.0) (2025-07-31)
 
 
