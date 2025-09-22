@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.3](https://github.com/p3ol/oak/compare/v3.14.2...v3.14.3) (2025-09-22)
+
+**Note:** Version bump only for package @oakjs/addon-remirror
+
+
+
+
+
 # [3.14.0](https://github.com/p3ol/oak/compare/v3.13.1...v3.14.0) (2025-09-11)
 
 **Note:** Version bump only for package @oakjs/addon-remirror

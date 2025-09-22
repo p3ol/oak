@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/strapi-plugin",
-  "version": "3.14.2",
+  "version": "3.14.3",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "repository": {
     "type": "git",
@@ -22,10 +22,10 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "11.0.0",
-    "@oakjs/addon-ckeditor5-react": "^3.14.1",
-    "@oakjs/addon-remirror": "^3.14.0",
+    "@oakjs/addon-ckeditor5-react": "^3.14.3",
+    "@oakjs/addon-remirror": "^3.14.3",
     "@oakjs/ckeditor5-build-custom": "^3.13.0",
-    "@oakjs/react": "^3.14.0",
+    "@oakjs/react": "^3.14.3",
     "@oakjs/theme": "^3.14.2",
     "@remirror/pm": "3.0.1",
     "@remirror/react": "3.0.3",

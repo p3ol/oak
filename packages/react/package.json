@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/react",
-  "version": "3.14.0",
+  "version": "3.14.3",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "type": "module",
   "main": "dist/index.cjs",
@@ -29,7 +29,7 @@
     "@junipero/hooks": "3.12.0",
     "@junipero/react": "3.12.1",
     "@junipero/transitions": "3.12.1",
-    "@oakjs/core": "^3.14.0",
+    "@oakjs/core": "^3.14.3",
     "uuid": "13.0.0"
   },
   "scripts": {
