@@ -350,4 +350,9 @@ export default class Builder extends Emitter {
   getAvailableSettings () {
     return this.#settings.all();
   }
+
+  setOptions (opts: Partial<BuilderObject>) {
+    this.options = new BuilderOptions(opts);
+    this.emit('options.update', this.options);
+  }
 }

@@ -4,7 +4,7 @@ import {
   type ComponentSettingsFieldObject,
   type ElementObject,
 } from '@oakjs/core';
-import { type FormEvent, useEffect, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { action } from 'storybook/actions';
 import { Button } from '@junipero/react';
 
@@ -88,21 +88,44 @@ export const Uncontrolled = () => {
   );
 };
 
-export const WithCustomDefaults = () => (
-  <Builder
-    addons={[baseAddon(), {
+export const WithCustomDefaults = () => {
+  const [dir, setDir] = useState('');
+
+  const addons = useMemo<AddonObject[]>(() => ([
+    baseAddon(),
+    {
       overrides: [{
         type: 'setting',
         targets: ['*'],
         key: 'settings.dir',
         default: (_, { builder }) => builder.options.defaults?.dir || 'ltr',
       }],
-    }]}
-    value={baseContent}
-    options={{ debug: true, defaults: { dir: 'rtl' } }}
-    onChange={action('change')}
-  />
-);
+    },
+  ]), []);
+
+  const options = useMemo(() => ({
+    debug: true,
+    defaults: {
+      dir,
+    },
+  }), [dir]);
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => setDir('ltr')}>LTR</button>
+        <button onClick={() => setDir('rtl')}>RTL</button>
+      </div>
+      <div>Current dir: {dir || 'default (should be ltr)'}</div>
+      <Builder
+        addons={addons}
+        value={baseContent}
+        options={options}
+        onChange={action('change')}
+      />
+    </div>
+  );
+};
 
 export const WithCustomTexts = () => {
   const builderRef = useRef<BuilderRef>(null);

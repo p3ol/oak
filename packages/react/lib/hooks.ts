@@ -2,6 +2,7 @@ import { useContext, useEffect, useMemo, useReducer } from 'react';
 import {
   type AddonObject,
   type ElementObject,
+  type BuilderOptions,
   Builder,
 } from '@oakjs/core';
 import {
@@ -22,17 +23,19 @@ export interface UseRootBuilderProps {
   content?: ElementObject[];
   defaultContent?: ElementObject[];
   editableType?: EditableType;
+  addons?: AddonObject[];
+  options?: Partial<BuilderOptions>;
   onChange?: (content: ElementObject[]) => void;
   onEvent?: (eventName: string, ...args: any[]) => void;
-  addons?: AddonObject[];
 }
 
 export interface RootBuilderState {
   content: ElementObject[];
   activeTextSheet: string | null;
-  addons: AddonObject[];
   canUndo: boolean;
   canRedo: boolean;
+  addons?: AddonObject[];
+  options?: Partial<BuilderOptions>;
   editableType?: EditableType;
 }
 
@@ -51,12 +54,11 @@ export const useRootBuilder = ({
       content: defaultContent || content,
     })
   ), []);
-  const [state, dispatch] = useReducer<
-    RootBuilderState, [Partial<RootBuilderState>]
-  >(mockState, {
+  const [state, dispatch] = useReducer(mockState<RootBuilderState>, {
     content: builder.getContent(),
     activeTextSheet: null,
     addons: opts.addons,
+    options: opts.options,
     canUndo: false,
     canRedo: false,
     editableType,
@@ -121,6 +123,16 @@ export const useRootBuilder = ({
             addons,
           );
           dispatch({ addons });
+          break;
+        }
+        case 'options.update': {
+          const [options] = args;
+          builder.logger.log(
+            '[react] Receiving options from builder:',
+            options,
+          );
+          dispatch({ options });
+          break;
         }
       }
 
@@ -149,6 +161,14 @@ export const useRootBuilder = ({
 
     builder.setAddons(opts.addons);
   }, [opts.addons]);
+
+  useEffect(() => {
+    if (opts.options === state.options) {
+      return;
+    }
+
+    builder.setOptions(opts.options);
+  }, [opts.options]);
 
   return { builder, ...state };
 };
