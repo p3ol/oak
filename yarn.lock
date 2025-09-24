@@ -14711,7 +14711,7 @@ __metadata:
     react: "npm:19.1.1"
     react-dom: "npm:19.1.1"
     remirror: "npm:3.0.3"
-    sass: "npm:1.93.0"
+    sass: "npm:1.93.2"
     storybook: "npm:9.1.7"
     tailwindcss: "npm:3.4.17"
     tsdown: "npm:0.15.4"
@@ -14845,9 +14845,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.93.0":
-  version: 1.93.0
-  resolution: "sass@npm:1.93.0"
+"sass@npm:1.93.2":
+  version: 1.93.2
+  resolution: "sass@npm:1.93.2"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     chokidar: "npm:^4.0.0"
@@ -14858,7 +14858,7 @@ __metadata:
       optional: true
   bin:
     sass: sass.js
-  checksum: 10/37f22e016e1d5ad04754123009064260c1f568771688742a2b34c763d7c30b706e8c991dffb578ca6a1ecf598ea57e7392597719786eff5eb47b099b7dbf03cd
+  checksum: 10/2fc0dcafdf3050f4131650a00ddd772790af1dc3e31a97c6533f323efabddce81bd139a920f13a88af80d630a255f51ee91067a7478364b2a13fcc6f5f7e8308
   languageName: node
   linkType: hard
 
