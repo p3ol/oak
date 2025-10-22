@@ -33,4 +33,18 @@ export default defineConfig(
     },
   },
   storybook.configs['flat/recommended'],
+  {
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
+  {
+    files: ['**/strapi-plugin/**'],
+    rules: {
+      'react/jsx-uses-react': 1,
+      'react/prop-types': 0,
+    },
+  }
 );
