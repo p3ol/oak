@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.4](https://github.com/p3ol/oak/compare/v3.14.3...v3.14.4) (2025-10-22)
+
+
+### Bug Fixes
+
+* update various deps ([f559cce](https://github.com/p3ol/oak/commit/f559cce007bc2afc02ecb7a8701f1511030278a0))
+* upgrade ckeditor to v47 ([cba35a9](https://github.com/p3ol/oak/commit/cba35a95dbd658fa2be867223bd4c1edb84283c4))
+
+
+
+
+
 ## [3.14.3](https://github.com/p3ol/oak/compare/v3.14.2...v3.14.3) (2025-09-22)
 
 
