@@ -2119,14 +2119,14 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
                         </label>
                         <div
                           class="junipero dropdown select-field pristine valid searchable"
-                          id="junipero-select-field-«r24»"
+                          id="junipero-select-field-_r_24_"
                         >
                           <div
                             class="field dropdown-toggle"
-                            id="junipero-select-field-«r24»-toggle"
+                            id="junipero-select-field-_r_24_-toggle"
                           >
                             <input
-                              id="junipero-select-field-«r24»-field"
+                              id="junipero-select-field-_r_24_-field"
                               readonly=""
                               type="text"
                               value="Title 1 (h1)"

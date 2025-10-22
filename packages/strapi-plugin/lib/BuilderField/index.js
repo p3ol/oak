@@ -27,7 +27,7 @@ const BuilderField = ({ attribute, name, value, onChange }) => {
   const theme = globalThis.localStorage?.getItem?.('STRAPI_THEME') || 'light';
   const customAddons = useMemo(() => (
     runHookSeries('oak:addons:add') || []
-  ), []);
+  ), [runHookSeries]);
 
   // Delay rendering to avoid content issues when locale changes due to
   // non-controlled builder (for performance reasons)
@@ -46,7 +46,7 @@ const BuilderField = ({ attribute, name, value, onChange }) => {
         addStyles(ckeditorStyles, { id: 'oak-ckeditor' });
         break;
     }
-  }, []);
+  }, [options.editor]);
 
   if (loading) {
     return <LoaderContainer><Loader /></LoaderContainer>;

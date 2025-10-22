@@ -53,6 +53,9 @@ export const useRootBuilder = ({
       ...opts,
       content: defaultContent || content,
     })
+  // We purposely want to create the builder only once, and will update
+  // its options & content through effects
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   ), []);
   const [state, dispatch] = useReducer(mockState<RootBuilderState>, {
     content: builder.getContent(),
@@ -143,6 +146,7 @@ export const useRootBuilder = ({
       builder.logger.log('[react] Destroying builder instance');
       unsubscribe();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [builder]);
 
   // Allow to change the active text sheet from outside
@@ -152,6 +156,7 @@ export const useRootBuilder = ({
     }
 
     builder.setActiveTextSheet(activeTextSheet);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTextSheet]);
 
   useEffect(() => {
@@ -160,6 +165,7 @@ export const useRootBuilder = ({
     }
 
     builder.setAddons(opts.addons);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opts.addons]);
 
   useEffect(() => {
@@ -168,6 +174,7 @@ export const useRootBuilder = ({
     }
 
     builder.setOptions(opts.options);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opts.options]);
 
   return { builder, ...state };
