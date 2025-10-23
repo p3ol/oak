@@ -1,12 +1,12 @@
-import { vi } from 'vitest';
+import { type Mock, vi } from 'vitest';
 
 import Builder from '../Builder';
 import Logger from './index';
 
 /* eslint-disable no-console */
 describe('Logger', () => {
-  let logSpy: ReturnType<typeof vi.spyOn>;
-  let warnSpy: ReturnType<typeof vi.spyOn>;
+  let logSpy: Mock;
+  let warnSpy: Mock;
 
   beforeEach(() => {
     logSpy = vi.spyOn(console, 'log');
