@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.5](https://github.com/p3ol/oak/compare/v3.14.4...v3.14.5) (2025-10-23)
+
+
+### Bug Fixes
+
+* vitest compat ([dc5a951](https://github.com/p3ol/oak/commit/dc5a951745fd213ec366e4782940028f43ecf22f))
+
+
+
+
+
 ## [3.14.4](https://github.com/p3ol/oak/compare/v3.14.3...v3.14.4) (2025-10-22)
 
 
