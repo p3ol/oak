@@ -244,6 +244,14 @@ export const imageComponent = (
   ...props,
 });
 
+export const externalImageComponent = (
+  props?: ReactComponentObject
+): ReactComponentObject => ({
+  ...coreAddons.externalImageComponent(),
+  render: Image,
+  ...props,
+});
+
 export const buttonComponent = (
   props?: ReactComponentObject
 ): ReactComponentObject => ({
@@ -288,6 +296,7 @@ export const baseComponents = (): ReactComponentObject[] => [
   titleComponent(),
   textComponent(),
   imageComponent(),
+  externalImageComponent(),
   buttonComponent(),
   foldableComponent(),
   clickableComponent(),

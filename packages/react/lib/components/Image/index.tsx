@@ -16,7 +16,7 @@ const Image = ({
     element.name ||
     (/data:/.test(element.url) ? (
       <Text name="core.components.image.local">Local image</Text>
-    ) : element.url) || (
+    ) : element.url?.split('/').pop()) || (
       <Text name="core.components.image.empty">No image</Text>
     );
 

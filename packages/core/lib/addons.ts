@@ -461,6 +461,96 @@ export const textComponent = (props?: ComponentObject): ComponentObject => ({
   ...props,
 });
 
+const COMMON_IMAGE_SETTINGS: ComponentSettingsFieldObject[] = [{
+  type: 'select',
+  key: 'settings.size',
+  label: (t: GetTextCallback) => t(
+    'core.components.image.settings.image.size.title',
+    'Image size'
+  ),
+  default: 'auto',
+  displayable: true,
+  options: [{
+    title: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.size.auto',
+      'Adapted to content'
+    ),
+    value: 'auto',
+  }, {
+    title: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.size.full',
+      'Real size'
+    ),
+    value: 'full',
+  }, {
+    title: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.size.custom',
+      'Custom'
+    ),
+    value: 'custom',
+  }],
+  priority: 40,
+}, {
+  type: 'text',
+  key: 'settings.width',
+  displayable: true,
+  condition: (element: ElementObject) =>
+    element?.settings?.size === 'custom',
+  label: (t: GetTextCallback) => t(
+    'core.components.image.settings.image.size.width',
+    'Image width'
+  ),
+  placeholder: (t: GetTextCallback) => t(
+    'core.components.image.settings.image.size.width',
+    'Image width'
+  ),
+  priority: 30,
+}, {
+  type: 'text',
+  key: 'settings.height',
+  displayable: true,
+  condition: (element: ElementObject) =>
+    element?.settings?.size === 'custom',
+  label: (t: GetTextCallback) => t(
+    'core.components.image.settings.image.size.height',
+    'Image height'
+  ),
+  placeholder: (t: GetTextCallback) => t(
+    'core.components.image.settings.image.size.height',
+    'Image height'
+  ),
+  priority: 20,
+}, {
+  type: 'select',
+  key: 'settings.textAlign',
+  displayable: true,
+  label: (t: GetTextCallback) => t(
+    'core.components.image.settings.image.align.title',
+    'Image alignment'
+  ),
+  default: 'left',
+  options: [{
+    title: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.align.left',
+      'Left'
+    ),
+    value: 'left',
+  }, {
+    title: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.align.center',
+      'Center'
+    ),
+    value: 'center',
+  }, {
+    title: (t: GetTextCallback) => t(
+      'core.components.image.settings.image.align.right',
+      'Right'
+    ),
+    value: 'right',
+  }],
+  priority: 10,
+}];
+
 export const imageComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'image',
   name: (t: GetTextCallback) => t('core.components.image.name', 'Image'),
@@ -481,100 +571,46 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
         t: GetTextCallback
       ) => t('core.components.image.settings.image.title', 'Image'),
       priority: 50,
-    }, {
-      type: 'select',
-      key: 'settings.size',
-      label: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.size.title',
-        'Image size'
-      ),
-      default: 'auto',
-      displayable: true,
-      options: [{
-        title: (t: GetTextCallback) => t(
-          'core.components.image.settings.image.size.auto',
-          'Adapted to content'
-        ),
-        value: 'auto',
-      }, {
-        title: (t: GetTextCallback) => t(
-          'core.components.image.settings.image.size.full',
-          'Real size'
-        ),
-        value: 'full',
-      }, {
-        title: (t: GetTextCallback) => t(
-          'core.components.image.settings.image.size.custom',
-          'Custom'
-        ),
-        value: 'custom',
-      }],
-      priority: 40,
-    }, {
-      type: 'text',
-      key: 'settings.width',
-      displayable: true,
-      condition: (element: ElementObject) =>
-        element?.settings?.size === 'custom',
-      label: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.size.width',
-        'Image width'
-      ),
-      placeholder: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.size.width',
-        'Image width'
-      ),
-      priority: 30,
-    }, {
-      type: 'text',
-      key: 'settings.height',
-      displayable: true,
-      condition: (element: ElementObject) =>
-        element?.settings?.size === 'custom',
-      label: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.size.height',
-        'Image height'
-      ),
-      placeholder: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.size.height',
-        'Image height'
-      ),
-      priority: 20,
-    }, {
-      type: 'select',
-      key: 'settings.textAlign',
-      displayable: true,
-      label: (t: GetTextCallback) => t(
-        'core.components.image.settings.image.align.title',
-        'Image alignment'
-      ),
-      default: 'left',
-      options: [{
-        title: (t: GetTextCallback) => t(
-          'core.components.image.settings.image.align.left',
-          'Left'
-        ),
-        value: 'left',
-      }, {
-        title: (t: GetTextCallback) => t(
-          'core.components.image.settings.image.align.center',
-          'Center'
-        ),
-        value: 'center',
-      }, {
-        title: (t: GetTextCallback) => t(
-          'core.components.image.settings.image.align.right',
-          'Right'
-        ),
-        value: 'right',
-      }],
-      priority: 10,
-    }],
+    }, ...COMMON_IMAGE_SETTINGS],
   },
   construct: () => ({
     type: 'image',
     url: '',
     name: '',
+  }),
+  ...props,
+});
+
+export const externalImageComponent = (
+  props?: ComponentObject
+): ComponentObject => ({
+  id: 'external-image',
+  name: (t: GetTextCallback) =>
+    t('core.components.external-image.name', 'External Image'),
+  type: 'component',
+  render: () => null,
+  icon: 'image',
+  editable: true,
+  options: [],
+  settings: {
+    title: (
+      t: GetTextCallback
+    ) => t('core.components.external-image.settings.title',
+      'External Image options'),
+    fields: [{
+      type: 'text',
+      key: 'url',
+      default: '',
+      label: (
+        t: GetTextCallback
+      ) => t(
+        'core.components.external-image.settings.image.title', 'Image URL'),
+      priority: 50,
+    }, ...COMMON_IMAGE_SETTINGS],
+  },
+  construct: () => ({
+    type: 'external-image',
+    url: '',
   }),
   ...props,
 });
@@ -1546,6 +1582,7 @@ export const baseComponents = (): ComponentObject[] => [
   titleComponent(),
   textComponent(),
   imageComponent(),
+  externalImageComponent(),
   buttonComponent(),
   foldableComponent(),
   clickableComponent(),
