@@ -30,7 +30,7 @@
     "@remirror/pm": "3.0.1",
     "@remirror/react": "3.0.3",
     "@strapi/design-system": "1.19.0",
-    "@strapi/icons": "1.19.0",
+    "@strapi/icons": "2.0.1",
     "remirror": "3.0.3",
     "styled-components": "6.1.19"
   },
