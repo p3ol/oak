@@ -5,7 +5,7 @@ import {
   Builder,
   baseAddon,
 } from '@oakjs/react';
-import { FieldOverrideObject } from 'packages/core/dist/types';
+import type { FieldOverrideObject } from 'packages/core/dist/types';
 
 import { ckeditorFieldAddon } from './addons';
 
@@ -24,7 +24,7 @@ const addon: AddonObject = {
       key: 'content',
       type: 'ckeditor',
     }],
-  } ],
+  }],
 };
 export const Basic = () => (
   <Builder
@@ -70,7 +70,7 @@ export const WithCustomserializer = () => {
         config: {
           licenseKey: 'GPL',
         },
-      }), {...addon, overrides: [...richAddon.overrides!, fieldOveride]}]}
+      }), {...addon, overrides: [...richAddon.overrides, fieldOveride]}]}
       value={baseContent}
       rootBoundary={document.documentElement}
       options={{ debug: true }}
