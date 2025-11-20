@@ -90,10 +90,13 @@ export declare interface FieldOverrideObject {
     element?: ElementObject;
   }): ElementObject;
   targets?: string[];
+  keys?: string[]
   props?: Record<string, any>;
   id?: string;
   render?(props?: any): any;
   priority?: number;
+  serialize?(val: any): any;
+  unserialize?(val: any): any;
   onChange?<T = any>(
     name: string,
     field: FieldContent<T>,

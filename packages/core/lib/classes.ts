@@ -260,6 +260,7 @@ export class ComponentOverride extends Override {
 export class FieldOverride extends Override {
   id: string;
   targets: string[];
+  keys: string[];
   render: FieldOverrideObject['render'];
   props: object;
   construct: (opts?: {
@@ -268,6 +269,8 @@ export class FieldOverride extends Override {
   }) => ElementObject;
   priority: number;
   onChange: FieldOverrideObject['onChange'];
+  serialize: FieldOverrideObject['serialize'];
+  unserialize: FieldOverrideObject['unserialize'];
 
   constructor (props: FieldOverrideObject) {
     super();
@@ -275,11 +278,14 @@ export class FieldOverride extends Override {
     this.type = 'field';
     this.id = props.id;
     this.targets = props.targets || [];
+    this.keys = props.keys || [];
     this.render = props.render;
     this.priority = props.priority;
     this.props = props.props || {};
     this.construct = props.construct;
     this.onChange = props.onChange;
+    this.serialize = props.serialize;
+    this.unserialize = props.unserialize;
   }
 
   toObject (): FieldOverrideObject {
@@ -292,6 +298,8 @@ export class FieldOverride extends Override {
       props: this.props,
       construct: this.construct,
       onChange: this.onChange,
+      serialize: this.serialize,
+      unserialize: this.unserialize,
     };
   }
 }

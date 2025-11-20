@@ -61,10 +61,31 @@ const Form = ({
     component?.deserialize ||
     ((e: ElementObject) => e);
 
+  const fieldUnserialize = (elmt: ElementObject) => {
+    builder.getAvailableFields().map(field => {
+      const override = builder.getOverride(
+        'field', field.type, { output: 'component' }
+      ) as FieldOverrideObject;
+
+      if(
+        override?.unserialize &&
+        override.keys?.[0] &&
+        elmt[override.keys?.[0]]
+      ) {
+        const serialized = override?.unserialize?.(
+          elmt[override.keys?.[0]]
+        );
+        elmt[override.keys?.[0]] = serialized;
+      }
+    });
+
+    return elmt;
+  };
+
   const [state, dispatch] = useReducer<
     FormState, [Partial<FormState>]
   >(mockState, {
-    element: deserialize(cloneDeep(element)),
+    element: fieldUnserialize(deserialize(cloneDeep(element))),
     seed: uuid(),
   });
 
@@ -92,13 +113,29 @@ const Form = ({
   };
 
   const onSave_ = () => {
+    builder.getAvailableFields().map(field => {
+      const override = builder.getOverride(
+        'field', field.type, { output: 'component' }
+      ) as FieldOverrideObject;
+
+      if(
+        override?.serialize &&
+        override.keys?.[0] &&
+        state.element[override.keys?.[0]]
+      ) {
+        const serialized = override?.serialize?.(
+          state.element[override.keys?.[0]]
+        );
+        state.element[override.keys?.[0]] = serialized;
+      }
+    });
     builder.setElement(element.id as string, state.element || {}, { element });
     onSave();
   };
 
   const onCancel_ = () => {
     dispatch({
-      element: deserialize(cloneDeep(element)),
+      element: fieldUnserialize(deserialize(cloneDeep(element))),
       seed: uuid(),
     });
     onCancel();
