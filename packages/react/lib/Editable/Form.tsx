@@ -22,7 +22,9 @@ import {
   Tabs,
   classNames,
   cloneDeep,
+  get,
   mockState,
+  set,
 } from '@junipero/react';
 
 import type { EditableRef } from './index';
@@ -61,7 +63,7 @@ const Form = ({
     component?.deserialize ||
     ((e: ElementObject) => e);
 
-  const fieldUnserialize = (elmt: ElementObject) => {
+  const fieldUnserialize = useCallback((elmt: ElementObject) => {
     builder.getAvailableFields().map(field => {
       const override = builder.getOverride(
         'field', field.type, { output: 'component' }
@@ -69,18 +71,23 @@ const Form = ({
 
       if(
         override?.unserialize &&
-        override.keys?.[0] &&
-        elmt[override.keys?.[0]]
+        override.keys?.[0]
       ) {
-        const serialized = override?.unserialize?.(
-          elmt[override.keys?.[0]]
-        );
-        elmt[override.keys?.[0]] = serialized;
+        override.keys.map(key => {
+          if(!elmt[key]) {
+            return;
+          }
+
+          const serialized = override?.unserialize?.(
+            get(elmt, key)
+          );
+          set(elmt, key, serialized);
+        });
       }
     });
 
     return elmt;
-  };
+  }, [builder]);
 
   const [state, dispatch] = useReducer<
     FormState, [Partial<FormState>]
@@ -120,15 +127,21 @@ const Form = ({
 
       if(
         override?.serialize &&
-        override.keys?.[0] &&
-        state.element[override.keys?.[0]]
+        override.keys?.[0]
       ) {
-        const serialized = override?.serialize?.(
-          state.element[override.keys?.[0]]
-        );
-        state.element[override.keys?.[0]] = serialized;
+        override.keys.map(key => {
+          if(!state.element[key]) {
+            return;
+          }
+
+          const serialized = override?.serialize?.(
+            get(state.element, key)
+          );
+          set(state.element, key, serialized);
+        });
       }
     });
+    dispatch({ element: state.element });
     builder.setElement(element.id as string, state.element || {}, { element });
     onSave();
   };
