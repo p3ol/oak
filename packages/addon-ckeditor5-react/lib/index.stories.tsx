@@ -5,7 +5,7 @@ import {
   Builder,
   baseAddon,
 } from '@oakjs/react';
-import { Field, FieldOverrideObject } from 'packages/core/dist/types';
+import { FieldOverrideObject } from 'packages/core/dist/types';
 
 import { ckeditorFieldAddon } from './addons';
 
@@ -40,7 +40,7 @@ export const Basic = () => (
   />
 );
 
-export const withCustomserializer = () => {
+export const WithCustomserializer = () => {
   const richAddon = addon;
   const fieldOveride: FieldOverrideObject = {
     type: 'field',
@@ -56,11 +56,11 @@ export const withCustomserializer = () => {
     },
     unserialize: (val: string): string => {
       const regex = /<span\s+class="custom-class"/g;
-      const spanned = val
+      const unSpanned = val
         .replace(regex, '<p ')
         .replace(/<\/span>/g, '</p>');
 
-      return spanned;
+      return unSpanned;
     },
   };
 
@@ -70,7 +70,7 @@ export const withCustomserializer = () => {
         config: {
           licenseKey: 'GPL',
         },
-      }), addon]}
+      }), {...addon, overrides: [...richAddon.overrides!, fieldOveride]}]}
       value={baseContent}
       rootBoundary={document.documentElement}
       options={{ debug: true }}
