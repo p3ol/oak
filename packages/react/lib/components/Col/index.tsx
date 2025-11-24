@@ -122,37 +122,44 @@ const Col = ({
     });
   };
 
+  const canEditContainers = useMemo(() =>
+    (override?.containerEditable ?? component?.containerEditable) !== false
+  , [override, component]);
+
   return (
     <div
       className={classNames(
         'column',
+        'oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2',
         {
           'oak-flex-none': element.size === 'auto',
           'oak-flex-1': !element.size || element.size === 'fluid',
           'oak-basis-full': element.size === 12,
+          'oak-py-8 oak-px-4': !canEditContainers,
           [`oak-basis-${element.size}/12`]: Number.isInteger(element.size) &&
             element.size > 0 &&
             element.size < 12,
         },
-        'oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2',
         className
       )}
     >
-      <Tooltip
-        placement="right"
-        container={floatingsRef?.current || '.oak'}
-        className="secondary"
-        text={<Text name="core.tooltips.addColumn">Add column</Text>}
-      >
-        <a
-          className="divider prepend oak-flex oak-items-center"
-          href="#"
-          draggable={false}
-          onClick={onPrependCol_}
+      { canEditContainers && (
+        <Tooltip
+          placement="right"
+          container={floatingsRef?.current || '.oak'}
+          className="secondary"
+          text={<Text name="core.tooltips.addColumn">Add column</Text>}
         >
-          <Icon className="!oak-text-lg">add</Icon>
-        </a>
-      </Tooltip>
+          <a
+            className="divider prepend oak-flex oak-items-center"
+            href="#"
+            draggable={false}
+            onClick={onPrependCol_}
+          >
+            <Icon className="!oak-text-lg">add</Icon>
+          </a>
+        </Tooltip>
+      )}
 
       <Droppable
         disabled={
@@ -210,21 +217,23 @@ const Col = ({
         </div>
       </Droppable>
 
-      <Tooltip
-        placement="left"
-        container={floatingsRef?.current || '.oak'}
-        className="secondary"
-        text={<Text name="core.tooltips.addColumn">Add column</Text>}
-      >
-        <a
-          className="divider append oak-flex oak-items-center"
-          href="#"
-          draggable={false}
-          onClick={onAppendCol_}
+      { canEditContainers && (
+        <Tooltip
+          placement="left"
+          container={floatingsRef?.current || '.oak'}
+          className="secondary"
+          text={<Text name="core.tooltips.addColumn">Add column</Text>}
         >
-          <Icon className="!oak-text-lg">add</Icon>
-        </a>
-      </Tooltip>
+          <a
+            className="divider append oak-flex oak-items-center"
+            href="#"
+            draggable={false}
+            onClick={onAppendCol_}
+          >
+            <Icon className="!oak-text-lg">add</Icon>
+          </a>
+        </Tooltip>
+      )}
 
       <div className="size-info oak-absolute oak-bottom-1 oak-left-1">
         { element.size === 'auto' ? (
