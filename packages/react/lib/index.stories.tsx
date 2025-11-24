@@ -809,3 +809,44 @@ export const WithRemovingField = () => {
     </div>
   );
 };
+
+export const WithDisabledAddition = () => {
+  return (
+    <div>
+      <Builder
+        editableType="modal"
+        catalogueEnabled={false}
+        value={baseContent}
+        addons={[baseAddon(), {
+          overrides: [{
+            type: 'component',
+            targets: ['*'],
+            copyable: false,
+            duplicable: false,
+            containerEditable: false,
+          }],
+        }]}
+        options={{ debug: true }}
+      />
+    </div>
+  );
+};
+
+export const WithDisabledDeletion = () => {
+  return (
+    <div>
+      <Builder
+        editableType="modal"
+        value={baseContent}
+        addons={[baseAddon(), {
+          overrides: [{
+            type: 'component',
+            targets: ['*'],
+            removable: false,
+          }],
+        }]}
+        options={{ debug: true }}
+      />
+    </div>
+  );
+};
