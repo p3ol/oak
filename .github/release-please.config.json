@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "pull-request-title-pattern": ":sparkles: release: v${version}",
+  "pull-request-header": ":sparkles: Changes about to get deployed on the next release ! :sparkles:",
+  "packages": {
+    ".": {
+      "include-component-in-tag": false,
+      "release-type": "node"
+    }
+  }
+}
