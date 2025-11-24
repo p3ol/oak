@@ -46,7 +46,12 @@ const Col = ({
   const modalRef = useRef<ModalRef>(null);
   const prependCatalogueRef = useRef<CatalogueRef>(null);
   const appendCatalogueRef = useRef<CatalogueRef>(null);
-  const { builder, floatingsRef, addons } = useBuilder();
+  const {
+    builder,
+    floatingsRef,
+    addons,
+    catalogueEnabled,
+  } = useBuilder();
   const component = useMemo(() => (
     builder.getComponent?.(element.type)
   ), [element.type, builder]);
@@ -175,7 +180,7 @@ const Col = ({
         <div
           className="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
         >
-          { element.content.length > 0 && (
+          { element.content.length > 0 && catalogueEnabled && (
             <Catalogue
               element={element}
               component={component}
@@ -203,17 +208,19 @@ const Col = ({
             </div>
           ) }
 
-          <Catalogue
-            ref={appendCatalogueRef}
-            element={element}
-            component={component}
-            onAppend={onAppend_}
-            onPaste={onPasteAfter_}
-            className={classNames(
-              'oak-inline-flex oak-self-center',
-              { small: element.content?.length > 0 }
-            )}
-          />
+          { catalogueEnabled && (
+            <Catalogue
+              ref={appendCatalogueRef}
+              element={element}
+              component={component}
+              onAppend={onAppend_}
+              onPaste={onPasteAfter_}
+              className={classNames(
+                'oak-inline-flex oak-self-center',
+                { small: element.content?.length > 0 }
+              )}
+            />
+          )}
         </div>
       </Droppable>
 

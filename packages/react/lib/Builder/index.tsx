@@ -54,6 +54,7 @@ export declare interface BuilderProps
   topHistoryButtonsContainer?: string | HTMLElement | DocumentFragment;
   topHistoryButtonsEnabled?: boolean;
   value?: ElementObject[];
+  catalogueEnabled?: boolean;
   polyfills?: {
     DOMParser: typeof DOMParser;
     XMLSerializer: typeof XMLSerializer;
@@ -81,6 +82,7 @@ const Builder = ({
   historyEnabled = true,
   topHistoryButtonsEnabled = true,
   bottomHistoryButtonsEnabled = true,
+  catalogueEnabled = true,
   ...opts
 }: BuilderProps) => {
   const innerRef = useRef<HTMLDivElement>(null);
@@ -120,9 +122,10 @@ const Builder = ({
     floatingsRef,
     editableType,
     polyfills,
+    catalogueEnabled,
   }), [
     builder, content, addons, rootBoundary, onImageUpload, polyfills,
-    editableType,
+    editableType, catalogueEnabled,
   ]);
 
   const onAppend = (component: ComponentObject) => {
@@ -160,8 +163,13 @@ const Builder = ({
               ensureNode(topHistoryButtonsContainer))
             : historyButtons
         ) }
-        <div className="elements oak-flex oak-flex-col oak-gap-4">
-          { content?.length > 0 && (
+        <div
+          className={classNames(
+            'elements oak-flex oak-flex-col oak-gap-4',
+            { 'oak-py-8': !catalogueEnabled }
+          )}
+        >
+          { content?.length > 0 && catalogueEnabled && (
             <div className="add-element oak-flex oak-justify-center">
               <Catalogue
                 ref={catalogueRef}
@@ -179,13 +187,15 @@ const Builder = ({
             />
           )) }
 
-          <div className="add-element oak-flex oak-justify-center">
-            <Catalogue
-              ref={catalogueRef}
-              onAppend={onAppend}
-              onPaste={onPaste.bind(null, 'after')}
-            />
-          </div>
+          { catalogueEnabled && (
+            <div className="add-element oak-flex oak-justify-center">
+              <Catalogue
+                ref={catalogueRef}
+                onAppend={onAppend}
+                onPaste={onPaste.bind(null, 'after')}
+              />
+            </div>
+          )}
         </div>
 
         { historyEnabled && bottomHistoryButtonsEnabled && (
