@@ -296,6 +296,7 @@ export class FieldOverride extends Override {
       render: this.render,
       priority: this.priority,
       props: this.props,
+      keys: this.keys,
       construct: this.construct,
       onChange: this.onChange,
       serialize: this.serialize,
