@@ -139,4 +139,65 @@ describe('<Builder />', () => {
 
     unmount();
   });
+
+  it('shouldn\'t display any catalogue button if disabled', () => {
+    const { container, unmount } = render(
+      <Builder
+        catalogueEnabled={false}
+        addons={[baseAddon()]}
+        options={getOptions()}
+      />
+    );
+
+    expect(container).toMatchSnapshot('No catalogue buttons');
+    unmount();
+  });
+
+  it('shouldn\'t display button to add a new column if container editing is ' +
+    'disabled', () => {
+    const { container, unmount } = render(
+      <Builder
+        addons={[baseAddon(), {
+          overrides: [{
+            type: 'component',
+            targets: ['col'],
+            containerEditable: false,
+          }],
+        }]}
+        options={getOptions()}
+        value={[{
+          type: 'row',
+          content: [{
+            type: 'col',
+            content: [],
+          }],
+        }]}
+      />
+    );
+
+    expect(container).toMatchSnapshot('Container editing disabled');
+    unmount();
+  });
+
+  it('shouldn\'t display any option to remove an element', () => {
+    const { container, unmount } = render(
+      <Builder
+        addons={[baseAddon(), {
+          overrides: [{
+            type: 'component',
+            targets: ['*'],
+            removable: false,
+          }],
+        }]}
+        options={getOptions()}
+        value={[{
+          type: 'title',
+          content: 'This is a title',
+        }]}
+      />
+    );
+
+    expect(container).toMatchSnapshot('Remove options disabled');
+    unmount();
+  });
 });
