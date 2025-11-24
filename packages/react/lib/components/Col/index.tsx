@@ -323,12 +323,15 @@ const Col = ({
               />
             </Editable>
           ) }
-          <Option
-            className="remove"
-            option={{ icon: 'close' }}
-            onClick={onRemove_}
-            name={<Text name="core.tooltips.remove">Remove</Text>}
-          />
+
+          { (override?.removable ?? component.removable) !== false && (
+            <Option
+              className="remove"
+              option={{ icon: 'close' }}
+              onClick={onRemove_}
+              name={<Text name="core.tooltips.remove">Remove</Text>}
+            />
+          )}
         </div>
       ) }
     </div>

@@ -55,6 +55,7 @@ export class Component {
   editable: boolean;
   duplicable: boolean;
   copyable: boolean;
+  removable: boolean;
   containerEditable: boolean;
   disallow: any;
   options?: ComponentOption[];
@@ -90,6 +91,7 @@ export class Component {
     this.editable = props.editable ?? true;
     this.duplicable = props.duplicable ?? true;
     this.copyable = props.copyable ?? true;
+    this.removable = props.removable ?? true;
     this.containerEditable = props.containerEditable ?? true;
     this.disallow = props.disallow || [];
     this.serialize = props.serialize;
@@ -114,6 +116,9 @@ export class Component {
       droppable: this.droppable,
       usable: this.usable,
       editable: this.editable,
+      duplicable: this.duplicable,
+      copyable: this.copyable,
+      removable: this.removable,
       containerEditable: this.containerEditable,
       options: this.options?.map(o => o.toObject?.() ?? o),
       disallow: this.disallow,
@@ -213,6 +218,7 @@ export class ComponentOverride extends Override {
   copyable?: boolean;
   draggable?: boolean;
   droppable?: boolean;
+  removable?: boolean;
   containerEditable?: boolean;
   disallow: string[];
 
@@ -235,6 +241,7 @@ export class ComponentOverride extends Override {
     this.copyable = props.copyable;
     this.draggable = props.draggable;
     this.droppable = props.droppable;
+    this.removable = props.removable;
     this.containerEditable = props.containerEditable;
     this.disallow = props.disallow || [];
   }
@@ -257,6 +264,7 @@ export class ComponentOverride extends Override {
       copyable: this.copyable,
       draggable: this.draggable,
       droppable: this.droppable,
+      removable: this.removable,
       containerEditable: this.containerEditable,
       disallow: this.disallow,
     };
