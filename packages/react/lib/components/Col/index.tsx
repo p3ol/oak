@@ -135,12 +135,13 @@ const Col = ({
     <div
       className={classNames(
         'column',
-        'oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2',
+        'oak-flex oak-max-w-full oak-items-center oak-gap-2',
         {
           'oak-flex-none': element.size === 'auto',
           'oak-flex-1': !element.size || element.size === 'fluid',
           'oak-basis-full': element.size === 12,
           'oak-py-8 oak-px-4': !canEditContainers,
+          'oak-py-2': canEditContainers,
           [`oak-basis-${element.size}/12`]: Number.isInteger(element.size) &&
             element.size > 0 &&
             element.size < 12,
