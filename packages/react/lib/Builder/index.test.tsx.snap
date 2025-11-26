@@ -246,7 +246,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
           >
             <div
-              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2 oak-flex-1"
+              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
             >
               <a
                 class="divider prepend oak-flex oak-items-center"
@@ -611,7 +611,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
           >
             <div
-              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2 oak-flex-1"
+              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
             >
               <a
                 class="divider prepend oak-flex oak-items-center"
@@ -1052,7 +1052,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
       class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
     >
       <div
-        class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2 oak-flex-1"
+        class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
       >
         <a
           class="divider prepend oak-flex oak-items-center"
@@ -2850,7 +2850,7 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
             class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
           >
             <div
-              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2 oak-flex-1 oak-py-8 oak-px-4"
+              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-8 oak-px-4"
             >
               <div
                 class="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
