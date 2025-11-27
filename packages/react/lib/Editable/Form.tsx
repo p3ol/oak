@@ -71,7 +71,7 @@ const Form = ({
     seed: uuid(),
   });
 
-  const getSerialized = useCallback((
+  const getSerializers = useCallback((
     element: ElementObject,
     serializeType: 'serialize' | 'unserialize'
   ) => {
@@ -85,7 +85,6 @@ const Form = ({
 
     overrides.forEach(override_ => {
       const keys = [].concat(override_.key);
-
       keys.forEach(key => {
         if(!get(element, key) && serializedFields.includes(key)) {
           return;
@@ -106,14 +105,14 @@ const Form = ({
   },[builder]);
 
   const fieldUnserialize = useCallback((elmt: ElementObject) => {
-    getSerialized(elmt, 'unserialize').forEach(serializer => {
+    getSerializers(elmt, 'unserialize').forEach(serializer => {
       if(typeof serializer.method === 'function') {
         set(elmt, serializer.key, serializer.method(get(elmt, serializer.key)));
       }
     });
 
     return elmt;
-  }, [getSerialized]);
+  }, [getSerializers]);
 
   useEffect(() => {
     dispatch({ element: fieldUnserialize(cloneDeep(state.element)) });
@@ -144,7 +143,7 @@ const Form = ({
   };
 
   const onSave_ = () => {
-    getSerialized(state.element, 'serialize').forEach(serializer => {
+    getSerializers(state.element, 'serialize').forEach(serializer => {
       if(typeof serializer.method === 'function') {
         set(
           state.element,

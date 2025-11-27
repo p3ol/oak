@@ -165,9 +165,11 @@ export default class Overrides extends Emitter implements IOverrides {
         }
       }
       case 'setting': {
-        const settings = overrides?.filter((o: SettingOverride) => (
-          [].concat(o.key).includes(setting?.key)
-        )) as SettingOverride[];
+        const settings = overrides?.filter((o: SettingOverride) => {
+          return [].concat(setting?.key).some(
+            k => [].concat(o.key).includes(k)
+          );
+        }) as SettingOverride[];
 
         return strategy === 'merge' ? this.merge(settings) : settings[0];
       }
