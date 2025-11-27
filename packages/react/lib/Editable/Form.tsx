@@ -16,6 +16,7 @@ import {
   RefObject,
   useReducer,
   useCallback,
+  useEffect,
 } from 'react';
 import {
   Button,
@@ -63,38 +64,61 @@ const Form = ({
     component?.deserialize ||
     ((e: ElementObject) => e);
 
+  const [state, dispatch] = useReducer<
+    FormState, [Partial<FormState>]
+  >(mockState, {
+    element: deserialize(cloneDeep(element)),
+    seed: uuid(),
+  });
+
+  const getSerialized = useCallback((
+    element: ElementObject,
+    serializeType: 'serialize' | 'unserialize'
+  ) => {
+    const serializedFields: string[] = [];
+    const serializeMethods: ({key: string, method: (data: any) => any})[] = [];
+    const overrides: SettingOverrideObject[] = (builder.getAllOverrides(
+      'setting',
+      element.type
+    ) as SettingOverrideObject[])
+      .filter(o => !!o[serializeType]) as SettingOverrideObject[];
+
+    overrides.forEach(override_ => {
+      const keys = [].concat(override_.key);
+
+      keys.forEach(key => {
+        if(!get(element, key) && serializedFields.includes(key)) {
+          return;
+        }
+
+        const override = builder.getOverride(
+          'setting',
+          element.type,
+          { setting: override_}
+        ) as SettingOverrideObject;
+
+        serializedFields.push(key);
+        serializeMethods.push({key, method: override?.[serializeType]});
+      });
+    });
+
+    return serializeMethods;
+  },[builder]);
+
   const fieldUnserialize = useCallback((elmt: ElementObject) => {
-    builder.getAvailableFields().map(field => {
-      const override = builder.getOverride(
-        'field', field.type, { output: 'component' }
-      ) as FieldOverrideObject;
-
-      if(
-        override?.unserialize &&
-        override.keys?.[0]
-      ) {
-        override.keys.map(key => {
-          if(!elmt[key]) {
-            return;
-          }
-
-          const serialized = override?.unserialize?.(
-            get(elmt, key)
-          );
-          set(elmt, key, serialized);
-        });
+    getSerialized(elmt, 'unserialize').forEach(serializer => {
+      if(typeof serializer.method === 'function') {
+        set(elmt, serializer.key, serializer.method(get(elmt, serializer.key)));
       }
     });
 
     return elmt;
-  }, [builder]);
+  }, [getSerialized]);
 
-  const [state, dispatch] = useReducer<
-    FormState, [Partial<FormState>]
-  >(mockState, {
-    element: fieldUnserialize(deserialize(cloneDeep(element))),
-    seed: uuid(),
-  });
+  useEffect(() => {
+    dispatch({ element: fieldUnserialize(cloneDeep(state.element)) });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fieldUnserialize]);
 
   const onUpdate_ = (elmt: ElementObject) => {
     dispatch({ element: elmt });
@@ -120,25 +144,13 @@ const Form = ({
   };
 
   const onSave_ = () => {
-    builder.getAvailableFields().map(field => {
-      const override = builder.getOverride(
-        'field', field.type, { output: 'component' }
-      ) as FieldOverrideObject;
-
-      if(
-        override?.serialize &&
-        override.keys?.[0]
-      ) {
-        override.keys.map(key => {
-          if(!state.element[key]) {
-            return;
-          }
-
-          const serialized = override?.serialize?.(
-            get(state.element, key)
-          );
-          set(state.element, key, serialized);
-        });
+    getSerialized(state.element, 'serialize').forEach(serializer => {
+      if(typeof serializer.method === 'function') {
+        set(
+          state.element,
+          serializer.key,
+          serializer.method(get(state.element, serializer.key))
+        );
       }
     });
     dispatch({ element: state.element });

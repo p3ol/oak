@@ -260,7 +260,6 @@ export class ComponentOverride extends Override {
 export class FieldOverride extends Override {
   id: string;
   targets: string[];
-  keys: string[];
   render: FieldOverrideObject['render'];
   props: object;
   construct: (opts?: {
@@ -269,8 +268,6 @@ export class FieldOverride extends Override {
   }) => ElementObject;
   priority: number;
   onChange: FieldOverrideObject['onChange'];
-  serialize: FieldOverrideObject['serialize'];
-  unserialize: FieldOverrideObject['unserialize'];
 
   constructor (props: FieldOverrideObject) {
     super();
@@ -278,14 +275,11 @@ export class FieldOverride extends Override {
     this.type = 'field';
     this.id = props.id;
     this.targets = props.targets || [];
-    this.keys = props.keys || [];
     this.render = props.render;
     this.priority = props.priority;
     this.props = props.props || {};
     this.construct = props.construct;
     this.onChange = props.onChange;
-    this.serialize = props.serialize;
-    this.unserialize = props.unserialize;
   }
 
   toObject (): FieldOverrideObject {
@@ -296,11 +290,8 @@ export class FieldOverride extends Override {
       render: this.render,
       priority: this.priority,
       props: this.props,
-      keys: this.keys,
       construct: this.construct,
       onChange: this.onChange,
-      serialize: this.serialize,
-      unserialize: this.unserialize,
     };
   }
 }
@@ -318,6 +309,8 @@ export class SettingOverride extends Override {
   fieldType: string;
   valueType: string;
   condition: SettingOverrideObject['condition'];
+  serialize: SettingOverrideObject['serialize'];
+  unserialize: SettingOverrideObject['unserialize'];
   priority: number;
   fields?: ComponentSettingsFieldObject[];
   props: object;
@@ -339,6 +332,8 @@ export class SettingOverride extends Override {
     this.fieldType = props.fieldType;
     this.valueType = props.valueType;
     this.condition = props.condition;
+    this.serialize = props.serialize;
+    this.unserialize = props.unserialize;
     this.priority = props.priority;
     this.info = props.info;
     this.fields = props.fields;
@@ -360,6 +355,8 @@ export class SettingOverride extends Override {
       fieldType: this.fieldType,
       valueType: this.valueType,
       condition: this.condition,
+      serialize: this.serialize,
+      unserialize: this.unserialize,
       priority: this.priority,
       info: this.info,
       fields: this.fields,

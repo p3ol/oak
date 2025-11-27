@@ -5,7 +5,7 @@ import {
   Builder,
   baseAddon,
 } from '@oakjs/react';
-import type { FieldOverrideObject } from 'packages/core/dist/types';
+import type { SettingOverrideObject } from 'packages/core/dist/types';
 
 import { ckeditorFieldAddon } from './addons';
 
@@ -42,25 +42,51 @@ export const Basic = () => (
 
 export const WithCustomserializer = () => {
   const richAddon = addon;
-  const fieldOveride: FieldOverrideObject = {
-    type: 'field',
-    targets: ['text', 'title', 'button'],
-    keys: ['content'],
-    serialize: (val: string): string => {
-      const regex = /<p\s*\b/g;
-      const spanned = val
-        .replace(regex, '<span class="custom-class" ')
-        .replace(/<\/p>/g, '</span>');
+  const fieldOveride: SettingOverrideObject = {
+    type: 'setting',
+    targets: ['title'],
+    key: 'content',
+    serialize: (val): string => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(val, 'text/html');
+      const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null);
 
-      return spanned;
+      let node;
+
+      while ((node = walker.nextNode())) {
+        node.textContent = node.textContent!.split('').map(char => {
+          let c = char.charCodeAt(0);
+
+          switch (c) {
+            case 90: return 'A';
+            case 122: return 'a';
+            default: return String.fromCharCode(++c);
+          }
+        }).join('');
+      }
+
+      return doc.body.innerHTML;
     },
     unserialize: (val: string): string => {
-      const regex = /<span\s+class="custom-class"/g;
-      const unSpanned = val
-        .replace(regex, '<p ')
-        .replace(/<\/span>/g, '</p>');
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(val, 'text/html');
+      const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null);
 
-      return unSpanned;
+      let node;
+
+      while ((node = walker.nextNode())) {
+        node.textContent = node.textContent!.split('').map(char => {
+          let c = char.charCodeAt(0);
+
+          switch (c) {
+            case 90: return 'A';
+            case 122: return 'a';
+            default: return String.fromCharCode(--c);
+          }
+        }).join('');
+      }
+
+      return doc.body.innerHTML;
     },
   };
 

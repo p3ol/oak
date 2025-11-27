@@ -116,6 +116,18 @@ export default class Overrides extends Emitter implements IOverrides {
     return override as ComponentOverride | FieldOverride | SettingOverride;
   }
 
+  getAll (
+    overrideType: 'component' | 'field' | 'setting',
+    target: string,
+  ) {
+    const overrides = this.#overrides.filter(override =>
+      override.type === overrideType &&
+      (override.targets.includes('*') || override.targets.includes(target))
+    );
+
+    return overrides;
+  }
+
   get (
     overrideType: 'component' | 'field' | 'setting',
     target: string,
@@ -152,10 +164,13 @@ export default class Overrides extends Emitter implements IOverrides {
             return override as ComponentOverride;
         }
       }
-      case 'setting':
-        return overrides?.find((o: SettingOverride) => (
+      case 'setting': {
+        const settings = overrides?.filter((o: SettingOverride) => (
           [].concat(o.key).includes(setting?.key)
-        )) as SettingOverride;
+        )) as SettingOverride[];
+
+        return strategy === 'merge' ? this.merge(settings) : settings[0];
+      }
       default:
         return strategy === 'merge' ? this.merge(overrides) : overrides[0];
     }

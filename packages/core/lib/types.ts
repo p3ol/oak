@@ -90,13 +90,10 @@ export declare interface FieldOverrideObject {
     element?: ElementObject;
   }): ElementObject;
   targets?: string[];
-  keys?: string[]
   props?: Record<string, any>;
   id?: string;
   render?(props?: any): any;
   priority?: number;
-  serialize?(val: any): any;
-  unserialize?(val: any): any;
   onChange?<T = any>(
     name: string,
     field: FieldContent<T>,
@@ -124,6 +121,8 @@ export declare interface SettingOverrideObject {
   props?: Record<string, any>;
   parseTitle?(value: any): string;
   parseValue?(value: any): any;
+  serialize?:(value: any) => any;
+  unserialize?:(value: any) => any;
   condition?(element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
     builder: Builder;

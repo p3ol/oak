@@ -197,6 +197,13 @@ export default class Builder extends Emitter {
     return this.#overrides.get(type, target, opts);
   }
 
+  getAllOverrides (
+    type: 'component' | 'field' | 'setting',
+    target: string,
+  ) {
+    return this.#overrides.getAll(type, target);
+  }
+
   mergeOverrides (
     overrides: (ComponentOverrideObject | FieldOverrideObject)[]
   ) {
