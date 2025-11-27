@@ -5,15 +5,12 @@ exports[`Overrides > should allow to add overrides 1`] = `
   FieldOverride {
     "construct": undefined,
     "id": undefined,
-    "keys": [],
     "onChange": undefined,
     "priority": undefined,
     "props": {},
     "render": undefined,
-    "serialize": undefined,
     "targets": [],
     "type": "field",
-    "unserialize": undefined,
   },
   ComponentOverride {
     "construct": undefined,
