@@ -22,7 +22,7 @@ import Option from './Option';
 import Text from './Text';
 
 export interface DragOptionProps extends ComponentPropsWithoutRef<'a'> {
-  element: ElementObject | ElementObject[];
+  element: ElementObject;
   elementInnerRef: RefObject<HTMLElement>;
   editableRef: RefObject<EditableRef>;
 }
@@ -38,8 +38,7 @@ export const DragOption = ({
   const { builder } = useBuilder();
 
   const override = useMemo(() => (
-    builder.getOverride('component',
-      (element as ElementObject)?.type) as ComponentOverride
+    builder.getOverride('component', element?.type) as ComponentOverride
   ), [builder, element]);
 
   const onBeforeDragStart = (e: DragEvent) => {
@@ -75,8 +74,7 @@ export const DragOption = ({
     e.preventDefault();
   };
 
-  const canDrag = (override?.draggable ??
-    (element as ElementObject)?.draggable) !== false;
+  const canDrag = override?.draggable ?? element?.draggable ?? true;
 
   return canDrag ? (
     <Draggable

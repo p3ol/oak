@@ -246,7 +246,7 @@ const Element = ({
                 { opened: editableOpened }
               )}
             >
-              { (override?.removable ?? component?.removable) !== false && (
+              { (override?.removable ?? component?.removable ?? true) && (
                 <Option
                   option={{ icon: 'close' }}
                   className="remove"

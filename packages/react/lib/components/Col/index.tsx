@@ -128,7 +128,7 @@ const Col = ({
   };
 
   const canEditContainers = useMemo(() =>
-    (override?.containerEditable ?? component?.containerEditable) !== false
+    override?.containerEditable ?? component?.containerEditable ?? true
   , [override, component]);
 
   return (
@@ -332,7 +332,7 @@ const Col = ({
             </Editable>
           ) }
 
-          { (override?.removable ?? component.removable) !== false && (
+          { (override?.removable ?? component.removable ?? true) && (
             <Option
               className="remove"
               option={{ icon: 'close' }}
