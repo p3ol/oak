@@ -107,9 +107,7 @@ const Form = ({
     return elmt;
   }, [getSerializers]);
 
-  const [state, dispatch] = useReducer<
-    FormState, [Partial<FormState>]
-  >(mockState, {
+  const [state, dispatch] = useReducer(mockState<FormState>, {
     element: fieldDeserialize(deserialize(cloneDeep(element))),
     seed: uuid(),
   });

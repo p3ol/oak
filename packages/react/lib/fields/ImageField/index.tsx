@@ -55,9 +55,7 @@ const ImageField = ({
   accept = ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'],
 }: ImageFieldProps) => {
   const { onImageUpload } = useBuilder();
-  const [state, dispatch] = useReducer<
-    ImageFieldState, [Partial<ImageFieldState>]
-  >(mockState, {
+  const [state, dispatch] = useReducer(mockState<ImageFieldState>, {
     value: {
       ...value,
       url: value?.url || '',
