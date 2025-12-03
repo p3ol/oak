@@ -1,8 +1,8 @@
 {
-  "packages/addon-ckeditor5-react": "3.14.5",
-  "packages/addon-remirror": "3.14.5",
-  "packages/core": "3.14.5",
-  "packages/react": "3.14.5",
-  "packages/strapi-plugin": "3.14.5",
-  "packages/theme": "3.14.4"
+  "packages/addon-ckeditor5-react": "3.15.0",
+  "packages/addon-remirror": "3.15.1",
+  "packages/core": "3.15.0",
+  "packages/react": "3.15.0",
+  "packages/strapi-plugin": "3.15.1",
+  "packages/theme": "3.15.0"
 }

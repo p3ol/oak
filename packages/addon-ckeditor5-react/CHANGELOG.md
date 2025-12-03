@@ -24,6 +24,32 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [3.15.0](https://github.com/p3ol/oak/compare/v3.14.5...v3.15.0) (2025-12-03)
+
+
+### Features
+
+* **field-override:** add EOL ([ce49990](https://github.com/p3ol/oak/commit/ce49990889effa9d5c50a9ebbd3835f2011f128e))
+* **field-override:** add example on story ([6ecd50e](https://github.com/p3ol/oak/commit/6ecd50ef26fa1c6f098828742d752d96bcd70079))
+* **field-override:** rename unserialize to deserialize and other PR review changes ([f26276c](https://github.com/p3ol/oak/commit/f26276c51103b845ef6f69aed33e3f89cb8b26ca))
+* **field-override:** update example ([98fe9db](https://github.com/p3ol/oak/commit/98fe9db53efc73005a7b05c6888eee6cafbe73ce))
+* update import with alias ([304ca6d](https://github.com/p3ol/oak/commit/304ca6d93fc899923be8393ef429c9f96b3b746e))
+
+
+### Bug Fixes
+
+* imports ([a2fd272](https://github.com/p3ol/oak/commit/a2fd27270ef599a9d0cf5bdf79baa93bc7febedd))
+* rework serializing overrides ([dbf6a58](https://github.com/p3ol/oak/commit/dbf6a58bdd625a56cbec34a61ff0ffc0ff2583ad))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @oakjs/react bumped to 3.15.0
+  * peerDependencies
+    * @oakjs/react bumped from ^3.0.0 to ^3.15.0
+
 ## [3.14.5](https://github.com/p3ol/oak/compare/v3.14.4...v3.14.5) (2025-10-23)
 
 **Note:** Version bump only for package @oakjs/addon-ckeditor5-react

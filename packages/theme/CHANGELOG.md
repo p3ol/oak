@@ -14,6 +14,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [3.15.0](https://github.com/p3ol/oak/compare/v3.14.4...v3.15.0) (2025-12-03)
+
+
+### Features
+
+* allow to edit image field url ([03cb1f1](https://github.com/p3ol/oak/commit/03cb1f197ef99f33a7fe22f72c761c8061230b2e))
+
 ## [3.14.4](https://github.com/p3ol/oak/compare/v3.14.3...v3.14.4) (2025-10-22)
 
 

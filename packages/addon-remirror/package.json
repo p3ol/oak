@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/addon-remirror",
-  "version": "3.15.0",
+  "version": "3.15.1",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "type": "module",
   "main": "dist/index.cjs",
@@ -21,7 +21,7 @@
     "node": ">= 20"
   },
   "peerDependencies": {
-    "@oakjs/react": "^3.0.0",
+    "@oakjs/react": "^3.15.0",
     "@remirror/pm": "^2.0.0 || ^3.0.0",
     "@remirror/react": "^2.0.0 || ^3.0.0",
     "react": "^18.0.0 || ^19.0.0",
