@@ -1,14 +1,9 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "p3ol/renovate-presets//presets/base#v1.1.0",
-    "p3ol/renovate-presets//presets/master-develop#v1.1.0"
+    "p3ol/renovate-presets//presets/ci-cd-only/master-develop"
   ],
   "packageRules": [{
-    "matchUpdateTypes": ["patch", "pin"],
-    "matchDepTypes": ["devDependencies", "dependencies"],
-    "excludePackagePatterns": ["^prosemirror"],
-    "automerge": true
-  }, {
     "matchPackagePatterns": ["^@ckeditor"],
     "groupName": "ckeditor monorepo"
   }]
