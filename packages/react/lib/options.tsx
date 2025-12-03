@@ -135,7 +135,7 @@ export const backgroundColorOption = (): ReactComponentOptionObject => ({
         style={{
           backgroundColor: element.styles?.backgroundColor,
           ...element.styles?.backgroundImage && {
-            backgroundImage: `url(${element.styles?.backgroundImage.url})`,
+            backgroundImage: `url("${element.styles?.backgroundImage.url}")`,
           },
         }}
       />

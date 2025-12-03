@@ -157,7 +157,7 @@ const FloatingEditable = ({
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     (ref as RefObject<EditableRef>).current?.toggle();
-    setOpened(opened);
+    setOpened?.(opened);
   };
 
   const child = Children.only(children);
