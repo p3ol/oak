@@ -246,12 +246,14 @@ const Element = ({
                 { opened: editableOpened }
               )}
             >
-              <Option
-                option={{ icon: 'close' }}
-                className="remove"
-                onClick={onDelete_}
-                name={<Text name="core.tooltips.remove">Remove</Text> }
-              />
+              { (override?.removable ?? component?.removable ?? true) && (
+                <Option
+                  option={{ icon: 'close' }}
+                  className="remove"
+                  onClick={onDelete_}
+                  name={<Text name="core.tooltips.remove">Remove</Text> }
+                />
+              )}
               { (override?.duplicable ?? component?.duplicable) && (
                 <Option
                   option={{ icon: 'copy' }}

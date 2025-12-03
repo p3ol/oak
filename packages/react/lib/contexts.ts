@@ -33,6 +33,7 @@ export declare interface BuilderContextValue {
   rootRef?: RefObject<HTMLDivElement>;
   floatingsRef?: RefObject<HTMLDivElement>;
   editableType?: EditableType;
+  catalogueEnabled?: boolean;
   polyfills?: {
     DOMParser: typeof DOMParser;
     XMLSerializer: typeof XMLSerializer;

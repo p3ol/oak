@@ -246,7 +246,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
           >
             <div
-              class="column oak-flex-1 oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2"
+              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
             >
               <a
                 class="divider prepend oak-flex oak-items-center"
@@ -611,7 +611,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
           >
             <div
-              class="column oak-flex-1 oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2"
+              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
             >
               <a
                 class="divider prepend oak-flex oak-items-center"
@@ -1052,7 +1052,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
       class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
     >
       <div
-        class="column oak-flex-1 oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-py-2"
+        class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
       >
         <a
           class="divider prepend oak-flex oak-items-center"
@@ -2430,6 +2430,545 @@ exports[`<Builder /> > should render > Base content 1`] = `
               class="icon junipero-icons !oak-text-lg"
             >
               copy_file
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center edit"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              pen
+            </i>
+          </a>
+        </div>
+      </div>
+      <div
+        class="add-element oak-flex oak-justify-center"
+      >
+        <div
+          class="catalogue"
+        >
+          <a
+            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            draggable="false"
+          >
+            <i
+              class="icon junipero-icons"
+            >
+              add
+            </i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
+      class="floatings"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Builder /> > shouldn't display any catalogue button if disabled > No catalogue buttons 1`] = `
+<div>
+  <div
+    class="oak builder"
+  >
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
+      class="elements oak-flex oak-flex-col oak-gap-4 oak-py-8"
+    />
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
+      class="floatings"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Builder /> > shouldn't display any option to remove an element > Remove options disabled 1`] = `
+<div>
+  <div
+    class="oak builder"
+  >
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
+      class="elements oak-flex oak-flex-col oak-gap-4"
+    >
+      <div
+        class="add-element oak-flex oak-justify-center"
+      >
+        <div
+          class="catalogue"
+        >
+          <a
+            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            draggable="false"
+          >
+            <i
+              class="icon junipero-icons"
+            >
+              add
+            </i>
+          </a>
+        </div>
+      </div>
+      <div
+        class="oak element oak-flex-none type-title draggable"
+        draggable="true"
+      >
+        <div
+          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
+        >
+          <i
+            class="icon junipero-icons"
+          >
+            title
+          </i>
+          <div
+            class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+          >
+            <div
+              class="oak-flex oak-items-center"
+            >
+              <h6
+                class="junipero oak-inline oak-m-0"
+              >
+                Title
+              </h6>
+            </div>
+            <div
+              class="element-content oak-flex-auto"
+            >
+              <h1
+                class="junipero oak-m-0 sanitize-html !oak-text-4xl"
+              >
+                This is a title
+              </h1>
+            </div>
+            <div
+              class="displayable-settings junipero extra !oak-text-alternate-text-color"
+            >
+              <span
+                class="property"
+              >
+                <span
+                  class="key"
+                >
+                  Type
+                  : 
+                </span>
+                <span
+                  class="value"
+                >
+                  Title 1 (h1)
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="options oak-flex oak-items-center"
+        >
+          <a
+            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              copy
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center copy"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              copy_file
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center edit"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              pen
+            </i>
+          </a>
+        </div>
+      </div>
+      <div
+        class="add-element oak-flex oak-justify-center"
+      >
+        <div
+          class="catalogue"
+        >
+          <a
+            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            draggable="false"
+          >
+            <i
+              class="icon junipero-icons"
+            >
+              add
+            </i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
+      class="floatings"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Builder /> > shouldn't display button to add a new column if container editing is disabled > Container editing disabled 1`] = `
+<div>
+  <div
+    class="oak builder"
+  >
+    <div
+      class="oak-flex oak-gap-2"
+    >
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          undo
+        </i>
+      </button>
+      <button
+        aria-disabled="true"
+        class="junipero button disabled"
+        disabled=""
+        role="button"
+        type="button"
+      >
+        <i
+          class="icon junipero-icons"
+        >
+          redo
+        </i>
+      </button>
+    </div>
+    <div
+      class="elements oak-flex oak-flex-col oak-gap-4"
+    >
+      <div
+        class="add-element oak-flex oak-justify-center"
+      >
+        <div
+          class="catalogue"
+        >
+          <a
+            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            draggable="false"
+          >
+            <i
+              class="icon junipero-icons"
+            >
+              add
+            </i>
+          </a>
+        </div>
+      </div>
+      <div
+        class="oak element oak-flex-none type-row"
+        draggable="false"
+      >
+        <div
+          class="wrapper even"
+        >
+          <div
+            class="drop-zone before"
+          />
+          <div
+            class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
+          >
+            <div
+              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-8 oak-px-4"
+            >
+              <div
+                class="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
+              >
+                <div
+                  class="catalogue oak-inline-flex oak-self-center"
+                >
+                  <a
+                    class="handle oak-inline-flex oak-items-center oak-justify-center"
+                    draggable="false"
+                  >
+                    <i
+                      class="icon junipero-icons"
+                    >
+                      add
+                    </i>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="size-info oak-absolute oak-bottom-1 oak-left-1"
+              >
+                <span>
+                  <i
+                    class="icon junipero-icons !oak-text-alternate-text-color oak-rotate-90 oak-block oak-cursor-help"
+                  >
+                    foldable
+                  </i>
+                </span>
+              </div>
+              <div
+                class="options oak-flex oak-items-center oak-gap-0.5"
+              >
+                <a
+                  class="option oak-flex oak-items-center oak-justify-center edit"
+                  draggable="false"
+                  href="#"
+                >
+                  <i
+                    class="icon junipero-icons !oak-text-lg"
+                  >
+                    pen
+                  </i>
+                </a>
+                <a
+                  class="option oak-flex oak-items-center oak-justify-center remove"
+                  draggable="false"
+                  href="#"
+                >
+                  <i
+                    class="icon junipero-icons !oak-text-lg"
+                  >
+                    close
+                  </i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="drop-zone after"
+          />
+        </div>
+        <div
+          class="options oak-flex oak-items-center oak-has-inner-content"
+        >
+          <a
+            class="option oak-flex oak-items-center oak-justify-center remove"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              close
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              copy
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center copy"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              copy_file
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center option oak-drag-handle draggable"
+            draggable="true"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              pause
+            </i>
+          </a>
+          <a
+            class="option oak-flex oak-items-center oak-justify-center option"
+            draggable="false"
+            href="#"
+          >
+            <i
+              class="icon junipero-icons !oak-text-lg"
+            >
+              expand_less
             </i>
           </a>
           <a

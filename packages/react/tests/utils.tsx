@@ -9,6 +9,7 @@ import Element from '../lib/Element';
 export const BuilderLite = ({
   ref,
   children,
+  catalogueEnabled = true,
   ...opts
 }: BuilderProps) => {
   const innerRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,8 @@ export const BuilderLite = ({
     rootRef: innerRef,
     rootBoundary: innerRef,
     floatingsRef: innerRef,
-  }), [builder, content]);
+    catalogueEnabled,
+  }), [builder, content, catalogueEnabled]);
 
   return (
     <div ref={innerRef}>
