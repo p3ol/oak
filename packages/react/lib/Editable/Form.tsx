@@ -1,6 +1,6 @@
 import {
   type ComponentPropsWithoutRef,
-  RefObject,
+  type RefObject,
   useReducer,
   useCallback,
 } from 'react';
