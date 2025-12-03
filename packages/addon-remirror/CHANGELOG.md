@@ -11,6 +11,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [3.15.1](https://github.com/p3ol/oak/compare/v3.14.5...v3.15.1) (2025-12-03)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @oakjs/react bumped to 3.15.0
+  * peerDependencies
+    * @oakjs/react bumped from ^3.0.0 to ^3.15.0
+
 ## [3.14.5](https://github.com/p3ol/oak/compare/v3.14.4...v3.14.5) (2025-10-23)
 
 **Note:** Version bump only for package @oakjs/addon-remirror

@@ -27,6 +27,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [3.15.0](https://github.com/p3ol/oak/compare/v3.14.5...v3.15.0) (2025-12-03)
+
+
+### Features
+
+* add keys to FieldOverrideObject ([23c9e91](https://github.com/p3ol/oak/commit/23c9e9106158c860ed962b740469d72d9a756ee3))
+* allow to edit image field url ([03cb1f1](https://github.com/p3ol/oak/commit/03cb1f197ef99f33a7fe22f72c761c8061230b2e))
+* **field-override:** apply serialize and unserialize on fields ([d742eb2](https://github.com/p3ol/oak/commit/d742eb29ed5c4d5fde30bafcffbd6ffb4f2eaf0a))
+* **field-override:** rename unserialize to deserialize and other PR review changes ([f26276c](https://github.com/p3ol/oak/commit/f26276c51103b845ef6f69aed33e3f89cb8b26ca))
+* **field-override:** update snapshot ([f5ec62f](https://github.com/p3ol/oak/commit/f5ec62fc39f7de34da42fb830acb870cea212995))
+* **react:** add a way to disable cols addition ([e712009](https://github.com/p3ol/oak/commit/e712009b375598db3960902ec3226c1f9ece3502))
+* **react:** add removable as override option ([1c55cfc](https://github.com/p3ol/oak/commit/1c55cfc114b20e0e85fe6884983e70bffaa752b9))
+
+
+### Bug Fixes
+
+* repair mutli keys setting behavior ([d20b486](https://github.com/p3ol/oak/commit/d20b48690f1b8f53186ff7872853200843311b91))
+* rework serializing overrides ([dbf6a58](https://github.com/p3ol/oak/commit/dbf6a58bdd625a56cbec34a61ff0ffc0ff2583ad))
+* update snapshots ([aab92c1](https://github.com/p3ol/oak/commit/aab92c16cb4887019ff4cedd329c40aa9c0fca81))
+
 ## [3.14.5](https://github.com/p3ol/oak/compare/v3.14.4...v3.14.5) (2025-10-23)
 
 
