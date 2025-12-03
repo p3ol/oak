@@ -5,7 +5,7 @@ import {
   Builder,
   baseAddon,
 } from '@oakjs/react';
-import type { SettingOverrideObject } from 'packages/core/dist/types';
+import type { SettingOverrideObject } from '@oakjs/core';
 
 import { ckeditorFieldAddon } from './addons';
 
