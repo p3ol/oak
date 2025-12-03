@@ -51,6 +51,7 @@ export interface FloatingEditableProps
   floatingOptions?: UseFloatingOptions & {
     boundary?: Boundary;
   };
+  setOpened?: (opened: boolean) => void;
   onToggle?: (state: { opened: boolean }) => void;
 }
 
