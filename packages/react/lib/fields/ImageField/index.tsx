@@ -61,9 +61,7 @@ const ImageField = ({
   onChange,
 }: ImageFieldProps) => {
   const { onImageUpload, floatingsRef } = useBuilder();
-  const [state, dispatch] = useReducer<
-    ImageFieldState, [Partial<ImageFieldState>]
-  >(mockState, {
+  const [state, dispatch] = useReducer(mockState<ImageFieldState>, {
     value: {
       ...value,
       url: value?.url || '',

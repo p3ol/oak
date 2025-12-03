@@ -323,6 +323,8 @@ export class SettingOverride extends Override {
   fieldType: string;
   valueType: string;
   condition: SettingOverrideObject['condition'];
+  serialize: SettingOverrideObject['serialize'];
+  deserialize: SettingOverrideObject['deserialize'];
   priority: number;
   fields?: ComponentSettingsFieldObject[];
   props: object;
@@ -344,6 +346,8 @@ export class SettingOverride extends Override {
     this.fieldType = props.fieldType;
     this.valueType = props.valueType;
     this.condition = props.condition;
+    this.serialize = props.serialize;
+    this.deserialize = props.deserialize;
     this.priority = props.priority;
     this.info = props.info;
     this.fields = props.fields;
@@ -365,6 +369,8 @@ export class SettingOverride extends Override {
       fieldType: this.fieldType,
       valueType: this.valueType,
       condition: this.condition,
+      serialize: this.serialize,
+      deserialize: this.deserialize,
       priority: this.priority,
       info: this.info,
       fields: this.fields,

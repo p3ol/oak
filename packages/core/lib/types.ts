@@ -123,6 +123,8 @@ export declare interface SettingOverrideObject {
   props?: Record<string, any>;
   parseTitle?(value: any): string;
   parseValue?(value: any): any;
+  serialize?:(value: any) => any;
+  deserialize?:(value: any) => any;
   condition?(element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
     builder: Builder;

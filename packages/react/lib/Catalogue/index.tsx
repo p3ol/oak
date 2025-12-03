@@ -84,9 +84,7 @@ const Catalogue = ({
     builder.getOverride('component', component?.id) as ComponentOverride
   // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [builder, component, addons]);
-  const [state, dispatch] = useReducer<
-    CatalogueState, [Partial<CatalogueState>]
-  >(mockState, {
+  const [state, dispatch] = useReducer(mockState<CatalogueState>, {
     opened: false,
     clipboard: null,
   });
