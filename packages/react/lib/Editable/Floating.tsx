@@ -51,6 +51,8 @@ export interface FloatingEditableProps
   floatingOptions?: UseFloatingOptions & {
     boundary?: Boundary;
   };
+  opened?: boolean;
+  setOpened?: (opened: boolean) => void;
   onToggle?: (state: { opened: boolean }) => void;
 }
 
@@ -155,7 +157,7 @@ const FloatingEditable = ({
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     (ref as RefObject<EditableRef>).current?.toggle();
-    setOpened(opened);
+    setOpened?.(opened);
   };
 
   const child = Children.only(children);

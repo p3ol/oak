@@ -148,7 +148,6 @@ export const imageField = (props?: ReactFieldObject): ReactFieldObject => ({
         fieldProps?.className,
         fieldOptions.setting?.props?.className
       )}
-      iconOnly={fieldOptions.setting?.props?.iconOnly}
       setting={fieldOptions.setting}
       element={fieldOptions.element}
     />
@@ -217,6 +216,7 @@ export const emptySpaceComponent = (
 ): ReactComponentObject => ({
   ...coreAddons.emptySpaceComponent(),
   render: EmptySpace,
+  options: [backgroundColorOption()],
   ...props,
 });
 
@@ -225,6 +225,7 @@ export const titleComponent = (
 ): ReactComponentObject => ({
   ...coreAddons.titleComponent(),
   render: Title,
+  options: [backgroundColorOption()],
   ...props,
 });
 
@@ -233,6 +234,7 @@ export const textComponent = (
 ): ReactComponentObject => ({
   ...coreAddons.textComponent(),
   render: TextComponent,
+  options: [backgroundColorOption()],
   ...props,
 });
 
@@ -241,6 +243,7 @@ export const imageComponent = (
 ): ReactComponentObject => ({
   ...coreAddons.imageComponent(),
   render: Image,
+  options: [backgroundColorOption()],
   ...props,
 });
 
@@ -249,6 +252,7 @@ export const buttonComponent = (
 ): ReactComponentObject => ({
   ...coreAddons.buttonComponent(),
   render: Button,
+  options: [backgroundColorOption()],
   ...props,
 });
 
@@ -256,7 +260,7 @@ export const foldableComponent = (
   props?: ReactComponentObject
 ): ReactComponentObject => ({
   ...coreAddons.foldableComponent(),
-  options: [dragOption(), collapseOption()],
+  options: [dragOption(), collapseOption(), backgroundColorOption()],
   render: Foldable,
   ...props,
 });
@@ -302,17 +306,5 @@ export const baseAddon = (): AddonObject => ({
   ...coreAddons.baseAddon(),
   components: [coreComponentsGroup()],
   fields: baseFields(),
-  overrides: [{
-    type: 'setting',
-    targets: ['*'],
-    key: [
-      'styles.backgroundImage',
-      'styles.hover.backgroundImage',
-      'styles.active.backgroundImage',
-    ],
-    props: {
-      iconOnly: true,
-      className: 'oak-mr-4 oak-relative oak-top-[2px]',
-    },
-  }],
+  overrides: [],
 });

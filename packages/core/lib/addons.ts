@@ -479,7 +479,7 @@ export const imageComponent = (props?: ComponentObject): ComponentObject => ({
       default: '',
       label: (
         t: GetTextCallback
-      ) => t('core.components.image.settings.image.title', 'Image'),
+      ) => t('core.components.image.settings.image.title', 'Image URL'),
       priority: 50,
     }, {
       type: 'select',
@@ -1118,22 +1118,20 @@ export const stylingSettingsFields = (
     ) => t('core.styling.borderRadius.bottomLeft', 'Bottom left'),
   }],
 }, {
-  type: 'field',
-  key: keyPrefix + '.background',
+  type: 'image',
+  key: keyPrefix + '.backgroundImage',
   priority: 30,
   label: (
     t: GetTextCallback
-  ) => t('core.styling.background.image.title', 'Background image'),
+  ) => t('core.styling.background.image.title', 'Background image URL'),
+}, {
+  type: 'field',
+  key: keyPrefix + '.backgroundSettings',
+  priority: 25,
   fields: [{
-    key: keyPrefix + '.backgroundImage',
-    type: 'image',
-    props: {
-      iconOnly: true,
-    },
-  }, {
     label: (
       t: GetTextCallback
-    ) => t('core.styling.background.size.title', 'Size'),
+    ) => t('core.styling.background.size.title', 'Background size'),
     key: keyPrefix + '.backgroundSize',
     type: 'select',
     default: 'default',
@@ -1158,7 +1156,7 @@ export const stylingSettingsFields = (
   }, {
     label: (
       t: GetTextCallback
-    ) => t('core.styling.background.position.title', 'Position'),
+    ) => t('core.styling.background.position.title', 'Background position'),
     key: keyPrefix + '.backgroundPosition',
     type: 'select',
     default: 'center',
@@ -1225,7 +1223,7 @@ export const stylingSettingsFields = (
   }, {
     label: (
       t: GetTextCallback
-    ) => t('core.styling.background.repeat.title', 'Repeat'),
+    ) => t('core.styling.background.repeat.title', 'Background repeat'),
     key: keyPrefix + '.backgroundRepeat',
     type: 'select',
     default: 'no-repeat',

@@ -28,9 +28,28 @@ const baseContent: ElementObject[] = [
   { type: 'clickable', content: [{ type: 'text', content: 'Click me' }] },
 ];
 
+const onImageUpload = async () => {
+  await new Promise(resolve => setTimeout(resolve, 3000));
+
+  return {
+    url: 'https://avatars.githubusercontent.com/u/20414672',
+    name: 'image.png',
+  };
+};
+
 export const Basic = () => (
   <Builder
     addons={[baseAddon()]}
+    value={baseContent}
+    options={{ debug: true }}
+    onChange={action('change')}
+  />
+);
+
+export const WithAsyncImageUpload = () => (
+  <Builder
+    addons={[baseAddon()]}
+    onImageUpload={onImageUpload}
     value={baseContent}
     options={{ debug: true }}
     onChange={action('change')}

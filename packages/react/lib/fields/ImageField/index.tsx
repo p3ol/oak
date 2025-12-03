@@ -4,6 +4,7 @@ import {
   type ChangeEvent,
   useEffect,
   useReducer,
+  useCallback,
 } from 'react';
 import type {
   ComponentSettingsField,
@@ -12,10 +13,14 @@ import type {
 } from '@oakjs/core';
 import {
   type FieldContent,
-  TouchableZone,
-  Spinner,
   classNames,
   mockState,
+  TextField,
+  Tooltip,
+  FieldGroup,
+  FieldAddon,
+  set,
+  Spinner,
 } from '@junipero/react';
 
 import { useBuilder } from '../../hooks';
@@ -38,10 +43,10 @@ export interface ImageFieldProps extends Omit<
   value?: ImageFieldValue;
   element?: ElementObject;
   setting?: ComponentSettingsFieldObject | ComponentSettingsField;
+  disabled?: boolean;
+  accept?: string[];
   onOpenDialog?: () => void;
   onChange?: (field: FieldContent<ImageFieldValue>) => void;
-  iconOnly?: boolean;
-  accept?: string[];
 }
 
 const ImageField = ({
@@ -49,12 +54,13 @@ const ImageField = ({
   value,
   element,
   setting,
+  disabled,
+  accept = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png',
+    'image/svg+xml'],
   onOpenDialog,
   onChange,
-  iconOnly = false,
-  accept = ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml'],
 }: ImageFieldProps) => {
-  const { onImageUpload } = useBuilder();
+  const { onImageUpload, floatingsRef } = useBuilder();
   const [state, dispatch] = useReducer(mockState<ImageFieldState>, {
     value: {
       ...value,
@@ -130,91 +136,55 @@ const ImageField = ({
     dispatch({ loading: false });
   };
 
-  const onReset = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    dispatch({ value: null });
-    onChange?.({ value: null });
-  };
-
-  const getName = () =>
-    state.value.name ||
-    (typeof state.value.url === 'string' && state.value.url.startsWith('data:')
-      ? 'Local image' : state.value.url?.toString()) ||
-    'No image';
+  const onManualChange = useCallback((e: FieldContent) => {
+    set(state.value, 'url', e.value);
+    onChange?.({ value: state.value });
+  }, [onChange, state.value]);
 
   return (
     <div
       className={classNames(
         'image-field oak-flex oak-flex-none oak-items-center oak-gap-4',
         {
-          loading: state.loading,
-          'icon-only oak-w-[80px] oak-h-[80px]': iconOnly,
+          'loading': state.loading,
         },
         className
       )}
     >
-      { state.value?.url && !iconOnly ? (
-        <>
-          <div
-            className={classNames(
-              'preview oak-w-[80px] oak-h-[80px] oak-bg-cover oak-bg-center'
-            )}
-            style={{ backgroundImage: `url(${state.value.url})` }}
-          />
-          <div className="info">
-            <div className="name oak-truncate">{ getName() }</div>
-            <div className="actions">
-              <a
-                href="#"
-                className="delete oak-text-error-color"
-                draggable={false}
-                onClick={onReset}
-              >
-                <Text name="core.fields.image.del">
-                  Delete
-                </Text>
-              </a>
-            </div>
-          </div>
-        </>
-      ) : (
-        <TouchableZone
-          onClick={iconOnly && state.value?.url ? onReset : onOpenFileDialog}
-          className={classNames({ '!oak-w-full': !iconOnly })}
-          { ...(iconOnly && {
-            style: {
-              backgroundImage: state.value?.url && `url(${state.value?.url})`,
-            },
-          }) }
+      <FieldGroup className="!oak-w-full">
+        <TextField
+          value={state.value?.url?.toString() || ''}
+          placeholder="https://example.com/image.png"
+          onChange={onManualChange}
+          disabled={disabled || state.loading}
+        />
+        <Tooltip
+          text={(
+            <Text name="core.tooltips.uploadImage">
+              Upload image
+            </Text>
+          )}
+          container={floatingsRef.current}
+          disabled={disabled || state.loading}
         >
-          { state.loading ? (
-            <Spinner />
-          ) : !state.value?.url ? (
-            <>
-              <Icon
-                className={classNames(
-                  { '!oak-text-alternate-text-color': !iconOnly }
-                )}
-              >
-                add
-              </Icon>
-              { !iconOnly && (
-                <span>
-                  <Text name="core.fields.image.add">
-                    Add image
-                  </Text>
-                </span>
-              ) }
-            </>
-          ) : iconOnly && (
-            <span
-              className="remove oak-flex oak-items-center oak-justify-center"
-            >
-              <Icon className="!oak-text-2xl">close</Icon>
-            </span>
-          ) }
-        </TouchableZone>
-      ) }
+          <FieldAddon
+            onClick={onOpenFileDialog}
+            className={classNames(
+              'oak-cursor-pointer',
+              {
+                'oak-pointer-events-none oak-opacity-50':
+                  disabled || state.loading,
+              }
+            )}
+          >
+            { state.loading ? (
+              <Spinner />
+            ) : (
+              <Icon>file</Icon>
+            ) }
+          </FieldAddon>
+        </Tooltip>
+      </FieldGroup>
     </div>
   );
 };
