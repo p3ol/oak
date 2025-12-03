@@ -27,8 +27,8 @@
   "dependencies": {
     "@floating-ui/react": "0.27.16",
     "@junipero/hooks": "3.12.9",
-    "@junipero/react": "3.12.11",
-    "@junipero/transitions": "3.12.11",
+    "@junipero/react": "3.12.13",
+    "@junipero/transitions": "3.12.13",
     "@oakjs/core": "^3.14.5",
     "uuid": "13.0.0"
   },
