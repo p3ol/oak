@@ -1,3 +1,9 @@
+import {
+  type ComponentPropsWithoutRef,
+  RefObject,
+  useReducer,
+  useCallback,
+} from 'react';
 import { v4 as uuid } from 'uuid';
 import type {
   ComponentObject,
@@ -11,13 +17,6 @@ import type {
   FieldOverrideObject,
   SettingOverrideObject,
 } from '@oakjs/core';
-import {
-  type ComponentPropsWithoutRef,
-  RefObject,
-  useReducer,
-  useCallback,
-  useEffect,
-} from 'react';
 import {
   Button,
   Tabs,
@@ -33,6 +32,7 @@ import { EditableFormContext } from '../contexts';
 import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Tab from './Tab';
+import type { SerializeMethods } from '../types';
 
 export declare interface FormProps extends ComponentPropsWithoutRef<'div'> {
   placement?: string;
@@ -64,35 +64,28 @@ const Form = ({
     component?.deserialize ||
     ((e: ElementObject) => e);
 
-  const [state, dispatch] = useReducer<
-    FormState, [Partial<FormState>]
-  >(mockState, {
-    element: deserialize(cloneDeep(element)),
-    seed: uuid(),
-  });
-
   const getSerializers = useCallback((
-    element: ElementObject,
-    serializeType: 'serialize' | 'unserialize'
+    elmt: ElementObject,
+    serializeType: 'serialize' | 'deserialize'
   ) => {
     const serializedFields: string[] = [];
-    const serializeMethods: ({key: string, method: (data: any) => any})[] = [];
+    const serializeMethods: SerializeMethods = [];
     const overrides: SettingOverrideObject[] = (builder.getAllOverrides(
       'setting',
-      element.type
+      elmt.type
     ) as SettingOverrideObject[])
       .filter(o => !!o[serializeType]) as SettingOverrideObject[];
 
     overrides.forEach(override_ => {
       const keys = [].concat(override_.key);
       keys.forEach(key => {
-        if(!get(element, key) && serializedFields.includes(key)) {
+        if (!get(elmt, key) && serializedFields.includes(key)) {
           return;
         }
 
         const override = builder.getOverride(
           'setting',
-          element.type,
+          elmt.type,
           { setting: override_}
         ) as SettingOverrideObject;
 
@@ -104,8 +97,8 @@ const Form = ({
     return serializeMethods;
   },[builder]);
 
-  const fieldUnserialize = useCallback((elmt: ElementObject) => {
-    getSerializers(elmt, 'unserialize').forEach(serializer => {
+  const fieldDeserialize = useCallback((elmt: ElementObject) => {
+    getSerializers(elmt, 'deserialize').forEach(serializer => {
       if(typeof serializer.method === 'function') {
         set(elmt, serializer.key, serializer.method(get(elmt, serializer.key)));
       }
@@ -114,10 +107,12 @@ const Form = ({
     return elmt;
   }, [getSerializers]);
 
-  useEffect(() => {
-    dispatch({ element: fieldUnserialize(cloneDeep(state.element)) });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fieldUnserialize]);
+  const [state, dispatch] = useReducer<
+    FormState, [Partial<FormState>]
+  >(mockState, {
+    element: fieldDeserialize(deserialize(cloneDeep(element))),
+    seed: uuid(),
+  });
 
   const onUpdate_ = (elmt: ElementObject) => {
     dispatch({ element: elmt });
@@ -142,9 +137,9 @@ const Form = ({
     });
   };
 
-  const onSave_ = () => {
+  const onSave_ = useCallback(() => {
     getSerializers(state.element, 'serialize').forEach(serializer => {
-      if(typeof serializer.method === 'function') {
+      if (typeof serializer.method === 'function') {
         set(
           state.element,
           serializer.key,
@@ -155,11 +150,11 @@ const Form = ({
     dispatch({ element: state.element });
     builder.setElement(element.id as string, state.element || {}, { element });
     onSave();
-  };
+  }, [builder, element, onSave, getSerializers, state.element]);
 
   const onCancel_ = () => {
     dispatch({
-      element: fieldUnserialize(deserialize(cloneDeep(element))),
+      element: fieldDeserialize(deserialize(cloneDeep(element))),
       seed: uuid(),
     });
     onCancel();

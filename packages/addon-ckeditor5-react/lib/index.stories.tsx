@@ -45,7 +45,7 @@ export const WithCustomserializer = () => {
   const fieldOveride: SettingOverrideObject = {
     type: 'setting',
     targets: ['title'],
-    key: 'content',
+    key: ['content'],
     serialize: (val): string => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(val, 'text/html');
@@ -67,7 +67,7 @@ export const WithCustomserializer = () => {
 
       return doc.body.innerHTML;
     },
-    unserialize: (val: string): string => {
+    deserialize: (val: string): string => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(val, 'text/html');
       const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null);

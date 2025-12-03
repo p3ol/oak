@@ -139,3 +139,6 @@ export declare interface ReactAddonObject extends AddonObject {
     SettingOverrideObject
   )[];
 }
+
+export declare type SerializeMethods =
+  ({key: string, method: (data: any) => any})[];
