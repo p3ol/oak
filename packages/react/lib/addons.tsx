@@ -148,7 +148,6 @@ export const imageField = (props?: ReactFieldObject): ReactFieldObject => ({
         fieldProps?.className,
         fieldOptions.setting?.props?.className
       )}
-      iconOnly={fieldOptions.setting?.props?.iconOnly}
       setting={fieldOptions.setting}
       element={fieldOptions.element}
     />
@@ -302,17 +301,5 @@ export const baseAddon = (): AddonObject => ({
   ...coreAddons.baseAddon(),
   components: [coreComponentsGroup()],
   fields: baseFields(),
-  overrides: [{
-    type: 'setting',
-    targets: ['*'],
-    key: [
-      'styles.backgroundImage',
-      'styles.hover.backgroundImage',
-      'styles.active.backgroundImage',
-    ],
-    props: {
-      iconOnly: true,
-      className: 'oak-mr-4 oak-relative oak-top-[2px]',
-    },
-  }],
+  overrides: [],
 });
