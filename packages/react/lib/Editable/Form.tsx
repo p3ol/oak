@@ -28,11 +28,11 @@ import {
 } from '@junipero/react';
 
 import type { EditableRef } from './index';
+import type { SerializeMethod } from '../types';
 import { EditableFormContext } from '../contexts';
 import { useBuilder } from '../hooks';
 import Text from '../Text';
 import Tab from './Tab';
-import type { SerializeMethods } from '../types';
 
 export declare interface FormProps extends ComponentPropsWithoutRef<'div'> {
   placement?: string;
@@ -69,7 +69,7 @@ const Form = ({
     serializeType: 'serialize' | 'deserialize'
   ) => {
     const serializedFields: string[] = [];
-    const serializeMethods: SerializeMethods = [];
+    const serializeMethods: SerializeMethod[] = [];
     const overrides: SettingOverrideObject[] = (builder.getAllOverrides(
       'setting',
       elmt.type

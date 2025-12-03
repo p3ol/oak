@@ -140,5 +140,5 @@ export declare interface ReactAddonObject extends AddonObject {
   )[];
 }
 
-export declare type SerializeMethods =
-  ({key: string, method: (data: any) => any})[];
+export declare type SerializeMethod =
+  ({key: string, method: (data: any) => any});
