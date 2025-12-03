@@ -31,7 +31,7 @@ const Container = ({
 }: ContainerProps) => {
   const prependCatalogueRef = useRef<CatalogueRef>(null);
   const appendCatalogueRef = useRef<CatalogueRef>(null);
-  const { builder, addons } = useBuilder();
+  const { builder, addons, catalogueEnabled } = useBuilder();
   const override = useMemo(() => (
     builder.getOverride('component', component?.id) as ComponentObject
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,7 +107,7 @@ const Container = ({
         )}
         data-depth={depth}
       >
-        { content.length > 0 && (
+        { content.length > 0 && catalogueEnabled && (
           <Catalogue
             ref={prependCatalogueRef}
             component={component}
@@ -133,17 +133,19 @@ const Container = ({
           </div>
         ) }
 
-        <Catalogue
-          ref={appendCatalogueRef}
-          element={element}
-          component={component}
-          onAppend={onAppend}
-          onPaste={onPasteAfter}
-          className={classNames(
-            'oak-inline-flex oak-self-center',
-            { small: content.length > 0 }
-          )}
-        />
+        { catalogueEnabled && (
+          <Catalogue
+            ref={appendCatalogueRef}
+            element={element}
+            component={component}
+            onAppend={onAppend}
+            onPaste={onPasteAfter}
+            className={classNames(
+              'oak-inline-flex oak-self-center',
+              { small: content.length > 0 }
+            )}
+          />
+        )}
       </div>
     </Droppable>
   );
