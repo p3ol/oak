@@ -1,3 +1,9 @@
+import {
+  type ComponentPropsWithoutRef,
+  type RefObject,
+  useReducer,
+  useCallback,
+} from 'react';
 import { v4 as uuid } from 'uuid';
 import type {
   ComponentObject,
@@ -12,20 +18,17 @@ import type {
   SettingOverrideObject,
 } from '@oakjs/core';
 import {
-  type ComponentPropsWithoutRef,
-  RefObject,
-  useReducer,
-  useCallback,
-} from 'react';
-import {
   Button,
   Tabs,
   classNames,
   cloneDeep,
+  get,
   mockState,
+  set,
 } from '@junipero/react';
 
 import type { EditableRef } from './index';
+import type { SerializeMethod } from '../types';
 import { EditableFormContext } from '../contexts';
 import { useBuilder } from '../hooks';
 import Text from '../Text';
@@ -61,10 +64,51 @@ const Form = ({
     component?.deserialize ||
     ((e: ElementObject) => e);
 
-  const [state, dispatch] = useReducer<
-    FormState, [Partial<FormState>]
-  >(mockState, {
-    element: deserialize(cloneDeep(element)),
+  const getSerializers = useCallback((
+    elmt: ElementObject,
+    serializeType: 'serialize' | 'deserialize'
+  ) => {
+    const serializedFields: string[] = [];
+    const serializeMethods: SerializeMethod[] = [];
+    const overrides: SettingOverrideObject[] = (builder.getAllOverrides(
+      'setting',
+      elmt.type
+    ) as SettingOverrideObject[])
+      .filter(o => !!o[serializeType]) as SettingOverrideObject[];
+
+    overrides.forEach(override_ => {
+      const keys = [].concat(override_.key);
+      keys.forEach(key => {
+        if (!get(elmt, key) && serializedFields.includes(key)) {
+          return;
+        }
+
+        const override = builder.getOverride(
+          'setting',
+          elmt.type,
+          { setting: override_}
+        ) as SettingOverrideObject;
+
+        serializedFields.push(key);
+        serializeMethods.push({key, method: override?.[serializeType]});
+      });
+    });
+
+    return serializeMethods;
+  },[builder]);
+
+  const fieldDeserialize = useCallback((elmt: ElementObject) => {
+    getSerializers(elmt, 'deserialize').forEach(serializer => {
+      if(typeof serializer.method === 'function') {
+        set(elmt, serializer.key, serializer.method(get(elmt, serializer.key)));
+      }
+    });
+
+    return elmt;
+  }, [getSerializers]);
+
+  const [state, dispatch] = useReducer(mockState<FormState>, {
+    element: fieldDeserialize(deserialize(cloneDeep(element))),
     seed: uuid(),
   });
 
@@ -91,14 +135,24 @@ const Form = ({
     });
   };
 
-  const onSave_ = () => {
+  const onSave_ = useCallback(() => {
+    getSerializers(state.element, 'serialize').forEach(serializer => {
+      if (typeof serializer.method === 'function') {
+        set(
+          state.element,
+          serializer.key,
+          serializer.method(get(state.element, serializer.key))
+        );
+      }
+    });
+    dispatch({ element: state.element });
     builder.setElement(element.id as string, state.element || {}, { element });
     onSave();
-  };
+  }, [builder, element, onSave, getSerializers, state.element]);
 
   const onCancel_ = () => {
     dispatch({
-      element: deserialize(cloneDeep(element)),
+      element: fieldDeserialize(deserialize(cloneDeep(element))),
       seed: uuid(),
     });
     onCancel();

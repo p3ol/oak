@@ -79,9 +79,7 @@ const FloatingEditable = ({
 }: FloatingEditableProps) => {
   const innerRef = useRef<FloatingRef | HTMLDivElement>(null);
   const { rootBoundary, floatingsRef } = useBuilder();
-  const [state, dispatch] = useReducer<
-    FloatingEditableState, [Partial<FloatingEditableState>]
-  >(mockState, {
+  const [state, dispatch] = useReducer(mockState<FloatingEditableState>, {
     opened: false,
     visible: false,
   });
