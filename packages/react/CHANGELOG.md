@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.15.0](https://github.com/p3ol/oak/compare/v3.14.5...v3.15.0) (2025-12-03)
+
+
+### Bug Fixes
+
+* add background preview on all elements ([737b1bb](https://github.com/p3ol/oak/commit/737b1bbb9834cb53a74f0511e0ea1906a823627b))
+* import order and type fix ([2befa0f](https://github.com/p3ol/oak/commit/2befa0fd1eaafba2676e4d9b9214ca2bff36a9d9))
+* import type ([6002e80](https://github.com/p3ol/oak/commit/6002e80020995b33cd904084e41b7e234ddb8bc1))
+* **react:** fix drag option element type & conditions ([69386d2](https://github.com/p3ol/oak/commit/69386d2a5894867933262140fe103a1600a6fc67))
+* repair mutli keys setting behavior ([d20b486](https://github.com/p3ol/oak/commit/d20b48690f1b8f53186ff7872853200843311b91))
+* rework serializing overrides ([dbf6a58](https://github.com/p3ol/oak/commit/dbf6a58bdd625a56cbec34a61ff0ffc0ff2583ad))
+* types ([0cc7103](https://github.com/p3ol/oak/commit/0cc7103e564db24798e37538b7a18ef5b5149fc1))
+* types ([3eec792](https://github.com/p3ol/oak/commit/3eec792b10bcfb2352f55c4641580ea6891b5a71))
+* update various deps ([32c2dbe](https://github.com/p3ol/oak/commit/32c2dbe3eadf29f01466b2f7aa4e66df27c0a722))
+* upgrade various deps ([6d82950](https://github.com/p3ol/oak/commit/6d82950c0704e00a021a7acbce25d6c620f24553))
+* use FormState generic instead of useReducer generic itself ([9c1baf2](https://github.com/p3ol/oak/commit/9c1baf2ed0534f0a608d188878f95f9ba922c382))
+
+
+### Features
+
+* allow to edit image field url ([03cb1f1](https://github.com/p3ol/oak/commit/03cb1f197ef99f33a7fe22f72c761c8061230b2e))
+* **field-override:** apply serialize and unserialize on fields ([d742eb2](https://github.com/p3ol/oak/commit/d742eb29ed5c4d5fde30bafcffbd6ffb4f2eaf0a))
+* **field-override:** rename unserialize to deserialize and other PR review changes ([f26276c](https://github.com/p3ol/oak/commit/f26276c51103b845ef6f69aed33e3f89cb8b26ca))
+* **field-override:** rework serialize and unserialize ([66624fd](https://github.com/p3ol/oak/commit/66624fdb097310eef72ec6c83fb168978fb85acd))
+* **react:** add a way to disable cols addition ([e712009](https://github.com/p3ol/oak/commit/e712009b375598db3960902ec3226c1f9ece3502))
+* **react:** add a way to disable the catalog ([11e1fd7](https://github.com/p3ol/oak/commit/11e1fd7b70ca2eadc1c0b8458fa6a1f0c1451c02))
+* **react:** add removable as override option ([1c55cfc](https://github.com/p3ol/oak/commit/1c55cfc114b20e0e85fe6884983e70bffaa752b9))
+* **react:** also disable drag in component option ([2cd2b7b](https://github.com/p3ol/oak/commit/2cd2b7b9b9dd6dac4b40670e86291420e0a5db26))
+
+
+
+
+
 ## [3.14.5](https://github.com/p3ol/oak/compare/v3.14.4...v3.14.5) (2025-10-23)
 
 
