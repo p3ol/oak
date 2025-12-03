@@ -16,9 +16,9 @@ export interface EditableProps
   floatingOptions?: UseFloatingOptions & {
     boundary?: Boundary;
   };
-  onToggle?: (state: { opened: boolean }) => void;
-  setOpened?: (opened: boolean) => void;
   opened?: boolean;
+  setOpened?: (opened: boolean) => void;
+  onToggle?: (state: { opened: boolean }) => void;
 }
 
 export declare interface EditableRef extends OakRef {
