@@ -4,20 +4,25 @@ import {
   type MouseEvent,
   type RefObject,
   useCallback,
+  useMemo,
   useRef,
   useState,
 } from 'react';
 import { type DraggableRef, Draggable, classNames } from '@junipero/react';
-import type { ComponentOptionObject, ElementObject } from '@oakjs/core';
+import type {
+  ComponentOptionObject,
+  ComponentOverride,
+  ElementObject,
+} from '@oakjs/core';
 
 import type { EditableRef } from './Editable';
 import type { ReactComponentOptionObject } from './types';
+import { useBuilder, useElement } from './hooks';
 import Option from './Option';
 import Text from './Text';
-import { useElement } from './hooks';
 
 export interface DragOptionProps extends ComponentPropsWithoutRef<'a'> {
-  element: ElementObject | ElementObject[];
+  element: ElementObject;
   elementInnerRef: RefObject<HTMLElement>;
   editableRef: RefObject<EditableRef>;
 }
@@ -30,6 +35,11 @@ export const DragOption = ({
 }: DragOptionProps) => {
   const optionRef = useRef<DraggableRef>(null);
   const [hasTooltip, setHasTooltip] = useState(true);
+  const { builder } = useBuilder();
+
+  const override = useMemo(() => (
+    builder.getOverride('component', element?.type) as ComponentOverride
+  ), [builder, element]);
 
   const onBeforeDragStart = (e: DragEvent) => {
     setHasTooltip(false);
@@ -64,7 +74,9 @@ export const DragOption = ({
     e.preventDefault();
   };
 
-  return (
+  const canDrag = override?.draggable ?? element?.draggable ?? true;
+
+  return canDrag ? (
     <Draggable
       ref={optionRef}
       onBeforeDragStart={onBeforeDragStart}
@@ -80,7 +92,7 @@ export const DragOption = ({
         tooltipProps={{ disabled: !hasTooltip }}
       />
     </Draggable>
-  );
+  ) : null;
 };
 
 export const dragOption = (): ComponentOptionObject => ({

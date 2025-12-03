@@ -80,6 +80,8 @@ export declare interface ComponentOverrideObject {
   copyable?: boolean;
   draggable?: boolean;
   droppable?: boolean;
+  removable?: boolean;
+  containerEditable?: boolean;
   disallow?: string[];
 }
 
@@ -216,6 +218,8 @@ export declare interface ComponentObject {
   editable?: boolean;
   duplicable?: boolean;
   copyable?: boolean;
+  removable?: boolean;
+  containerEditable?: boolean;
   options?: ComponentOptionObject[];
   settings?: ComponentSettingsFormObject | ComponentSettingsTabObject;
   disallow?: string[];
