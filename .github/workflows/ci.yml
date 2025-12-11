@@ -46,7 +46,7 @@ jobs:
       - name: Test
         run: yarn test
       - name: Codecov upload
-        uses: codecov/codecov-action@v5.5.1
+        uses: codecov/codecov-action@v5.5.2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
   build:
