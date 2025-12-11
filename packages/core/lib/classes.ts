@@ -424,6 +424,7 @@ export class ComponentSettingsTab {
   type: string;
   id: string;
   title: string | GetTextCallback;
+  tab: string;
   priority: number;
   condition: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
@@ -439,6 +440,7 @@ export class ComponentSettingsTab {
 
     this.type = 'tab';
     this.id = props.id;
+    this.tab = props.tab;
     this.priority = props.priority;
     this.title = props.title;
     this.condition = props.condition;
@@ -467,7 +469,6 @@ export class ComponentSettingsField {
   key: string | string[];
   id: string;
   clearable: boolean;
-  placeholder: string | GetTextCallback;
   default: any;
   options: any[];
   label: string | GetTextCallback;
@@ -497,7 +498,6 @@ export class ComponentSettingsField {
     this.tab = props.tab;
     this.key = props.key;
     this.id = props.id;
-    this.placeholder = props.placeholder;
     this.default = props.default;
     this.options = props.options;
     this.label = props.label;
