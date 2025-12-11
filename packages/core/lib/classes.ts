@@ -466,6 +466,7 @@ export class ComponentSettingsField {
   tab: string;
   key: string | string[];
   id: string;
+  clearable: boolean;
   placeholder: string | GetTextCallback;
   default: any;
   options: any[];
@@ -506,6 +507,7 @@ export class ComponentSettingsField {
     this.valueType = props.valueType;
     this.condition = props.condition;
     this.priority = props.priority;
+    this.clearable = props.clearable ?? false;
     this.display = props.display || (v => v);
     this.fields = (props.fields || []).map((
       f: ComponentSettingsFieldObject

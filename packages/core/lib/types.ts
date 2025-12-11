@@ -49,6 +49,7 @@ export declare interface ComponentSettingsFieldKeyTuple {
 
 export declare interface FieldObject {
   type: string;
+  tab?: string;
   props?: object;
   render?(props: any, opts?: any): any; // TODO fix this
   deserialize?(val: string): any;
@@ -186,6 +187,7 @@ export declare interface ComponentSettingsFieldObject {
 export declare interface ComponentSettingsTabObject {
   id: string;
   type?: string;
+  tab?: string;
   priority?: number;
   title?: string | GetTextCallback;
   floatingSettings?: FloatingSettings | (() => FloatingSettings);

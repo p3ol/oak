@@ -145,6 +145,7 @@ const Form = ({
         );
       }
     });
+    console.log(element);
     dispatch({ element: state.element });
     builder.setElement(element.id as string, state.element || {}, { element });
     onSave();
@@ -162,6 +163,83 @@ const Form = ({
     ComponentSettingsTabObject |
     ComponentSettingsFormObject
   )[] = builder.getAvailableSettings();
+
+  const computeTabs = () => tabs
+    .concat(
+      (component.settings?.fields || [])
+        .filter((f: FieldObject) => f.type === 'tab' && f.tab === undefined)
+    )
+    .sort((
+      a: ComponentSettingsTabObject,
+      b: ComponentSettingsTabObject,
+    ) => (b.priority || 0) - (a.priority || 0))
+    .filter((tab: ComponentSettingsTabObject) => {
+      const override = builder.getOverride(
+        'setting', element.type, { setting: { key: tab.id } }
+      ) as SettingOverrideObject;
+
+      const condition = override?.condition || tab.condition;
+
+      return tab.type === 'tab' && tab.tab === undefined && (
+        !condition || condition(state.element, {
+          component, builder,
+        })
+      );
+    })
+    .map((tab: ComponentSettingsTabObject, t) => {
+      const subTabs_: ComponentSettingsTabObject[] =
+        builder.getAvailableSettings() as ComponentSettingsTabObject[];
+      const subtabs = subTabs_.filter(
+        (
+          subtab: ComponentSettingsTabObject
+        ) => subtab.type === 'tab' && subtab.tab ===  tab.id);
+
+      if(subtabs.length === 0) {
+        return {
+          title: <Text>{ tab.title }</Text>,
+          content: (
+            <Tab
+              key={tab.id || t}
+              tab={tab}
+              component={component}
+              element={state.element}
+              overrides={overrides}
+              editableRef={editableRef}
+              onUpdate={onUpdate_}
+              onSettingChange={onSettingChange_}
+              onSettingCustomChange={onSettingCustomChange_}
+            />
+          ),
+        };
+      }
+
+      return {
+        title: <Text>{ tab.title }</Text>,
+        content: (
+          <Tabs
+            tabs={subtabs.map(subtab => {
+              return {
+                title: <Text>{subtab.title}</Text>,
+                content: (
+                  <Tab
+                    key={tab.id || t}
+                    tab={tab}
+                    component={component}
+                    element={state.element}
+                    overrides={overrides}
+                    editableRef={editableRef}
+                    onUpdate={onUpdate_}
+                    onSettingChange={onSettingChange_}
+                    onSettingCustomChange={onSettingCustomChange_}
+                  />
+                ),
+              };
+            })}
+          />
+        ),
+      };
+
+    });
 
   const getContext = useCallback(() => ({
     element: state.element,
@@ -191,46 +269,7 @@ const Form = ({
           ) }
         </div>
         <Tabs
-          tabs={tabs
-            .concat(
-              (component.settings?.fields || [])
-                .filter((f: FieldObject) => f.type === 'tab')
-            )
-            .sort((
-              a: ComponentSettingsTabObject,
-              b: ComponentSettingsTabObject,
-            ) => (b.priority || 0) - (a.priority || 0))
-            .filter((tab: ComponentSettingsTabObject) => {
-              const override = builder.getOverride(
-                'setting', element.type, { setting: { key: tab.id } }
-              ) as SettingOverrideObject;
-
-              const condition = override?.condition ||
-                tab.condition;
-
-              return tab.type === 'tab' && (
-                !condition || condition(state.element, {
-                  component, builder,
-                })
-              );
-            })
-            .map((tab: ComponentSettingsTabObject, t) => ({
-              title: <Text>{ tab.title }</Text>,
-              content: (
-                <Tab
-                  key={tab.id || t}
-                  tab={tab}
-                  component={component}
-                  element={state.element}
-                  overrides={overrides}
-                  editableRef={editableRef}
-                  onUpdate={onUpdate_}
-                  onSettingChange={onSettingChange_}
-                  onSettingCustomChange={onSettingCustomChange_}
-                />
-              ),
-            }))
-          }
+          tabs={computeTabs()}
         />
         <div
           className={classNames(
