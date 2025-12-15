@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.15.1](https://github.com/p3ol/oak/compare/v3.15.0...v3.15.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* upgrade various deps ([fd788d2](https://github.com/p3ol/oak/commit/fd788d2261896a9d58539de29fb10f8cd9fae144))
+
+
+
+
+
 # [3.15.0](https://github.com/p3ol/oak/compare/v3.14.5...v3.15.0) (2025-12-03)
 
 
