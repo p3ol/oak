@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/addon-ckeditor5-react",
-  "version": "3.15.0",
+  "version": "3.15.1",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "type": "module",
   "main": "dist/index.cjs",
