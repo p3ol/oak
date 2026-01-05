@@ -1353,7 +1353,27 @@ export const stylingSettings = (
     },
   ],
 });
-
+export const darkStylingSettings = (
+  props?: ComponentSettingsFieldObject,
+): ComponentSettingsFieldObject[] => ([{
+  id: 'styling',
+  type: 'tab',
+  title: (t: GetTextCallback) => t('core.styling.title', 'Styling'),
+  ...props,
+  fields: [],
+}, {
+  type: 'tab',
+  id: 'default-mode',
+  tab: 'styling',
+  title: 'Default Mode Settings',
+  fields: stylingSettingsFields('styles'),
+},{
+  type: 'tab',
+  id: 'dark-mode',
+  tab: 'styling',
+  title: 'Dark Mode Settings',
+  fields: stylingSettingsFields('styles.dark'),
+}]);
 export const responsiveSettings = (
   props?: ComponentSettingsFieldObject
 ): ComponentSettingsFieldObject => ({
@@ -1549,8 +1569,10 @@ export const baseComponents = (): ComponentObject[] => [
   clickableComponent(),
 ];
 
-export const baseSettings = (): ComponentSettingsFieldObject[] => [
-  stylingSettings(),
+export const baseSettings = (
+  { darkMode = false }: { darkMode?: boolean } = {}
+): ComponentSettingsFieldObject[] => [
+  ...(darkMode ? darkStylingSettings() : [stylingSettings()]),
   responsiveSettings(),
   accessibilitySettings(),
 ];
@@ -1567,8 +1589,10 @@ export const coreComponentsGroup = (
   ...props,
 });
 
-export const baseAddon = (): AddonObject => ({
+export const baseAddon = (
+  { darkMode = false }: { darkMode?: boolean } = {}
+): AddonObject => ({
   components: [coreComponentsGroup()],
   fields: baseFields(),
-  settings: baseSettings(),
+  settings: baseSettings({ darkMode }),
 });
