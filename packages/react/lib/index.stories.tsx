@@ -874,11 +874,24 @@ export const WithStylingGroup = () => {
   return (
     <div>
       <Builder
-        addons={[baseAddon(), {
+        addons={[{
+          components: baseAddon().components,
+          fields: baseAddon().fields,
+          settings: [
+            ...baseAddon().settings.map(e => {if(e.id !== 'styling') return e;
+
+              return { ...e, fields: []};})],
+        }, {
           settings: [{
+            type: 'tab',
+            id: 'default-mode',
+            tab: 'styling',
+            title: 'Default Mode Settings',
+            fields: stylingSettingsFields('styles'),
+          },{
             type: 'group',
             id: 'styling',
-            tab: 'styling',
+            tab: 'default-mode',
             key: 'styles.checked',
             title: 'Styling Settings',
             fields: stylingSettingsFields(),
@@ -892,10 +905,17 @@ export const WithStylingGroup = () => {
             type: 'group',
             id: 'styling',
             tab: 'dark-mode',
-            key: 'styles.checked',
+            key: 'styles.dark.checked',
             title: 'Styling Settings',
-            fields: stylingSettingsFields('styles.dark'),
-          }],
+            fields: stylingSettingsFields(),
+          } ],
+        }]}
+        overrrides={[{
+          type: 'setting',
+          targets: ['*'],
+          id: 'styling',
+          key: 'styling',
+          fields: [],
         }]}
       />
     </div>
