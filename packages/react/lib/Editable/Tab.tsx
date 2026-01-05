@@ -15,17 +15,19 @@ import type {
   FieldObject,
   FieldOverrideObject,
 } from '@oakjs/core';
-import { type FieldContent, cloneDeep, classNames } from '@junipero/react';
+import { type FieldContent, cloneDeep, classNames, Tabs } from '@junipero/react';
 
 import type { EditableRef } from './index';
 import { useBuilder } from '../hooks';
 import Setting from './Setting';
 import SettingsGroup from './SettingsGroup';
+import Text from '../Text';
 
 export interface TabProps extends ComponentPropsWithoutRef<'div'> {
   tab: ComponentSettingsTabObject | ComponentSettingsFieldObject;
   component: ComponentObject;
   element: ElementObject;
+  subtabs?: (ComponentSettingsTabObject | ComponentSettingsFieldObject)[];
   overrides?: ComponentOverride | SettingOverride | FieldOverride;
   editableRef?: RefObject<EditableRef>;
   onSettingChange?(name: string, field: FieldContent): void;
@@ -41,6 +43,7 @@ const Tab = ({
   tab,
   component,
   element,
+  subtabs,
   overrides,
   editableRef,
   className,
@@ -121,6 +124,29 @@ const Tab = ({
             />
           )
         ) }
+      { subtabs && (
+        <Tabs
+          tabs={subtabs.map(subtab => {
+            return {
+
+              title: <Text>{subtab.title}</Text>,
+              content: (
+                <Tab
+                  key={subtab.id}
+                  tab={subtab}
+                  component={component}
+                  element={element}
+                  overrides={overrides}
+                  editableRef={editableRef}
+                  onUpdate={onUpdate}
+                  onSettingChange={onSettingChange}
+                  onSettingCustomChange={onSettingCustomChange}
+                />
+              ),
+            };
+          })}
+        />
+      )}
       { tab?.type === 'tab' &&
         (tab as ComponentSettingsTabObject).renderForm?.({
           element: cloneDeep(element),
