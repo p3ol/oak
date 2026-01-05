@@ -1354,18 +1354,6 @@ export const stylingSettings = (
   ],
 });
 
-export const darkStylingSubSettings = (): ComponentSettingsFieldObject => ({
-  id: 'darkTheme',
-  type: 'tab',
-  tab: 'styling',
-  title: (t: GetTextCallback) => t('core.styling.dark.title', 'Dark'),
-});
-export const defaultStylingSubSettings = (): ComponentSettingsFieldObject => ({
-  id: 'defaultTheme',
-  type: 'tab',
-  tab: 'styling',
-  title: (t: GetTextCallback) => t('core.styling.default.title', 'Default'),
-});
 export const responsiveSettings = (
   props?: ComponentSettingsFieldObject
 ): ComponentSettingsFieldObject => ({
@@ -1563,8 +1551,6 @@ export const baseComponents = (): ComponentObject[] => [
 
 export const baseSettings = (): ComponentSettingsFieldObject[] => [
   stylingSettings(),
-  darkStylingSubSettings(),
-  defaultStylingSubSettings(),
   responsiveSettings(),
   accessibilitySettings(),
 ];

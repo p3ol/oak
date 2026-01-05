@@ -869,3 +869,35 @@ export const WithDisabledDeletion = () => {
     </div>
   );
 };
+
+export const WithStylingGroup = () => {
+  return (
+    <div>
+      <Builder
+        addons={[baseAddon(), {
+          settings: [{
+            type: 'group',
+            id: 'styling',
+            tab: 'styling',
+            key: 'styles.checked',
+            title: 'Styling Settings',
+            fields: stylingSettingsFields(),
+          }, {
+            type: 'tab',
+            id: 'dark-mode',
+            tab: 'styling',
+            title: 'Dark Mode Settings',
+            fields: stylingSettingsFields('styles.dark'),
+          }, {
+            type: 'group',
+            id: 'styling',
+            tab: 'dark-mode',
+            key: 'styles.checked',
+            title: 'Styling Settings',
+            fields: stylingSettingsFields('styles.dark'),
+          }],
+        }]}
+      />
+    </div>
+  );
+};
