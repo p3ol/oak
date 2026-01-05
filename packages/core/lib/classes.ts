@@ -425,6 +425,7 @@ export class ComponentSettingsTab {
   id: string;
   tab: string;
   title: string | GetTextCallback;
+  tab: string;
   priority: number;
   condition: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
@@ -440,6 +441,7 @@ export class ComponentSettingsTab {
 
     this.type = props.type || 'tab';
     this.id = props.id;
+    this.tab = props.tab;
     this.priority = props.priority;
     this.tab = props.tab;
     this.title = props.title;
