@@ -39,7 +39,6 @@ export declare abstract class ISettings {
 
 export default class Settings extends Emitter implements ISettings {
   static TYPE_TAB: string = 'tab';
-  static TYPE_SUBTAB: string = 'subtab';
   static TYPE_SETTING = 'setting';
 
   static SETTINGS_TAB_GENERAL = 'general';
@@ -108,10 +107,8 @@ export default class Settings extends Emitter implements ISettings {
   ) {
 
     if (
-      (
-        (setting as ComponentSettingsFieldObject).type === Settings.TYPE_TAB ||
-        (setting as ComponentSettingsFieldObject).type === Settings.TYPE_SUBTAB
-      ) && !this.hasTab(setting.id)
+      (setting as ComponentSettingsFieldObject).type === Settings.TYPE_TAB &&
+       !this.hasTab(setting.id)
     ) {
       const setting_ = new ComponentSettingsTab(
         setting as ComponentSettingsTabObject
@@ -120,13 +117,6 @@ export default class Settings extends Emitter implements ISettings {
       this.emit('tabs.add', setting);
 
       return;
-    }
-
-    else if (
-      (setting as ComponentSettingsFieldObject).type === Settings.TYPE_SUBTAB &&
-      !this.hasTab(setting.id)
-    ) {
-
     }
 
     const setting_ = new ComponentSettingsField(

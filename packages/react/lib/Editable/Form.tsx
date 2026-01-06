@@ -145,7 +145,6 @@ const Form = ({
         );
       }
     });
-    console.log(element);
     dispatch({ element: state.element });
     builder.setElement(element.id as string, state.element || {}, { element });
     onSave();
