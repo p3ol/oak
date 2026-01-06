@@ -1367,7 +1367,7 @@ export const darkStylingSettings = (
   tab: 'styling',
   title: 'Default Mode Settings',
   fields: stylingSettingsFields('styles'),
-},{
+}, {
   type: 'tab',
   id: 'dark-mode',
   tab: 'styling',
