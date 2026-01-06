@@ -105,10 +105,9 @@ export default class Settings extends Emitter implements ISettings {
     setting: ComponentSettingsTab | ComponentSettingsTabObject |
       ComponentSettingsField | ComponentSettingsFieldObject
   ) {
-
     if (
       (setting as ComponentSettingsFieldObject).type === Settings.TYPE_TAB &&
-       !this.hasTab(setting.id)
+      !this.hasTab(setting.id)
     ) {
       const setting_ = new ComponentSettingsTab(
         setting as ComponentSettingsTabObject
