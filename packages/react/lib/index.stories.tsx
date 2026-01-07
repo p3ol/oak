@@ -6,7 +6,7 @@ import {
 } from '@oakjs/core';
 import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { action } from 'storybook/actions';
-import { Button } from '@junipero/react';
+import { Button, useTimeout } from '@junipero/react';
 
 import Builder, { type BuilderRef } from './Builder';
 import { baseAddon } from './addons';
@@ -829,12 +829,48 @@ export const WithRemovingField = () => {
   );
 };
 
-export const WithDisabledAddition = () => {
+export const ShouldEnableAdminAfter3Seconds = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  useTimeout(() => {
+    setIsAdmin(true);
+  }, 3000, []);
+
+  const myAddon = (opts: any) => ({
+    overrides: !opts.isAdmin ? [{
+      type: 'component',
+      targets: ['*'],
+      copyable: false,
+      duplicable: false,
+      containerEditable: false,
+      removable: false,
+    }]: [],
+  });
+
+  const addons = useMemo(() => {
+    return [baseAddon(), myAddon({ isAdmin })];
+  }, [isAdmin]);
+
   return (
     <div>
       <Builder
         editableType="modal"
         catalogueEnabled={false}
+        value={baseContent}
+        addons={addons}
+        options={{ debug: true }}
+      />
+      <Button onClick={() => setIsAdmin(!isAdmin)}>
+        Toggle Admin (Currently {isAdmin ? 'Admin' : 'Not Admin'})
+      </Button>
+    </div>
+  );
+};
+
+export const WithDisabledAddition = () => {
+  return (
+    <div>
+      <Builder
+        editableType="modal"
         value={baseContent}
         addons={[baseAddon(), {
           overrides: [{
