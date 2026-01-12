@@ -78,7 +78,7 @@ const Tab = ({
         {
           'oak-max-h-[500px] oak-overflow-y-auto': editableType !== 'modal',
         },
-        { 'oak-pt-1': subtabs?.length > 0 },
+        { 'oak-pt-px': subtabs?.length > 0 },
         className,
       )}
     >
