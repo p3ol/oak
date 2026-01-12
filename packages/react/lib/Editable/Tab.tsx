@@ -78,6 +78,7 @@ const Tab = ({
         {
           'oak-max-h-[500px] oak-overflow-y-auto': editableType !== 'modal',
         },
+        { 'oak-pt-1': subtabs?.length > 0 },
         className,
       )}
     >
@@ -86,7 +87,6 @@ const Tab = ({
         .concat(componentOverride?.fields?.filter(f =>
           !component.settings?.fields?.find(s =>
             s.type !== 'tab' &&
-            // @ts-expect-error ts & eslint fuckups
             (s.key === f.key || [].concat(s.key)
               .some(k => [].concat(f.key).includes(k)))
           )
@@ -128,7 +128,6 @@ const Tab = ({
         <Tabs
           tabs={subtabs.map(subtab => {
             return {
-
               title: <Text>{subtab.title}</Text>,
               content: (
                 <Tab
