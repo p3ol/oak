@@ -1362,17 +1362,66 @@ export const darkStylingSettings = (
   ...props,
   fields: [],
 }, {
+  ...stylingSettings(),
   type: 'tab',
-  id: 'default-mode',
+  id: 'styling-default',
   tab: 'styling',
   title: 'Default Mode Settings',
-  fields: stylingSettingsFields('styles'),
 }, {
   type: 'tab',
-  id: 'dark-mode',
+  id: 'styling-dark',
   tab: 'styling',
   title: 'Dark Mode Settings',
-  fields: stylingSettingsFields('styles.dark'),
+  fields: [
+    ...(props?.fields || []),
+    ...stylingSettingsFields('styles.dark'),
+    {
+      label: (t: GetTextCallback) =>
+        t('core.styling.className.title', 'Additional CSS class'),
+      type: 'text',
+      placeholder: 'my-button',
+      key: 'settings.dark.className',
+      priority: 0,
+    },
+    {
+      key: 'styles.dark.hover',
+      type: 'group',
+      label: (t: GetTextCallback) =>
+        t('core.styling.hover.title', 'Hover styles'),
+      condition: (element: ElementObject) =>
+        element?.type === 'button',
+      fields: [
+        ...stylingSettingsFields('styles.dark.hover'),
+        {
+          label: (t: GetTextCallback) =>
+            t('core.styling.hover.className.title', 'Hover CSS class'),
+          type: 'text',
+          placeholder: 'my-button--hover',
+          key: 'settings.dark.hoverClassName',
+          priority: 0,
+        },
+      ],
+    },
+    {
+      key: 'styles.dark.active',
+      type: 'group',
+      label: (t: GetTextCallback) =>
+        t('core.styling.active.title', 'Active styles'),
+      condition: (element: ElementObject) =>
+        element?.type === 'button',
+      fields: [
+        ...stylingSettingsFields('styles.dark.active'),
+        {
+          label: (t: GetTextCallback) =>
+            t('core.styling.active.className.title', 'Active CSS class'),
+          type: 'text',
+          placeholder: 'my-button--active',
+          key: 'settings.activeClassName',
+          priority: 0,
+        },
+      ],
+    },
+  ],
 }]);
 export const responsiveSettings = (
   props?: ComponentSettingsFieldObject
