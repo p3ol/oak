@@ -1366,12 +1366,14 @@ export const darkStylingSettings = (
   type: 'tab',
   id: 'styling-default',
   tab: 'styling',
-  title: 'Default Mode Settings',
+  title: (t: GetTextCallback) =>
+    t('core.styling.theme.default.title', 'Default Mode Settings'),
 }, {
   type: 'tab',
   id: 'styling-dark',
   tab: 'styling',
-  title: 'Dark Mode Settings',
+  title: (t: GetTextCallback) =>
+    t('core.styling.theme.dark.title', 'Dark Mode Settings'),
   fields: [
     ...(props?.fields || []),
     ...stylingSettingsFields('styles.dark'),
