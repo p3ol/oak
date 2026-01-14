@@ -423,6 +423,7 @@ export class ComponentSettingsTab {
 
   type: string;
   id: string;
+  tab: string;
   title: string | GetTextCallback;
   priority: number;
   condition: (element: Element | ElementObject, opts?: {
@@ -437,9 +438,11 @@ export class ComponentSettingsTab {
       throw new Error('ComponentSettingsTab must have an id');
     }
 
-    this.type = 'tab';
+    this.type = props.type || 'tab';
     this.id = props.id;
+    this.tab = props.tab;
     this.priority = props.priority;
+    this.tab = props.tab;
     this.title = props.title;
     this.condition = props.condition;
     this.fields = (props.fields || []).map(f =>
