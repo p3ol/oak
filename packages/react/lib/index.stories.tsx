@@ -4,7 +4,7 @@ import {
   type ComponentSettingsFieldObject,
   type ElementObject,
 } from '@oakjs/core';
-import { Component, type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { action } from 'storybook/actions';
 import { Button } from '@junipero/react';
 
