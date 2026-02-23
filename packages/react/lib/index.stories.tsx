@@ -4,7 +4,7 @@ import {
   type ComponentSettingsFieldObject,
   type ElementObject,
 } from '@oakjs/core';
-import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { Component, type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { action } from 'storybook/actions';
 import { Button } from '@junipero/react';
 
@@ -874,7 +874,23 @@ export const WithStylingGroup = () => {
   return (
     <div>
       <Builder
-        addons={[baseAddon({ darkMode: true })]}
+        addons={[baseAddon({ darkMode: true }),{ settings: [{
+          id: 'styles.dark.checked',
+          key: 'styles.dark.checked',
+          type: 'group',
+          tab: 'styling-dark',
+          label: 'Dark mode - Checked styles',
+          fields: [
+            ...stylingSettingsFields('styles.dark.checked'),
+            {
+              label: 'Checked class name',
+              type: 'text',
+              placeholder: 'my-field--checked',
+              key: 'settings.dark.checkedClassName',
+              priority: 0,
+            },
+          ],
+        }] }]}
       />
     </div>
   );
