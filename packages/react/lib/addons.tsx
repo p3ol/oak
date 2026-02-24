@@ -302,8 +302,10 @@ export const coreComponentsGroup = (): ComponentsGroupObject => ({
   components: baseComponents(),
 });
 
-export const baseAddon = (): AddonObject => ({
-  ...coreAddons.baseAddon(),
+export const baseAddon = (
+  { darkMode }: { darkMode?: boolean } = {}
+): AddonObject => ({
+  ...coreAddons.baseAddon({ darkMode }),
   components: [coreComponentsGroup()],
   fields: baseFields(),
   overrides: [],

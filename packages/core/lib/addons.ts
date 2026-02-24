@@ -1353,7 +1353,78 @@ export const stylingSettings = (
     },
   ],
 });
-
+export const darkStylingSettings = (
+  props?: ComponentSettingsFieldObject,
+): ComponentSettingsFieldObject[] => ([{
+  id: 'styling',
+  type: 'tab',
+  title: (t: GetTextCallback) => t('core.styling.title', 'Styling'),
+  ...props,
+  fields: [],
+}, {
+  ...stylingSettings(),
+  type: 'tab',
+  id: 'styling-default',
+  tab: 'styling',
+  title: (t: GetTextCallback) =>
+    t('core.styling.theme.default.title', 'Default Mode Settings'),
+}, {
+  type: 'tab',
+  id: 'styling-dark',
+  tab: 'styling',
+  title: (t: GetTextCallback) =>
+    t('core.styling.theme.dark.title', 'Dark Mode Settings'),
+  fields: [
+    ...(props?.fields || []),
+    ...stylingSettingsFields('styles.dark'),
+    {
+      label: (t: GetTextCallback) =>
+        t('core.styling.className.title', 'Additional CSS class'),
+      type: 'text',
+      placeholder: 'my-button',
+      key: 'settings.dark.className',
+      priority: 0,
+    },
+    {
+      key: 'styles.dark.hover',
+      type: 'group',
+      label: (t: GetTextCallback) =>
+        t('core.styling.hover.title', 'Hover styles'),
+      condition: (element: ElementObject) =>
+        element?.type === 'button',
+      fields: [
+        ...stylingSettingsFields('styles.dark.hover'),
+        {
+          label: (t: GetTextCallback) =>
+            t('core.styling.hover.className.title', 'Hover CSS class'),
+          type: 'text',
+          placeholder: 'my-button--hover',
+          key: 'settings.dark.hoverClassName',
+          priority: 0,
+        },
+      ],
+    },
+    {
+      key: 'styles.dark.active',
+      type: 'group',
+      label: (t: GetTextCallback) =>
+        t('core.styling.active.title', 'Active styles'),
+      condition: (element: ElementObject) =>
+        element?.type === 'button',
+      fields: [
+        ...stylingSettingsFields('styles.dark.active'),
+        {
+          label: (t: GetTextCallback) =>
+            t('core.styling.active.className.title', 'Active CSS class'),
+          type: 'text',
+          placeholder: 'my-button--active',
+          key: 'settings.activeClassName',
+          priority: 0,
+        },
+      ],
+    },
+  ],
+}]);
 export const responsiveSettings = (
   props?: ComponentSettingsFieldObject
 ): ComponentSettingsFieldObject => ({
@@ -1549,8 +1620,10 @@ export const baseComponents = (): ComponentObject[] => [
   clickableComponent(),
 ];
 
-export const baseSettings = (): ComponentSettingsFieldObject[] => [
-  stylingSettings(),
+export const baseSettings = (
+  { darkMode = false }: { darkMode?: boolean } = {}
+): ComponentSettingsFieldObject[] => [
+  ...(darkMode ? darkStylingSettings() : [stylingSettings()]),
   responsiveSettings(),
   accessibilitySettings(),
 ];
@@ -1567,8 +1640,10 @@ export const coreComponentsGroup = (
   ...props,
 });
 
-export const baseAddon = (): AddonObject => ({
+export const baseAddon = (
+  { darkMode = false }: { darkMode?: boolean } = {}
+): AddonObject => ({
   components: [coreComponentsGroup()],
   fields: baseFields(),
-  settings: baseSettings(),
+  settings: baseSettings({ darkMode }),
 });

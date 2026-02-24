@@ -869,3 +869,13 @@ export const WithDisabledDeletion = () => {
     </div>
   );
 };
+
+export const WithStylingGroup = () => {
+  return (
+    <div>
+      <Builder
+        addons={[baseAddon({ darkMode: true })]}
+      />
+    </div>
+  );
+};
