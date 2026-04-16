@@ -25,7 +25,7 @@
     "uuid": "13.0.0"
   },
   "devDependencies": {
-    "@floating-ui/react": "0.27.16"
+    "@floating-ui/react": "0.27.19"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",

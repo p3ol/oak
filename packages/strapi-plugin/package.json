@@ -21,7 +21,7 @@
     "react-dom": "^17.0.2 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-react": "11.0.0",
+    "@ckeditor/ckeditor5-react": "11.1.2",
     "@oakjs/addon-ckeditor5-react": "^3.15.1",
     "@oakjs/addon-remirror": "^3.15.1",
     "@oakjs/ckeditor5-build-custom": "^3.13.0",
@@ -32,7 +32,7 @@
     "@strapi/design-system": "1.19.0",
     "@strapi/icons": "1.19.0",
     "remirror": "3.0.3",
-    "styled-components": "6.1.19"
+    "styled-components": "6.4.0"
   },
   "strapi": {
     "name": "oak",

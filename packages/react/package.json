@@ -25,10 +25,10 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@floating-ui/react": "0.27.16",
+    "@floating-ui/react": "0.27.19",
     "@junipero/hooks": "3.12.9",
-    "@junipero/react": "3.12.14",
-    "@junipero/transitions": "3.12.15",
+    "@junipero/react": "3.12.17",
+    "@junipero/transitions": "3.12.17",
     "@oakjs/core": "^3.15.0",
     "uuid": "13.0.0"
   },
