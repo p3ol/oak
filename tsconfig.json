@@ -10,6 +10,7 @@
     "types": ["node", "react", "react-dom", "vite/client", "vitest/globals"],
     "module": "esnext",
     "noEmit": true,
+    "strict": false,
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "ES2022"],

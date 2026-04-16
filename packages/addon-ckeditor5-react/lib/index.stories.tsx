@@ -96,7 +96,7 @@ export const WithCustomserializer = () => {
         config: {
           licenseKey: 'GPL',
         },
-      }), {...addon, overrides: [...richAddon.overrides, fieldOveride]}]}
+      }), {...addon, overrides: [...richAddon.overrides || [], fieldOveride]}]}
       value={baseContent}
       rootBoundary={document.documentElement}
       options={{ debug: true }}
