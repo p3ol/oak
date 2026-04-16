@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.15.2](https://github.com/p3ol/oak/compare/v3.15.1...v3.15.2) (2026-04-16)
+
+
+### Bug Fixes
+
+* **addon-ckeditor5:** ckeditor 48 compat ([c308d40](https://github.com/p3ol/oak/commit/c308d40c4b9a5cf15118eb124c85188770f13de4))
+
+
+
+
+
 ## [3.15.1](https://github.com/p3ol/oak/compare/v3.15.0...v3.15.1) (2025-12-15)
 
 **Note:** Version bump only for package @oakjs/addon-ckeditor5-react
