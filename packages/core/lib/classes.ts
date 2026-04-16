@@ -15,6 +15,7 @@ import type {
   ComponentSettingsFieldKeyTuple,
   GetTextCallback,
   ComponentSettingsFieldOptionObject,
+  GetTextShallowCallback,
 } from './types';
 
 export class BuilderOptions {
@@ -47,7 +48,7 @@ export class Component {
   duplicate: (elmt?: ElementObject) => ElementObject;
   icon: any;
   getContainers: (element: ElementObject) => ElementObject[][];
-  name: string | GetTextCallback;
+  name: string | GetTextCallback | GetTextShallowCallback;
   hasCustomInnerContent: boolean;
   draggable: boolean;
   droppable: boolean;
@@ -136,7 +137,7 @@ export class ComponentsGroup {
 
   type: string;
   id: string;
-  name: string | GetTextCallback;
+  name: string | GetTextCallback | GetTextShallowCallback;
   usable: boolean;
   components: Component[];
 
@@ -314,11 +315,11 @@ export class SettingOverride extends Override {
   key: string | string[] | ComponentSettingsFieldKeyTuple[];
   targets: string[];
   id: string;
-  placeholder: string | GetTextCallback;
+  placeholder: string | GetTextCallback | GetTextShallowCallback;
   default: any;
   options: ComponentSettingsFieldOptionObject[];
-  label: string | GetTextCallback;
-  description: string | GetTextCallback;
+  label: string | GetTextCallback | GetTextShallowCallback;
+  description: string | GetTextCallback | GetTextShallowCallback;
   displayable: boolean;
   fieldType: string;
   valueType: string;
@@ -328,7 +329,7 @@ export class SettingOverride extends Override {
   priority: number;
   fields?: ComponentSettingsFieldObject[];
   props: object;
-  info: string | GetTextCallback;
+  info: string | GetTextCallback | GetTextShallowCallback;
 
   constructor (props: SettingOverrideObject) {
     super();
@@ -397,7 +398,7 @@ export class ComponentOption {
 }
 
 export class ComponentSettingsForm {
-  title: string | GetTextCallback;
+  title: string | GetTextCallback | GetTextShallowCallback;
   floatingSettings: any;
   defaults: object;
   fields: (ComponentSettingsField | ComponentSettingsTab)[];
@@ -423,7 +424,7 @@ export class ComponentSettingsTab {
 
   type: string;
   id: string;
-  title: string | GetTextCallback;
+  title: string | GetTextCallback | GetTextShallowCallback;
   priority: number;
   condition: (element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
@@ -466,12 +467,12 @@ export class ComponentSettingsField {
   tab: string;
   key: string | string[];
   id: string;
-  placeholder: string | GetTextCallback;
+  placeholder: string | GetTextCallback | GetTextShallowCallback;
   default: any;
   options: any[];
-  label: string | GetTextCallback;
-  info: string | GetTextCallback;
-  description: string | GetTextCallback;
+  label: string | GetTextCallback | GetTextShallowCallback;
+  info: string | GetTextCallback | GetTextShallowCallback;
+  description: string | GetTextCallback | GetTextShallowCallback;
   displayable: boolean | ((element: Element | ElementObject, opts?: {
     component: Component | ComponentObject;
     builder: Builder;

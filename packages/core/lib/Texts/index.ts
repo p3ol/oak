@@ -27,7 +27,7 @@ export declare abstract class ITexts {
   setActiveSheet (id: string): void;
 
   /** Retrieves a text from the current active sheet */
-  get (key: string | GetTextCallback, def?: any): any;
+  get: GetTextCallback;
 
   /** Updates a text key in the current active sheet */
   set (key: string, value: any): void;

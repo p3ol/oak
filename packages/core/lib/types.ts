@@ -10,6 +10,7 @@ import type { Component, ComponentOverride } from './classes';
 import type Builder from './Builder';
 
 export type GetTextCallback = (key: string | GetTextCallback, def?: any) => any;
+export type GetTextShallowCallback = (t: GetTextCallback) => any;
 
 export declare type EmitterCallback = (...args: any[]) => void;
 
@@ -108,11 +109,11 @@ export declare interface SettingOverrideObject {
   targets?: string[];
   key?: string | string[] | ComponentSettingsFieldKeyTuple[];
   id?: string;
-  label?: string | GetTextCallback;
-  title?: string | GetTextCallback;
-  info?: string | GetTextCallback;
-  description?: string | GetTextCallback;
-  placeholder?: string | GetTextCallback;
+  label?: string | GetTextCallback | GetTextShallowCallback;
+  title?: string | GetTextCallback | GetTextShallowCallback;
+  info?: string | GetTextCallback | GetTextShallowCallback;
+  description?: string | GetTextCallback | GetTextShallowCallback;
+  placeholder?: string | GetTextCallback | GetTextShallowCallback;
   default?: ComponentSettingDefaultValue;
   displayable?: boolean;
   fieldType?: string;
@@ -133,7 +134,7 @@ export declare interface SettingOverrideObject {
 
 export declare interface ComponentSettingsFieldOptionObject {
   value?: any;
-  title?: string | GetTextCallback;
+  title?: string | GetTextCallback | GetTextShallowCallback;
   imageTransformation?: {
     width: number;
     height: number;
@@ -156,11 +157,11 @@ export declare interface ComponentSettingsFieldObject {
   key?: string | string[];
   tab?: string;
   id?: string;
-  label?: string | GetTextCallback;
-  info?: string | GetTextCallback;
-  description?: string | GetTextCallback;
-  title?: string | GetTextCallback;
-  placeholder?: string | GetTextCallback;
+  label?: string | GetTextCallback | GetTextShallowCallback;
+  info?: string | GetTextCallback | GetTextShallowCallback;
+  description?: string | GetTextCallback | GetTextShallowCallback;
+  title?: string | GetTextCallback | GetTextShallowCallback;
+  placeholder?: string | GetTextCallback | GetTextShallowCallback;
   default?: ComponentSettingDefaultValue;
   options?: ComponentSettingsFieldOptionObject[] | Record<string, any>[];
   displayable?: boolean | ((element: Element | ElementObject, opts?: {
@@ -170,8 +171,8 @@ export declare interface ComponentSettingsFieldObject {
   valueType?: string;
   fields?: ComponentSettingsFieldObject[];
   props?: Record<string, any>;
-  checkedLabel?: string | GetTextCallback;
-  uncheckedLabel?: string | GetTextCallback;
+  checkedLabel?: string | GetTextCallback | GetTextShallowCallback;
+  uncheckedLabel?: string | GetTextCallback | GetTextShallowCallback;
   parseTitle?(value: any): string;
   parseValue?(value: any): any;
   condition?(element: Element | ElementObject, opts?: {
@@ -187,7 +188,7 @@ export declare interface ComponentSettingsTabObject {
   id: string;
   type?: string;
   priority?: number;
-  title?: string | GetTextCallback;
+  title?: string | GetTextCallback | GetTextShallowCallback;
   floatingSettings?: FloatingSettings | (() => FloatingSettings);
   fields?: (ComponentSettingsFieldObject)[];
   condition?(element: Element | ElementObject, opts?: {
@@ -198,7 +199,7 @@ export declare interface ComponentSettingsTabObject {
 }
 
 export declare class ComponentSettingsFormObject {
-  title?: string | GetTextCallback;
+  title?: string | GetTextCallback | GetTextShallowCallback;
   floatingSettings?: FloatingSettings | (() => FloatingSettings);
   defaults?: any;
   fields?: (
@@ -212,7 +213,7 @@ export declare interface ComponentObject {
   id?: string;
   group?: string;
   icon?: any;
-  name?: string | GetTextCallback;
+  name?: string | GetTextCallback | GetTextShallowCallback;
   hasCustomInnerContent?: boolean;
   draggable?: boolean;
   droppable?: boolean;
@@ -245,7 +246,7 @@ export declare interface ComponentObject {
 export declare interface ComponentsGroupObject {
   type: string;
   id: string;
-  name: string | GetTextCallback;
+  name: string | GetTextCallback | GetTextShallowCallback;
   usable?: boolean;
   components: (ComponentObject)[];
 }
@@ -257,7 +258,7 @@ export declare interface TextsSheetObject {
 
 export declare interface ComponentTabOject {
   id: string;
-  title: string | GetTextCallback;
+  title: string | GetTextCallback | GetTextShallowCallback;
   components: (Component | ComponentObject)[];
 }
 

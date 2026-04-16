@@ -1,11 +1,11 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
-import type { GetTextCallback } from '@oakjs/core';
+import type { GetTextCallback, GetTextShallowCallback } from '@oakjs/core';
 
 import { useBuilder } from '../hooks';
 
 export interface TextProps extends ComponentPropsWithoutRef<any> {
-  children?: ReactNode | GetTextCallback;
-  name?: string | GetTextCallback;
+  children?: ReactNode | GetTextCallback | GetTextShallowCallback;
+  name?: string | GetTextCallback | GetTextShallowCallback;
   default?: ReactNode;
 }
 

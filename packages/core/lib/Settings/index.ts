@@ -2,6 +2,7 @@ import type {
   ComponentSettingsTabObject,
   ComponentSettingsFieldObject,
   ElementObject,
+  GetTextCallback,
 } from '../types';
 import {
   ComponentSettingsTab,
@@ -55,9 +56,7 @@ export default class Settings extends Emitter implements ISettings {
     this.#tabs = [new ComponentSettingsTab({
       type: Settings.TYPE_TAB,
       id: Settings.SETTINGS_TAB_GENERAL,
-      title: (
-        t: (key: string, def: string) => string
-      ) => t('core.settings.title', 'Settings'),
+      title: (t: GetTextCallback) => t('core.settings.title', 'Settings'),
       fields: [],
     })];
   }
