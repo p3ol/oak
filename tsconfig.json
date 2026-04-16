@@ -6,7 +6,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
-    "baseUrl": ".",
     "resolveJsonModule": true,
     "types": ["node", "react", "react-dom", "vite/client", "vitest/globals"],
     "module": "esnext",

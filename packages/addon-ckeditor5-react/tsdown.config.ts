@@ -9,13 +9,16 @@ export default defineConfig([
     format: ['cjs', 'esm'],
     target: pkg.targets,
     platform: 'browser',
-    external: [
-      'react',
-      'react-dom',
-      '@oakjs/react',
-      'ckeditor5',
-      '@ckeditor/ckeditor5-react',
-    ],
+    deps: {
+      neverBundle: [
+        'react',
+        'react-dom',
+        '@oakjs/react',
+        'ckeditor5',
+        '@ckeditor/ckeditor5-react',
+        '@ckeditor/ckeditor5-icons',
+      ],
+    },
     loader: {
       '.svg': 'text',
     },
