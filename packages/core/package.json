@@ -21,8 +21,8 @@
     "node": ">= 20"
   },
   "dependencies": {
-    "@junipero/core": "3.12.3",
-    "uuid": "13.0.0"
+    "@junipero/core": "3.12.19",
+    "uuid": "14.0.0"
   },
   "devDependencies": {
     "@floating-ui/react": "0.27.19"

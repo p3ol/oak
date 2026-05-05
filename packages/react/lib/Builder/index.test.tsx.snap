@@ -368,7 +368,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center option oak-drag-handle draggable"
+            class="option oak-flex oak-items-center oak-justify-center draggable option oak-drag-handle"
             draggable="true"
             href="#"
           >
@@ -514,7 +514,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
         </div>
       </div>
       <div
-        class="oak element oak-flex-none type-text draggable"
+        class="draggable oak element oak-flex-none type-text"
         draggable="true"
       >
         <div
@@ -645,7 +645,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
                   class="col-content oak-flex oak-flex-col oak-gap-4"
                 >
                   <div
-                    class="oak element oak-flex-none type-title draggable"
+                    class="draggable oak element oak-flex-none type-title"
                     draggable="true"
                   >
                     <div
@@ -854,7 +854,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center option oak-drag-handle draggable"
+            class="option oak-flex oak-items-center oak-justify-center draggable option oak-drag-handle"
             draggable="true"
             href="#"
           >
@@ -1086,7 +1086,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
             class="col-content oak-flex oak-flex-col oak-gap-4"
           >
             <div
-              class="oak element oak-flex-none type-title draggable"
+              class="draggable oak element oak-flex-none type-title"
               draggable="true"
             >
               <div
@@ -1295,7 +1295,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
       </i>
     </a>
     <a
-      class="option oak-flex oak-items-center oak-justify-center option oak-drag-handle draggable"
+      class="option oak-flex oak-items-center oak-justify-center draggable option oak-drag-handle"
       draggable="true"
       href="#"
     >
@@ -1393,7 +1393,7 @@ exports[`<Builder /> > should allow to add content programmatically > Content wi
           </div>
         </div>
         <div
-          class="oak element oak-flex-none type-title draggable"
+          class="draggable oak element oak-flex-none type-title"
           draggable="true"
         >
           <div
@@ -1885,7 +1885,7 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
         </div>
       </div>
       <div
-        class="oak element oak-flex-none type-title draggable"
+        class="draggable oak element oak-flex-none type-title"
         draggable="true"
       >
         <div
@@ -2040,7 +2040,7 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
       class="floatings"
     >
       <div
-        class="junipero modal opened panel editable jp-slide-in-left-modal-enter"
+        class="jp-slide-in-left-modal-enter junipero modal opened panel editable"
       >
         <div
           class="wrapper"
@@ -2122,7 +2122,7 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
                           id="junipero-select-field-_r_24_"
                         >
                           <div
-                            class="field dropdown-toggle"
+                            class="dropdown-toggle field"
                             id="junipero-select-field-_r_24_-toggle"
                           >
                             <input
@@ -2259,7 +2259,7 @@ exports[`<Builder /> > should render > Base content 1`] = `
         </div>
       </div>
       <div
-        class="oak element oak-flex-none type-title draggable"
+        class="draggable oak element oak-flex-none type-title"
         draggable="true"
       >
         <div
@@ -2362,7 +2362,7 @@ exports[`<Builder /> > should render > Base content 1`] = `
         </div>
       </div>
       <div
-        class="oak element oak-flex-none type-text draggable"
+        class="draggable oak element oak-flex-none type-text"
         draggable="true"
       >
         <div
@@ -2633,7 +2633,7 @@ exports[`<Builder /> > shouldn't display any option to remove an element > Remov
         </div>
       </div>
       <div
-        class="oak element oak-flex-none type-title draggable"
+        class="draggable oak element oak-flex-none type-title"
         draggable="true"
       >
         <div
@@ -2950,7 +2950,7 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center option oak-drag-handle draggable"
+            class="option oak-flex oak-items-center oak-justify-center draggable option oak-drag-handle"
             draggable="true"
             href="#"
           >
