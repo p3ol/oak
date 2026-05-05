@@ -5,8 +5,8 @@
  */
 const config = {
   plugins: {
-    autoprefixer: {},
     tailwindcss: {},
+    autoprefixer: {},
   },
 };
 

@@ -21,7 +21,7 @@
     "node": ">= 20"
   },
   "dependencies": {
-    "@junipero/core": "3.12.19",
+    "@junipero/core": "3.12.20",
     "uuid": "14.0.0"
   },
   "devDependencies": {
