@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.15.3](https://github.com/p3ol/oak/compare/v3.15.2...v3.15.3) (2026-05-05)
+
+
+### Bug Fixes
+
+* junipero tailwind plugin ([d700ea2](https://github.com/p3ol/oak/commit/d700ea24008e5ff252f25f281921cc96fe8da081))
+* upgrade various deps ([30b92a6](https://github.com/p3ol/oak/commit/30b92a64d1d3b96ffd9364f433b5c72e20c11cd4))
+* various type issues ([32edc7e](https://github.com/p3ol/oak/commit/32edc7e62a8301f3e2cc5d9d6273249a0ae2f094))
+
+
+
+
+
 ## [3.15.2](https://github.com/p3ol/oak/compare/v3.15.1...v3.15.2) (2026-04-16)
 
 
