@@ -2253,13 +2253,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/tailwind-plugin@npm:3.12.20":
-  version: 3.12.20
-  resolution: "@junipero/tailwind-plugin@npm:3.12.20"
+"@junipero/tailwind-plugin@npm:3.12.21":
+  version: 3.12.21
+  resolution: "@junipero/tailwind-plugin@npm:3.12.21"
   peerDependencies:
     "@junipero/core": ^3.0.0
     tailwindcss: ^3.0.0
-  checksum: 10/4f2ca126d59240a85566c56db5d7914782d7a01ad8c16bc418a30b65b65ef3f79f3ece6f32244db0967abdfc2cc907f042f2e82400d3d89281aba847e1f4ff65
+  checksum: 10/949adfe68fd13e4bbb3e55d9bae44013d88c3aa59d0dc3df9bb051850c2ec35d4afa282526d7ab93526a6c67e7b681d359cfc983a670f1b152be2d2f6f5dc186
   languageName: node
   linkType: hard
 
@@ -15083,7 +15083,7 @@ __metadata:
   dependencies:
     "@ckeditor/ckeditor5-react": "npm:11.1.2"
     "@junipero/core": "npm:3.12.20"
-    "@junipero/tailwind-plugin": "npm:3.12.20"
+    "@junipero/tailwind-plugin": "npm:3.12.21"
     "@percy/storybook": "npm:10.0.0"
     "@poool/eslint-config": "npm:5.0.10"
     "@poool/eslint-config-react": "npm:5.0.10"
