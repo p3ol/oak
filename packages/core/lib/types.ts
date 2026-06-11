@@ -321,3 +321,7 @@ export declare interface FieldContent<T = any> {
 }
 
 export type EventCallback = (eventName: string, ...args: any[]) => void;
+
+export declare interface BaseSettingsOptions {
+  darkMode?: boolean;
+}

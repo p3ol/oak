@@ -22,6 +22,7 @@ import {
   Tabs,
   classNames,
   cloneDeep,
+  exists,
   get,
   mockState,
   set,
@@ -161,7 +162,7 @@ const Form = ({
   const computeTabs = () => tabs
     .concat(
       (component.settings?.fields || [])
-        .filter((f: FieldObject) => f.type === 'tab' && f.tab === undefined)
+        .filter((f: FieldObject) => f.type === 'tab' && !exists(f.tab))
     )
     .sort((
       a: ComponentSettingsTabObject,
@@ -174,7 +175,7 @@ const Form = ({
 
       const condition = override?.condition || tab.condition;
 
-      return tab.type === 'tab' && tab.tab === undefined && (
+      return tab.type === 'tab' && !exists(tab.tab) && (
         !condition || condition(state.element, {
           component, builder,
         })
@@ -186,7 +187,7 @@ const Form = ({
       const subtabs = subTabs_.filter(
         (
           subtab: ComponentSettingsTabObject
-        ) => subtab.type === 'tab' && subtab.tab ===  tab.id);
+        ) => subtab.type === 'tab' && subtab.tab === tab.id);
 
       return {
         title: <Text>{ tab.title }</Text>,

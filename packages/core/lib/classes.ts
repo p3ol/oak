@@ -440,7 +440,6 @@ export class ComponentSettingsTab {
 
     this.type = props.type || 'tab';
     this.id = props.id;
-    this.tab = props.tab;
     this.priority = props.priority;
     this.tab = props.tab;
     this.title = props.title;

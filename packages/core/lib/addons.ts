@@ -2,6 +2,7 @@ import { get } from '@junipero/core';
 
 import type {
   AddonObject,
+  BaseSettingsOptions,
   ComponentObject,
   ComponentSettingsFieldObject,
   ComponentSettingsFieldOptionObject,
@@ -1425,6 +1426,7 @@ export const darkStylingSettings = (
     },
   ],
 }]);
+
 export const responsiveSettings = (
   props?: ComponentSettingsFieldObject
 ): ComponentSettingsFieldObject => ({
@@ -1621,7 +1623,7 @@ export const baseComponents = (): ComponentObject[] => [
 ];
 
 export const baseSettings = (
-  { darkMode = false }: { darkMode?: boolean } = {}
+  { darkMode = false }: BaseSettingsOptions = {}
 ): ComponentSettingsFieldObject[] => [
   ...(darkMode ? darkStylingSettings() : [stylingSettings()]),
   responsiveSettings(),

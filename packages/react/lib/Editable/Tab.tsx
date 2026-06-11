@@ -18,9 +18,9 @@ import type {
 import { type FieldContent, cloneDeep, classNames, Tabs } from '@junipero/react';
 
 import type { EditableRef } from './index';
-import { useBuilder } from '../hooks';
 import Setting from './Setting';
 import SettingsGroup from './SettingsGroup';
+import { useBuilder } from '../hooks';
 import Text from '../Text';
 
 export interface TabProps extends ComponentPropsWithoutRef<'div'> {
@@ -77,8 +77,8 @@ const Tab = ({
         'fields oak-py-2 oak-flex oak-flex-col oak-gap-4',
         {
           'oak-max-h-[500px] oak-overflow-y-auto': editableType !== 'modal',
+          'oak-pt-px': subtabs?.length > 0,
         },
-        { 'oak-pt-px': subtabs?.length > 0 },
         className,
       )}
     >
@@ -86,8 +86,7 @@ const Tab = ({
         // Append fields that are only defined inside the component override
         .concat(componentOverride?.fields?.filter(f =>
           !component.settings?.fields?.find(s =>
-            s.type !== 'tab' &&
-            (
+            s.type !== 'tab' && (
               (s as ComponentSettingsFieldObject).key === f.key ||
               [].concat((s as ComponentSettingsFieldObject).key)
                 .some(k => [].concat(f.key).includes(k)))
@@ -128,24 +127,22 @@ const Tab = ({
         ) }
       { subtabs && (
         <Tabs
-          tabs={subtabs.map(subtab => {
-            return {
-              title: <Text>{subtab.title}</Text>,
-              content: (
-                <Tab
-                  key={subtab.id}
-                  tab={subtab}
-                  component={component}
-                  element={element}
-                  overrides={overrides}
-                  editableRef={editableRef}
-                  onUpdate={onUpdate}
-                  onSettingChange={onSettingChange}
-                  onSettingCustomChange={onSettingCustomChange}
-                />
-              ),
-            };
-          })}
+          tabs={subtabs.map(subtab => ({
+            title: <Text>{subtab.title}</Text>,
+            content: (
+              <Tab
+                key={subtab.id}
+                tab={subtab}
+                component={component}
+                element={element}
+                overrides={overrides}
+                editableRef={editableRef}
+                onUpdate={onUpdate}
+                onSettingChange={onSettingChange}
+                onSettingCustomChange={onSettingCustomChange}
+              />
+            ),
+          }))}
         />
       )}
       { tab?.type === 'tab' &&

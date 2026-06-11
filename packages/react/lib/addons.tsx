@@ -17,6 +17,7 @@ import { slideInDownMenu } from '@junipero/transitions';
 import * as coreAddons from '@oakjs/core/addons';
 
 import type {
+  BaseAddonOptions,
   CommonFieldProps,
   ReactComponentObject,
   ReactFieldObject,
@@ -303,7 +304,7 @@ export const coreComponentsGroup = (): ComponentsGroupObject => ({
 });
 
 export const baseAddon = (
-  { darkMode }: { darkMode?: boolean } = {}
+  { darkMode }: BaseAddonOptions = {}
 ): AddonObject => ({
   ...coreAddons.baseAddon({ darkMode }),
   components: [coreComponentsGroup()],

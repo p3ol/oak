@@ -121,6 +121,7 @@ export default class Builder extends Emitter {
     addon.overrides?.forEach(override => {
       this.#overrides.add(override);
     });
+
     addon.settings?.forEach(setting => {
       this.#settings.add(setting);
     });
