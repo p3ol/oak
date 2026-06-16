@@ -27,7 +27,6 @@ const compile = async ({ input, output }: CompileOptions) => {
     ],
   });
 
-  // @ts-expect-error postcss shenanigans
   const { css: prefixedCss } = await postcss([
     tailwindcss({
       config: path.resolve(__dirname, '../tailwind.config.ts'),
