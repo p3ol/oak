@@ -9,9 +9,11 @@ export default defineConfig([
     target: pkg.targets,
     format: ['cjs', 'esm'],
     platform: 'neutral',
-    external: [
-      '@junipero/core',
-    ],
+    deps: {
+      neverBundle: [
+        '@junipero/core',
+      ],
+    },
     sourcemap: true,
     dts: false,
   },

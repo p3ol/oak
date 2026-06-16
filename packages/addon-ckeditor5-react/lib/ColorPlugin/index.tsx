@@ -6,7 +6,7 @@ import {
   FontColorCommand,
   createDropdown,
 } from 'ckeditor5';
-import icon from '@ckeditor/ckeditor5-icons/theme/icons/font-color.svg';
+import { IconFontColor } from '@ckeditor/ckeditor5-icons';
 
 import type { Editor } from '../Editor';
 import Field from './Field';
@@ -73,16 +73,20 @@ export default class ColorPlugin extends Plugin {
       dropdown.buttonView.set({
         label: 'Color',
         tooltip: true,
-        icon,
+        icon: IconFontColor,
       });
 
       let root: Root;
       dropdown.panelView.on('render', async () => {
+        if (!dropdown.panelView.element) {
+          return;
+        }
+
         root = await this.createReactRoot(dropdown.panelView.element);
       });
 
       dropdown.buttonView.on('open', () => {
-        dropdown.buttonView.label = null;
+        dropdown.buttonView.label = undefined;
       });
 
       dropdown.on('change:isOpen', () => {

@@ -11,6 +11,7 @@ import type {
   ElementObject,
   FieldObject,
   GetTextCallback,
+  GetTextShallowCallback,
 } from './types';
 import Builder from './Builder';
 
@@ -243,7 +244,7 @@ const COL_SIZES = Array.from({ length: 12 }).map((_, i) => ({
 })).reverse();
 
 const COL_RESPONSIVE_SETTINGS: {
-  title: string | GetTextCallback;
+  title: string | GetTextCallback | GetTextShallowCallback;
   value: string | number
 }[] = [{
   title: (t: GetTextCallback) => t('core.responsive.fluid', 'Flexible'),

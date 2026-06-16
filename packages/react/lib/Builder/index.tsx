@@ -1,6 +1,7 @@
+import type { Maybe } from '@junipero/core';
 import {
   type RefObject,
-  type FormEvent,
+  type ChangeEvent,
   useCallback,
   useRef,
   useImperativeHandle,
@@ -53,14 +54,14 @@ export declare interface BuilderProps
   rootBoundary?: RefObject<any> | string | Element | DocumentFragment;
   topHistoryButtonsContainer?: string | HTMLElement | DocumentFragment;
   topHistoryButtonsEnabled?: boolean;
-  value?: ElementObject[];
+  value?: Maybe<ElementObject[]>;
   catalogueEnabled?: boolean;
   polyfills?: {
     DOMParser: typeof DOMParser;
     XMLSerializer: typeof XMLSerializer;
   };
   onChange?(content: ElementObject[]): void;
-  onImageUpload?(event: FormEvent, opts: {
+  onImageUpload?(event: ChangeEvent<HTMLInputElement>, opts: {
     element?: ElementObject;
     setting?: ComponentSettingsFieldObject;
   }): ImageUploadCallbackResult | Promise<ImageUploadCallbackResult>;

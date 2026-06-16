@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.15.3](https://github.com/p3ol/oak/compare/v3.15.2...v3.15.3) (2026-05-05)
+
+
+### Bug Fixes
+
+* upgrade various deps ([30b92a6](https://github.com/p3ol/oak/commit/30b92a64d1d3b96ffd9364f433b5c72e20c11cd4))
+* various type issues ([32edc7e](https://github.com/p3ol/oak/commit/32edc7e62a8301f3e2cc5d9d6273249a0ae2f094))
+
+
+
+
+
+## [3.15.2](https://github.com/p3ol/oak/compare/v3.15.1...v3.15.2) (2026-04-16)
+
+
+### Bug Fixes
+
+* **types:** allow for shallow get text callbacks ([b50444f](https://github.com/p3ol/oak/commit/b50444ffba04655f6a8aea07ab2427f78b59b857))
+* upgrade various deps ([40d3f4d](https://github.com/p3ol/oak/commit/40d3f4dee968f4bebd2495ae917af21944e999e0))
+
+
+
+
+
 # [3.15.0](https://github.com/p3ol/oak/compare/v3.14.5...v3.15.0) (2025-12-03)
 
 
