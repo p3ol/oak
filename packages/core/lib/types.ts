@@ -50,6 +50,7 @@ export declare interface ComponentSettingsFieldKeyTuple {
 export declare interface FieldObject {
   type: string;
   props?: object;
+  tab?: string;
   render?(props: any, opts?: any): any; // TODO fix this
   deserialize?(val: string): any;
   onChange?<T = any>(
@@ -187,6 +188,7 @@ export declare interface ComponentSettingsTabObject {
   id: string;
   type?: string;
   priority?: number;
+  tab?: string;
   title?: string | GetTextCallback;
   floatingSettings?: FloatingSettings | (() => FloatingSettings);
   fields?: (ComponentSettingsFieldObject)[];
@@ -319,3 +321,7 @@ export declare interface FieldContent<T = any> {
 }
 
 export type EventCallback = (eventName: string, ...args: any[]) => void;
+
+export declare interface BaseSettingsOptions {
+  darkMode?: boolean;
+}

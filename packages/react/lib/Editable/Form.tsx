@@ -22,6 +22,7 @@ import {
   Tabs,
   classNames,
   cloneDeep,
+  exists,
   get,
   mockState,
   set,
@@ -158,6 +159,56 @@ const Form = ({
     onCancel();
   };
 
+  const computeTabs = () => tabs
+    .concat(
+      (component.settings?.fields || [])
+        .filter((f: FieldObject) => f.type === 'tab' && !exists(f.tab))
+    )
+    .sort((
+      a: ComponentSettingsTabObject,
+      b: ComponentSettingsTabObject,
+    ) => (b.priority || 0) - (a.priority || 0))
+    .filter((tab: ComponentSettingsTabObject) => {
+      const override = builder.getOverride(
+        'setting', element.type, { setting: { key: tab.id } }
+      ) as SettingOverrideObject;
+
+      const condition = override?.condition || tab.condition;
+
+      return tab.type === 'tab' && !exists(tab.tab) && (
+        !condition || condition(state.element, {
+          component, builder,
+        })
+      );
+    })
+    .map((tab: ComponentSettingsTabObject, t) => {
+      const subTabs_: ComponentSettingsTabObject[] =
+        builder.getAvailableSettings() as ComponentSettingsTabObject[];
+      const subtabs = subTabs_.filter(
+        (
+          subtab: ComponentSettingsTabObject
+        ) => subtab.type === 'tab' && subtab.tab === tab.id);
+
+      return {
+        title: <Text>{ tab.title }</Text>,
+        content: (
+          <Tab
+            key={tab.id || t}
+            tab={tab}
+            component={component}
+            element={state.element}
+            overrides={overrides}
+            editableRef={editableRef}
+            subtabs={subtabs.length > 0 ? subtabs : undefined}
+            onUpdate={onUpdate_}
+            onSettingChange={onSettingChange_}
+            onSettingCustomChange={onSettingCustomChange_}
+          />
+        ),
+      };
+
+    });
+
   const tabs: (
     ComponentSettingsTabObject |
     ComponentSettingsFormObject
@@ -191,46 +242,7 @@ const Form = ({
           ) }
         </div>
         <Tabs
-          tabs={tabs
-            .concat(
-              (component.settings?.fields || [])
-                .filter((f: FieldObject) => f.type === 'tab')
-            )
-            .sort((
-              a: ComponentSettingsTabObject,
-              b: ComponentSettingsTabObject,
-            ) => (b.priority || 0) - (a.priority || 0))
-            .filter((tab: ComponentSettingsTabObject) => {
-              const override = builder.getOverride(
-                'setting', element.type, { setting: { key: tab.id } }
-              ) as SettingOverrideObject;
-
-              const condition = override?.condition ||
-                tab.condition;
-
-              return tab.type === 'tab' && (
-                !condition || condition(state.element, {
-                  component, builder,
-                })
-              );
-            })
-            .map((tab: ComponentSettingsTabObject, t) => ({
-              title: <Text>{ tab.title }</Text>,
-              content: (
-                <Tab
-                  key={tab.id || t}
-                  tab={tab}
-                  component={component}
-                  element={state.element}
-                  overrides={overrides}
-                  editableRef={editableRef}
-                  onUpdate={onUpdate_}
-                  onSettingChange={onSettingChange_}
-                  onSettingCustomChange={onSettingCustomChange_}
-                />
-              ),
-            }))
-          }
+          tabs={computeTabs()}
         />
         <div
           className={classNames(

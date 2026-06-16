@@ -7,6 +7,7 @@ import type {
 } from 'react';
 import type {
   AddonObject,
+  BaseSettingsOptions,
   Builder,
   ComponentObject,
   ComponentOptionObject,
@@ -142,3 +143,5 @@ export declare interface ReactAddonObject extends AddonObject {
 
 export declare type SerializeMethod =
   ({key: string, method: (data: any) => any});
+
+export declare interface BaseAddonOptions extends BaseSettingsOptions {}
