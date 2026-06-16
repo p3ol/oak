@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.16.0](https://github.com/p3ol/oak/compare/v3.15.3...v3.16.0) (2026-06-16)
+
+
+### Bug Fixes
+
+* upgrade various deps ([77c8817](https://github.com/p3ol/oak/commit/77c8817d6b4d11522e6caea6fff814e39f712c0c))
+
+
+### Features
+
+* **dark-mode:** add space ([4d968d3](https://github.com/p3ol/oak/commit/4d968d31184609f270417e61b68a1fe6fed358be))
+* **dark-mode:** breaking spaces ([1f1ecba](https://github.com/p3ol/oak/commit/1f1ecba9e09cf117145228294bd83bf076e863e3))
+* **dark-mode:** remove pulled coed ([34102d8](https://github.com/p3ol/oak/commit/34102d88953c622934ba833e3cb625431817844c))
+* **dark-mode:** remove useless code ([c9bf2be](https://github.com/p3ol/oak/commit/c9bf2be0f98eb88bb2abc949a3a250eeb026d6ba))
+* **dark-mode:** rework integration ([905516c](https://github.com/p3ol/oak/commit/905516c2de4db1d84052f1b979c4116aaf5b8b84))
+* **dark-mode:** wrong property ([de956d4](https://github.com/p3ol/oak/commit/de956d4d42fbf0b4ad6cdf09b40a39a732940b80))
+* **dark-mode:** wrong property removed, reverting" ([30d243d](https://github.com/p3ol/oak/commit/30d243da929ad54be69a77f41e16e69b84df6995))
+* **dark-theme:** add translations ([adbc5d6](https://github.com/p3ol/oak/commit/adbc5d6ff5c92c2dda03a76039362c27ceef1ca7))
+* **dark-theme:** wip add dark theme tab ([3a2c63b](https://github.com/p3ol/oak/commit/3a2c63bbe451248dfb72489cef6e667f05448f72))
+* **oak:** lint and use correct types ([252531b](https://github.com/p3ol/oak/commit/252531bcc7b4556127eb9c874f1ac2bbb55d0c09))
+* rework addons ([f08328a](https://github.com/p3ol/oak/commit/f08328a3a1e8ee60a0e5d52f5116c89d02ceb6dd))
+* **sub-tab:** update snapshots ([67e8909](https://github.com/p3ol/oak/commit/67e8909213b677157879a0f422bce6b4473d806c))
+* **subtabs:** put sub tabs after default tab fields ([ec98d96](https://github.com/p3ol/oak/commit/ec98d965ac0c7d8fcc300dc1e395004916c42105))
+
+
+
+
+
 ## [3.15.3](https://github.com/p3ol/oak/compare/v3.15.2...v3.15.3) (2026-05-05)
 
 

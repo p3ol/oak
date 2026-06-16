@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.16.0](https://github.com/p3ol/oak/compare/v3.15.3...v3.16.0) (2026-06-16)
+
+
+### Bug Fixes
+
+* upgrade various deps ([77c8817](https://github.com/p3ol/oak/commit/77c8817d6b4d11522e6caea6fff814e39f712c0c))
+
+
+
+
+
 ## [3.15.3](https://github.com/p3ol/oak/compare/v3.15.2...v3.15.3) (2026-05-05)
 
 
