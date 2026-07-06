@@ -303,10 +303,8 @@ export const coreComponentsGroup = (): ComponentsGroupObject => ({
   components: baseComponents(),
 });
 
-export const baseAddon = (
-  { darkMode }: BaseAddonOptions = {}
-): AddonObject => ({
-  ...coreAddons.baseAddon({ darkMode }),
+export const baseAddon = (opts: BaseAddonOptions = {}): AddonObject => ({
+  ...coreAddons.baseAddon(opts),
   components: [coreComponentsGroup()],
   fields: baseFields(),
   overrides: [],
