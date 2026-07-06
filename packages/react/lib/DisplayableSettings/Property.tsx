@@ -36,7 +36,7 @@ const Property = ({
     element,
     // Only checking on element prevents from updating the render when a sub
     // property of the element changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps,react-hooks/use-memo
     Object.values(element),
     field,
   ]);
