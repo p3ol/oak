@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@junipero/core": "3.13.0",
-    "uuid": "14.0.0"
+    "uuid": "14.0.1"
   },
   "devDependencies": {
     "@floating-ui/react": "0.27.19"

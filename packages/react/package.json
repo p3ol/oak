@@ -30,7 +30,7 @@
     "@junipero/react": "3.13.0",
     "@junipero/transitions": "3.13.0",
     "@oakjs/core": "^3.16.0",
-    "uuid": "14.0.0"
+    "uuid": "14.0.1"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
