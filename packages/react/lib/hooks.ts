@@ -1,4 +1,11 @@
-import { useContext, useEffect, useMemo, useReducer, useRef } from 'react';
+import {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from 'react';
 import {
   type AddonObject,
   type ElementObject,
@@ -68,9 +75,11 @@ export const useRootBuilder = ({
   });
 
   const onChangeRef = useRef(onChange);
-  onChangeRef.current = onChange;
   const onEventRef = useRef(onEvent);
-  onEventRef.current = onEvent;
+  useLayoutEffect(() => {
+    onChangeRef.current = onChange;
+    onEventRef.current = onEvent;
+  });
 
   // Allow to change the content from outside
   useEffectAfterMount(() => {
