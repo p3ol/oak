@@ -1,4 +1,10 @@
-import { useContext, useEffect, useMemo, useReducer } from 'react';
+import {
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from 'react';
 import {
   type AddonObject,
   type ElementObject,
@@ -67,6 +73,14 @@ export const useRootBuilder = ({
     editableType,
   });
 
+  const onChangeRef = useRef(onChange);
+  const onEventRef = useRef(onEvent);
+
+  useEffect(() => {
+    onChangeRef.current = onChange;
+    onEventRef.current = onEvent;
+  }, [onChange, onEvent]);
+
   // Allow to change the content from outside
   useEffectAfterMount(() => {
     if (content === builder.getContent()) {
@@ -99,7 +113,7 @@ export const useRootBuilder = ({
             canUndo: builder.canUndo(),
             canRedo: builder.canRedo(),
           });
-          onChange?.(content_);
+          onChangeRef.current?.(content_);
           break;
         }
         // Triggers a rerender when the active text sheet changes
@@ -139,14 +153,14 @@ export const useRootBuilder = ({
         }
       }
 
-      onEvent?.(eventName, ...args);
+      onEventRef.current?.(eventName, ...args);
     });
 
     return () => {
       builder.logger.log('[react] Destroying builder instance');
       unsubscribe();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [builder]);
 
   // Allow to change the active text sheet from outside
