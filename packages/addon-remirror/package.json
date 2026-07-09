@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/addon-remirror",
-  "version": "3.16.0",
+  "version": "3.16.1",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "type": "module",
   "main": "dist/index.cjs",
