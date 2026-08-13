@@ -5,7 +5,6 @@ export default function viteSvg () {
     name: 'svg',
     enforce: 'pre',
     async load (id: string) {
-
       if (/\.(svg)$/.test(id)) {
         const code = await fs.readFile(id, 'utf-8');
         const escaped = code

@@ -160,7 +160,6 @@ export const useRootBuilder = ({
       builder.logger.log('[react] Destroying builder instance');
       unsubscribe();
     };
-
   }, [builder]);
 
   // Allow to change the active text sheet from outside

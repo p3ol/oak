@@ -718,11 +718,9 @@ export const WithFunctionAsDefault = () => {
               { title: 'Two', value: 2 },
             ],
             default: (element: ElementObject) => {
-
               return element.type === 'row' ? 1 : 2;
             },
             condition: () => {
-
               return true;
             },
           } as ComponentSettingsFieldObject],

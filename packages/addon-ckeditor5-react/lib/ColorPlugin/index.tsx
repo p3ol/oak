@@ -66,10 +66,13 @@ export default class ColorPlugin extends Plugin {
 
     editor.ui.componentFactory.add('fontColor', locale => {
       const dropdown = createDropdown(locale);
+
+      // @ts-expect-error CKEditor types are fucked
       dropdown.set({
         class: 'ck-font-color-dropdown',
       });
 
+      // @ts-expect-error CKEditor types are fucked
       dropdown.buttonView.set({
         label: 'Color',
         tooltip: true,
@@ -77,6 +80,8 @@ export default class ColorPlugin extends Plugin {
       });
 
       let root: Root;
+
+      // @ts-expect-error CKEditor types are fucked
       dropdown.panelView.on('render', async () => {
         if (!dropdown.panelView.element) {
           return;
@@ -85,10 +90,12 @@ export default class ColorPlugin extends Plugin {
         root = await this.createReactRoot(dropdown.panelView.element);
       });
 
+      // @ts-expect-error CKEditor types are fucked
       dropdown.buttonView.on('open', () => {
         dropdown.buttonView.label = undefined;
       });
 
+      // @ts-expect-error CKEditor types are fucked
       dropdown.on('change:isOpen', () => {
         const key = Math.random().toString(36).substring(7);
 

@@ -73,7 +73,6 @@ export default class Components extends Emitter implements IComponents {
       ...this.#groups.map(group => group.toObject()),
       this.#defaultGroup.toObject(),
     ];
-
   }
 
   hasComponent (

@@ -206,7 +206,6 @@ const Form = ({
           />
         ),
       };
-
     });
 
   const tabs: (
