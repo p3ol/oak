@@ -1,9 +1,9 @@
 import {
-  useContext,
   useEffect,
   useMemo,
   useReducer,
   useRef,
+  use,
 } from 'react';
 import {
   type AddonObject,
@@ -194,6 +194,6 @@ export const useRootBuilder = ({
   return { builder, ...state };
 };
 
-export const useBuilder = () => useContext<BuilderContextValue>(BuilderContext);
-export const useEditableForm = () => useContext(EditableFormContext);
-export const useElement = () => useContext(ElementContext);
+export const useBuilder = () => use<BuilderContextValue>(BuilderContext);
+export const useEditableForm = () => use(EditableFormContext);
+export const useElement = () => use(ElementContext);

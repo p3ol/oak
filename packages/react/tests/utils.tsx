@@ -34,7 +34,7 @@ export const BuilderLite = ({
 
   return (
     <div ref={innerRef}>
-      <BuilderContext.Provider value={getContext()}>
+      <BuilderContext value={getContext()}>
         { opts?.withContent && content?.map((element, i) => (
           <Element
             key={element.id || i}
@@ -43,7 +43,7 @@ export const BuilderLite = ({
           />
         )) }
         { children }
-      </BuilderContext.Provider>
+      </BuilderContext>
     </div>
   );
 };

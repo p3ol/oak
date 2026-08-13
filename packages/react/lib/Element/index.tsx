@@ -147,7 +147,7 @@ const Element = ({
   );
 
   return (
-    <ElementContext.Provider value={getElementContext()}>
+    <ElementContext value={getElementContext()}>
       <Droppable
         ref={innerRef}
         onDrop={onDrop_}
@@ -325,7 +325,7 @@ const Element = ({
           </div>
         </Draggable>
       </Droppable>
-    </ElementContext.Provider>
+    </ElementContext>
   );
 };
 

@@ -149,7 +149,7 @@ const Builder = ({
   );
 
   return (
-    <BuilderContext.Provider value={getContext()}>
+    <BuilderContext value={getContext()}>
       <div
         id={id}
         ref={innerRef}
@@ -208,7 +208,7 @@ const Builder = ({
 
         <div className="floatings" ref={floatingsRef} />
       </div>
-    </BuilderContext.Provider>
+    </BuilderContext>
   );
 };
 

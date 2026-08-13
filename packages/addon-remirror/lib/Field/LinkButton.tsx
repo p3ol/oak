@@ -19,7 +19,7 @@ const LinkButton = (props: MenuButtonProps) => {
   const { updateLink } = useCommands();
   const chain = useChainedCommands();
   const { link } = useAttrs<Extensions>();
-  const [href, setHref] = useState(link?.()?.href as string || '');
+  const [href, setHref] = useState(() => link?.()?.href as string || '');
   const [target, setTarget] = useState<
     LinkAttributes['target']
   >(link()?.target as LinkAttributes['target']);

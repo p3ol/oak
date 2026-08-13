@@ -221,7 +221,7 @@ const Form = ({
   }), [state.element, state.seed]);
 
   return (
-    <EditableFormContext.Provider value={getContext()}>
+    <EditableFormContext value={getContext()}>
       <div
         className={classNames('form', className)}
         data-placement={placement}
@@ -258,7 +258,7 @@ const Form = ({
           </Button>
         </div>
       </div>
-    </EditableFormContext.Provider>
+    </EditableFormContext>
   );
 };
 

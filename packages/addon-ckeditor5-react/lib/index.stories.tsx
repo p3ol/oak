@@ -55,12 +55,12 @@ export const WithCustomserializer = () => {
 
       while ((node = walker.nextNode())) {
         node.textContent = node.textContent!.split('').map(char => {
-          let c = char.charCodeAt(0);
+          const c = char.charCodeAt(0);
 
           switch (c) {
             case 90: return 'A';
             case 122: return 'a';
-            default: return String.fromCharCode(++c);
+            default: return String.fromCharCode(c + 1);
           }
         }).join('');
       }
@@ -76,12 +76,12 @@ export const WithCustomserializer = () => {
 
       while ((node = walker.nextNode())) {
         node.textContent = node.textContent!.split('').map(char => {
-          let c = char.charCodeAt(0);
+          const c = char.charCodeAt(0);
 
           switch (c) {
             case 90: return 'A';
             case 122: return 'a';
-            default: return String.fromCharCode(--c);
+            default: return String.fromCharCode(c - 1);
           }
         }).join('');
       }
