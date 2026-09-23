@@ -125,16 +125,10 @@ const Catalogue = ({
     checkClipboard();
   };
 
-  const canPaste = (): boolean => {
-    if (
-      !state.clipboard ||
-      (component?.disallow || []).includes(state.clipboard.type)
-    ) {
-      return false;
-    }
-
-    return true;
-  };
+  const canPaste = (): boolean => (
+    !!state.clipboard &&
+    !(component?.disallow || []).includes(state.clipboard?.type)
+  );
 
   const checkClipboard = async () => {
     let clipboard;
