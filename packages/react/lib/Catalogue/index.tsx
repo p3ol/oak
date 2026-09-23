@@ -125,6 +125,17 @@ const Catalogue = ({
     checkClipboard();
   };
 
+  const canPaste = (): boolean => {
+    if (
+      !state.clipboard ||
+      (component?.disallow || []).includes(state.clipboard.type)
+    ) {
+      return false;
+    }
+
+    return true;
+  };
+
   const checkClipboard = async () => {
     let clipboard;
 
@@ -260,7 +271,7 @@ const Catalogue = ({
               )) }
             </Tabs>
 
-            { state.clipboard && (
+            { canPaste() && (
               <a
                 onClick={onPaste?.bind(null, state.clipboard)}
                 className={classNames(
