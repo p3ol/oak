@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.16.2](https://github.com/p3ol/oak/compare/v3.16.1...v3.16.2) (2026-11-02)
+
+### Bug Fixes
+
+* upgrade various dependencies ([76c9868](https://github.com/p3ol/oak/commit/76c98687e1e4c4563deb285d0702ec626762696a))
+* upgrade various deps ([5412421](https://github.com/p3ol/oak/commit/541242130171a01e4d651348a6d652a6a4e840e3))
+
+
 ## [3.16.1](https://github.com/p3ol/oak/compare/v3.16.0...v3.16.1) (2026-07-09)
 
 
