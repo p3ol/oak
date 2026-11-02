@@ -1,6 +1,6 @@
 {
   "name": "@oakjs/react",
-  "version": "3.16.2",
+  "version": "3.16.3",
   "description": "🌳 Modern, lightweight & modulable page builder",
   "type": "module",
   "main": "dist/index.cjs",

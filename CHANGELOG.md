@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.16.3](https://github.com/p3ol/oak/compare/v3.16.2...v3.16.3) (2026-11-02)
+
+### Bug Fixes
+
+* **clipboard:** add tests ([dfab515](https://github.com/p3ol/oak/commit/dfab515aa2d874e483a36960b49d152e6de760d9))
+* **paste:** allow array as paste object, and use override to disallow it ([65dbc7d](https://github.com/p3ol/oak/commit/65dbc7d12ab0567491ba48e7f1ea45df44f6e083))
+* **react:** avoid to display paste from clipboard for disallowed components ([53ea891](https://github.com/p3ol/oak/commit/53ea89188fc45d8f029c15d840aae74ad2bb7015))
+* **react:** rework canPaste function ([0e967b7](https://github.com/p3ol/oak/commit/0e967b78615f2a11cf5e0df62ddd9be943d03bd1))
+
+
 ## [3.16.2](https://github.com/p3ol/oak/compare/v3.16.1...v3.16.2) (2026-11-02)
 
 ### Bug Fixes
