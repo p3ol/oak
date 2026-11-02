@@ -22,5 +22,9 @@ export default defineConfig([
     },
     sourcemap: true,
     dts: false,
+    banner: "'use client';",
+    inputOptions: {
+      platform: 'browser',
+    },
   },
 ]);
