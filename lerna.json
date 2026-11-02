@@ -5,8 +5,9 @@
   "npmClient": "yarn",
   "version": "3.16.1",
   "command": {
-    "publish": {
-      "conventionalCommits": true
+    "version": {
+      "conventionalCommits": true,
+      "createRelease": "github"
     }
   }
 }

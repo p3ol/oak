@@ -7,6 +7,9 @@
   "repository": "https://github.com/p3ol/oak.git",
   "scripts": {
     "prepack": "yarn build && yarn lint && yarn tsc && yarn test",
+    "preversion": "yarn prepack",
+    "release": "lerna version",
+    "release:publish": "lerna publish from-package --yes",
     "lint": "oxlint",
     "test": "vitest run",
     "build": "turbo build",
