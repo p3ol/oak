@@ -40,14 +40,14 @@ const SettingsGroup = ({
   }
 
   return (
-    <div className="fields-group oak-flex oak-flex-col oak-gap-4">
+    <div className="fields-group oak:flex oak:flex-col oak:gap-4">
       <div
         ref={toggleRef}
         className={classNames(
-          'fields-group-toggle oak-flex oak-items-center oak-gap-2',
-          'oak-justify-between oak-cursor-pointer oak-py-2 oak-px-[20px]',
-          'oak-sticky oak-z-10',
-          editableType === 'modal' ? 'oak-top-0' : '-oak-top-2',
+          'fields-group-toggle oak:flex oak:items-center oak:gap-2',
+          'oak:justify-between oak:cursor-pointer oak:py-2 oak:px-[20px]',
+          'oak:sticky oak:z-10',
+          editableType === 'modal' ? 'oak:top-0' : 'oak:-top-2',
           {
             open,
           }
@@ -59,7 +59,7 @@ const SettingsGroup = ({
       </div>
       { open && (
         <Tab
-          className="!oak-max-h-none"
+          className="oak:max-h-none!"
           tab={setting}
           component={component}
           element={element}

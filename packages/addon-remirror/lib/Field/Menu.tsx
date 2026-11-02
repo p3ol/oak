@@ -40,7 +40,7 @@ const Menu = () => {
   };
 
   return (
-    <div className="menu oak-flex oak-items-stretch oak-gap-2">
+    <div className="menu oak:flex oak:items-stretch oak:gap-2">
       <MenuButton
         enabled={toggleBold?.enabled}
         isActive={bold}
@@ -74,7 +74,7 @@ const Menu = () => {
       <ColorButton>
         <Icon>text_color</Icon>
       </ColorButton>
-      <div className="oak-flex oak-items-center oak-gap-2 oak-px-1">
+      <div className="oak:flex oak:items-center oak:gap-2 oak:px-1">
         <MenuButton
           enabled={decreaseFontSize?.enabled}
           isActive={() => false}
@@ -84,7 +84,7 @@ const Menu = () => {
           <Icon>minus</Icon>
         </MenuButton>
         <div
-          className="junipero secondary !oak-text-alternate-text-color"
+          className="junipero secondary oak:text-alternate-text-color!"
         >
           { fontSize() }
         </div>

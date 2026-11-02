@@ -67,11 +67,11 @@ const Foldable = ({
           <Droppable onDrop={onDropElement.bind(null, 'before')}>
             <div className="drop-zone before" />
           </Droppable>
-          <div className="sections oak-flex oak-flex-col oak-gap-4 oak-p-4">
+          <div className="sections oak:flex oak:flex-col oak:gap-4 oak:p-4">
             <div className="section">
               <div
                 className={classNames(
-                  'title junipero secondary !oak-text-alternate-text-color'
+                  'title junipero secondary oak:text-alternate-text-color!'
                 )}
               >
                 <Text name="core.components.foldable.sectionsTitle.seeMore">
@@ -89,7 +89,7 @@ const Foldable = ({
               <div
                 className={classNames(
                   'title junipero secondary',
-                  '!oak-text-alternate-text-color'
+                  'oak:text-alternate-text-color!'
                 )}
               >
                 <Text name="core.components.foldable.sectionsTitle.seeLess">
@@ -107,7 +107,7 @@ const Foldable = ({
               <div
                 className={classNames(
                   'title junipero secondary',
-                  '!oak-text-alternate-text-color'
+                  'oak:text-alternate-text-color!'
                 )}
               >
                 <Text name="core.components.foldable.sectionsTitle.content">

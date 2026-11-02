@@ -466,7 +466,7 @@ export const WithMergeMultipleLevelsOverrides = () => (
           fieldType: 'image',
           props: {
             iconOnly: true,
-            className: 'oak-mr-4 oak-relative oak-top-[2px]',
+            className: 'oak:mr-4 oak:relative oak:top-[2px]',
             accept: [
               'image/jpeg', 'image/jpg', 'image/png',
               'image/svg+xml', 'image/gif',

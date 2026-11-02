@@ -40,14 +40,14 @@ const ColorButton = (props: MenuButtonProps) => {
   };
 
   return (
-    <Dropdown onToggle={onToggle} className="text-color-field oak-items-center">
+    <Dropdown onToggle={onToggle} className="text-color-field oak:items-center">
       <DropdownToggle>
-        <span className="oak-inline-flex oak-items-center">
+        <span className="oak:inline-flex oak:items-center">
           <MenuButton
             enabled={() => setTextColor?.enabled(color)}
             isActive={textColor}
             onClick={() => fieldRef.current?.open()}
-            className="color-button oak-inline-flex oak-items-center"
+            className="color-button oak:inline-flex oak:items-center"
             tooltipText={(
               <Text name="addons.remirror.fields.editor.color">
                 Color

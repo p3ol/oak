@@ -77,11 +77,11 @@ const Setting = ({
   }
 
   return (
-    <div className="field oak-px-[20px]">
+    <div className="field oak:px-[20px]">
       <FieldControl>
         { (override?.label || setting.label) && (
           <Label
-            className="oak-flex oak-items-center oak-gap-2 !oak-pt-0"
+            className="oak:flex oak:items-center oak:gap-2 oak:pt-0!"
           >
             <Text>{ (override?.label || setting.label) as string }</Text>
             { (override?.info || setting.info) && (
@@ -90,7 +90,7 @@ const Setting = ({
                   <Text>{ (override?.info || setting.info) as string }</Text>
                 }
               >
-                <Icon className="!oak-text-[18px]">
+                <Icon className="oak:text-[18px]!">
                   info_circle
                 </Icon>
               </Tooltip>
@@ -100,7 +100,7 @@ const Setting = ({
         { hasSubfields ? (
           <div
             className={classNames(
-              'sub-fields oak-flex oak-gap-2',
+              'sub-fields oak:flex oak:gap-2',
             )}
           >
             { (override?.fields || setting.fields).map((f, n) => (
@@ -109,8 +109,8 @@ const Setting = ({
                   { f.label && (
                     <Label
                       className={classNames(
-                        'field-label oak-flex oak-items-center',
-                        'oak-gap-1'
+                        'field-label oak:flex oak:items-center',
+                        'oak:gap-1'
                       )}
                     >
                       <Text>{ f.label as string }</Text>
@@ -120,7 +120,7 @@ const Setting = ({
                             <Text>{ f.info as string }</Text>
                           }
                         >
-                          <Icon className="!oak-text-[14px]">
+                          <Icon className="oak:text-[14px]!">
                             info_circle
                           </Icon>
                         </Tooltip>

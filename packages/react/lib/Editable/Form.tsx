@@ -228,8 +228,8 @@ const Form = ({
       >
         <div
           className={classNames(
-            'form-title junipero oak-flex oak-py-2 oak-px-5 oak-sticky',
-            'oak-top-0 oak-z-10',
+            'form-title junipero oak:flex oak:py-2 oak:px-5 oak:sticky',
+            'oak:top-0 oak:z-10',
           )}
         >
           { component.settings?.title ? (
@@ -245,8 +245,8 @@ const Form = ({
         />
         <div
           className={classNames(
-            'buttons oak-flex oak-items-center oak-justify-end oak-gap-2',
-            'oak-p-5 oak-z-20',
+            'buttons oak:flex oak:items-center oak:justify-end oak:gap-2',
+            'oak:p-5 oak:z-20',
           )}
         >
           <Button type="button" className="subtle" onClick={onCancel_}>

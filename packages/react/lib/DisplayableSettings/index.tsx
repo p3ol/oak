@@ -70,7 +70,7 @@ const DisplayableSettings = ({
     <div
       { ...rest }
       className={classNames(
-        'displayable-settings junipero extra !oak-text-alternate-text-color',
+        'displayable-settings junipero extra oak:text-alternate-text-color!',
         className,
       )}
     >

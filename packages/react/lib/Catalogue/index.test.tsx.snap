@@ -7,7 +7,7 @@ exports[`<Catalogue /> > should allow to add elements to the builder > Closed 1`
       class="catalogue"
     >
       <a
-        class="handle oak-inline-flex oak-items-center oak-justify-center"
+        class="handle oak:inline-flex oak:items-center oak:justify-center"
         draggable="false"
       >
         <i
@@ -28,7 +28,7 @@ exports[`<Catalogue /> > should allow to add elements to the builder > Opened 1`
       class="catalogue opened"
     >
       <a
-        class="handle oak-inline-flex oak-items-center oak-justify-center"
+        class="handle oak:inline-flex oak:items-center oak:justify-center"
         draggable="false"
       >
         <i
@@ -71,15 +71,15 @@ exports[`<Catalogue /> > should allow to add elements to the builder > Opened 1`
               class="tab"
             >
               <div
-                class="group oak-grid oak-grid-cols-2 oak-gap-2"
+                class="group oak:grid oak:grid-cols-2 oak:gap-2"
               >
                 <a
-                  class="component component-test oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                  class="component component-test oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-2xl"
+                    class="icon junipero-icons oak:text-2xl!"
                   />
                   <span
                     class="name"

@@ -111,15 +111,15 @@ const Row = ({
           </Droppable>
           <div
             className={classNames(
-              'row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2',
+              'row-content oak:flex oak:flex-wrap oak:w-full oak:gap-2',
               element.settings?.flexDirection &&
-              'oak-flex-' + element.settings.flexDirection,
+              'oak:flex-' + element.settings.flexDirection,
               element.settings?.alignItems
-                ? 'oak-items-' + element.settings.alignItems
+                ? 'oak:items-' + element.settings.alignItems
                 : /col/.test(element.settings?.flexDirection)
-                  ? 'oak-items-stretch' : 'oak-items-start',
+                  ? 'oak:items-stretch' : 'oak:items-start',
               element.settings?.justifyContent &&
-              'oak-justify-' + element.settings.justifyContent,
+              'oak:justify-' + element.settings.justifyContent,
             )}
           >
             { element?.cols?.map((col: ElementObject, i: Key) => (

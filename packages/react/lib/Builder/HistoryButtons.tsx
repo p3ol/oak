@@ -17,7 +17,7 @@ const HistoryButtons = ({
   const { builder, rootRef, floatingsRef, rootBoundary } = useBuilder();
 
   return (
-    <div className="oak-flex oak-gap-2">
+    <div className="oak:flex oak:gap-2">
       <Tooltip
         disabled={!canUndo}
         container={floatingsRef.current}

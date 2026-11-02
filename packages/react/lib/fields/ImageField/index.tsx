@@ -144,14 +144,14 @@ const ImageField = ({
   return (
     <div
       className={classNames(
-        'image-field oak-flex oak-flex-none oak-items-center oak-gap-4',
+        'image-field oak:flex oak:flex-none oak:items-center oak:gap-4',
         {
           'loading': state.loading,
         },
         className
       )}
     >
-      <FieldGroup className="!oak-w-full">
+      <FieldGroup className="oak:w-full!">
         <TextField
           value={state.value?.url?.toString() || ''}
           placeholder="https://example.com/image.png"
@@ -170,9 +170,9 @@ const ImageField = ({
           <FieldAddon
             onClick={onOpenFileDialog}
             className={classNames(
-              'oak-cursor-pointer',
+              'oak:cursor-pointer',
               {
-                'oak-pointer-events-none oak-opacity-50':
+                'oak:pointer-events-none oak:opacity-50':
                   disabled || state.loading,
               }
             )}

@@ -164,7 +164,7 @@ const Element = ({
         >
           <div
             className={classNames(
-              'oak element oak-flex-none',
+              'oak element oak:flex-none',
               'type-' + (component?.id || 'unknown'),
               className
             )}
@@ -173,9 +173,9 @@ const Element = ({
               ? rendered : component ? (
                 <div
                   className={classNames(
-                    'inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch',
+                    'inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch',
                     depth % 2 === 0 ? 'even' : 'odd',
-                    { 'oak-cursor-pointer': elementCollapsed },
+                    { 'oak:cursor-pointer': elementCollapsed },
                   )}
                   onClick={unfoldBlock}
                 >
@@ -186,19 +186,19 @@ const Element = ({
                   </Icon>
                   <div
                     className={classNames(
-                      'element-info oak-flex-auto oak-flex oak-flex-col',
-                      'oak-gap-2 oak-justify-between'
+                      'element-info oak:flex-auto oak:flex oak:flex-col',
+                      'oak:gap-2 oak:justify-between'
                     )}
                   >
-                    <div className="oak-flex oak-items-center">
-                      <h6 className="junipero oak-inline oak-m-0">
+                    <div className="oak:flex oak:items-center">
+                      <h6 className="junipero oak:inline oak:m-0">
                         <Text>{ component?.name as string }</Text>
                       </h6>
                       { elementCollapsed && (
                         <span
                           className={classNames(
                             'junipero extra',
-                            '!oak-text-alternate-text-color oak-ml-1'
+                            'oak:text-alternate-text-color! oak:ml-1'
                           )}
                         >
                           <Text name="core.components.collapsed">
@@ -208,7 +208,7 @@ const Element = ({
                       )}
                     </div>
                     { !elementCollapsed && rendered && (
-                      <div className="element-content oak-flex-auto">
+                      <div className="element-content oak:flex-auto">
                         { rendered }
                       </div>
                     ) }
@@ -223,13 +223,13 @@ const Element = ({
               ) : (
                 <div
                   className={classNames(
-                    'inner oak-flex oak-gap-2 oak-p-4',
+                    'inner oak:flex oak:gap-2 oak:p-4',
                     depth % 2 === 0 ? 'even' : 'odd'
                   )}
                 >
                   <Icon>help_circle</Icon>
                   <div className="element-info">
-                    <h6 className="junipero oak-m-0 oak-mb-2">
+                    <h6 className="junipero oak:m-0 oak:mb-2">
                       <Text name="core.components.unknown">Unknown</Text>
                     </h6>
                     <div className="element-content">
@@ -241,7 +241,7 @@ const Element = ({
 
             <div
               className={classNames(
-                'options oak-flex oak-items-center',
+                'options oak:flex oak:items-center',
                 { 'oak-has-inner-content': component?.hasCustomInnerContent },
                 { opened: editableOpened }
               )}
@@ -311,11 +311,11 @@ const Element = ({
                 placement="left"
               >
                 <span
-                  className="debug oak-cursor-pointer"
+                  className="debug oak:cursor-pointer"
                   onClick={onPrintDebug}
                 >
                   <Icon
-                    className="!oak-text-sm !oak-text-alternate-text-color"
+                    className="oak:text-sm! oak:text-alternate-text-color!"
                   >
                     settings
                   </Icon>

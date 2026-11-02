@@ -46,13 +46,13 @@ const LinkButton = (props: MenuButtonProps) => {
   }, [chain, href]);
 
   return (
-    <Dropdown className="link-field oak-items-center">
+    <Dropdown className="link-field oak:items-center">
       <DropdownToggle>
-        <span className="oak-inline-flex oak-items-center">
+        <span className="oak:inline-flex oak:items-center">
           <MenuButton
             enabled={() => !!updateLink}
             isActive={() => !!link()}
-            className="link-button oak-inline-flex oak-items-center"
+            className="link-button oak:inline-flex oak:items-center"
             tooltipText={(
               <Text name="addons.remirror.fields.editor.link">
                 Link
@@ -63,9 +63,9 @@ const LinkButton = (props: MenuButtonProps) => {
         </span>
       </DropdownToggle>
       <DropdownMenu className="link-input">
-        <div className="oak-flex oak-flex-col oak-gap-4">
+        <div className="oak:flex oak:flex-col oak:gap-4">
           <div>
-            <Label className="!oak-pt-0">
+            <Label className="oak:pt-0!">
               <Text name="addons.remirror.fields.editor.link">
                 Link
               </Text>

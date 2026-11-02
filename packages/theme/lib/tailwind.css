@@ -1,0 +1,81 @@
+@import "tailwindcss/theme.css" prefix(oak);
+@import "tailwindcss/utilities.css" prefix(oak) source(none);
+
+@source "../../react/lib";
+@source "../../addon-ckeditor5-react/lib";
+@source "../../addon-remirror/lib";
+
+/* Dynamic classes used by Row & Col components */
+@source inline("oak:{flex-row,flex-row-reverse,flex-column,flex-column-reverse}");
+@source inline("oak:{items-start,items-center,items-end,items-stretch,items-flex-start,items-flex-end}");
+@source inline("oak:{justify-start,justify-center,justify-end,justify-between,justify-around,justify-space-between,justify-space-around}");
+@source inline("oak:basis-{1,2,3,4,5,6,7,8,9,10,11}/12");
+@source inline("oak:basis-full");
+
+@plugin "@junipero/tailwind-plugin";
+
+@theme {
+  --color-*: initial;
+  --color-main-color: var(--oak-main-color);
+  --color-darker-main-color: var(--oak-darker-main-color);
+  --color-lighter-main-color: var(--oak-lighter-main-color);
+  --color-background-main-color: var(--oak-background-main-color);
+  --color-shadow-color: var(--oak-shadow-color);
+  --color-background-color: var(--oak-background-color);
+  --color-inner-background-color: var(--oak-inner-background-color);
+  --color-foreground-color: var(--oak-foreground-color);
+  --color-interaction-color: var(--oak-interaction-color);
+  --color-text-color: var(--oak-text-color);
+  --color-reverse-text-color: var(--oak-reverse-text-color);
+  --color-alternate-text-color: var(--oak-alternate-text-color);
+  --color-floating-background-color: var(--oak-floating-background-color);
+  --color-error-color: var(--oak-error-color);
+  --color-field-border-color: var(--oak-field-border-color);
+  --color-tooltip-border-color: var(--oak-tooltip-border-color);
+}
+
+/* Handle old flexbox utilities */
+@utility justify-space-around {
+  justify-content: space-around;
+}
+
+@utility justify-space-between {
+  justify-content: space-between;
+}
+
+@utility items-flex-start {
+  align-items: flex-start;
+}
+
+@utility items-flex-end {
+  align-items: flex-end;
+}
+
+@utility flex-column {
+  flex-direction: column;
+}
+
+@utility flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+/* Set gap as a variable to be used in flex basis calculation */
+@utility gap-* {
+  --tw-gap: --spacing(--value(number));
+  --tw-gap: --value([length]);
+}
+
+@utility gap-px {
+  --tw-gap: 1px;
+}
+
+/* And overwrite flex basis minus the gap */
+@utility basis-* {
+  flex-basis: calc(--value(ratio) * 100% - (var(--tw-gap, 0px) - var(--tw-gap, 0px) * --value(ratio)));
+  flex-basis: calc(--spacing(--value(number)) - var(--tw-gap, 0px) / 2);
+  flex-basis: calc(--value([length]) - var(--tw-gap, 0px) / 2);
+}
+
+@utility basis-full {
+  flex-basis: calc(100% - var(--tw-gap, 0px) / 2);
+}

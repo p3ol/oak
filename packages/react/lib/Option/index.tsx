@@ -77,13 +77,13 @@ const Option = ({
       href="#"
       draggable={draggable ?? false}
       className={classNames(
-        'option oak-flex oak-items-center oak-justify-center',
+        'option oak:flex oak:items-center oak:justify-center',
         className
       )}
     >
       { renderIcon ? renderIcon() : (
         <Icon
-          className={classNames('!oak-text-lg', iconClassName)}
+          className={classNames('oak:text-lg!', iconClassName)}
         >
           { typeof option?.icon === 'function'
             ? option?.icon?.() : option?.icon }

@@ -74,10 +74,10 @@ const Tab = ({
     <div
       { ...rest }
       className={classNames(
-        'fields oak-py-2 oak-flex oak-flex-col oak-gap-4',
+        'fields oak:py-2 oak:flex oak:flex-col oak:gap-4',
         {
-          'oak-max-h-[500px] oak-overflow-y-auto': editableType !== 'modal',
-          'oak-pt-px': subtabs?.length > 0,
+          'oak:max-h-[500px] oak:overflow-y-auto': editableType !== 'modal',
+          'oak:pt-px': subtabs?.length > 0,
         },
         className,
       )}

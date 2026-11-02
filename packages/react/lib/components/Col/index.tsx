@@ -135,14 +135,14 @@ const Col = ({
     <div
       className={classNames(
         'column',
-        'oak-flex oak-max-w-full oak-items-center oak-gap-2',
+        'oak:flex oak:max-w-full oak:items-center oak:gap-2',
         {
-          'oak-flex-none': element.size === 'auto',
-          'oak-flex-1': !element.size || element.size === 'fluid',
-          'oak-basis-full': element.size === 12,
-          'oak-py-8 oak-px-4': !canEditContainers,
-          'oak-py-2': canEditContainers,
-          [`oak-basis-${element.size}/12`]: Number.isInteger(element.size) &&
+          'oak:flex-none': element.size === 'auto',
+          'oak:flex-1': !element.size || element.size === 'fluid',
+          'oak:basis-full': element.size === 12,
+          'oak:py-8 oak:px-4': !canEditContainers,
+          'oak:py-2': canEditContainers,
+          [`oak:basis-${element.size}/12`]: Number.isInteger(element.size) &&
             element.size > 0 &&
             element.size < 12,
         },
@@ -157,12 +157,12 @@ const Col = ({
           text={<Text name="core.tooltips.addColumn">Add column</Text>}
         >
           <a
-            className="divider prepend oak-flex oak-items-center"
+            className="divider prepend oak:flex oak:items-center"
             href="#"
             draggable={false}
             onClick={onPrependCol_}
           >
-            <Icon className="!oak-text-lg">add</Icon>
+            <Icon className="oak:text-lg!">add</Icon>
           </a>
         </Tooltip>
       )}
@@ -179,7 +179,7 @@ const Col = ({
         onDrop={onDrop_}
       >
         <div
-          className="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
+          className="col-inner oak:flex-auto oak:flex oak:flex-col oak:gap-2"
         >
           { element.content.length > 0 && catalogueEnabled && (
             <Catalogue
@@ -188,12 +188,12 @@ const Col = ({
               ref={prependCatalogueRef}
               onAppend={onPrepend_}
               onPaste={onPasteBefore_}
-              className="oak-inline-flex oak-self-center small"
+              className="oak:inline-flex oak:self-center small"
             />
           ) }
 
           { element.content?.length > 0 && (
-            <div className="col-content oak-flex oak-flex-col oak-gap-4">
+            <div className="col-content oak:flex oak:flex-col oak:gap-4">
               { (element.content as ElementObject[])?.map(
                 (item: ElementObject, i: Key) => (
                   <Element
@@ -217,7 +217,7 @@ const Col = ({
               onAppend={onAppend_}
               onPaste={onPasteAfter_}
               className={classNames(
-                'oak-inline-flex oak-self-center',
+                'oak:inline-flex oak:self-center',
                 { small: element.content?.length > 0 }
               )}
             />
@@ -233,17 +233,17 @@ const Col = ({
           text={<Text name="core.tooltips.addColumn">Add column</Text>}
         >
           <a
-            className="divider append oak-flex oak-items-center"
+            className="divider append oak:flex oak:items-center"
             href="#"
             draggable={false}
             onClick={onAppendCol_}
           >
-            <Icon className="!oak-text-lg">add</Icon>
+            <Icon className="oak:text-lg!">add</Icon>
           </a>
         </Tooltip>
       )}
 
-      <div className="size-info oak-absolute oak-bottom-1 oak-left-1">
+      <div className="size-info oak:absolute oak:bottom-1 oak:left-1">
         { element.size === 'auto' ? (
           <Tooltip
             className="secondary"
@@ -255,8 +255,8 @@ const Col = ({
             <span>
               <Icon
                 className={classNames(
-                  '!oak-text-alternate-text-color oak-block oak-rotate-90',
-                  'oak-cursor-help'
+                  'oak:text-alternate-text-color! oak:block oak:rotate-90',
+                  'oak:cursor-help'
                 )}
               >
                 unfold
@@ -266,9 +266,9 @@ const Col = ({
         ) : Number.isInteger(element.size) ? (
           <span
             className={classNames(
-              'junipero extra oak-block !oak-text-alternate-text-color',
-              'oak-pointer-events-none oak-user-select-none',
-              'oak-pb-1 oak-pl-2'
+              'junipero extra oak:block oak:text-alternate-text-color!',
+              'oak:pointer-events-none oak-user-select-none',
+              'oak:pb-1 oak:pl-2'
             )}
           >
             { element.size }/12
@@ -286,8 +286,8 @@ const Col = ({
             <span>
               <Icon
                 className={classNames(
-                  '!oak-text-alternate-text-color oak-rotate-90 oak-block',
-                  'oak-cursor-help'
+                  'oak:text-alternate-text-color! oak:rotate-90 oak:block',
+                  'oak:cursor-help'
                 )}
               >
                 foldable
@@ -298,15 +298,15 @@ const Col = ({
       </div>
 
       { component && (
-        <div className="options oak-flex oak-items-center oak-gap-0.5">
+        <div className="options oak:flex oak:items-center oak:gap-0.5">
           { (
             element.styles?.backgroundColor ||
             element.styles?.backgroundImage
           ) && parent.length <= 6 && (
             <div
               className={classNames(
-                'oak-mr-2 oak-rounded-full oak-w-[15px]',
-                'oak-h-[15px] oak-bg-no-repeat oak-bg-center oak-bg-cover',
+                'oak:mr-2 oak:rounded-full oak:w-[15px]',
+                'oak:h-[15px] oak:bg-no-repeat oak:bg-center oak:bg-cover',
               )}
               style={{
                 backgroundColor: element.styles?.backgroundColor,

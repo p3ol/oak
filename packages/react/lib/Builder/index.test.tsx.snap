@@ -37,15 +37,15 @@ exports[`<Builder /> > should allow to add content from catalogue > Catalogue op
             class="tab"
           >
             <div
-              class="group oak-grid oak-grid-cols-2 oak-gap-2"
+              class="group oak:grid oak:grid-cols-2 oak:gap-2"
             >
               <a
-                class="component component-row oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-row oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   row
                 </i>
@@ -56,12 +56,12 @@ exports[`<Builder /> > should allow to add content from catalogue > Catalogue op
                 </span>
               </a>
               <a
-                class="component component-empty-space oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-empty-space oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   blank_space
                 </i>
@@ -72,12 +72,12 @@ exports[`<Builder /> > should allow to add content from catalogue > Catalogue op
                 </span>
               </a>
               <a
-                class="component component-title oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-title oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   title
                 </i>
@@ -88,12 +88,12 @@ exports[`<Builder /> > should allow to add content from catalogue > Catalogue op
                 </span>
               </a>
               <a
-                class="component component-text oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-text oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   multiline
                 </i>
@@ -104,12 +104,12 @@ exports[`<Builder /> > should allow to add content from catalogue > Catalogue op
                 </span>
               </a>
               <a
-                class="component component-image oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-image oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   image
                 </i>
@@ -120,12 +120,12 @@ exports[`<Builder /> > should allow to add content from catalogue > Catalogue op
                 </span>
               </a>
               <a
-                class="component component-button oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-button oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   button
                 </i>
@@ -136,12 +136,12 @@ exports[`<Builder /> > should allow to add content from catalogue > Catalogue op
                 </span>
               </a>
               <a
-                class="component component-foldable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-foldable oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   foldable
                 </i>
@@ -152,12 +152,12 @@ exports[`<Builder /> > should allow to add content from catalogue > Catalogue op
                 </span>
               </a>
               <a
-                class="component component-clickable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-clickable oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   clickable
                 </i>
@@ -182,7 +182,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
     class="oak builder"
   >
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -212,16 +212,16 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
       </button>
     </div>
     <div
-      class="elements oak-flex oak-flex-col oak-gap-4"
+      class="elements oak:flex oak:flex-col oak:gap-4"
     >
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -233,7 +233,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
         </div>
       </div>
       <div
-        class="oak element oak-flex-none type-row"
+        class="oak element oak:flex-none type-row"
         draggable="false"
       >
         <div
@@ -243,30 +243,30 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             class="drop-zone before"
           />
           <div
-            class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
+            class="row-content oak:flex oak:flex-wrap oak:w-full oak:gap-2 oak:items-flex-start"
           >
             <div
-              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
+              class="column oak:flex oak:max-w-full oak:items-center oak:gap-2 oak:flex-1 oak:py-2"
             >
               <a
-                class="divider prepend oak-flex oak-items-center"
+                class="divider prepend oak:flex oak:items-center"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-lg"
+                  class="icon junipero-icons oak:text-lg!"
                 >
                   add
                 </i>
               </a>
               <div
-                class="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
+                class="col-inner oak:flex-auto oak:flex oak:flex-col oak:gap-2"
               >
                 <div
-                  class="catalogue oak-inline-flex oak-self-center"
+                  class="catalogue oak:inline-flex oak:self-center"
                 >
                   <a
-                    class="handle oak-inline-flex oak-items-center oak-justify-center"
+                    class="handle oak:inline-flex oak:items-center oak:justify-center"
                     draggable="false"
                   >
                     <i
@@ -278,48 +278,48 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
                 </div>
               </div>
               <a
-                class="divider append oak-flex oak-items-center"
+                class="divider append oak:flex oak:items-center"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-lg"
+                  class="icon junipero-icons oak:text-lg!"
                 >
                   add
                 </i>
               </a>
               <div
-                class="size-info oak-absolute oak-bottom-1 oak-left-1"
+                class="size-info oak:absolute oak:bottom-1 oak:left-1"
               >
                 <span>
                   <i
-                    class="icon junipero-icons !oak-text-alternate-text-color oak-rotate-90 oak-block oak-cursor-help"
+                    class="icon junipero-icons oak:text-alternate-text-color! oak:rotate-90 oak:block oak:cursor-help"
                   >
                     foldable
                   </i>
                 </span>
               </div>
               <div
-                class="options oak-flex oak-items-center oak-gap-0.5"
+                class="options oak:flex oak:items-center oak:gap-0.5"
               >
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center edit"
+                  class="option oak:flex oak:items-center oak:justify-center edit"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     pen
                   </i>
                 </a>
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center remove"
+                  class="option oak:flex oak:items-center oak:justify-center remove"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     close
                   </i>
@@ -332,70 +332,70 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
           />
         </div>
         <div
-          class="options oak-flex oak-items-center oak-has-inner-content"
+          class="options oak:flex oak:items-center oak-has-inner-content"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center remove"
+            class="option oak:flex oak:items-center oak:justify-center remove"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               close
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            class="option oak:flex oak:items-center oak:justify-center duplicate"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center copy"
+            class="option oak:flex oak:items-center oak:justify-center copy"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy_file
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center draggable option oak-drag-handle"
+            class="option oak:flex oak:items-center oak:justify-center draggable option oak-drag-handle"
             draggable="true"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pause
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center option"
+            class="option oak:flex oak:items-center oak:justify-center option"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               expand_less
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
@@ -403,13 +403,13 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
         </div>
       </div>
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -422,7 +422,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
       </div>
     </div>
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -464,7 +464,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
     class="oak builder"
   >
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="false"
@@ -493,16 +493,16 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
       </button>
     </div>
     <div
-      class="elements oak-flex oak-flex-col oak-gap-4"
+      class="elements oak:flex oak:flex-col oak:gap-4"
     >
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -514,11 +514,11 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
         </div>
       </div>
       <div
-        class="draggable oak element oak-flex-none type-text"
+        class="draggable oak element oak:flex-none type-text"
         draggable="true"
       >
         <div
-          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
+          class="inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch even"
         >
           <i
             class="icon junipero-icons"
@@ -526,19 +526,19 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             multiline
           </i>
           <div
-            class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+            class="element-info oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:justify-between"
           >
             <div
-              class="oak-flex oak-items-center"
+              class="oak:flex oak:items-center"
             >
               <h6
-                class="junipero oak-inline oak-m-0"
+                class="junipero oak:inline oak:m-0"
               >
                 Text
               </h6>
             </div>
             <div
-              class="element-content oak-flex-auto"
+              class="element-content oak:flex-auto"
             >
               <div
                 class="junipero sanitize-html"
@@ -549,48 +549,48 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
           </div>
         </div>
         <div
-          class="options oak-flex oak-items-center"
+          class="options oak:flex oak:items-center"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center remove"
+            class="option oak:flex oak:items-center oak:justify-center remove"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               close
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            class="option oak:flex oak:items-center oak:justify-center duplicate"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center copy"
+            class="option oak:flex oak:items-center oak:justify-center copy"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy_file
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
@@ -598,7 +598,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
         </div>
       </div>
       <div
-        class="oak element oak-flex-none type-row"
+        class="oak element oak:flex-none type-row"
         draggable="false"
       >
         <div
@@ -608,30 +608,30 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
             class="drop-zone before"
           />
           <div
-            class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
+            class="row-content oak:flex oak:flex-wrap oak:w-full oak:gap-2 oak:items-flex-start"
           >
             <div
-              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
+              class="column oak:flex oak:max-w-full oak:items-center oak:gap-2 oak:flex-1 oak:py-2"
             >
               <a
-                class="divider prepend oak-flex oak-items-center"
+                class="divider prepend oak:flex oak:items-center"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-lg"
+                  class="icon junipero-icons oak:text-lg!"
                 >
                   add
                 </i>
               </a>
               <div
-                class="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
+                class="col-inner oak:flex-auto oak:flex oak:flex-col oak:gap-2"
               >
                 <div
-                  class="catalogue oak-inline-flex oak-self-center small"
+                  class="catalogue oak:inline-flex oak:self-center small"
                 >
                   <a
-                    class="handle oak-inline-flex oak-items-center oak-justify-center"
+                    class="handle oak:inline-flex oak:items-center oak:justify-center"
                     draggable="false"
                   >
                     <i
@@ -642,14 +642,14 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
                   </a>
                 </div>
                 <div
-                  class="col-content oak-flex oak-flex-col oak-gap-4"
+                  class="col-content oak:flex oak:flex-col oak:gap-4"
                 >
                   <div
-                    class="draggable oak element oak-flex-none type-title"
+                    class="draggable oak element oak:flex-none type-title"
                     draggable="true"
                   >
                     <div
-                      class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch odd"
+                      class="inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch odd"
                     >
                       <i
                         class="icon junipero-icons"
@@ -657,28 +657,28 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
                         title
                       </i>
                       <div
-                        class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+                        class="element-info oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:justify-between"
                       >
                         <div
-                          class="oak-flex oak-items-center"
+                          class="oak:flex oak:items-center"
                         >
                           <h6
-                            class="junipero oak-inline oak-m-0"
+                            class="junipero oak:inline oak:m-0"
                           >
                             Title
                           </h6>
                         </div>
                         <div
-                          class="element-content oak-flex-auto"
+                          class="element-content oak:flex-auto"
                         >
                           <h1
-                            class="junipero oak-m-0 sanitize-html !oak-text-4xl"
+                            class="junipero oak:m-0 sanitize-html oak:text-4xl!"
                           >
                             This is a title
                           </h1>
                         </div>
                         <div
-                          class="displayable-settings junipero extra !oak-text-alternate-text-color"
+                          class="displayable-settings junipero extra oak:text-alternate-text-color!"
                         >
                           <span
                             class="property"
@@ -699,48 +699,48 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
                       </div>
                     </div>
                     <div
-                      class="options oak-flex oak-items-center"
+                      class="options oak:flex oak:items-center"
                     >
                       <a
-                        class="option oak-flex oak-items-center oak-justify-center remove"
+                        class="option oak:flex oak:items-center oak:justify-center remove"
                         draggable="false"
                         href="#"
                       >
                         <i
-                          class="icon junipero-icons !oak-text-lg"
+                          class="icon junipero-icons oak:text-lg!"
                         >
                           close
                         </i>
                       </a>
                       <a
-                        class="option oak-flex oak-items-center oak-justify-center duplicate"
+                        class="option oak:flex oak:items-center oak:justify-center duplicate"
                         draggable="false"
                         href="#"
                       >
                         <i
-                          class="icon junipero-icons !oak-text-lg"
+                          class="icon junipero-icons oak:text-lg!"
                         >
                           copy
                         </i>
                       </a>
                       <a
-                        class="option oak-flex oak-items-center oak-justify-center copy"
+                        class="option oak:flex oak:items-center oak:justify-center copy"
                         draggable="false"
                         href="#"
                       >
                         <i
-                          class="icon junipero-icons !oak-text-lg"
+                          class="icon junipero-icons oak:text-lg!"
                         >
                           copy_file
                         </i>
                       </a>
                       <a
-                        class="option oak-flex oak-items-center oak-justify-center edit"
+                        class="option oak:flex oak:items-center oak:justify-center edit"
                         draggable="false"
                         href="#"
                       >
                         <i
-                          class="icon junipero-icons !oak-text-lg"
+                          class="icon junipero-icons oak:text-lg!"
                         >
                           pen
                         </i>
@@ -749,10 +749,10 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
                   </div>
                 </div>
                 <div
-                  class="catalogue oak-inline-flex oak-self-center small"
+                  class="catalogue oak:inline-flex oak:self-center small"
                 >
                   <a
-                    class="handle oak-inline-flex oak-items-center oak-justify-center"
+                    class="handle oak:inline-flex oak:items-center oak:justify-center"
                     draggable="false"
                   >
                     <i
@@ -764,48 +764,48 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
                 </div>
               </div>
               <a
-                class="divider append oak-flex oak-items-center"
+                class="divider append oak:flex oak:items-center"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-lg"
+                  class="icon junipero-icons oak:text-lg!"
                 >
                   add
                 </i>
               </a>
               <div
-                class="size-info oak-absolute oak-bottom-1 oak-left-1"
+                class="size-info oak:absolute oak:bottom-1 oak:left-1"
               >
                 <span>
                   <i
-                    class="icon junipero-icons !oak-text-alternate-text-color oak-rotate-90 oak-block oak-cursor-help"
+                    class="icon junipero-icons oak:text-alternate-text-color! oak:rotate-90 oak:block oak:cursor-help"
                   >
                     foldable
                   </i>
                 </span>
               </div>
               <div
-                class="options oak-flex oak-items-center oak-gap-0.5"
+                class="options oak:flex oak:items-center oak:gap-0.5"
               >
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center edit"
+                  class="option oak:flex oak:items-center oak:justify-center edit"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     pen
                   </i>
                 </a>
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center remove"
+                  class="option oak:flex oak:items-center oak:justify-center remove"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     close
                   </i>
@@ -818,70 +818,70 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
           />
         </div>
         <div
-          class="options oak-flex oak-items-center oak-has-inner-content"
+          class="options oak:flex oak:items-center oak-has-inner-content"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center remove"
+            class="option oak:flex oak:items-center oak:justify-center remove"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               close
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            class="option oak:flex oak:items-center oak:justify-center duplicate"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center copy"
+            class="option oak:flex oak:items-center oak:justify-center copy"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy_file
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center draggable option oak-drag-handle"
+            class="option oak:flex oak:items-center oak:justify-center draggable option oak-drag-handle"
             draggable="true"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pause
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center option"
+            class="option oak:flex oak:items-center oak:justify-center option"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               expand_less
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
@@ -889,13 +889,13 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
         </div>
       </div>
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -908,7 +908,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Content with
       </div>
     </div>
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="false"
@@ -949,7 +949,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Empty conten
     class="oak builder"
   >
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -979,16 +979,16 @@ exports[`<Builder /> > should allow to add content from catalogue > Empty conten
       </button>
     </div>
     <div
-      class="elements oak-flex oak-flex-col oak-gap-4"
+      class="elements oak:flex oak:flex-col oak:gap-4"
     >
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -1001,7 +1001,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Empty conten
       </div>
     </div>
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -1039,7 +1039,7 @@ exports[`<Builder /> > should allow to add content from catalogue > Empty conten
 
 exports[`<Builder /> > should allow to add content from catalogue > Row with title 1`] = `
 <div
-  class="oak element oak-flex-none type-row"
+  class="oak element oak:flex-none type-row"
   draggable="false"
 >
   <div
@@ -1049,30 +1049,30 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
       class="drop-zone before"
     />
     <div
-      class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
+      class="row-content oak:flex oak:flex-wrap oak:w-full oak:gap-2 oak:items-flex-start"
     >
       <div
-        class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-2"
+        class="column oak:flex oak:max-w-full oak:items-center oak:gap-2 oak:flex-1 oak:py-2"
       >
         <a
-          class="divider prepend oak-flex oak-items-center"
+          class="divider prepend oak:flex oak:items-center"
           draggable="false"
           href="#"
         >
           <i
-            class="icon junipero-icons !oak-text-lg"
+            class="icon junipero-icons oak:text-lg!"
           >
             add
           </i>
         </a>
         <div
-          class="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
+          class="col-inner oak:flex-auto oak:flex oak:flex-col oak:gap-2"
         >
           <div
-            class="catalogue oak-inline-flex oak-self-center small"
+            class="catalogue oak:inline-flex oak:self-center small"
           >
             <a
-              class="handle oak-inline-flex oak-items-center oak-justify-center"
+              class="handle oak:inline-flex oak:items-center oak:justify-center"
               draggable="false"
             >
               <i
@@ -1083,14 +1083,14 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
             </a>
           </div>
           <div
-            class="col-content oak-flex oak-flex-col oak-gap-4"
+            class="col-content oak:flex oak:flex-col oak:gap-4"
           >
             <div
-              class="draggable oak element oak-flex-none type-title"
+              class="draggable oak element oak:flex-none type-title"
               draggable="true"
             >
               <div
-                class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch odd"
+                class="inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch odd"
               >
                 <i
                   class="icon junipero-icons"
@@ -1098,28 +1098,28 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
                   title
                 </i>
                 <div
-                  class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+                  class="element-info oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:justify-between"
                 >
                   <div
-                    class="oak-flex oak-items-center"
+                    class="oak:flex oak:items-center"
                   >
                     <h6
-                      class="junipero oak-inline oak-m-0"
+                      class="junipero oak:inline oak:m-0"
                     >
                       Title
                     </h6>
                   </div>
                   <div
-                    class="element-content oak-flex-auto"
+                    class="element-content oak:flex-auto"
                   >
                     <h1
-                      class="junipero oak-m-0 sanitize-html !oak-text-4xl"
+                      class="junipero oak:m-0 sanitize-html oak:text-4xl!"
                     >
                       This is a title
                     </h1>
                   </div>
                   <div
-                    class="displayable-settings junipero extra !oak-text-alternate-text-color"
+                    class="displayable-settings junipero extra oak:text-alternate-text-color!"
                   >
                     <span
                       class="property"
@@ -1140,48 +1140,48 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
                 </div>
               </div>
               <div
-                class="options oak-flex oak-items-center"
+                class="options oak:flex oak:items-center"
               >
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center remove"
+                  class="option oak:flex oak:items-center oak:justify-center remove"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     close
                   </i>
                 </a>
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center duplicate"
+                  class="option oak:flex oak:items-center oak:justify-center duplicate"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     copy
                   </i>
                 </a>
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center copy"
+                  class="option oak:flex oak:items-center oak:justify-center copy"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     copy_file
                   </i>
                 </a>
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center edit"
+                  class="option oak:flex oak:items-center oak:justify-center edit"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     pen
                   </i>
@@ -1190,10 +1190,10 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
             </div>
           </div>
           <div
-            class="catalogue oak-inline-flex oak-self-center small"
+            class="catalogue oak:inline-flex oak:self-center small"
           >
             <a
-              class="handle oak-inline-flex oak-items-center oak-justify-center"
+              class="handle oak:inline-flex oak:items-center oak:justify-center"
               draggable="false"
             >
               <i
@@ -1205,48 +1205,48 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
           </div>
         </div>
         <a
-          class="divider append oak-flex oak-items-center"
+          class="divider append oak:flex oak:items-center"
           draggable="false"
           href="#"
         >
           <i
-            class="icon junipero-icons !oak-text-lg"
+            class="icon junipero-icons oak:text-lg!"
           >
             add
           </i>
         </a>
         <div
-          class="size-info oak-absolute oak-bottom-1 oak-left-1"
+          class="size-info oak:absolute oak:bottom-1 oak:left-1"
         >
           <span>
             <i
-              class="icon junipero-icons !oak-text-alternate-text-color oak-rotate-90 oak-block oak-cursor-help"
+              class="icon junipero-icons oak:text-alternate-text-color! oak:rotate-90 oak:block oak:cursor-help"
             >
               foldable
             </i>
           </span>
         </div>
         <div
-          class="options oak-flex oak-items-center oak-gap-0.5"
+          class="options oak:flex oak:items-center oak:gap-0.5"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center remove"
+            class="option oak:flex oak:items-center oak:justify-center remove"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               close
             </i>
@@ -1259,70 +1259,70 @@ exports[`<Builder /> > should allow to add content from catalogue > Row with tit
     />
   </div>
   <div
-    class="options oak-flex oak-items-center oak-has-inner-content"
+    class="options oak:flex oak:items-center oak-has-inner-content"
   >
     <a
-      class="option oak-flex oak-items-center oak-justify-center remove"
+      class="option oak:flex oak:items-center oak:justify-center remove"
       draggable="false"
       href="#"
     >
       <i
-        class="icon junipero-icons !oak-text-lg"
+        class="icon junipero-icons oak:text-lg!"
       >
         close
       </i>
     </a>
     <a
-      class="option oak-flex oak-items-center oak-justify-center duplicate"
+      class="option oak:flex oak:items-center oak:justify-center duplicate"
       draggable="false"
       href="#"
     >
       <i
-        class="icon junipero-icons !oak-text-lg"
+        class="icon junipero-icons oak:text-lg!"
       >
         copy
       </i>
     </a>
     <a
-      class="option oak-flex oak-items-center oak-justify-center copy"
+      class="option oak:flex oak:items-center oak:justify-center copy"
       draggable="false"
       href="#"
     >
       <i
-        class="icon junipero-icons !oak-text-lg"
+        class="icon junipero-icons oak:text-lg!"
       >
         copy_file
       </i>
     </a>
     <a
-      class="option oak-flex oak-items-center oak-justify-center draggable option oak-drag-handle"
+      class="option oak:flex oak:items-center oak:justify-center draggable option oak-drag-handle"
       draggable="true"
       href="#"
     >
       <i
-        class="icon junipero-icons !oak-text-lg"
+        class="icon junipero-icons oak:text-lg!"
       >
         pause
       </i>
     </a>
     <a
-      class="option oak-flex oak-items-center oak-justify-center option"
+      class="option oak:flex oak:items-center oak:justify-center option"
       draggable="false"
       href="#"
     >
       <i
-        class="icon junipero-icons !oak-text-lg"
+        class="icon junipero-icons oak:text-lg!"
       >
         expand_less
       </i>
     </a>
     <a
-      class="option oak-flex oak-items-center oak-justify-center edit"
+      class="option oak:flex oak:items-center oak:justify-center edit"
       draggable="false"
       href="#"
     >
       <i
-        class="icon junipero-icons !oak-text-lg"
+        class="icon junipero-icons oak:text-lg!"
       >
         pen
       </i>
@@ -1343,7 +1343,7 @@ exports[`<Builder /> > should allow to add content programmatically > Content wi
       class="oak builder"
     >
       <div
-        class="oak-flex oak-gap-2"
+        class="oak:flex oak:gap-2"
       >
         <button
           aria-disabled="false"
@@ -1372,16 +1372,16 @@ exports[`<Builder /> > should allow to add content programmatically > Content wi
         </button>
       </div>
       <div
-        class="elements oak-flex oak-flex-col oak-gap-4"
+        class="elements oak:flex oak:flex-col oak:gap-4"
       >
         <div
-          class="add-element oak-flex oak-justify-center"
+          class="add-element oak:flex oak:justify-center"
         >
           <div
             class="catalogue"
           >
             <a
-              class="handle oak-inline-flex oak-items-center oak-justify-center"
+              class="handle oak:inline-flex oak:items-center oak:justify-center"
               draggable="false"
             >
               <i
@@ -1393,11 +1393,11 @@ exports[`<Builder /> > should allow to add content programmatically > Content wi
           </div>
         </div>
         <div
-          class="draggable oak element oak-flex-none type-title"
+          class="draggable oak element oak:flex-none type-title"
           draggable="true"
         >
           <div
-            class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
+            class="inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch even"
           >
             <i
               class="icon junipero-icons"
@@ -1405,28 +1405,28 @@ exports[`<Builder /> > should allow to add content programmatically > Content wi
               title
             </i>
             <div
-              class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+              class="element-info oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:justify-between"
             >
               <div
-                class="oak-flex oak-items-center"
+                class="oak:flex oak:items-center"
               >
                 <h6
-                  class="junipero oak-inline oak-m-0"
+                  class="junipero oak:inline oak:m-0"
                 >
                   Title
                 </h6>
               </div>
               <div
-                class="element-content oak-flex-auto"
+                class="element-content oak:flex-auto"
               >
                 <h1
-                  class="junipero oak-m-0 sanitize-html !oak-text-4xl"
+                  class="junipero oak:m-0 sanitize-html oak:text-4xl!"
                 >
                   This is a title
                 </h1>
               </div>
               <div
-                class="displayable-settings junipero extra !oak-text-alternate-text-color"
+                class="displayable-settings junipero extra oak:text-alternate-text-color!"
               >
                 <span
                   class="property"
@@ -1447,48 +1447,48 @@ exports[`<Builder /> > should allow to add content programmatically > Content wi
             </div>
           </div>
           <div
-            class="options oak-flex oak-items-center"
+            class="options oak:flex oak:items-center"
           >
             <a
-              class="option oak-flex oak-items-center oak-justify-center remove"
+              class="option oak:flex oak:items-center oak:justify-center remove"
               draggable="false"
               href="#"
             >
               <i
-                class="icon junipero-icons !oak-text-lg"
+                class="icon junipero-icons oak:text-lg!"
               >
                 close
               </i>
             </a>
             <a
-              class="option oak-flex oak-items-center oak-justify-center duplicate"
+              class="option oak:flex oak:items-center oak:justify-center duplicate"
               draggable="false"
               href="#"
             >
               <i
-                class="icon junipero-icons !oak-text-lg"
+                class="icon junipero-icons oak:text-lg!"
               >
                 copy
               </i>
             </a>
             <a
-              class="option oak-flex oak-items-center oak-justify-center copy"
+              class="option oak:flex oak:items-center oak:justify-center copy"
               draggable="false"
               href="#"
             >
               <i
-                class="icon junipero-icons !oak-text-lg"
+                class="icon junipero-icons oak:text-lg!"
               >
                 copy_file
               </i>
             </a>
             <a
-              class="option oak-flex oak-items-center oak-justify-center edit"
+              class="option oak:flex oak:items-center oak:justify-center edit"
               draggable="false"
               href="#"
             >
               <i
-                class="icon junipero-icons !oak-text-lg"
+                class="icon junipero-icons oak:text-lg!"
               >
                 pen
               </i>
@@ -1496,13 +1496,13 @@ exports[`<Builder /> > should allow to add content programmatically > Content wi
           </div>
         </div>
         <div
-          class="add-element oak-flex oak-justify-center"
+          class="add-element oak:flex oak:justify-center"
         >
           <div
             class="catalogue"
           >
             <a
-              class="handle oak-inline-flex oak-items-center oak-justify-center"
+              class="handle oak:inline-flex oak:items-center oak:justify-center"
               draggable="false"
             >
               <i
@@ -1515,7 +1515,7 @@ exports[`<Builder /> > should allow to add content programmatically > Content wi
         </div>
       </div>
       <div
-        class="oak-flex oak-gap-2"
+        class="oak:flex oak:gap-2"
       >
         <button
           aria-disabled="false"
@@ -1563,7 +1563,7 @@ exports[`<Builder /> > should allow to add content programmatically > Empty cont
       class="oak builder"
     >
       <div
-        class="oak-flex oak-gap-2"
+        class="oak:flex oak:gap-2"
       >
         <button
           aria-disabled="true"
@@ -1593,16 +1593,16 @@ exports[`<Builder /> > should allow to add content programmatically > Empty cont
         </button>
       </div>
       <div
-        class="elements oak-flex oak-flex-col oak-gap-4"
+        class="elements oak:flex oak:flex-col oak:gap-4"
       >
         <div
-          class="add-element oak-flex oak-justify-center"
+          class="add-element oak:flex oak:justify-center"
         >
           <div
             class="catalogue"
           >
             <a
-              class="handle oak-inline-flex oak-items-center oak-justify-center"
+              class="handle oak:inline-flex oak:items-center oak:justify-center"
               draggable="false"
             >
               <i
@@ -1615,7 +1615,7 @@ exports[`<Builder /> > should allow to add content programmatically > Empty cont
         </div>
       </div>
       <div
-        class="oak-flex oak-gap-2"
+        class="oak:flex oak:gap-2"
       >
         <button
           aria-disabled="true"
@@ -1689,15 +1689,15 @@ exports[`<Builder /> > should allow to render editable inside a modal > Catalogu
             class="tab"
           >
             <div
-              class="group oak-grid oak-grid-cols-2 oak-gap-2"
+              class="group oak:grid oak:grid-cols-2 oak:gap-2"
             >
               <a
-                class="component component-row oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-row oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   row
                 </i>
@@ -1708,12 +1708,12 @@ exports[`<Builder /> > should allow to render editable inside a modal > Catalogu
                 </span>
               </a>
               <a
-                class="component component-empty-space oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-empty-space oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   blank_space
                 </i>
@@ -1724,12 +1724,12 @@ exports[`<Builder /> > should allow to render editable inside a modal > Catalogu
                 </span>
               </a>
               <a
-                class="component component-title oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-title oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   title
                 </i>
@@ -1740,12 +1740,12 @@ exports[`<Builder /> > should allow to render editable inside a modal > Catalogu
                 </span>
               </a>
               <a
-                class="component component-text oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-text oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   multiline
                 </i>
@@ -1756,12 +1756,12 @@ exports[`<Builder /> > should allow to render editable inside a modal > Catalogu
                 </span>
               </a>
               <a
-                class="component component-image oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-image oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   image
                 </i>
@@ -1772,12 +1772,12 @@ exports[`<Builder /> > should allow to render editable inside a modal > Catalogu
                 </span>
               </a>
               <a
-                class="component component-button oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-button oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   button
                 </i>
@@ -1788,12 +1788,12 @@ exports[`<Builder /> > should allow to render editable inside a modal > Catalogu
                 </span>
               </a>
               <a
-                class="component component-foldable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-foldable oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   foldable
                 </i>
@@ -1804,12 +1804,12 @@ exports[`<Builder /> > should allow to render editable inside a modal > Catalogu
                 </span>
               </a>
               <a
-                class="component component-clickable oak-flex oak-items-center oak-px-2 oak-py-1 oak-gap-2 junipero"
+                class="component component-clickable oak:flex oak:items-center oak:px-2 oak:py-1 oak:gap-2 junipero"
                 draggable="false"
                 href="#"
               >
                 <i
-                  class="icon junipero-icons !oak-text-2xl"
+                  class="icon junipero-icons oak:text-2xl!"
                 >
                   clickable
                 </i>
@@ -1834,7 +1834,7 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
     class="oak builder"
   >
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -1864,16 +1864,16 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
       </button>
     </div>
     <div
-      class="elements oak-flex oak-flex-col oak-gap-4"
+      class="elements oak:flex oak:flex-col oak:gap-4"
     >
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -1885,11 +1885,11 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
         </div>
       </div>
       <div
-        class="draggable oak element oak-flex-none type-title"
+        class="draggable oak element oak:flex-none type-title"
         draggable="true"
       >
         <div
-          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
+          class="inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch even"
         >
           <i
             class="icon junipero-icons"
@@ -1897,28 +1897,28 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
             title
           </i>
           <div
-            class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+            class="element-info oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:justify-between"
           >
             <div
-              class="oak-flex oak-items-center"
+              class="oak:flex oak:items-center"
             >
               <h6
-                class="junipero oak-inline oak-m-0"
+                class="junipero oak:inline oak:m-0"
               >
                 Title
               </h6>
             </div>
             <div
-              class="element-content oak-flex-auto"
+              class="element-content oak:flex-auto"
             >
               <h1
-                class="junipero oak-m-0 sanitize-html !oak-text-4xl"
+                class="junipero oak:m-0 sanitize-html oak:text-4xl!"
               >
                 This is a title
               </h1>
             </div>
             <div
-              class="displayable-settings junipero extra !oak-text-alternate-text-color"
+              class="displayable-settings junipero extra oak:text-alternate-text-color!"
             >
               <span
                 class="property"
@@ -1939,48 +1939,48 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
           </div>
         </div>
         <div
-          class="options oak-flex oak-items-center"
+          class="options oak:flex oak:items-center"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center remove"
+            class="option oak:flex oak:items-center oak:justify-center remove"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               close
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            class="option oak:flex oak:items-center oak:justify-center duplicate"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center copy"
+            class="option oak:flex oak:items-center oak:justify-center copy"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy_file
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
@@ -1988,13 +1988,13 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
         </div>
       </div>
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -2007,7 +2007,7 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
       </div>
     </div>
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -2053,7 +2053,7 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
               class="form"
             >
               <div
-                class="form-title junipero oak-flex oak-py-2 oak-px-5 oak-sticky oak-top-0 oak-z-10"
+                class="form-title junipero oak:flex oak:py-2 oak:px-5 oak:sticky oak:top-0 oak:z-10"
               >
                 Title options
               </div>
@@ -2107,13 +2107,13 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
                     class="tab"
                   >
                     <div
-                      class="fields oak-py-2 oak-flex oak-flex-col oak-gap-4"
+                      class="fields oak:py-2 oak:flex oak:flex-col oak:gap-4"
                     >
                       <div
-                        class="field oak-px-[20px]"
+                        class="field oak:px-[20px]"
                       >
                         <label
-                          class="junipero label oak-flex oak-items-center oak-gap-2 !oak-pt-0"
+                          class="junipero label oak:flex oak:items-center oak:gap-2 oak:pt-0!"
                         >
                           Type
                         </label>
@@ -2152,10 +2152,10 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
                         </div>
                       </div>
                       <div
-                        class="field oak-px-[20px]"
+                        class="field oak:px-[20px]"
                       >
                         <label
-                          class="junipero label oak-flex oak-items-center oak-gap-2 !oak-pt-0"
+                          class="junipero label oak:flex oak:items-center oak:gap-2 oak:pt-0!"
                         >
                           Content
                         </label>
@@ -2176,7 +2176,7 @@ exports[`<Builder /> > should allow to render editable inside a modal > Title ed
                 </div>
               </div>
               <div
-                class="buttons oak-flex oak-items-center oak-justify-end oak-gap-2 oak-p-5 oak-z-20"
+                class="buttons oak:flex oak:items-center oak:justify-end oak:gap-2 oak:p-5 oak:z-20"
               >
                 <button
                   class="junipero button subtle"
@@ -2208,7 +2208,7 @@ exports[`<Builder /> > should render > Base content 1`] = `
     class="oak builder"
   >
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -2238,16 +2238,16 @@ exports[`<Builder /> > should render > Base content 1`] = `
       </button>
     </div>
     <div
-      class="elements oak-flex oak-flex-col oak-gap-4"
+      class="elements oak:flex oak:flex-col oak:gap-4"
     >
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -2259,11 +2259,11 @@ exports[`<Builder /> > should render > Base content 1`] = `
         </div>
       </div>
       <div
-        class="draggable oak element oak-flex-none type-title"
+        class="draggable oak element oak:flex-none type-title"
         draggable="true"
       >
         <div
-          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
+          class="inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch even"
         >
           <i
             class="icon junipero-icons"
@@ -2271,28 +2271,28 @@ exports[`<Builder /> > should render > Base content 1`] = `
             title
           </i>
           <div
-            class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+            class="element-info oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:justify-between"
           >
             <div
-              class="oak-flex oak-items-center"
+              class="oak:flex oak:items-center"
             >
               <h6
-                class="junipero oak-inline oak-m-0"
+                class="junipero oak:inline oak:m-0"
               >
                 Title
               </h6>
             </div>
             <div
-              class="element-content oak-flex-auto"
+              class="element-content oak:flex-auto"
             >
               <h1
-                class="junipero oak-m-0 sanitize-html !oak-text-4xl"
+                class="junipero oak:m-0 sanitize-html oak:text-4xl!"
               >
                 This is a title
               </h1>
             </div>
             <div
-              class="displayable-settings junipero extra !oak-text-alternate-text-color"
+              class="displayable-settings junipero extra oak:text-alternate-text-color!"
             >
               <span
                 class="property"
@@ -2313,48 +2313,48 @@ exports[`<Builder /> > should render > Base content 1`] = `
           </div>
         </div>
         <div
-          class="options oak-flex oak-items-center"
+          class="options oak:flex oak:items-center"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center remove"
+            class="option oak:flex oak:items-center oak:justify-center remove"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               close
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            class="option oak:flex oak:items-center oak:justify-center duplicate"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center copy"
+            class="option oak:flex oak:items-center oak:justify-center copy"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy_file
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
@@ -2362,11 +2362,11 @@ exports[`<Builder /> > should render > Base content 1`] = `
         </div>
       </div>
       <div
-        class="draggable oak element oak-flex-none type-text"
+        class="draggable oak element oak:flex-none type-text"
         draggable="true"
       >
         <div
-          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
+          class="inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch even"
         >
           <i
             class="icon junipero-icons"
@@ -2374,19 +2374,19 @@ exports[`<Builder /> > should render > Base content 1`] = `
             multiline
           </i>
           <div
-            class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+            class="element-info oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:justify-between"
           >
             <div
-              class="oak-flex oak-items-center"
+              class="oak:flex oak:items-center"
             >
               <h6
-                class="junipero oak-inline oak-m-0"
+                class="junipero oak:inline oak:m-0"
               >
                 Text
               </h6>
             </div>
             <div
-              class="element-content oak-flex-auto"
+              class="element-content oak:flex-auto"
             >
               <div
                 class="junipero sanitize-html"
@@ -2397,48 +2397,48 @@ exports[`<Builder /> > should render > Base content 1`] = `
           </div>
         </div>
         <div
-          class="options oak-flex oak-items-center"
+          class="options oak:flex oak:items-center"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center remove"
+            class="option oak:flex oak:items-center oak:justify-center remove"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               close
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            class="option oak:flex oak:items-center oak:justify-center duplicate"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center copy"
+            class="option oak:flex oak:items-center oak:justify-center copy"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy_file
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
@@ -2446,13 +2446,13 @@ exports[`<Builder /> > should render > Base content 1`] = `
         </div>
       </div>
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -2465,7 +2465,7 @@ exports[`<Builder /> > should render > Base content 1`] = `
       </div>
     </div>
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -2507,7 +2507,7 @@ exports[`<Builder /> > shouldn't display any catalogue button if disabled > No c
     class="oak builder"
   >
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -2537,10 +2537,10 @@ exports[`<Builder /> > shouldn't display any catalogue button if disabled > No c
       </button>
     </div>
     <div
-      class="elements oak-flex oak-flex-col oak-gap-4 oak-py-8"
+      class="elements oak:flex oak:flex-col oak:gap-4 oak:py-8"
     />
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -2582,7 +2582,7 @@ exports[`<Builder /> > shouldn't display any option to remove an element > Remov
     class="oak builder"
   >
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -2612,16 +2612,16 @@ exports[`<Builder /> > shouldn't display any option to remove an element > Remov
       </button>
     </div>
     <div
-      class="elements oak-flex oak-flex-col oak-gap-4"
+      class="elements oak:flex oak:flex-col oak:gap-4"
     >
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -2633,11 +2633,11 @@ exports[`<Builder /> > shouldn't display any option to remove an element > Remov
         </div>
       </div>
       <div
-        class="draggable oak element oak-flex-none type-title"
+        class="draggable oak element oak:flex-none type-title"
         draggable="true"
       >
         <div
-          class="inner oak-flex oak-gap-2 oak-p-4 oak-items-stretch even"
+          class="inner oak:flex oak:gap-2 oak:p-4 oak:items-stretch even"
         >
           <i
             class="icon junipero-icons"
@@ -2645,28 +2645,28 @@ exports[`<Builder /> > shouldn't display any option to remove an element > Remov
             title
           </i>
           <div
-            class="element-info oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-justify-between"
+            class="element-info oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:justify-between"
           >
             <div
-              class="oak-flex oak-items-center"
+              class="oak:flex oak:items-center"
             >
               <h6
-                class="junipero oak-inline oak-m-0"
+                class="junipero oak:inline oak:m-0"
               >
                 Title
               </h6>
             </div>
             <div
-              class="element-content oak-flex-auto"
+              class="element-content oak:flex-auto"
             >
               <h1
-                class="junipero oak-m-0 sanitize-html !oak-text-4xl"
+                class="junipero oak:m-0 sanitize-html oak:text-4xl!"
               >
                 This is a title
               </h1>
             </div>
             <div
-              class="displayable-settings junipero extra !oak-text-alternate-text-color"
+              class="displayable-settings junipero extra oak:text-alternate-text-color!"
             >
               <span
                 class="property"
@@ -2687,37 +2687,37 @@ exports[`<Builder /> > shouldn't display any option to remove an element > Remov
           </div>
         </div>
         <div
-          class="options oak-flex oak-items-center"
+          class="options oak:flex oak:items-center"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            class="option oak:flex oak:items-center oak:justify-center duplicate"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center copy"
+            class="option oak:flex oak:items-center oak:justify-center copy"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy_file
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
@@ -2725,13 +2725,13 @@ exports[`<Builder /> > shouldn't display any option to remove an element > Remov
         </div>
       </div>
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -2744,7 +2744,7 @@ exports[`<Builder /> > shouldn't display any option to remove an element > Remov
       </div>
     </div>
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -2786,7 +2786,7 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
     class="oak builder"
   >
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"
@@ -2816,16 +2816,16 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
       </button>
     </div>
     <div
-      class="elements oak-flex oak-flex-col oak-gap-4"
+      class="elements oak:flex oak:flex-col oak:gap-4"
     >
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -2837,7 +2837,7 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
         </div>
       </div>
       <div
-        class="oak element oak-flex-none type-row"
+        class="oak element oak:flex-none type-row"
         draggable="false"
       >
         <div
@@ -2847,19 +2847,19 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
             class="drop-zone before"
           />
           <div
-            class="row-content oak-flex oak-flex-wrap oak-w-full oak-gap-2 oak-items-flex-start"
+            class="row-content oak:flex oak:flex-wrap oak:w-full oak:gap-2 oak:items-flex-start"
           >
             <div
-              class="column oak-flex oak-max-w-full oak-items-center oak-gap-2 oak-flex-1 oak-py-8 oak-px-4"
+              class="column oak:flex oak:max-w-full oak:items-center oak:gap-2 oak:flex-1 oak:py-8 oak:px-4"
             >
               <div
-                class="col-inner oak-flex-auto oak-flex oak-flex-col oak-gap-2"
+                class="col-inner oak:flex-auto oak:flex oak:flex-col oak:gap-2"
               >
                 <div
-                  class="catalogue oak-inline-flex oak-self-center"
+                  class="catalogue oak:inline-flex oak:self-center"
                 >
                   <a
-                    class="handle oak-inline-flex oak-items-center oak-justify-center"
+                    class="handle oak:inline-flex oak:items-center oak:justify-center"
                     draggable="false"
                   >
                     <i
@@ -2871,37 +2871,37 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
                 </div>
               </div>
               <div
-                class="size-info oak-absolute oak-bottom-1 oak-left-1"
+                class="size-info oak:absolute oak:bottom-1 oak:left-1"
               >
                 <span>
                   <i
-                    class="icon junipero-icons !oak-text-alternate-text-color oak-rotate-90 oak-block oak-cursor-help"
+                    class="icon junipero-icons oak:text-alternate-text-color! oak:rotate-90 oak:block oak:cursor-help"
                   >
                     foldable
                   </i>
                 </span>
               </div>
               <div
-                class="options oak-flex oak-items-center oak-gap-0.5"
+                class="options oak:flex oak:items-center oak:gap-0.5"
               >
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center edit"
+                  class="option oak:flex oak:items-center oak:justify-center edit"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     pen
                   </i>
                 </a>
                 <a
-                  class="option oak-flex oak-items-center oak-justify-center remove"
+                  class="option oak:flex oak:items-center oak:justify-center remove"
                   draggable="false"
                   href="#"
                 >
                   <i
-                    class="icon junipero-icons !oak-text-lg"
+                    class="icon junipero-icons oak:text-lg!"
                   >
                     close
                   </i>
@@ -2914,70 +2914,70 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
           />
         </div>
         <div
-          class="options oak-flex oak-items-center oak-has-inner-content"
+          class="options oak:flex oak:items-center oak-has-inner-content"
         >
           <a
-            class="option oak-flex oak-items-center oak-justify-center remove"
+            class="option oak:flex oak:items-center oak:justify-center remove"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               close
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center duplicate"
+            class="option oak:flex oak:items-center oak:justify-center duplicate"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center copy"
+            class="option oak:flex oak:items-center oak:justify-center copy"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               copy_file
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center draggable option oak-drag-handle"
+            class="option oak:flex oak:items-center oak:justify-center draggable option oak-drag-handle"
             draggable="true"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pause
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center option"
+            class="option oak:flex oak:items-center oak:justify-center option"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               expand_less
             </i>
           </a>
           <a
-            class="option oak-flex oak-items-center oak-justify-center edit"
+            class="option oak:flex oak:items-center oak:justify-center edit"
             draggable="false"
             href="#"
           >
             <i
-              class="icon junipero-icons !oak-text-lg"
+              class="icon junipero-icons oak:text-lg!"
             >
               pen
             </i>
@@ -2985,13 +2985,13 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
         </div>
       </div>
       <div
-        class="add-element oak-flex oak-justify-center"
+        class="add-element oak:flex oak:justify-center"
       >
         <div
           class="catalogue"
         >
           <a
-            class="handle oak-inline-flex oak-items-center oak-justify-center"
+            class="handle oak:inline-flex oak:items-center oak:justify-center"
             draggable="false"
           >
             <i
@@ -3004,7 +3004,7 @@ exports[`<Builder /> > shouldn't display button to add a new column if container
       </div>
     </div>
     <div
-      class="oak-flex oak-gap-2"
+      class="oak:flex oak:gap-2"
     >
       <button
         aria-disabled="true"

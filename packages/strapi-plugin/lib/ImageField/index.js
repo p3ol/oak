@@ -42,7 +42,7 @@ const ImageField = ({ value: valueProp, onChange }) => {
     <>
       <GlobalStyling />
       <OakImageField
-        className="oak-w-full"
+        className="oak:w-full"
         value={value}
         onOpenDialog={() => setOpened(true)}
       />

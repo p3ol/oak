@@ -166,12 +166,12 @@ const Builder = ({
         ) }
         <div
           className={classNames(
-            'elements oak-flex oak-flex-col oak-gap-4',
-            { 'oak-py-8': !catalogueEnabled }
+            'elements oak:flex oak:flex-col oak:gap-4',
+            { 'oak:py-8': !catalogueEnabled }
           )}
         >
           { content?.length > 0 && catalogueEnabled && (
-            <div className="add-element oak-flex oak-justify-center">
+            <div className="add-element oak:flex oak:justify-center">
               <Catalogue
                 ref={catalogueRef}
                 onAppend={onPrepend}
@@ -189,7 +189,7 @@ const Builder = ({
           )) }
 
           { catalogueEnabled && (
-            <div className="add-element oak-flex oak-justify-center">
+            <div className="add-element oak:flex oak:justify-center">
               <Catalogue
                 ref={catalogueRef}
                 onAppend={onAppend}

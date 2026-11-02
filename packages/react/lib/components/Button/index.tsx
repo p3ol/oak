@@ -22,7 +22,7 @@ const Button_ = ({
   return (
     <Button
       className={classNames(
-        'default !oak-pointer-events-none sanitize-html',
+        'default oak:pointer-events-none! sanitize-html',
         className
       )}
       dangerouslySetInnerHTML={

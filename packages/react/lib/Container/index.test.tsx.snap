@@ -37,14 +37,14 @@ exports[`<Container /> > should render 1`] = `
 <div>
   <div>
     <div
-      class="container oak-flex-auto oak-flex oak-flex-col oak-gap-2 oak-p-4 even"
+      class="container oak:flex-auto oak:flex oak:flex-col oak:gap-2 oak:p-4 even"
       data-depth="0"
     >
       <div
-        class="catalogue oak-inline-flex oak-self-center"
+        class="catalogue oak:inline-flex oak:self-center"
       >
         <a
-          class="handle oak-inline-flex oak-items-center oak-justify-center"
+          class="handle oak:inline-flex oak:items-center oak:justify-center"
           draggable="false"
         >
           <i

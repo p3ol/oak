@@ -6,7 +6,7 @@ import fse from 'fs-extra';
 import sass from 'sass';
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
-import tailwindcss from 'tailwindcss';
+import tailwindcss from '@tailwindcss/postcss';
 
 export interface CompileOptions {
   input: string;
@@ -27,11 +27,8 @@ const compile = async ({ input, output }: CompileOptions) => {
     ],
   });
 
-  // @ts-expect-error postcss shenanigans
   const { css: prefixedCss } = await postcss([
-    tailwindcss({
-      config: path.resolve(__dirname, '../tailwind.config.ts'),
-    }),
+    tailwindcss({ optimize: { minify: true } }),
     autoprefixer(),
   ]).process(css, {
     from: input,
@@ -63,6 +60,7 @@ const compile = async ({ input, output }: CompileOptions) => {
     .readdirSync(path.resolve('./lib'), { withFileTypes: true })
     .filter(f =>
       !f.isDirectory() &&
+      f.name.endsWith('.sass') &&
       !/index/.test(f.name) &&
       fs.existsSync(path.resolve('./lib', f.name))
     )

@@ -30,7 +30,7 @@ const MenuButton = ({
       <a
         className={classNames(
           'menu-button',
-          'oak-flex oak-items-center oak-justify-center',
+          'oak:flex oak:items-center oak:justify-center',
           { active: isActive?.() },
           className,
         )}

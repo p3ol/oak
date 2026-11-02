@@ -100,8 +100,8 @@ const Container = ({
       <div
         { ...rest }
         className={classNames(
-          'container oak-flex-auto oak-flex oak-flex-col oak-gap-2',
-          'oak-p-4',
+          'container oak:flex-auto oak:flex oak:flex-col oak:gap-2',
+          'oak:p-4',
           depth % 2 === 0 ? 'even' : 'odd',
           className
         )}
@@ -114,12 +114,12 @@ const Container = ({
             onAppend={onPrepend}
             element={element}
             onPaste={onPasteBefore}
-            className="oak-inline-flex oak-self-center small"
+            className="oak:inline-flex oak:self-center small"
           />
         ) }
 
         { content.length > 0 && (
-          <div className="content oak-flex oak-flex-col oak-gap-4">
+          <div className="content oak:flex oak:flex-col oak:gap-4">
             { content.map((elt, i) => (
               <Element
                 depth={depth + 1}
@@ -141,7 +141,7 @@ const Container = ({
             onAppend={onAppend}
             onPaste={onPasteAfter}
             className={classNames(
-              'oak-inline-flex oak-self-center',
+              'oak:inline-flex oak:self-center',
               { small: content.length > 0 }
             )}
           />

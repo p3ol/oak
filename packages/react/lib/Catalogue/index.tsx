@@ -202,8 +202,8 @@ const Catalogue = ({
       <a
         ref={refs.setReference}
         className={classNames(
-          'handle oak-inline-flex oak-items-center',
-          'oak-justify-center',
+          'handle oak:inline-flex oak:items-center',
+          'oak:justify-center',
         )}
         draggable={false}
         { ...getReferenceProps() }
@@ -231,7 +231,7 @@ const Catalogue = ({
                   key={group.id}
                   title={<Text>{ group.name }</Text>}
                 >
-                  <div className="group oak-grid oak-grid-cols-2 oak-gap-2">
+                  <div className="group oak:grid oak:grid-cols-2 oak:gap-2">
                     { group.components.map((component: ComponentObject) => (
                       <a
                         key={component.id}
@@ -241,11 +241,11 @@ const Catalogue = ({
                         className={classNames(
                           'component',
                           'component-' + component.id,
-                          'oak-flex oak-items-center oak-px-2 oak-py-1',
-                          'oak-gap-2 junipero'
+                          'oak:flex oak:items-center oak:px-2 oak:py-1',
+                          'oak:gap-2 junipero'
                         )}
                       >
-                        <Icon className="!oak-text-2xl">
+                        <Icon className="oak:text-2xl!">
                           { typeof component.icon === 'function'
                             ? component.icon.bind(null, component)
                             : component.icon }
@@ -264,8 +264,8 @@ const Catalogue = ({
               <a
                 onClick={onPaste?.bind(null, state.clipboard)}
                 className={classNames(
-                  'clipboard junipero oak-flex oak-items-center oak-px-2',
-                  'oak-py-1 oak-gap-2',
+                  'clipboard junipero oak:flex oak:items-center oak:px-2',
+                  'oak:py-1 oak:gap-2',
                 )}
               >
                 <Icon>appearences</Icon>

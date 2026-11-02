@@ -23,12 +23,12 @@ const Image = ({
   return (
     <div
       className={classNames(
-        'image-component oak-flex oak-items-center oak-gap-4',
+        'image-component oak:flex oak:items-center oak:gap-4',
         className
       )}
     >
       <div
-        className="preview oak-bg-inner-background-color"
+        className="preview oak:bg-inner-background-color"
         style={{
           backgroundImage: element.url ? `url('${element.url}')` : null,
         }}

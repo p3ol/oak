@@ -129,8 +129,8 @@ export const backgroundColorOption = (): ReactComponentOptionObject => ({
     (element.styles?.backgroundColor || element.styles?.backgroundImage) && (
       <div
         className={classNames(
-          'oak-order-last oak-ml-2 oak-rounded-full oak-w-[15px]',
-          'oak-h-[15px] oak-bg-no-repeat oak-bg-center oak-bg-cover',
+          'oak:order-last oak:ml-2 oak:rounded-full oak:w-[15px]',
+          'oak:h-[15px] oak:bg-no-repeat oak:bg-center oak:bg-cover',
         )}
         style={{
           backgroundColor: element.styles?.backgroundColor,
