@@ -283,6 +283,73 @@ describe('<Builder />', () => {
     expect(labels()).toEqual(['B (overridden)', 'D', 'A', 'C']);
   });
 
+  it('should not border page settings groups', () => {
+    const { container } = render(
+      <Builder
+        addons={[baseAddon()]}
+        defaultValue={content}
+        pageSettings={[{
+          type: 'group',
+          key: 'seo',
+          label: 'SEO',
+          fields: [{ type: 'text', key: 'title', label: 'Title' }],
+        }]}
+      />
+    );
+
+    const toggle = container
+      .querySelector('.oak-ash-page-settings .fields-group-toggle');
+    expect(toggle.textContent).toBe('SEO');
+    expect(toggle.className).not.toContain('oak:border-y');
+
+    // Open content has its own background (jsdom can't scroll)
+    Element.prototype.scrollIntoView ??= () => {};
+    fireEvent.click(toggle);
+    expect(container.querySelector('.oak-ash-page-settings .fields-group .fields')
+      .className).toContain('oak:bg-seashell');
+  });
+
+  it('should display page settings tabs', () => {
+    const { container, getByText, queryByText } = render(
+      <Builder
+        addons={[baseAddon()]}
+        defaultValue={content}
+        pageSettings={[
+          { type: 'text', key: 'slug', label: 'Slug' },
+          {
+            type: 'tab',
+            key: 'css',
+            title: 'CSS',
+            fields: [{ type: 'textarea', key: 'css', label: 'Custom CSS' }],
+          },
+          {
+            type: 'tab',
+            key: 'hidden',
+            title: 'Hidden',
+            condition: () => false,
+            fields: [{ type: 'text', key: 'hidden', label: 'Hidden field' }],
+          },
+        ] as any}
+      />
+    );
+
+    const titles = () => Array.from(
+      container.querySelectorAll('.oak-ash-page-settings .titles li')
+    ).map(l => l.textContent);
+
+    // Other settings are in a "Settings" tab, hidden tabs are not displayed
+    expect(titles()).toEqual(['Settings', 'CSS']);
+    expect(getByText('Slug')).toBeTruthy();
+    expect(queryByText('Custom CSS')).toBeNull();
+
+    fireEvent.click(getByText('CSS'));
+    expect(getByText('Custom CSS')).toBeTruthy();
+    expect(queryByText('Slug')).toBeNull();
+
+    // Preview settings are still displayed below
+    expect(getByText('Screen size')).toBeTruthy();
+  });
+
   it('should allow to customize the page properties title', () => {
     const { getByText, queryByText, rerender } = render(
       <Builder

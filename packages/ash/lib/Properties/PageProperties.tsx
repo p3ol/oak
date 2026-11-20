@@ -1,15 +1,18 @@
 import { type Key, useCallback, useMemo } from 'react';
 import type {
   ComponentObject,
+  ComponentSettingsFieldObject,
   ElementObject,
   FieldObject,
   FieldOverride,
   FieldOverrideObject,
+  SettingOverride,
 } from '@oakjs/core';
 import {
   type FieldContent,
   FieldControl,
   Label,
+  Tabs,
   TextField,
   classNames,
   cloneDeep,
@@ -38,6 +41,11 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => (
     { children }
   </h4>
 );
+
+/**
+ * Background of the page settings groups' content, when open
+ */
+const GROUP_CONTENT_CLASS_NAME = 'oak:bg-seashell oak:dark:bg-onyx';
 
 export const DEFAULT_PAGE_PRESETS: PagePreset[] = [
   { id: 'desktop', name: t => t('ash.page.presets.desktop', 'Desktop'), width: 1280 },
@@ -104,6 +112,46 @@ const PageProperties = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [builder, pageSettings, addons]);
 
+  // Settings of type `tab` are displayed in their own tab, next to a
+  // "Settings" tab containing the other ones
+  const fields = settings.filter(setting => setting.type !== 'tab');
+  const tabs = settings.filter(setting => {
+    if (setting.type !== 'tab') {
+      return false;
+    }
+
+    const override = builder.getOverride(
+      'setting', 'page', { setting }
+    ) as SettingOverride;
+    const condition = override?.condition || setting.condition;
+
+    return !condition || condition(element, { component: PAGE_COMPONENT, builder });
+  });
+
+  const renderSettings = (list: ComponentSettingsFieldObject[]) => list
+    .map((setting, i) => setting.type === 'group' ? (
+      <SettingsGroup
+        key={(setting.key || i) as Key}
+        bordered={false}
+        contentClassName={GROUP_CONTENT_CLASS_NAME}
+        setting={setting}
+        component={PAGE_COMPONENT}
+        element={element}
+        onSettingChange={onSettingChange}
+        onSettingCustomChange={onSettingCustomChange}
+        onUpdate={onUpdate}
+      />
+    ) : (
+      <Setting
+        key={(setting.key || i) as Key}
+        setting={setting}
+        component={PAGE_COMPONENT}
+        element={element}
+        onSettingChange={onSettingChange}
+        onSettingCustomChange={onSettingCustomChange}
+      />
+    ));
+
   const onWidthChange = (field: FieldContent) => {
     const width = parseInt(field.value, 10);
 
@@ -134,7 +182,42 @@ const PageProperties = ({
         ) }
       </div>
       <div className="oak-ash-page-properties oak:flex-auto oak:min-h-0 oak:overflow-y-auto">
-        { settings.length > 0 && (
+        { tabs.length > 0 ? (
+          <div
+            className={classNames(
+              'oak-ash-page-settings oak:border-b oak:border-ash-border',
+            )}
+          >
+            <Tabs
+              className="oak-ash-tabs"
+              tabs={[
+                ...fields.length > 0 ? [{
+                  title: <Text name="ash.page.settings">Settings</Text>,
+                  content: (
+                    <div className="oak:flex oak:flex-col oak:gap-4 oak:py-4">
+                      { renderSettings(fields) }
+                    </div>
+                  ),
+                }] : [],
+                ...tabs.map((tab, i) => ({
+                  title: <Text>{ tab.title ?? tab.label }</Text>,
+                  content: (
+                    <div
+                      key={(tab.key || i) as Key}
+                      className="oak:flex oak:flex-col oak:gap-4 oak:py-4"
+                    >
+                      { renderSettings(sortFields(
+                        builder,
+                        'page',
+                        (tab.fields || []) as ComponentSettingsFieldObject[],
+                      )) }
+                    </div>
+                  ),
+                })),
+              ]}
+            />
+          </div>
+        ) : fields.length > 0 && (
           <div
             className={classNames(
               'oak-ash-page-settings oak:flex oak:flex-col oak:gap-4 oak:py-4',
@@ -144,26 +227,7 @@ const PageProperties = ({
             <SectionTitle>
               <Text name="ash.page.settings">Settings</Text>
             </SectionTitle>
-            { settings.map((setting, i) => setting.type === 'group' ? (
-              <SettingsGroup
-                key={(setting.key || i) as Key}
-                setting={setting}
-                component={PAGE_COMPONENT}
-                element={element}
-                onSettingChange={onSettingChange}
-                onSettingCustomChange={onSettingCustomChange}
-                onUpdate={onUpdate}
-              />
-            ) : (
-              <Setting
-                key={(setting.key || i) as Key}
-                setting={setting}
-                component={PAGE_COMPONENT}
-                element={element}
-                onSettingChange={onSettingChange}
-                onSettingCustomChange={onSettingCustomChange}
-              />
-            )) }
+            { renderSettings(fields) }
           </div>
         ) }
         <div className="oak:flex oak:flex-col oak:gap-4 oak:py-4">

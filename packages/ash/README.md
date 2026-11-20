@@ -150,6 +150,23 @@ overrides (`type: 'setting'`) can change them and component overrides
 (`type: 'component'`) can add fields, with `targets: ['page']`. Conditions
 receive the page value. Their changes are not part of the undo history.
 
+Settings of `type: 'tab'` (with a `title`, `fields` and an optional
+`condition`) are displayed in their own tab, next to a "Settings" tab holding
+every other setting:
+
+```tsx
+pageSettings: [
+  { type: 'text', key: 'slug', label: 'Address' },
+  { type: 'group', key: 'seo', label: 'SEO', fields: [/* ... */] },
+  {
+    type: 'tab',
+    key: 'css',
+    title: 'Custom CSS',
+    fields: [{ type: 'monaco', key: 'customCss' }],
+  },
+],
+```
+
 ## Preview modes
 
 The page properties (displayed when nothing is selected) let you choose how

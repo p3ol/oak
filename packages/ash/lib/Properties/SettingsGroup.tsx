@@ -8,14 +8,29 @@ import ChevronIcon from '../Icon/ChevronIcon';
 import Text from '../Text';
 import Tab, { type TabProps } from './Tab';
 
+export declare interface SettingsGroupProps
+  extends SettingProps, Pick<TabProps, 'onUpdate'> {
+  /**
+   * Whether the group's toggle is separated from the surrounding settings by
+   * borders
+   */
+  bordered?: boolean;
+  /**
+   * Classes of the group's content (displayed when the group is open)
+   */
+  contentClassName?: string;
+}
+
 const SettingsGroup = ({
+  bordered = true,
+  contentClassName,
   setting,
   component,
   element,
   onSettingChange,
   onSettingCustomChange,
   onUpdate,
-}: SettingProps & Pick<TabProps, 'onUpdate'>) => {
+}: SettingsGroupProps) => {
   const { builder } = useBuilder();
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -47,8 +62,8 @@ const SettingsGroup = ({
           'fields-group-toggle oak:flex oak:items-center oak:gap-2',
           'oak:cursor-pointer oak:py-2 oak:px-4 oak:select-none',
           'oak:bg-ash-surface oak:text-sm',
-          'oak:font-medium oak:border-y oak:border-ash-border',
-          { open }
+          'oak:font-medium',
+          { open, 'oak:border-y oak:border-ash-border': bordered }
         )}
         onClick={() => setOpen(!open)}
       >
@@ -57,7 +72,7 @@ const SettingsGroup = ({
       </div>
       { open && (
         <Tab
-          className="oak:max-h-none!"
+          className={classNames('oak:max-h-none!', contentClassName)}
           tab={setting}
           component={component}
           element={element}

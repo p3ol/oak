@@ -1,10 +1,22 @@
 /*
  * @oakjs/ash stylesheet
  *
- * Layers order matters: junipero's component styles come first so that
- * tailwind utilities can override them without !important.
+ * Layers order matters:
+ * - `junipero`: junipero's component styles, first so that everything else
+ *   can override them without !important, and the builder's tokens &
+ *   junipero variables defaults (which must stay below junipero's variants,
+ *   e.g. a primary button's color)
+ * - `ash`: the builder's own styles (text baseline, compact sidebars, tabs...)
+ * - `oak-page`: the page displayed in the canvas
+ * - tailwind's layers
+ *
+ * Apps having their own global styles (e.g. tailwind's preflight or junipero
+ * in their `base` layer) should declare this order first, with `ash` &
+ * `oak-page` after their `base` layer, e.g.:
+ *
+ *   @layer theme, junipero, base, ash, oak-page, components, utilities;
  */
-@layer theme, junipero, oak-page, base, components, utilities;
+@layer theme, junipero, ash, oak-page, base, components, utilities;
 
 @import "tailwindcss/theme.css" prefix(oak);
 @import "tailwindcss/utilities.css" prefix(oak) source(none);
@@ -282,9 +294,15 @@
   }
 }
 
-@layer junipero {
+@layer ash {
+  /*
+   * Text baseline, so that the builder doesn't inherit the app's (e.g. a
+   * `body { line-height: 32px }` would make every sidebar row taller)
+   */
   .oak-ash {
     font-family: var(--junipero-font-family);
+    font-size: 16px;
+    line-height: normal;
   }
 
   /* Compact UI inside sidebars */
@@ -388,5 +406,16 @@
     font-size: revert;
     line-height: revert;
     color: revert;
+  }
+
+  /*
+   * Links are disabled in the canvas (`href` removed by sanitizeHTML, see
+   * utils.ts) but must still look like links: browsers only style links
+   * having an `href`
+   */
+  .oak-ash-page a[role="link"]:not([href]) {
+    color: LinkText;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
