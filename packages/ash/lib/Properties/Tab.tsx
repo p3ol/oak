@@ -58,7 +58,11 @@ const Tab = ({
       { ...rest }
       className={classNames(
         'fields oak:py-4 oak:flex oak:flex-col oak:gap-4',
-        { 'oak:pt-0': subtabs?.length > 0 },
+        // Subtabs stick to the tabs titles, unless settings are displayed
+        // above them (settings hidden by a condition render nothing)
+        {
+          'oak:pt-0 oak:has-[>:not(.oak-ash-tabs)]:pt-4': subtabs?.length > 0,
+        },
         className,
       )}
     >

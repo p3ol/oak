@@ -309,6 +309,47 @@ describe('<Builder />', () => {
       .className).toContain('oak:bg-seashell');
   });
 
+  it('should scroll opened groups below the sticky tabs titles', () => {
+    const scrollIntoView = vi.fn();
+    const original = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = scrollIntoView;
+    // jsdom has no layout
+    const offsetHeight = vi
+      .spyOn(HTMLElement.prototype, 'offsetHeight', 'get')
+      .mockImplementation(function (this: HTMLElement) {
+        return this.classList.contains('titles') ? 42 : 0;
+      });
+
+    try {
+      const { container, getByText } = render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={content}
+          pageSettings={[
+            {
+              type: 'group',
+              key: 'seo',
+              label: 'SEO',
+              fields: [{ type: 'text', key: 'title', label: 'Title' }],
+            },
+            { type: 'tab', key: 'css', title: 'CSS', fields: [] },
+          ] as any}
+        />
+      );
+
+      fireEvent.click(getByText('SEO'));
+
+      const toggle = container.querySelector<HTMLElement>(
+        '.oak-ash-page-settings .fields-group-toggle'
+      );
+      expect(toggle.style.scrollMarginTop).toBe('42px');
+      expect(scrollIntoView).toHaveBeenCalled();
+    } finally {
+      Element.prototype.scrollIntoView = original;
+      offsetHeight.mockRestore();
+    }
+  });
+
   it('should display page settings tabs', () => {
     const { container, getByText, queryByText } = render(
       <Builder

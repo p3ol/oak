@@ -36,9 +36,19 @@ const SettingsGroup = ({
   const toggleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (open) {
-      toggleRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const toggle = toggleRef.current;
+
+    if (!open || !toggle) {
+      return;
     }
+
+    // Main tabs titles stick to the top of the scrolling sidebar (see
+    // index.css): scroll the toggle below them instead of under them
+    const titles = toggle
+      .closest('.oak-ash-tabs:not(.oak-ash-subtabs)')
+      ?.querySelector<HTMLElement>(':scope > .titles');
+    toggle.style.scrollMarginTop = `${titles?.offsetHeight || 0}px`;
+    toggle.scrollIntoView({ behavior: 'smooth' });
   }, [open]);
 
   const override = useMemo(() => (
