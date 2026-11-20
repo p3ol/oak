@@ -60,11 +60,13 @@ export declare abstract class IStore {
   /** Adds an element to the store */
   addElement (element: ElementObject, options?: Partial<{
     position?: 'before' | 'after';
+    index?: number;
   } & StoreFindOptions & StoreSanitizeOptions>): ElementObject;
 
   /** Adds multiple elements to the store */
   addElements (elements: ElementObject[], options?: Partial<{
     position?: 'before' | 'after';
+    index?: number;
   } & StoreFindOptions & StoreSanitizeOptions>): ElementObject[];
 
   /** Finds an element in the store */
@@ -261,10 +263,12 @@ export default class Store extends Emitter implements IStore {
   addElement (element: ElementObject, {
     parent = this.#content,
     position = 'after',
+    index,
     component,
     ...opts
   }: Partial<{
     position?: 'before' | 'after';
+    index?: number;
   } & StoreFindOptions & StoreSanitizeOptions> = {}) {
     this.#builder.logger.log('Adding element:', element, { parent, position });
 
@@ -274,14 +278,7 @@ export default class Store extends Emitter implements IStore {
       ? this.createElement(component.id, { component, ...opts })
       : this.sanitize(element, opts);
 
-    switch (position) {
-      case 'before':
-        parent.unshift(element);
-        break;
-      case 'after':
-        parent.push(element);
-        break;
-    }
+    this.#insert(parent, [element], { position, index });
 
     this.commit();
     this.emit('content.update', this.#content);
@@ -292,12 +289,39 @@ export default class Store extends Emitter implements IStore {
   addElements (elements: ElementObject[], {
     parent = this.#content,
     position = 'after',
+    index,
     ...opts
-  } = {}) {
+  }: Partial<{
+    position?: 'before' | 'after';
+    index?: number;
+  } & StoreFindOptions & StoreSanitizeOptions> = {}) {
     this.#builder.logger
       .log('Adding elements:', elements, { parent, position });
 
     elements = elements.map(e => this.sanitize(e, opts));
+
+    this.#insert(parent, elements, { position, index });
+
+    this.commit();
+    this.emit('content.update', this.#content);
+
+    return elements;
+  }
+
+  /**
+   * Inserts elements at a specific index of the parent if `index` is a valid
+   * integer, or at the start/end of the parent depending on `position`.
+   */
+  #insert (
+    parent: ElementObject[],
+    elements: ElementObject[],
+    { position, index }: { position?: 'before' | 'after'; index?: number }
+  ) {
+    if (Number.isInteger(index)) {
+      parent.splice(Math.max(0, Math.min(index, parent.length)), 0, ...elements);
+
+      return;
+    }
 
     switch (position) {
       case 'before':
@@ -307,11 +331,6 @@ export default class Store extends Emitter implements IStore {
         parent.push(...elements);
         break;
     }
-
-    this.commit();
-    this.emit('content.update', this.#content);
-
-    return elements;
   }
 
   getElement (

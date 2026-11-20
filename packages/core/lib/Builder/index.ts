@@ -238,6 +238,7 @@ export default class Builder extends Emitter {
   addElement (element: ElementObject, options?: {
     parent?: ElementObject[],
     position?: 'before' | 'after',
+    index?: number,
     component?: ComponentObject,
     [_: string]: any
   }) {
@@ -247,6 +248,7 @@ export default class Builder extends Emitter {
   addElements (elements: ElementObject[], options?:{
     parent?: ElementObject[],
     position?: 'before' | 'after',
+    index?: number,
     component?: ComponentObject,
     [_: string]: any
   }) {

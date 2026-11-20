@@ -1,0 +1,392 @@
+/*
+ * @oakjs/ash stylesheet
+ *
+ * Layers order matters: junipero's component styles come first so that
+ * tailwind utilities can override them without !important.
+ */
+@layer theme, junipero, oak-page, base, components, utilities;
+
+@import "tailwindcss/theme.css" prefix(oak);
+@import "tailwindcss/utilities.css" prefix(oak) source(none);
+
+/* Junipero components used by the builder UI */
+@import "@junipero/theme/dist/css/reset.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/icons.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/texts.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/transitions.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Abstract.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Button.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Calendar.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/ColorField.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/DateField.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Dropdown.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/FieldAddon.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/FieldGroup.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/InfiniteCanvas.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Label.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/SelectField.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Spinner.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Tabs.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Tag.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/TextField.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Toggle.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/Tooltip.min.css" layer(junipero);
+@import "@junipero/theme/dist/css/TouchableZone.min.css" layer(junipero);
+
+/* Classes used by the page renderers */
+@import "../../react-renderer/lib/tailwind.css";
+
+@source "./";
+
+@plugin "@junipero/tailwind-plugin";
+
+/*
+ * Theme tokens. `inline` makes utilities reference the variables directly, so
+ * that they can change at runtime (light/dark).
+ * - ash-*: builder interface (sidebars, toolbar, panels)
+ * - cv-*: canvas & everything previewed inside it
+ */
+@theme inline {
+  /*
+   * Junipero colors reference junipero's css variables instead of their hex
+   * values, so that they can be changed at runtime (e.g. the primary color)
+   */
+  --color-velvet: var(--junipero-velvet);
+  --color-velvet-hover: var(--junipero-velvet-hover);
+  --color-velvet-active: var(--junipero-velvet-active);
+  --color-velvet-disabled: var(--junipero-velvet-disabled);
+  --color-velvet-background: var(--junipero-velvet-background);
+  --color-grapefruit: var(--junipero-grapefruit);
+  --color-onyx: var(--junipero-onyx);
+  --color-tundora: var(--junipero-tundora);
+  --color-mischka: var(--junipero-mischka);
+  --color-slate: var(--junipero-slate);
+  --color-seashell: var(--junipero-seashell);
+  --color-concrete: var(--junipero-concrete);
+
+  --color-ash-surface: var(--ash-surface);
+  --color-ash-muted: var(--ash-muted);
+  --color-ash-border: var(--ash-border);
+  --color-ash-text: var(--ash-text);
+  --color-ash-text-muted: var(--ash-text-muted);
+  --color-ash-accent-soft: var(--ash-accent-soft);
+
+  --color-cv-bg: var(--ash-canvas-bg);
+  --color-cv-label: var(--ash-canvas-label);
+  --color-cv-page: var(--ash-page-bg);
+  --color-cv-placeholder: var(--ash-canvas-placeholder);
+  --color-cv-site: var(--ash-site-bg);
+  --color-cv-border: var(--ash-site-border);
+  --color-cv-line: var(--ash-site-line);
+  --color-cv-strong: var(--ash-site-strong);
+  --color-cv-media: var(--ash-site-media);
+  --color-cv-backdrop: var(--ash-site-backdrop);
+}
+
+/*
+ * Tailwind's dark mode: enabled by a `dark` class or a `data-theme`/
+ * `data-bs-theme` attribute on an ancestor (css frameworks, storybook...), or
+ * by the browser's preference unless an ancestor explicitly asks for light.
+ */
+@custom-variant dark {
+  &:where(
+    .dark, .dark *,
+    [data-theme="dark"], [data-theme="dark"] *,
+    [data-bs-theme="dark"], [data-bs-theme="dark"] *
+  ) {
+    @slot;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:where(:not(
+      .light, .light *,
+      [data-theme="light"], [data-theme="light"] *,
+      [data-bs-theme="light"], [data-bs-theme="light"] *
+    )) {
+      @slot;
+    }
+  }
+}
+
+@layer junipero {
+  /*
+   * The primary color can be changed with a single variable:
+   *
+   *   .oak-ash, .oak-ash * { --junipero-velvet: #E11D48; }
+   *
+   * Its shades are derived from it (junipero declares its colors on every
+   * element, hence the `*` selector).
+   */
+  :where(.oak-ash),
+  :where(.oak-ash) * {
+    --junipero-velvet-hover: color-mix(in srgb, var(--junipero-velvet), var(--junipero-seashell) 20%);
+    --junipero-velvet-active: color-mix(in srgb, var(--junipero-velvet), var(--junipero-onyx) 12%);
+    --junipero-velvet-disabled: color-mix(in srgb, var(--junipero-velvet) 25%, var(--junipero-seashell));
+    --junipero-velvet-background: color-mix(in srgb, var(--junipero-velvet) 5%, var(--junipero-seashell));
+    --junipero-dark-velvet-background: color-mix(in srgb, var(--junipero-velvet) 25%, var(--junipero-gondola));
+    --junipero-dark-velvet-foreground: color-mix(in srgb, var(--junipero-velvet) 50%, var(--junipero-gondola));
+    --junipero-dark-velvet-disabled: color-mix(in srgb, var(--junipero-velvet) 40%, var(--junipero-gondola));
+  }
+
+  /*
+   * Interface tokens. `.oak-ash.light` (theme="light") wins over the dark
+   * variant, `.oak-ash.dark` (theme="dark") is matched by it.
+   */
+  .oak-ash,
+  .oak-ash.oak-ash.light {
+    color-scheme: light;
+    --ash-surface: var(--junipero-seashell);
+    --ash-muted: var(--junipero-concrete);
+    --ash-border: var(--junipero-mischka);
+    --ash-text: var(--junipero-onyx);
+    --ash-text-muted: var(--junipero-slate);
+    --ash-accent-soft: var(--junipero-velvet-background);
+    --ash-field-bg: var(--junipero-seashell);
+    --ash-button: var(--junipero-mischka);
+    --ash-toggle-border: var(--junipero-velvet-hover);
+    --ash-menu-text: var(--junipero-velvet);
+    --ash-menu-shadow: var(--junipero-shadow);
+    --ash-tooltip-border: transparent;
+  }
+
+  .oak-ash {
+    @variant dark {
+      color-scheme: dark;
+      --ash-surface: var(--junipero-gondola);
+      --ash-muted: color-mix(in srgb, var(--junipero-tundora) 50%, var(--junipero-gondola));
+      --ash-border: var(--junipero-tundora);
+      --ash-text: var(--junipero-seashell);
+      --ash-text-muted: color-mix(in srgb, var(--junipero-nevada), var(--junipero-mischka) 35%);
+      --ash-accent-soft: var(--junipero-dark-velvet-background);
+      --ash-field-bg: var(--junipero-onyx);
+      --ash-button: var(--junipero-tundora);
+      --ash-toggle-border: var(--junipero-tundora);
+      --ash-menu-text: var(--junipero-seashell);
+      --ash-menu-shadow: transparent;
+      --ash-tooltip-border: var(--junipero-tundora);
+    }
+  }
+
+  /*
+   * Junipero components read the interface tokens, so they always match the
+   * interface theme. `:where()` keeps the base text color below components'
+   * own text colors.
+   */
+  :where(.oak-ash) .junipero {
+    --text-color: var(--ash-text);
+  }
+
+  :where(.oak-ash) .junipero.label,
+  :where(.oak-ash) .junipero.abstract {
+    --text-color: var(--ash-text-muted);
+  }
+
+  :where(.oak-ash) .junipero.text-field,
+  :where(.oak-ash) .junipero.select-field,
+  :where(.oak-ash) .junipero.date-field,
+  :where(.oak-ash) .junipero.calendar-menu {
+    --border-color: var(--ash-border);
+    --background-color: var(--ash-field-bg);
+    --placeholder-color: var(--ash-text-muted);
+    --icons-color: var(--ash-text-muted);
+  }
+
+  :where(.oak-ash) .junipero.date-field,
+  :where(.oak-ash) .junipero.calendar-menu {
+    --text-color: var(--ash-text);
+    --time-background-color: var(--ash-muted);
+    --time-placeholder-color: var(--ash-text-muted);
+  }
+
+  :where(.oak-ash) .junipero.tabs {
+    --secondary-color: var(--ash-border);
+    --background-color: var(--ash-accent-soft);
+  }
+
+  :where(.oak-ash) .junipero.dropdown .menu-inner,
+  :where(.oak-ash) .junipero.dropdown-menu .menu-inner {
+    --main-color: var(--ash-menu-text);
+    --secondary-color: var(--ash-text-muted);
+    --background-color: var(--ash-surface);
+    --border-color: var(--ash-border);
+    --item-background: var(--ash-accent-soft);
+    --shadow-color: var(--ash-menu-shadow);
+  }
+
+  :where(.oak-ash) .junipero.tooltip {
+    --border-color: var(--ash-tooltip-border);
+  }
+
+  :where(.oak-ash) .junipero.button {
+    --main-color: var(--ash-button);
+    --text-color: var(--ash-text);
+    --hover-color: var(--ash-muted);
+    --active-color: var(--ash-border);
+  }
+
+  :where(.oak-ash) .junipero.toggle-field {
+    --background-color: var(--ash-muted);
+    --border-color: var(--ash-toggle-border);
+  }
+
+  :where(.oak-ash) .junipero.color-field {
+    --pigment-border-color: var(--ash-surface);
+  }
+
+  :where(.oak-ash) .junipero.field-addon {
+    --background-color: var(--ash-border);
+    --text-color: var(--ash-text-muted);
+  }
+
+  :where(.oak-ash) .junipero.tag {
+    --background-color: var(--ash-muted);
+    --text-color: var(--ash-text);
+  }
+
+  :where(.oak-ash) .junipero.calendar {
+    --text-color: var(--ash-text);
+    --icons-color: var(--ash-text-muted);
+    --inactive-text-color: var(--ash-text-muted);
+    --hover-color: var(--ash-accent-soft);
+  }
+
+  /* Canvas (themed independently from the interface) */
+  .oak-ash-canvas {
+    --ash-canvas-bg: var(--junipero-concrete);
+    --ash-canvas-dots: var(--junipero-mischka);
+    --ash-canvas-label: var(--junipero-slate);
+    --ash-canvas-placeholder: var(--junipero-mischka);
+    --ash-page-bg: var(--junipero-seashell);
+    --ash-page-text: var(--junipero-onyx);
+    --ash-site-bg: var(--junipero-seashell);
+    --ash-site-border: var(--junipero-mischka);
+    --ash-site-line: var(--junipero-mischka);
+    --ash-site-strong: var(--junipero-tundora);
+    --ash-site-media: var(--junipero-concrete);
+    --ash-site-backdrop: var(--junipero-dark-backdrop);
+  }
+
+  .oak-ash-canvas.oak-ash-canvas-dark {
+    --ash-canvas-bg: var(--junipero-onyx);
+    --ash-canvas-dots: var(--junipero-tundora);
+    --ash-canvas-label: var(--junipero-slate);
+    --ash-canvas-placeholder: var(--junipero-tundora);
+    --ash-page-bg: var(--junipero-gondola);
+    --ash-page-text: var(--junipero-concrete);
+    --ash-site-bg: var(--junipero-gondola);
+    --ash-site-border: var(--junipero-tundora);
+    --ash-site-line: var(--junipero-tundora);
+    --ash-site-strong: var(--junipero-mischka);
+    --ash-site-media: color-mix(in srgb, var(--junipero-tundora) 60%, var(--junipero-gondola));
+    --ash-site-backdrop: var(--junipero-dark-backdrop);
+  }
+}
+
+@layer junipero {
+  .oak-ash {
+    font-family: var(--junipero-font-family);
+  }
+
+  /* Compact UI inside sidebars */
+  .oak-ash-sidebar,
+  .oak-ash-sidebar *,
+  .oak-ash-floatings * {
+    --junipero-font-size: 13px;
+  }
+
+  .oak-ash-sidebar .field .junipero.text-field,
+  .oak-ash-sidebar .field .junipero.select-field,
+  .oak-ash-sidebar .field .junipero.color-field,
+  .oak-ash-sidebar .field .junipero.date-field,
+  .oak-ash-sidebar .field .junipero.field-group {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .oak-ash-sidebar .junipero.label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ash-text-muted);
+  }
+
+  .oak-ash-sidebar .field input,
+  .oak-ash-sidebar .field textarea {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /*
+   * Tabs titles: the first tab is offset by the sidebar padding, and the
+   * bottom line spans the whole sidebar width (border to border)
+   */
+  .oak-ash .oak-ash-tabs > .titles {
+    position: relative;
+    padding: 12px 16px 0;
+    margin-bottom: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: var(--ash-surface);
+    box-shadow: inset 0 -2px 0 var(--ash-border);
+  }
+
+  /* Only the main tabs stick to the top when scrolling */
+  .oak-ash .oak-ash-tabs:not(.oak-ash-subtabs) > .titles {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  /* Never wrap tabs titles: the titles bar scrolls instead */
+  .oak-ash .oak-ash-tabs > .titles li {
+    flex: none;
+    white-space: nowrap;
+  }
+
+  .oak-ash .oak-ash-tabs > .titles li a {
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
+  /* Smaller zoom dropdown toggle */
+  .oak-ash-zoom .junipero.button {
+    height: 24px;
+    min-width: 48px;
+    padding: 0 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: transparent;
+  }
+
+  .oak-ash-zoom .junipero.button {
+    --text-color: var(--ash-text);
+  }
+
+  .oak-ash-zoom .junipero.button:hover {
+    background: var(--ash-muted);
+  }
+
+  .oak-ash-zoom .junipero.dropdown-menu,
+  .oak-ash-zoom .junipero.dropdown-menu * {
+    --junipero-font-size: 13px;
+  }
+}
+
+/*
+ * The page displayed in the canvas must look like the final page: undo
+ * junipero's global text reset (`* { font-size; line-height; color }`).
+ */
+@layer oak-page {
+  .oak-ash-page {
+    color: var(--ash-page-text);
+    font-size: 16px;
+    line-height: normal;
+    /* Hosts should set their website fonts through the `pageClassName` prop */
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .oak-ash-page * {
+    font-size: revert;
+    line-height: revert;
+    color: revert;
+  }
+}

@@ -1,0 +1,46 @@
+/*
+ * Tailwind preset for @oakjs/react-renderer.
+ * Import it after tailwind's theme & utilities (with the `oak` prefix) to
+ * generate every class used by the renderer:
+ *
+ *   @import "tailwindcss/theme.css" prefix(oak);
+ *   @import "tailwindcss/utilities.css" prefix(oak) source(none);
+ *   @import "@oakjs/react-renderer/tailwind.css";
+ */
+
+@source "./";
+
+/* Columns sizes, for every breakpoint (see BREAKPOINT_WIDTHS in utils.ts) */
+@source inline("oak:{,@min-[576px]:,@min-[768px]:,@min-[992px]:,@min-[1200px]:}colsize-{1,2,3,4,5,6,7,8,9,10,11,12,fluid,auto,hide}");
+
+/*
+ * A column of N/12 takes N/12 of the row minus its share of the gaps, so
+ * that 12 columns of 1/12 (with 11 gaps) fit exactly on a single line.
+ */
+@utility colsize-* {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 0 0 calc(100% * --value(integer) / 12 - var(--oak-col-gap, 0px) * (12 - --value(integer)) / 12);
+  max-width: calc(100% * --value(integer) / 12 - var(--oak-col-gap, 0px) * (12 - --value(integer)) / 12);
+}
+
+@utility colsize-fluid {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1 1 0%;
+  max-width: 100%;
+}
+
+@utility colsize-auto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+@utility colsize-hide {
+  display: none;
+}

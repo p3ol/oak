@@ -36,16 +36,22 @@
       color: var(--text-color)
 
       &.ck-focused
-        --border-color: var(--oak-main-color)
+        --border-color: var(--oak-main-color, var(--junipero-velvet))
 
   /* Toolbar */
   .ck-editor__top
     & > .ck-sticky-panel > .ck-sticky-panel__content
       border: none
 
+  // The editor's toolbar is highlighted with the editable when focused, so
+  // that the whole field looks focused
+  &:has(.ck-editor__editable.ck-focused) > .ck-editor__top .ck-sticky-panel__content > .ck-toolbar
+    --border-color: var(--oak-main-color, var(--junipero-velvet))
+
   .ck-toolbar
     border: none
     box-shadow: 0 0 0 2px var(--border-color)
+    transition: box-shadow 0.2s ease-in-out
     padding-bottom: 0
     background: var(--background-color)
     border-radius: var(--ck-border-radius) var(--ck-border-radius) 0 0
@@ -67,6 +73,10 @@
         border-radius: var(--ck-border-radius)
 
       .ck-dropdown__panel
+        // Panels (and their toolbars) keep the default border, even when the
+        // editor's toolbar is highlighted because the editor is focused
+        --border-color: var(--oak-field-border-color, var(--junipero-mischka))
+
         border: none
         box-shadow: 0 0 0 2px var(--border-color)
         border-radius: 4px
@@ -107,3 +117,33 @@
 
       .junipero.text-field
         --main-color: var(--oak-field-border-color)
+
+// Keep toolbar dropdowns inside the editor: the field can be displayed in a
+// narrow & scrollable container (e.g. a builder sidebar), which would clip
+// panels overflowing the editor. Panels are positioned relatively to their
+// toolbar (instead of their button) and can't be wider than it.
+.ckeditor-field .ck.ck-editor
+  .ck.ck-toolbar
+    position: relative
+
+    .ck.ck-dropdown
+      position: static
+
+    .ck.ck-dropdown__panel
+      max-width: 100%
+      transform: none
+
+      &.ck-dropdown__panel_s,
+      &.ck-dropdown__panel_sme,
+      &.ck-dropdown__panel_smw,
+      &.ck-dropdown__panel_n,
+      &.ck-dropdown__panel_nme,
+      &.ck-dropdown__panel_nmw
+        left: 0
+        right: auto
+
+  // Items that don't fit in the toolbar ("show more items") wrap on several
+  // lines instead of overflowing
+  .ck.ck-toolbar__grouped-dropdown > .ck-dropdown__panel
+    .ck.ck-toolbar > .ck-toolbar__items
+      flex-wrap: wrap

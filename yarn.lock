@@ -3437,6 +3437,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@oakjs/ash@workspace:packages/ash":
+  version: 0.0.0-use.local
+  resolution: "@oakjs/ash@workspace:packages/ash"
+  dependencies:
+    "@junipero/core": "npm:3.14.1"
+    "@junipero/hooks": "npm:3.15.2"
+    "@junipero/react": "npm:3.15.2"
+    "@junipero/theme": "npm:3.13.1"
+    "@junipero/transitions": "npm:3.15.2"
+    "@oakjs/core": "npm:^3.16.2"
+    "@oakjs/react-renderer": "npm:^3.16.3"
+    re-resizable: "npm:6.11.2"
+    uuid: "npm:14.0.3"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  languageName: unknown
+  linkType: soft
+
 "@oakjs/core@npm:^3.16.2, @oakjs/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@oakjs/core@workspace:packages/core"
@@ -3444,6 +3463,16 @@ __metadata:
     "@floating-ui/react": "npm:0.27.20"
     "@junipero/core": "npm:3.14.1"
     uuid: "npm:14.0.3"
+  languageName: unknown
+  linkType: soft
+
+"@oakjs/react-renderer@npm:^3.16.3, @oakjs/react-renderer@workspace:packages/react-renderer":
+  version: 0.0.0-use.local
+  resolution: "@oakjs/react-renderer@workspace:packages/react-renderer"
+  dependencies:
+    "@junipero/core": "npm:3.14.1"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
@@ -16210,6 +16239,16 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 10/72900df0616e473e824202113c3df6abae59150dfb73ed13273503127235320e9c8ca4aaaaccfd58cf417c6ca92a6e68ee9a5c3182886ae949a768639b388a7b
+  languageName: node
+  linkType: hard
+
+"re-resizable@npm:6.11.2":
+  version: 6.11.2
+  resolution: "re-resizable@npm:6.11.2"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/3b814c61b77af294862bd36382b6f2e7f9a90a86f3696fd93780d39d2534c1fcbab68f63b088fc1e1935b1b9dba6c1ab8f61f4f4e6e5d16e86e5805bae40cfb6
   languageName: node
   linkType: hard
 

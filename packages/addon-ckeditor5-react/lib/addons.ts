@@ -1,7 +1,50 @@
+import type { EditorConfig } from 'ckeditor5';
 import type { ReactFieldObject, AddonObject } from '@oakjs/react';
 import { omit } from '@oakjs/react';
 
 import Field, { CKEditorFieldProps } from './Field';
+
+const DEFAULT_TOOLBAR_ITEMS = [
+  'undo',
+  'redo',
+  '|',
+  'bold',
+  'italic',
+  'strikethrough',
+  'underline',
+  'link',
+  'fontColor',
+  'fontSize',
+  'bulletedList',
+  'numberedList',
+  '|',
+  'removeFormat',
+  '|',
+  'outdent',
+  'indent',
+  'alignment',
+  '|',
+  'horizontalLine',
+  'blockQuote',
+  'insertTable',
+];
+
+/**
+ * Toolbar items are wrapped on several lines instead of being grouped in a
+ * "show more items" dropdown: grouping relies on a ResizeObserver that
+ * resizes the toolbar it observes, which triggers "ResizeObserver loop"
+ * errors in narrow containers (like a builder's sidebar).
+ * Toolbar options & items can still be customized with `config.toolbar`.
+ */
+const getToolbarConfig = (
+  toolbar: EditorConfig['toolbar'],
+): EditorConfig['toolbar'] => ({
+  shouldNotGroupWhenFull: true,
+  ...!Array.isArray(toolbar) && toolbar,
+  items: Array.isArray(toolbar)
+    ? toolbar
+    : toolbar?.items || DEFAULT_TOOLBAR_ITEMS,
+});
 
 export const ckeditorField = ({
   config,
@@ -28,32 +71,7 @@ export const ckeditorField = ({
           },
         },
       },
-      toolbar: {
-        items: [
-          'undo',
-          'redo',
-          '|',
-          'bold',
-          'italic',
-          'strikethrough',
-          'underline',
-          'link',
-          'fontColor',
-          'fontSize',
-          'bulletedList',
-          'numberedList',
-          '|',
-          'removeFormat',
-          '|',
-          'outdent',
-          'indent',
-          'alignment',
-          '|',
-          'horizontalLine',
-          'blockQuote',
-          'insertTable',
-        ],
-      },
+      toolbar: getToolbarConfig(config?.toolbar),
     },
   },
 });
