@@ -38,7 +38,10 @@ export declare abstract class IStore {
    * Set the content of the store.
    * If the emit option is set to false, the store will not emit a change event.
    */
-  set (content: ElementObject[], options?: { emit?: boolean }): void;
+  set (content: ElementObject[], options?: {
+    emit?: boolean;
+    commit?: boolean;
+  }): void;
 
   /**
    * Sanitize an element object (adds missing properties, ids, etc.)
@@ -159,7 +162,11 @@ export default class Store extends Emitter implements IStore {
     return this.#content;
   }
 
-  set (content: ElementObject[], { emit = true } = {}) {
+  /**
+   * Replaces the whole content. Pass `commit: false` to not record it in the
+   * undo history (e.g. when applying changes made by another user).
+   */
+  set (content: ElementObject[], { emit = true, commit = true } = {}) {
     this.#content = (Array.isArray(content) ? content : [])
       .map(e => this.sanitize(e, { withDefaults: true }));
 
@@ -167,7 +174,9 @@ export default class Store extends Emitter implements IStore {
       this.emit('content.update', this.#content);
     }
 
-    this.commit();
+    if (commit) {
+      this.commit();
+    }
   }
 
   sanitize (element: ElementObject, {
@@ -652,6 +661,14 @@ export default class Store extends Emitter implements IStore {
   }
 
   commit () {
+    // History is disabled (e.g. handled by a collaboration tool)
+    if (this.#builder.options.history === false) {
+      this.#history = [];
+      this.#historyIndex = 0;
+
+      return;
+    }
+
     if (this.#historyIndex > 0) {
       this.#history = this.#history.slice(this.#historyIndex);
     }

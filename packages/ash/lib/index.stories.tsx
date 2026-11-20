@@ -12,146 +12,13 @@ import { useBuilder } from './hooks';
 import ChevronIcon from './Icon/ChevronIcon';
 import Builder from './Builder';
 import { baseAddon } from './addons';
+import { paywallContent, withIds } from './stories.fixtures';
 import './index.css';
 
 export default {
   title: 'Ash/Builder',
   parameters: { layout: 'fullscreen' },
 };
-
-const offer = ({
-  name,
-  price,
-  period,
-  perks,
-  highlighted = false,
-}: {
-  name: string;
-  price: string;
-  period: string;
-  perks: string[];
-  highlighted?: boolean;
-}): ElementObject => ({
-  type: 'col',
-  size: 6,
-  responsive: { xs: 12 },
-  styles: {
-    paddingTop: '24px',
-    paddingRight: '24px',
-    paddingBottom: '24px',
-    paddingLeft: '24px',
-    borderTop: '1px',
-    borderRight: '1px',
-    borderBottom: '1px',
-    borderLeft: '1px',
-    borderTopColor: highlighted ? '#5C56DF' : '#DFE1E6',
-    borderRightColor: highlighted ? '#5C56DF' : '#DFE1E6',
-    borderBottomColor: highlighted ? '#5C56DF' : '#DFE1E6',
-    borderLeftColor: highlighted ? '#5C56DF' : '#DFE1E6',
-    borderTopLeftRadius: '12px',
-    borderTopRightRadius: '12px',
-    borderBottomRightRadius: '12px',
-    borderBottomLeftRadius: '12px',
-    backgroundColor: highlighted ? '#F6F6FD' : '#FFFFFF',
-    // Used when the content is displayed in dark mode
-    dark: {
-      backgroundColor: highlighted ? '#2A284B' : '#1C1C1C',
-      borderTopColor: highlighted ? '#5C56DF' : '#333333',
-      borderRightColor: highlighted ? '#5C56DF' : '#333333',
-      borderBottomColor: highlighted ? '#5C56DF' : '#333333',
-      borderLeftColor: highlighted ? '#5C56DF' : '#333333',
-    },
-  },
-  content: [
-    { type: 'title', headingLevel: 'h3', content: name },
-    {
-      type: 'text',
-      content: `<p><strong style="font-size: 28px">${price}</strong>` +
-        ` / ${period}</p>`,
-    },
-    {
-      type: 'text',
-      content: `<ul>${perks.map(p => `<li>${p}</li>`).join('')}</ul>`,
-    },
-    { type: 'empty-space', settings: { height: '8px' } },
-    {
-      type: 'button',
-      content: `Subscribe ${period === 'month' ? 'monthly' : 'yearly'}`,
-      action: 'link',
-      url: 'https://example.com/subscribe',
-      styles: highlighted ? {
-        backgroundColor: '#5C56DF',
-        hover: { backgroundColor: '#4D47CB' },
-        dark: {
-          backgroundColor: '#5C56DF',
-          hover: { backgroundColor: '#807BFC' },
-        },
-      } : {},
-    },
-  ],
-});
-
-const baseContent: ElementObject[] = [
-  {
-    type: 'image',
-    url: 'https://avatars.githubusercontent.com/u/20414672',
-    settings: {
-      size: 'custom',
-      width: '48px',
-      height: '48px',
-      textAlign: 'left',
-      alt: 'The Daily Oak',
-    },
-  },
-  {
-    type: 'title',
-    headingLevel: 'h2',
-    content: 'You\'ve reached your free articles limit',
-    styles: { marginBottom: '8px' },
-  },
-  {
-    type: 'text',
-    content: '<p>Subscribe to The Daily Oak to keep reading unlimited ' +
-      'articles, newsletters & podcasts. Cancel anytime.</p>',
-  },
-  { type: 'empty-space', settings: { height: '16px' } },
-  { type: 'row', settings: { gap: '16px', alignItems: 'stretch' }, cols: [
-    offer({
-      name: 'Monthly',
-      price: '€9.99',
-      period: 'month',
-      perks: ['Unlimited articles', 'Ad-free reading'],
-    }),
-    offer({
-      name: 'Yearly',
-      price: '€89',
-      period: 'year',
-      perks: ['Unlimited articles', 'Ad-free reading', '2 months free'],
-      highlighted: true,
-    }),
-  ] },
-  { type: 'empty-space', settings: { height: '16px' } },
-  {
-    type: 'foldable',
-    seeMore: [{ type: 'text', content: '<p>Why subscribe? ▾</p>' }],
-    seeLess: [{ type: 'text', content: '<p>Show less ▴</p>' }],
-    content: [{
-      type: 'text',
-      content: '<p>Our newsroom is 100% funded by readers like you: no ' +
-        'billionaire, no clickbait, just independent journalism.</p>',
-    }],
-  },
-  {
-    type: 'clickable',
-    action: 'event',
-    event: 'login',
-    content: [{
-      type: 'text',
-      content: '<p>Already a subscriber? <u>Log in</u></p>',
-      styles: { paddingTop: '8px' },
-    }],
-  },
-];
 
 // Addons must be stable (defined once, or memoized): changing them makes the
 // builder re-register every component & field
@@ -162,7 +29,7 @@ export const Basic = () => (
   <div style={{ height: '100vh' }}>
     <Builder
       addons={darkModeAddons}
-      defaultValue={baseContent}
+      defaultValue={paywallContent}
       defaultPageWidth={720}
       onChange={action('change')}
     />
@@ -176,7 +43,7 @@ export const Empty = () => (
 );
 
 export const Controlled = () => {
-  const [value, setValue] = useState<ElementObject[]>(baseContent);
+  const [value, setValue] = useState<ElementObject[]>(paywallContent);
 
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -209,7 +76,7 @@ export const WithDisallowedChildren = () => (
   <div style={{ height: '100vh' }}>
     <Builder
       addons={disallowAddons}
-      defaultValue={baseContent}
+      defaultValue={paywallContent}
     />
   </div>
 );
@@ -277,7 +144,7 @@ export const WithPageSettings = () => {
     <div style={{ height: '100vh' }}>
       <Builder
         addons={pageSettingsAddons}
-        defaultValue={baseContent}
+        defaultValue={paywallContent}
         defaultPageWidth={720}
         pageSettings={pageSettings}
         pageValue={page}
@@ -303,7 +170,7 @@ export const WithCustomPrimaryColor = () => (
     <Builder
       className="custom-primary"
       addons={addons}
-      defaultValue={baseContent}
+      defaultValue={paywallContent}
       defaultPageWidth={720}
       pageTitle="Appearance"
       pageDescription="Paywall · The Daily Oak"
@@ -382,7 +249,7 @@ export const WithSidebarHeader = () => {
     <div style={{ height: '100vh' }}>
       <Builder
         addons={addons}
-        defaultValue={baseContent}
+        defaultValue={paywallContent}
         defaultPageWidth={720}
         header={<DashboardHeader status={status} />}
         headerClassName="oak:px-2 oak:py-2 oak:border-b oak:border-ash-border"
@@ -392,3 +259,23 @@ export const WithSidebarHeader = () => {
     </div>
   );
 };
+
+/**
+ * Other users' selections, as they would be shared through a collaboration
+ * tool (e.g. Yjs's awareness). See `onSelectionChange` to share yours.
+ */
+export const WithCollaborators = () => (
+  <div style={{ height: '100vh' }}>
+    <Builder
+      addons={addons}
+      defaultValue={withIds(paywallContent)}
+      defaultPageWidth={720}
+      onSelectionChange={action('selectionChange')}
+      collaborators={[
+        { id: 'alice', name: 'Alice', selectedId: 'e1' },
+        { id: 'bob', name: 'Bob', selectedId: 'e4-1' },
+        { id: 'carol', name: 'Carol', selectedId: 'e7' },
+      ]}
+    />
+  </div>
+);

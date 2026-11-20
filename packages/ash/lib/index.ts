@@ -54,6 +54,7 @@ export * as renderers from '@oakjs/react-renderer';
 export * from './tree';
 export * from './dnd';
 export * from './fields';
+export * from './textChanges';
 export * from './addons';
 export * from './utils';
 

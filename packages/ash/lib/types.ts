@@ -34,6 +34,17 @@ export declare interface CommonFieldProps {
     field?: FieldObject;
     overrides?: any;
     t?: GetTextCallback;
+    /**
+     * Other users whose cursor is in this field, to display their carets &
+     * selections (see `FieldCursors`)
+     */
+    collaborators?: FieldCollaborator[];
+    /**
+     * Shares the local selection in this field with the other users (`null`
+     * when the field loses focus). Positions are defined by the field (e.g.
+     * text offsets) and must be understood by the same field of other users.
+     */
+    onSelectionChange?(selection: FieldSelection | null): void;
   };
 }
 
@@ -132,4 +143,51 @@ export declare interface DropIndicator {
   width: number;
   height: number;
   kind: 'line' | 'box';
+}
+
+/**
+ * Undo/redo handled outside of the builder (e.g. by Yjs's UndoManager). The
+ * builder's own history is disabled when one is given.
+ */
+export declare interface HistoryController {
+  canUndo: boolean;
+  canRedo: boolean;
+  undo(): void;
+  redo(): void;
+}
+
+/**
+ * Another user editing the same content, displayed in the canvas & layers
+ */
+export declare interface Collaborator {
+  /** Unique id of the collaborator (e.g. Yjs's awareness client id) */
+  id: string | number;
+  name?: string;
+  /** Any css color. Defaults to a color derived from the id */
+  color?: string;
+  /** Id of the element selected by the collaborator */
+  selectedId?: string | null;
+  /** Position of the collaborator's cursor in a field */
+  cursor?: FieldCursor | null;
+}
+
+/** A selection inside a field (a caret when `anchor === head`) */
+export declare interface FieldSelection {
+  anchor: number;
+  head: number;
+}
+
+export declare interface FieldCursor extends FieldSelection {
+  /** Id of the edited element (`null` for page settings) */
+  elementId: string | null;
+  /** Key of the edited setting (e.g. `content`) */
+  key: string;
+}
+
+/** A collaborator whose cursor is in a field */
+export declare interface FieldCollaborator extends FieldSelection {
+  id: string | number;
+  name?: string;
+  /** Css color */
+  color: string;
 }

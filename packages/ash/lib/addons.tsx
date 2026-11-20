@@ -6,7 +6,6 @@ import {
   type ToggleProps,
   type DateFieldProps,
   type SelectFieldOptionObject,
-  TextField,
   SelectField,
   ColorField,
   DateField,
@@ -24,7 +23,11 @@ import type {
   BaseAddonOptions,
   CommonFieldProps,
 } from './types';
-import { type ImageFieldProps, ImageField } from './fields';
+import {
+  type ImageFieldProps,
+  ImageField,
+  SyncedTextField,
+} from './fields';
 import Text from './Text';
 import DynamicComponent from './DynamicComponent';
 import ColIcon from './Icon/ColIcon';
@@ -35,8 +38,10 @@ export const textField = (props?: AshFieldObject): AshFieldObject => ({
     fieldOptions = {},
     ...fieldProps
   }: TextFieldProps & CommonFieldProps) => (
-    <TextField
+    <SyncedTextField
       { ...fieldProps }
+      collaborators={fieldOptions.collaborators}
+      onSelectionChange={fieldOptions.onSelectionChange}
       { ...fieldOptions.setting?.placeholder && {
         placeholder: fieldOptions.t?.(fieldOptions.setting.placeholder),
       } }
@@ -52,8 +57,10 @@ export const textareaField = (props?: AshFieldObject): AshFieldObject => ({
     fieldOptions = {},
     ...fieldProps
   }: TextFieldProps & CommonFieldProps) => (
-    <TextField
+    <SyncedTextField
       { ...fieldProps }
+      collaborators={fieldOptions.collaborators}
+      onSelectionChange={fieldOptions.onSelectionChange}
       tag="textarea"
       rows={fieldProps.rows || 4}
       { ...fieldOptions.setting?.placeholder && {

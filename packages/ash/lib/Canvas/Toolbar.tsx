@@ -126,7 +126,7 @@ const CataloguePopover = ({ onClose }: { onClose: () => void }) => {
 };
 
 const Toolbar = () => {
-  const { builder, canUndo, canRedo } = useBuilder();
+  const { builder, canUndo, canRedo, undo, redo } = useBuilder();
   const { activeTool, setTool } = useEditor();
   const [catalogueOpened, setCatalogueOpened] = useState(false);
   const closeCatalogue = useCallback(() => setCatalogueOpened(false), []);
@@ -148,6 +148,9 @@ const Toolbar = () => {
       className={classNames(
         'oak-ash-toolbar oak:absolute oak:bottom-4 oak:left-1/2',
         'oak:-translate-x-1/2 oak:z-20 oak:flex oak:items-center oak:gap-1',
+        // Not enough room to be centered next to the zoom controls
+        'oak:@max-[600px]:left-auto oak:@max-[600px]:right-4',
+        'oak:@max-[600px]:translate-x-0',
         'oak:p-1 oak:bg-ash-surface oak:rounded-lg oak:shadow-md',
         'oak:border oak:border-ash-border',
       )}
@@ -179,17 +182,19 @@ const Toolbar = () => {
       <Separator />
       <ToolbarButton
         disabled={!canUndo}
+        label={builder.getText('core.tooltips.undo', 'Undo')}
         title={<Text name="core.tooltips.undo">Undo</Text>}
         shortcut="⌘Z"
-        onClick={() => builder.undo()}
+        onClick={() => undo()}
       >
         <Icon className="oak:text-lg!">undo</Icon>
       </ToolbarButton>
       <ToolbarButton
         disabled={!canRedo}
+        label={builder.getText('core.tooltips.redo', 'Redo')}
         title={<Text name="core.tooltips.redo">Redo</Text>}
         shortcut="⇧⌘Z"
-        onClick={() => builder.redo()}
+        onClick={() => redo()}
       >
         <Icon className="oak:text-lg!">redo</Icon>
       </ToolbarButton>

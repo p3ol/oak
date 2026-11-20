@@ -222,7 +222,10 @@ export default class Builder extends Emitter {
     return this.#store.get();
   }
 
-  setContent (content: ElementObject[], options: { emit?: boolean }) {
+  setContent (content: ElementObject[], options: {
+    emit?: boolean;
+    commit?: boolean;
+  } = {}) {
     this.#store.set(content, options);
   }
 

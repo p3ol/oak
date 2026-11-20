@@ -368,6 +368,8 @@ const Canvas = () => {
       ref={canvasRef}
       className={classNames(
         'oak-ash-canvas oak:absolute! oak:inset-0 oak:overflow-hidden',
+        // Container for the toolbar & zoom controls layout
+        'oak:@container',
         'oak:bg-cv-bg',
         { 'oak-ash-canvas-dark': canvasTheme === 'dark' },
       )}

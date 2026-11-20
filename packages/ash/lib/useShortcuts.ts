@@ -17,14 +17,44 @@ import {
 export const isShortcutScoped = (
   e: Event,
   root: HTMLElement | null,
-) => {
+) => !isTypingTarget(e.target) && isBuilderActive(root);
+
+/**
+ * Whether the builder should handle keyboard shortcuts: when the focus is
+ * inside it, or when nothing is focused and the builder was the last thing
+ * the user interacted with (in case there are several builders on the page)
+ */
+export const isBuilderActive = (root: HTMLElement | null) => {
   const active = document.activeElement;
 
-  return !isTypingTarget(e.target) && (
-    !active ||
-    active === document.body ||
-    !!root?.contains(active)
-  );
+  if (root?.contains(active)) {
+    return true;
+  }
+
+  return (!active || active === document.body) &&
+    root?.dataset.oakActive !== 'false';
+};
+
+/**
+ * Marks the builder as active/inactive depending on where the user last
+ * clicked (see isBuilderActive)
+ */
+export const useInteractionTracking = (root: RefObject<HTMLElement>) => {
+  useEffect(() => {
+    const onPointerDown = (e: Event) => {
+      if (root.current) {
+        root.current.dataset.oakActive = String(
+          root.current.contains(e.target as Node)
+        );
+      }
+    };
+
+    document.addEventListener('pointerdown', onPointerDown, true);
+
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown, true);
+    };
+  }, [root]);
 };
 
 const hasTextSelection = () =>
@@ -47,6 +77,8 @@ export const useShortcuts = ({
   builder,
   editor,
   setTemporaryPan,
+  undo,
+  redo,
   save,
   enabled = true,
 }: {
@@ -54,6 +86,8 @@ export const useShortcuts = ({
   builder: Builder;
   editor: EditorContextValue;
   setTemporaryPan: (enabled: boolean) => void;
+  undo: () => void;
+  redo: () => void;
   save?: () => void;
   enabled?: boolean;
 }) => {
@@ -130,13 +164,7 @@ export const useShortcuts = ({
         !e.altKey &&
         (e.key.toLowerCase() === 's' || e.code === 'KeyS')
       ) {
-        const active = document.activeElement;
-
-        if (
-          !active ||
-          active === document.body ||
-          rootRef.current?.contains(active)
-        ) {
+        if (isBuilderActive(rootRef.current)) {
           // Prevents the browser's "Save page" dialog
           e.preventDefault();
           save();
@@ -167,9 +195,9 @@ export const useShortcuts = ({
         e.preventDefault();
 
         if (e.shiftKey) {
-          builder.redo();
+          redo();
         } else {
-          builder.undo();
+          undo();
         }
 
         return;
@@ -177,7 +205,7 @@ export const useShortcuts = ({
 
       if (mod && e.key.toLowerCase() === 'y') {
         e.preventDefault();
-        builder.redo();
+        redo();
 
         return;
       }
@@ -260,5 +288,5 @@ export const useShortcuts = ({
       document.removeEventListener('cut', onCut);
       document.removeEventListener('paste', onPaste);
     };
-  }, [enabled, builder, rootRef, setTemporaryPan, save]);
+  }, [enabled, builder, rootRef, setTemporaryPan, undo, redo, save]);
 };

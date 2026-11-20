@@ -21,8 +21,11 @@ import { classNames } from '@junipero/react';
 
 import type {
   AshAddonObject,
+  Collaborator,
+  FieldCursor,
   DragSource,
   DropIndicator,
+  HistoryController,
   ImageUploadCallbackResult,
   PagePreset,
   PageSettingObject,
@@ -38,7 +41,7 @@ import {
   EditorContext,
 } from '../contexts';
 import { useRootBuilder } from '../hooks';
-import { useShortcuts } from '../useShortcuts';
+import { useInteractionTracking, useShortcuts } from '../useShortcuts';
 import { buildTree } from '../tree';
 import { defaultPreviewModes } from '../Canvas/previewModes';
 import Canvas from '../Canvas';
@@ -137,6 +140,23 @@ export declare interface BuilderProps
   };
   onChange?(content: ElementObject[]): void;
   /**
+   * Undo/redo handled outside of the builder (e.g. by Yjs's UndoManager).
+   * The builder's own history is disabled when given.
+   */
+  history?: HistoryController;
+  /** Called when the selected element changes */
+  onSelectionChange?(id: string | null, element: ElementObject | null): void;
+  /**
+   * Other users editing the same content: their selections are displayed in
+   * the canvas & the layers panel
+   */
+  collaborators?: Collaborator[];
+  /**
+   * Called when the user's cursor moves inside a field (`null` when it leaves
+   * it), to display it to the other users (see `Collaborator.cursor`)
+   */
+  onCursorChange?(cursor: FieldCursor | null): void;
+  /**
    * Called when the user saves (Cmd/Ctrl + S, or `save()` from `useBuilder()`
    * or the builder's ref), after pending property changes are committed
    */
@@ -182,11 +202,20 @@ const Builder = ({
   pageClassName,
   polyfills,
   onChange,
+  history,
+  onSelectionChange,
+  collaborators,
+  onCursorChange,
   onSave,
   onImageUpload,
   ...rest
 }: BuilderProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
+  // The builder's own history is useless when undo/redo are handled outside
+  const hasHistory = !!history;
+  const builderOptions = useMemo(() => (
+    hasHistory ? { ...options, history: false } : options
+  ), [options, hasHistory]);
   const floatingsRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const {
@@ -200,10 +229,30 @@ const Builder = ({
     content: value,
     defaultContent: defaultValue,
     addons: addonsProp as any[],
-    options,
+    options: builderOptions,
     activeTextSheet,
     onChange,
   });
+
+  // External history controller (e.g. Yjs's UndoManager)
+  const historyRef = useRef(history);
+  historyRef.current = history;
+
+  const undo = useCallback(() => {
+    if (historyRef.current) {
+      historyRef.current.undo();
+    } else {
+      builder.undo();
+    }
+  }, [builder]);
+
+  const redo = useCallback(() => {
+    if (historyRef.current) {
+      historyRef.current.redo();
+    } else {
+      builder.redo();
+    }
+  }, [builder]);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -284,6 +333,28 @@ const Builder = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [builder, content, version, addons]);
 
+  // Notify selection changes (e.g. to share them with collaborators)
+  const onSelectionChangeRef = useRef(onSelectionChange);
+  onSelectionChangeRef.current = onSelectionChange;
+
+  useEffect(() => {
+    onSelectionChangeRef.current?.(
+      selectedId,
+      selectedId ? tree.nodes.get(selectedId)?.element ?? null : null,
+    );
+  // Only when the selection changes, not when the content does
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId]);
+
+  const collaboratorsList = useMemo(() => collaborators || [], [collaborators]);
+
+  const onCursorChangeRef = useRef(onCursorChange);
+  onCursorChangeRef.current = onCursorChange;
+
+  const setCursor = useCallback((cursor: FieldCursor | null) => {
+    onCursorChangeRef.current?.(cursor);
+  }, []);
+
   // Clear selection/hover of elements that don't exist anymore (undo, ...)
   useEffect(() => {
     if (selectedId && !tree.nodes.has(selectedId)) {
@@ -308,8 +379,10 @@ const Builder = ({
     builder,
     content,
     addons,
-    canUndo,
-    canRedo,
+    canUndo: history ? history.canUndo : canUndo,
+    canRedo: history ? history.canRedo : canRedo,
+    undo,
+    redo,
     rootRef,
     floatingsRef,
     polyfills,
@@ -324,6 +397,7 @@ const Builder = ({
   }), [
     hasOnSave, save,
     builder, content, version, addons, canUndo, canRedo, polyfills,
+    history?.canUndo, history?.canRedo, undo, redo,
     pageClassName, pageTitle, pageDescription, shortcutsEnabled,
     renderPageHead, onImageUpload,
   ]);
@@ -344,6 +418,8 @@ const Builder = ({
     pageWidth,
     previewModes,
     previewMode,
+    collaborators: collaboratorsList,
+    setCursor,
     pageSettings,
     pageValue,
     setPageValue,
@@ -362,16 +438,21 @@ const Builder = ({
     setDropIndicator,
   }), [
     tree, selectedId, hoveredId, tool, activeTool, pageWidth, previewModes,
-    previewMode, pageSettings, pageValue, setPageValue, canvasTheme,
+    previewMode, collaboratorsList, setCursor, pageSettings, pageValue,
+    setPageValue,
+    canvasTheme,
     registerPendingChanges,
     dragSource, dropIndicator, select, hover,
   ]);
 
+  useInteractionTracking(rootRef);
   useShortcuts({
     rootRef,
     builder,
     editor: editorContext,
     setTemporaryPan,
+    undo,
+    redo,
     save: onSave ? save : undefined,
     enabled: shortcutsEnabled,
   });

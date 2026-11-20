@@ -35,6 +35,10 @@ Coming from `@oakjs/react`? See
 | `value` | `ElementObject[]` | Content (controlled) |
 | `defaultValue` | `ElementObject[]` | Initial content (uncontrolled) |
 | `onChange` | `(content) => void` | Called on every content change |
+| `history` | `{ canUndo, canRedo, undo(), redo() }` | Undo/redo handled outside of the builder (e.g. by Yjs's `UndoManager`), used by the toolbar & shortcuts. The builder's own history is disabled when given (see [Collaboration](#collaboration)) |
+| `onSelectionChange` | `(id, element) => void` | Called when the selected element changes |
+| `collaborators` | `Collaborator[]` | Other users editing the content, whose selections are displayed in the canvas & layers, and cursors in fields (see [Collaboration](#collaboration)) |
+| `onCursorChange` | `(cursor \| null) => void` | Called when the user's cursor moves inside a field (`null` when it leaves it), to share it with the other users |
 | `onSave` | `(content, { pageValue }) => void \| Promise<void>` | Called when the user saves with `⌘/Ctrl + S` (or with `save()`, see below). Pending property changes are committed first. `⌘/Ctrl + S` keeps its default browser behavior when not set |
 | `options` | `Partial<BuilderOptions>` | Core builder options (`debug`, `historyLimit`, `generateId`...) |
 | `activeTextSheet` | `string` | Id of the texts sheet to use (see [Texts](#texts)) |
@@ -197,6 +201,117 @@ const sidebarMode: PreviewMode = {
 `SiteHeader` and `ArticleSkeleton` (the mock website used by default modes)
 are exported to build your own.
 
+## Collaboration
+
+Ash provides what's needed to plug a real-time collaboration tool (like
+[Yjs](https://yjs.dev)), the synchronization itself staying on your side:
+
+- **Content**: pass remote content through `value` (applying it doesn't call
+  `onChange`, so there's no echo), and send local changes from `onChange`.
+- **Undo/redo**: give a `history` controller so that users only undo their own
+  changes. The builder's own history is disabled (`options.history: false`
+  in `@oakjs/core`).
+- **Presence**: share the local selection with `onSelectionChange` and the
+  cursor in fields with `onCursorChange`, and display the others' with
+  `collaborators` (outlines in the canvas & layers, carets & selected text
+  in fields, with the user's name when their cursor moves).
+- **Concurrent edits**: the properties panel only commits the values that
+  were changed, so that changes made meanwhile by others to the same element
+  are kept. When someone else changes a text you are typing in, both changes
+  are merged (unless they overlap, in which case yours wins).
+- **Fields**: the default text fields, as well as the CKEditor
+  (`@oakjs/addon-ckeditor5-react`) and Remirror (`@oakjs/addon-remirror`)
+  fields, apply changes made by others while you type without moving your
+  caret (it moves along with the text inserted or removed before it).
+
+```tsx
+<Builder
+  addons={addons}
+  value={content}
+  onChange={sendContent}
+  history={{
+    canUndo: undoManager.canUndo(),
+    canRedo: undoManager.canRedo(),
+    undo: () => undoManager.undo(),
+    redo: () => undoManager.redo(),
+  }}
+  onSelectionChange={id => awareness.setLocalStateField('selectedId', id)}
+  onCursorChange={cursor => awareness.setLocalStateField('cursor', cursor)}
+  collaborators={[{
+    id: 12,
+    name: 'Alice',
+    // Optional: defaults to a color derived from the id
+    color: '#EE7674',
+    selectedId: 'e1',
+    // Alice selected characters 4 to 9 of `e1`'s content
+    cursor: { elementId: 'e1', key: 'content', anchor: 4, head: 9 },
+  }]}
+/>
+```
+
+`@oakjs/core` also allows to apply content without recording it in its own
+history: `builder.setContent(content, { commit: false })`.
+
+### Yjs
+
+`@oakjs/ash/yjs` does all of the above with [Yjs](https://yjs.dev). It
+requires the `yjs` peer dependency (and `y-protocols` for presence), and is
+only loaded when imported.
+
+```sh
+yarn add yjs y-protocols y-websocket
+```
+
+```tsx
+import * as Y from 'yjs';
+import { WebsocketProvider } from 'y-websocket';
+import { Builder } from '@oakjs/ash';
+import { useYjs } from '@oakjs/ash/yjs';
+
+const doc = new Y.Doc();
+const provider = new WebsocketProvider('wss://your-server', 'paywall-12', doc);
+
+export const Editor = () => {
+  const collaboration = useYjs({
+    doc,
+    awareness: provider.awareness,
+    user: { name: 'Alice', color: '#EE7674' },
+  });
+
+  return <Builder addons={addons} { ...collaboration } />;
+};
+```
+
+`useYjs` returns the builder props listed above (`value`, `onChange`,
+`pageValue`, `onPageChange`, `history`, `onSelectionChange`,
+`onCursorChange`, `collaborators`):
+
+- The content is stored as shared types (elements as `Y.Map`, containers as
+  `Y.Array`, texts as `Y.Text`) in `doc.getArray('oak:content')`, and the
+  page settings in `doc.getMap('oak:page')` (see the `contentKey` & `pageKey`
+  options). Only changed values are written, and only changed characters for
+  texts: concurrent changes to different values of the same element are
+  merged, and so is concurrent typing in the same text. Moved elements are
+  re-created at their new position (Yjs has no move operation).
+- Undo/redo uses a `Y.UndoManager`: each user only undoes their own changes.
+- Selections & cursors are shared through the awareness (`selectedId` &
+  `cursor` fields), along with `user`.
+
+Initialize the document once, e.g. on your server, with `setYjsContent(doc,
+content)`. `useYjs`'s `defaultValue` option initializes it when it's empty,
+but initializing it from several clients at the same time would duplicate the
+content.
+
+Rich texts (CKEditor, Remirror) are stored as HTML strings in `Y.Text`s:
+typing at different places is merged, but two users formatting overlapping
+parts of a text at the same time may produce unexpected markup. Plugging the
+editors' own Yjs bindings (`y-prosemirror`, CKEditor's real-time
+collaboration) would require storing their documents outside of the content,
+which isn't supported.
+
+See the `Ash/Collaboration` stories for two editors synchronized in memory
+(with the default fields, CKEditor and Remirror).
+
 ## Dark mode
 
 The interface (sidebars, toolbar, panels) and the canvas have separate
@@ -255,6 +370,10 @@ canvas (`--ash-canvas-bg`, `--ash-page-bg`, `--ash-page-text`...).
 | `⌘/Ctrl + D` | Duplicate selected element |
 | `⌘/Ctrl + Z`, `⇧ + ⌘/Ctrl + Z` | Undo, redo |
 | `Escape` | Select parent element |
+
+Shortcuts are handled when the focus is inside the builder, or when nothing is
+focused and the builder was the last thing clicked (so that several builders
+can be displayed on the same page).
 
 ## Creating addons
 
@@ -469,9 +588,51 @@ and `fieldOptions`:
 | `element` | A draft copy of the edited element |
 | `t(key, default)` | Returns a translated text |
 | `floatingsRef` | Container to render dropdowns & popovers into (so they're not clipped by the sidebar) |
+| `collaborators` | Other users whose cursor is in this field: `{ id, name, color, anchor, head }[]` |
+| `onSelectionChange(selection)` | Shares the local selection (`{ anchor, head }`, or `null` on blur) with the other users |
 
 Changes are applied to the page live, and saved to the undo history after a
 short delay.
+
+The `value` given to a field can change while it is focused (when someone
+else edits the same element, see [Collaboration](#collaboration)): apply it
+without resetting the caret if possible. Ash's `textField` & `textareaField`
+do (with the `SyncedTextField` component).
+
+To display other users' cursors in a custom field, report the local selection
+with `fieldOptions.onSelectionChange` (positions are up to the field, e.g.
+text offsets: they're only read by the same field of other users), and render
+`fieldOptions.collaborators` with the `FieldCursors` component, from the rects
+you measured (`measureTextSelection` does it for inputs & textareas):
+
+```tsx
+import { FieldCursors, measureTextSelection } from '@oakjs/ash';
+
+const MyField = ({ value, onChange, fieldOptions }) => {
+  const containerRef = useRef(null);
+  const inputRef = useRef(null);
+  const [cursors, setCursors] = useState([]);
+
+  // Measured once the input displays the value
+  useLayoutEffect(() => {
+    setCursors((fieldOptions.collaborators || []).map(c => ({
+      ...c,
+      ...measureTextSelection(inputRef.current, containerRef.current, c),
+    })));
+  }, [fieldOptions.collaborators, value]);
+
+  return (
+    <div ref={containerRef} style={{ position: 'relative' }}>
+      <input ref={inputRef} value={value} onChange={...} />
+      <FieldCursors cursors={cursors} />
+    </div>
+  );
+};
+```
+
+Report selections outside of the field's event handlers (e.g. on the next
+frame): updating the builder while a controlled input handles an event makes
+React restore its previous value.
 
 ### Settings
 

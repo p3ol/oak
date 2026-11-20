@@ -14,6 +14,8 @@ import type {
 import type {
   DragSource,
   DropIndicator,
+  Collaborator,
+  FieldCursor,
   ImageUploadCallbackResult,
   PageSettingObject,
   PageValue,
@@ -29,6 +31,9 @@ export declare interface BuilderContextValue {
   addons?: AddonObject[];
   canUndo?: boolean;
   canRedo?: boolean;
+  /** Undo/redo, using the external history controller if given */
+  undo?(): void;
+  redo?(): void;
   rootRef?: RefObject<HTMLDivElement>;
   shortcutsEnabled?: boolean;
   /**
@@ -70,6 +75,10 @@ export declare interface EditorContextValue {
   pageWidth: number;
   previewModes: PreviewMode[];
   previewMode: PreviewMode;
+  /** Other users editing the content */
+  collaborators: Collaborator[];
+  /** Shares the local cursor (in a field) with the other users */
+  setCursor(cursor: FieldCursor | null): void;
   /** Page settings (from props & addons) */
   pageSettings: PageSettingObject[];
   pageValue: PageValue;

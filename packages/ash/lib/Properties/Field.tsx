@@ -1,4 +1,10 @@
-import { type ComponentPropsWithoutRef, useMemo } from 'react';
+import {
+  type ComponentPropsWithoutRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import {
   type ComponentObject,
   type ComponentSettingsFieldObject,
@@ -10,7 +16,9 @@ import {
 } from '@oakjs/core';
 import { omit } from '@junipero/react';
 
-import { useBuilder } from '../hooks';
+import type { FieldCollaborator, FieldSelection } from '../types';
+import { useBuilder, useEditor } from '../hooks';
+import { getCollaboratorColor } from '../collaborators';
 import DynamicComponent from '../DynamicComponent';
 
 export interface FieldProps extends ComponentPropsWithoutRef<any> {
@@ -29,6 +37,41 @@ const Field = ({
   onCustomChange,
 }: FieldProps) => {
   const { builder, addons, floatingsRef } = useBuilder();
+  const { collaborators, setCursor } = useEditor();
+
+  // Page settings are edited on a pseudo element without id
+  const elementId = element.type === 'page'
+    ? null : (element.id as string) ?? null;
+  // Settings can have several keys
+  const key = Array.isArray(fieldSetting.key)
+    ? fieldSetting.key.join(',') : fieldSetting.key;
+
+  // Other users whose cursor is in this field
+  const fieldCollaborators = useMemo<FieldCollaborator[]>(() => collaborators
+    .filter(c => c.cursor && c.cursor.key === key &&
+      (c.cursor.elementId ?? null) === elementId)
+    .map(c => ({
+      id: c.id,
+      name: c.name,
+      color: getCollaboratorColor(c),
+      anchor: c.cursor.anchor,
+      head: c.cursor.head,
+    })), [collaborators, elementId, key]);
+
+  // Local cursor, cleared when the field is removed (e.g. the element is
+  // unselected) while holding it
+  const hasCursor = useRef(false);
+
+  const onSelectionChange = useCallback((selection: FieldSelection | null) => {
+    hasCursor.current = !!selection;
+    setCursor(selection ? { ...selection, elementId, key } : null);
+  }, [setCursor, elementId, key]);
+
+  useEffect(() => () => {
+    if (hasCursor.current) {
+      setCursor(null);
+    }
+  }, [setCursor]);
 
   const overrides = useMemo(() => ({
     field: builder.getOverride('component', element.type, {
@@ -99,6 +142,8 @@ const Field = ({
         element,
         floatingsRef,
         t: builder.getText.bind(builder),
+        collaborators: fieldCollaborators,
+        onSelectionChange,
       }}
     />
   );

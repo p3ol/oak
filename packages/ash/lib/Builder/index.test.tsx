@@ -414,4 +414,104 @@ describe('<Builder />', () => {
       expect(onSave).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe('collaboration', () => {
+    // Elements given to the builder are mutated: use a fresh copy
+    const freshContent = () => [
+      { id: 'row', type: 'row', cols: [
+        { id: 'col', type: 'col', content: [
+          { id: 'title', type: 'title', content: 'Hello' },
+          { id: 'button', type: 'button', content: 'Click me' },
+        ] },
+      ] },
+    ];
+
+    it('should use an external history controller', () => {
+      const history = {
+        canUndo: true,
+        canRedo: false,
+        undo: vi.fn(),
+        redo: vi.fn(),
+      };
+      const ref = { current: null as any };
+      const { getAllByRole, getByRole } = render(
+        <Builder
+          ref={ref}
+          addons={[baseAddon()]}
+          defaultValue={freshContent()}
+          history={history}
+        />
+      );
+
+      // The builder's own history is disabled
+      fireEvent.click(getAllByRole('treeitem')[3]);
+      act(() => {
+        globalThis.dispatchEvent(
+          new KeyboardEvent('keydown', { key: 'Backspace' })
+        );
+      });
+      expect(ref.current.builder.canUndo()).toBe(false);
+
+      // Toolbar & shortcuts use the controller
+      const undoButton = getByRole('button', { name: /undo/i });
+      const redoButton = getByRole('button', { name: /redo/i });
+      expect((undoButton as HTMLButtonElement).disabled).toBe(false);
+      expect((redoButton as HTMLButtonElement).disabled).toBe(true);
+
+      fireEvent.click(undoButton);
+      act(() => {
+        globalThis.dispatchEvent(new KeyboardEvent('keydown', {
+          key: 'z', metaKey: true, shiftKey: true,
+        }));
+      });
+      expect(history.undo).toHaveBeenCalledTimes(1);
+      expect(history.redo).toHaveBeenCalledTimes(1);
+    });
+
+    it('should notify selection changes', () => {
+      const onSelectionChange = vi.fn();
+      const { getAllByRole } = render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={freshContent()}
+          onSelectionChange={onSelectionChange}
+        />
+      );
+
+      fireEvent.click(getAllByRole('treeitem')[2]);
+      expect(onSelectionChange).toHaveBeenLastCalledWith(
+        'title', expect.objectContaining({ type: 'title' })
+      );
+
+      act(() => {
+        globalThis.dispatchEvent(
+          new KeyboardEvent('keydown', { key: 'Escape' })
+        );
+      });
+      expect(onSelectionChange).toHaveBeenLastCalledWith(
+        'col', expect.objectContaining({ type: 'col' })
+      );
+    });
+
+    it('should display collaborators selections in the layers', () => {
+      const { container } = render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={freshContent()}
+          collaborators={[
+            { id: 1, name: 'Alice', selectedId: 'title', color: 'red' },
+            { id: 2, name: 'Bob', selectedId: 'title' },
+            { id: 3, name: 'Carol' },
+          ]}
+        />
+      );
+
+      const avatars = container.querySelectorAll('.oak-ash-collaborator-avatar');
+      expect(Array.from(avatars).map(a => a.textContent)).toEqual(['A', 'B']);
+      expect(avatars[0].closest('[role=treeitem]').textContent)
+        .toContain('Hello');
+      expect((avatars[0] as HTMLElement).style.background).toBe('red');
+      expect((avatars[1] as HTMLElement).style.background).toMatch(/var\(--junipero-/);
+    });
+  });
 });

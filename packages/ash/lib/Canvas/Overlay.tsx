@@ -1,5 +1,6 @@
 import {
   type MouseEvent,
+  useEffect,
   useLayoutEffect,
   useMemo,
   useReducer,
@@ -14,6 +15,7 @@ import {
   toFrameRect,
 } from '../dnd';
 import type { TreeContainer } from '../tree';
+import { getCollaboratorColor } from '../collaborators';
 import PlusIcon from '../Icon/PlusIcon';
 import Text from '../Text';
 
@@ -117,6 +119,7 @@ const Overlay = () => {
     dropIndicator,
     pageWidth,
     tree,
+    collaborators,
   } = useEditor();
   const { zoom } = useInfiniteCanvas() || { zoom: 1 };
   const [layoutTick, relayout] = useReducer((x: number) => x + 1, 0);
@@ -124,7 +127,8 @@ const Overlay = () => {
     selected: Rect | null;
     hovered: Rect | null;
     rows: { id: string; rect: Rect; container: TreeContainer }[];
-  }>({ selected: null, hovered: null, rows: [] });
+    collaborators: { key: string; rect: Rect; color: string; name?: string }[];
+  }>({ selected: null, hovered: null, rows: [], collaborators: [] });
 
   // Rows (or any element with structural children) related to the selected
   // or hovered element display buttons to add columns
@@ -137,6 +141,14 @@ const Overlay = () => {
       found.findIndex(o => o.node.id === r.node.id) === i
     );
   }, [builder, tree, selectedId, hoveredId]);
+
+  // Elements may not be laid out yet when the overlay is mounted (or when
+  // collaborators are received): measure again on the next frame
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => relayout());
+
+    return () => cancelAnimationFrame(frame);
+  }, [collaborators]);
 
   // Re-measure when anything inside the page changes size (images loading,
   // fonts, responsive changes...)
@@ -179,8 +191,18 @@ const Overlay = () => {
           rect: measure(frame, findElement(frame, node.id)),
         }))
         .filter(r => r.rect),
+      collaborators: collaborators
+        .filter(c => c.selectedId)
+        .map(c => ({
+          key: String(c.id),
+          color: getCollaboratorColor(c),
+          name: c.name,
+          rect: measure(frame, findElement(frame, c.selectedId)),
+        }))
+        .filter(c => c.rect),
     });
   }, [
+    collaborators,
     frameRef, selectedId, hoveredId, content, pageWidth, layoutTick, tree,
     rows,
   ]);
@@ -211,6 +233,40 @@ const Overlay = () => {
           }}
         />
       ) }
+
+      { rects.collaborators.map(c => (
+        <div
+          key={c.key}
+          className="oak-ash-collaborator oak:absolute oak:border-solid"
+          style={{
+            left: c.rect.x,
+            top: c.rect.y,
+            width: c.rect.width,
+            height: c.rect.height,
+            borderWidth: stroke * 2,
+            borderColor: c.color,
+            boxSizing: 'border-box',
+          }}
+        >
+          { c.name && (
+            <div
+              className={classNames(
+                'oak:absolute oak:right-0 oak:bottom-full oak:origin-bottom-right',
+                'oak:text-onyx oak:whitespace-nowrap oak:px-1.5 oak:py-0.5',
+                'oak:rounded-t oak:text-[11px] oak:leading-4',
+              )}
+              style={{
+                background: c.color,
+                transform: `scale(${1 / (zoom || 1)})`,
+                fontFamily: 'var(--junipero-font-family)',
+                marginRight: -stroke * 2,
+              }}
+            >
+              { c.name }
+            </div>
+          ) }
+        </div>
+      )) }
 
       { rects.selected && (
         <div

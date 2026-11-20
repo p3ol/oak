@@ -14,6 +14,14 @@ import { cloneDeep, get, set } from '@junipero/react';
 
 import { getElementContainers } from '../tree';
 import { useEditor } from '../hooks';
+import { mergeText } from '../textChanges';
+import {
+  arePathsRelated,
+  getChangedPaths,
+  getIn,
+  getUpdates,
+  setIn,
+} from './diff';
 
 declare interface Serializer {
   key: string;
@@ -79,6 +87,9 @@ export const useElementDraft = (
   const draft = useRef<ElementObject | null>(null);
   const pending = useRef<ReturnType<typeof setTimeout> | null>(null);
   const target = useRef<ElementObject | null>(null);
+  // Serialized draft at its creation (or last commit), to only commit the
+  // values that were actually changed
+  const baseline = useRef<ElementObject | null>(null);
 
   const deserialize = useCallback((elmt: ElementObject) => {
     const override = builder
@@ -108,18 +119,24 @@ export const useElementDraft = (
       builder, cloneDeep(draft.current), 'serialize'
     );
 
-    // Children may have been added/moved since the draft was created: never
-    // overwrite the element's containers with the draft's (stale) copies
+    // Only commit what changed since the draft was created: the element may
+    // have been changed meanwhile (e.g. by another user), other values must
+    // be kept. Children (containers) are never overwritten.
     const containers = getElementContainers(builder, target.current);
-    Object.keys(serialized).forEach(key => {
-      if (containers.includes(target.current[key])) {
-        delete serialized[key];
-      }
-    });
+    const paths = getChangedPaths(baseline.current, serialized)
+      .filter(([key]) => !containers.includes(target.current[key]));
 
-    builder.setElement(target.current.id, serialized, {
-      element: target.current,
-    });
+    baseline.current = serialized;
+
+    if (!paths.length) {
+      return;
+    }
+
+    builder.setElement(
+      target.current.id,
+      getUpdates(target.current, serialized, paths),
+      { element: target.current },
+    );
   }, [builder]);
 
   // Commit pending changes before switching to another element
@@ -133,16 +150,57 @@ export const useElementDraft = (
   ]);
 
   // (Re)create the draft when the element changes from the outside (undo,
-  // redo, other element selected...), unless we have pending changes
+  // redo, other user, other element selected...)
   useEffect(() => {
+    // With pending local changes, the draft is rebased on the new element
+    // instead: changes made by others are applied to it, and texts changed on
+    // both sides are merged
     if (pending.current && target.current?.id === element?.id) {
       target.current = element;
+
+      if (element && draft.current && baseline.current) {
+        const remote = applySerializers(
+          builder, deserialize(element), 'serialize'
+        );
+        const local = applySerializers(
+          builder, cloneDeep(draft.current), 'serialize'
+        );
+        const localPaths = getChangedPaths(baseline.current, local);
+
+        getChangedPaths(baseline.current, remote).forEach(path => {
+          const related = localPaths.filter(p => arePathsRelated(p, path));
+
+          if (!related.length) {
+            setIn(draft.current, path, getIn(remote, path));
+
+            return;
+          }
+
+          const base = getIn(baseline.current, path);
+          const mine = getIn(local, path);
+          const theirs = getIn(remote, path);
+
+          if (
+            typeof base === 'string' &&
+            typeof mine === 'string' &&
+            typeof theirs === 'string'
+          ) {
+            setIn(draft.current, path, mergeText(base, mine, theirs));
+          }
+        });
+
+        baseline.current = remote;
+        forceUpdate();
+      }
 
       return;
     }
 
     target.current = element;
     draft.current = element ? deserialize(element) : null;
+    baseline.current = draft.current
+      ? applySerializers(builder, cloneDeep(draft.current), 'serialize')
+      : null;
     forceUpdate();
   // Element objects are mutated in place
   // eslint-disable-next-line react-hooks/exhaustive-deps

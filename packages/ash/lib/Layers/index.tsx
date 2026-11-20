@@ -29,6 +29,11 @@ import {
 } from '../dnd';
 import { useBuilder, useEditor } from '../hooks';
 import ChevronIcon from '../Icon/ChevronIcon';
+import {
+  getCollaboratorColor,
+  getCollaboratorInitial,
+  getSelectingCollaborators,
+} from '../collaborators';
 import Icon from '../Icon';
 import Text from '../Text';
 
@@ -194,10 +199,14 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
   const {
     selectedId,
     hoveredId,
+    collaborators,
     select,
     hover,
     setDragSource,
   } = useEditor();
+  const selectingCollaborators = getSelectingCollaborators(
+    collaborators, node.id
+  );
   const component = builder.getComponent(node.element.type) as ComponentObject;
   const hasChildren = node.containers.length > 0;
   const isCollapsed = collapsed.has(node.id);
@@ -293,6 +302,25 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
             { preview && (
               <span className="oak:truncate oak:text-ash-text-muted oak:min-w-0">
                 { preview }
+              </span>
+            ) }
+            { selectingCollaborators.length > 0 && (
+              <span className="oak:ml-auto oak:flex oak:flex-none oak:-space-x-1 oak:pl-1">
+                { selectingCollaborators.map(c => (
+                  <span
+                    key={c.id}
+                    title={c.name}
+                    className={classNames(
+                      'oak-ash-collaborator-avatar oak:flex oak:items-center',
+                      'oak:justify-center oak:w-4 oak:h-4 oak:rounded-full',
+                      'oak:text-[9px] oak:font-semibold oak:text-onyx',
+                      'oak:ring-2 oak:ring-ash-surface',
+                    )}
+                    style={{ background: getCollaboratorColor(c) }}
+                  >
+                    { getCollaboratorInitial(c) }
+                  </span>
+                )) }
               </span>
             ) }
           </div>

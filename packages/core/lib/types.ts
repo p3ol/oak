@@ -283,6 +283,11 @@ export declare interface BuilderObject {
   debug?: boolean;
   generateId?: () => string | number
   historyLimit?: number;
+  /**
+   * Set to false to disable the built-in undo/redo history, e.g. when it is
+   * handled by a collaboration tool (like Yjs's UndoManager)
+   */
+  history?: boolean;
   overrideStrategy?: 'last' | 'merge';
   content?: ElementObject[];
   addons?: AddonObject[];

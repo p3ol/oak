@@ -4,7 +4,12 @@ import pkg from './package.json' with { type: 'json' };
 
 export default defineConfig([
   {
-    entry: ['./lib/index.ts', './lib/addons.tsx'],
+    entry: {
+      index: './lib/index.ts',
+      addons: './lib/addons.tsx',
+      // Only loaded by consumers using collaboration
+      yjs: './lib/yjs/index.ts',
+    },
     outDir: 'dist',
     target: pkg.targets,
     format: ['cjs', 'esm'],
@@ -20,6 +25,9 @@ export default defineConfig([
         '@junipero/transitions',
         '@oakjs/core',
         '@oakjs/react-renderer',
+        'yjs',
+        'y-protocols',
+        /^y-protocols\//,
       ],
     },
     sourcemap: true,
