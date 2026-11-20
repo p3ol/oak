@@ -220,8 +220,8 @@ Ash provides what's needed to plug a real-time collaboration tool (like
   are kept. When someone else changes a text you are typing in, both changes
   are merged (unless they overlap, in which case yours wins).
 - **Fields**: the default text fields, as well as the CKEditor
-  (`@oakjs/addon-ckeditor5-react`) and Remirror (`@oakjs/addon-remirror`)
-  fields, apply changes made by others while you type without moving your
+  (`@oakjs/addon-ckeditor5-react`), Remirror (`@oakjs/addon-remirror`) and
+  Lexical (`@oakjs/addon-lexical`) fields, apply changes made by others while you type without moving your
   caret (it moves along with the text inserted or removed before it).
 
 ```tsx
@@ -302,15 +302,15 @@ content)`. `useYjs`'s `defaultValue` option initializes it when it's empty,
 but initializing it from several clients at the same time would duplicate the
 content.
 
-Rich texts (CKEditor, Remirror) are stored as HTML strings in `Y.Text`s:
+Rich texts (CKEditor, Remirror, Lexical) are stored as HTML strings in `Y.Text`s:
 typing at different places is merged, but two users formatting overlapping
 parts of a text at the same time may produce unexpected markup. Plugging the
-editors' own Yjs bindings (`y-prosemirror`, CKEditor's real-time
-collaboration) would require storing their documents outside of the content,
+editors' own Yjs bindings (`y-prosemirror`, `@lexical/yjs`, CKEditor's
+real-time collaboration) would require storing their documents outside of the content,
 which isn't supported.
 
 See the `Ash/Collaboration` stories for two editors synchronized in memory
-(with the default fields, CKEditor and Remirror).
+(with the default fields, CKEditor, Remirror and Lexical).
 
 ## Dark mode
 
@@ -995,12 +995,14 @@ page renderer, like components.
 
 ### Addon packages
 
-Both rich text addons only declare a field and work with ash as is (don't
+The rich text addons only declare a field and work with ash as is (don't
 forget their stylesheets). Inside ash, they follow the builder's colors
 (light & dark), with or without `@oakjs/theme`:
 
 - `@oakjs/addon-ckeditor5-react`
 - `@oakjs/addon-remirror`
+- `@oakjs/addon-lexical` (new: same toolbar as the CKEditor field, built on
+  the MIT-licensed Lexical instead of CKEditor 5's GPL/commercial license)
 
 See the `Ash/Addons` stories for examples.
 

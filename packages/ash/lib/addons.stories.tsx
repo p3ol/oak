@@ -1,6 +1,7 @@
 import type { ElementObject, GetTextCallback } from '@oakjs/core';
 import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
 import { remirrorFieldAddon } from '@oakjs/addon-remirror';
+import { lexicalFieldAddon } from '@oakjs/addon-lexical';
 import { action } from 'storybook/actions';
 
 import type {
@@ -312,3 +313,47 @@ export const WithRemirror = () => (
   </div>
 );
 
+/* ---------------------------------------------------------------------------
+ * Lexical as rich text field
+ * ------------------------------------------------------------------------ */
+
+const lexicalAddons = [
+  baseAddon(),
+  // Provides the `lexical` field type
+  lexicalFieldAddon() as AshAddonObject,
+  {
+    overrides: [{
+      type: 'component',
+      targets: ['text', 'title', 'button'],
+      fields: [{ key: 'content', type: 'lexical' }],
+    }],
+  } as AshAddonObject,
+];
+
+const lexicalContent: ElementObject[] = [
+  {
+    type: 'title',
+    headingLevel: 'h2',
+    content: 'Support <strong>independent</strong> journalism',
+  },
+  {
+    type: 'text',
+    content: '<p>This text is edited with <em>Lexical</em>: select it and ' +
+      'edit it in the properties panel.</p><ul><li>Lists</li>' +
+      '<li><a href="https://example.com">Links</a></li></ul>' +
+      '<blockquote>Quotes, tables, colors, sizes…</blockquote>',
+  },
+  { type: 'empty-space', settings: { height: '16px' } },
+  { type: 'button', content: 'Subscribe' },
+];
+
+export const WithLexical = () => (
+  <div style={{ height: '100vh' }}>
+    <Builder
+      addons={lexicalAddons}
+      defaultValue={lexicalContent}
+      defaultPageWidth={720}
+      onChange={action('change')}
+    />
+  </div>
+);

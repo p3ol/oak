@@ -38,7 +38,7 @@
     "build:code": "yarn run -T tsdown",
     "build:dts": "yarn run -T tsc --project ./tsconfig.build.json",
     "test": "jest",
-    "build:styles": "node --import=tsx scripts/build-styles.ts"
+    "build:styles": "node --import=tsx ../../scripts/build-css.ts --sass ./lib/index.sass ./dist/oak-addon-remirror.min.css"
   },
   "publishConfig": {
     "access": "public"

@@ -100,7 +100,12 @@
       --border-color: var(--focus-border-color)
 
 // Dropdown menus can be rendered outside of the field (in the builder's
-// floatings container), they can't be scoped to it
+// floatings container), they can't be scoped to it. They're displayed above
+// the builder's popovers (e.g. @oakjs/react's element options, z-index: 20).
+.junipero.dropdown-menu.link-input,
+.junipero.dropdown-menu.text-color-menu
+  z-index: 40
+
 .junipero.dropdown-menu.link-input
   .menu-inner
     padding: 10px

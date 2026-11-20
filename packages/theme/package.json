@@ -24,7 +24,9 @@
   "scripts": {
     "clean": "rm -rf ./dist || true",
     "build": "yarn clean && yarn build:code",
-    "build:code": "node --import=tsx scripts/build.ts"
+    "build:code": "yarn build:components && yarn build:index",
+    "build:components": "node --import=tsx ../../scripts/build-css.ts --sass --load-path ./lib/utils ./lib ./dist/css",
+    "build:index": "node --import=tsx ../../scripts/build-css.ts --sass --load-path ./lib/utils ./lib/index.sass ./dist/oak.min.css"
   },
   "publishConfig": {
     "access": "public"

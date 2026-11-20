@@ -7,6 +7,7 @@ import {
 } from 'y-protocols/awareness';
 import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
 import { remirrorFieldAddon } from '@oakjs/addon-remirror';
+import { lexicalFieldAddon } from '@oakjs/addon-lexical';
 
 import type { AshAddonObject } from './types';
 import { setYjsContent, useYjs } from './yjs';
@@ -48,6 +49,18 @@ const remirrorAddons = [
 ];
 
 const content = withIds(paywallContent);
+
+const lexicalAddons = [
+  baseAddon(),
+  lexicalFieldAddon() as AshAddonObject,
+  {
+    overrides: [{
+      type: 'component',
+      targets: ['text', 'title', 'button'],
+      fields: [{ key: 'content', type: 'lexical' }],
+    }],
+  } as AshAddonObject,
+];
 
 /**
  * Two documents & awareness instances synchronized in memory, like two
@@ -173,3 +186,6 @@ export const WithCKEditor = () => <Session addons={ckeditorAddons} />;
 
 /** Same, with texts edited with Remirror */
 export const WithRemirror = () => <Session addons={remirrorAddons} />;
+
+/** Same, with texts edited with Lexical */
+export const WithLexical = () => <Session addons={lexicalAddons} />;
