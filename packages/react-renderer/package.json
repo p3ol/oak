@@ -44,6 +44,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./server": {
+      "types": "./dist/types/server.d.ts",
+      "import": "./dist/server.js",
+      "require": "./dist/server.cjs"
+    },
     "./styles.css": "./dist/oak-renderer.css",
     "./tailwind.css": "./lib/tailwind.css"
   },

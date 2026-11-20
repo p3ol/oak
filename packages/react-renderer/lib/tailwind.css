@@ -10,6 +10,9 @@
 
 @source "./";
 
+/* Responsive settings use container queries: the content root needs it */
+@source inline("oak:@container");
+
 /* Columns sizes, for every breakpoint (see BREAKPOINT_WIDTHS in utils.ts) */
 @source inline("oak:{,@min-[576px]:,@min-[768px]:,@min-[992px]:,@min-[1200px]:}colsize-{1,2,3,4,5,6,7,8,9,10,11,12,fluid,auto,hide}");
 

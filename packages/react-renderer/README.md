@@ -47,6 +47,52 @@ export const Page = ({ content }) => (
 );
 ```
 
+## React Server Components
+
+The main entrypoint (`@oakjs/react-renderer`) is marked with
+`'use client'`, as some renderers are interactive (button, foldable,
+clickable).
+
+`@oakjs/react-renderer/server` exports the renderers that can be rendered on
+the server (row, col, empty space, title, text, image, `HTMLContent`) and
+every helper, without the `'use client'` directive:
+
+```tsx
+// page.tsx (server component)
+import {
+  getElementAttributes,
+  serverComponents,
+} from '@oakjs/react-renderer/server';
+
+const components = serverComponents();
+```
+
+Interactive renderers have to be rendered from a client component. As
+`renderContainer` is a function, it can't be passed from a server component
+to a client one: render the children on the server and give them to your
+client component as nodes:
+
+```tsx
+// ClientElement.tsx
+'use client';
+
+import { baseComponents, getElementAttributes } from '@oakjs/react-renderer';
+
+const components = baseComponents();
+
+export const ClientElement = ({ element, containers }) => {
+  const Component = components[element.type];
+
+  return (
+    <Component
+      element={element}
+      attributes={getElementAttributes(element, Component)}
+      renderContainer={key => containers[key]}
+    />
+  );
+};
+```
+
 ## Component props
 
 | Prop | Description |
