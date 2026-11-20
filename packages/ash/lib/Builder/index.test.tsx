@@ -331,4 +331,87 @@ describe('<Builder />', () => {
     expect(header.nextElementSibling.getAttribute('role')).toBe('tablist');
     expect(getByText('Back (saved)')).toBeTruthy();
   });
+
+  describe('save', () => {
+    const pressSave = () => {
+      const event = new KeyboardEvent('keydown', {
+        key: 's', code: 'KeyS', metaKey: true, cancelable: true,
+      });
+
+      act(() => {
+        globalThis.dispatchEvent(event);
+      });
+
+      return event;
+    };
+
+    it('should save with Cmd/Ctrl + S', () => {
+      const onSave = vi.fn();
+      render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={content}
+          defaultPageValue={{ customCss: 'h1 {}' }}
+          onSave={onSave}
+        />
+      );
+
+      const event = pressSave();
+      expect(event.defaultPrevented).toBe(true);
+      expect(onSave).toHaveBeenCalledTimes(1);
+      expect(onSave.mock.calls[0][0][0].type).toBe('row');
+      expect(onSave.mock.calls[0][1]).toEqual({
+        pageValue: { customCss: 'h1 {}' },
+      });
+    });
+
+    it('should commit pending property changes before saving', () => {
+      const onSave = vi.fn();
+      const { getAllByRole, container } = render(
+        <Builder addons={[baseAddon()]} defaultValue={content} onSave={onSave} />
+      );
+
+      // Select the title & edit it (changes are committed after a delay)
+      fireEvent.click(getAllByRole('treeitem')[2]);
+      const textarea = container.querySelector(
+        '.oak-ash-sidebar textarea'
+      ) as HTMLTextAreaElement;
+      textarea.focus();
+      fireEvent.change(textarea, { target: { value: 'Edited' } });
+
+      // Saving works while typing in a field
+      pressSave();
+
+      const saved = onSave.mock.calls[0][0];
+      expect(saved[0].cols[0].content[0].content).toBe('Edited');
+    });
+
+    it('should let the browser handle Cmd/Ctrl + S without onSave', () => {
+      render(<Builder addons={[baseAddon()]} defaultValue={content} />);
+
+      expect(pressSave().defaultPrevented).toBe(false);
+    });
+
+    it('should expose save() to custom components', () => {
+      const onSave = vi.fn();
+
+      const SaveButton = () => {
+        const { save } = useBuilder();
+
+        return <button type="button" onClick={() => save()}>Save</button>;
+      };
+
+      const { getByText } = render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={content}
+          header={<SaveButton />}
+          onSave={onSave}
+        />
+      );
+
+      fireEvent.click(getByText('Save'));
+      expect(onSave).toHaveBeenCalledTimes(1);
+    });
+  });
 });

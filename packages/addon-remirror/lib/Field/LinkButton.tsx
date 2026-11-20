@@ -1,21 +1,22 @@
 import type { LinkAttributes } from 'remirror/extensions';
 import { useCallback, useState } from 'react';
 import {
+  type FieldContent,
   Dropdown,
   DropdownMenu,
   DropdownToggle,
   TextField,
   Toggle,
   Label,
-  Text,
-  FieldContent,
-} from '@oakjs/react';
+} from '@junipero/react';
 import { useAttrs, useChainedCommands, useCommands } from '@remirror/react';
 
 import type { Extensions } from '../types';
+import { useRemirrorField } from './context';
 import MenuButton, { type MenuButtonProps } from './MenuButton';
 
 const LinkButton = (props: MenuButtonProps) => {
+  const { t, container } = useRemirrorField();
   const { updateLink } = useCommands();
   const chain = useChainedCommands();
   const { link } = useAttrs<Extensions>();
@@ -46,29 +47,23 @@ const LinkButton = (props: MenuButtonProps) => {
   }, [chain, href]);
 
   return (
-    <Dropdown className="link-field oak:items-center">
+    <Dropdown className="link-field" container={container}>
       <DropdownToggle>
-        <span className="oak:inline-flex oak:items-center">
+        <span className="menu-button-wrapper">
           <MenuButton
             enabled={() => !!updateLink}
             isActive={() => !!link()}
-            className="link-button oak:inline-flex oak:items-center"
-            tooltipText={(
-              <Text name="addons.remirror.fields.editor.link">
-                Link
-              </Text>
-            )}
+            className="link-button"
+            tooltipText={t('addons.remirror.fields.editor.link', 'Link')}
             { ...props }
           />
         </span>
       </DropdownToggle>
       <DropdownMenu className="link-input">
-        <div className="oak:flex oak:flex-col oak:gap-4">
+        <div className="link-form">
           <div>
-            <Label className="oak:pt-0!">
-              <Text name="addons.remirror.fields.editor.link">
-                Link
-              </Text>
+            <Label>
+              { t('addons.remirror.fields.editor.link', 'Link') }
             </Label>
             <TextField
               value={href}
@@ -80,9 +75,7 @@ const LinkButton = (props: MenuButtonProps) => {
             checked={target === '_blank'}
             onChange={onTargetChange}
           >
-            <Text name="addons.remirror.fields.editor.blank">
-              Open in a new tab
-            </Text>
+            { t('addons.remirror.fields.editor.blank', 'Open in a new tab') }
           </Toggle>
         </div>
       </DropdownMenu>

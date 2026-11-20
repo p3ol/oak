@@ -16,7 +16,7 @@ export default defineConfig([
         '@junipero/react',
         '@junipero/core',
         '@junipero/hooks',
-        '@oakjs/react',
+        '@oakjs/core',
         'remirror',
         '@remirror/react',
         '@remirror/pm',

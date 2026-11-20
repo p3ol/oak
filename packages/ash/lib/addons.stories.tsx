@@ -1,5 +1,6 @@
 import type { ElementObject, GetTextCallback } from '@oakjs/core';
 import { ckeditorFieldAddon } from '@oakjs/addon-ckeditor5-react';
+import { remirrorFieldAddon } from '@oakjs/addon-remirror';
 import { action } from 'storybook/actions';
 
 import type {
@@ -267,3 +268,47 @@ export const WithAddonsAndOverrides = () => (
     />
   </div>
 );
+
+/* ---------------------------------------------------------------------------
+ * Remirror as rich text field
+ * ------------------------------------------------------------------------ */
+
+const remirrorAddons = [
+  baseAddon(),
+  // Provides the `remirror` field type
+  remirrorFieldAddon() as AshAddonObject,
+  {
+    overrides: [{
+      type: 'component',
+      targets: ['text', 'title', 'button'],
+      fields: [{ key: 'content', type: 'remirror' }],
+    }],
+  } as AshAddonObject,
+];
+
+const remirrorContent: ElementObject[] = [
+  {
+    type: 'title',
+    headingLevel: 'h2',
+    content: '<p>Support <strong>independent</strong> journalism</p>',
+  },
+  {
+    type: 'text',
+    content: '<p>This text is edited with <em>Remirror</em>: select it and ' +
+      'edit it in the properties panel.</p>',
+  },
+  { type: 'empty-space', settings: { height: '16px' } },
+  { type: 'button', content: 'Subscribe' },
+];
+
+export const WithRemirror = () => (
+  <div style={{ height: '100vh' }}>
+    <Builder
+      addons={remirrorAddons}
+      defaultValue={remirrorContent}
+      defaultPageWidth={720}
+      onChange={action('change')}
+    />
+  </div>
+);
+

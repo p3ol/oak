@@ -38,6 +38,7 @@ const hasTextSelection = () =>
  * - Cmd/Ctrl + Z / Shift + Cmd/Ctrl + Z: undo / redo
  * - Escape: select the parent element (or clear selection)
  * - Cmd/Ctrl + C / X / V: copy, cut & paste elements
+ * - Cmd/Ctrl + S: save (if `onSave` is set), even while typing in a field
  *
  * Zoom shortcuts are handled by the canvas.
  */
@@ -46,12 +47,14 @@ export const useShortcuts = ({
   builder,
   editor,
   setTemporaryPan,
+  save,
   enabled = true,
 }: {
   rootRef: RefObject<HTMLElement>;
   builder: Builder;
   editor: EditorContextValue;
   setTemporaryPan: (enabled: boolean) => void;
+  save?: () => void;
   enabled?: boolean;
 }) => {
   const latest = useRef(editor);
@@ -120,6 +123,28 @@ export const useShortcuts = ({
     };
 
     const onKeyDown = (e: KeyboardEvent) => {
+      // Saving also works while typing in a field of the builder
+      if (
+        save &&
+        (e.metaKey || e.ctrlKey) &&
+        !e.altKey &&
+        (e.key.toLowerCase() === 's' || e.code === 'KeyS')
+      ) {
+        const active = document.activeElement;
+
+        if (
+          !active ||
+          active === document.body ||
+          rootRef.current?.contains(active)
+        ) {
+          // Prevents the browser's "Save page" dialog
+          e.preventDefault();
+          save();
+        }
+
+        return;
+      }
+
       if (!isScoped(e)) {
         return;
       }
@@ -235,5 +260,5 @@ export const useShortcuts = ({
       document.removeEventListener('cut', onCut);
       document.removeEventListener('paste', onPaste);
     };
-  }, [enabled, builder, rootRef, setTemporaryPan]);
+  }, [enabled, builder, rootRef, setTemporaryPan, save]);
 };

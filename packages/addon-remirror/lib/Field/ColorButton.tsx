@@ -7,14 +7,15 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownToggle,
-  Text,
-} from '@oakjs/react';
+} from '@junipero/react';
 import { useActive, useChainedCommands, useCommands } from '@remirror/react';
 
 import type { Extensions } from '../types';
+import { useRemirrorField } from './context';
 import MenuButton, { type MenuButtonProps } from './MenuButton';
 
 const ColorButton = (props: MenuButtonProps) => {
+  const { t, container } = useRemirrorField();
   const fieldRef = useRef<ColorFieldRef>(null);
   const { setTextColor } = useCommands();
   const { textColor } = useActive<Extensions>();
@@ -40,24 +41,24 @@ const ColorButton = (props: MenuButtonProps) => {
   };
 
   return (
-    <Dropdown onToggle={onToggle} className="text-color-field oak:items-center">
+    <Dropdown
+      onToggle={onToggle}
+      className="text-color-field"
+      container={container}
+    >
       <DropdownToggle>
-        <span className="oak:inline-flex oak:items-center">
+        <span className="menu-button-wrapper">
           <MenuButton
             enabled={() => setTextColor?.enabled(color)}
             isActive={textColor}
             onClick={() => fieldRef.current?.open()}
-            className="color-button oak:inline-flex oak:items-center"
-            tooltipText={(
-              <Text name="addons.remirror.fields.editor.color">
-                Color
-              </Text>
-            )}
+            className="color-button"
+            tooltipText={t('addons.remirror.fields.editor.color', 'Color')}
             { ...props }
           />
         </span>
       </DropdownToggle>
-      <DropdownMenu apparition="css">
+      <DropdownMenu apparition="css" className="text-color-menu">
         <ColorField
           ref={fieldRef}
           onChange={onChange}

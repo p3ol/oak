@@ -21,7 +21,8 @@
     "node": ">= 20"
   },
   "peerDependencies": {
-    "@oakjs/react": "^3.0.0",
+    "@junipero/react": "^3.0.0",
+    "@oakjs/core": "^3.0.0",
     "@remirror/pm": "^2.0.0 || ^3.0.0",
     "@remirror/react": "^2.0.0 || ^3.0.0",
     "react": "^18.0.0 || ^19.0.0",
@@ -29,14 +30,15 @@
     "remirror": "^2.0.0 || ^3.0.0"
   },
   "devDependencies": {
-    "@oakjs/react": "workspace:*"
+    "@oakjs/core": "workspace:*"
   },
   "scripts": {
     "clean": "rm -rf ./dist || true",
-    "build": "yarn clean && yarn build:code && yarn build:dts",
+    "build": "yarn clean && yarn build:code && yarn build:dts && yarn build:styles",
     "build:code": "yarn run -T tsdown",
     "build:dts": "yarn run -T tsc --project ./tsconfig.build.json",
-    "test": "jest"
+    "test": "jest",
+    "build:styles": "node --import=tsx scripts/build-styles.ts"
   },
   "publishConfig": {
     "access": "public"
@@ -51,7 +53,8 @@
       "types": "./dist/types/addons.d.ts",
       "import": "./dist/addons.js",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./dist/*": "./dist/*"
   },
   "targets": [
     "chrome109",

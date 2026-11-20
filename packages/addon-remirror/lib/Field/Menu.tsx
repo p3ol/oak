@@ -4,14 +4,16 @@ import {
   useCommands,
   useHelpers,
 } from '@remirror/react';
-import { Icon } from '@oakjs/react';
 
 import type { Extensions } from '../types';
 import MenuButton from './MenuButton';
 import LinkButton from './LinkButton';
 import ColorButton from './ColorButton';
+import { useRemirrorField } from './context';
+import Icon from './Icon';
 
 const Menu = () => {
+  const { t } = useRemirrorField();
   const chain = useChainedCommands();
   const {
     toggleBold,
@@ -40,11 +42,11 @@ const Menu = () => {
   };
 
   return (
-    <div className="menu oak:flex oak:items-stretch oak:gap-2">
+    <div className="menu">
       <MenuButton
         enabled={toggleBold?.enabled}
         isActive={bold}
-        tooltipText="Bold"
+        tooltipText={t('addons.remirror.fields.editor.bold', 'Bold')}
         onClick={() => chain.toggleBold().focus().run()}
         className="bold"
       >
@@ -53,7 +55,7 @@ const Menu = () => {
       <MenuButton
         enabled={toggleItalic?.enabled}
         isActive={italic}
-        tooltipText="Italic"
+        tooltipText={t('addons.remirror.fields.editor.italic', 'Italic')}
         onClick={() => chain.toggleItalic().focus().run()}
         className="italic"
       >
@@ -62,7 +64,7 @@ const Menu = () => {
       <MenuButton
         enabled={toggleUnderline?.enabled}
         isActive={underline}
-        tooltipText="Underline"
+        tooltipText={t('addons.remirror.fields.editor.underline', 'Underline')}
         onClick={() => chain.toggleUnderline().focus().run()}
         className="underline"
       >
@@ -74,24 +76,26 @@ const Menu = () => {
       <ColorButton>
         <Icon>text_color</Icon>
       </ColorButton>
-      <div className="oak:flex oak:items-center oak:gap-2 oak:px-1">
+      <div className="font-size">
         <MenuButton
           enabled={decreaseFontSize?.enabled}
           isActive={() => false}
-          tooltipText="Decrease size"
+          tooltipText={t(
+            'addons.remirror.fields.editor.decreaseSize', 'Decrease size'
+          )}
           onClick={() => chain.decreaseFontSize().focus().run()}
         >
           <Icon>minus</Icon>
         </MenuButton>
-        <div
-          className="junipero secondary oak:text-alternate-text-color!"
-        >
+        <div className="junipero secondary font-size-value">
           { fontSize() }
         </div>
         <MenuButton
           enabled={increaseFontSize?.enabled}
           isActive={() => false}
-          tooltipText="Increase size"
+          tooltipText={t(
+            'addons.remirror.fields.editor.increaseSize', 'Increase size'
+          )}
           onClick={() => chain.increaseFontSize().focus().run()}
         >
           <Icon>add</Icon>
@@ -100,7 +104,7 @@ const Menu = () => {
       <MenuButton
         enabled={leftAlign?.enabled}
         isActive={() => paragraph({ nodeTextAlignment: 'left' })}
-        tooltipText="Left align"
+        tooltipText={t('addons.remirror.fields.editor.alignLeft', 'Left align')}
         onClick={() => chain.leftAlign().focus().run()}
       >
         <Icon>align_left</Icon>
@@ -108,7 +112,9 @@ const Menu = () => {
       <MenuButton
         enabled={centerAlign?.enabled}
         isActive={() => paragraph({ nodeTextAlignment: 'center' })}
-        tooltipText="Center align"
+        tooltipText={t(
+          'addons.remirror.fields.editor.alignCenter', 'Center align'
+        )}
         onClick={() => chain.centerAlign().focus().run()}
       >
         <Icon>align_center</Icon>
@@ -116,7 +122,9 @@ const Menu = () => {
       <MenuButton
         enabled={rightAlign?.enabled}
         isActive={() => paragraph({ nodeTextAlignment: 'right' })}
-        tooltipText="Right align"
+        tooltipText={t(
+          'addons.remirror.fields.editor.alignRight', 'Right align'
+        )}
         onClick={() => chain.rightAlign().focus().run()}
       >
         <Icon>align_right</Icon>
@@ -124,7 +132,7 @@ const Menu = () => {
       <MenuButton
         enabled={justifyAlign?.enabled}
         isActive={() => paragraph({ nodeTextAlignment: 'justify' })}
-        tooltipText="Justify"
+        tooltipText={t('addons.remirror.fields.editor.justify', 'Justify')}
         onClick={() => chain.justifyAlign().focus().run()}
       >
         <Icon>align_justify</Icon>

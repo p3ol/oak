@@ -1,5 +1,5 @@
-import type { AddonObject, ReactFieldObject } from '@oakjs/react';
-import { omit } from '@oakjs/react';
+import type { AddonObject, FieldObject } from '@oakjs/core';
+import { omit } from '@junipero/react';
 import {
   BoldExtension,
   FontSizeExtension,
@@ -13,10 +13,17 @@ import {
 import type { Extensions } from './types';
 import Field, { type RemirrorFieldProps } from './Field';
 
+/**
+ * Works with every oak builder (`@oakjs/react`, `@oakjs/ash`)
+ */
+export declare interface RemirrorFieldObject extends FieldObject {
+  render: typeof Field;
+}
+
 export const remirrorField = ({
   extensions,
   ...props
-}: RemirrorFieldProps = {}): ReactFieldObject => ({
+}: RemirrorFieldProps = {}): RemirrorFieldObject => ({
   type: 'remirror',
   render: Field,
   ...omit(props, ['onChange']),
@@ -38,7 +45,9 @@ export const basicExtensions = (): Extensions[] => [
   new NodeFormattingExtension({}),
 ];
 
-export const remirrorFieldAddon = (props?: ReactFieldObject): AddonObject => ({
+export const remirrorFieldAddon = (
+  props?: RemirrorFieldProps,
+): AddonObject => ({
   fields: [remirrorField({
     extensions: basicExtensions,
     ...props,

@@ -36,6 +36,9 @@ const config: StorybookConfig = {
           '@oakjs/addon-ckeditor5-react': path.resolve(
             __dirname, '../packages/addon-ckeditor5-react/lib'
           ),
+          '@oakjs/addon-remirror': path.resolve(
+            __dirname, '../packages/addon-remirror/lib'
+          ),
         },
       },
       plugins: [

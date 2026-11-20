@@ -16,3 +16,13 @@ export type Extensions =
   | TextColorExtension
   | FontSizeExtension
   | NodeFormattingExtension;
+
+export type GetTextCallback = (key: string, def?: string) => string;
+
+/**
+ * Options given to fields by oak builders (`@oakjs/react`, `@oakjs/ash`)
+ */
+export declare interface FieldOptions {
+  t?: GetTextCallback;
+  [key: string]: any;
+}

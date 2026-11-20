@@ -24,6 +24,9 @@ export const Editor = () => (
 
 The builder fills its parent: make sure the parent has a height.
 
+Coming from `@oakjs/react`? See
+[Migrating from @oakjs/react](#migrating-from-oakjsreact).
+
 ## Builder props
 
 | Prop | Type | Description |
@@ -32,6 +35,7 @@ The builder fills its parent: make sure the parent has a height.
 | `value` | `ElementObject[]` | Content (controlled) |
 | `defaultValue` | `ElementObject[]` | Initial content (uncontrolled) |
 | `onChange` | `(content) => void` | Called on every content change |
+| `onSave` | `(content, { pageValue }) => void \| Promise<void>` | Called when the user saves with `⌘/Ctrl + S` (or with `save()`, see below). Pending property changes are committed first. `⌘/Ctrl + S` keeps its default browser behavior when not set |
 | `options` | `Partial<BuilderOptions>` | Core builder options (`debug`, `historyLimit`, `generateId`...) |
 | `activeTextSheet` | `string` | Id of the texts sheet to use (see [Texts](#texts)) |
 | `defaultPageWidth` | `number` | Initial width of the previewed screen (default: `1024`) |
@@ -67,7 +71,8 @@ The builder fills its parent: make sure the parent has a height.
 > ```
 
 The builder's ref exposes `builder` (the `@oakjs/core` builder instance),
-`content`, `innerRef` and `select(id)`.
+`content`, `innerRef`, `select(id)` and `save()`. `save()` is also available
+from `useBuilder()` inside custom components (like the sidebar header).
 
 ## Sidebar header
 
@@ -79,17 +84,22 @@ builder, so it can use the builder hooks:
 import { Builder, useBuilder } from '@oakjs/ash';
 
 const Header = () => {
-  const { canUndo } = useBuilder();
+  // Same as Cmd/Ctrl + S: commits pending changes & calls `onSave`
+  const { save } = useBuilder();
 
   return (
     <div className="header">
       <button onClick={() => history.back()}>Back</button>
-      <span>{ canUndo ? 'Unsaved changes' : 'All changes saved' }</span>
+      <button onClick={() => save()}>Save</button>
     </div>
   );
 };
 
-<Builder addons={addons} header={<Header />} />
+<Builder
+  addons={addons}
+  header={<Header />}
+  onSave={content => api.savePaywall(content)}
+/>
 ```
 
 The container has the `oak-ash-sidebar-header` class, some padding and a
@@ -241,6 +251,7 @@ canvas (`--ash-canvas-bg`, `--ash-page-bg`, `--ash-page-text`...).
 | `⇧ + 1` | Fit page width |
 | `Backspace` / `Delete` | Remove selected element |
 | `⌘/Ctrl + C`, `⌘/Ctrl + X`, `⌘/Ctrl + V` | Copy, cut & paste elements (pasted after or inside the selection) |
+| `⌘/Ctrl + S` | Save (calls `onSave`), even while typing in a field |
 | `⌘/Ctrl + D` | Duplicate selected element |
 | `⌘/Ctrl + Z`, `⇧ + ⌘/Ctrl + Z` | Undo, redo |
 | `Escape` | Select parent element |
@@ -673,3 +684,168 @@ const brandAddon = {
 
 // or: buttonComponent({ render: BrandButton })
 ```
+
+## Migrating from @oakjs/react
+
+Ash uses the same core (`@oakjs/core`) as `@oakjs/react`: **the content
+format doesn't change** and existing content can be loaded as is. Most of the
+migration is about components renderers (ash renders the final page instead
+of editor previews), and a few builder props tied to the old interface.
+
+### Checklist
+
+1. Replace `@oakjs/react` & `@oakjs/theme` with `@oakjs/ash`
+2. Import `@oakjs/ash/styles.css` and give the builder's parent a height
+3. Remove the props that no longer exist (see [Builder](#builder))
+4. Turn your components' `render` into page renderers (see
+   [Components](#components-1))
+5. Replace `fieldOptions.editableRef` with `fieldOptions.floatingsRef` in your
+   fields (see [Fields](#fields-1))
+6. Make sure your `addons` array is stable
+
+### Installation & styles
+
+```diff
+- yarn add @oakjs/react @oakjs/theme
++ yarn add @oakjs/ash
+```
+
+```diff
+- import { Builder, baseAddon } from '@oakjs/react';
+- import '@oakjs/theme/dist/oak.min.css';
++ import { Builder, baseAddon } from '@oakjs/ash';
++ import '@oakjs/ash/styles.css';
+
++ const addons = [baseAddon()];
+
+  export const Editor = () => (
+-   <Builder addons={[baseAddon()]} value={content} onChange={setContent} />
++   <div style={{ height: '100vh' }}>
++     <Builder addons={addons} value={content} onChange={setContent} />
++   </div>
+  );
+```
+
+`@oakjs/theme` (and its `--oak-*` css variables) is not used by ash: see
+[Colors](#colors) to customize the interface, and [Dark mode](#dark-mode).
+
+### Builder
+
+| `@oakjs/react` | `@oakjs/ash` |
+| --- | --- |
+| `addons`, `value`, `defaultValue`, `onChange`, `options`, `activeTextSheet`, `polyfills`, `onImageUpload`, `id`, `className` | Unchanged |
+| `editableType` (`floating` / `modal`) | Removed: element properties are always displayed in the right sidebar |
+| `historyEnabled`, `topHistoryButtonsEnabled`, `bottomHistoryButtonsEnabled`, `topHistoryButtonsContainer`, `bottomHistoryButtonsContainer` | Removed: undo & redo are part of the canvas toolbar, and have keyboard shortcuts. To display your own buttons, use `header` and `useBuilder()` (`builder.undo()`, `canUndo`...) |
+| `rootBoundary` | Removed: there are no floating panels anymore |
+| `catalogueEnabled` | No equivalent: components can always be inserted (hide some of them with overrides & `usable: false`) |
+
+New props are listed in [Builder props](#builder-props) (`theme`,
+`pageSettings`, `previewModes`, `header`...).
+
+The builder's ref still exposes `builder`, `content` & `innerRef`.
+`catalogueRef` & `close` were removed, and `select(id)` selects an element.
+
+### Components
+
+Components keep the same definition (`id`, `name`, `icon`, `construct`,
+`settings`, `getContainers`, `disallow`...), **except `render`**: in
+`@oakjs/react` it rendered a preview inside the element's card, in ash it
+renders the element as it will be displayed on the page (see
+[Renderers](#renderers)).
+
+```diff
+  const quoteComponent = () => ({
+    id: 'quote',
+    construct: () => ({ type: 'quote', content: '', author: '' }),
+-   render: ({ element }) => (
+-     <div className="preview">{ element.author }</div>
+-   ),
++   render: ({ element, attributes, sanitizeHTML }) => (
++     <figure { ...attributes }>
++       <HTMLContent tag="blockquote" html={element.content} sanitizeHTML={sanitizeHTML} />
++       <figcaption>{ element.author }</figcaption>
++     </figure>
++   ),
+  });
+```
+
+Container components used `@oakjs/react`'s `Container` to display their
+children: use `renderContainer(key)` and `containerAttributes(key)` instead.
+
+```diff
+- render: ({ element, component }) => (
+-   <Container element={element} component={component} content={element.content} />
+- ),
++ render: ({ attributes, renderContainer }) => (
++   <div { ...attributes } { ...containerAttributes('content') }>
++     { renderContainer('content') }
++   </div>
++ ),
+```
+
+Some options were specific to the old interface and are ignored by ash:
+
+| Option | In ash |
+| --- | --- |
+| `options` (`dragOption`, `collapseOption`, `backgroundColorOption`, custom options) | Ignored: elements are moved from the canvas or the layers panel, and duplicate/copy/remove actions are in the properties header |
+| `hasCustomInnerContent`, `settings.floatingSettings` | Ignored |
+| `displayable` (on settings) | Ignored: the canvas displays the real rendering |
+| `draggable: false`, `droppable: false` (on components) | Ignored, like for core components in `@oakjs/react`. On a component override, `draggable: false` prevents moving the element, `droppable: false` prevents dropping inside it |
+
+Base components & fields factories have the same names (`baseAddon`,
+`rowComponent`, `textField`...) and are exported by `@oakjs/ash`. Pass your
+own renderer to reuse them: `buttonComponent({ render: MyButton })`.
+
+### Fields
+
+Fields keep the same API (`type`, `render`, `value`, `onChange`,
+`fieldOptions`...), with one difference: `fieldOptions.editableRef` doesn't
+exist anymore. Use `fieldOptions.floatingsRef` as the container of floating
+elements (dropdowns, color pickers...):
+
+```diff
+  render: ({ fieldOptions, ...props }) => (
+    <SelectField
+      { ...props }
+-     container={fieldOptions.editableRef?.current?.innerRef.current}
++     container={fieldOptions.floatingsRef?.current}
+    />
+  ),
+```
+
+Fields must not use `@oakjs/react` components or hooks reading its builder
+context (`useBuilder`, `Text`, `Field`): use the ones exported by
+`@oakjs/ash` instead.
+
+### Overrides & settings
+
+Overrides & settings don't change. Only an overridden `render` has to be a
+page renderer, like components.
+
+### Exports
+
+| `@oakjs/react` | `@oakjs/ash` |
+| --- | --- |
+| `Builder`, `Text`, `Icon`, `Field`, `useBuilder`, `baseAddon` and components/fields factories | Same names |
+| `Container` | `renderContainer(key)` & `containerAttributes(key)` |
+| `Catalogue` | The insert panel & the toolbar's insert button |
+| `DisplayableSettings`, `Option`, `dragOption`, `collapseOption`, `backgroundColorOption` | No equivalent |
+| Junipero components re-exported (`TextField`, `SelectField`, `Dropdown`, `classNames`...) | Not re-exported: import them from `@junipero/react` |
+
+### Addon packages
+
+Both rich text addons only declare a field and work with ash as is (don't
+forget their stylesheets). Inside ash, they follow the builder's colors
+(light & dark), with or without `@oakjs/theme`:
+
+- `@oakjs/addon-ckeditor5-react`
+- `@oakjs/addon-remirror`
+
+See the `Ash/Addons` stories for examples.
+
+### Rendering on your website
+
+The renderers used by the canvas come from
+[`@oakjs/react-renderer`](../react-renderer): use them to render your content
+on your website exactly like in the builder.
+

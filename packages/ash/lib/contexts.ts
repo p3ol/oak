@@ -31,6 +31,11 @@ export declare interface BuilderContextValue {
   canRedo?: boolean;
   rootRef?: RefObject<HTMLDivElement>;
   shortcutsEnabled?: boolean;
+  /**
+   * Saves the content (calls the builder's `onSave`), after committing the
+   * pending property changes. Undefined if `onSave` isn't set.
+   */
+  save?(): void | Promise<void>;
   /** Rendered at the top of the page in the canvas (styles, fonts...) */
   renderPageHead?(value: PageValue): ReactNode;
   /** Title of the page properties (defaults to "Page") */
@@ -79,6 +84,11 @@ export declare interface EditorContextValue {
   setTool(tool: Tool): void;
   setPageWidth(width: number): void;
   setPreviewMode(id: string): void;
+  /**
+   * Registers a function committing pending changes (e.g. debounced property
+   * edits), called before saving. Returns an unregister function.
+   */
+  registerPendingChanges(flush: () => void): () => void;
   setCanvasTheme(theme: Theme): void;
   setDragSource(source: DragSource | null): void;
   setDropIndicator(indicator: DropIndicator | null): void;

@@ -311,12 +311,21 @@ export const WithCustomPrimaryColor = () => (
   </div>
 );
 
+type SaveStatus = 'saved' | 'unsaved' | 'saving';
+
+const SAVE_STATUSES: Record<SaveStatus, string> = {
+  saved: 'All changes saved',
+  unsaved: 'Unsaved changes',
+  saving: 'Saving…',
+};
+
 /**
- * Custom zone above the layers & insert panels. It is rendered inside the
- * builder, so it can use the builder hooks (here, to display a save status).
+ * Custom zone above the layers & insert panels, with a back & a save button.
+ * It is rendered inside the builder, so it can use the builder hooks: `save()`
+ * saves like Cmd/Ctrl + S (committing pending property changes first).
  */
-const DashboardHeader = () => {
-  const { canUndo } = useBuilder();
+const DashboardHeader = ({ status }: { status: SaveStatus }) => {
+  const { save } = useBuilder();
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -325,33 +334,61 @@ const DashboardHeader = () => {
         aria-label="Back to paywalls"
         onClick={action('back')}
         className={[
-          'oak:flex oak:items-center oak:justify-center oak:w-8 oak:h-8',
-          'oak:rounded-md oak:border-0 oak:bg-transparent oak:text-ash-text',
-          'oak:cursor-pointer oak:hover:bg-ash-muted',
+          'oak:flex oak:flex-none oak:items-center oak:justify-center',
+          'oak:w-8 oak:h-8 oak:rounded-md oak:border-0 oak:bg-transparent',
+          'oak:text-ash-text oak:cursor-pointer oak:hover:bg-ash-muted',
         ].join(' ')}
       >
         <ChevronIcon style={{ transform: 'scaleX(-1)' }} />
       </button>
-      <div style={{ minWidth: 0 }}>
+      <div style={{ minWidth: 0, flex: 1 }}>
         <div className="oak:text-[13px] oak:font-semibold oak:truncate">
           Paywall · The Daily Oak
         </div>
         <div className="oak:text-[11px] oak:text-ash-text-muted">
-          { canUndo ? 'Unsaved changes' : 'All changes saved' }
+          { SAVE_STATUSES[status] }
         </div>
       </div>
+      <button
+        type="button"
+        title="Save (⌘S)"
+        disabled={status === 'saving'}
+        onClick={() => save()}
+        className={[
+          'oak:flex-none oak:h-8 oak:px-3 oak:rounded-md oak:border-0',
+          'oak:bg-velvet oak:text-seashell oak:text-[13px] oak:font-medium',
+          'oak:cursor-pointer oak:enabled:hover:bg-velvet-hover',
+          'oak:disabled:opacity-50 oak:disabled:cursor-default',
+        ].join(' ')}
+      >
+        Save
+      </button>
     </div>
   );
 };
 
-export const WithSidebarHeader = () => (
-  <div style={{ height: '100vh' }}>
-    <Builder
-      addons={addons}
-      defaultValue={baseContent}
-      defaultPageWidth={720}
-      header={<DashboardHeader />}
-      headerClassName="oak:px-2 oak:py-2 oak:border-b oak:border-ash-border"
-    />
-  </div>
-);
+export const WithSidebarHeader = () => {
+  const [status, setStatus] = useState<SaveStatus>('saved');
+
+  const onSave = async (content: ElementObject[]) => {
+    setStatus('saving');
+    // Simulates a request to the dashboard's api
+    await new Promise(resolve => setTimeout(resolve, 600));
+    action('save')(content);
+    setStatus('saved');
+  };
+
+  return (
+    <div style={{ height: '100vh' }}>
+      <Builder
+        addons={addons}
+        defaultValue={baseContent}
+        defaultPageWidth={720}
+        header={<DashboardHeader status={status} />}
+        headerClassName="oak:px-2 oak:py-2 oak:border-b oak:border-ash-border"
+        onChange={() => setStatus('unsaved')}
+        onSave={onSave}
+      />
+    </div>
+  );
+};

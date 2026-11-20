@@ -50,6 +50,8 @@ import Text from '../Text';
 
 export declare interface BuilderRef {
   isOak: boolean;
+  /** Saves the content (see `onSave`) */
+  save: () => void | Promise<void>;
   builder: CoreBuilder;
   content: ElementObject[];
   innerRef: RefObject<HTMLDivElement>;
@@ -134,6 +136,14 @@ export declare interface BuilderProps
     XMLSerializer: typeof XMLSerializer;
   };
   onChange?(content: ElementObject[]): void;
+  /**
+   * Called when the user saves (Cmd/Ctrl + S, or `save()` from `useBuilder()`
+   * or the builder's ref), after pending property changes are committed
+   */
+  onSave?(
+    content: ElementObject[],
+    opts: { pageValue: PageValue },
+  ): void | Promise<void>;
   onImageUpload?(event: ChangeEvent<HTMLInputElement>, opts: {
     element?: ElementObject;
     setting?: ComponentSettingsFieldObject;
@@ -172,6 +182,7 @@ const Builder = ({
   pageClassName,
   polyfills,
   onChange,
+  onSave,
   onImageUpload,
   ...rest
 }: BuilderProps) => {
@@ -231,6 +242,32 @@ const Builder = ({
     onPageChangeRef.current?.(value);
   }, []);
 
+  // Pending changes (debounced edits) to commit before saving
+  const pendingChanges = useRef(new Set<() => void>());
+
+  const registerPendingChanges = useCallback((flush: () => void) => {
+    pendingChanges.current.add(flush);
+
+    return () => {
+      pendingChanges.current.delete(flush);
+    };
+  }, []);
+
+  const onSaveRef = useRef(onSave);
+  onSaveRef.current = onSave;
+  const pageValueRef = useRef(pageValue);
+  pageValueRef.current = pageValue;
+
+  const hasOnSave = !!onSave;
+
+  const save = useCallback(() => {
+    pendingChanges.current.forEach(flush => flush());
+
+    return onSaveRef.current?.(builder.getContent(), {
+      pageValue: pageValueRef.current,
+    });
+  }, [builder]);
+
   const pageSettings = useMemo<PageSettingObject[]>(() => [
     ...(pageSettingsProp || []),
     ...((addons || []) as AshAddonObject[])
@@ -260,6 +297,7 @@ const Builder = ({
 
   useImperativeHandle(ref, () => ({
     isOak: true,
+    save,
     builder,
     content,
     innerRef: rootRef,
@@ -281,8 +319,10 @@ const Builder = ({
     shortcutsEnabled,
     renderPageHead,
     onImageUpload,
+    ...hasOnSave && { save },
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [
+    hasOnSave, save,
     builder, content, version, addons, canUndo, canRedo, polyfills,
     pageClassName, pageTitle, pageDescription, shortcutsEnabled,
     renderPageHead, onImageUpload,
@@ -316,12 +356,14 @@ const Builder = ({
     setTool,
     setPageWidth,
     setPreviewMode,
+    registerPendingChanges,
     setCanvasTheme,
     setDragSource,
     setDropIndicator,
   }), [
     tree, selectedId, hoveredId, tool, activeTool, pageWidth, previewModes,
     previewMode, pageSettings, pageValue, setPageValue, canvasTheme,
+    registerPendingChanges,
     dragSource, dropIndicator, select, hover,
   ]);
 
@@ -330,6 +372,7 @@ const Builder = ({
     builder,
     editor: editorContext,
     setTemporaryPan,
+    save: onSave ? save : undefined,
     enabled: shortcutsEnabled,
   });
 

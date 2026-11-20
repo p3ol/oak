@@ -3426,9 +3426,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@oakjs/addon-remirror@workspace:packages/addon-remirror"
   dependencies:
-    "@oakjs/react": "workspace:*"
+    "@oakjs/core": "workspace:*"
   peerDependencies:
-    "@oakjs/react": ^3.0.0
+    "@junipero/react": ^3.0.0
+    "@oakjs/core": ^3.0.0
     "@remirror/pm": ^2.0.0 || ^3.0.0
     "@remirror/react": ^2.0.0 || ^3.0.0
     react: ^18.0.0 || ^19.0.0
@@ -3456,7 +3457,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@oakjs/core@npm:^3.16.2, @oakjs/core@workspace:packages/core":
+"@oakjs/core@npm:^3.16.2, @oakjs/core@workspace:*, @oakjs/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@oakjs/core@workspace:packages/core"
   dependencies:

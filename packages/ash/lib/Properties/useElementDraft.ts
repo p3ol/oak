@@ -13,6 +13,7 @@ import type {
 import { cloneDeep, get, set } from '@junipero/react';
 
 import { getElementContainers } from '../tree';
+import { useEditor } from '../hooks';
 
 declare interface Serializer {
   key: string;
@@ -123,6 +124,13 @@ export const useElementDraft = (
 
   // Commit pending changes before switching to another element
   useEffect(() => () => commit(), [element?.id, commit]);
+
+  // ...and before saving
+  const registerPendingChanges = useEditor()?.registerPendingChanges;
+
+  useEffect(() => registerPendingChanges?.(commit), [
+    registerPendingChanges, commit,
+  ]);
 
   // (Re)create the draft when the element changes from the outside (undo,
   // redo, other element selected...), unless we have pending changes
