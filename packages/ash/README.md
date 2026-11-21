@@ -1,6 +1,30 @@
-# @oakjs/ash
+<div align="center">
 
-A canvas-based visual page builder for oak.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://cdn.junipero.design/images/oak-logo-light.svg" />
+  <img src="https://cdn.junipero.design/images/oak-logo.svg" height="50" />
+</picture>
+
+<br />
+<br />
+
+[![GitHub](https://img.shields.io/github/license/p3ol/oak.svg)](https://github.com/p3ol/oak)
+[![npm](https://img.shields.io/npm/v/@oakjs/ash.svg)](https://www.npmjs.com/package/@oakjs/ash)
+[![CI](https://github.com/p3ol/oak/actions/workflows/ci.yml/badge.svg)](https://github.com/p3ol/oak/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/p3ol/oak/branch/master/graph/badge.svg)](https://codecov.io/gh/p3ol/oak)
+
+### @oakjs/ash
+A canvas-based visual page builder for oak
+
+</div>
+
+# Installation
+
+```sh
+yarn add @oakjs/ash
+```
+
+# Usage
 
 - The page is rendered inside an infinite canvas, using the components' page
   renderers (see [`@oakjs/react-renderer`](../react-renderer)): what you see
@@ -26,6 +50,8 @@ The builder fills its parent: make sure the parent has a height.
 
 Coming from `@oakjs/react`? See
 [Migrating from @oakjs/react](#migrating-from-oakjsreact).
+
+# Documentation
 
 ## Builder props
 
@@ -1098,3 +1124,12 @@ The renderers used by the canvas come from
 [`@oakjs/react-renderer`](../react-renderer): use them to render your content
 on your website exactly like in the builder.
 
+# Contributing
+
+[![](https://contrib.rocks/image?repo=p3ol/oak)](https://github.com/p3ol/oak/graphs/contributors)
+
+Please check the [CONTRIBUTING.md](https://github.com/p3ol/oak/blob/master/CONTRIBUTING.md) doc for contribution guidelines.
+
+# License
+
+This software is licensed under [MIT](https://github.com/p3ol/oak/blob/master/LICENSE).
