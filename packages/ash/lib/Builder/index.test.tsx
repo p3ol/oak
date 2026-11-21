@@ -304,6 +304,7 @@ describe('<Builder />', () => {
 
     // Open content has its own background (jsdom can't scroll)
     Element.prototype.scrollIntoView ??= () => {};
+
     fireEvent.click(toggle);
     expect(container.querySelector('.oak-ash-page-settings .fields-group .fields')
       .className).toContain('oak:bg-seashell');
