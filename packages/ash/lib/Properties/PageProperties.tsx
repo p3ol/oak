@@ -21,7 +21,7 @@ import {
 import type { PagePreset } from '../types';
 import { useBuilder, useEditor } from '../hooks';
 import Text from '../Text';
-import { sortFields, withOverrideFields } from './fields';
+import { getFieldPriority, sortFields, withOverrideFields } from './fields';
 import Setting from './Setting';
 import SettingsGroup from './SettingsGroup';
 
@@ -29,7 +29,10 @@ import SettingsGroup from './SettingsGroup';
  * Page settings are edited like an element of type `page`, so that settings
  * overrides can target them (`targets: ['page']`)
  */
-const PAGE_COMPONENT = { id: 'page', type: 'component' } as ComponentObject;
+export const PAGE_COMPONENT = {
+  id: 'page',
+  type: 'component',
+} as ComponentObject;
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h4
@@ -68,6 +71,9 @@ const PageProperties = ({
     previewModes,
     previewMode,
     setPreviewMode,
+    previewSettings,
+    previewValue,
+    setPreviewValue,
     pageSettings,
     pageValue,
     setPageValue,
@@ -128,29 +134,85 @@ const PageProperties = ({
     return !condition || condition(element, { component: PAGE_COMPONENT, builder });
   });
 
-  const renderSettings = (list: ComponentSettingsFieldObject[]) => list
-    .map((setting, i) => setting.type === 'group' ? (
+  // Preview settings are edited the same way, but their values are never
+  // saved
+  const previewElement = useMemo<ElementObject>(() => ({
+    ...previewValue,
+    type: 'page',
+  }), [previewValue]);
+
+  const onPreviewSettingChange = useCallback((
+    name: string,
+    field: FieldContent,
+  ) => {
+    const next = cloneDeep(previewElement);
+    builder.setElementSettings(next, name, field?.checked ?? field?.value);
+    setPreviewValue(toValue(next));
+  }, [builder, previewElement, setPreviewValue]);
+
+  const onPreviewSettingCustomChange = useCallback((
+    name: string,
+    renderer: FieldOverride | FieldObject | FieldOverrideObject,
+    field: FieldContent,
+  ) => {
+    const next = cloneDeep(previewElement);
+    Object.assign(next, (renderer as any).onChange(name, field, next));
+    setPreviewValue(toValue(next));
+  }, [previewElement, setPreviewValue]);
+
+  const onPreviewUpdate = useCallback((elmt: ElementObject) => {
+    setPreviewValue(toValue(elmt));
+  }, [setPreviewValue]);
+
+  // Below the native preview settings (screen size...) by default, above them
+  // with a priority > 0 (native settings having a priority of 0)
+  const [previewSettingsAbove, previewSettingsBelow] = useMemo(() => {
+    const sorted = sortFields(
+      builder, 'page', previewSettings as ComponentSettingsFieldObject[],
+    );
+    const isAbove = (setting: ComponentSettingsFieldObject) =>
+      getFieldPriority(builder, 'page', setting) > 0;
+
+    return [
+      sorted.filter(setting => isAbove(setting)),
+      sorted.filter(setting => !isAbove(setting)),
+    ];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [builder, previewSettings, addons]);
+
+  const renderSettings = (
+    list: ComponentSettingsFieldObject[],
+    { preview = false }: { preview?: boolean } = {},
+  ) => list.map((setting, i) => {
+    const props = preview ? {
+      element: previewElement,
+      onSettingChange: onPreviewSettingChange,
+      onSettingCustomChange: onPreviewSettingCustomChange,
+    } : {
+      element,
+      onSettingChange,
+      onSettingCustomChange,
+    };
+
+    return setting.type === 'group' ? (
       <SettingsGroup
         key={(setting.key || i) as Key}
         bordered={false}
         contentClassName={GROUP_CONTENT_CLASS_NAME}
         setting={setting}
         component={PAGE_COMPONENT}
-        element={element}
-        onSettingChange={onSettingChange}
-        onSettingCustomChange={onSettingCustomChange}
-        onUpdate={onUpdate}
+        onUpdate={preview ? onPreviewUpdate : onUpdate}
+        { ...props }
       />
     ) : (
       <Setting
         key={(setting.key || i) as Key}
         setting={setting}
         component={PAGE_COMPONENT}
-        element={element}
-        onSettingChange={onSettingChange}
-        onSettingCustomChange={onSettingCustomChange}
+        { ...props }
       />
-    ));
+    );
+  });
 
   const onWidthChange = (field: FieldContent) => {
     const width = parseInt(field.value, 10);
@@ -234,6 +296,16 @@ const PageProperties = ({
           <SectionTitle>
             <Text name="ash.page.preview.title">Preview</Text>
           </SectionTitle>
+          { previewSettingsAbove.length > 0 && (
+            <div
+              className={classNames(
+                'oak-ash-preview-settings oak-ash-preview-settings-above',
+                'oak:flex oak:flex-col oak:gap-4',
+              )}
+            >
+              { renderSettings(previewSettingsAbove, { preview: true }) }
+            </div>
+          ) }
           <div className="oak:flex oak:flex-col oak:gap-4 oak:px-4">
             { previewModes.length > 1 && (
               <div className="field">
@@ -330,6 +402,16 @@ const PageProperties = ({
               </Text>
             </p>
           </div>
+          { previewSettingsBelow.length > 0 && (
+            <div
+              className={classNames(
+                'oak-ash-preview-settings oak-ash-preview-settings-below',
+                'oak:flex oak:flex-col oak:gap-4',
+              )}
+            >
+              { renderSettings(previewSettingsBelow, { preview: true }) }
+            </div>
+          ) }
         </div>
       </div>
     </div>

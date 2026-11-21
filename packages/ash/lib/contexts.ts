@@ -20,6 +20,8 @@ import type {
   PageSettingObject,
   PageValue,
   PreviewMode,
+  PreviewSettingObject,
+  PreviewValue,
   Tool,
 } from './types';
 import type { ContentTree } from './tree';
@@ -81,6 +83,16 @@ export declare interface EditorContextValue {
   setCursor(cursor: FieldCursor | null): void;
   /** Page settings (from props & addons) */
   pageSettings: PageSettingObject[];
+  /** Settings of the preview section (from props & addons) */
+  previewSettings: PreviewSettingObject[];
+  /** Values of the preview settings (never saved) */
+  previewValue: PreviewValue;
+  setPreviewValue(value: PreviewValue): void;
+  /**
+   * Whether an element is displayed in the canvas, given the preview
+   * settings
+   */
+  isElementDisplayed(element: ElementObject): boolean;
   pageValue: PageValue;
   setPageValue(value: PageValue): void;
   /** Theme used to display the content inside the canvas */

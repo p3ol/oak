@@ -22,6 +22,7 @@ import {
   BuilderContext,
   EditorContext,
 } from './contexts';
+import type { PreviewValue } from './types';
 
 export interface UseRootBuilderProps {
   activeTextSheet?: string;
@@ -199,3 +200,13 @@ export const useRootBuilder = ({
 
 export const useBuilder = () => use<BuilderContextValue>(BuilderContext);
 export const useEditor = () => use<EditorContextValue>(EditorContext);
+
+const NO_PREVIEW_VALUE: PreviewValue = {};
+
+/**
+ * Values of the preview settings (see `PreviewSettingObject`), e.g. to render
+ * an element differently once a form has been submitted. Empty outside of the
+ * builder (renderers can be used to render the final content too).
+ */
+export const usePreviewValue = (): PreviewValue =>
+  use<EditorContextValue>(EditorContext)?.previewValue ?? NO_PREVIEW_VALUE;

@@ -29,6 +29,7 @@ import {
 } from '../dnd';
 import { useBuilder, useEditor } from '../hooks';
 import ChevronIcon from '../Icon/ChevronIcon';
+import EyeOffIcon from '../Icon/EyeOffIcon';
 import {
   getCollaboratorColor,
   getCollaboratorInitial,
@@ -203,7 +204,10 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
     select,
     hover,
     setDragSource,
+    isElementDisplayed,
   } = useEditor();
+  // Not displayed in the canvas with the previewed states
+  const hidden = !isElementDisplayed(node.element);
   const selectingCollaborators = getSelectingCollaborators(
     collaborators, node.id
   );
@@ -254,6 +258,7 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
             role="treeitem"
             aria-selected={selected}
             aria-expanded={hasChildren ? !isCollapsed : undefined}
+            data-hidden={hidden || undefined}
             className={classNames(
               'oak:relative oak:flex oak:items-center oak:gap-1.5 oak:h-7',
               'oak:pr-2 oak:rounded oak:cursor-default oak:select-none',
@@ -290,18 +295,43 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
               className={classNames(
                 'oak:text-base! oak:flex-none',
                 selected ? 'oak:text-velvet' : 'oak:text-ash-text-muted',
+                { 'oak:opacity-50': hidden },
               )}
             >
               { icon }
             </Icon>
-            <span className="oak:truncate oak:flex-none oak:max-w-full">
+            <span
+              className={classNames(
+                'oak:truncate oak:flex-none oak:max-w-full',
+                { 'oak:opacity-50': hidden },
+              )}
+            >
               { component
                 ? <Text>{ component.name || component.id }</Text>
                 : node.element.type }
             </span>
             { preview && (
-              <span className="oak:truncate oak:text-ash-text-muted oak:min-w-0">
+              <span
+                className={classNames(
+                  'oak:truncate oak:text-ash-text-muted oak:min-w-0',
+                  { 'oak:opacity-50': hidden },
+                )}
+              >
                 { preview }
+              </span>
+            ) }
+            { hidden && (
+              <span
+                className={classNames(
+                  'oak:flex oak:flex-none oak:text-ash-text-muted',
+                  { 'oak:ml-auto': !selectingCollaborators.length },
+                )}
+                title={builder.getText?.(
+                  'ash.layers.hiddenInPreview', 'Hidden in this preview'
+                ) || 'Hidden in this preview'}
+                data-testid="LayerHidden"
+              >
+                <EyeOffIcon size={14} />
               </span>
             ) }
             { selectingCollaborators.length > 0 && (

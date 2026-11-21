@@ -52,6 +52,7 @@ Coming from `@oakjs/react`? See
 | `onPageChange` | `(value) => void` | Called when a page setting changes |
 | `renderPageHead` | `(value) => ReactNode` | Rendered at the top of the page in the canvas (custom css, fonts...) |
 | `previewModes` | `PreviewMode[]` | Ways the content can be previewed in context (see [Preview modes](#preview-modes)) |
+| `previewSettings` | `PreviewSettingObject[]` | Settings previewing states of the content in the canvas, e.g. a submitted form (see [Preview settings](#preview-settings)) |
 | `defaultPreviewMode` | `string` | Id of the preview mode used by default (default: the first one) |
 | `theme` | `'auto' \| 'light' \| 'dark'` | Theme of the builder interface (default: `auto`, see [Dark mode](#dark-mode)) |
 | `defaultCanvasTheme` | `'light' \| 'dark'` | Initial theme of the canvas (default: `light`) |
@@ -102,7 +103,7 @@ const Header = () => {
 <Builder
   addons={addons}
   header={<Header />}
-  onSave={content => api.savePaywall(content)}
+  onSave={content => api.saveContent(content)}
 />
 ```
 
@@ -218,6 +219,74 @@ const sidebarMode: PreviewMode = {
 `SiteHeader` and `ArticleSkeleton` (the mock website used by default modes)
 are exported to build your own.
 
+## Preview settings
+
+Some content is displayed differently depending on its state on the final
+website: blocks displayed once a form has been submitted, once a user is
+logged in... Preview settings allow to preview them in the canvas. They are
+displayed in the page properties' preview section and support the same
+settings as [page settings](#page-settings) (toggles, selects, groups,
+conditions, overrides...), but their values are only used to preview the
+content: nothing is saved.
+
+Declare them through the `previewSettings` prop or addons' `previewSettings`,
+and use `isElementDisplayed(element, value, previewValue)` to hide the
+elements that wouldn't be displayed:
+
+```tsx
+const formAddon: AshAddonObject = {
+  previewSettings: [{
+    type: 'toggle',
+    key: 'form.submitted',
+    label: t => t('form.preview.title', 'Form'),
+    checkedLabel: t => t('form.preview.submitted', 'Submitted'),
+    uncheckedLabel: t => t('form.preview.notSubmitted', 'Not submitted'),
+    default: false,
+    // Only when the content contains a form
+    condition: (_, { builder }) => hasFields(builder.getContent()),
+    isElementDisplayed: (element, submitted) => submitted
+      ? element.settings?.showAfterSubmit ?? !isField(element)
+      : element.settings?.showBeforeSubmit ?? true,
+  }, {
+    type: 'select',
+    key: 'visitor',
+    label: 'Visitor',
+    default: 'anonymous',
+    options: [
+      { title: 'Anonymous', value: 'anonymous' },
+      { title: 'Logged in', value: 'logged-in' },
+    ],
+    isElementDisplayed: (element, visitor) =>
+      !element.settings?.visitors || element.settings.visitors.includes(visitor),
+  }],
+};
+```
+
+They are displayed below the native preview settings (display mode, screen
+size...) by default, or above them with a `priority` greater than `0` (the
+native settings' priority), sorted by priority like other settings.
+
+Settings hidden by their `condition` don't hide anything. Elements hidden in
+the canvas are still listed in the layers (dimmed, with an icon), so that they
+can be selected and edited.
+
+Renderers can also read the preview values with `usePreviewValue()` (e.g. to
+render a confirmation message once a form is submitted). It returns an empty
+object outside of the builder, so the same renderers can render the final
+content (values left to their default are not included):
+
+```tsx
+const FormMessage = ({ element, attributes }: RendererComponentProps) => {
+  const { form } = usePreviewValue();
+
+  return (
+    <div { ...attributes }>
+      { form?.submitted ? element.successMessage : element.content }
+    </div>
+  );
+};
+```
+
 ## Collaboration
 
 Ash provides what's needed to plug a real-time collaboration tool (like
@@ -286,7 +355,7 @@ import { Builder } from '@oakjs/ash';
 import { useYjs } from '@oakjs/ash/yjs';
 
 const doc = new Y.Doc();
-const provider = new WebsocketProvider('wss://your-server', 'paywall-12', doc);
+const provider = new WebsocketProvider('wss://your-server', 'page-12', doc);
 
 export const Editor = () => {
   const collaboration = useYjs({

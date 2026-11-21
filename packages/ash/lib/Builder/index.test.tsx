@@ -1,7 +1,8 @@
 import { act, fireEvent, render } from '@testing-library/react';
 
 import { baseAddon } from '../addons';
-import { useBuilder } from '../hooks';
+import type { PreviewSettingObject, PreviewValue } from '../types';
+import { useBuilder, usePreviewValue } from '../hooks';
 import Builder from './index';
 
 const content = [
@@ -439,6 +440,179 @@ describe('<Builder />', () => {
     // Rendered before the layers & insert tabs
     expect(header.nextElementSibling.getAttribute('role')).toBe('tablist');
     expect(getByText('Back (saved)')).toBeTruthy();
+  });
+
+  describe('preview settings', () => {
+    // The builder mutates its content (other tests delete elements)
+    const formContent = () => [
+      { id: 'title', type: 'title', content: 'Hello' },
+      { id: 'button', type: 'button', content: 'Click me' },
+    ];
+
+    // Buttons are hidden once the form has been submitted, titles are only
+    // displayed then
+    const submitted: PreviewSettingObject = {
+      type: 'toggle',
+      key: 'submitted',
+      label: 'Form',
+      checkedLabel: 'Submitted',
+      uncheckedLabel: 'Not submitted',
+      default: false,
+      condition: (_, { builder }) => JSON.stringify(builder.getContent())
+        .includes('"button"'),
+      isElementDisplayed: (element, value) => value
+        ? element.type !== 'button'
+        : element.type !== 'title',
+    };
+
+    const toggle = (container: HTMLElement) => fireEvent.click(
+      container.querySelector('.oak-ash-preview-settings input')
+    );
+
+    it('should preview the content in another state', () => {
+      const { container, getByText, getAllByRole } = render(
+        <Builder
+          addons={[baseAddon(), { previewSettings: [submitted] }]}
+          defaultValue={formContent()}
+        />
+      );
+      const page = container.querySelector('.oak-ash-page');
+
+      // Rendered like page settings
+      expect(getByText('Form')).toBeTruthy();
+      expect(getByText('Not submitted')).toBeTruthy();
+      expect(page.querySelector('h1')).toBeNull();
+      expect(page.querySelector('[data-oak-type=button]')).not.toBeNull();
+
+      toggle(container);
+
+      expect(getByText('Submitted')).toBeTruthy();
+      expect(page.querySelector('h1').innerHTML).toBe('Hello');
+      expect(page.querySelector('[data-oak-type=button]')).toBeNull();
+
+      // Hidden elements are still listed in the layers
+      const layers = getAllByRole('treeitem');
+      expect(layers).toHaveLength(2);
+      expect(layers[1].getAttribute('data-hidden')).toBe('true');
+      expect(layers[1].querySelector('[data-testid=LayerHidden]'))
+        .not.toBeNull();
+      expect(layers[0].getAttribute('data-hidden')).toBeNull();
+    });
+
+    it('should only apply displayed settings', () => {
+      const { container, queryByText } = render(
+        <Builder
+          addons={[baseAddon()]}
+          previewSettings={[submitted]}
+          defaultValue={[{ id: 'title', type: 'title', content: 'Hello' }]}
+        />
+      );
+
+      expect(queryByText('Not submitted')).toBeNull();
+      // Not previewed: displayed as usual
+      expect(container.querySelector('.oak-ash-page h1')).not.toBeNull();
+    });
+
+    it('should support any setting, inside groups too', () => {
+      const { container, getByText } = render(
+        <Builder
+          addons={[baseAddon()]}
+          previewSettings={[{
+            type: 'group',
+            key: 'visitor-group',
+            label: 'Visitor',
+            fields: [{
+              type: 'select',
+              key: 'visitor.status',
+              label: 'Status',
+              default: 'member',
+              options: [
+                { title: 'Anonymous', value: 'anonymous' },
+                { title: 'Member', value: 'member' },
+              ],
+              isElementDisplayed: (element, status) =>
+                element.type !== 'button' || status === 'anonymous',
+            }],
+          }]}
+          defaultValue={formContent()}
+        />
+      );
+
+      expect(getByText('Visitor')).toBeTruthy();
+      // Default value
+      expect(container.querySelector('.oak-ash-page h1')).not.toBeNull();
+      expect(container.querySelector('.oak-ash-page [data-oak-type=button]'))
+        .toBeNull();
+    });
+
+    it('should display preview settings below the native ones by default',
+      () => {
+        const { getByText } = render(
+          <Builder
+            addons={[baseAddon()]}
+            previewSettings={[{
+              type: 'text',
+              key: 'below',
+              label: 'Below',
+            }, {
+              type: 'text',
+              key: 'above',
+              label: 'Above',
+              // Native preview settings have a priority of 0
+              priority: 1,
+            }]}
+            defaultValue={formContent()}
+          />
+        );
+
+        const screenSize = getByText('Screen size');
+        const follows = (a: HTMLElement, b: HTMLElement) =>
+          !!(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+
+        expect(follows(getByText('Above'), screenSize)).toBe(true);
+        expect(follows(screenSize, getByText('Below'))).toBe(true);
+      });
+
+    it('should give the preview values to renderers', () => {
+      const values: PreviewValue[] = [];
+
+      const Title = () => {
+        values.push(usePreviewValue());
+
+        return <h1>Title</h1>;
+      };
+
+      const { container } = render(
+        <Builder
+          addons={[baseAddon(), {
+            previewSettings: [{ ...submitted, isElementDisplayed: undefined }],
+            overrides: [{
+              type: 'component',
+              targets: ['title'],
+              render: Title,
+            }],
+          }]}
+          defaultValue={formContent()}
+        />
+      );
+
+      expect(values.at(-1)).toEqual({});
+      toggle(container);
+      expect(values.at(-1)).toEqual({ submitted: true });
+    });
+
+    it('should not give preview values outside of the builder', () => {
+      const values: PreviewValue[] = [];
+
+      const Title = (): null => {
+        values.push(usePreviewValue());
+
+        return null;
+      };
+
+      render(<Title />);
+      expect(values).toEqual([{}]);
+    });
   });
 
   describe('save', () => {

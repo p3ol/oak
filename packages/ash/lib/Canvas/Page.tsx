@@ -85,6 +85,7 @@ const CanvasElement = ({
   depth,
 }: { element: ElementObject; depth: number }) => {
   const { components, sanitize, dark } = use(PageContext);
+  const { isElementDisplayed } = useEditor();
   const Component = components[element?.type];
   // Content is mutated in place by the builder: attributes are cheap enough
   // to be recomputed on every render
@@ -95,7 +96,9 @@ const CanvasElement = ({
     <CanvasElements element={element} containerKey={key} depth={depth + 1} />
   ), [element, depth]);
 
-  if (!element) {
+  // Hidden in the previewed state (e.g. a form field once the form has been
+  // submitted): still listed in the layers
+  if (!element || !isElementDisplayed(element)) {
     return null;
   }
 

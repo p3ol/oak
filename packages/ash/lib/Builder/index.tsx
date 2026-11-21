@@ -16,6 +16,7 @@ import type {
   BuilderOptions,
   ComponentSettingsFieldObject,
   ElementObject,
+  SettingOverride,
 } from '@oakjs/core';
 import { classNames } from '@junipero/react';
 
@@ -31,6 +32,8 @@ import type {
   PageSettingObject,
   PageValue,
   PreviewMode,
+  PreviewSettingObject,
+  PreviewValue,
   Theme,
   Tool,
 } from '../types';
@@ -44,6 +47,7 @@ import { useRootBuilder } from '../hooks';
 import { useInteractionTracking, useShortcuts } from '../useShortcuts';
 import { buildTree } from '../tree';
 import { defaultPreviewModes } from '../Canvas/previewModes';
+import { PAGE_COMPONENT } from '../Properties/PageProperties';
 import Canvas from '../Canvas';
 import Layers from '../Layers';
 import Insert from '../Insert';
@@ -103,6 +107,12 @@ export declare interface BuilderProps
    */
   previewModes?: PreviewMode[];
   defaultPreviewMode?: string;
+  /**
+   * Settings displayed in the page properties' preview section, previewing
+   * states of the content in the canvas (e.g. a submitted form), merged with
+   * the addons' `previewSettings`
+   */
+  previewSettings?: PreviewSettingObject[];
   /**
    * Theme of the builder interface. `auto` (default) uses tailwind's dark
    * mode: a `dark` class (or `data-theme="dark"`) on an ancestor, or the
@@ -192,6 +202,7 @@ const Builder = ({
   renderPageHead,
   previewModes: previewModesProp,
   defaultPreviewMode,
+  previewSettings: previewSettingsProp,
   theme = 'auto',
   defaultCanvasTheme,
   leftSidebarWidth = 260,
@@ -327,6 +338,64 @@ const Builder = ({
     defaultCanvasTheme || 'light'
   );
 
+  const previewSettings = useMemo<PreviewSettingObject[]>(() => [
+    ...(previewSettingsProp || []),
+    ...((addons || []) as AshAddonObject[])
+      .flatMap(addon => addon?.previewSettings || []),
+  ], [previewSettingsProp, addons]);
+
+  // Never saved: only used to preview the content
+  const [previewValue, setPreviewValue] = useState<PreviewValue>({});
+
+  // Settings hiding elements, if displayed (same conditions as in the page
+  // properties), with their value
+  const previewFilters = useMemo(() => {
+    const element = { ...previewValue, type: 'page' };
+    const filters: { setting: PreviewSettingObject; value: any }[] = [];
+
+    const walk = (list: PreviewSettingObject[]) => list.forEach(setting => {
+      const override = builder.getOverride(
+        'setting', 'page', { setting }
+      ) as SettingOverride;
+      const condition = override?.condition || setting.condition;
+
+      if (condition && !condition(element, {
+        component: PAGE_COMPONENT,
+        builder,
+      })) {
+        return;
+      }
+
+      if (Array.isArray(setting.fields)) {
+        walk(setting.fields);
+      }
+
+      if (setting.isElementDisplayed && setting.key) {
+        const def = typeof setting.default === 'function'
+          ? setting.default(element)
+          : setting.default;
+
+        filters.push({
+          setting,
+          value: builder.getElementSettings(element, setting.key, def),
+        });
+      }
+    });
+
+    walk(previewSettings);
+
+    return filters;
+  // Conditions can depend on the content: mutated in place, version changes
+  // on every update
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [previewSettings, previewValue, builder, content, version]);
+
+  const isElementDisplayed = useCallback((element: ElementObject) => (
+    previewFilters.every(({ setting, value }) => (
+      setting.isElementDisplayed(element, value, previewValue)
+    ))
+  ), [previewFilters, previewValue]);
+
   const tree = useMemo(() => (
     buildTree(builder, content)
   // Content is mutated in place, version changes on every update
@@ -421,6 +490,10 @@ const Builder = ({
     collaborators: collaboratorsList,
     setCursor,
     pageSettings,
+    previewSettings,
+    previewValue,
+    setPreviewValue,
+    isElementDisplayed,
     pageValue,
     setPageValue,
     canvasTheme,
@@ -439,6 +512,7 @@ const Builder = ({
   }), [
     tree, selectedId, hoveredId, tool, activeTool, pageWidth, previewModes,
     previewMode, collaboratorsList, setCursor, pageSettings, pageValue,
+    previewSettings, previewValue, isElementDisplayed,
     setPageValue,
     canvasTheme,
     registerPendingChanges,

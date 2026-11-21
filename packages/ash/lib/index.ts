@@ -28,7 +28,12 @@ export { default as Sidebar, type SidebarProps } from './Sidebar';
 export { default as Text, type TextProps } from './Text';
 export { default as Icon } from './Icon';
 
-export { useBuilder, useEditor, useRootBuilder } from './hooks';
+export {
+  useBuilder,
+  useEditor,
+  usePreviewValue,
+  useRootBuilder,
+} from './hooks';
 export {
   BuilderContext,
   EditorContext,

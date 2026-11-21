@@ -79,11 +79,43 @@ export declare type PageSettingObject = ComponentSettingsFieldObject;
 
 export declare type PageValue = Record<string, any>;
 
+/**
+ * Values of the preview settings (see `PreviewSettingObject`)
+ */
+export declare type PreviewValue = Record<string, any>;
+
+/**
+ * A setting of the page properties' preview section, previewing a state of
+ * the content in the canvas (e.g. a form that has been submitted, a logged in
+ * user). Same settings as page settings (toggles, selects, groups,
+ * conditions...), but their values are only used to preview the content:
+ * they are never saved.
+ */
+export declare type PreviewSettingObject = PageSettingObject & {
+  /**
+   * Whether an element is displayed in the canvas, depending on the
+   * setting's value. Elements that are not displayed are still listed (and
+   * can be selected) in the layers. Settings hidden by their `condition` don't
+   * hide anything.
+   */
+  isElementDisplayed?(
+    element: ElementObject,
+    value: any,
+    previewValue: PreviewValue,
+  ): boolean;
+  fields?: PreviewSettingObject[];
+};
+
 export declare interface AshAddonObject extends Omit<
   AddonObject, 'components' | 'fields' | 'overrides'
 > {
   /** Settings displayed in the page properties */
   pageSettings?: PageSettingObject[];
+  /**
+   * Settings displayed in the page properties' preview section, previewing
+   * states of the content in the canvas
+   */
+  previewSettings?: PreviewSettingObject[];
   components?: (AshComponentObject | ComponentTabOject | any)[];
   fields?: AshFieldObject[];
   overrides?: (

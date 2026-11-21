@@ -63,7 +63,7 @@ export const ArticleSkeleton = ({
       <div
         key={i}
         className={classNames('oak:relative', {
-          // Last visible paragraph fades out above the paywall
+          // Last visible paragraph fades out above the previewed content
           'oak:[mask-image:linear-gradient(to_bottom,black,transparent)]':
             fade && i === paragraphs - 1,
         })}
