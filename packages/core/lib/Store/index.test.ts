@@ -113,6 +113,58 @@ describe('Store', () => {
     });
   });
 
+  describe('history', () => {
+    it('should allow to set content without recording it', () => {
+      const builder = getBuilder({ content: [{ type: 'title', content: 'A' }] });
+      builder.resetHistory();
+
+      builder.setContent([{ type: 'title', content: 'B' }], { commit: false });
+      expect(builder.canUndo()).toBe(false);
+
+      builder.setContent([{ type: 'title', content: 'C' }]);
+      expect(builder.canUndo()).toBe(true);
+    });
+
+    it('should allow to disable the history', () => {
+      const builder = getBuilder({
+        content: [{ type: 'title', content: 'A' }],
+        options: { history: false },
+      });
+
+      builder.addElement({ type: 'text', content: 'B' });
+      builder.removeElement(builder.getContent()[0].id);
+      expect(builder.canUndo()).toBe(false);
+      expect(builder.canRedo()).toBe(false);
+
+      builder.undo();
+      expect(builder.getContent().map(e => e.content)).toEqual(['B']);
+    });
+  });
+
+  describe('.addElement()', () => {
+    it('should allow to add an element at a specific index', () => {
+      const store = new Store({ builder: getBuilder() });
+      store.set([
+        { type: 'title', content: 'First' },
+        { type: 'title', content: 'Last' },
+      ]);
+
+      store.addElement({ type: 'text', content: 'Middle' }, { index: 1 });
+      expect(store.get().map(e => e.content))
+        .toEqual(['First', 'Middle', 'Last']);
+
+      store.addElements([
+        { type: 'text', content: 'A' },
+        { type: 'text', content: 'B' },
+      ], { index: 99 });
+      expect(store.get().map(e => e.content))
+        .toEqual(['First', 'Middle', 'Last', 'A', 'B']);
+
+      store.addElement({ type: 'text', content: 'Start' }, { index: -5 });
+      expect(store.get()[0].content).toBe('Start');
+    });
+  });
+
   describe('.getElement()', () => {
     it('should allow to get an element', () => {
       const store = new Store({ builder: getBuilder() });

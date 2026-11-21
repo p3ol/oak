@@ -3,25 +3,44 @@
 @include meta.load-css('../../../node_modules/ckeditor5/dist/ckeditor5-editor.css');
 
 .ckeditor-field .ck.ck-editor
-  --border-color: var(--oak-field-border-color)
-  --background-color: var(--oak-floating-background-color)
-  --text-color: var(--oak-text-color)
+  // Field colors: @oakjs/theme's variables when available (@oakjs/react),
+  // junipero's colors otherwise, and ash's tokens inside @oakjs/ash (see the
+  // end of this file)
+  --oak-ck-border: var(--oak-field-border-color, var(--junipero-mischka))
+  --oak-ck-background: var(--oak-floating-background-color, var(--junipero-seashell))
+  --oak-ck-text: var(--oak-text-color, var(--junipero-onyx))
+  --oak-ck-accent: var(--oak-main-color, var(--junipero-velvet))
+  --oak-ck-accent-soft: var(--oak-background-main-color, var(--junipero-velvet-background))
+  --oak-ck-accent-hover: var(--oak-hover-main-color, var(--junipero-velvet-disabled))
+
+  --border-color: var(--oak-ck-border)
+  --background-color: var(--oak-ck-background)
+  --text-color: var(--oak-ck-text)
 
   --ck-border-radius: 4px
-  --ck-color-base-border: var(--oak-field-border-color)
-  --ck-color-focus-border: var(--oak-main-color)
-  --ck-color-button-on-color: var(--oak-main-color)
-  --ck-color-button-default-hover-background: var(--oak-background-main-color)
-  --ck-color-button-default-active-background: var(--oak-background-main-color)
-  --ck-color-button-on-background: var(--oak-background-main-color)
-  --ck-color-button-on-active-background: var(--oak-hover-main-color)
-  --ck-color-button-on-hover-background: var(--oak-hover-main-color)
-  --ck-color-list-button-hover-background: var(--oak-background-main-color)
-  --ck-color-focus-outer-shadow: var(--oak-background-main-color)
-  --ck-color-toolbar-border: var(--oak-field-border-color)
-  --ck-color-dropdown-panel-background: var(--oak-floating-background-color)
-  --ck-color-list-background: var(--oak-floating-background-color)
-  --ck-color-table-focused-cell-background: var(--oak-background-main-color)
+  --ck-color-base-border: var(--oak-ck-border)
+  --ck-color-base-background: var(--oak-ck-background)
+  --ck-color-base-foreground: var(--oak-ck-background)
+  --ck-color-focus-border: var(--oak-ck-accent)
+  --ck-color-button-on-color: var(--oak-ck-accent)
+  --ck-color-button-default-hover-background: var(--oak-ck-accent-soft)
+  --ck-color-button-default-active-background: var(--oak-ck-accent-soft)
+  --ck-color-button-on-background: var(--oak-ck-accent-soft)
+  --ck-color-button-on-active-background: var(--oak-ck-accent-hover)
+  --ck-color-button-on-hover-background: var(--oak-ck-accent-hover)
+  --ck-color-list-button-hover-background: var(--oak-ck-accent-soft)
+  --ck-color-focus-outer-shadow: var(--oak-ck-accent-soft)
+  --ck-color-toolbar-background: var(--oak-ck-background)
+  --ck-color-toolbar-border: var(--oak-ck-border)
+  --ck-color-dropdown-panel-background: var(--oak-ck-background)
+  --ck-color-dropdown-panel-border: var(--oak-ck-border)
+  --ck-color-panel-background: var(--oak-ck-background)
+  --ck-color-panel-border: var(--oak-ck-border)
+  --ck-color-list-background: var(--oak-ck-background)
+  --ck-color-input-background: var(--oak-ck-background)
+  --ck-color-input-border: var(--oak-ck-border)
+  --ck-color-input-text: var(--oak-ck-text)
+  --ck-color-table-focused-cell-background: var(--oak-ck-accent-soft)
   --ck-color-text: var(--text-color)
 
   /* Main editor */
@@ -36,16 +55,22 @@
       color: var(--text-color)
 
       &.ck-focused
-        --border-color: var(--oak-main-color)
+        --border-color: var(--oak-ck-accent)
 
   /* Toolbar */
   .ck-editor__top
     & > .ck-sticky-panel > .ck-sticky-panel__content
       border: none
 
+  // The editor's toolbar is highlighted with the editable when focused, so
+  // that the whole field looks focused
+  &:has(.ck-editor__editable.ck-focused) > .ck-editor__top .ck-sticky-panel__content > .ck-toolbar
+    --border-color: var(--oak-ck-accent)
+
   .ck-toolbar
     border: none
     box-shadow: 0 0 0 2px var(--border-color)
+    transition: box-shadow 0.2s ease-in-out
     padding-bottom: 0
     background: var(--background-color)
     border-radius: var(--ck-border-radius) var(--ck-border-radius) 0 0
@@ -67,6 +92,10 @@
         border-radius: var(--ck-border-radius)
 
       .ck-dropdown__panel
+        // Panels (and their toolbars) keep the default border, even when the
+        // editor's toolbar is highlighted because the editor is focused
+        --border-color: var(--oak-ck-border)
+
         border: none
         box-shadow: 0 0 0 2px var(--border-color)
         border-radius: 4px
@@ -88,8 +117,8 @@
 
               &.ck-on, &:active
                 box-shadow: none
-                background: var(--oak-background-main-color)
-                color: var(--oak-main-color)
+                background: var(--oak-ck-accent-soft)
+                color: var(--oak-ck-accent)
 
               .ck-button__label
                 padding: 0
@@ -106,4 +135,44 @@
       width: 200px !important
 
       .junipero.text-field
-        --main-color: var(--oak-field-border-color)
+        --main-color: var(--oak-ck-border)
+
+// Keep toolbar dropdowns inside the editor: the field can be displayed in a
+// narrow & scrollable container (e.g. a builder sidebar), which would clip
+// panels overflowing the editor. Panels are positioned relatively to their
+// toolbar (instead of their button) and can't be wider than it.
+.ckeditor-field .ck.ck-editor
+  .ck.ck-toolbar
+    position: relative
+
+    .ck.ck-dropdown
+      position: static
+
+    .ck.ck-dropdown__panel
+      max-width: 100%
+      transform: none
+
+      &.ck-dropdown__panel_s,
+      &.ck-dropdown__panel_sme,
+      &.ck-dropdown__panel_smw,
+      &.ck-dropdown__panel_n,
+      &.ck-dropdown__panel_nme,
+      &.ck-dropdown__panel_nmw
+        left: 0
+        right: auto
+
+  // Items that don't fit in the toolbar ("show more items") wrap on several
+  // lines instead of overflowing
+  .ck.ck-toolbar__grouped-dropdown > .ck-dropdown__panel
+    .ck.ck-toolbar > .ck-toolbar__items
+      flex-wrap: wrap
+
+// Inside @oakjs/ash: follow the builder's tokens (light & dark), even without
+// @oakjs/theme
+.oak-ash .ckeditor-field .ck.ck-editor
+  --oak-ck-border: var(--ash-border)
+  --oak-ck-background: var(--ash-field-bg)
+  --oak-ck-text: var(--ash-text)
+  --oak-ck-accent: var(--junipero-velvet)
+  --oak-ck-accent-soft: var(--ash-accent-soft)
+  --oak-ck-accent-hover: color-mix(in srgb, var(--junipero-velvet) 25%, var(--ash-surface))

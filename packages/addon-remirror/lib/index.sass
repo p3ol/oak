@@ -1,17 +1,36 @@
-.oak .remirror-field
-  --background-color: var(--oak-inner-background-color)
-  --border-color: var(--oak-field-border-color)
-  --toolbar-background-color: var(--oak-field-border-color)
-  --toolbar-icon-background-color: var(--oak-alternate-text-color)
-  --toolbar-icon-color: var(--oak-alternate-text-color)
+// Works with every oak builder: uses @oakjs/theme's variables when available
+// (@oakjs/react), ash's tokens inside @oakjs/ash, and junipero's colors
+// otherwise.
+.remirror-field
+  position: relative
+  --background-color: var(--oak-inner-background-color, var(--junipero-seashell))
+  --border-color: var(--oak-field-border-color, var(--junipero-mischka))
+  --toolbar-background-color: var(--oak-field-border-color, var(--junipero-mischka))
+  --toolbar-icon-background-color: var(--oak-alternate-text-color, var(--junipero-slate))
+  --toolbar-icon-color: var(--oak-alternate-text-color, var(--junipero-slate))
+  --toolbar-icon-active-color: var(--oak-reverse-text-color, var(--junipero-seashell))
+  --focus-border-color: var(--oak-main-color, var(--junipero-velvet))
+  --text-color: var(--oak-text-color, var(--junipero-onyx))
 
   .menu
+    display: flex
+    flex-wrap: wrap
+    align-items: stretch
+    gap: 8px
     border-radius: 4px 4px 0 0
     box-shadow: 0 0 0 2px var(--border-color)
-    background: var(--border-color)
+    background: var(--toolbar-background-color)
     padding: 4px 5px
+    transition: box-shadow .2s ease-in-out
+
+    .menu-button-wrapper
+      display: inline-flex
+      align-items: center
 
     .menu-button
+      display: flex
+      align-items: center
+      justify-content: center
       border-radius: 2px
       text-decoration: none
       padding: 2px
@@ -21,7 +40,7 @@
         background: var(--toolbar-icon-background-color)
 
         .icon
-          color: var(--oak-reverse-text-color)
+          color: var(--toolbar-icon-active-color)
 
       .icon
         color: var(--toolbar-icon-color)
@@ -40,17 +59,18 @@
       &.text-left
         margin-left: 20px
 
-    .link-field
-      & > .junipero.dropdown-menu .menu-inner
-        padding: 10px
-        overflow: visible
+    .font-size
+      display: flex
+      align-items: center
+      gap: 8px
+      padding: 0 4px
 
+    .font-size-value
+      color: var(--toolbar-icon-color)
+
+    .link-field,
     .text-color-field
-      & > .junipero.dropdown-menu > .menu-inner
-        padding: 0
-        background: none
-        box-shadow: none
-        overflow: visible
+      align-items: center
 
   .remirror-editor.ProseMirror
     appearance: none
@@ -58,10 +78,12 @@
     padding: 10px
     border: none
     border-radius: 0 0 4px 4px
+    outline: none
     flex: 1
     box-shadow: 0 0 0 2px var(--border-color)
     transition: box-shadow .2s ease-in-out
     background: var(--background-color)
+    color: var(--text-color)
     min-height: 150px
     font-size: 16px
 
@@ -71,3 +93,46 @@
 
       &:last-child
         margin-bottom: 0
+
+  // The whole field is highlighted when the editor is focused
+  &:has(.ProseMirror-focused)
+    .menu, .remirror-editor.ProseMirror
+      --border-color: var(--focus-border-color)
+
+// Dropdown menus can be rendered outside of the field (in the builder's
+// floatings container), they can't be scoped to it. They're displayed above
+// the builder's popovers (e.g. @oakjs/react's element options, z-index: 20).
+.junipero.dropdown-menu.link-input,
+.junipero.dropdown-menu.text-color-menu
+  z-index: 40
+
+.junipero.dropdown-menu.link-input
+  .menu-inner
+    padding: 10px
+    overflow: visible
+
+  .link-form
+    display: flex
+    flex-direction: column
+    gap: 16px
+
+    .junipero.label
+      padding-top: 0
+
+.junipero.dropdown-menu.text-color-menu
+  & > .menu-inner
+    padding: 0
+    background: none
+    box-shadow: none
+    overflow: visible
+
+// Inside @oakjs/ash: follow the builder's tokens (light & dark)
+.oak-ash .remirror-field
+  --background-color: var(--ash-field-bg)
+  --border-color: var(--ash-border)
+  --toolbar-background-color: var(--ash-muted)
+  --toolbar-icon-background-color: var(--ash-accent-soft)
+  --toolbar-icon-color: var(--ash-text-muted)
+  --toolbar-icon-active-color: var(--junipero-velvet)
+  --focus-border-color: var(--junipero-velvet)
+  --text-color: var(--ash-text)

@@ -22,6 +22,7 @@ export class BuilderOptions {
   debug: boolean;
   generateId: () => string | number;
   historyLimit: number;
+  history: boolean;
   overrideStrategy: 'last' | 'merge';
   defaults: Record<string, any>;
 
@@ -29,6 +30,7 @@ export class BuilderOptions {
     this.debug = props?.debug ?? false;
     this.generateId = props?.generateId;
     this.historyLimit = props?.historyLimit ?? 20;
+    this.history = props?.history ?? true;
     this.overrideStrategy = props?.overrideStrategy || 'last';
     this.defaults = props?.defaults || {};
   }

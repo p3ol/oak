@@ -57,6 +57,34 @@ export default () => {
 };
 ```
 
+## Usage with @oakjs/ash
+
+The field works with both builders (`@oakjs/react` & `@oakjs/ash`): it only
+relies on the options given to fields by the builder (`fieldOptions.t` for
+translations, `fieldOptions.floatingsRef` to render its dropdowns). Inside
+ash, it follows the builder's colors (light & dark).
+
+```jsx
+import { Builder, baseAddon } from '@oakjs/ash';
+import { remirrorFieldAddon } from '@oakjs/addon-remirror';
+
+import '@oakjs/ash/styles.css';
+import '@oakjs/addon-remirror/dist/oak-addon-remirror.min.css';
+
+// Addons must be stable: define them once
+const addons = [baseAddon(), remirrorFieldAddon(), myAddon()];
+
+export default () => (
+  <div style={{ height: '100vh' }}>
+    <Builder addons={addons} value={content} onChange={setContent} />
+  </div>
+);
+```
+
+Texts can be translated with the `addons.remirror.fields.editor.*` keys
+(`bold`, `italic`, `underline`, `link`, `blank`, `color`, `decreaseSize`,
+`increaseSize`, `alignLeft`, `alignCenter`, `alignRight`, `justify`).
+
 # Documentation
 
 The `remirrorFieldAddon()` addon adds a new field with the `remirror` type.

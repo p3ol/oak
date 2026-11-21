@@ -158,6 +158,13 @@ export default () => (
 );
 ```
 
+`toolbar` also accepts CKEditor's toolbar options object
+(`{ items, shouldNotGroupWhenFull, ... }`). By default, toolbar items wrap on
+several lines instead of being grouped in a "show more items" dropdown
+(`shouldNotGroupWhenFull: true`): grouping triggers "ResizeObserver loop"
+errors when the editor is displayed in a narrow container, like a builder's
+sidebar.
+
 # Contributing
 
 [![](https://contrib.rocks/image?repo=p3ol/oak)](https://github.com/p3ol/oak/graphs/contributors)

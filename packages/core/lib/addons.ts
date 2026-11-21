@@ -262,6 +262,7 @@ const COL_RESPONSIVE_SETTINGS: {
 export const colComponent = (props?: ComponentObject): ComponentObject => ({
   id: 'col',
   type: 'component',
+  name: (t: GetTextCallback) => t('core.components.col.name', 'Column'),
   draggable: false,
   construct: ({ builder } = {}) => ({
     type: 'col',

@@ -1,0 +1,138 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`components > should render base components like a final page 1`] = `
+<div>
+  <div
+    class="oak:flex oak:flex-wrap oak:w-full"
+    data-oak-container="cols"
+    data-oak-id="row"
+    data-oak-type="row"
+    style="flex-direction: row; justify-content: center; align-items: flex-start; gap: 10px; --oak-col-gap: 10px;"
+  >
+    <div
+      class="oak:colsize-6"
+      data-oak-container="content"
+      data-oak-id="col1"
+      data-oak-type="col"
+    >
+      <h2
+        data-oak-id="t"
+        data-oak-type="title"
+      >
+        Title
+      </h2>
+      <div
+        data-oak-id="x"
+        data-oak-type="text"
+      >
+        <p>
+          Some 
+          <b>
+            text
+          </b>
+        </p>
+      </div>
+      <div
+        data-oak-id="s"
+        data-oak-type="empty-space"
+        style="height: 20px;"
+      />
+      <a
+        class="oak:inline-flex oak:items-center oak:justify-center oak:cursor-pointer oak:no-underline oak:px-5 oak:py-2 oak:rounded oak:border-0 oak:bg-[#1A1A1A] oak:text-white"
+        data-oak-id="b"
+        data-oak-type="button"
+        href="https://example.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Go
+      </a>
+    </div>
+    <div
+      class="oak:colsize-fluid"
+      data-oak-container="content"
+      data-oak-id="col2"
+      data-oak-type="col"
+    >
+      <div
+        data-oak-id="i"
+        data-oak-type="image"
+        style="text-align: left;"
+      >
+        <img
+          alt=""
+          class="oak:inline-block oak:align-middle"
+          src="https://example.com/a.png"
+          style="max-width: 100%; height: auto;"
+        />
+      </div>
+      <div
+        class="oak:block oak:cursor-pointer oak:no-underline"
+        data-oak-container="content"
+        data-oak-id="c"
+        data-oak-type="clickable"
+        role="button"
+        style="color: inherit;"
+        tabindex="0"
+      >
+        <div
+          data-oak-id="ct"
+          data-oak-type="text"
+        >
+          Click
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components > should toggle foldable content 1`] = `
+<div>
+  <div
+    data-oak-id="f"
+    data-oak-type="foldable"
+  >
+    <div
+      data-oak-container="content"
+      hidden=""
+    >
+      <div
+        data-oak-id="c"
+        data-oak-type="text"
+      >
+        Content
+      </div>
+    </div>
+    <div
+      aria-expanded="false"
+      class="oak:cursor-pointer"
+      data-oak-container="seeMore"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        data-oak-id="m"
+        data-oak-type="text"
+      >
+        More
+      </div>
+    </div>
+    <div
+      aria-expanded="false"
+      class="oak:cursor-pointer"
+      data-oak-container="seeLess"
+      hidden=""
+      role="button"
+      tabindex="0"
+    >
+      <div
+        data-oak-id="l"
+        data-oak-type="text"
+      >
+        Less
+      </div>
+    </div>
+  </div>
+</div>
+`;

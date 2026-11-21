@@ -38,7 +38,10 @@ export declare abstract class IStore {
    * Set the content of the store.
    * If the emit option is set to false, the store will not emit a change event.
    */
-  set (content: ElementObject[], options?: { emit?: boolean }): void;
+  set (content: ElementObject[], options?: {
+    emit?: boolean;
+    commit?: boolean;
+  }): void;
 
   /**
    * Sanitize an element object (adds missing properties, ids, etc.)
@@ -60,11 +63,13 @@ export declare abstract class IStore {
   /** Adds an element to the store */
   addElement (element: ElementObject, options?: Partial<{
     position?: 'before' | 'after';
+    index?: number;
   } & StoreFindOptions & StoreSanitizeOptions>): ElementObject;
 
   /** Adds multiple elements to the store */
   addElements (elements: ElementObject[], options?: Partial<{
     position?: 'before' | 'after';
+    index?: number;
   } & StoreFindOptions & StoreSanitizeOptions>): ElementObject[];
 
   /** Finds an element in the store */
@@ -157,7 +162,11 @@ export default class Store extends Emitter implements IStore {
     return this.#content;
   }
 
-  set (content: ElementObject[], { emit = true } = {}) {
+  /**
+   * Replaces the whole content. Pass `commit: false` to not record it in the
+   * undo history (e.g. when applying changes made by another user).
+   */
+  set (content: ElementObject[], { emit = true, commit = true } = {}) {
     this.#content = (Array.isArray(content) ? content : [])
       .map(e => this.sanitize(e, { withDefaults: true }));
 
@@ -165,7 +174,9 @@ export default class Store extends Emitter implements IStore {
       this.emit('content.update', this.#content);
     }
 
-    this.commit();
+    if (commit) {
+      this.commit();
+    }
   }
 
   sanitize (element: ElementObject, {
@@ -261,10 +272,12 @@ export default class Store extends Emitter implements IStore {
   addElement (element: ElementObject, {
     parent = this.#content,
     position = 'after',
+    index,
     component,
     ...opts
   }: Partial<{
     position?: 'before' | 'after';
+    index?: number;
   } & StoreFindOptions & StoreSanitizeOptions> = {}) {
     this.#builder.logger.log('Adding element:', element, { parent, position });
 
@@ -274,14 +287,7 @@ export default class Store extends Emitter implements IStore {
       ? this.createElement(component.id, { component, ...opts })
       : this.sanitize(element, opts);
 
-    switch (position) {
-      case 'before':
-        parent.unshift(element);
-        break;
-      case 'after':
-        parent.push(element);
-        break;
-    }
+    this.#insert(parent, [element], { position, index });
 
     this.commit();
     this.emit('content.update', this.#content);
@@ -292,12 +298,39 @@ export default class Store extends Emitter implements IStore {
   addElements (elements: ElementObject[], {
     parent = this.#content,
     position = 'after',
+    index,
     ...opts
-  } = {}) {
+  }: Partial<{
+    position?: 'before' | 'after';
+    index?: number;
+  } & StoreFindOptions & StoreSanitizeOptions> = {}) {
     this.#builder.logger
       .log('Adding elements:', elements, { parent, position });
 
     elements = elements.map(e => this.sanitize(e, opts));
+
+    this.#insert(parent, elements, { position, index });
+
+    this.commit();
+    this.emit('content.update', this.#content);
+
+    return elements;
+  }
+
+  /**
+   * Inserts elements at a specific index of the parent if `index` is a valid
+   * integer, or at the start/end of the parent depending on `position`.
+   */
+  #insert (
+    parent: ElementObject[],
+    elements: ElementObject[],
+    { position, index }: { position?: 'before' | 'after'; index?: number }
+  ) {
+    if (Number.isInteger(index)) {
+      parent.splice(Math.max(0, Math.min(index, parent.length)), 0, ...elements);
+
+      return;
+    }
 
     switch (position) {
       case 'before':
@@ -307,11 +340,6 @@ export default class Store extends Emitter implements IStore {
         parent.push(...elements);
         break;
     }
-
-    this.commit();
-    this.emit('content.update', this.#content);
-
-    return elements;
   }
 
   getElement (
@@ -633,6 +661,14 @@ export default class Store extends Emitter implements IStore {
   }
 
   commit () {
+    // History is disabled (e.g. handled by a collaboration tool)
+    if (this.#builder.options.history === false) {
+      this.#history = [];
+      this.#historyIndex = 0;
+
+      return;
+    }
+
     if (this.#historyIndex > 0) {
       this.#history = this.#history.slice(this.#historyIndex);
     }

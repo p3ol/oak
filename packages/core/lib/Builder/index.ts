@@ -222,7 +222,10 @@ export default class Builder extends Emitter {
     return this.#store.get();
   }
 
-  setContent (content: ElementObject[], options: { emit?: boolean }) {
+  setContent (content: ElementObject[], options: {
+    emit?: boolean;
+    commit?: boolean;
+  } = {}) {
     this.#store.set(content, options);
   }
 
@@ -238,6 +241,7 @@ export default class Builder extends Emitter {
   addElement (element: ElementObject, options?: {
     parent?: ElementObject[],
     position?: 'before' | 'after',
+    index?: number,
     component?: ComponentObject,
     [_: string]: any
   }) {
@@ -247,6 +251,7 @@ export default class Builder extends Emitter {
   addElements (elements: ElementObject[], options?:{
     parent?: ElementObject[],
     position?: 'before' | 'after',
+    index?: number,
     component?: ComponentObject,
     [_: string]: any
   }) {
