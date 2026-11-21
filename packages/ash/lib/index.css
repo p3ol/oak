@@ -402,7 +402,12 @@
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
 
-  .oak-ash-page * {
+  /*
+   * Junipero components rendered by the page (e.g. form fields) keep their
+   * own styles (the canvas itself is a junipero component: only the ones
+   * inside the page are excluded)
+   */
+  .oak-ash-page :where(*:not(.oak-ash-page .junipero, .oak-ash-page .junipero *)) {
     font-size: revert;
     line-height: revert;
     color: revert;
