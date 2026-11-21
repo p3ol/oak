@@ -28,6 +28,7 @@ import {
   parseDragData,
 } from '../dnd';
 import { useBuilder, useEditor } from '../hooks';
+import { getSelectedNodes } from '../selection';
 import ChevronIcon from '../Icon/ChevronIcon';
 import EyeOffIcon from '../Icon/EyeOffIcon';
 import {
@@ -58,7 +59,7 @@ const stripHTML = (html: unknown) =>
 
 const useLayerDrop = (getTarget: (after: boolean) => DropTarget | null) => {
   const { builder } = useBuilder();
-  const { tree, dragSource, select, setDragSource } = useEditor();
+  const { tree, dragSource, select, selectMany, setDragSource } = useEditor();
   const [position, setPosition] = useState<'before' | 'after' | null>(null);
 
   const onDragOver = (_: DragEvent, direction: 'before' | 'after') => {
@@ -81,7 +82,12 @@ const useLayerDrop = (getTarget: (after: boolean) => DropTarget | null) => {
     if (source && target) {
       const element = commitDrop(builder, tree, source, target);
 
-      if (element?.id !== undefined) {
+      // Moved elements stay selected
+      if (source.type === 'element' && (source.ids?.length || 0) > 1) {
+        if (element) {
+          selectMany(source.ids);
+        }
+      } else if (element?.id !== undefined) {
         select(String(element.id));
       }
     }
@@ -198,7 +204,9 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
   const rowRef = useRef<HTMLDivElement>(null);
   const { builder } = useBuilder();
   const {
+    tree,
     selectedId,
+    selectedIds,
     hoveredId,
     collaborators,
     select,
@@ -214,7 +222,7 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
   const component = builder.getComponent(node.element.type) as ComponentObject;
   const hasChildren = node.containers.length > 0;
   const isCollapsed = collapsed.has(node.id);
-  const selected = selectedId === node.id;
+  const selected = selectedIds.includes(node.id);
   const draggable = canDrag(builder, node.element);
   const preview = stripHTML(node.element.content);
 
@@ -225,11 +233,32 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
     index: node.index + (after ? 1 : 0),
   }));
 
+  // The last selected element is scrolled into view
+  const isPrimary = selectedId === node.id;
+
   useEffect(() => {
-    if (selected) {
+    if (isPrimary) {
       rowRef.current?.scrollIntoView?.({ block: 'nearest' });
     }
-  }, [selected]);
+  }, [isPrimary]);
+
+  // Dragging one of several selected elements moves all of them
+  const getDragSource = (): DragSource => {
+    const ids = selected && selectedIds.length > 1
+      ? getSelectedNodes(tree, selectedIds)
+        .filter(n => canDrag(builder, n.element))
+        .map(n => n.id)
+      : [];
+
+    return ids.length > 1
+      ? { type: 'element', id: node.id, ids }
+      : { type: 'element', id: node.id };
+  };
+
+  const onClick = (e: MouseEvent) => {
+    // Shift/Cmd/Ctrl + click adds to (or removes from) the selection
+    select(node.id, { toggle: e.shiftKey || e.metaKey || e.ctrlKey });
+  };
 
   const onToggle_ = (e: MouseEvent) => {
     e.stopPropagation();
@@ -249,8 +278,8 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
       >
         <Draggable
           disabled={!draggable}
-          data={{ [DRAG_DATA_KEY]: { type: 'element', id: node.id } }}
-          onDragStart={() => setDragSource({ type: 'element', id: node.id })}
+          data={{ [DRAG_DATA_KEY]: getDragSource() }}
+          onDragStart={() => setDragSource(getDragSource())}
           onDragEnd={() => setDragSource(null)}
         >
           <div
@@ -271,7 +300,7 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
               'oak:[&.dragged]:opacity-40',
             )}
             style={{ paddingLeft: depth * INDENT + 4 }}
-            onClick={() => select(node.id)}
+            onClick={onClick}
             onMouseEnter={() => hover(node.id)}
             onMouseLeave={() => hover(null)}
           >
@@ -302,7 +331,9 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
             </Icon>
             <span
               className={classNames(
-                'oak:truncate oak:flex-none oak:max-w-full',
+                // Its full width when possible (the preview is truncated
+                // first), truncated otherwise
+                'oak:truncate oak:flex-initial oak:min-w-0',
                 { 'oak:opacity-50': hidden },
               )}
             >
@@ -314,6 +345,7 @@ const Layer = ({ node, depth, collapsed, onToggle }: LayerProps) => {
               <span
                 className={classNames(
                   'oak:truncate oak:text-ash-text-muted oak:min-w-0',
+                  'oak:flex-1',
                   { 'oak:opacity-50': hidden },
                 )}
               >

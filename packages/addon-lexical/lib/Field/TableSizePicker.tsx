@@ -53,7 +53,7 @@ const TableSizePicker = ({ max = 6, onSelect }: TableSizePickerProps) => {
   };
 
   const label = (rows: number, columns: number) => t(
-    'addons.lexical.fields.editor.table.size', '{rows} × {columns}'
+    'addons.lexical.fields.editor.tables.size', '{rows} × {columns}'
   ).replace('{rows}', String(rows)).replace('{columns}', String(columns));
 
   return (

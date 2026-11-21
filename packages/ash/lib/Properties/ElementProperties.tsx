@@ -23,7 +23,7 @@ export declare interface ElementPropertiesProps {
   element: ElementObject;
 }
 
-const ActionButton = ({
+export const ActionButton = ({
   icon,
   title,
   onClick,

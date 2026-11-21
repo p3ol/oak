@@ -1,4 +1,4 @@
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 
 import { baseAddon } from '../addons';
 import type { PreviewSettingObject, PreviewValue } from '../types';
@@ -442,6 +442,332 @@ describe('<Builder />', () => {
     expect(getByText('Back (saved)')).toBeTruthy();
   });
 
+  it('should display custom content on empty pages', () => {
+    const onClick = vi.fn();
+    const { getByText, queryByText, rerender } = render(
+      <Builder
+        addons={[baseAddon()]}
+        value={[]}
+        emptyPageContent={(
+          <button type="button" onClick={onClick}>Use a template</button>
+        )}
+      />
+    );
+
+    fireEvent.click(getByText('Use a template'));
+    expect(onClick).toHaveBeenCalled();
+    expect(getByText('Drop components here, or pick one in the Insert panel'))
+      .toBeTruthy();
+
+    // Only on empty pages
+    rerender(
+      <Builder
+        addons={[baseAddon()]}
+        value={[{ id: 'title', type: 'title', content: 'Hello' }]}
+        emptyPageContent={<button type="button">Use a template</button>}
+      />
+    );
+    expect(queryByText('Use a template')).toBeNull();
+  });
+
+  it('should update the previewed state when interacting with the canvas', () => {
+    // A tab: elements are displayed depending on its value, clickables
+    // change it
+    const tabSetting: PreviewSettingObject = {
+      type: 'text',
+      key: 'tab',
+      default: 'first',
+      isElementDisplayed: (element, value) => (
+        !element.settings?.tab || element.settings.tab === value
+      ),
+      onElementEvent: (element, value) => (
+        element.action === 'change-field' && element.fieldValue !== value
+          ? element.fieldValue
+          : undefined
+      ),
+    };
+    const { container } = render(
+      <Builder
+        addons={[baseAddon()]}
+        previewSettings={[tabSetting]}
+        defaultValue={[
+          { id: 'switch', type: 'clickable', action: 'change-field',
+            fieldValue: 'second', content: [
+              { id: 'label', type: 'text', content: 'Second tab' },
+            ] },
+          { id: 'first', type: 'text', content: 'First content',
+            settings: { tab: 'first' } },
+          { id: 'second', type: 'text', content: 'Second content',
+            settings: { tab: 'second' } },
+          { id: 'link', type: 'clickable', action: 'link', url: '/',
+            content: [{ id: 'link-label', type: 'text', content: 'Link' }] },
+        ]}
+      />
+    );
+    const page = container.querySelector('.oak-ash-page');
+    const displayed = (id: string) => (
+      !!page.querySelector(`[data-oak-id="${id}"]`)
+    );
+
+    expect(displayed('first')).toBe(true);
+    expect(displayed('second')).toBe(false);
+
+    fireEvent.click(page.querySelector('[data-oak-id="switch"]'));
+    expect(displayed('first')).toBe(false);
+    expect(displayed('second')).toBe(true);
+
+    // Links are never followed in the canvas
+    const click = new MouseEvent('click', { bubbles: true, cancelable: true });
+    page.querySelector('[data-oak-id="link"]').dispatchEvent(click);
+    expect(click.defaultPrevented).toBe(true);
+    expect(displayed('second')).toBe(true);
+  });
+
+  describe('multiple selection', () => {
+    // The builder mutates its content (other tests delete elements)
+    const items = () => [
+      { id: 'title', type: 'title', content: 'Hello' },
+      { id: 'text', type: 'text', content: 'World' },
+      { id: 'button', type: 'button', content: 'Click me' },
+    ];
+
+    const pressKey = (init: KeyboardEventInit) => act(() => {
+      globalThis.dispatchEvent(new KeyboardEvent('keydown', init));
+    });
+
+    it('should select several elements from the layers', () => {
+      // Laid out (jsdom has no layout)
+      const offsetParent = vi.spyOn(
+        HTMLElement.prototype, 'offsetParent', 'get'
+      ).mockReturnValue(document.body);
+      const onSelectionChange = vi.fn();
+      const { container, getAllByRole, getByTestId, queryByTestId } = render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={items()}
+          onSelectionChange={onSelectionChange}
+        />
+      );
+      const layers = () => getAllByRole('treeitem');
+
+      fireEvent.click(layers()[0]);
+      fireEvent.click(layers()[2], { shiftKey: true });
+
+      expect(layers().map(l => l.getAttribute('aria-selected')))
+        .toEqual(['true', 'false', 'true']);
+      expect(getByTestId('SelectionCount').textContent)
+        .toBe('2 elements selected');
+      // Every selected element is outlined
+      expect(container.querySelectorAll('[data-oak-selected-outline]'))
+        .toHaveLength(2);
+      expect(onSelectionChange).toHaveBeenLastCalledWith(
+        'button', expect.objectContaining({ type: 'button' }), {
+          ids: ['title', 'button'],
+          elements: [
+            expect.objectContaining({ type: 'title' }),
+            expect.objectContaining({ type: 'button' }),
+          ],
+        }
+      );
+
+      // Toggled off
+      fireEvent.click(layers()[0], { metaKey: true });
+      expect(queryByTestId('SelectionCount')).toBeNull();
+      expect(layers().map(l => l.getAttribute('aria-selected')))
+        .toEqual(['false', 'false', 'true']);
+
+      // A simple click only selects this element
+      fireEvent.click(layers()[1], { shiftKey: true });
+      fireEvent.click(layers()[0]);
+      expect(layers().map(l => l.getAttribute('aria-selected')))
+        .toEqual(['true', 'false', 'false']);
+
+      offsetParent.mockRestore();
+    });
+
+    it('should select several elements from the canvas', () => {
+      const { container, getByTestId } = render(
+        <Builder addons={[baseAddon()]} defaultValue={items()} />
+      );
+
+      const click = (id: string, init: MouseEventInit = {}) => {
+        fireEvent.mouseDown(
+          container.querySelector(`.oak-ash-page [data-oak-id="${id}"]`),
+          { button: 0, ...init },
+        );
+        fireEvent.mouseUp(window);
+      };
+
+      click('title');
+      click('text', { shiftKey: true });
+      expect(getByTestId('SelectionCount').textContent)
+        .toBe('2 elements selected');
+    });
+
+    it('should select several elements with a selection box', async () => {
+      // Laid out (jsdom has no layout): elements are stacked, 40px high
+      const offsetParent = vi.spyOn(
+        HTMLElement.prototype, 'offsetParent', 'get'
+      ).mockReturnValue(document.body);
+      const ids = ['title', 'text', 'button'];
+      const rect = vi.spyOn(Element.prototype, 'getBoundingClientRect')
+        .mockImplementation(function (this: Element) {
+          const i = ids.indexOf(this.getAttribute('data-oak-id'));
+          const top = i * 50;
+
+          return (i < 0
+            ? { left: 0, top: 0, right: 0, bottom: 0, width: 0, height: 0 }
+            : {
+              left: 0, top, right: 300, bottom: top + 40,
+              width: 300, height: 40,
+            }) as DOMRect;
+        });
+      const { container, getByTestId, queryByTestId } = render(
+        <Builder addons={[baseAddon()]} defaultValue={items()} />
+      );
+      const canvas = container.querySelector('.oak-ash-canvas');
+
+      // From the empty canvas, across the first two elements
+      fireEvent.mouseDown(canvas, { button: 0, clientX: -20, clientY: -20 });
+      fireEvent.mouseMove(window, { clientX: 100, clientY: 60 });
+
+      expect(container.querySelector('[data-oak-marquee]')).toBeTruthy();
+      await waitFor(() => {
+        expect(getByTestId('SelectionCount').textContent)
+          .toBe('2 elements selected');
+      });
+
+      fireEvent.mouseUp(window);
+      expect(container.querySelector('[data-oak-marquee]')).toBeNull();
+      expect(container.querySelectorAll('[data-oak-selected-outline]'))
+        .toHaveLength(2);
+
+      // Holding shift adds to the current selection
+      fireEvent.mouseDown(canvas, {
+        button: 0, clientX: -20, clientY: 130, shiftKey: true,
+      });
+      fireEvent.mouseMove(window, { clientX: 100, clientY: 150 });
+      await waitFor(() => {
+        expect(getByTestId('SelectionCount').textContent)
+          .toBe('3 elements selected');
+      });
+      fireEvent.mouseUp(window);
+
+      // A simple click on the empty canvas clears the selection
+      fireEvent.mouseDown(canvas, { button: 0, clientX: -20, clientY: -20 });
+      fireEvent.mouseUp(window);
+      expect(queryByTestId('SelectionCount')).toBeNull();
+      expect(container.querySelectorAll('[data-oak-selected-outline]'))
+        .toHaveLength(0);
+
+      rect.mockRestore();
+      offsetParent.mockRestore();
+    });
+
+    it('should remove & duplicate selected elements at once', () => {
+      const onChange = vi.fn();
+      const { getAllByRole, getByTestId } = render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={items()}
+          onChange={onChange}
+        />
+      );
+      const types = () => onChange.mock.lastCall[0].map(
+        (e: { type: string }) => e.type
+      );
+
+      fireEvent.click(getAllByRole('treeitem')[0]);
+      fireEvent.click(getAllByRole('treeitem')[2], { shiftKey: true });
+
+      pressKey({ key: 'd', metaKey: true });
+      expect(types()).toEqual(['title', 'title', 'text', 'button', 'button']);
+      // Duplicates are selected
+      expect(getByTestId('SelectionCount').textContent)
+        .toBe('2 elements selected');
+
+      pressKey({ key: 'Backspace' });
+      expect(types()).toEqual(['title', 'text', 'button']);
+
+      // Undone at once
+      pressKey({ key: 'z', metaKey: true });
+      expect(types()).toEqual(['title', 'title', 'text', 'button', 'button']);
+    });
+
+    it('should select every element with mod + a', () => {
+      const { container, getByTestId, queryByTestId } = render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={[
+            { id: 'row', type: 'row', cols: [
+              { id: 'col', type: 'col', content: [
+                { id: 'nested', type: 'text', content: 'Nested' },
+              ] },
+            ] },
+            ...items(),
+          ]}
+        />
+      );
+
+      pressKey({ key: 'a', code: 'KeyA', ctrlKey: true, cancelable: true });
+      // Top level elements (their children are included)
+      expect(getByTestId('SelectionCount').textContent)
+        .toBe('4 elements selected');
+
+      // Typing in a field selects its text instead
+      fireEvent.click(container.querySelector('.oak-ash-canvas'));
+      pressKey({ key: 'Escape' });
+      const input = document.createElement('input');
+      document.body.appendChild(input);
+      input.focus();
+      act(() => {
+        input.dispatchEvent(new KeyboardEvent('keydown', {
+          key: 'a', code: 'KeyA', metaKey: true, bubbles: true,
+        }));
+      });
+      expect(queryByTestId('SelectionCount')).toBeNull();
+      input.remove();
+    });
+
+    it('should copy & cut selected elements', () => {
+      const onChange = vi.fn();
+      const { getAllByRole } = render(
+        <Builder
+          addons={[baseAddon()]}
+          defaultValue={items()}
+          onChange={onChange}
+        />
+      );
+      let copied = '';
+      const dispatch = (type: string) => act(() => {
+        const event = new Event(type, { bubbles: true, cancelable: true });
+        Object.assign(event, {
+          clipboardData: {
+            setData: (_: string, value: string) => {
+              copied = value;
+            },
+            getData: () => copied,
+          },
+        });
+        document.dispatchEvent(event);
+      });
+
+      fireEvent.click(getAllByRole('treeitem')[0]);
+      fireEvent.click(getAllByRole('treeitem')[1], { shiftKey: true });
+
+      dispatch('cut');
+      expect(onChange.mock.lastCall[0].map((e: { type: string }) => e.type))
+        .toEqual(['button']);
+      expect(copied).toContain('Hello');
+      expect(copied).toContain('World');
+
+      // Nothing selected anymore: pasted at the end of the page
+      dispatch('paste');
+      expect(onChange.mock.lastCall[0].map((e: { type: string }) => e.type))
+        .toEqual(['button', 'title', 'text']);
+    });
+  });
+
   describe('preview settings', () => {
     // The builder mutates its content (other tests delete elements)
     const formContent = () => [
@@ -763,7 +1089,10 @@ describe('<Builder />', () => {
 
       fireEvent.click(getAllByRole('treeitem')[2]);
       expect(onSelectionChange).toHaveBeenLastCalledWith(
-        'title', expect.objectContaining({ type: 'title' })
+        'title', expect.objectContaining({ type: 'title' }), {
+          ids: ['title'],
+          elements: [expect.objectContaining({ type: 'title' })],
+        }
       );
 
       act(() => {
@@ -772,7 +1101,10 @@ describe('<Builder />', () => {
         );
       });
       expect(onSelectionChange).toHaveBeenLastCalledWith(
-        'col', expect.objectContaining({ type: 'col' })
+        'col', expect.objectContaining({ type: 'col' }), {
+          ids: ['col'],
+          elements: [expect.objectContaining({ type: 'col' })],
+        }
       );
     });
 

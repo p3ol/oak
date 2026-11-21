@@ -8,6 +8,13 @@ import {
   pasteElements,
   serializeElements,
 } from './clipboard';
+import {
+  canElement,
+  duplicateElements,
+  getSelectedNodes,
+  getSelectionAfterRemoval,
+  removeElements,
+} from './selection';
 
 /**
  * Only handle shortcuts when the builder (or nothing in particular) is
@@ -63,10 +70,12 @@ const hasTextSelection = () =>
 /**
  * Figma-like keyboard shortcuts:
  * - V / H: move & hand tools, hold space to pan temporarily
- * - Backspace / Delete: remove the selected element
- * - Cmd/Ctrl + D: duplicate the selected element
+ * - Backspace / Delete: remove the selected elements
+ * - Cmd/Ctrl + A: select every element (top level elements)
+ * - Cmd/Ctrl + D: duplicate the selected elements
  * - Cmd/Ctrl + Z / Shift + Cmd/Ctrl + Z: undo / redo
- * - Escape: select the parent element (or clear selection)
+ * - Escape: select the parent element (or clear selection), or only keep the
+ *   last selected element when several are selected
  * - Cmd/Ctrl + C / X / V: copy, cut & paste elements
  * - Cmd/Ctrl + S: save (if `onSave` is set), even while typing in a field
  *
@@ -108,26 +117,27 @@ export const useShortcuts = ({
         return;
       }
 
-      const { tree, selectedId, select } = latest.current;
-      const node = selectedId ? tree.nodes.get(selectedId) : null;
+      const { tree, selectedIds, selectMany } = latest.current;
+      const nodes = getSelectedNodes(tree, selectedIds)
+        .filter(node => canElement(builder, node.element, 'copyable'));
 
-      if (!node) {
-        return;
-      }
-
-      const component = builder.getComponent(node.element.type);
-      const override: any = builder.getOverride('component', node.element.type);
-
-      if ((override?.copyable ?? component?.copyable) === false) {
+      if (!nodes.length) {
         return;
       }
 
       e.preventDefault();
-      e.clipboardData?.setData('text/plain', serializeElements([node.element]));
+      e.clipboardData?.setData(
+        'text/plain',
+        serializeElements(nodes.map(node => node.element)),
+      );
 
-      if (cut && (override?.removable ?? component?.removable) !== false) {
-        select(node.parent ? String(node.parent.id) : null);
-        builder.removeElement(node.element.id, { parent: node.container });
+      if (cut) {
+        const removed = removeElements(builder, nodes);
+
+        if (removed.length) {
+          const next = getSelectionAfterRemoval(removed);
+          selectMany(next ? [next] : []);
+        }
       }
     };
 
@@ -148,11 +158,13 @@ export const useShortcuts = ({
 
       e.preventDefault();
 
-      const { tree, selectedId, select } = latest.current;
+      const { tree, selectedId, selectMany } = latest.current;
       const added = pasteElements(builder, tree, selectedId, elements);
 
-      if (added?.[0]?.id !== undefined) {
-        select(String(added[0].id));
+      if (added?.length) {
+        selectMany(added
+          .filter(element => element?.id !== undefined)
+          .map(element => String(element.id)));
       }
     };
 
@@ -177,9 +189,17 @@ export const useShortcuts = ({
         return;
       }
 
-      const { tree, selectedId, select, setTool } = latest.current;
+      const {
+        tree,
+        selectedId,
+        selectedIds,
+        select,
+        selectMany,
+        setTool,
+      } = latest.current;
       const mod = e.metaKey || e.ctrlKey;
       const node = selectedId ? tree.nodes.get(selectedId) : null;
+      const nodes = getSelectedNodes(tree, selectedIds);
 
       if (e.code === 'Space' && !mod) {
         e.preventDefault();
@@ -210,19 +230,21 @@ export const useShortcuts = ({
         return;
       }
 
-      if (mod && e.key.toLowerCase() === 'd' && node) {
+      // Every element of the page (top level elements: actions on them apply
+      // to their children)
+      if (mod && !e.altKey && (e.key.toLowerCase() === 'a' || e.code === 'KeyA')) {
         e.preventDefault();
-        const component = builder.getComponent(node.element.type);
-        const override: any = builder.getOverride('component', node.element.type);
+        selectMany(tree.root.nodes.map(n => n.id));
 
-        if (override?.duplicable ?? component?.duplicable) {
-          const duplicated = builder.duplicateElement(node.element, {
-            parent: node.container,
-          });
+        return;
+      }
 
-          if (duplicated) {
-            select(String(duplicated.id));
-          }
+      if (mod && e.key.toLowerCase() === 'd' && nodes.length) {
+        e.preventDefault();
+        const duplicates = duplicateElements(builder, nodes);
+
+        if (duplicates.length) {
+          selectMany(duplicates.map(element => String(element.id)));
         }
 
         return;
@@ -242,22 +264,26 @@ export const useShortcuts = ({
           setTool('pan');
           break;
         case 'Escape':
-          select(node?.parent ? String(node.parent.id) : null);
+          // Several elements: only keep the last one selected
+          if (selectedIds.length > 1) {
+            select(selectedId);
+          } else {
+            select(node?.parent ? String(node.parent.id) : null);
+          }
+
           break;
         case 'Backspace':
         case 'Delete': {
-          if (!node) {
+          if (!nodes.length) {
             break;
           }
 
-          const component = builder.getComponent(node.element.type);
-          const override: any = builder
-            .getOverride('component', node.element.type);
+          const removed = removeElements(builder, nodes);
 
-          if ((override?.removable ?? component?.removable) !== false) {
+          if (removed.length) {
             e.preventDefault();
-            select(node.parent ? String(node.parent.id) : null);
-            builder.removeElement(node.element.id, { parent: node.container });
+            const next = getSelectionAfterRemoval(removed);
+            selectMany(next ? [next] : []);
           }
 
           break;

@@ -16,7 +16,6 @@ import type {
   BuilderOptions,
   ComponentSettingsFieldObject,
   ElementObject,
-  SettingOverride,
 } from '@oakjs/core';
 import { classNames } from '@junipero/react';
 
@@ -47,7 +46,12 @@ import { useRootBuilder } from '../hooks';
 import { useInteractionTracking, useShortcuts } from '../useShortcuts';
 import { buildTree } from '../tree';
 import { defaultPreviewModes } from '../Canvas/previewModes';
-import { PAGE_COMPONENT } from '../Properties/PageProperties';
+import {
+  getPreviewEventValue,
+  getPreviewFilters,
+  getPreviewSettings,
+  isDisplayedWith,
+} from '../previewSettings';
 import Canvas from '../Canvas';
 import Layers from '../Layers';
 import Insert from '../Insert';
@@ -62,7 +66,8 @@ export declare interface BuilderRef {
   builder: CoreBuilder;
   content: ElementObject[];
   innerRef: RefObject<HTMLDivElement>;
-  select: (id: string | null) => void;
+  /** Selects an element, several elements, or none */
+  select: (id: string | string[] | null) => void;
 }
 
 export declare interface BuilderProps
@@ -101,6 +106,11 @@ export declare interface BuilderProps
    * css or fonts from the page settings
    */
   renderPageHead?(value: PageValue): ReactNode;
+  /**
+   * Displayed in the canvas when the page is empty, below the drop hint (e.g.
+   * a button to start from a template)
+   */
+  emptyPageContent?: ReactNode;
   /**
    * Ways the content can be previewed in context (full page, inside an
    * article, as a modal, as a bottom drawer...)
@@ -154,8 +164,15 @@ export declare interface BuilderProps
    * The builder's own history is disabled when given.
    */
   history?: HistoryController;
-  /** Called when the selected element changes */
-  onSelectionChange?(id: string | null, element: ElementObject | null): void;
+  /**
+   * Called when the selection changes, with the selected element (the last
+   * one selected when several are) & every selected element
+   */
+  onSelectionChange?(
+    id: string | null,
+    element: ElementObject | null,
+    selection: { ids: string[]; elements: ElementObject[] },
+  ): void;
   /**
    * Other users editing the same content: their selections are displayed in
    * the canvas & the layers panel
@@ -200,6 +217,7 @@ const Builder = ({
   defaultPageValue,
   onPageChange,
   renderPageHead,
+  emptyPageContent,
   previewModes: previewModesProp,
   defaultPreviewMode,
   previewSettings: previewSettingsProp,
@@ -265,7 +283,8 @@ const Builder = ({
     }
   }, [builder]);
 
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const selectedId = selectedIds.at(-1) ?? null;
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [tool, setTool] = useState<Tool>('move');
   const [temporaryPan, setTemporaryPan] = useState(false);
@@ -338,63 +357,37 @@ const Builder = ({
     defaultCanvasTheme || 'light'
   );
 
-  const previewSettings = useMemo<PreviewSettingObject[]>(() => [
-    ...(previewSettingsProp || []),
-    ...((addons || []) as AshAddonObject[])
-      .flatMap(addon => addon?.previewSettings || []),
-  ], [previewSettingsProp, addons]);
+  const previewSettings = useMemo<PreviewSettingObject[]>(() => (
+    getPreviewSettings(addons as AshAddonObject[], previewSettingsProp)
+  ), [previewSettingsProp, addons]);
 
   // Never saved: only used to preview the content
   const [previewValue, setPreviewValue] = useState<PreviewValue>({});
 
-  // Settings hiding elements, if displayed (same conditions as in the page
-  // properties), with their value
-  const previewFilters = useMemo(() => {
-    const element = { ...previewValue, type: 'page' };
-    const filters: { setting: PreviewSettingObject; value: any }[] = [];
-
-    const walk = (list: PreviewSettingObject[]) => list.forEach(setting => {
-      const override = builder.getOverride(
-        'setting', 'page', { setting }
-      ) as SettingOverride;
-      const condition = override?.condition || setting.condition;
-
-      if (condition && !condition(element, {
-        component: PAGE_COMPONENT,
-        builder,
-      })) {
-        return;
-      }
-
-      if (Array.isArray(setting.fields)) {
-        walk(setting.fields);
-      }
-
-      if (setting.isElementDisplayed && setting.key) {
-        const def = typeof setting.default === 'function'
-          ? setting.default(element)
-          : setting.default;
-
-        filters.push({
-          setting,
-          value: builder.getElementSettings(element, setting.key, def),
-        });
-      }
-    });
-
-    walk(previewSettings);
-
-    return filters;
+  const previewFilters = useMemo(() => (
+    getPreviewFilters(builder, previewSettings, previewValue)
   // Conditions can depend on the content: mutated in place, version changes
   // on every update
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [previewSettings, previewValue, builder, content, version]);
+  ), [previewSettings, previewValue, builder, content, version]);
 
   const isElementDisplayed = useCallback((element: ElementObject) => (
-    previewFilters.every(({ setting, value }) => (
-      setting.isElementDisplayed(element, value, previewValue)
-    ))
+    isDisplayedWith(previewFilters, element, previewValue)
   ), [previewFilters, previewValue]);
+
+  // Interactions with the canvas content update the previewed state
+  const onPreviewEvent = useCallback((
+    eventName: string | undefined,
+    element: ElementObject,
+  ) => {
+    const next = getPreviewEventValue(
+      builder, previewFilters, previewValue, element, eventName,
+    );
+
+    if (next) {
+      setPreviewValue(next);
+    }
+  }, [builder, previewFilters, previewValue]);
 
   const tree = useMemo(() => (
     buildTree(builder, content)
@@ -410,10 +403,16 @@ const Builder = ({
     onSelectionChangeRef.current?.(
       selectedId,
       selectedId ? tree.nodes.get(selectedId)?.element ?? null : null,
+      {
+        ids: selectedIds,
+        elements: selectedIds
+          .map(id => tree.nodes.get(id)?.element)
+          .filter(Boolean),
+      },
     );
   // Only when the selection changes, not when the content does
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedId]);
+  }, [selectedIds]);
 
   const collaboratorsList = useMemo(() => collaborators || [], [collaborators]);
 
@@ -426,14 +425,14 @@ const Builder = ({
 
   // Clear selection/hover of elements that don't exist anymore (undo, ...)
   useEffect(() => {
-    if (selectedId && !tree.nodes.has(selectedId)) {
-      setSelectedId(null);
+    if (selectedIds.some(id => !tree.nodes.has(id))) {
+      setSelectedIds(ids => ids.filter(id => tree.nodes.has(id)));
     }
 
     if (hoveredId && !tree.nodes.has(hoveredId)) {
       setHoveredId(null);
     }
-  }, [tree, selectedId, hoveredId]);
+  }, [tree, selectedIds, hoveredId]);
 
   useImperativeHandle(ref, () => ({
     isOak: true,
@@ -441,7 +440,9 @@ const Builder = ({
     builder,
     content,
     innerRef: rootRef,
-    select: setSelectedId,
+    select: (id: string | string[] | null) => setSelectedIds(
+      Array.isArray(id) ? id : id ? [id] : []
+    ),
   }));
 
   const builderContext = useMemo<BuilderContextValue>(() => ({
@@ -460,6 +461,7 @@ const Builder = ({
     pageDescription,
     shortcutsEnabled,
     renderPageHead,
+    emptyPageContent,
     onImageUpload,
     ...hasOnSave && { save },
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -468,10 +470,31 @@ const Builder = ({
     builder, content, version, addons, canUndo, canRedo, polyfills,
     history?.canUndo, history?.canRedo, undo, redo,
     pageClassName, pageTitle, pageDescription, shortcutsEnabled,
-    renderPageHead, onImageUpload,
+    renderPageHead, emptyPageContent, onImageUpload,
   ]);
 
-  const select = useCallback((id: string | null) => setSelectedId(id), []);
+  const select = useCallback((
+    id: string | null,
+    { toggle = false }: { toggle?: boolean } = {},
+  ) => {
+    setSelectedIds(ids => {
+      if (!id) {
+        return toggle ? ids : (ids.length ? [] : ids);
+      }
+
+      if (toggle) {
+        return ids.includes(id)
+          ? ids.filter(i => i !== id)
+          : [...ids, id];
+      }
+
+      return ids.length === 1 && ids[0] === id ? ids : [id];
+    });
+  }, []);
+
+  const selectMany = useCallback((ids: string[]) => {
+    setSelectedIds(Array.from(new Set(ids)));
+  }, []);
   const hover = useCallback((id: string | null) => {
     setHoveredId(h => h === id ? h : id);
   }, []);
@@ -481,6 +504,7 @@ const Builder = ({
   const editorContext = useMemo<EditorContextValue>(() => ({
     tree,
     selectedId,
+    selectedIds,
     hoveredId,
     tool,
     activeTool,
@@ -494,6 +518,7 @@ const Builder = ({
     previewValue,
     setPreviewValue,
     isElementDisplayed,
+    onPreviewEvent,
     pageValue,
     setPageValue,
     canvasTheme,
@@ -501,6 +526,7 @@ const Builder = ({
     dropIndicator,
     frameRef,
     select,
+    selectMany,
     hover,
     setTool,
     setPageWidth,
@@ -510,9 +536,10 @@ const Builder = ({
     setDragSource,
     setDropIndicator,
   }), [
-    tree, selectedId, hoveredId, tool, activeTool, pageWidth, previewModes,
+    tree, selectedId, selectedIds, hoveredId, tool, activeTool, pageWidth,
+    previewModes, selectMany,
     previewMode, collaboratorsList, setCursor, pageSettings, pageValue,
-    previewSettings, previewValue, isElementDisplayed,
+    previewSettings, previewValue, isElementDisplayed, onPreviewEvent,
     setPageValue,
     canvasTheme,
     registerPendingChanges,

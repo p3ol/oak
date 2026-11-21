@@ -103,6 +103,18 @@ export declare type PreviewSettingObject = PageSettingObject & {
     value: any,
     previewValue: PreviewValue,
   ): boolean;
+  /**
+   * Called when an element of the canvas emits an event (e.g. a clickable
+   * whose action isn't a link, links are never followed in the canvas), so
+   * that the content can be interacted with like once published (the same
+   * way foldables can be opened). Returns the setting's new value, or
+   * `undefined` to keep it.
+   */
+  onElementEvent?(
+    element: ElementObject,
+    value: any,
+    eventName?: string,
+  ): any;
   fields?: PreviewSettingObject[];
 };
 
@@ -166,7 +178,16 @@ export declare interface DropTarget {
 }
 
 export declare type DragSource =
-  | { type: 'element'; id: string }
+  | {
+    type: 'element';
+    /** Element being dragged */
+    id: string;
+    /**
+     * Elements moved together, when dragging one of several selected
+     * elements (in the order of the content)
+     */
+    ids?: string[];
+  }
   | { type: 'component'; componentId: string };
 
 export declare interface DropIndicator {

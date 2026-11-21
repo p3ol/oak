@@ -46,12 +46,28 @@ export const canDrag = (builder: Builder, element: ElementObject) => {
   return override?.draggable !== false;
 };
 
+/**
+ * Elements moved by a source (several when dragging selected elements)
+ */
+export const getSourceIds = (source: DragSource): string[] =>
+  source.type === 'element'
+    ? (source.ids?.length ? source.ids : [source.id])
+    : [];
+
 export const canDrop = (
   builder: Builder,
   tree: ContentTree,
   source: DragSource,
   target: Pick<DropTarget, 'container' | 'owner'>,
 ): boolean => {
+  // Every moved element must be droppable there
+  if (source.type === 'element' && (source.ids?.length || 0) > 1) {
+    return source.ids.every(id => canDrop(builder, tree, {
+      type: 'element',
+      id,
+    }, target));
+  }
+
   const type = getSourceType(tree, source);
 
   if (!type || !builder.getComponent(type)) {
@@ -132,6 +148,13 @@ export const commitDrop = (
     });
   }
 
+  if ((source.ids?.length || 0) > 1) {
+    // Undone at once
+    return builder.batch(() => moveElements(
+      builder, tree, source.ids, target,
+    ));
+  }
+
   const element = tree.nodes.get(source.id)?.element;
 
   if (!element) {
@@ -157,6 +180,59 @@ export const commitDrop = (
     parent: container,
     position: 'before',
   });
+};
+
+/**
+ * Moves several elements to the given target, keeping their order. Returns
+ * the first moved element.
+ */
+const moveElements = (
+  builder: Builder,
+  tree: ContentTree,
+  ids: string[],
+  target: DropTarget,
+): ElementObject | undefined => {
+  const { container, owner, index } = target;
+  const elements = ids
+    .map(id => tree.nodes.get(id)?.element)
+    .filter(Boolean);
+  const moved = new Set(elements);
+
+  if (!elements.length) {
+    return;
+  }
+
+  // Core moves elements relatively to a sibling: the closest one that is not
+  // moved itself
+  const next = container.slice(index).find(e => e && !moved.has(e));
+  const previous = container.slice(0, index).reverse()
+    .find(e => e && !moved.has(e));
+
+  if (next) {
+    elements.forEach(element => builder.moveElement(element, next, {
+      parent: container,
+      position: 'before',
+    }));
+  } else if (previous) {
+    // Inserted right after the previous sibling: last one first
+    [...elements].reverse().forEach(element => builder.moveElement(
+      element, previous, { parent: container, position: 'after' },
+    ));
+  } else if (container.length && container.every(e => moved.has(e))) {
+    // Already the only elements of the container
+    return elements[0];
+  } else {
+    elements.reduce<ElementObject | null>((after, element) => {
+      builder.moveElement(element, after || owner || {}, {
+        parent: container,
+        position: 'after',
+      });
+
+      return element;
+    }, null);
+  }
+
+  return elements[0];
 };
 
 /**
@@ -418,7 +494,13 @@ export const parseDragData = (data: any): DragSource | null => {
   const source = data?.[DRAG_DATA_KEY];
 
   if (source?.type === 'element' && source.id !== undefined) {
-    return { type: 'element', id: String(source.id) };
+    return {
+      type: 'element',
+      id: String(source.id),
+      ...Array.isArray(source.ids) && source.ids.length > 1 && {
+        ids: source.ids.map(String),
+      },
+    };
   }
 
   if (source?.type === 'component' && source.componentId) {

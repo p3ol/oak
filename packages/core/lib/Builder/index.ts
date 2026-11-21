@@ -313,6 +313,14 @@ export default class Builder extends Emitter {
     return this.#store.setElementSettings(element, key, value);
   }
 
+  /**
+   * Applies several changes as a single one: they are committed into history
+   * once, so that they are undone together
+   */
+  batch<T> (fn: () => T): T {
+    return this.#store.batch(fn);
+  }
+
   undo () {
     this.#store.undo();
   }

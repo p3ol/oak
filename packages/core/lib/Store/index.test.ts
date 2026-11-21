@@ -125,6 +125,51 @@ describe('Store', () => {
       expect(builder.canUndo()).toBe(true);
     });
 
+    it('should record batched changes once', () => {
+      const builder = getBuilder({
+        content: [
+          { type: 'title', content: 'A' },
+          { type: 'title', content: 'B' },
+          { type: 'title', content: 'C' },
+        ],
+      });
+      // Initial state
+      builder.resetHistory();
+
+      const [a, b] = builder.getContent();
+      const result = builder.batch(() => {
+        builder.removeElement(a.id);
+        builder.removeElement(b.id);
+
+        // Nested batches are committed with the outer one
+        builder.batch(() => {
+          builder.addElement({ type: 'text', content: 'D' });
+        });
+
+        return 'done';
+      });
+
+      expect(result).toBe('done');
+      expect(builder.getContent().map(e => e.content)).toEqual(['C', 'D']);
+
+      // Undone together
+      builder.undo();
+      expect(builder.getContent().map(e => e.content))
+        .toEqual(['A', 'B', 'C']);
+      expect(builder.canUndo()).toBe(false);
+
+      builder.redo();
+      expect(builder.getContent().map(e => e.content)).toEqual(['C', 'D']);
+    });
+
+    it('should not commit empty batches', () => {
+      const builder = getBuilder({ content: [{ type: 'title', content: 'A' }] });
+      builder.resetHistory();
+
+      builder.batch((): null => null);
+      expect(builder.canUndo()).toBe(false);
+    });
+
     it('should allow to disable the history', () => {
       const builder = getBuilder({
         content: [{ type: 'title', content: 'A' }],

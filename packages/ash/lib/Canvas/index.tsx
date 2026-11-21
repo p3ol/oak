@@ -5,6 +5,7 @@ import {
   useEffect,
   useLayoutEffect,
   useRef,
+  useState,
 } from 'react';
 import {
   type InfiniteCanvasRef,
@@ -20,8 +21,11 @@ import {
   commitDrop,
   resolveDomDrop,
 } from '../dnd';
+import type { DragSource } from '../types';
+import { getSelectedNodes } from '../selection';
 import { isShortcutScoped } from '../useShortcuts';
 import Text from '../Text';
+import { getMarqueeRect, getMarqueeSelection } from './marquee';
 import Page from './Page';
 import Overlay from './Overlay';
 import Toolbar from './Toolbar';
@@ -32,10 +36,26 @@ const FIT_MARGIN = 48;
 
 export declare interface PointerDrag {
   id: string;
+  /** Shift/Cmd/Ctrl was held: clicking toggles the element's selection */
+  toggle: boolean;
+  /** Moved elements, once the drag started */
+  source?: DragSource;
   startX: number;
   startY: number;
   started: boolean;
   result: DomDropResult | null;
+  frame: number | null;
+}
+
+export declare interface MarqueeDrag {
+  /** Start point, in page coordinates (follows the canvas if it moves) */
+  startX: number;
+  startY: number;
+  /** Shift/Cmd/Ctrl was held: adds to the current selection */
+  toggle: boolean;
+  /** Selection when the drag started */
+  initial: string[];
+  started: boolean;
   frame: number | null;
 }
 
@@ -48,6 +68,14 @@ const getElementId = (frame: HTMLElement, target: EventTarget | null) => {
 const Canvas = () => {
   const canvasRef = useRef<InfiniteCanvasRef>(null);
   const pointerDrag = useRef<PointerDrag | null>(null);
+  const marqueeDrag = useRef<MarqueeDrag | null>(null);
+  // Selection box, relative to the canvas
+  const [marquee, setMarquee] = useState<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  } | null>(null);
   const {
     builder,
     rootRef,
@@ -64,16 +92,18 @@ const Canvas = () => {
     canvasTheme,
     dragSource,
     selectedId,
+    selectedIds,
     pageValue,
     select,
+    selectMany,
     hover,
     setDragSource,
     setDropIndicator,
   } = editor;
 
   // Keep the latest values available to window event listeners
-  const latest = useRef({ tree, dragSource, builder });
-  latest.current = { tree, dragSource, builder };
+  const latest = useRef({ tree, dragSource, builder, selectedIds });
+  latest.current = { tree, dragSource, builder, selectedIds };
 
   const fitWidth = useCallback((duration = 0) => {
     const canvas = canvasRef.current;
@@ -180,8 +210,23 @@ const Canvas = () => {
       }
 
       drag.started = true;
-      select(drag.id);
-      setDragSource({ type: 'element', id: drag.id });
+
+      // Dragging one of several selected elements moves all of them
+      const { selectedIds: ids } = latest.current;
+      const moved = ids.length > 1 && ids.includes(drag.id)
+        ? getSelectedNodes(latest.current.tree, ids)
+          .filter(n => canDrag(latest.current.builder, n.element))
+          .map(n => n.id)
+        : [];
+
+      if (moved.length > 1) {
+        drag.source = { type: 'element', id: drag.id, ids: moved };
+      } else {
+        drag.source = { type: 'element', id: drag.id };
+        select(drag.id);
+      }
+
+      setDragSource(drag.source);
     }
 
     const { clientX, clientY } = e;
@@ -196,7 +241,7 @@ const Canvas = () => {
         latest.current.builder,
         latest.current.tree,
         frame,
-        { type: 'element', id: drag.id },
+        drag.source,
         clientX,
         clientY,
       );
@@ -220,28 +265,159 @@ const Canvas = () => {
     }
 
     if (!drag.started) {
-      select(drag.id);
+      select(drag.id, { toggle: drag.toggle });
 
       return;
     }
 
     if (drag.result) {
-      commitDrop(
+      const moved = commitDrop(
         latest.current.builder,
         latest.current.tree,
-        { type: 'element', id: drag.id },
+        drag.source,
         drag.result.target,
       );
+
+      // Moved elements stay selected
+      if (moved && drag.source.type === 'element' && drag.source.ids) {
+        selectMany(drag.source.ids);
+      }
     }
 
     setDragSource(null);
     setDropIndicator(null);
-  }, [onWindowMouseMove, select, setDragSource, setDropIndicator]);
+  }, [onWindowMouseMove, select, selectMany, setDragSource, setDropIndicator]);
 
   useEffect(() => () => {
     globalThis.removeEventListener('mousemove', onWindowMouseMove);
     globalThis.removeEventListener('mouseup', onWindowMouseUp);
   }, [onWindowMouseMove, onWindowMouseUp]);
+
+  /**
+   * Scale of the page on screen (zoom), and its position: the selection box
+   * start point is stored in page coordinates so that it stays in place if
+   * the canvas moves during the drag (e.g. scrolling)
+   */
+  const getFrameTransform = useCallback(() => {
+    const frame = frameRef.current;
+    const rect = frame?.getBoundingClientRect();
+
+    return {
+      left: rect?.left ?? 0,
+      top: rect?.top ?? 0,
+      scale: rect?.width && frame?.offsetWidth
+        ? rect.width / frame.offsetWidth
+        : 1,
+    };
+  }, [frameRef]);
+
+  const onMarqueeMouseMove = useCallback((e: MouseEvent) => {
+    const drag = marqueeDrag.current;
+    const frame = frameRef.current;
+
+    if (!drag || !frame) {
+      return;
+    }
+
+    const { left, top, scale } = getFrameTransform();
+    const startX = left + drag.startX * scale;
+    const startY = top + drag.startY * scale;
+
+    if (
+      !drag.started &&
+      Math.abs(e.clientX - startX) < DRAG_THRESHOLD &&
+      Math.abs(e.clientY - startY) < DRAG_THRESHOLD
+    ) {
+      return;
+    }
+
+    if (!drag.started) {
+      drag.started = true;
+      hover(null);
+      globalThis.getSelection?.()?.removeAllRanges();
+    }
+
+    const rect = getMarqueeRect(startX, startY, e.clientX, e.clientY);
+    const canvasRect = canvasRef.current?.innerRef.current
+      ?.getBoundingClientRect();
+
+    setMarquee({
+      x: rect.left - (canvasRect?.left ?? 0),
+      y: rect.top - (canvasRect?.top ?? 0),
+      width: rect.right - rect.left,
+      height: rect.bottom - rect.top,
+    });
+
+    if (drag.frame) {
+      cancelAnimationFrame(drag.frame);
+    }
+
+    drag.frame = requestAnimationFrame(() => {
+      drag.frame = null;
+      const ids = getMarqueeSelection(frame, latest.current.tree, rect);
+
+      selectMany(drag.toggle
+        ? [...drag.initial, ...ids.filter(id => !drag.initial.includes(id))]
+        : ids);
+    });
+  }, [frameRef, getFrameTransform, hover, selectMany]);
+
+  const onMarqueeMouseUp = useCallback(() => {
+    const drag = marqueeDrag.current;
+
+    globalThis.removeEventListener('mousemove', onMarqueeMouseMove);
+    globalThis.removeEventListener('mouseup', onMarqueeMouseUp);
+    marqueeDrag.current = null;
+    setMarquee(null);
+
+    if (!drag) {
+      return;
+    }
+
+    if (drag.frame) {
+      cancelAnimationFrame(drag.frame);
+    }
+
+    // A simple click on an empty area clears the selection
+    if (!drag.started && !drag.toggle) {
+      select(null);
+    }
+  }, [onMarqueeMouseMove, select]);
+
+  useEffect(() => () => {
+    globalThis.removeEventListener('mousemove', onMarqueeMouseMove);
+    globalThis.removeEventListener('mouseup', onMarqueeMouseUp);
+  }, [onMarqueeMouseMove, onMarqueeMouseUp]);
+
+  /**
+   * Starts a selection box (mouse down on an empty area of the canvas or of
+   * the page), like on a desktop
+   */
+  const startMarquee = (e: ReactMouseEvent) => {
+    const { left, top, scale } = getFrameTransform();
+
+    // Prevents selecting text while dragging, without keeping the focus on a
+    // field outside of the canvas (shortcuts would be ignored)
+    e.preventDefault();
+
+    if (
+      document.activeElement instanceof HTMLElement &&
+      document.activeElement !== document.body
+    ) {
+      document.activeElement.blur();
+    }
+
+    marqueeDrag.current = {
+      startX: (e.clientX - left) / scale,
+      startY: (e.clientY - top) / scale,
+      toggle: e.shiftKey || e.metaKey || e.ctrlKey,
+      initial: latest.current.selectedIds,
+      started: false,
+      frame: null,
+    };
+    globalThis.addEventListener('mousemove', onMarqueeMouseMove);
+    globalThis.addEventListener('mouseup', onMarqueeMouseUp);
+  };
 
   const onFrameMouseDown = (e: ReactMouseEvent<HTMLDivElement>) => {
     if (activeTool !== 'move' || e.button !== 0) {
@@ -251,7 +427,7 @@ const Canvas = () => {
     const id = getElementId(frameRef.current, e.target);
 
     if (!id) {
-      select(null);
+      startMarquee(e);
 
       return;
     }
@@ -261,6 +437,7 @@ const Canvas = () => {
 
     pointerDrag.current = {
       id,
+      toggle: e.shiftKey || e.metaKey || e.ctrlKey,
       startX: e.clientX,
       startY: e.clientY,
       started: false,
@@ -274,6 +451,7 @@ const Canvas = () => {
   const onFrameMouseMove = (e: ReactMouseEvent<HTMLDivElement>) => {
     if (
       pointerDrag.current?.started ||
+      marqueeDrag.current?.started ||
       activeTool !== 'move' ||
       // Keep the current hover while using overlay controls
       (e.target as Element).closest?.('[data-oak-overlay-control]')
@@ -326,16 +504,17 @@ const Canvas = () => {
   };
 
   // Clicking on the empty canvas (outside of the page & controls) clears the
-  // selection
+  // selection, dragging draws a selection box
   const onCanvasMouseDownCapture = (e: ReactMouseEvent<HTMLDivElement>) => {
     const target = e.target as Element;
 
     if (
       activeTool === 'move' &&
+      e.button === 0 &&
       !frameRef.current?.contains(target) &&
       !target.closest?.('.oak-ash-toolbar, .oak-ash-zoom')
     ) {
-      select(null);
+      startMarquee(e);
     }
   };
 
@@ -388,6 +567,23 @@ const Canvas = () => {
         <>
           <Toolbar />
           <ZoomControls onFitWidth={() => fitWidth(200)} />
+          { marquee && (
+            <div
+              className={classNames(
+                // Above the page (canvas content), below the toolbars
+                'oak-ash-marquee oak:absolute oak:pointer-events-none oak:z-10',
+                'oak:border oak:border-solid oak:border-velvet',
+                'oak:bg-velvet/10 oak:box-border',
+              )}
+              data-oak-marquee="true"
+              style={{
+                left: marquee.x,
+                top: marquee.y,
+                width: marquee.width,
+                height: marquee.height,
+              }}
+            />
+          ) }
         </>
       )}
     >

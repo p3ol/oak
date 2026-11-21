@@ -120,15 +120,28 @@ const Overlay = () => {
     pageWidth,
     tree,
     collaborators,
+    selectedIds,
   } = useEditor();
   const { zoom } = useInfiniteCanvas() || { zoom: 1 };
   const [layoutTick, relayout] = useReducer((x: number) => x + 1, 0);
   const [rects, setRects] = useState<{
     selected: Rect | null;
+    /** Other selected elements, when several are selected */
+    others: { id: string; rect: Rect }[];
     hovered: Rect | null;
     rows: { id: string; rect: Rect; container: TreeContainer }[];
     collaborators: { key: string; rect: Rect; color: string; name?: string }[];
-  }>({ selected: null, hovered: null, rows: [], collaborators: [] });
+  }>({
+    selected: null,
+    others: [],
+    hovered: null,
+    rows: [],
+    collaborators: [],
+  });
+
+  const otherSelectedIds = useMemo(() => (
+    selectedIds.filter(id => id !== selectedId)
+  ), [selectedIds, selectedId]);
 
   // Rows (or any element with structural children) related to the selected
   // or hovered element display buttons to add columns
@@ -162,26 +175,23 @@ const Overlay = () => {
     const observer = new ResizeObserver(() => relayout());
     observer.observe(frame);
 
-    const selected = findElement(frame, selectedId);
-    const hovered = findElement(frame, hoveredId);
-
-    if (selected) {
-      observer.observe(selected);
-    }
-
-    if (hovered) {
-      observer.observe(hovered);
-    }
+    [...selectedIds, hoveredId]
+      .map(id => findElement(frame, id))
+      .filter(Boolean)
+      .forEach(el => observer.observe(el));
 
     return () => observer.disconnect();
-  }, [frameRef, selectedId, hoveredId, content]);
+  }, [frameRef, selectedIds, hoveredId, content]);
 
   useLayoutEffect(() => {
     const frame = frameRef.current;
 
     setRects({
       selected: measure(frame, findElement(frame, selectedId)),
-      hovered: hoveredId !== selectedId
+      others: otherSelectedIds
+        .map(id => ({ id, rect: measure(frame, findElement(frame, id)) }))
+        .filter(o => o.rect),
+      hovered: !selectedIds.includes(hoveredId)
         ? measure(frame, findElement(frame, hoveredId))
         : null,
       rows: rows
@@ -204,8 +214,13 @@ const Overlay = () => {
   }, [
     collaborators,
     frameRef, selectedId, hoveredId, content, pageWidth, layoutTick, tree,
-    rows,
+    rows, otherSelectedIds, selectedIds,
   ]);
+
+  // Dragged elements are dimmed
+  const isDragged = (id: string) => dragSource?.type === 'element' && (
+    dragSource.id === id || !!dragSource.ids?.includes(id)
+  );
 
   const stroke = 1 / (zoom || 1);
   const selectedNode = selectedId ? tree.nodes.get(selectedId) : null;
@@ -268,9 +283,27 @@ const Overlay = () => {
         </div>
       )) }
 
+      { rects.others.map(o => (
+        <div
+          key={o.id}
+          className="oak:absolute oak:border-velvet oak:border-solid"
+          data-oak-selected-outline
+          style={{
+            left: o.rect.x,
+            top: o.rect.y,
+            width: o.rect.width,
+            height: o.rect.height,
+            borderWidth: stroke * 2,
+            boxSizing: 'border-box',
+            opacity: isDragged(o.id) ? 0.4 : 1,
+          }}
+        />
+      )) }
+
       { rects.selected && (
         <div
           className="oak:absolute oak:border-velvet oak:border-solid"
+          data-oak-selected-outline
           style={{
             left: rects.selected.x,
             top: rects.selected.y,
@@ -278,8 +311,7 @@ const Overlay = () => {
             height: rects.selected.height,
             borderWidth: stroke * 2,
             boxSizing: 'border-box',
-            opacity: dragSource?.type === 'element' &&
-              dragSource.id === selectedId ? 0.4 : 1,
+            opacity: isDragged(selectedId) ? 0.4 : 1,
           }}
         >
           <div

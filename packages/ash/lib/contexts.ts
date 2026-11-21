@@ -54,6 +54,8 @@ export declare interface BuilderContextValue {
   pageDescription?: ReactNode;
   /** Class name applied to the page root inside the canvas */
   pageClassName?: string;
+  /** Displayed in the canvas when the page is empty, below the hint */
+  emptyPageContent?: ReactNode;
   floatingsRef?: RefObject<HTMLDivElement>;
   polyfills?: {
     DOMParser: typeof DOMParser;
@@ -69,7 +71,10 @@ export const BuilderContext = createContext<BuilderContextValue>({});
 
 export declare interface EditorContextValue {
   tree: ContentTree;
+  /** Selected element (the last one selected when several are) */
   selectedId: string | null;
+  /** Selected elements, in the order they were selected */
+  selectedIds: string[];
   hoveredId: string | null;
   tool: Tool;
   /** Tool currently in use (e.g. `pan` while holding space) */
@@ -93,6 +98,11 @@ export declare interface EditorContextValue {
    * settings
    */
   isElementDisplayed(element: ElementObject): boolean;
+  /**
+   * Called when an element of the canvas emits an event (e.g. a clickable),
+   * to update the previewed state (see `PreviewSettingObject.onElementEvent`)
+   */
+  onPreviewEvent(eventName: string | undefined, element: ElementObject): void;
   pageValue: PageValue;
   setPageValue(value: PageValue): void;
   /** Theme used to display the content inside the canvas */
@@ -100,7 +110,12 @@ export declare interface EditorContextValue {
   dragSource: DragSource | null;
   dropIndicator: DropIndicator | null;
   frameRef: RefObject<HTMLDivElement>;
-  select(id: string | null): void;
+  /**
+   * Selects an element (or none). With `toggle`, adds it to the selection
+   * (or removes it if already selected) instead of replacing it.
+   */
+  select(id: string | null, opts?: { toggle?: boolean }): void;
+  selectMany(ids: string[]): void;
   hover(id: string | null): void;
   setTool(tool: Tool): void;
   setPageWidth(width: number): void;

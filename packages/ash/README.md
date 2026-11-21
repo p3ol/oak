@@ -62,7 +62,7 @@ Coming from `@oakjs/react`? See
 | `defaultValue` | `ElementObject[]` | Initial content (uncontrolled) |
 | `onChange` | `(content) => void` | Called on every content change |
 | `history` | `{ canUndo, canRedo, undo(), redo() }` | Undo/redo handled outside of the builder (e.g. by Yjs's `UndoManager`), used by the toolbar & shortcuts. The builder's own history is disabled when given (see [Collaboration](#collaboration)) |
-| `onSelectionChange` | `(id, element) => void` | Called when the selected element changes |
+| `onSelectionChange` | `(id, element, { ids, elements }) => void` | Called when the selection changes, with the last selected element and every selected element (see [Multiple selection](#multiple-selection)) |
 | `collaborators` | `Collaborator[]` | Other users editing the content, whose selections are displayed in the canvas & layers, and cursors in fields (see [Collaboration](#collaboration)) |
 | `onCursorChange` | `(cursor \| null) => void` | Called when the user's cursor moves inside a field (`null` when it leaves it), to share it with the other users |
 | `onSave` | `(content, { pageValue }) => void \| Promise<void>` | Called when the user saves with `⌘/Ctrl + S` (or with `save()`, see below). Pending property changes are committed first. `⌘/Ctrl + S` keeps its default browser behavior when not set |
@@ -77,6 +77,7 @@ Coming from `@oakjs/react`? See
 | `defaultPageValue` | `Record<string, any>` | Initial page settings values (uncontrolled) |
 | `onPageChange` | `(value) => void` | Called when a page setting changes |
 | `renderPageHead` | `(value) => ReactNode` | Rendered at the top of the page in the canvas (custom css, fonts...) |
+| `emptyPageContent` | `ReactNode` | Displayed in the canvas when the page is empty, below the drop hint (e.g. a button to start from a template) |
 | `previewModes` | `PreviewMode[]` | Ways the content can be previewed in context (see [Preview modes](#preview-modes)) |
 | `previewSettings` | `PreviewSettingObject[]` | Settings previewing states of the content in the canvas, e.g. a submitted form (see [Preview settings](#preview-settings)) |
 | `defaultPreviewMode` | `string` | Id of the preview mode used by default (default: the first one) |
@@ -102,7 +103,8 @@ Coming from `@oakjs/react`? See
 > ```
 
 The builder's ref exposes `builder` (the `@oakjs/core` builder instance),
-`content`, `innerRef`, `select(id)` and `save()`. `save()` is also available
+`content`, `innerRef`, `select(id)` (an id, an array of ids or `null`) and
+`save()`. `save()` is also available
 from `useBuilder()` inside custom components (like the sidebar header).
 
 ## Sidebar header
@@ -296,6 +298,29 @@ Settings hidden by their `condition` don't hide anything. Elements hidden in
 the canvas are still listed in the layers (dimmed, with an icon), so that they
 can be selected and edited.
 
+The content can also be interacted with in the canvas, like on the final
+website: links are never followed, but events emitted by renderers (e.g. a
+clickable whose action isn't a link) are given to the preview settings'
+`onElementEvent(element, value, eventName)`, which returns the setting's new
+value (or `undefined` to keep it). For example, tabs whose content depends on
+a value changed by clickables:
+
+```tsx
+const tabsAddon: AshAddonObject = {
+  previewSettings: [{
+    type: 'text',
+    key: 'tab',
+    label: 'Tab',
+    default: 'first',
+    isElementDisplayed: (element, tab) =>
+      !element.settings?.tab || element.settings.tab === tab,
+    // Clicking a tab in the canvas displays its content
+    onElementEvent: (element, tab) =>
+      element.action === 'set-tab' ? element.tab : undefined,
+  }],
+};
+```
+
 Renderers can also read the preview values with `usePreviewValue()` (e.g. to
 render a confirmation message once a form is submitted). It returns an empty
 object outside of the builder, so the same renderers can render the final
@@ -424,6 +449,54 @@ which isn't supported.
 See the `Ash/Collaboration` stories for two editors synchronized in memory
 (with the default fields, CKEditor, Remirror and Lexical).
 
+## Multiple selection
+
+Several elements can be selected with `Shift`, `⌘` or `Ctrl` + click, in the
+canvas or the layers, or by drawing a selection box from an empty area of the
+canvas, like on a desktop. The box selects every element it touches, except the
+ones containing the whole box: dragging inside a container selects its
+children. Holding `Shift`, `⌘` or `Ctrl` adds them to the current selection,
+and a simple click on an empty area clears it. The properties panel then shows the number of selected
+elements and actions applying to all of them (copy, duplicate, remove).
+Removing, duplicating, copying, cutting & pasting (keyboard shortcuts) and
+dragging one of them (canvas & layers) also apply to every selected element.
+Changes applied to several elements are undone at once.
+
+Elements inside another selected element are left out of these actions (they
+already apply to their parent). `onSelectionChange` receives the last
+selected element, and every selected element:
+
+```tsx
+<Builder
+  addons={addons}
+  onSelectionChange={(id, element, { ids, elements }) => {
+    console.log(`${ids.length} element(s) selected`);
+  }}
+/>
+```
+
+## Read-only preview
+
+`Preview` renders some content exactly like the canvas does (same
+renderers, page head, page class & theme), without editing it, e.g. to
+preview templates before applying them. The page is scaled down to fit the
+available width, and preview settings hide elements using their default
+values (or `previewValue`).
+
+```tsx
+import { Preview } from '@oakjs/ash';
+
+<Preview
+  addons={addons}
+  value={template.content}
+  pageValue={template.settings}
+  renderPageHead={value => <style>{ getPageCss(value) }</style>}
+  pageClassName="my-website"
+  width={1024}
+  theme="light"
+/>
+```
+
 ## Dark mode
 
 The interface (sidebars, toolbar, panels) and the canvas have separate
@@ -476,12 +549,15 @@ canvas (`--ash-canvas-bg`, `--ash-page-bg`, `--ash-page-text`...).
 | `⌘/Ctrl + +`, `⌘/Ctrl + -` | Zoom in, zoom out |
 | `⌘/Ctrl + 0` | Zoom to 100% |
 | `⇧ + 1` | Fit page width |
-| `Backspace` / `Delete` | Remove selected element |
+| `Backspace` / `Delete` | Remove selected elements |
 | `⌘/Ctrl + C`, `⌘/Ctrl + X`, `⌘/Ctrl + V` | Copy, cut & paste elements (pasted after or inside the selection) |
 | `⌘/Ctrl + S` | Save (calls `onSave`), even while typing in a field |
-| `⌘/Ctrl + D` | Duplicate selected element |
+| `⌘/Ctrl + A` | Select every element (not while typing in a field) |
+| `⌘/Ctrl + D` | Duplicate selected elements |
 | `⌘/Ctrl + Z`, `⇧ + ⌘/Ctrl + Z` | Undo, redo |
-| `Escape` | Select parent element |
+| `Escape` | Select parent element (or only the last selected one, when several are selected) |
+| `Shift/⌘/Ctrl + click` | Add an element to the selection (or remove it), in the canvas & the layers |
+| Drag from an empty area | Select the elements touched by the selection box (`Shift/⌘/Ctrl` adds them to the selection) |
 
 Shortcuts are handled when the focus is inside the builder, or when nothing is
 focused and the builder was the last thing clicked (so that several builders

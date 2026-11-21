@@ -126,6 +126,12 @@ export declare abstract class IStore {
   /** Commit changes into history */
   commit (): void;
 
+  /**
+   * Applies several changes as a single one: they are committed into history
+   * once, so that they are undone together
+   */
+  batch<T> (fn: () => T): T;
+
   /** Undo the last change */
   undo (): void;
 
@@ -141,6 +147,8 @@ export default class Store extends Emitter implements IStore {
   #content: ElementObject[] = [];
   #history: ElementObject[][] = [];
   #historyIndex: number = 0;
+  #batching: number = 0;
+  #batchChanged: boolean = false;
   #builder: Builder = null;
 
   constructor ({ builder }: { builder: Builder }) {
@@ -661,6 +669,13 @@ export default class Store extends Emitter implements IStore {
   }
 
   commit () {
+    // Committed once the batch ends
+    if (this.#batching > 0) {
+      this.#batchChanged = true;
+
+      return;
+    }
+
     // History is disabled (e.g. handled by a collaboration tool)
     if (this.#builder.options.history === false) {
       this.#history = [];
@@ -677,6 +692,21 @@ export default class Store extends Emitter implements IStore {
     this.#history.unshift(cloneDeep(this.#content));
     this.#history = this.#history.slice(0, this.#builder.options.historyLimit);
     this.emit('history.commit', this.#history, this.#historyIndex);
+  }
+
+  batch<T> (fn: () => T): T {
+    this.#batching++;
+
+    try {
+      return fn();
+    } finally {
+      this.#batching--;
+
+      if (this.#batching === 0 && this.#batchChanged) {
+        this.#batchChanged = false;
+        this.commit();
+      }
+    }
   }
 
   canUndo () {

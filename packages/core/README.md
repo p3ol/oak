@@ -88,6 +88,16 @@ Maximum count of history items (for undo/redo).
 new Builder({ options: { historyLimit: 100 } });
 ```
 
+Several changes can be recorded as a single history item (undone at once)
+with `builder.batch()`:
+
+```js
+builder.batch(() => {
+  builder.removeElement(first.id);
+  builder.removeElement(second.id);
+});
+```
+
 #### generateId
 - Type: `Function` `generateId(): string`
 - Default: `null`

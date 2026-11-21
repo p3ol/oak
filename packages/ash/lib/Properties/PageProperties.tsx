@@ -1,6 +1,5 @@
 import { type Key, useCallback, useMemo } from 'react';
 import type {
-  ComponentObject,
   ComponentSettingsFieldObject,
   ElementObject,
   FieldObject,
@@ -21,18 +20,10 @@ import {
 import type { PagePreset } from '../types';
 import { useBuilder, useEditor } from '../hooks';
 import Text from '../Text';
+import { PAGE_COMPONENT } from '../previewSettings';
 import { getFieldPriority, sortFields, withOverrideFields } from './fields';
 import Setting from './Setting';
 import SettingsGroup from './SettingsGroup';
-
-/**
- * Page settings are edited like an element of type `page`, so that settings
- * overrides can target them (`targets: ['page']`)
- */
-export const PAGE_COMPONENT = {
-  id: 'page',
-  type: 'component',
-} as ComponentObject;
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h4

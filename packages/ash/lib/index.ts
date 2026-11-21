@@ -15,6 +15,8 @@ export {
 } from './Builder';
 
 export { default as Canvas } from './Canvas';
+export { PageContent, type PageContentProps } from './Canvas/Page';
+export { default as Preview, type PreviewProps } from './Preview';
 export * from './Canvas/previewModes';
 export { default as Layers } from './Layers';
 export { default as Insert } from './Insert';

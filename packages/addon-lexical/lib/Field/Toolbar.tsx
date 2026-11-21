@@ -190,7 +190,7 @@ const Toolbar = ({ items, fontSizes }: ToolbarProps) => {
                   headingRef.current?.close();
                 }}
               >
-                { label(`heading.${h.value}`, h.label) }
+                { label(`headings.${h.value}`, h.label) }
               </MenuItem>
             )) }
           </ToolbarDropdown>
@@ -224,7 +224,7 @@ const Toolbar = ({ items, fontSizes }: ToolbarProps) => {
                   fontSizeRef.current?.close();
                 }}
               >
-                { label(`fontSize.${size.label.toLowerCase()}`, size.label) }
+                { label(`fontSizes.${size.label.toLowerCase()}`, size.label) }
               </MenuItem>
             )) }
           </ToolbarDropdown>
@@ -367,35 +367,35 @@ const Toolbar = ({ items, fontSizes }: ToolbarProps) => {
                   onClick={() => tableAction(() =>
                     $insertTableRowAtSelection(false))}
                 >
-                  { label('table.rowAbove', 'Insert row above') }
+                  { label('tables.rowAbove', 'Insert row above') }
                 </MenuItem>
                 <MenuItem
                   onClick={() => tableAction(() =>
                     $insertTableRowAtSelection(true))}
                 >
-                  { label('table.rowBelow', 'Insert row below') }
+                  { label('tables.rowBelow', 'Insert row below') }
                 </MenuItem>
                 <MenuItem
                   onClick={() => tableAction(() =>
                     $insertTableColumnAtSelection(false))}
                 >
-                  { label('table.columnLeft', 'Insert column left') }
+                  { label('tables.columnLeft', 'Insert column left') }
                 </MenuItem>
                 <MenuItem
                   onClick={() => tableAction(() =>
                     $insertTableColumnAtSelection(true))}
                 >
-                  { label('table.columnRight', 'Insert column right') }
+                  { label('tables.columnRight', 'Insert column right') }
                 </MenuItem>
                 <MenuItem
                   onClick={() => tableAction($deleteTableRowAtSelection)}
                 >
-                  { label('table.deleteRow', 'Delete row') }
+                  { label('tables.deleteRow', 'Delete row') }
                 </MenuItem>
                 <MenuItem
                   onClick={() => tableAction($deleteTableColumnAtSelection)}
                 >
-                  { label('table.deleteColumn', 'Delete column') }
+                  { label('tables.deleteColumn', 'Delete column') }
                 </MenuItem>
                 <MenuItem
                   onClick={() => tableAction(() => {
@@ -406,7 +406,7 @@ const Toolbar = ({ items, fontSizes }: ToolbarProps) => {
                     table?.remove();
                   })}
                 >
-                  { label('table.delete', 'Delete table') }
+                  { label('tables.delete', 'Delete table') }
                 </MenuItem>
               </>
             ) }

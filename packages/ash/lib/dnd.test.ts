@@ -156,6 +156,78 @@ describe('dnd', () => {
     expect((col1.element.content as ElementObject[])).toEqual([]);
   });
 
+  it('should move several elements together in one history entry', () => {
+    const builder = getBuilder(content());
+    builder.resetHistory();
+    let tree = buildTree(builder, builder.getContent());
+    const col2 = tree.nodes.get('col2');
+    const ids = (container: ElementObject[]) => container.map(e => e.id);
+
+    // From different containers, into an empty one, keeping their order
+    commitDrop(builder, tree, {
+      type: 'element', id: 'title', ids: ['title', 'clickable'],
+    }, {
+      container: (col2.element.content as ElementObject[]),
+      owner: col2.element,
+      containerKey: 'content',
+      index: 0,
+    });
+    expect(ids(col2.element.content as ElementObject[]))
+      .toEqual(['title', 'clickable']);
+    expect(ids(builder.getContent())).toEqual(['row', 'foldable']);
+
+    // Undone at once
+    builder.undo();
+    expect(ids(builder.getContent())).toEqual(['row', 'clickable', 'foldable']);
+    expect(builder.canUndo()).toBe(false);
+
+    // Before a sibling that is moved too: before the next one that isn't
+    tree = buildTree(builder, builder.getContent());
+    commitDrop(builder, tree, {
+      type: 'element', id: 'foldable', ids: ['row', 'foldable'],
+    }, {
+      container: builder.getContent(),
+      owner: null,
+      containerKey: 'root',
+      index: 0,
+    });
+    expect(ids(builder.getContent())).toEqual(['row', 'foldable', 'clickable']);
+
+    // At the end, after the last sibling that isn't moved
+    tree = buildTree(builder, builder.getContent());
+    commitDrop(builder, tree, {
+      type: 'element', id: 'row', ids: ['row', 'foldable'],
+    }, {
+      container: builder.getContent(),
+      owner: null,
+      containerKey: 'root',
+      index: 3,
+    });
+    expect(ids(builder.getContent())).toEqual(['clickable', 'row', 'foldable']);
+  });
+
+  it('should only move several elements where all of them can go', () => {
+    const builder = getBuilder(content());
+    const tree = buildTree(builder, builder.getContent());
+
+    // Columns can only be reordered inside their row
+    expect(canDrop(builder, tree, {
+      type: 'element', id: 'title', ids: ['title', 'col2'],
+    }, { container: builder.getContent(), owner: null })).toBe(false);
+
+    // Nothing can be dropped inside one of the moved elements
+    expect(canDrop(builder, tree, {
+      type: 'element', id: 'title', ids: ['title', 'clickable'],
+    }, {
+      container: tree.nodes.get('clickable').element.content as ElementObject[],
+      owner: tree.nodes.get('clickable').element,
+    })).toBe(false);
+
+    expect(canDrop(builder, tree, {
+      type: 'element', id: 'title', ids: ['title', 'clickable'],
+    }, { container: builder.getContent(), owner: null })).toBe(true);
+  });
+
   it('should insert new components at an index in one history entry', () => {
     const builder = getBuilder(content());
     builder.resetHistory();
