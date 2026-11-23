@@ -38,6 +38,8 @@ import type {
 } from '../types';
 import {
   type BuilderContextValue,
+  type CanvasController,
+  type CenterOnOptions,
   type EditorContextValue,
   BuilderContext,
   EditorContext,
@@ -332,6 +334,23 @@ const Builder = ({
     };
   }, []);
 
+  // Canvas displaying the content (none in the preview)
+  const canvasController = useRef<CanvasController | null>(null);
+
+  const registerCanvas = useCallback((controller: CanvasController) => {
+    canvasController.current = controller;
+
+    return () => {
+      if (canvasController.current === controller) {
+        canvasController.current = null;
+      }
+    };
+  }, []);
+
+  const centerOn = useCallback((id: string, opts?: CenterOnOptions) => (
+    canvasController.current?.centerOn(id, opts) ?? false
+  ), []);
+
   const onSaveRef = useRef(onSave);
   onSaveRef.current = onSave;
   const pageValueRef = useRef(pageValue);
@@ -532,6 +551,8 @@ const Builder = ({
     setPageWidth,
     setPreviewMode,
     registerPendingChanges,
+    centerOn,
+    registerCanvas,
     setCanvasTheme,
     setDragSource,
     setDropIndicator,
@@ -542,7 +563,7 @@ const Builder = ({
     previewSettings, previewValue, isElementDisplayed, onPreviewEvent,
     setPageValue,
     canvasTheme,
-    registerPendingChanges,
+    registerPendingChanges, centerOn, registerCanvas,
     dragSource, dropIndicator, select, hover,
   ]);
 

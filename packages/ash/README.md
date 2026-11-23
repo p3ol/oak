@@ -389,6 +389,30 @@ Ash provides what's needed to plug a real-time collaboration tool (like
 `@oakjs/core` also allows to apply content without recording it in its own
 history: `builder.setContent(content, { commit: false })`.
 
+To show where someone is (e.g. when clicking their avatar in a list of
+collaborators), `useEditor().centerOn(id)` moves the canvas so that an element
+is at its center, keeping the zoom (or shows its top if it's taller than the
+canvas). It returns `false` when the element isn't displayed in the canvas
+(e.g. hidden in the current preview), without moving it:
+
+```tsx
+const CollaboratorAvatar = ({ collaborator }) => {
+  const { centerOn } = useEditor();
+
+  return (
+    <button
+      type="button"
+      onClick={() => collaborator.selectedId && centerOn(collaborator.selectedId)}
+    >
+      { collaborator.name }
+    </button>
+  );
+};
+```
+
+Components using `useEditor` must be rendered inside the builder (e.g. in its
+[sidebar header](#sidebar-header)).
+
 ### Yjs
 
 `@oakjs/ash/yjs` does all of the above with [Yjs](https://yjs.dev). It

@@ -69,6 +69,16 @@ export declare interface BuilderContextValue {
 
 export const BuilderContext = createContext<BuilderContextValue>({});
 
+export declare interface CenterOnOptions {
+  /** Duration of the transition, in ms (defaults to 200) */
+  duration?: number;
+}
+
+/** Moves the canvas, registered by the canvas (see `centerOn`) */
+export declare interface CanvasController {
+  centerOn(id: string, opts?: CenterOnOptions): boolean;
+}
+
 export declare interface EditorContextValue {
   tree: ContentTree;
   /** Selected element (the last one selected when several are) */
@@ -125,6 +135,16 @@ export declare interface EditorContextValue {
    * edits), called before saving. Returns an unregister function.
    */
   registerPendingChanges(flush: () => void): () => void;
+  /**
+   * Moves the canvas so that an element is at its center (keeping the zoom,
+   * or showing its top if it's taller than the canvas). Returns false if the
+   * element isn't displayed in the canvas.
+   */
+  centerOn(id: string, opts?: CenterOnOptions): boolean;
+  /**
+   * Used by the canvas to handle `centerOn`. Returns an unregister function.
+   */
+  registerCanvas(controller: CanvasController): () => void;
   setCanvasTheme(theme: Theme): void;
   setDragSource(source: DragSource | null): void;
   setDropIndicator(indicator: DropIndicator | null): void;

@@ -99,6 +99,7 @@ const Canvas = () => {
     hover,
     setDragSource,
     setDropIndicator,
+    registerCanvas,
   } = editor;
 
   // Keep the latest values available to window event listeners
@@ -121,6 +122,41 @@ const Canvas = () => {
       duration,
     );
   }, [pageWidth]);
+
+  // Moves the canvas to an element (e.g. the one a collaborator selected)
+  useEffect(() => registerCanvas({
+    centerOn: (id, { duration = 200 } = {}) => {
+      const canvas = canvasRef.current;
+      const frame = frameRef.current;
+      const inner = canvas?.innerRef.current;
+      const content = canvas?.contentRef.current;
+      const el = frame?.querySelector(
+        `[data-oak-id="${CSS.escape(id)}"]`
+      ) as HTMLElement | null;
+
+      // Not rendered, or hidden (e.g. inside a collapsed foldable)
+      if (!canvas || !inner || !content || !el?.getClientRects().length) {
+        return false;
+      }
+
+      const rect = el.getBoundingClientRect();
+      const contentRect = content.getBoundingClientRect();
+      const visible = inner.getBoundingClientRect();
+      // Measured like the element, in case the canvas is moving
+      const scale = frame.offsetWidth
+        ? frame.getBoundingClientRect().width / frame.offsetWidth
+        : 1;
+      const x = rect.left + rect.width / 2 - contentRect.left;
+      const y = rect.height > visible.height - FIT_MARGIN * 2
+        // Too tall: its top is displayed
+        ? rect.top - contentRect.top + visible.height / 2 - FIT_MARGIN
+        : rect.top + rect.height / 2 - contentRect.top;
+
+      canvas.panTo(x / scale, y / scale, duration);
+
+      return true;
+    },
+  }), [registerCanvas, frameRef]);
 
   const mounted = useRef(false);
 

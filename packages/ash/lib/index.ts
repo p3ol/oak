@@ -40,6 +40,8 @@ export {
   BuilderContext,
   EditorContext,
   type BuilderContextValue,
+  type CanvasController,
+  type CenterOnOptions,
   type EditorContextValue,
 } from './contexts';
 

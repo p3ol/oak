@@ -2,7 +2,7 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 
 import { baseAddon } from '../addons';
 import type { PreviewSettingObject, PreviewValue } from '../types';
-import { useBuilder, usePreviewValue } from '../hooks';
+import { useBuilder, useEditor, usePreviewValue } from '../hooks';
 import Builder from './index';
 
 const content = [
@@ -1127,6 +1127,72 @@ describe('<Builder />', () => {
         .toContain('Hello');
       expect((avatars[0] as HTMLElement).style.background).toBe('red');
       expect((avatars[1] as HTMLElement).style.background).toMatch(/var\(--junipero-/);
+    });
+    it('should move the canvas to an element with centerOn', () => {
+      const rects: Record<string, Partial<DOMRect>> = {
+        content: { left: 0, top: 0, width: 0, height: 0 },
+        button: { left: 0, top: 900, width: 300, height: 40 },
+      };
+      const getKey = (el: Element) => el.classList.contains('infinite-canvas')
+        ? 'canvas'
+        : el.classList.contains('infinite-canvas-content')
+          ? 'content'
+          : el.getAttribute('data-oak-id');
+      const rect = vi.spyOn(Element.prototype, 'getBoundingClientRect')
+        .mockImplementation(function (this: Element) {
+          return { left: 0, top: 0, width: 0, height: 0,
+            ...rects[getKey(this)] } as DOMRect;
+        });
+      const clientRects = vi.spyOn(Element.prototype, 'getClientRects')
+        .mockImplementation(function (this: Element) {
+          return (rects[getKey(this)] ? [rects[getKey(this)]] : []) as
+            unknown as DOMRectList;
+        });
+      let centerOn: (id: string, opts?: { duration?: number }) => boolean;
+
+      const Header = (): null => {
+        centerOn = useEditor().centerOn;
+
+        return null;
+      };
+
+      const { container } = render(
+        <Builder
+          addons={[baseAddon()]}
+          // Not the shared content (mutated by the tests removing elements)
+          defaultValue={[
+            { id: 'title', type: 'title', content: 'Hello' },
+            { id: 'button', type: 'button', content: 'Click me' },
+          ]}
+          header={<Header />}
+        />
+      );
+      const transform = () => (container.querySelector(
+        '.infinite-canvas-content'
+      ) as HTMLElement).style.transform;
+
+      // Sized after the first render: the page isn't fitted (zoom stays 1)
+      rects.canvas = { left: 0, top: 0, width: 1000, height: 600 };
+
+      // Not displayed in the canvas
+      expect(centerOn('title')).toBe(false);
+      expect(centerOn('unknown')).toBe(false);
+
+      act(() => {
+        expect(centerOn('button', { duration: 0 })).toBe(true);
+      });
+      // Element's center (150, 920) at the canvas' center (500, 300)
+      expect(transform()).toMatch(/translate3d\(350px, -620px, 0(px)?\)/);
+
+      // Too tall: its top is displayed
+      rects.button = { left: 0, top: 900, width: 300, height: 2000 };
+      act(() => {
+        centerOn('button', { duration: 0 });
+      });
+      expect(transform()).toMatch(/translate3d\(350px, -852px, 0(px)?\)/);
+
+      rect.mockRestore();
+      clientRects.mockRestore();
     });
   });
 });
