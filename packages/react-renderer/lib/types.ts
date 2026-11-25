@@ -19,6 +19,15 @@ export declare type ElementAttributes = HTMLAttributes<HTMLElement> & {
 
 export declare type SanitizeHTMLCallback = (html: string) => string;
 
+/**
+ * Resolves the url of a resource (e.g. an image) before it is rendered, e.g.
+ * to replace a css variable (`var(--brand-logo)`) with the url it holds
+ */
+export declare type ResolveURLCallback = (
+  url: string,
+  element: ElementObject,
+) => string;
+
 export declare type RendererEventCallback = (
   event: string,
   element: ElementObject,
@@ -63,6 +72,10 @@ export declare interface RendererComponentProps {
    * Used to sanitize raw html content (titles, texts, buttons)
    */
   sanitizeHTML?: SanitizeHTMLCallback;
+  /**
+   * Used to resolve the urls of resources (e.g. images) before rendering them
+   */
+  resolveURL?: ResolveURLCallback;
   /**
    * Called when an element with an `event` action is clicked
    */

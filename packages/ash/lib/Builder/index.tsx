@@ -18,6 +18,7 @@ import type {
   ElementObject,
 } from '@oakjs/core';
 import { classNames } from '@junipero/react';
+import type { ResolveURLCallback } from '@oakjs/react-renderer';
 
 import type {
   AshAddonObject,
@@ -197,6 +198,12 @@ export declare interface BuilderProps
     element?: ElementObject;
     setting?: ComponentSettingsFieldObject;
   }): ImageUploadCallbackResult | Promise<ImageUploadCallbackResult>;
+  /**
+   * Resolves the urls of resources (e.g. images) before they are rendered in
+   * the canvas & fields, e.g. to replace a css variable (`var(--brand-logo)`)
+   * with the url it holds
+   */
+  resolveURL?: ResolveURLCallback;
 }
 
 type LeftPanel = 'layers' | 'insert';
@@ -239,6 +246,7 @@ const Builder = ({
   onCursorChange,
   onSave,
   onImageUpload,
+  resolveURL,
   ...rest
 }: BuilderProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -482,6 +490,7 @@ const Builder = ({
     renderPageHead,
     emptyPageContent,
     onImageUpload,
+    resolveURL,
     ...hasOnSave && { save },
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [
@@ -489,7 +498,7 @@ const Builder = ({
     builder, content, version, addons, canUndo, canRedo, polyfills,
     history?.canUndo, history?.canRedo, undo, redo,
     pageClassName, pageTitle, pageDescription, shortcutsEnabled,
-    renderPageHead, emptyPageContent, onImageUpload,
+    renderPageHead, emptyPageContent, onImageUpload, resolveURL,
   ]);
 
   const select = useCallback((

@@ -16,6 +16,7 @@ import {
   type RendererComponent,
   type RendererComponentsMap,
   type RendererEventCallback,
+  type ResolveURLCallback,
   containerAttributes,
   getElementAttributes,
   getElementStatesCSS,
@@ -33,6 +34,7 @@ declare interface PageContextValue {
   /** Inside the builder (empty containers & editing renderers) */
   editing: boolean;
   isElementDisplayed(element: ElementObject): boolean;
+  resolveURL?: ResolveURLCallback;
   onEvent?: RendererEventCallback;
 }
 
@@ -97,6 +99,7 @@ const CanvasElement = ({
     dark,
     editing,
     isElementDisplayed,
+    resolveURL,
     onEvent,
   } = use(PageContext);
   const Component = components[element?.type];
@@ -130,6 +133,7 @@ const CanvasElement = ({
         editing={editing}
         dark={dark}
         sanitizeHTML={sanitize}
+        resolveURL={resolveURL}
         onEvent={onEvent}
       />
     </>
@@ -150,6 +154,8 @@ export declare interface PageContentProps {
   /** Inside the builder: empty containers are displayed */
   editing?: boolean;
   isElementDisplayed?(element: ElementObject): boolean;
+  /** Resolves the urls of resources (e.g. images) before rendering them */
+  resolveURL?: ResolveURLCallback;
   /**
    * Events emitted by the elements (e.g. a clickable whose action isn't a
    * link): links are never followed in the canvas
@@ -172,6 +178,7 @@ export const PageContent = ({
   dark = false,
   editing = false,
   isElementDisplayed = ALWAYS_DISPLAYED,
+  resolveURL,
   onEvent,
 }: PageContentProps) => {
   const components = useMemo<RendererComponentsMap>(() => {
@@ -199,8 +206,12 @@ export const PageContent = ({
   }), [polyfills]);
 
   const context = useMemo(() => ({
-    components, sanitize, dark, editing, isElementDisplayed, onEvent,
-  }), [components, sanitize, dark, editing, isElementDisplayed, onEvent]);
+    components, sanitize, dark, editing, isElementDisplayed, resolveURL,
+    onEvent,
+  }), [
+    components, sanitize, dark, editing, isElementDisplayed, resolveURL,
+    onEvent,
+  ]);
 
   return (
     <PageContext value={context}>
@@ -235,6 +246,7 @@ const Page = () => {
     addons,
     polyfills,
     pageClassName,
+    resolveURL,
   } = useBuilder();
   const { canvasTheme, isElementDisplayed, onPreviewEvent } = useEditor();
 
@@ -248,6 +260,7 @@ const Page = () => {
       pageClassName={pageClassName}
       dark={canvasTheme === 'dark'}
       isElementDisplayed={isElementDisplayed}
+      resolveURL={resolveURL}
       onEvent={onPreviewEvent}
     />
   );

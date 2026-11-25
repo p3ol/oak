@@ -68,6 +68,14 @@ export const toCSSUnit = (value: unknown): string | undefined => {
   return String(value);
 };
 
+/**
+ * Whether a value is a css variable (e.g. `var(--brand-logo)`), e.g. an image
+ * defined by a theme. Background images can use them directly (they must hold
+ * a `url()` value), images need their url to be resolved (see `resolveURL`).
+ */
+export const isCSSVariable = (value: unknown): value is string =>
+  typeof value === 'string' && /^var\(\s*--/.test(value.trim());
+
 const SIDES = ['Top', 'Right', 'Bottom', 'Left'] as const;
 const CORNERS = ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'] as const;
 
@@ -124,8 +132,10 @@ export const getElementStyle = (styles?: ElementStyles): CSSProperties => {
     : styles.backgroundImage?.url;
 
   if (backgroundImage) {
-    style.backgroundImage = `url("${String(backgroundImage)
-      .replace(/"/g, '\\"')}")`;
+    // Css variables already hold a `url()` value
+    style.backgroundImage = isCSSVariable(backgroundImage)
+      ? backgroundImage
+      : `url("${String(backgroundImage).replace(/"/g, '\\"')}")`;
     style.backgroundSize = styles.backgroundSize &&
       styles.backgroundSize !== 'default' ? styles.backgroundSize : undefined;
     assignIfDefined(style, 'backgroundPosition', styles.backgroundPosition);

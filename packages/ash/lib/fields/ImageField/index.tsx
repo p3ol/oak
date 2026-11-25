@@ -1,6 +1,7 @@
 import {
   type ComponentPropsWithRef,
   type MouseEvent,
+  type ReactNode,
   type ChangeEvent,
   useEffect,
   useReducer,
@@ -22,6 +23,7 @@ import {
   set,
   Spinner,
 } from '@junipero/react';
+import { isCSSVariable } from '@oakjs/react-renderer';
 
 import { useBuilder } from '../../hooks';
 import Icon from '../../Icon';
@@ -45,6 +47,11 @@ export interface ImageFieldProps extends Omit<
   setting?: ComponentSettingsFieldObject | ComponentSettingsField;
   disabled?: boolean;
   accept?: string[];
+  /**
+   * Additional addons (`FieldAddon`s), displayed after the upload button
+   * (e.g. to pick an image from a library)
+   */
+  addons?: ReactNode;
   onOpenDialog?: () => void;
   onChange?: (field: FieldContent<ImageFieldValue>) => void;
 }
@@ -57,10 +64,11 @@ const ImageField = ({
   disabled,
   accept = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png',
     'image/svg+xml'],
+  addons,
   onOpenDialog,
   onChange,
 }: ImageFieldProps) => {
-  const { onImageUpload, floatingsRef } = useBuilder();
+  const { onImageUpload, floatingsRef, resolveURL } = useBuilder();
   const [state, dispatch] = useReducer(mockState<ImageFieldState>, {
     value: {
       ...value,
@@ -141,6 +149,16 @@ const ImageField = ({
     onChange?.({ value: state.value });
   }, [onChange, state.value]);
 
+  const getThumbnail = () => {
+    const url = state.value.url.toString();
+    const resolved = resolveURL && element
+      ? resolveURL(url, element)
+      : url;
+
+    // Unresolved css variables already hold a `url()` value
+    return isCSSVariable(resolved) ? resolved : `url("${resolved}")`;
+  };
+
   return (
     <div
       className={classNames(
@@ -158,7 +176,7 @@ const ImageField = ({
             'oak:bg-center oak:bg-cover oak:bg-no-repeat',
             'oak:border oak:border-ash-border',
           )}
-          style={{ backgroundImage: `url("${state.value.url.toString()}")` }}
+          style={{ backgroundImage: getThumbnail() }}
         />
       ) }
       <FieldGroup className="oak:w-full oak:min-w-0">
@@ -194,6 +212,7 @@ const ImageField = ({
             ) }
           </FieldAddon>
         </Tooltip>
+        { addons }
       </FieldGroup>
     </div>
   );

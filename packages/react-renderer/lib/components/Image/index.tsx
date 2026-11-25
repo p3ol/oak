@@ -1,14 +1,21 @@
 import type { CSSProperties } from 'react';
 
 import type { RendererComponentProps } from '../../types';
-import { mergeAttributes, toCSSUnit } from '../../utils';
+import { isCSSVariable, mergeAttributes, toCSSUnit } from '../../utils';
 
 const Image = ({
   element,
   attributes,
   editing,
   dark,
+  resolveURL,
 }: RendererComponentProps) => {
+  const url = element.url && resolveURL
+    ? resolveURL(element.url, element)
+    : element.url;
+  // Css variables can't be used as sources (see `resolveURL`)
+  const src = isCSSVariable(url) ? '' : url;
+
   const size = element.settings?.size || 'auto';
   const imageStyle: CSSProperties = size === 'custom'
     ? {
@@ -26,10 +33,10 @@ const Image = ({
         style: { textAlign: element.settings?.textAlign || 'left' },
       }) }
     >
-      { element.url ? (
+      { src ? (
         <img
           className="oak:inline-block oak:align-middle"
-          src={element.url}
+          src={src}
           alt={element.settings?.alt || ''}
           title={element.settings?.description || undefined}
           style={imageStyle}

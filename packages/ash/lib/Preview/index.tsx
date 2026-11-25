@@ -9,6 +9,7 @@ import {
 } from 'react';
 import type { BuilderOptions, ElementObject } from '@oakjs/core';
 import { classNames } from '@junipero/react';
+import type { ResolveURLCallback } from '@oakjs/react-renderer';
 
 import type {
   AshAddonObject,
@@ -53,6 +54,8 @@ export declare interface PreviewProps extends Omit<
   activeTextSheet?: string;
   /** Theme of the previewed page (like the canvas theme) */
   theme?: Theme;
+  /** Same as the builder's */
+  resolveURL?: ResolveURLCallback;
   /**
    * Width of the previewed page, in px. It is scaled down to fit the
    * available width.
@@ -78,6 +81,7 @@ const Preview = ({
   activeTextSheet,
   theme = 'light',
   width = 1024,
+  resolveURL,
   className,
   style,
   ...rest
@@ -174,6 +178,7 @@ const Preview = ({
           pageClassName={pageClassName}
           dark={theme === 'dark'}
           isElementDisplayed={isElementDisplayed}
+          resolveURL={resolveURL}
         />
       </div>
     </div>

@@ -10,6 +10,7 @@ import {
   getElementStatesCSS,
   getElementStyle,
   getVisibilityClasses,
+  isCSSVariable,
   toCSSUnit,
 } from './index';
 
@@ -72,6 +73,49 @@ describe('utils', () => {
     });
 
     expect(getElementStyle(undefined)).toEqual({});
+  });
+
+  it('should allow css variables as background images', () => {
+    expect(isCSSVariable('var(--brand-image)')).toBe(true);
+    expect(isCSSVariable(' var( --brand-image, url(a.png))')).toBe(true);
+    expect(isCSSVariable('https://example.com/a.png')).toBe(false);
+    expect(isCSSVariable(undefined)).toBe(false);
+
+    expect(getElementStyle({
+      backgroundImage: { url: 'var(--brand-image)', name: 'Brand image' },
+    })).toEqual({ backgroundImage: 'var(--brand-image)' });
+  });
+
+  it('should resolve the url of images', () => {
+    const { image: Image } = baseComponents();
+    const element = { id: 'i', type: 'image', url: 'var(--brand-logo)' };
+    const resolveURL = vi.fn((url: string) => url === 'var(--brand-logo)'
+      ? 'https://example.com/logo.png' : url);
+    const { container, rerender, unmount } = render(
+      <Image
+        element={element}
+        attributes={{}}
+        renderContainer={() => null}
+        resolveURL={resolveURL}
+      />
+    );
+
+    expect(resolveURL).toHaveBeenCalledWith('var(--brand-logo)', element);
+    expect(container.querySelector('img').getAttribute('src'))
+      .toBe('https://example.com/logo.png');
+
+    // Unresolved css variables are not displayed
+    rerender(
+      <Image
+        element={{ ...element, url: 'var(--unknown)' }}
+        attributes={{}}
+        renderContainer={() => null}
+        resolveURL={resolveURL}
+      />
+    );
+    expect(container.querySelector('img')).toBeFalsy();
+
+    unmount();
   });
 
   it('should generate hover & active css', () => {

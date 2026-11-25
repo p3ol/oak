@@ -10,6 +10,7 @@ import type {
   ComponentSettingsFieldObject,
   ElementObject,
 } from '@oakjs/core';
+import type { ResolveURLCallback } from '@oakjs/react-renderer';
 
 import type {
   DragSource,
@@ -65,6 +66,8 @@ export declare interface BuilderContextValue {
     element?: ElementObject;
     setting?: ComponentSettingsFieldObject;
   }): ImageUploadCallbackResult | Promise<ImageUploadCallbackResult>;
+  /** Resolves the urls of resources (e.g. images) before rendering them */
+  resolveURL?: ResolveURLCallback;
 }
 
 export const BuilderContext = createContext<BuilderContextValue>({});
