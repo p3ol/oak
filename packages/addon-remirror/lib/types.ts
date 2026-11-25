@@ -8,6 +8,8 @@ import type {
   UnderlineExtension,
 } from 'remirror/extensions';
 
+import type { CollaborationFieldOptions } from './Field/types';
+
 export type Extensions =
   | BoldExtension
   | ItalicExtension
@@ -16,3 +18,13 @@ export type Extensions =
   | TextColorExtension
   | FontSizeExtension
   | NodeFormattingExtension;
+
+export type GetTextCallback = (key: string, def?: string) => string;
+
+/**
+ * Options given to fields by oak builders (`@oakjs/react`, `@oakjs/ash`)
+ */
+export declare interface FieldOptions extends CollaborationFieldOptions {
+  t?: GetTextCallback;
+  [key: string]: any;
+}

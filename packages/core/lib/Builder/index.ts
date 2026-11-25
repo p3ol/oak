@@ -222,7 +222,10 @@ export default class Builder extends Emitter {
     return this.#store.get();
   }
 
-  setContent (content: ElementObject[], options: { emit?: boolean }) {
+  setContent (content: ElementObject[], options: {
+    emit?: boolean;
+    commit?: boolean;
+  } = {}) {
     this.#store.set(content, options);
   }
 
@@ -238,6 +241,7 @@ export default class Builder extends Emitter {
   addElement (element: ElementObject, options?: {
     parent?: ElementObject[],
     position?: 'before' | 'after',
+    index?: number,
     component?: ComponentObject,
     [_: string]: any
   }) {
@@ -247,6 +251,7 @@ export default class Builder extends Emitter {
   addElements (elements: ElementObject[], options?:{
     parent?: ElementObject[],
     position?: 'before' | 'after',
+    index?: number,
     component?: ComponentObject,
     [_: string]: any
   }) {
@@ -306,6 +311,14 @@ export default class Builder extends Emitter {
     value: any
   ) {
     return this.#store.setElementSettings(element, key, value);
+  }
+
+  /**
+   * Applies several changes as a single one: they are committed into history
+   * once, so that they are undone together
+   */
+  batch<T> (fn: () => T): T {
+    return this.#store.batch(fn);
   }
 
   undo () {

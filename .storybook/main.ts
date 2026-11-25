@@ -28,7 +28,20 @@ const config: StorybookConfig = {
         alias: {
           '~': path.resolve(__dirname, '../'),
           '@oakjs/core': path.resolve(__dirname, '../packages/core/lib'),
+          '@oakjs/react-renderer': path.resolve(
+            __dirname, '../packages/react-renderer/lib'
+          ),
           '@oakjs/react': path.resolve(__dirname, '../packages/react/lib'),
+          '@oakjs/ash': path.resolve(__dirname, '../packages/ash/lib'),
+          '@oakjs/addon-ckeditor5-react': path.resolve(
+            __dirname, '../packages/addon-ckeditor5-react/lib'
+          ),
+          '@oakjs/addon-lexical': path.resolve(
+            __dirname, '../packages/addon-lexical/lib'
+          ),
+          '@oakjs/addon-remirror': path.resolve(
+            __dirname, '../packages/addon-remirror/lib'
+          ),
         },
       },
       plugins: [

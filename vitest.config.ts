@@ -36,6 +36,7 @@ export default defineConfig({
     alias: {
       '@oak/core': path.resolve('./packages/core/lib'),
       '@oak/react': path.resolve('./packages/react/lib'),
+      '@oakjs/react-renderer': path.resolve('./packages/react-renderer/lib'),
     },
   },
 });

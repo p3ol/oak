@@ -1,0 +1,4 @@
+/* Standalone stylesheet for pages rendered with @oakjs/react-renderer */
+@import "tailwindcss/theme.css" prefix(oak);
+@import "tailwindcss/utilities.css" prefix(oak) source(none);
+@import "./tailwind.css";
